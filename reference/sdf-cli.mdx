@@ -1,0 +1,450 @@
+---
+title: "SDF CLI Reference"
+description: "This document contains the help content for the sdf command-line program."
+---
+
+**Command Overview:**
+
+* [`sdf`↴](#sdf)
+* [`sdf new`↴](#sdf-new)
+* [`sdf clean`↴](#sdf-clean)
+* [`sdf build`↴](#sdf-build)
+* [`sdf describe`↴](#sdf-describe)
+* [`sdf deploy`↴](#sdf-deploy)
+* [`sdf view`↴](#sdf-view)
+* [`sdf lineage`↴](#sdf-lineage)
+* [`sdf system`↴](#sdf-system)
+* [`sdf auth`↴](#sdf-auth)
+* [`sdf auth login`↴](#sdf-auth-login)
+* [`sdf auth logout`↴](#sdf-auth-logout)
+* [`sdf auth status`↴](#sdf-auth-status)
+* [`sdf auth aws`↴](#sdf-auth-aws)
+
+## `sdf`
+
+SDF's modular SQL
+
+**Usage:** `sdf <COMMAND>`
+
+###### **Subcommands:**
+
+* `new` — Create a new SDF workspace at PATH
+* `clean` — Remove generated SDF artifacts in workspace
+* `build` — Build, run, and save SDF queries
+* `describe` — Describe SDF table schemas
+* `deploy` — Create a deployment and post it to the SDF service
+* `view` — View existing table content
+* `lineage` — Display lineage for a given column
+* `system` — System maintenance and generation of reference documentation
+* `auth` — Manage credentials and tokens
+
+
+
+## `sdf new`
+
+Create a new SDF workspace at PATH
+
+**Usage:** `sdf new [OPTIONS] [PATH]`
+
+###### **Arguments:**
+
+* `<PATH>` — Create a new SDF workspace at PATH
+
+###### **Options:**
+
+* `--list-samples` — List all available samples
+
+  Default value: `false`
+* `--sample <SAMPLE>` — Create a workspace with the sample content at path
+* `--quiet` — Do not print sdf log messages
+
+  Default value: `false`
+
+
+
+## `sdf clean`
+
+Remove generated SDF artifacts in workspace
+
+**Usage:** `sdf clean [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Remove all derived artifacts from a workspace, where workspace is identified by any input location or, if none is given, by the current working directory
+
+###### **Options:**
+
+* `--quiet` — Do not print sdf log messages
+
+  Default value: `false`
+* `-p`, `--profile <PROFILE>` — Clean cache entries for this profile
+
+
+
+## `sdf build`
+
+Build, run, and save SDF queries
+
+**Usage:** `sdf build [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Build these *.sql files or catalog.schema.table targets; no input rebuilds the whole workspace
+
+###### **Options:**
+
+* `--var <VAR>` — Var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `-p`, `--profile <PROFILE>` — Build data using this profile
+* `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
+* `--dry-run` — Plan but don't execute refills,  output as a shell script in .sdfcache/profile/commands.sh
+
+  Default value: `false`
+* `--file-format <FILE_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--print-format <PRINT_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-save` — Don't save non-source tables
+
+  Default value: `false`
+* `--no-cache` — Don't cache tables
+
+  Default value: `false`
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--quiet` — Do not print sdf log messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+
+  Default value: `none`
+
+  Possible values:
+  - `trace`:
+    Trace internal state changes
+  - `debug`:
+    Trace internal key metrics, including cache hit, etc
+  - `info`:
+    Trace internal progress, SQL statements being processed, logical plan being produced
+  - `none`:
+    No trace, unless RUST_LOG is set
+
+* `--no-assembly` — Do not generate a assembly.sdf.yml file
+
+  Default value: `false`
+
+
+
+## `sdf describe`
+
+Describe SDF table schemas
+
+**Usage:** `sdf describe [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Describe these *.sql files, or catalog.schema.table targets; no input describes the whole workspace
+
+###### **Options:**
+
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
+* `--region <REGION>` — The AWS region (default=us-east-1))
+* `-p`, `--profile <PROFILE>` — Describe data using this profile
+* `--no-save` — Don't save schema tables
+
+  Default value: `false`
+* `--print-format <PRINT_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--file-format <FILE_FORMAT>` — Save tables in this format
+
+  Default value: `json`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--save-filter <SAVE_FILTER>` — Save only what is being filtered
+
+  Default value: `assembly`
+
+  Possible values:
+  - `targets-only`:
+    Saves the target.sdf.yml files in the .sdfcache
+  - `assembly`:
+    Saves all meta build info as an assembly
+
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--quiet` — Do not print sdf log messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+
+  Default value: `none`
+
+  Possible values:
+  - `trace`:
+    Trace internal state changes
+  - `debug`:
+    Trace internal key metrics, including cache hit, etc
+  - `info`:
+    Trace internal progress, SQL statements being processed, logical plan being produced
+  - `none`:
+    No trace, unless RUST_LOG is set
+
+* `--no-summary` — Do not generate a all.sdf.yml file
+
+  Default value: `false`
+
+
+
+## `sdf deploy`
+
+Create a deployment and post it to the SDF service
+
+**Usage:** `sdf deploy [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Deploy these  *.sql files or catalog.schema.table targets; no input deploys the whole workspace
+
+###### **Options:**
+
+* `--var <VAR>` — Var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--propagate` — Propagate labels for deployed targets
+
+  Default value: `false`
+* `--date <DATE>` — Backfill all tasks that run (only) on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07 or 2020-12-31
+* `--to <TO>` — Backfill to this datetime (exclusive), use RFC format, e.g., e.g. 2020-12-31T21:07:14-07:00, with optional T part
+* `-p`, `--profile <PROFILE>` — Deploy build artifacts using this profile
+* `--execute <EXECUTE>` — When to execute this job run; defaults to recurring: if --from/--to are given
+
+  Default value: `once-immediately`
+
+  Possible values: `once-immediately`, `once-on-last-landed`, `once-on-next-landing`, `recurring`
+
+* `--dry-run` — Create a deploy.json and archive.tar.gz but don't post it to the service
+
+  Default value: `false`
+* `--quiet` — Do not print sdf log messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+
+  Default value: `none`
+
+  Possible values:
+  - `trace`:
+    Trace internal state changes
+  - `debug`:
+    Trace internal key metrics, including cache hit, etc
+  - `info`:
+    Trace internal progress, SQL statements being processed, logical plan being produced
+  - `none`:
+    No trace, unless RUST_LOG is set
+
+
+
+
+## `sdf view`
+
+View existing table content
+
+**Usage:** `sdf view [OPTIONS] <INPUT_FILE>`
+
+###### **Arguments:**
+
+* `<INPUT_FILE>` — Input is catalog.schema.table target, or a .json, .csv, or .parquet file, or a directory ending in '/' containing parquet files
+
+###### **Options:**
+
+* `--date <DATE>` — View catalog.schema.table of this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00, etc
+* `--from <FROM>` — View catalog.schema.table from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00
+* `--to <TO>` — View catalog.schema.table to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T23:59
+* `-p`, `--profile <PROFILE>` — View data using this profile
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--print-format <PRINT_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--file-format <FILE_FORMAT>` — Read tables having this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--no-header` — Assumes that .csv files have a header, use --no-header if they have none
+
+  Default value: `false`
+* `--quiet` — Do not print sdf log messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+
+  Default value: `none`
+
+  Possible values:
+  - `trace`:
+    Trace internal state changes
+  - `debug`:
+    Trace internal key metrics, including cache hit, etc
+  - `info`:
+    Trace internal progress, SQL statements being processed, logical plan being produced
+  - `none`:
+    No trace, unless RUST_LOG is set
+
+
+
+
+## `sdf lineage`
+
+Display lineage for a given column
+
+**Usage:** `sdf lineage [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — The specification of the table for whose columns to compute lineage
+
+###### **Options:**
+
+* `--column <COLUMN>` — The column for which to compute lineage
+* `--forward` — Whether to compute downstream lineage. (The default is upstream)
+
+  Default value: `false`
+* `--collapse` — Whether to collapse the output into a single level of dependencies. (Only relevant for forward=false)
+
+  Default value: `false`
+
+
+
+## `sdf system`
+
+System maintenance and generation of reference documentation
+
+**Usage:** `sdf system [OPTIONS]`
+
+###### **Options:**
+
+* `--show <SHOW>` — Print reference documents on stdout
+
+  Possible values:
+  - `cli-markdown`:
+    Print cli commands and options in markdown format
+  - `sdf-json-schema`:
+    Print json schema for *.sdf.yml documents
+  - `deploy-json-schema`:
+    Print json schema for deploy.json documents
+  - `sdf-aggregate-functions`:
+    Print all supported SDF Aggregate SQL functions for native SDF Dialect
+  - `sdf-math-functions`:
+    Print all supported SDF Math SQL functions for native SDF Dialect
+  - `sdf-other-functions`:
+    Print all supported SDF Other SQL Expressions for native SDF Dialect
+  - `sdf-string-functions`:
+    Print all supported SDF String SQL functions for native SDF Dialect
+  - `sdf-temporal-functions`:
+    Print all supported SDF Temporal SQL functions for native SDF Dialect
+
+* `--update` — Update SDF in place to the latest version
+
+  Default value: `false`
+* `--uninstall` — Uninstall SDF from the system
+
+  Default value: `false`
+* `--quiet` — Do not print sdf log messages
+
+  Default value: `false`
+
+
+
+## `sdf auth`
+
+Manage credentials and tokens
+
+**Usage:** `sdf auth <COMMAND>`
+
+###### **Subcommands:**
+
+* `login` — Obtain credentials for accessing remote resources
+* `logout` — Log out of SDF Service
+* `status` — Show status of credentials / tokens
+* `aws` — Configure how to authenticate with AWS
+
+
+
+## `sdf auth login`
+
+Obtain credentials for accessing remote resources
+
+**Usage:** `sdf auth login [OPTIONS]`
+
+###### **Options:**
+
+* `--id-token <ID_TOKEN>` — Path to a file containing an OIDC identity token (a JWT)
+* `--org-id <ORG_ID>`
+
+
+
+## `sdf auth logout`
+
+Log out of SDF Service
+
+**Usage:** `sdf auth logout`
+
+
+
+## `sdf auth status`
+
+Show status of credentials / tokens
+
+**Usage:** `sdf auth status`
+
+
+
+## `sdf auth aws`
+
+Configure how to authenticate with AWS
+
+**Usage:** `sdf auth aws [OPTIONS] --profile <PROFILE>`
+
+###### **Options:**
+
+* `--default-region <DEFAULT_REGION>` — AWS Region to use
+
+  Default value: `us-east-1`
+* `--profile <PROFILE>` — AWS profile to use, as usually defined in ~/.aws/config
+

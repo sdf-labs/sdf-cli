@@ -1,0 +1,563 @@
+---
+title: "Lineage & Classifiers"
+description:
+  "This documents aims to layout a very important part of SDF and how it can
+  benefit your data warehouse."
+---
+
+This documents aims to layout a very important part of SDF and how it can benefit your data warehouse. SDF's column-level lineage combined with its metadata and classifier propagation
+will help you build a data warehouse that is more accurate, easier to maintain,
+and compliant with an evolving data privacy landscape.
+
+## Background
+
+### Source SQL Files
+
+In SDF, SQL files contain SELECT queries defining each table. Here are a few SQL
+statements we'll be using to demonstrate the concepts in this document.
+
+```sql src/source.sql
+select column1 as user_id,
+       column2 as phone,
+       column3 as txn_date,
+       column4 as qty from
+(VALUES
+  (1, '555-1212', '2022-01-01', 100),
+  (1, '555-1212', '2022-02-01', 50),
+  (1, '555-1212', '2022-03-01', 75),
+  (2, '444-1313', '2022-01-01', 200),
+  (2, '444-1313', '2022-02-01', 100),
+  (3, '333-1414', '2022-03-01', 300))
+```
+
+```sql src/middle.sql
+select user_id, max(phone) as phone, txn_date, sum(qty) as qty
+from source
+group by user_id, txn_date
+```
+
+```sql src/sink.sql
+select user_id as uid, phone, txn_date, qty
+from middle
+where qty > 180
+```
+
+```sql src/knis.sql
+select txn_date, sum(qty) as qty
+from middle
+```
+
+_Hint: knis = sink[::-1]_
+
+These are wrapped up into an SDF workspace with a simple `workspace.sdf.yml`
+file:
+
+```yaml workspace.sdf.yml
+workspace:
+  edition: 1
+  includes:
+    - path: src/
+```
+
+Note how tables can use other tables as sources in the FROM clause using either
+unqualified (middle) or qualified (chain.pub.middle) names.
+
+The tables that do not use a FROM clause are said to be root tables. SDF
+supports two types of root tables – those that define their data inline using
+fixed values – and those that refer to a data file in an external store (e.g.
+collection of S3 blobs.) The root table source is an example of the former.
+
+With the above definitions, we can run sdf describe to list the tables and their
+schemas:
+
+```bash
+sdf describe
+```
+
+```text
+Schema chain.pub.source
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| user_id     | bigint    | false       |            |
+| phone       | varchar   | false       |            |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.middle
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| user_id     | bigint    | false       |            |
+| phone       | varchar   | false       |            |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.knis
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.sink
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| uid         | bigint    | false       |            |
+| phone       | varchar   | false       |            |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+```
+
+### Integrating with an Existing Data Warehouse
+
+When SDF is used in the context of an existing warehouse, the YML files must
+provide URLs to table definitions in the underlying systems (Snowflake, Spark,
+BigQuery, etc.). SDF can then deliver the same functionality as for the tables
+defined natively. This includes being able to run sdf describe as shown above,
+and perform lineage analysis and label propagation described below.
+
+## Basic Column-Level Lineage
+
+Lineage is a representation of upstream-downstream dependencies between table
+columns. SDF understands three types of column-level dependencies out of the
+box: copy, transform, and inspect.
+
+### Copy Dependencies
+
+The copy dependency indicates that a column value from some upstream table row
+flows unchanged into a column of some downstream table row. The cardinality of
+the downstream column may be different from the cardinality of the upstream
+column, with only a subset of upstream values finding their way downstream.
+Consider the column phone in the table sink above. It is a copy of the phone
+column in the upstream table middle, which in turn is a copy of the phone column
+in its upstream table source.
+
+```text
+sink.phone
+│
+│ copy
+└──────┐
+        middle.phone
+        │
+        │ copy
+        └──────┐
+                source.phone
+```
+
+In both steps of the above transformation, from source to middle, and from
+middle to sink, the cardinality of the column goes down: first because of
+aggregation; then because of filtering.
+
+<Note>
+  More than one upstream column can be a copy-dependency of a downstream column.
+  For instance SELECT coalesce(col1, col2) as col3 results in both col1 and col2
+  being copy-dependencies of col3.
+</Note>
+
+### Transform Dependencies
+
+The transform dependency indicates that upstream column values contribute to
+downstream column values via some transformation such as aggregation or function
+application. Multiple upstream columns can be transform-dependencies of a
+downstream column. A column can have either copy-dependencies or
+transform-dependencies, but never both. The `qty` column of the `knis` table
+shown above is an example of transform lineage (denoted by `mod`):
+
+```text
+knis.qty
+│
+│ mod
+└──────┐
+        middle.qty
+        │
+        │ mod
+        └──────┐
+                source.qty
+```
+
+Both transitions above are judged to be transform-dependencies because of `SUM`
+aggregation.
+
+### Inspect Dependencies
+
+The _inspect_ dependency indicates that an upstream column was inspected (as
+part of the `WHERE`, `GROUP BY`, or `ON` clauses) to influence, but not directly
+contribute to, a downstream column.
+
+Here is a full dependency graph for `sink.phone` which involves all three kinds
+of dependencies with inspect dependencies marked by `scan` for brevity.
+
+```text
+sink.phone
+│
+│ copy
+├──────┐
+│      middle.phone
+│      │
+│      │ copy
+│      ├──────┐
+│      │      source.phone
+│      │ scan
+│      └──────┐
+│             source.txn_date
+│             source.user_id
+│ scan
+└──────┐
+       middle.qty
+       │
+       │ mod
+       ├──────┐
+       │      source.qty
+       │ scan
+       └──────┐
+              source.txn_date
+              source.user_id
+```
+
+## Lineage CLI Command
+
+SDF provides two interfaces for accessing lineage information. The text-based
+interface supports `Yaml` and `Json` formats and is friendly to programmatic
+access. This interface displays information per-table and it includes only one
+level of upstream dependencies. Here is an example:
+
+```bash
+sdf lineage --table chain.pub.sink --format yml
+```
+
+```yaml
+table:
+  name: chain.pub.sink
+  lineage:
+    inspect:
+      - middle.qty
+  columns:
+    - name: uid
+      lineage:
+        copy:
+          - middle.user_id
+    - name: phone
+      lineage:
+        copy:
+          - middle.phone
+    - name: txn_date
+      lineage:
+        copy:
+          - middle.txn_date
+    - name: qty
+      lineage:
+        copy:
+          - middle.qty
+```
+
+Alternatively you can view a multi-level graphical representation of lineage:
+
+```bash
+sdf lineage --table chain.pub.sink --column phone
+```
+
+```text
+sink.phone
+│
+│ copy
+├──────┐
+│      middle.phone
+│      │
+│      │ copy
+│      ├──────┐
+│      │      source.phone
+│      │ scan
+│      └──────┐
+│             source.txn_date
+│             source.user_id
+│ scan
+└──────┐
+       middle.qty
+       │
+       │ mod
+       ├──────┐
+       │      source.qty
+       │ scan
+       └──────┐
+              source.txn_date
+              source.user_id
+```
+
+In addition, `sdf lineage` supports the `--collapse` flag to show only
+(transitive) dependencies on root upstream tables, and the `--forward` flag to
+display all the downstream dependencies of a given column.
+
+For a deeper dive on this command, check out the
+[Lineage CLI Command](/reference/sdf-cli#sdf-lineage) referece.
+
+## Advanced Column-Level Lineage (Coming Soon)
+
+Soon SDF will be able to track dependencies at a more fine-grained level by
+specifying which functions or operations should be tracked explicitly. Consider
+this updated `workspace.sdf.yml` file where we added an instruction to track the
+`SUM` transformation explicitly.
+
+```yaml workspace.sdf.yml
+workspace:
+  edition: 1
+  lineage:
+    functions:
+      - sum
+  includes:
+    - path: src/
+```
+
+Now, the lineage for the `knis.qty` column will be as follows:
+
+```
+knis.qty
+│
+│ sum
+└──────┐
+        middle.qty
+        │
+        │ sum
+        └──────┐
+                source.qty
+```
+
+Other transformations will continue to be tagged by the generic `mod` label. By
+specifying a wildcard, the user may instruct SDF to track all function
+transformations explicitly.
+
+We're actively working on this functionality and will notify the community when
+it is available.
+
+## Basic Propagation
+
+Propagation is the mechanism of inferring the downstream column metadata from
+the upstream column metadata. The inference process is based on the semantics of
+the underlying transformation.
+
+### Defining Classifier Domains
+
+To work with classifiers and propagation we must first define all the relevant
+classifier domains. Here is an example of a simple PII classifier domain,
+defined in a separate section of the global `workspace.sdf.yml` config file:
+
+```yaml workspace.sdf.yml
+workspace:
+  edition: 1
+  includes:
+    - path: src/
+---
+classifier:
+  name: PII
+  elements:
+    - name: Phone
+    - name: Address
+    - name: SSN
+    - name: UID
+```
+
+This configuration defines five distinct labels: `PII`, `PII.Phone`,
+`PII.Address`, `PII.SSN`, and `PII.UID`, where the last four labels denote
+special classes of the first label. (I.e. if some data is labeled with
+`PII.Address`, it is also, implicitly, labeled with `PII`.)
+
+Classifier domains can also be defined in separate .sdf.yml files as long as
+these files are included into the root `workspace.sdf.yml` file as one of the
+paths specified in `includes`.
+
+### Attaching Classifiers to Tables
+
+Once a classifier domain is defined, we can manually attach classifiers to
+tables. Once root tables are annotated with the relevant classifiers, SDF
+automatically propagates classifiers downstream.
+
+Here is an example:
+
+```yaml src/source.sdf.yml
+table:
+  name: source
+  columns:
+    - name: user_id
+      classifiers:
+        - PII.UID
+    - name: phone
+      classifiers:
+        - PII.Phone
+```
+
+Note how this file will be picked up because its in the path included in the
+root `workspace.sdf.yml`. Alternatively, the same information can be included
+directly into the root file as follows:
+
+```yaml workspace.sdf.yml
+workspace:
+  edition: 1
+  includes:
+    - path : src/
+---
+classifier:
+  name: PII
+  elements:
+    - name: Phone
+    - name: Address
+    - name: SSN
+    - name: UID
+–--
+table:
+  name: source
+  columns:
+    - name: user_id
+      classifiers:
+        - PII.UID
+    - name: phone
+      classifiers:
+        - PII.Phone
+```
+
+### Inspecting Propagation Results
+
+Now we can run `sdf describe` to see how classifiers are propagated into the
+tables downstream of `source`:
+
+```bash
+sdf describe
+```
+
+```text
+Schema chain.pub.source
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| user_id     | bigint    | false       | PII.UID    |
+| phone       | varchar   | false       | PII.Phone  |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.middle
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| user_id     | bigint    | false       | PII.UID    |
+| phone       | varchar   | false       | PII.Phone  |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.knis
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.sink
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| uid         | bigint    | false       | PII.UID    |
+| phone       | varchar   | false       | PII.Phone  |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+```
+
+Observe how the classifiers attached to the upstream table automatically
+propagated downstream to `middle` and `sink`, but not to `knis` – because it
+doesn’t have any columns derived from the `PII` columns upstream.
+
+## Advanced Propagation (Coming Soon)
+
+By default classifiers propagate through functions unchanged. For example, if a
+substring is extracted from a piece of data labeled with `PII.Phone` the result
+will also be labeled with `PII.Phone` by default. However, SDF will soon provide
+a mechanism to override the default behavior with the help of classifier states.
+
+### Classifier States
+
+A _classifier state_ always appears with a classifier label, as a pair separated
+by a colon. For example, `PII.Phone:Encrypted` describes information derived
+from a phone number after it has been encrypted.
+
+Here is how classifier states will be defined in YML:
+
+```yaml workspace.sdf.yml
+...
+---
+classifier:
+  name: PII
+  elements:
+    - name: Phone
+    - name: Address
+    - name: SSN
+    - name: UID
+  states:
+    - name: Masked
+    - name: Hashed
+    - name: Encrypted
+–--
+...
+```
+
+Any of the three classifier states specified in this example can be applied to
+any of the classifiers defined above them; e.g. `PII.Phone:Encrypted`,
+`PII.Address:Masked`, `PII:Hashed`. If no classifier state is specified, the
+system treats the state as unknown – the data could either be unqualified or
+qualified by any of the existing states.
+
+### Classifier States and Functions
+
+As mentioned above, by default functions propagate input classifiers to their
+output. We'll soon be able to override this behavior by identifying those
+functions that have a non-default effect on classifiers and including their
+classifier signatures in YML configuration files. Consider the following
+example.
+
+```yaml src/workspace.sdf.yml
+...
+---
+classifier:
+  name: PII
+  elements:
+    - name: Phone
+    - name: Address
+    - name: SSN
+    - name: UID
+  states:
+    - name: Masked
+    - name: Hashed
+    - name: Encrypted
+  functions:
+    - name: encrypt
+      args:
+        - name: key
+        - name: text
+          classifiers:
+            - PII.*
+     result: PII.*:Encrypted
+    - name: decrypt
+      args:
+        - name: key
+        - name: text
+          classifiers:
+            - PII.*:encrypted
+     result: PII.*
+
+–--
+...
+```
+
+This defines the effect of two functions, `encrypt` and `decrypt`, (let’s assume
+for the moment these are built-in functions in the SQL engine being used by the
+project defined in our example). The above configuration specifies that
+`encrypt` converts PII data in its second argument to encrypted PII data, and
+`decrypt` converts encrypted PII data in its second argument to clear PII data.
+Any other labels pass through these functions unchanged. So, for example, if SDF
+infers that the key parameter in a particular application of `encrypt` contains
+a PII label, then the result will contain the same label.

@@ -1,0 +1,99 @@
+---
+title: "Installation"
+description:
+  "SDF is a static analysis tool for data warehouses written in Rust. No JVM
+  required"
+---
+
+## Installing SDF
+
+<Tabs>
+  <Tab title="Binary Download">
+    Our install script will first check your operating system and architecture,
+    then install the latest version of SDF and its dependencies for your system.
+    The `sdf` command will also be added to your path. 
+    ```bash 
+    curl -LSfs https://cdn.sdf.com/releases/download/install.sh | bash -s 
+    ```
+  </Tab>
+</Tabs>
+
+### Verify Installation
+
+To verify that SDF is installed correctly, run the following command:
+
+```bash
+  sdf --help
+```
+```bash
+SDF's modular SQL
+
+Usage: sdf <COMMAND>
+
+Commands:
+  configure  Initialize your SDF environment
+  new        Create a new SDF workspace at PATH
+  clean      Remove generated SDF artifacts in workspace
+  build      Build, run, and save SDF queries
+  describe   Describe SDF table schemas
+  deploy     Create a deployment and post it to the SDF service
+  view       View existing table content
+  trace      Display lineage for a given column
+  system     System maintenance and generation of reference documentation
+  auth       Manage credentials and tokens
+  help       Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+```
+
+## SDF Versions and Updating
+
+From time to time, it may be necessary to update the cli to get the latest and
+greatest features, or to connect to SDF Cloud Services.
+
+If you've already installed SDF, you can update to the latest version by running
+the command below. By default, this will update to the latest version of the
+cli. But, you can also pass `--version` and `--install-location` parameters.
+
+```bash
+$sdf update
+```
+
+You can check the version of your current CLI with
+
+```bash
+sdf 0.0.94-dev
+```
+
+## Uninstalling SDF
+
+If you ever need to uninstall SDF, run
+
+```bash
+$sdf uninstall
+```
+
+## Info
+
+SDF is currently supported on the following platforms. The executable is small
+(\<50mb), but heavily parallelized. As such, SDF's resource consumption is
+dependent entirely on your data processing requirements.
+
+| Platforms            | Supported |
+| -------------------- | :-------: |
+| Linux Intel X86-64   |    ✔️     |
+| Linux Arm AARCH-64   |    ✔️     |
+| Apple Intel X86-64   |    ✔️     |
+| Apple Arm AARCh-64   |    ✔️     |
+| Windows Intel X86-64 |    ❌     |
+| Web-Assembly         |    ❌     |
+
+For a complete list of releases, please see the official
+[github releases page](https://github.com/promise-labs/sdf-cli/releases).
+
+<Tip>
+  SDF is hardware optimized. For best performance, download the version that
+  matches your chipset.
+</Tip>

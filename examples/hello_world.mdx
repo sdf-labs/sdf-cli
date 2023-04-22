@@ -1,0 +1,170 @@
+---
+title: "Analyzing World Population"
+description:
+  "Now that you have installed SDF, let's start analyzing some data. In this
+  tutorial you will"
+---
+
+- Create an SDF Workspace
+- Reference local CSV Data
+- Connect an AWS S3 Bucket
+- Reference _local_ and _cloud_ data in the same workspace
+- Learn about SDF's caching logic.
+
+<Tip>
+Use an editor like Visual Studio Code for better auto-complete and development hints.
+</Tip>
+<Note>
+It is mandatory that you set a default AWS region when working with S3 data. Set the environment variable with `export AWS_DEFAULT_REGION=us-east-1`
+</Note>
+
+## Getting Started
+
+To prepare this tutorial, execute the following commands.
+
+```bash
+sdf new --sample hello_world hello_world && cd hello_world
+export AWS_DEFAULT_REGION=us-east-1
+```
+
+SDF automatically creates a .gitignore file to ignore the sdfcache.
+
+```bash
+hello_world/.gitignore
+```
+
+## Describe & View
+Let's explore the workspace. Try running `describe`. You'll see the local tables like, **popdata** and **world_metrics** and the remote tables specified in the cloud. You'll also see the raw CSV data file under /local/popdata.csv. Internally SDF has learned the schema of the tables from the CSV header and SQL statements. SDF has also generated the dependecy graph for this workspace, in this case only for these two tables.
+
+```bash
+sdf describe
+```
+
+You will see numerous table definitions, including column_name, datatype, and classifiers. This is your workspace.
+
+### View
+
+You can always view data by providing the path and datatype.
+
+```bash
+sdf view local/pop.csv --file-format csv
+```
+
+The view utility can be used **outside** your workspace, so information like
+table name is lost. Let's take a look at _pop.csv_.
+
+```bash
+
+Table anonym
++---------------+------------+-------------+--------------------------------+
+| country       | population | date        | source                         |
++---------------+------------+-------------+--------------------------------+
+| China         | 1412600000 | 31 Dec 2021 | Official estimate              |
+| India         | 1375586000 | 1 Mar 2022  | Official projection            |
+| United States | 333329956  | 5 Dec 2022  | Population clock               |
+| Indonesia     | 275773800  | 1 Jul 2022  | Official estimate              |
+| Pakistan      | 235825000  | 1 Jul 2022  | UN projection                  |
+| Nigeria       | 218541000  | 1 Jul 2022  | UN projection                  |
+| Brazil        | 215486475  | 7 Dec 2022  | National population clock      |
+| Bangladesh    | 165158616  | 15 Jun 2022 | 2022 preliminary census result |
+| Russia        | 145100000  | 1 Sep 2022  | Official estimate              |
+| Mexico        | 128533664  | 30 Jun 2022 | National quarterly estimate    |
++---------------+------------+-------------+--------------------------------+
+241 rows, showing only 10 rows. Run with --limit 0 to show all rows.
+   Finished view in 0.004 secs
+```
+
+## Local Data
+
+Let's build this workspace! You can either build the whole workspace with
+`sdf build` or a specific asset with _catalog.schema.table_ notation.
+
+```bash
+sdf build local/world_metrics.sql
+```
+
+SDF will show output for all non-root tables. In this example that is currently
+only the **world_metrics** table.
+
+```bash
+   Building hello_world.pub.popdata (./local/popdata.sql)
+    Written .sdfcache/hello_world/pub/popdata
+   Building hello_world.pub.world_metrics (./local/world_metrics.sql)
+
+Table hello_world.pub.world_metrics
++------------+------------------+-----------------+
+| world_pop  | smallest_country | largest_country |
++------------+------------------+-----------------+
+| 7820009936 | 47               | 1412600000      |
++------------+------------------+-----------------+
+1 rows.
+
+    Written .sdfcache/hello_world/pub/world_metrics
+    Written .sdfcache/assembly.sdf.yml
+   Finished build in 0.184 secs
+```
+
+## Remote Data
+
+SDF provides multiple ways to read in source files. You can always read data in
+locally, or you can reference data stored in the cloud. For local development,
+cloud data is downloaded once and then cached. SDF intelligently prefers local
+data to minimize I/O time.
+
+Try it out for yourself! It turns out that pop.csv is also stored in the cloud,
+on a public S3 bucket. You can reference external data, stored in the cloud
+through **table definitions**. SDF allows you to seamlessly work with local
+(test) and remote (production) data.
+
+Let's try executing only a single statement: `sdf build cloud/q1.sql`. Here, we
+take a look at the least population dense country in 1999. Notice that we have
+`Written .sdfcache/hello_world/pub/un_pop_data`. This is the local download of
+our S3 dataset.
+
+```bash
+   Building hello_world.pub.un_pop_data (./cloud/un_pop_data.sql)
+    Written .sdfcache/hello_world/pub/un_pop_data
+   Building hello_world.pub.q1 (./cloud/q1.sql)
+
+Table hello_world.pub.q1
++-------------------+-----------------+----------------------------------+
+| region_or_country | ISO3_Alpha_code | Population_Density_Per_Square_KM |
++-------------------+-----------------+----------------------------------+
+| Greenland         | GRL             | 0.1                              |
++-------------------+-----------------+----------------------------------+
+1 rows.
+
+    Written .sdfcache/hello_world/pub/q1
+    Written .sdfcache/assembly.sdf.yml
+   Finished build in 6.804 secs
+```
+
+<Tip>
+  Want to write some more analyses? Try creating a new sql file, and executing
+  it. We no longer have to download the data so SDF will run it all locally at
+  lightning speeds
+</Tip>
+
+## SDF Cache
+
+Notice that as soon as `describe` is run, SDF creates a /.sdfcache directory.
+This cache is used internally by SDF to optimally store data and metadata for
+reuse. The cache keeps
+
+- File hashes and timestamps for data, code, and metadata objects
+- Intermediate outputs in efficient parquet format
+- The _complete_ workspace file assembly.sdf.yml
+- Remote datasets from AWS S3 or Google Cloud Storage
+
+<Note>
+  SDF contains a high performance Parquet reader. You can always view data
+  stored in the SDF Cache with the view command. `sdf view
+  .sdfcache/path/to/data.parquet`
+</Note>
+
+## Sources
+
+Our data comes from somewhere!
+
+- https://population.un.org/wpp/Download/Standard/MostUsed/
+- https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population

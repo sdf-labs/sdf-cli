@@ -1,0 +1,125 @@
+---
+title: "Deploy Your Data Warehouse"
+---
+
+Along with running workflows locally with sdf build, you can use `sdf deploy` to deploy your assets to the SDF Platform.
+
+<Note>
+The SDF Platform is only available to individuals via invite at this time. If you'd like to be request access, please [reach out](mailto:info@sdf.com)
+</Note>
+
+Running deploy allows you to execute your workflows remotely, search, monitor and interact with your assets via SDF's [console](https://console.sdf.xyz).
+
+<img src="https://uploads-ssl.webflow.com/6420e53ce6ce55294b114432/642376dbe407e0510fab14fc_Screenshot%202023-03-28%20at%204.22.58%20PM.png" />
+
+## What is Deploy?
+
+SDF Deploy is just like running `sdf build`, but with the intention of deploying your assets to the SDF Platform, where they can be scheduled, executed, and monitored remotely. We are working hard to provide first class support for all major compute offerings (i.e. Snowflake, Databricks, etc.).
+
+There are four different execution options available: once-immediately, once-on-last-landed, once-on-next-landing, and recurring.
+
+| Execution Mode | Description |
+| --- | --- |
+| once-immediately | Executes all targeted assets immediately, without regard for schedule, order, or upstream dependencies. This is the default execution mode |
+| once-on-last-landed | Executes the target assets with data from the previous time grain. See our [partition documentation](/guide/schedules#terminology) for more on grains. |
+| once-on-next-landing | Executes the target assets with data upon completion of the next scheduled time grain. See our [partition documentation](/guide/schedules#terminology) for more on grains. |
+| recurring | Deploys all targeted assets to your environment and ensures all future schedules will be respected, and upstream dependencies fulfilled prior to their next scheduled execution |
+
+By default, `sdf deploy` will execute "*once-immediately*", triggering an ad-hoc run of your assets. Ad-hoc runs are run immediately and do not wait for upstream dependencies to fulfill. You might want to run an ad-hoc task if you're testing your queries remotely on an existing dataset and don't depend on any upstream tasks to complete.
+
+<Info>
+Before you can deploy your assets to the SDF Platform, you'll need to authenticate with the platform. Follow our guide on [authentication](/guide/authentication) to get started.
+</Info>
+
+## Deploying Your Assets
+
+Deploying your assets is easy. All of the flags associated with the [sdf build](/reference/sdf-cli#sdf-build) also work with deploy, but deploy has a few extra functionalities and tweaks to watch out for. Let's take a look at the following example:
+
+> First, we'll [authenticate with platform](/guide/authentication).
+```shell
+sdf auth login
+```
+
+> Next, let's create a sample project with the sample `s3_123`
+```shell
+sdf new --sample s3_123 s3_project
+```
+Expected Output:
+```text
+Created s3_project/.gitignore
+Created s3_project/src/one.sql
+Created s3_project/src/three.sql
+Created s3_project/src/two.sql
+Created s3_project/workspace.sdf.yml
+Finished new in 0.009 secs
+```
+
+> Since this sample accesses s3 data, we'll need to [set up our AWS credentials](authentication#aws-access)
+```shell
+sdf auth aws --default-region <REGION> --secret-access-key <SECRET_ACCESS_KEY> --access-key-id <ACCESS_KEY_ID>
+```
+
+> Next, let's take a look at the workspace.sdf.yml file
+```yaml
+workspace:
+  name: s3_project
+  edition: 1
+  includes:
+     - path: src/
+  remote-location: s3://sdf-store/
+```
+> You'll notice two new required fields for deploy: `name` and `remote-location`. The `name` field is the name of your workspace, and the `remote-location` is the output location where your data is written to (output of SQL transformations).
+
+><Info>
+>In order to deploy, `name` and `remote-location` are must be specified in the `workspace.sdf.yml`.
+></Info>
+
+
+> Now, let's deploy our assets to the SDF Platform
+```shell
+sdf deploy
+```
+Expected Output:
+```text
+Confirm Loaded AWS Credentials
+    Confirm Loaded AWS Credentials
+  Analyzing s3_project.pub.one (./src/one.sql)
+Downloading one (s3://wolfram-test-s3/data/a.csv)
+  Analyzing s3_project.pub.two (./src/two.sql)
+  Analyzing s3_project.pub.three (./src/three.sql)
+    Written .sdfcache/dbg/assembly.sdf.yml
+  Deploying job 265ebc0c-4a4a-4669-bce3-cbb0829ac15c (.sdfcache/dbg/deploy.json)
+  Analyzing SDF version: 0.0.97-dev, minimum version: 0.0.70
+Synchronize job 265ebc0c-4a4a-4669-bce3-cbb0829ac15c
+    Confirm job 265ebc0c-4a4a-4669-bce3-cbb0829ac15c (/Users/papi/Desktop/work/Promise/sdf/public/sdf-cli/tst/s3/.sdfcache/dbg/archive.tar.gz)
+   Deployed https://console.sdf.com/catalog/data/default?workspace=s3_project&profile=dbg
+   Finished deploy in 1.840 secs
+```
+
+> But what if we have data we're working with locally and we'd like to deploy that as well? We can do that by added the path of the local data to the `workspace.sdf.yml` under the [resources](/reference/sdf-yml#top-level-element-workspace) field.
+```yaml
+workspace:
+  name: s3_project
+  edition: 1
+  includes:
+     - path: src/
+  remote-location: s3://sdf-store/
+  resources:
+    - path: local-data/
+```
+
+## Deploying Assets with Schedules
+
+To deploy recurring assets on the cloud, provide `--from` and `--to` flags to the `sdf deploy` command. The `--from` flag specifies the start date of the schedule, and the `--to` flag specifies the end date of the schedule. `--from` defaults to now and `--to` defaults to *null*. Specifying a `--from` makes this a recurring job, and if this `--from` happens to be in the past, this is a backfill job. 
+
+For example, let's say we added a schedule to the `s3_project` workspace to have it run daily. Furthermore, we'd like it to pick up data from the last 30 days and backfill its partitions. We can accomplish this with the following command:
+```shell
+sdf deploy --from 2023-03-21
+
+```
+
+## Viewing your Deployments
+
+Click on the deployment link to navigate to your [console](https://console.sdf.com/catalog/data/default?workspace=s3_project&profile=dbg) to see your deployments in action! See the screen below for an example.
+
+<img src="https://cdn.sdf.com/img/main-catalog-screen.png" />

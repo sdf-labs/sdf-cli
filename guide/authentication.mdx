@@ -1,0 +1,45 @@
+---
+title: "Authentication"
+---
+
+## Authenticating the CLI
+
+Before you can deploy your assets to the SDF Platform, you'll need to authenticate with the platform. 
+
+<Note>
+The SDF Platform is only available to individuals via invite at this time. If you'd like to be request access, please [reach out](mailto:info@sdf.com)
+</Note>
+
+Authenticating with your CLI is easy. Simply run the command below to begin:
+
+```shell
+sdf auth login
+```
+
+SDF will then prompt you to input your organization. For now, go ahead and put `demo` here unless we've explicitly told you otherwise.
+
+The `--org-id` flag can also be used to specify your organization.
+
+```shell
+sdf auth login --org-id demo
+```
+
+Next, a browser should pop up and prompt you to login with Google. If you don't have a Google account, you can create one [here](https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp).
+
+Once you've logged in, you'll be redirected to a page that looks like this:
+
+<img src="https://cdn.sdf.com/img/cli-auth-success.png" />
+
+Congratulations! You've successfully authenticated with the SDF Platform. You can now deploy, monitor, and interact with your assets on the platform.
+
+## AWS Access
+
+SDF currently uses AWS to store and manage your data. In order to deploy your assets to the platform, you'll need to provide SDF with AWS credentials. Support for GCP and Azure is coming in the near future.
+
+Setting up AWS credentials is easy. Simply run the command below to begin:
+
+```shell
+sdf auth aws --default-region <REGION> --secret-access-key <SECRET_ACCESS_KEY> --access-key-id <ACCESS_KEY_ID>
+```
+
+For more on this, see the [CLI Reference](/reference/sdf-cli#sdf-auth-aws).

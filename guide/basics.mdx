@@ -1,0 +1,464 @@
+---
+title: "The Basics"
+---
+
+This section explains the base capabilities of `sdf`. Everything we describe here can be executed by you, typically by installing a sample with `sdf new` and then performing more shell commands.  
+
+We use the following typesetting convention. We set commands to execute on the shell in blockquote and typeset the result in code. For instance, executing  
+```shell 
+sdf --help
+```
+
+on the command shell should return the following help text:
+```shell
+SDF's modular SQL
+
+Usage: sdf <COMMAND>
+
+Commands:
+  new       Create a new SDF workspace at PATH
+  clean     Remove generated SDF artifacts in workspace
+  build     Build, run, and save SDF queries
+  describe  Describe SDF table schemas
+  deploy    Create a deployment and post it to the SDF service
+  view      View existing table content
+  lineage   Display lineage for a given column
+  system    System maintenance and generation of reference documentation
+  auth      Manage credentials and tokens
+  help      Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+```
+We take the liberty to drop the output or shorten it if it is not central for the understanding of the example.
+
+## `sdf new`
+
+**SDF assumes that all queries are in one or more workspaces.**
+
+Workspaces contain
+
+- a [`workspace.sdf.yml`](/reference/sdf-yml#top-level-element-workspace) file at the root
+- one or more `.sql` source files typically in `src/` subdirectories
+- optional, additional metadata files ending with [`sdf.yml`](/reference/sdf-yml). Examples are `tables.sdf.yml` or `classifiers.sdf.yml`
+- a cache at `.sdfcache` next to the workspace file
+
+#### Example
+
+(1) Let's create a new workspace at the current directory '.' with two `.sql`
+queries, called `source.sql` and `sink.sql`. To create the workspace, run
+
+> `sdf new . --sample source-sink`
+
+```yaml
+Created dir ./source_sink
+```
+
+(2) To execute commands you should be in the workspace, so change you working
+directory:
+
+> `cd source_sink`
+
+In the following we assume that you always change into the sample workspace.
+
+(3) Visualize the workspace by calling
+
+> `tree .`
+
+```yaml
+. ├── src 
+      └── source.sql   
+      └── sink.sql 
+  └── workspace.yml
+```
+
+(4) The `.sql` files describes the queries to run.
+
+> `cat src/source.sql`
+
+```sql
+select * from(
+        values
+            ('2022-01-02', 'mark', 3),
+            ('2022-01-02', 'trish', 4),
+            ('2022-01-02', 'mark', 2),
+            ('2022-01-03', 'trish', 1)
+    ) T (date, name, amount)
+```
+
+> `cat src/sink.sql`
+
+```sql
+select date, name, sum(amount) total from source group by 1,2; ;
+```
+
+(5) The `workspace.yml` defines the default naming for queries and the workspace
+directory layout. All SDF sources must be listed in the required `sources`
+section of the workspace.
+
+> `cat workspace.yml`
+
+```yaml
+workspace:
+  default-catalog: source_sink
+  default-schema: public
+  sources:
+    source_sink.public.*: src/*.sql
+```
+
+**End of Example**
+
+Both `workspace.yml` and `.sql` files are tightly coupled:
+
+- **Naming of queries.** All tables and queries in SDF have a fully qualified
+  _catalog.schema.table_ name. The workspace defines a `default-catalog` and
+  `default-schema`. Unless overridden, both are used to compose the 3-part-name
+  of queries, for instance the default name of the query defined in `source.sql`
+  is `source_sink.public.source`, where we use the basename of the file as the
+  table name.
+
+- **Source mapping.** The workspace also defines a `sources` mapping: It has to
+  list all queries of the workspace and their source location. An explicit
+  mapping would look like `hello.public.source : src/source.sql`. Here we use a
+  pattern. The pattern `hello.public.*` matches any target
+  `hello.public.`_`table`_ to `src/`_`table`_`.sql` where _`table`_ can stand
+  for any name. You can mix and match, i.e. have concrete targets and pattern
+  targets. If there is overlap, the concrete table mapping overrides the pattern
+  based one.
+
+`sdf` requires that all _basenames of all source files_ are _legal SQL
+identifiers_, written in lowercase letters only. A legal basename thus starts
+with a lowercase alphanumeric letter or an underline, and can be followed by one
+or more lowercase alphanumeric letters, digits or underline.
+
+## `sdf describe`
+
+**SDF statically analyzes all queries in a workspace**. It infers types,
+computes lineage, and propagates classifiers, all without executing any query.
+
+**Example**
+
+(0) We assume that we are still in the sample source_sink sample directory. If
+not create it using `sdf . new --sample source-sink`.
+
+(1) Let's run SDF's analyzer by calling
+
+> `sdf describe`
+
+It returns two schema, that just look like information schema.
+
+```sql
+
+Schema source_sink.public.source
++-------------+-----------+-------------+----------+
+| column_name | data_type | is_nullable | metadata |
++-------------+-----------+-------------+----------+
+| date        | varchar   | YES         |          |
+| name        | varchar   | YES         |          |
+| amount      | bigint    | YES         |          |
++-------------+-----------+-------------+----------+
+
+Schema source_sink.public.sink
++-------------+-----------+-------------+----------+
+| column_name | data_type | is_nullable | metadata |
++-------------+-----------+-------------+----------+
+| date        | varchar   | YES         |          |
+| name        | varchar   | YES         |          |
+| total       | bigint    | YES         |          |
++-------------+-----------+-------------+----------+
+```
+
+Note that for computing the column types of `sink` you have to know the column
+types of `source`. Thus the analyzer first had to infer the types of `source`
+before it could infer the types of `sink`.
+
+**End of Example**
+
+**Impact analysis.** If you change `source`, `sink` might or might not break.
+For instance changing the type of `name` to `integer` will just work, since
+`sink` uses `name` polymorphically, i.e., it just passes it through. However
+changing the type of `date` to `integer`, will raise a type error in `sink`,
+since `sink` uses a comparison of `date` with a `varchar` constant.
+
+While SDF allows you to specify to only analyze a fragment of a workspace, we
+recommend to always analyze the whole workspace. This way you detect type breaks
+early. And the analysis is fast.
+
+**Data asset files.** `sdf` can not only infer types for sets of dependent
+queries but actually propagate classifiers over queries as well.
+
+Assume a name is considered `PII` and we wanted to propagate `PII` from `source`
+to `sink`, or in general from ingestion to consumption. To do so, we need
+
+- define the `PII` `classifier`
+- bring the `classifier` into the scope of the `workspace`
+- label the `name` column in the `source` table with the `PII` classifier
+- analyze the `workspace`.
+
+Let's do it.
+
+**Example**
+
+(1) Create a new sample.
+
+> `sdf new . --sample source-sink-with-pii`
+
+(0) The workspace defines `data.classifier.yml`, which introduces a new data
+classifier having a single element `PII`.
+
+> `cat` `data.classifier.yml`
+
+```yaml
+classifier:
+  label-set:
+    elements:
+      - PII
+```
+
+The policy section will describe many more classifiers.
+
+(2) The classifier is brought into scope by registering it in the
+`workspace.yml`.
+
+> `cat` `workspace.yml`
+
+```yaml
+workspace:
+  default-catalog: hello
+  default-schema: public
+  sources:
+    hello.public.*: src/*.sql
+  classifier: data.classifier.yml
+```
+
+The policy section will extend the workspace again, this time with policies
+operating over classifiers.
+
+(3) Finally, we want to attach `PII` to the column `name` of table
+`source_sink.public.source` defined by `src/sink.sql`. But SQL has no place to
+attach metadata. So we define for every _`t`_`.sql` source a companion data
+asset _`t`_`.das.yml`, which allows us to specify metadata for table `t`.
+Concretely, here is the `source.das.yml` file: Our `source.das.yml` has the
+following content:
+
+> `cat` `src/sink.das.yml`
+
+```yaml
+schemas:
+  - schema:
+      name: source_sink.public.source
+      columns:
+        - name: name
+          data-classifier:
+            - PII
+```
+
+We will later see that `.das.yml` files do not only have policy related info,
+but also schedules, materialization, constraints, even tests.
+
+(4) With these definitions in place, let's rerun:
+
+> `sdf describe`
+
+```yaml
+Schema source_sink.public.source
++-------------+-----------+-------------+----------+ | column_name | data_type |
+is_nullable | metadata | +-------------+-----------+-------------+----------+ |
+date        | varchar   | YES         |          | | name        | varchar   |
+YES         | PII      | | amount      | bigint    | YES         |          |
++-------------+-----------+-------------+----------+
+
+Schema source_sink.public.sink
++-------------+-----------+-------------+----------+ | column_name | data_type |
+is_nullable | metadata | +-------------+-----------+-------------+----------+ |
+date        | varchar   | YES         |          | | name        | varchar   |
+YES         | PII      | | total       | bigint    | YES         |          |
++-------------+-----------+-------------+----------+
+```
+
+We see that PII is automatically propagated. Section policy discusses policies
+in detail.  
+**End of Example.**
+
+## `sdf build`
+
+By default, SDF builds all tables in a workspace, i.e., it leverages the static
+analyzer to compute the dependencies between all queries in a workspace and then
+runs them in dependency order.
+
+**Example cont'd.** (0) We assume that we are still in the `source_sink` or
+`source_sink_with_pii` sample directory. If not create it using
+`sdf . new --sample source-sink`.
+
+Let's run
+
+> `sdf build`
+
+on the workspace. It return two tables:
+
+```sql
+Table source_sink.public.source
++------------+-------+--------+
+| date       | name  | amount |
++------------+-------+--------+
+| 2022-01-02 | mark  | 3      |
+| 2022-01-02 | trish | 4      |
+| 2022-01-02 | mark  | 2      |
+| 2022-01-03 | trish | 1      |
++------------+-------+--------+
+
+Table source_sink.public.sink
++------------+-------+-------+
+| date       | name  | total |
++------------+-------+-------+
+| 2022-01-02 | mark  | 5     |
+| 2022-01-02 | trish | 4     |
+| 2022-01-03 | trish | 1     |
++------------+-------+-------+
+```
+
+Of course, the data is compatible with the statically inferred types.
+
+**End of example.**
+
+**SDF Cache**. Building always all dependencies seems like a waste of time. But
+SDF is smart. Like a modern build system \*\*SDF uses a cache to determine which
+output files need to be recomputed. So for our running example, changing
+anything in source will recompute sink, changing anything in sink, will just
+recompute sink.
+
+**Example cont'd.** (0) Edit 'source.sql' file by deleting the first row
+`('2022-01-02', 'mark', 3)`.
+
+(1) Run
+
+> sdf build --no-show
+
+```yml
+Building source_sink.public.source (src/source.sql) Building
+source_sink.public.sink (src/sink.sql)
+```
+
+The system tells you that is building both queries.
+
+(2) Edit `sink.sql` file by changing the query to
+`select date, sum(amount) total from source group by 1;`
+
+(3) Run
+
+> sdf build --no-show
+
+```yml
+Building source_sink.public.source (src/source.sql) Reusing
+source_sink.public.source (.sdfcache/source_sink/public/source) Building
+source_sink.public.sink (src/sink.sql)
+```
+
+The system tells you that instead of building `source_sink.public.source` it use
+the cached result.
+
+(3) Let's look into the cache. The `.sdfcache` is always next to the
+`workspace.yml`. Here is the current content:
+
+> `tree .sdfcache`
+
+```yaml
+.sdfcache └── hello └── public ├── sink │   └── part-0.parquet └── source └──
+part-0.parquet
+```
+
+We see that each _catalog.schema.table_ has a materialization as a file under
+the path _catalog/schema/table_. And the files are stored in the default file
+format `parquet`.
+
+**End of Example**
+
+## `sdf clean`
+
+To clean the cache call
+
+> `sdf clean`
+
+The next call to build will start with an empty cache.
+
+**Controlling which tables will be cached.** Today there is no control:
+`sdf build` simply caches
+
+- all (non -ephemeral) tables
+- with new content.
+
+For the discussion of ephemeral tables consult the `das.yml` specification
+
+## `sdf view`
+
+To visualize any build artifact use
+
+> `sdf view hello.public.sink`
+
+```yaml
+Table hello.public.sink +------------+-------+------------+ | date       |
+name  | big_amount | +------------+-------+------------+ | 2022-01-02 | mark  |
+true       | | 2022-01-02 | trish | true       |
++------------+-------+------------+
+```
+
+You can use view also with a file path, e.g. this call returns the same data.
+
+> `sdf view .sdfcache/hello/public/sink/part-0.parquet`
+
+## `sdf deploy`
+
+Any build can be deployed and executed on the sdf cloud. The `sdf deploy`
+command performs conceptually the following steps
+
+1. it performs a static analysis, ala `sdf describe`, to analyze artifact
+   dependencies and to propagate labels.
+2. it performs a dry run of `sdf build`, analyzing in addition to artifact
+   dependencies also time dependencies
+3. it computes a `deploy.yml`, which describe all dependencies, as well all
+   artifacts, and it packages all artifacts up into an `archive.tar.gz` file
+4. it post the `deploy.yml` and the `archive.tar.gz` to the sdf service, which
+   then executes the deploy job using `sdf` CLI in a `--no-workflow` mode again.
+
+**Example.** To try this out, let's simply deploy two dependencies and a data
+file.
+
+(1) Install
+
+> `$sdf new . source-data-to-sink`
+
+(2) Next let's call
+
+> `$sdf deploy --dry-run --env test`
+
+```yaml
+
+```
+
+(3) The generated `deploy.json` contains references to every artifact that is
+needed to be execute on the cloud.
+
+Let's look at the first 20 lines of the generated deploy.json
+
+> `cat .sdfcache/deploy.json`
+
+(4) The artifacts themselves are stored in `archive.tar.gzip`. To see their
+content use
+
+> `tar tvf .sdfcache/archive.tar.gzip`
+
+(5) If you have sdf properly configured for the SDF service you should be able
+to finally call
+
+> `$sdf deploy`
+
+```
+...
+```
+
+and see the queries being executed on the SDF cloud. Just follow the returned
+link.
+
+**End of Example.**

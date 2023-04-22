@@ -1,0 +1,75 @@
+{
+  "name": "SDF",
+  "sidebarDescription": "Docs for the Semantic Data Fabric",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#527398",
+    "light": "#9FBBDC",
+    "dark": "#0C1D37",
+    "anchors": { "from": "#527398", "to": "#2C4A6B" }
+  },
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://console.sdf.com/"
+  },
+  "anchors": [
+    {
+      "name": "Reference",
+      "icon": "rectangle-terminal",
+      "url": "reference"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Introduction",
+      "pages": ["intro", "getting-started"]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "guide/install",
+        "guide/basics",
+        "guide/io",
+        "guide/workspaces",
+        "guide/schedules",
+        "guide/lineage_metadata",
+        "guide/deployment",
+        "guide/authentication"
+      ]
+    },
+    {
+      "group": "Examples",
+      "pages": ["examples/hello_world"]
+    },
+    {
+      "group": "Reference",
+      "pages": [
+        "reference/sdf-cli",
+        "reference/sdf-yml",
+        "reference/caching"
+      ]
+    },
+    {
+      "group": "SQL Functions",
+      "pages": [
+        "reference/aggregate_functions",
+        "reference/math_functions",
+        "reference/other_expressions",
+        "reference/string_functions",
+        "reference/temporal_functions"
+      ]
+    },
+    {
+      "group": "Service",
+      "pages": ["service/billing", "service/status"]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/sdfdata",
+    "linkedin": "https://www.linkedin.com/company/sdflabs/about/"
+  }
+}
