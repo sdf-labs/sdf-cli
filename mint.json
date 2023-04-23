@@ -2,10 +2,10 @@
   "name": "SDF",
   "sidebarDescription": "Docs for the Semantic Data Fabric",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/assets/logo/dark.svg",
+    "light": "/assets/logo/light.svg"
   },
-  "favicon": "/favicon.png",
+  "favicon": "/assets/favicon.png", 
   "colors": {
     "primary": "#527398",
     "light": "#9FBBDC",

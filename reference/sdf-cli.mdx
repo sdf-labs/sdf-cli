@@ -3,6 +3,10 @@ title: "SDF CLI Reference"
 description: "This document contains the help content for the sdf command-line program."
 ---
 
+# Command-Line Help for `sdf`
+
+This document contains the help content for the `sdf` command-line program.
+
 **Command Overview:**
 
 * [`sdf`↴](#sdf)
@@ -175,6 +179,7 @@ Describe SDF table schemas
   Default value: `false`
 * `--region <REGION>` — The AWS region (default=us-east-1))
 * `-p`, `--profile <PROFILE>` — Describe data using this profile
+* `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
 * `--no-save` — Don't save schema tables
 
   Default value: `false`
@@ -250,7 +255,15 @@ Create a deployment and post it to the SDF service
 
   Default value: `once-immediately`
 
-  Possible values: `once-immediately`, `once-on-last-landed`, `once-on-next-landing`, `recurring`
+  Possible values:
+  - `once-immediately`:
+    Executes the target immediately, disrespecting the target's schedule, if any
+  - `once-on-last-landed`:
+    Executes the target at the last time when all data for the targets time grain was available
+  - `once-on-next-landing`:
+    Executes the target once at the next possible time when all data for the targets time grain is available
+  - `recurring`:
+    Executes the target on schedule starting with --from (default is now) until --to or, if not given, forever
 
 * `--dry-run` — Create a deploy.json and archive.tar.gz but don't post it to the service
 
@@ -447,4 +460,8 @@ Configure how to authenticate with AWS
 
   Default value: `us-east-1`
 * `--profile <PROFILE>` — AWS profile to use, as usually defined in ~/.aws/config
+
+
+
+   Finished system in 0.002 secs
 
