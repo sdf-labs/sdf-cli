@@ -1,0 +1,91 @@
+---
+title: "User defined functions"
+description: "SDF allows you to author user defined functions using sdf.yml blocks. This section only defines functions signatures, i.e function argument and return types. Types are used to statically analyze SQL, provide label propagation and lineage computation.
+"
+---
+
+## Scalar functions
+
+A scalar function takes a (list of) scalar values and return another scalar value. 
+
+### Fixed Arity
+A simple scalar function in Presto is `substr(string, start) → varchar`. It returns the rest of the string from the starting position start, where positions start with 1. SDF gives `substr` the following signature:
+```yaml
+function:
+  name: substr
+  parameters: 
+    - datatype: varchar
+    - datatype: int
+  returns: 
+    datatype: varchar
+```
+That is each function takes a fixed set of arguments.
+
+<Note>
+*Arity* means the number of arguments a function takes. #CSTermsRUs
+</Note>
+
+
+### Overloading
+Turns out that you can call substring with two and three parameters, SQL also offers the function e.g. `substr(string, start, length) → varchar`.
+In SDF you can simply add another defintion, just declare it to be an overload.
+
+```yaml
+function:
+  name: substr
+  overload: true
+  parameters: 
+    - datatype: varchar
+    - datatype: int
+    - datatype: int
+  volatility: pure
+  kind: scalar
+  returns: 
+    datatype: varchar
+
+```
+
+### Uniform variadic arity
+Many functions in SQL can take an arbitrary number of arguments. For instance concat allows to concat an arbitrary number strings
+```
+```
+The function signature for 
+```
+```
+
+### Generic types and functions
+Turns that concat is also defined for concreting of arrays of arbitrary but fixed type, e.g.
+```
+```
+To denote the signature of concat over arrays we need a way to dente a generic arrays, as usual we dente the arrays of type T by array\<T\>, similarly we support maps of Key type T to value type S by map\<T,S\>, and structs of n-fields struct\<x1 T1, … xn Tn\>. SDF denotes type parameters via $1,$2, etc. Thus we can define concat over arrays like so:
+```
+```
+### Higher order functions
+Presto and Spark support higher order function applications, functions can be applied point wise ti an array, arrays can be filtered by a predicate, etc. A typical Presto expression is
+
+The corresponding type is
+```
+```
+We use lambda\<T,R\> to denote a function from T to R, and use Tuple on the argument position in case more than one argument is passed. So the function signatures for above expression are:
+
+```
+```
+### Bounded types
+Sometimes functions are not fully generic, but can only applied to a limited set of types, we call that time bounds. E.g.
+
+Can only be applied on numeric types and intervals but not on archer.
+In SDF we can add type bounds with with:
+
+```
+```
+
+## Aggregate functions
+
+Aggregate function take a column of values and return a scalar value. For instance avg takes the data defined by a column and computes  its maximum. 
+
+While the implementation might be non-trivial the signature is easy. We just lane the function as being an aggregate function (or window function) and use only the columns’ type in fits signature. 
+
+```
+```
+
+

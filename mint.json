@@ -38,7 +38,8 @@
         "guide/schedules",
         "guide/lineage_metadata",
         "guide/deployment",
-        "guide/authentication"
+        "guide/authentication",
+        "guide/udf"
       ]
     },
     {
