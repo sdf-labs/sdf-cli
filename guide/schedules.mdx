@@ -82,7 +82,8 @@ On disk the `events` table for two concrete days is layed out like this:
 
 > `tree event`
 
- ```yaml
+<pre className="language-yaml">
+<code className="language-yaml" style={{ fontFamily: 'ui-monospace !important;' }}>
 events
 ├── dt=20220102
 │   ├── hr=00
@@ -102,7 +103,8 @@ events
     │   └── data.csv
     └── hr=18
         └── data.csv
-```
+</code>
+</pre>
 
 <Note>
 This example demonstrates an "external" table defined by local files. We can also configure an external table to point to remote files -- for example, in an S3 bucket.
