@@ -51,7 +51,7 @@ Workspaces contain
 (1) Let's create a new workspace at the current directory '.' with two `.sql`
 queries, called `source.sql` and `sink.sql`. To create the workspace, run
 
-> `sdf new . --sample source-sink`
+> `sdf new . --sample csv_123`
 
 ```yaml
 Created dir ./source_sink
@@ -60,7 +60,7 @@ Created dir ./source_sink
 (2) To execute commands you should be in the workspace, so change you working
 directory:
 
-> `cd source_sink`
+> `cd csv_123`
 
 In the following we assume that you always change into the sample workspace.
 
@@ -70,10 +70,17 @@ In the following we assume that you always change into the sample workspace.
 
 <div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
 <pre style={{ fontFamily: 'monospace' }}>
-. ├── src 
-      └── source.sql   
-      └── sink.sql 
-  └── workspace.yml
+.
+├── data
+│   └── a.csv
+├── local
+│   └── one.sql
+├── remote
+│   └── one.sql
+├── src
+│   ├── three.sql
+│   └── two.sql
+└── workspace.sdf.yml
 </pre>
 </div>
 
