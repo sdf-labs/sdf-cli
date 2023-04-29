@@ -82,7 +82,8 @@ On disk the `events` table for two concrete days is layed out like this:
 
 > `tree event`
 
-<Snippet file="treeStart.mdx" />
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 events
 ├── dt=20220102
 │   ├── hr=00
@@ -102,7 +103,8 @@ events
     │   └── data.csv
     └── hr=18
         └── data.csv
-<Snippet file="treeEnd.mdx" />
+</pre>
+</div>
 
 <Note>
 This example demonstrates an "external" table defined by local files. We can also configure an external table to point to remote files -- for example, in an S3 bucket.
