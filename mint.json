@@ -37,7 +37,6 @@
       "group": "Guides",
       "pages": [
         "guide/install",
-        "guide/basics",
         "guide/io",
         "guide/workspaces",
         "guide/schedules",
