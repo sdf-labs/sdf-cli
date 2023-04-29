@@ -21,6 +21,11 @@
       "name": "Reference",
       "icon": "rectangle-terminal",
       "url": "reference"
+    },
+    {
+      "name": "Releases",
+      "icon": "circle",
+      "url": "releases"
     }
   ],
   "navigation": [
@@ -44,7 +49,9 @@
     },
     {
       "group": "Examples",
-      "pages": ["examples/hello_world"]
+      "pages": [
+        "examples/hello_world"
+      ]
     },
     {
       "group": "Reference",
@@ -67,6 +74,12 @@
     {
       "group": "Service",
       "pages": ["service/billing", "service/status"]
+    },
+    {
+      "group": " Releases",
+      "pages": [
+        "releases/V0.1.6"
+      ]
     }
   ],
   "footerSocials": {

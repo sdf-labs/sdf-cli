@@ -243,10 +243,6 @@ Create a deployment and post it to the SDF service
 
 ###### **Options:**
 
-* `--var <VAR>` — Var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--propagate` — Propagate labels for deployed targets
-
-  Default value: `false`
 * `--date <DATE>` — Backfill all tasks that run (only) on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07 or 2020-12-31
 * `--to <TO>` — Backfill to this datetime (exclusive), use RFC format, e.g., e.g. 2020-12-31T21:07:14-07:00, with optional T part
@@ -264,8 +260,16 @@ Create a deployment and post it to the SDF service
     Executes the target once at the next possible time when all data for the targets time grain is available
   - `recurring`:
     Executes the target on schedule starting with --from (default is now) until --to or, if not given, forever
+  - `no-execute`:
+    Only the Metadata is deployed to the console, no runs are scheduled
 
 * `--dry-run` — Create a deploy.json and archive.tar.gz but don't post it to the service
+
+  Default value: `false`
+* `--no-exec` — Whether to schedule tasks to run, or just deploy metadata
+
+  Default value: `false`
+* `--no-propagate` — Propagate labels for deployed targets
 
   Default value: `false`
 * `--quiet` — Do not print sdf log messages
@@ -354,6 +358,7 @@ Display lineage for a given column
 
 ###### **Options:**
 
+* `-p`, `--profile <PROFILE>` — Build data using this profile
 * `--column <COLUMN>` — The column for which to compute lineage
 * `--forward` — Whether to compute downstream lineage. (The default is upstream)
 
@@ -463,5 +468,5 @@ Configure how to authenticate with AWS
 
 
 
-   Finished system in 0.002 secs
+   Finished system in 0.001 secs
 
