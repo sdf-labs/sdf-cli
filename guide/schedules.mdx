@@ -32,7 +32,7 @@ Let's bring it all together in the form of an example. Suppose we have a data wa
 #### Workspace File
 
 (1) Let's start by installing the **sample** `dau` (for daily activity of users)
-> `sdf new --sample dau` 
+> `sdf new --sample dau dau` 
 ```yaml
 ```
 (2) The **workspace** file specifies where to find source sql files as well as [sdf.yml](/reference/sdf-yml) configuration files and resource files.
@@ -82,8 +82,7 @@ On disk the `events` table for two concrete days is layed out like this:
 
 > `tree event`
 
-<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
-<pre style={{ fontFamily: 'monospace' }}>
+ ```yaml
 events
 ├── dt=20220102
 │   ├── hr=00
@@ -103,8 +102,7 @@ events
     │   └── data.csv
     └── hr=18
         └── data.csv
-</pre>
-</div>
+```
 
 <Note>
 This example demonstrates an "external" table defined by local files. We can also configure an external table to point to remote files -- for example, in an S3 bucket.
@@ -165,31 +163,20 @@ The provided date parameter (which must be a prefix of [RFC 3339](https://www.rf
 
 We see the result of the execution materialized in `.sdfcache`.
 > tree .sdfcache
-<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
-<pre style={{ fontFamily: 'monospace' }}>
+```yaml
 .sdfcache
 ├── assembly.sdf.yml
-|
 └── dau
-    |
     └── pub
-        |
         ├── events
-        |   |
         │   └── dt=20220102
-        |       |
         │       └── hr=00
-        |           |
         │           └── part-0.parquet
         └── hau
-            |
             └── dt=20220102
-                |
                 └── hr=00
-                    |
-                    └── part-0.parquet
-</pre>
-</div>
+                    ├── part-0.parquet
+```
 Calling `sdf build` with a date for which there is no data results in an empty table. 
 
 #### Building for a a time range

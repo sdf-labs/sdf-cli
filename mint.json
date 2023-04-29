@@ -37,6 +37,7 @@
       "group": "Guides",
       "pages": [
         "guide/install",
+        "guide/basics",
         "guide/io",
         "guide/workspaces",
         "guide/schedules",
@@ -48,9 +49,7 @@
     },
     {
       "group": "Examples",
-      "pages": [
-        "examples/hello_world"
-      ]
+      "pages": ["examples/hello_world"]
     },
     {
       "group": "Reference",
@@ -77,7 +76,7 @@
     {
       "group": " Releases",
       "pages": [
-        "releases/v0.1.6"
+        "releases/V0.1.5"
       ]
     }
   ],
