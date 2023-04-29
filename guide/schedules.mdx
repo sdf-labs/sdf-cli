@@ -169,16 +169,25 @@ We see the result of the execution materialized in `.sdfcache`.
 <pre style={{ fontFamily: 'monospace' }}>
 .sdfcache
 ├── assembly.sdf.yml
+|
 └── dau
+    |
     └── pub
+        |
         ├── events
+        |   |
         │   └── dt=20220102
+        |       |
         │       └── hr=00
+        |           |
         │           └── part-0.parquet
         └── hau
+            |
             └── dt=20220102
+                |
                 └── hr=00
-                    ├── part-0.parquet
+                    |
+                    └── part-0.parquet
 </pre>
 </div>
 Calling `sdf build` with a date for which there is no data results in an empty table. 
