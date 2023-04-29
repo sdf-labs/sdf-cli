@@ -165,7 +165,8 @@ The provided date parameter (which must be a prefix of [RFC 3339](https://www.rf
 
 We see the result of the execution materialized in `.sdfcache`.
 > tree .sdfcache
-```yaml
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 .sdfcache
 ├── assembly.sdf.yml
 └── dau
@@ -178,7 +179,8 @@ We see the result of the execution materialized in `.sdfcache`.
             └── dt=20220102
                 └── hr=00
                     ├── part-0.parquet
-```
+</pre>
+</div>
 Calling `sdf build` with a date for which there is no data results in an empty table. 
 
 #### Building for a a time range

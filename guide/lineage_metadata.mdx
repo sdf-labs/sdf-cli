@@ -138,7 +138,8 @@ Consider the column phone in the table sink above. It is a copy of the phone
 column in the upstream table middle, which in turn is a copy of the phone column
 in its upstream table source.
 
-```text
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 sink.phone
 │
 │ copy
@@ -148,7 +149,8 @@ sink.phone
         │ copy
         └──────┐
                 source.phone
-```
+</pre>
+</div>
 
 In both steps of the above transformation, from source to middle, and from
 middle to sink, the cardinality of the column goes down: first because of
@@ -169,7 +171,8 @@ downstream column. A column can have either copy-dependencies or
 transform-dependencies, but never both. The `qty` column of the `knis` table
 shown above is an example of transform lineage (denoted by `mod`):
 
-```text
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 knis.qty
 │
 │ mod
@@ -179,7 +182,8 @@ knis.qty
         │ mod
         └──────┐
                 source.qty
-```
+</pre>
+</div>
 
 Both transitions above are judged to be transform-dependencies because of `SUM`
 aggregation.
@@ -193,7 +197,8 @@ contribute to, a downstream column.
 Here is a full dependency graph for `sink.phone` which involves all three kinds
 of dependencies with inspect dependencies marked by `scan` for brevity.
 
-```text
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 sink.phone
 │
 │ copy
@@ -218,7 +223,8 @@ sink.phone
        └──────┐
               source.txn_date
               source.user_id
-```
+</pre>
+</div>
 
 ## Lineage CLI Command
 
@@ -262,7 +268,8 @@ Alternatively you can view a multi-level graphical representation of lineage:
 sdf lineage --table chain.pub.sink --column phone
 ```
 
-```text
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 sink.phone
 │
 │ copy
@@ -287,7 +294,8 @@ sink.phone
        └──────┐
               source.txn_date
               source.user_id
-```
+</pre>
+</div>
 
 In addition, `sdf lineage` supports the `--collapse` flag to show only
 (transitive) dependencies on root upstream tables, and the `--forward` flag to
@@ -315,7 +323,8 @@ workspace:
 
 Now, the lineage for the `knis.qty` column will be as follows:
 
-```
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 knis.qty
 │
 │ sum
@@ -325,7 +334,8 @@ knis.qty
         │ sum
         └──────┐
                 source.qty
-```
+</pre>
+</div>
 
 Other transformations will continue to be tagged by the generic `mod` label. By
 specifying a wildcard, the user may instruct SDF to track all function

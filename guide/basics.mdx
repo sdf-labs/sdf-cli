@@ -68,12 +68,14 @@ In the following we assume that you always change into the sample workspace.
 
 > `tree .`
 
-```yaml
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 . ├── src 
       └── source.sql   
       └── sink.sql 
   └── workspace.yml
-```
+</pre>
+</div>
 
 (4) The `.sql` files describes the queries to run.
 
@@ -365,10 +367,12 @@ the cached result.
 
 > `tree .sdfcache`
 
-```yaml
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 .sdfcache └── hello └── public ├── sink │   └── part-0.parquet └── source └──
 part-0.parquet
-```
+</pre>
+</div>
 
 We see that each _catalog.schema.table_ has a materialization as a file under
 the path _catalog/schema/table_. And the files are stored in the default file
