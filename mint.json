@@ -75,7 +75,7 @@
       "pages": ["service/billing", "service/status"]
     },
     {
-      "group": " Releases",
+      "group": "Releases",
       "pages": [
         "releases/v0.1.7"
       ]
