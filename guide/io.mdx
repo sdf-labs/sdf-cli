@@ -421,7 +421,8 @@ The `events` table has four columns: two regular ones `action` and `user_id`, an
 (3) SDF maps partitions to directory structures. Let's see this in action. Assume we have a full day of events for Jan 2nd, 2022, where events are grouped every 6 hours, e.g at 00, 06, 12, and 18 hours. We can represent these partitions with a Hive partitioning scheme. The data in this sample is already formatted in this way. Let's take a look in our `data/` directory.
 > `tree data`
 
-```yaml title="data/"
+<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
+<pre style={{ fontFamily: 'monospace' }}>
 data
 └─── dt=2022-01-02
     ├── hr=00
@@ -432,7 +433,8 @@ data
         └── data.csv
     └── hr=18
         └── data.csv
-```
+</pre>
+</div>
 
 We see that the events table makes every `dt` and `hr` value into a directory, where  
 * `dt` is  formatted using the strftime format "%Y-%m-%d"

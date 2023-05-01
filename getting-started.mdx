@@ -1,15 +1,11 @@
 ---
-slug: /getting-started
-sidebar_position: 2
+title: "Getting Started"
+description: We're glad to see you here. Today we're going to install SDF and create a hello world project. Let's get started.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
-
-# Getting Started
-
-We're glad to see you here. Today we're going to install SDF and create a hello world project. Let's get started.
 
 ## Installing SDF
 <Tabs>
@@ -62,7 +58,7 @@ For more on installing SDF, see [Install SDF](/guide/install).
 To create a new project, run the following command:
 
 ```shell
-sdf new --sample hello hello
+sdf new --sample hello
 ```
 After running the command, you should see the following output: 
  
@@ -70,7 +66,7 @@ After running the command, you should see the following output:
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.006 secs
+   Finished new in 0.005 secs
 
 ```
 
@@ -103,7 +99,7 @@ Schema hello.pub.main
 | column_2    | varchar   | false       |            |
 +-------------+-----------+-------------+------------+
     Written .sdfcache/dbg/assembly.sdf.yml
-   Finished describe in 0.353 secs
+   Finished describe in 0.320 secs
 
 ```
 
@@ -130,7 +126,7 @@ Table hello.pub.main
 
     Written .sdfcache/dbg/hello/pub/main
     Written .sdfcache/dbg/assembly.sdf.yml
-   Finished build in 0.256 secs
+   Finished build in 0.232 secs
 
 ```
 
