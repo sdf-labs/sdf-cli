@@ -9,15 +9,14 @@ import CodeBlock from '@theme/CodeBlock';
 
 ## Installing SDF
 <Tabs>
-  {/* TODO (elias): Move this into a separate component that works with preprocess. It's reused in install.raw.mdx and getting-started */}
-  <TabItem value="bin" label="Binary Download">
-    Our install script will first check your operating system and architecture, then install the latest version of SDF and its dependencies for your system. The `sdf` command will also be added to your path.<div style={{marginBottom: '15px'}}/>
-    <CodeBlock language="shell">
-        curl -LSfs https://cdn.sdf.com/releases/download/install.sh | bash -s 
-    </CodeBlock>
-    
-  </TabItem>
-  
+  <Tab title="Binary Download">
+    Our install script will first check your operating system and architecture,
+    then install the latest version of SDF and its dependencies for your system.
+    The `sdf` command will also be added to your path. 
+    ```bash 
+    curl -LSfs https://cdn.sdf.com/releases/download/install.sh | bash -s 
+    ```
+  </Tab>
 </Tabs>
 
 ### Verify Installation
@@ -99,7 +98,7 @@ Schema hello.pub.main
 | column_2    | varchar   | false       |            |
 +-------------+-----------+-------------+------------+
     Written .sdfcache/dbg/assembly.sdf.yml
-   Finished describe in 0.312 secs
+   Finished describe in 0.326 secs
 
 ```
 
@@ -127,7 +126,7 @@ Table hello.pub.main
     Written .sdfcache/dbg/hello/pub/main
     Written .sdfcache/dbg/hello/pub/main/table.sdf.yml
     Written .sdfcache/dbg/assembly.sdf.yml
-   Finished build in 0.276 secs
+   Finished build in 0.268 secs
 
 ```
 
