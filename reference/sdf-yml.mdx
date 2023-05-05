@@ -73,7 +73,7 @@ title: "SDF YML Schema"
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the function [syntax: [[catalog.]schema].function]|
-`dialect:` | `[Dialect]?`| The dialect that provides this function|
+`dialect:` | `Dialect?`| The dialect that provides this function|
 `overload:` | `boolean?`| Override an existing function|
 `description:` | `string?`| A description of this function|
 `variadic:` | `Variadic?`| Arbitrary number of arguments of an common type out of a list of valid types|
@@ -85,11 +85,12 @@ title: "SDF YML Schema"
 ## Enum: `Dialect`
 Value | Description|
 | :--- | :------- |
+`redshift` | undefined|
 `sdf` | SDF Dialect (which is ansi++)|
 `spark` | Spark Dialect|
 `presto` | Presto dialect|
 `postgresql` | Postgres dialect|
-`big-query` | BigQuery dialect|
+`bigquery` | BigQuery dialect|
 `legacy-big-query` | LegacyBigQuery dialect|
 ## Enum: `Materialization`
 Value | Description|
@@ -213,6 +214,7 @@ Value | Description|
 `nullable:` | `boolean?`| The nullability of this column|
 `classifier:` | `[string]?`| An array of classifier references|
 `constant:` | `string?`| The required constant value of this parameter|
+`identifiers:` | `[string]?`| The parameter may appear as identifier, without quote|
 ### Nested element: `TypeBound`
 |Field | Type | Description|
 | :---- | :--- | :------- |
