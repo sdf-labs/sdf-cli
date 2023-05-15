@@ -4,12 +4,28 @@ description: "SDF allows you to author user defined functions using sdf.yml bloc
 "
 ---
 
+User-defined functions allow to extend a database by adding a new function, that can be evaluated in SQL. The SQL standard distinguishes between scalar, aggregate and  
+table functions. A scalar function takes a set of values and returns only a single value (or NULL), an aggregate function takes a column of values and return
+a single value, whereas a table function returns a (relational) table comprising zero or more rows, each row with one or more columns.
+
+SDF allows you to define almost any imagenable user-defined function. The following sections define how to add user defined function signatures. 
+Section \cite() will explain how to author user defined functions.  
+
 ## Scalar functions
 
-A scalar function takes a (list of) scalar values and return another scalar value. 
+SDF distinguish scalar functions in various dimensions:
+- They can have fixed or varying arity, i.e number oif parameters
+- They can have one defintion or overloaded, i.e. have manay defintions.
+- They can be monmorphic, i.e., defined for one type only, or polymorphic, i.e. defined to perate on all types
+- They can be first-order, i.e., take only data as parameters, or higher order, take also functions as parameter.
+We erxplain eac of these concepts and the authoring of the correspsondng function signature in turn.  
 
 ### Fixed Arity
-A simple scalar function in Presto is `substr(string, start) → varchar`. It returns the rest of the string from the starting position start, where positions start with 1. SDF gives `substr` the following signature:
+The function `substr` ia a typical scalar function. It takes two arguments of the types `varchar` and `int`, respectively. 
+We say `substr` has **fixed arity** two. The expression `substr(text,start)` returns  a `varchar`.    
+
+In SDF we write `substr`'s function signature as follows:
+
 ```yaml
 function:
   name: substr
@@ -19,16 +35,21 @@ function:
   returns: 
     datatype: varchar
 ```
-That is each function takes a fixed set of arguments.
 
-<Note>
-*Arity* means the number of arguments a function takes. #CSTermsRUs
-</Note>
+By default function definitions are for scalar functions. If we want to make a function kind explicit we add the `function-kind` field.
+
+```yaml
+function:
+  name: substr
+  function-kind: scalar
+  ...
+```
+Alternative function kinds are `aggregate`, and `table` functions, which we will introduce later. 
 
 
 ### Overloading
-Turns out that you can call substring with two and three parameters, SQL also offers the function e.g. `substr(string, start, length) → varchar`.
-In SDF you can simply add another defintion, just declare it to be an overload.
+The function `substr` is overloaded. You can call it with two parameters, as we saw above, or with three parameters, e.g. `substr(string, start, length)`.
+To allow for a second defintion of `substr` you have to declare one of them to be an `overload`.
 
 ```yaml
 function:
@@ -39,53 +60,175 @@ function:
     - datatype: int
     - datatype: int
   volatility: pure
-  kind: scalar
   returns: 
     datatype: varchar
+```
+The default for `overload` is false.
 
-```
+### Uniform Variadic Arity
+Many functions in SQL can take an arbitrary number of arguments. For instance `concat` allows to concat an arbitrary number strings. 
+We say `concat` is **uniform variadic**, that is the function can have one or more parameters but all must have the same type. In SDF we write:
 
-### Uniform variadic arity
-Many functions in SQL can take an arbitrary number of arguments. For instance concat allows to concat an arbitrary number strings
-```
-```
-The function signature for 
-```
+```yaml
+function:
+  name: concat
+  variadic: uniform
+  parameters: 
+    - datatype: varchar
+  returns: 
+    datatype: varchar
 ```
 
 ### Generic types and functions
-Turns that concat is also defined for concreting of arrays of arbitrary but fixed type, e.g.
-```
-```
-To denote the signature of concat over arrays we need a way to dente a generic arrays, as usual we dente the arrays of type T by array\<T\>, similarly we support maps of Key type T to value type S by map\<T,S\>, and structs of n-fields struct\<x1 T1, … xn Tn\>. SDF denotes type parameters via $1,$2, etc. Thus we can define concat over arrays like so:
-```
-```
-### Higher order functions
-Presto and Spark support higher order function applications, functions can be applied point wise ti an array, arrays can be filtered by a predicate, etc. A typical Presto expression is
+Modern SQL does not only have primitive types like `int` and `varchar`, but also composite types like `array`, `map`, and `struct`. These composite types are generic, 
+so that we can build arrays of ints, arrays of varchar or array of array of ints, etc.  
+SDF denotes the type of 
+* **arrays of type** *T* as `array\<`*T*`\>` where T is either a concrete type, like `varchar`, or a **type variable**, which we denote 
+here  by  `$1`, `$2`, etc. 
+* **generic maps** of key type *T* to value type *S* by `map\<`*T*`,`*S*`\>`, where *T* and *S* can either be concrete types or type variables.
+* **named structs** of *n*-fields using the syntax `struct\<x`*1*` T`*1*`, … x`*n*` T`*n*`\>`, where each `T`*i* can either be concrete types or a type variable. Some SQL variants, like Spark, allow to drop the names `x`*i*. 
 
-The corresponding type is
-```
-```
-We use lambda\<T,R\> to denote a function from T to R, and use Tuple on the argument position in case more than one argument is passed. So the function signatures for above expression are:
+With these notation in hand, we can now define an overloaded version of `concat` that allows concatenating arrays of arbitrary but fixed type:
 
+```yaml
+function:
+  name: concat
+  variadic: uniform
+  overload: true
+  parameters: 
+    - datatype: array\<$1\>
+  returns: 
+    datatype: array\<$1\>
 ```
+
+### Higher-order functions
+Presto and Spark support higher order function applications. As an example, Presto's  `transform` function applies a function pointwise to an array,
+e.g., the expression `transform(array[1,2,3], x -> x*x)` returns in Presto the value `array[1,4,9]`.
+
+In SDF we capture the **signature of function** via the `lambda\<`*A*`,`*T*`\>` type constructor, where *A* stands for the argument type and *R* for the return type. 
+The function `transform` thus has the following type signature: 
+```yaml
+function:
+  name: transform
+  parameters: 
+    - datatype: array\<$1\>
+    - datatype: lambda\<$1, $2\>
+  volatility: pure
+  kind: scalar
+  returns: 
+    datatype: array\<$2\>
+```
+Lambda functions can also take tuples as argument. The `array_sort` function, for instance, takes an array as the first parameter and a comparison operator as the second. 
+
+```yaml
+function:
+  name: array_sort
+  parameters: 
+    - datatype: array\<$1\>
+    - datatype: lambda\<tuple\<$1,$1\>,int\>
+  returns: 
+    datatype: array\<$1\>
 ```
 ### Bounded types
-Sometimes functions are not fully generic, but can only applied to a limited set of types, we call that time bounds. E.g.
+Sometimes functions don;t work over all ttpes, but can only applied to a limited set of types. 
+We call this set **type parameter bounds**. The `abs` function for instance can only be applied to number types and to intervals.
+So we define abs as a type parameter bounded function.
 
-Can only be applied on numeric types and intervals but not on archer.
-In SDF we can add type bounds with with:
-
+```yaml
+function:
+  name: abs
+  parameters: 
+    - datatype: $1
+  returns: 
+    datatype: $1
+  with:
+    - bound: $1
+      datatypes:
+       - number
+       - interval
 ```
+
+
+## Aggregate and window functions
+
+Aggregate functions take a column of values and return a scalar value. For instance `select sum(x) from values (1),(2),(3) T(x)` computes the sum of the `x` column, here `5`.
+
+While the implementation might be non-trivial the signature of aggregate functions is  easy. We just specify the functions kind as aggregate, the type of the aggregate function is its column type. 
+Thus for `sum` we get the trivial signature:
+
+```yaml
+function:
+  name: sum
+  function-kind: aggregate
+    parameters: 
+    - datatype: $1
+  returns: 
+    datatype: $1
+  with:
+    - bound: $1
+      datatypes:
+       - number
 ```
 
-## Aggregate functions
+## Further features
 
-Aggregate function take a column of values and return a scalar value. For instance avg takes the data defined by a column and computes  its maximum. 
+### Dialect
+All of SDF's function definitions are dialect specific. We specify the dialect as part of the function signature. 
+So to define `substr` as available for Presto we write: 
 
-While the implementation might be non-trivial the signature is easy. We just lane the function as being an aggregate function (or window function) and use only the columns’ type in fits signature. 
-
+```yaml
+function:
+  name: substr
+  dialect: presto
+  parameters: 
+    - datatype: varchar
+    - datatype: int
+  returns: 
+    datatype: varchar
 ```
+
+
+### Volatility
+SDF distinguishes three kinds of functions. 
+* **Pure** functions, like `substr(..)` return the same output for the same input. 
+* **Stable** functions, like `now()` return the same output within one query execution.
+* **Non-deterministic** functions, like `first()`, might return a different output for the same input.
+
+We specify the volatility of each function using the volatility field, e.g.
+```yaml
+function:
+  name: now
+  volatility: stable
+  parameters: 
+  returns: 
+    datatype: datetime
 ```
+The default volatility is `pure`. Knowing the volaitity is key for applying optimizations, like comon subexpression elimination.
+
+### Non-uniform variadic functions
+Spark offers several functions that are variadic but not uniform. For instance `map(1,'a',2, 'b', ...) builds a `map\<int,varchar\>`. By closer inspection we observe that every *even* position has one type, every *odd* position another. 
+In SDF we specify map to be of type
+
+```yaml
+function:
+  name: map
+  variadic: even-odd
+  parameters: 
+    - datatype: $1
+    - datatype: $2
+  returns: 
+    datatype: map\<$1,$2\>
+  with:
+    - bound: $1
+      datatypes:
+       - number
+```
+
+### Type signatures that depend on literals
+Other spark functions change its type based on a provided literal. For instance
+
+
+## Outlook
+SDF function blocks allow to specify almost all of SQL's function signatures. Going forward we also want to enable you to write implementations, in SQL, Python and Rust. Stay tuned for the continuation of this story! 
 
 
