@@ -43,7 +43,8 @@
         "guide/lineage_metadata",
         "guide/deployment",
         "guide/authentication",
-        "guide/udf"
+        "guide/udf",
+        "guide/s3_buckets"
       ]
     },
     {
@@ -77,6 +78,7 @@
     {
       "group": "Releases",
       "pages": [
+        "releases/v0.1.11",
         "releases/v0.1.9",
         "releases/v0.1.8",
         "releases/v0.1.7"

@@ -1,0 +1,154 @@
+---
+title: "Configuring Data Stores with SDF"
+description: "In this guide we will walk through how to add new data stores to the SDF platform, configure access in AWS, and validate that you've correctly connected your data stores."
+---
+
+## Before you Begin
+This tutorial is designed for workspace administrators. You must have the right privileges in your AWS account, and be an SDF organization administrator to configure a data store.
+
+## Adding a New Data Store
+To create a new data store in SDF, first navigate to the Settings page of SDF and click into the "Integrations" tab along the top bar. If you have never added a data store to SDF before, you should see an empty view with the ability to add a new store. 
+
+Otherwise, this is where you will find all added data stores that have been created on SDF.
+
+### Step 1: Let's add a data store! 
+Click the "Add Data Store" button to get started.
+
+<div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://cdn.sdf.com/img/S3+-+Add+a+Data+Store.gif"
+    width="100%"
+  />
+</div>
+
+### Step 2: Select your provider
+Currently, we only provide support for AWS data stores. However, we are actively working to integrate both Azure and GCP into SDF in the near future. Please let us know if you need another provider that SDF does not plan to offer in the immediate.
+
+<div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://cdn.sdf.com/img/S3+-+Select+your+Provider.gif"
+    width="100%"
+  />
+</div>
+
+### Step 3: Input your bucket details
+You can input the s3 bucket name, ARN, or URL at this step. If you input a URI or https URL, SDF will automatically parse it for you and turn it into an S3 ARN. 
+
+Next, select the region of your bucket (this should match the region selected in AWS). If your s3 bucket is set in the `global` region, use "us-east-1".
+
+If you attempt to create a data store that you have already created on SDF, we will not allow you to create it again. If there is an issue with the original created data store, you will first have to delete it then re-create.
+
+<Tip>
+Note here that you can create multiple data stores with more specific paths. For example, `bucket-name-1/data/` and `bucket-name-1/logs/` can both exist.
+</Tip>
+
+<div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://cdn.sdf.com/img/S3+Inputting+S3+Bucket.gif"
+    width="100%"
+  />
+</div>
+
+<Note>
+To input multiple paths, you will need to manually edit the generated bucket policy to include each specific path (see the following step to get the generated bucket policy).
+</Note> 
+
+
+### Step 4: Connect your bucket
+Once you have input the bucket name and clicked "Next", you will see that SDF automatically generates a code snippet of the bucket policy. Here is a sample snippet: 
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Grant SDF Access",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::030287492781:root"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:ListBucket",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": [
+        "arn:aws:s3:::<s3-bucket-name>/*",
+				"arn:aws:s3:::<s3-bucket-name>"
+      ],
+      "Condition": {
+         "StringEquals": {
+            "aws:PrincipalTag/SdfAccountId": ["<SDF::organization>"]
+         }
+      }
+    }
+  ]
+}
+```
+
+You will now need to attach the generated policy to your AWS s3 bucket: 
+1. First, navigate to AWS and select the corresponding AWS account that you want to add the bucket to
+2. Click into "Management Console" for the selected account
+3. Type "s3" into the search bar and click into your AWS "Buckets" 
+4. Locate the created s3 bucket that you want to add the generated bucket policy to 
+5. Navigate to the "Permissions" tab
+6. Scroll until you find the section within AWS labeled "Bucket policy" and click "Edit"
+7. From this screen, you can paste the generated bucket policy from SDF
+8. Once pasted, click "Save changes"
+
+<div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://cdn.sdf.com/img/S3+-+Final+Connecting+AWS.gif"
+    width="100%"
+  />
+</div>
+
+Once you have added it to AWS, navigate back to SDF and click "I added it!" to test whether the connection is working. 
+
+### Step 5: Nice job!
+You have now successfully added your s3 bucket! After adding the generated policy to AWS successfully, you will see a big, green check that lets you know you're all set!
+
+<div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://cdn.sdf.com/img/S3+-+Connection+Successful+.gif"
+    width="100%"
+  />
+</div>
+
+However, if you notice a failure in any of the following verification tests: 
+- Read
+- Write
+- List
+- Delete
+
+Then this likely means you have a misconfigured policy attached to the bucket, or additional configuration may be required depending on your tenant's role-based access configuration. You can view which of the four tests are failing and which are successful with the corresponding ❌ or ✅ icons. 
+
+<Tip>
+Hover over any of the test bubbles to view more information. Once you have fixed the error, you can run the test again to see if all four verification tests have passed. 
+</Tip>
+<Note>
+If you intentionally wanted one or more of the four verification tests to fail, then you can close the modal and your data store will be saved.
+</Note>
+
+## Viewing, Validating, and Deleting Data Stores
+After adding data stores to SDF, you will always be able to view the uploaded policies in the "Integrations" tab. The colored circle indicates the status of the data store: 
+- Green means that all four verification tests have passed 
+- Yellow means that at least one of the verification tests have not passed 
+- And finally, red indicates that all four of the verification tests have failed 
+
+From this table you will also be able to view the provider, the uploaded URI, the date the data store was added, the user who added it, and the last date that the data store was tested:
+
+<div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://cdn.sdf.com/img/S3+-+Viewing+a+Data+Store.gif"
+    width="100%"
+  />
+</div>
+
+You can view additional details of the provisioned data store by clicking into the corresponding row of the table. This will open up a modal which displays the following: 
+- The generated bucket policy (which you can copy or download)
+- The four verification tests and their statuses
+- You can re-run the test to verify the connection with AWS
+- And finally, you can delete the data store from this screen
