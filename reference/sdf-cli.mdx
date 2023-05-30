@@ -56,13 +56,14 @@ Create a new SDF workspace at PATH
 
 ###### **Options:**
 
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
 * `--list-samples` — List all available samples
 
   Default value: `false`
 * `--sample <SAMPLE>` — Create a workspace with the sample content at path
-* `--quiet` — Do not print sdf log messages
-
-  Default value: `false`
 
 
 
@@ -78,9 +79,10 @@ Remove generated SDF artifacts in workspace
 
 ###### **Options:**
 
-* `--quiet` — Do not print sdf log messages
+* `--quiet` — Do not print sdf console messages
 
   Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
 * `-p`, `--profile <PROFILE>` — Clean cache entries for this profile
 
 
@@ -97,6 +99,10 @@ Build, run, and save SDF queries
 
 ###### **Options:**
 
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
 * `--var <VAR>` — Var bindings of the form: n=1 or year="2022 01 01", only string variables supported
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
@@ -139,23 +145,6 @@ Build, run, and save SDF queries
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--quiet` — Do not print sdf log messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-
-  Default value: `none`
-
-  Possible values:
-  - `trace`:
-    Trace internal state changes
-  - `debug`:
-    Trace internal key metrics, including cache hit, etc
-  - `info`:
-    Trace internal progress, SQL statements being processed, logical plan being produced
-  - `none`:
-    No trace, unless RUST_LOG is set
-
 * `--no-assembly` — Do not generate a assembly.sdf.yml file
 
   Default value: `false`
@@ -174,6 +163,10 @@ Describe SDF table schemas
 
 ###### **Options:**
 
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
 * `--no-propagate` — Propagate labels
 
   Default value: `false`
@@ -208,23 +201,6 @@ Describe SDF table schemas
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--quiet` — Do not print sdf log messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-
-  Default value: `none`
-
-  Possible values:
-  - `trace`:
-    Trace internal state changes
-  - `debug`:
-    Trace internal key metrics, including cache hit, etc
-  - `info`:
-    Trace internal progress, SQL statements being processed, logical plan being produced
-  - `none`:
-    No trace, unless RUST_LOG is set
-
 * `--no-summary` — Do not generate a all.sdf.yml file
 
   Default value: `false`
@@ -243,6 +219,10 @@ Create a deployment and post it to the SDF service
 
 ###### **Options:**
 
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
 * `--date <DATE>` — Backfill all tasks that run (only) on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07 or 2020-12-31
 * `--to <TO>` — Backfill to this datetime (exclusive), use RFC format, e.g., e.g. 2020-12-31T21:07:14-07:00, with optional T part
@@ -272,23 +252,6 @@ Create a deployment and post it to the SDF service
 * `--no-propagate` — Propagate labels for deployed targets
 
   Default value: `false`
-* `--quiet` — Do not print sdf log messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-
-  Default value: `none`
-
-  Possible values:
-  - `trace`:
-    Trace internal state changes
-  - `debug`:
-    Trace internal key metrics, including cache hit, etc
-  - `info`:
-    Trace internal progress, SQL statements being processed, logical plan being produced
-  - `none`:
-    No trace, unless RUST_LOG is set
-
 
 
 
@@ -304,6 +267,10 @@ View existing table content
 
 ###### **Options:**
 
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
 * `--date <DATE>` — View catalog.schema.table of this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00, etc
 * `--from <FROM>` — View catalog.schema.table from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00
 * `--to <TO>` — View catalog.schema.table to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T23:59
@@ -326,23 +293,6 @@ View existing table content
 * `--no-header` — Assumes that .csv files have a header, use --no-header if they have none
 
   Default value: `false`
-* `--quiet` — Do not print sdf log messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-
-  Default value: `none`
-
-  Possible values:
-  - `trace`:
-    Trace internal state changes
-  - `debug`:
-    Trace internal key metrics, including cache hit, etc
-  - `info`:
-    Trace internal progress, SQL statements being processed, logical plan being produced
-  - `none`:
-    No trace, unless RUST_LOG is set
-
 
 
 
@@ -358,6 +308,10 @@ Display lineage for a given column
 
 ###### **Options:**
 
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
 * `-p`, `--profile <PROFILE>` — Build data using this profile
 * `--column <COLUMN>` — The column for which to compute lineage
 * `--forward` — Whether to compute downstream lineage. (The default is upstream)
@@ -377,6 +331,10 @@ System maintenance and generation of reference documentation
 
 ###### **Options:**
 
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
 * `--show <SHOW>` — Print reference documents on stdout
 
   Possible values:
@@ -401,9 +359,6 @@ System maintenance and generation of reference documentation
 
   Default value: `false`
 * `--uninstall` — Uninstall SDF from the system
-
-  Default value: `false`
-* `--quiet` — Do not print sdf log messages
 
   Default value: `false`
 
@@ -467,6 +422,10 @@ Configure how to authenticate with AWS
 * `--profile <PROFILE>` — AWS profile to use, as usually defined in ~/.aws/config
 * `--role-arn <ROLE_ARN>` — ARN of the role to assume
 * `--external-id <EXTERNAL_ID>` — ARN of the role to assume
+* `--use-web-identity` — ARN of the role to assume
+
+  Default value: `false`
+* `--bucket-region-map <BUCKET_REGION_MAP>` — Mapping of bucket names to regions
 
 
 
