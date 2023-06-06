@@ -78,6 +78,8 @@
     {
       "group": "Releases",
       "pages": [
+        "releases/v0.1.19",
+        "releases/v0.1.18",
         "releases/v0.1.17",
         "releases/v0.1.16",
         "releases/v0.1.15",

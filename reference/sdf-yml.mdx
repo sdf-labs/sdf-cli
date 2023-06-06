@@ -220,4 +220,11 @@ Value | Description|
 | :---- | :--- | :------- |
 `generic:` | `string`| undefined|
 `is-one-of:` | `array`| undefined|
+### Nested element: `Plugin`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of the plugin [e.g.: pyspark]|
+`binary:` | `string`| Full path to the binary [e.g.: /usr/bin/python3]|
+`extension:` | `string`| File extension to scan in the includes directories; must be unique [e.g.: .py]|
+`format:` | `string`| Format of the output files; must be known to SDF [e.g.: spark-lp-json]|
 
