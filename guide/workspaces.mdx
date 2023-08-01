@@ -1,5 +1,5 @@
 ---
-title: "SDF Workspaces"
+title: "Workspaces"
 description:
   "In this document, we're going to discuss a critical part of the SDF ecosystem
   - the workspace."
@@ -22,15 +22,16 @@ As previously mentioned, the `workspace.sdf.yml` is a specific instance of an
 `sdf.yml` file. High-level, `sdf.yml's` are general-purpose metadata descriptors
 for describing things like:
 
-- Where your queries should look for input data
-- How that data is represented
+- Where your queries are in the directory
 - The SQL dialect your query is written in
-- The schedule on which your query should run
+- What Code Checks should run
+- The Schema and Catalog defaults
+- Which classifiers exist and what columns they should be attached to
 - And more...
 
 The `sdf.yml` is structured such that there are a set of specific YAML blocks
 titled by their purpose in your project. For example, you might have a `table`
-block, a `classifier` block, and a `policy` block all in the same file. Each of
+block, a `classifier` block, and a `function` block all in the same file. Each of
 these blocks will contain a set of properties that define the metadata for that
 block. The types of metadata differ per block type, but they all share a few
 properties.
@@ -81,7 +82,8 @@ The simplest version of a `workspace.sdf.yml` looks like this:
 
 ```yaml
 workspace:
-  edition: 1
+  name: hello_world
+  edition: "1.1"
   includes:
     - path: src
 ```
@@ -97,57 +99,20 @@ Simply put, your SQL files should go into the `src` directory.
 For a full list of the options available in the `workspace.sdf.yml`, see the
 [sdf.yml](/reference/sdf-yml) reference.
 
-#### Advanced Workspace Configurations
-
-Let's say a you're developing a data pipeline that needs to run on two different
-environments - a staging environment for testing updates and a production
-environment for live data processing. To configure these environments with SDF,
-you can create two workspace files: `staging.workspace.sdf.yml` and
-`production.workspace.sdf.yml`.
-
-By including the prefix `staging` or `production` before `workspace.sdf.yml`,
-SDF will create a default catalog within the project with the corresponding
-name. The user can then specify different settings and parameters for each
-environment within the workspace file. For example, you might want to use
-different data sources or databases for staging and production, or you might
-want to set different data processing rules or data quality checks.
-
-One more use case for configurations would be for breaking up your project into
-smaller executable units. Imagine you're developing a large data project that
-includes multiple data sources and data processing steps. To make the project
-more manageable, you might want to break it up into executable units based on
-different configurations. For example, you might want to have one configuration
-for data ingestion and one for data processing.
-
-To configure these different units, you can create multiple workspace files:
-`ingestion.workspace.sdf.yml` and `processing.workspace.sdf.yml`. Within each
-workspace file, you can specify a different set of included paths - i.e. the
-files and directories that are used for that specific configuration. You can
-then build, describe, and deploy each configuration separately with the commands
-below:
-
-```bash
-sdf build --config ingestion
-```
-
-```bash
-sdf describe --config processing
-```
-
 #### Important Properties
 
 ```yaml
 workspace:
   name: my_project
-  edition: 1
+  edition: "1.1"
   includes:
     - path: src/*
+    - path: priv/*
+      default-schema: priv
+      dialect: bigquery
   default-catalog: my_project
   default-schema: public
-  remote-location: s3://[MY-BUCKET]/my-project/
   dialect: sdf
-  references:
-    - path: ../other_project
 ```
 
 - `name` - The name of the workspace. This is used to create the default catalog
@@ -155,29 +120,24 @@ workspace:
 - `edition` - The edition of the workspace. This is used to determine which
   version of the workspace to expect when compiling your project.
 - `includes` - The includes block defines where to look for the code sources
-  that will be used to build your project and transform your data.
+  that will be used to build your project and transform your data. Each includes block can specify properties which overwrite the default specified for the workspace, but only for tables defined within files included in the specified path.
 - `default-catalog` - The default catalog is the catalog that will be used when
   no catalog is specified by a metadata block
 - `default-schema` - The default schema is the schema that will be used when no
   schema is specified by a metadata block.
-- `remote-location` - The default output object store location, e.g.
-  's3://bucket/key/' where key is optional. This is used to determine where to
-  write the output of your project.
 - `dialect` - The default SQL dialect that will be used to build your project.
   SDF supports multi-dialect projects, so you can have different SQL dialects in
   the same project by configuring the dialect in the
   [table metadata block](#table-block). However, most projects will only use
   one. If unspecified, the default dialect is `sdf`, an ansi-compliant standard
   SQL.
-- `references` - An array of paths to other workspaces. This enables
-  cross-workspace dependencies and references between them.
 
 ### Classifier Block
 
 The classifier block is used to define classifiers in your SDF projects. You can
 think of these as units of metadata to be reused and measured across your data
-warehouse. Classifiers have names, descriptions, and even namespaces and
-subsets. For more detailed information on the classifier block, see the
+warehouse. Classifiers have names, descriptions, and labels. 
+For more detailed information on the classifier block, see the
 [Classifier Block](/reference/sdf-yml#nested-element-classifier) reference.
 
 In light of data privacy regulations, a common use case for classifiers is to
@@ -193,7 +153,7 @@ Here's an example of a basic PII classifier:
 classifier:
   name: pii
   description: Personally Identifiable Information
-  elements:
+  labels:
     - name: email
       description: Email address
     - name: phone
@@ -216,8 +176,8 @@ example of how to apply this classifier to a column.
 ### Table Block
 
 The table block is used to define the metadata for a table. This includes the
-table name, the table description, the table's columns, and even the table's
-schedule and SQL dialect. This will likely be your most widely used metadata
+table name, the table description, the table's columns, and even the table's SQL dialect. 
+This will likely be your most widely used metadata
 block. For more detailed information on the table block, see the
 [Table Block](/reference/sdf-yml#table) reference.
 
@@ -241,8 +201,7 @@ This table definition will tell SDF that the column `phone` is a `pii` column.
 
 #### Table-Level Classifiers
 
-This is great, but what if you have a table with 100 columns, and you want to
-define a classifier for all of them? In that case we can apply the classifier at
+This is great, but what if you want to label an entire tabel with a classifier? In that case we can apply the classifier at
 the table level. Here's an example of a table definition with a table-level
 classifier:
 
@@ -250,72 +209,29 @@ classifier:
 table:
   name: main
   classifiers:
-    - pii
+    - purpose.third_party_sharing
 ```
 
-#### Data Modeling
+Lastly, 
 
-Classification is a powerful feature of SDF, but it's not the only thing you can
-do with the table block. You can also define the SQL dialect for your table, the
-materialization, and even partitioning information. For example, you might have
-a table that is defined in a SQL file, but you want to materialize it as a table
-and tell SDF how it's partitioned. You can do that with the `materialization`
-and `partitioned_by` properties:
+### The Assembly File
 
-```yaml
-table:
-  name: partitioned_table
-  dialect: spark
-  materialization: cached
-  partitioned-by:
-    - name: "dt"
-      format: "%Y%m%d"
-    - name: "hr"
-      format: "%H"
-```
+The assembly file is the output of a project. It's how SDF represents all the
+metadata about your project when you decide you're ready to deploy. After
+running an SDF command, you'll find a new directory appears called `.sdfcache`.
+This is automatically added to your .gitignore and should not be tracked in git.
+As the name implies, this folder enables SDF to cache intermediaries as you're
+building your project locally. Along with its caching capability, it also
+generatesa file after running any SDF command called `assembly.sdf.yml`. Here
+lies the fated assembly file.
 
-In this example, we partition a column named `dt` by date and expect the date
-string to be formatted in the order of year month and day (e.g. 2022-01-01).
-Furthermore, we partition a column named `hr` by hour (e.g. 2). Finally, we
-materialize it as a table, but in SDF we call this `cached` as SDF will
-automatically cache the table and only re-run it if new data is available.
+The assembly file aggregates all the `sdf.yml`s across your project and places
+them into a single file. Along with the developer-authored `sdf.yml` files and
+properties, the assembly file also contains all the metadata generated by SDF.
+This metadata is used to enable features like column-level lineage, classifier
+propagation, and more.
 
-For a full list of supported materializations, dialects and paritioning formats,
-see [Materializations](/reference/sdf-yml#nested-element-materialization),
-[Dialects](/reference/sdf-yml#nested-element-dialect), and
-[Partitioning](/reference/sdf-yml#nested-element-partitioned-by) in the
-reference.
-
-You might be wondering where the SQL for your table is defined. It's defined in
-the SQL file that you include in your `includes` block. For example, if you have
-a table named `main`, you might have a SQL file named `main.sql` in your `src`
-directory. SDF will automatically find this file and use it to build your
-project. Here's an example of a table definition with a SQL file:
-
-```yaml src/popdata.sdf.yml
-table:
-  name: popdata
-  format: csv
-  header: true
-  location: local/pop.csv
-```
-
-```sql src/popdata.sql
-create external table popdata
-stored as csv
-with header row
-location 'local/pop.csv';
-```
-
-Lastly, it's worth mentioning the sheer amount of work SDF does for you. _Most
-of your table blocks will end up being generated at compile-time by SDF_. Things
-like column datatypes, propagated classifiers, and column-level lineage will be
-automatically generated for you and structured into a table metadata block. SDF
-does this by statically analyzing your SQL files and extracting this
-information. This is a powerful feature of SDF, and it's one of the reasons why
-it's able to provide so much value with so little effort from the developer.
-
-Here's an example of a full-fledged table definition:
+Here's an example of a full-fledged table definition generated in an assembly yml:
 
 ```yaml .sdfcache/assembly.sdf.yml
 table:
@@ -349,7 +265,7 @@ table:
       datatype: int
       nullable: false
       lineage:
-        transform:
+        mod:
           - j_table.user_id
           - b_table.user_id
           - i_table.user_id
@@ -365,60 +281,6 @@ table:
           - a_table.user_id
 ```
 
-### Catalog Block
-
-The catalog block is used to define the metadata for a catalog. We use the term
-catalog in correspondence with the commonplace terminology to describe catalogs
-and schemas in database systems. See the diagram below for how these fit
-together.
-
-The most basic catalog block would look something like this:
-
-```yaml
-catalog:
-  name: default
-  includes:
-    - src/default/
-```
-
-<div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-  <img
-    src="https://cdn.sdf.com/img/sdf-catalog-schema-database-chart.svg"
-    width="50%"
-  />
-</div>
-
-### Schema Block
-
-The schema block is used to define the metadata for a schema. A schema is a
-subset of a catalog. One catalog can have multiple schemas.
-
-The most basic schema block would look something like this:
-
-```yaml
-schema:
-  name: public
-  includes:
-    - src/default/public
-```
-
-### The Assembly File
-
-The assembly file is the output of a project. It's how SDF represents all the
-metadata about your project when you decide you're ready to deploy. After
-running an SDF command, you'll find a new directory appears called `.sdfcache`.
-This is automatically added to your .gitignore and should not be tracked in git.
-As the name implies, this folder enables SDF to cache intermediaries as you're
-building your project locally. Along with its caching capability, it also
-generatesa file after running any SDF command called `assembly.sdf.yml`. Here
-lies the fated assembly file.
-
-The assembly file aggregates all the `sdf.yml`s across your project and places
-them into a single file. Along with the developer-authored `sdf.yml` files and
-properties, the assembly file also contains all the metadata generated by SDF.
-This metadata is used to enable features like column-level lineage, classifier
-propagation, and more.
-
 The assembly file is a powerful representation that can help you understand what
 SDF is doing under the hood. You can use the assembly file to understand how SDF
 is interpreting your project, and you can also use it to debug issues that might
@@ -427,7 +289,7 @@ tools and functionalities on top of it in the future.
 
 <Tip>
   Want to build something cool that utilizes the SDF engine? We'd love to hear
-  about it! [Reach out to us](mailto:info@sdf.com) (info@sdf.com) and let us
+  about it! [Inquire here](https://sdf.com/inquiries) to let us
   know what you're working on and how we can help.
 </Tip>
 
@@ -436,20 +298,6 @@ tools and functionalities on top of it in the future.
 These future looking features are not yet available, but we're excited to share
 our concrete plans to roll many of them out. Sign up for our
 [email list](https://sdf.com) to stay up to date on our progress.
-
-### Policy Block
-
-We'll soon be introducing a Policy Block to SDF. This block will allow you to
-define data use, access, and retention policies across your SDF project.
-Policies will operate on
-[Classifiers](/reference/sdf-yml#nested-element-classifier) and
-[Tables](/reference/sdf-yml#nested-element-table). For example, you might want
-to define a policy that say that all columns with the `pii` classifier must be
-masked before being used in any downstream tables. Your team's IDP can be
-connected here as well in order to enforce Role Based Access Control (RBAC) and
-Attribute Based Access Control (ABAC) policies with your internal stakeholders.
-Even better, we'll be one of the few tools that enable you to also define
-Purpose Based Access Control (PBAC) policies for use cases like GDPR.
 
 ### Function Block
 
@@ -461,11 +309,3 @@ this case, we want the Classifier `pii` to be propagated to the output column
 with a signifier that it's been masked, something like `pii::masked`. SDF needs
 to know what happened to the data in order to properly propagate classifiers and
 lineage. The function block will allow you to define this behavior in code.
-
-### Assertion Block
-
-Data quality is something we've seen many teams struggle with. We'll soon be
-introducing an Assertion Block to SDF. This block will allow you to define
-assertions about your data. Think of these like tests you can run on your data
-to ensure simple things like a column does not contain null values, or more
-complex cases like a column is within a certain range of values.

@@ -6,13 +6,17 @@ title: "Welcome to SDF"
 
 ## Overview
 
-SDF is a **local command-line engine** for **running sql queries** against
-data stored **locally or in the cloud**. It allows you to view
-or save the results of queries, locally or remotely. SDF works best when paired with the SDF Platform which unlocks cloud based scheduling and execution. You can access the cloud service at **[SDF service](https://console.sdf.com)**.
+SDF is a **command-line engine** that includes includes a multi-dialect SQL compiler, static analyzer, dependency manager, and build cache for **running SQL queries** against
+data stored **locally or in the cloud**. SDF works best when paired with the SDF Cloud, You can for beta access to the cloud service at **[https://sdf.com/inquiries](https://sdf.com/inquiries)**.
 
-In contrast to traditional query engines which can only locally optimize a single query, **SDF ingests all queries, policies, and metadata at once**. SDF then builds code level dependencies, time level dependencies, and access-level dependencies. SDF also automatically caches intermediates to dramatically speed up execution. This generational leap in data processing allows for warehouse scale optimizations like automated schedule and backfill generation, multi-engine targeting, label propagation, and even data use policies to be expressed over a single control plane
+For a more detailed overview, read the [announcement here](https://blog.sdf.com/p/introducing-sdf-the-semantic-data)
 
-<img src="https://cdn.sdf.com/docs/workspace.svg"/>
+In contrast to traditional query engines which can only locally optimize a
+single query, **SDF ingests all queries, Code Checks, and metadata at once**.
+SDF then builds code level dependencies, time level dependencies, and
+access-level dependencies. SDF also automatically caches intermediate results to dramatically speed up execution. This generational leap in data processing allows for warehouse scale optimizations like automated schedule and backfill generation, multi-engine targeting, label propagation, and even data use policies to be expressed over a single control plane
+
+<img src="https://cdn.sdf.com/img/sdf-overview.png"/>
 
 **SDF understands dependencies for both code and time**. This means that SDF can
 generate **intelligent workflows** automatically, by analyzing all queries
@@ -20,30 +24,25 @@ within and across a workspace, and **scheduling** their computations purely
 based on intrinsic data. SDF works with partitioned data out of the box. No
 additional workflow scheduler is necessary.
 
-Never write a backfill script again. Backfills are as easy as specifying
-`--from` and `--to` flags when building.
-
 And, SDF is fast. All executions are automatically cached and intermediates are
 optimally reused. This means that `sdf` only executes the minimal number of
 queries to recompute the requested data. Guaranteed.
 
-SDF has **data governance**, **column-level lineage** and **policy enforcement**
-built-in. Applying policies requires two user inputs: first, a SDF user has to
-establish **policies** that should be uphold, second, the user has to add
-**classifiers** to root tables. Then `sdf` takes over: it automatically
+SDF has **data governance**, **column-level lineage** and **code-checks**
+built-in. Applying code-checks requires two user inputs: first, you
+establish **policies** that should be upheld; second, the user has to add
+**classifiers** to root tables. After that, `sdf` takes over: it automatically
 **propagates** the classifiers at analysis time over all queries and workflows,
 and on each access it **enforces** the requested policies by query rewriting,
-or - if impossible - restricts access to the data.
+or - if that is impossible - restricts access to the data.
 
 ## Engine & Platform
 
-The **SDF Engine** is most powerful when paired with the **SDF Platform**. The cloud platform deploys a workspace as a production data service.
-- Lower costs with optimized data caching and fast compute
-- Run scheduled workflows without worrying about backfills
-- Utilize enterprise grade compute clusters and machine isolation
-- Discover data with an intellligent, integrated and indexed data catalog
-- Scale with configurable cluster sizes
-- Connect to your existing Spark or Trino clusters for execution.
+The **SDF Engine** is most powerful when paired with the **SDF Cloud**. The cloud platform deploys a workspace as a production data service.
+- Visualize end to end column-level lineage on a beautiful, WebGL rendered canvas
+- Generate a data and function catalog with no configuration required
+- Easy Cloud Authentication and Single Sign On
+- Scale with configurable isolated cluster sizes
 
 SDF allows you to keep your data where it is, and even re-use your existing compute engine. 
 

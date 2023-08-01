@@ -1,0 +1,180 @@
+---
+title: "Other Expressions"
+---
+
+##  reclassify
+<Tabs>
+<Tab title="Overview">
+```sql
+function reclassify(T, varchar, varchar) returns T
+```
+
+Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
+
+Example: 
+```sql example.sql
+select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function reclassify(T, varchar) returns T
+```
+
+Changes the classification label of the first argument to the desired classifier specified by the second argument. The first argument is expected to have one or more classifiers from the same classifier group as the desired classifier. All of these classifiers will be removed and replaced by the desired classifier. No other classifiers attached to the first argument will be impacted. The function will emit a warning if the first argument does not have a classifier from the expected classifier group
+
+Example: 
+```sql example.sql
+select reclassify(12345, 'pii.masked') as value; -- value '12345' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  sha224
+<Tabs>
+<Tab title="Overview">
+```sql
+function sha224(varchar) returns bytea
+```
+
+Computes the SHA224 hash of string.
+
+Example: 
+```sql example.sql
+select sha224('Hello World!') as value; -- value '4575bb4ec129df6380cedde6d71217fe0536f8ffc4e18bca530a7a1b' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  sha256
+<Tabs>
+<Tab title="Overview">
+```sql
+function sha256(varchar) returns bytea
+```
+
+Computes the SHA256 hash of string
+
+Example: 
+```sql example.sql
+select sha256('Hello World!') as value; -- value '7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  sha384
+<Tabs>
+<Tab title="Overview">
+```sql
+function sha384(varchar) returns bytea
+```
+
+Computes the SHA384 hash of string
+
+Example: 
+```sql example.sql
+select sha384('Hello World!') as value; -- value 'bfd76c0ebbd006fee583410547c1887b0292be76d582d96c242d2a792723e3fd6fd061f9d5cfd13b8f961358e6adba4a' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  sha512
+<Tabs>
+<Tab title="Overview">
+```sql
+function sha512(varchar) returns bytea
+```
+
+Computes the SHA512 hash of string
+
+Example: 
+```sql example.sql
+select sha512('Hello World!') as value; -- value '861844d6704e8573fec34d967e20bcfef3d424cf48be04e6dc08f2bd58c729743371015ead891cc3cf1c9d34b49264b510751b1ff9e537937bc46b5d6ff4ecc8' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  to_hex
+<Tabs>
+<Tab title="Overview">
+```sql
+function to_hex(int) returns varchar
+```
+
+Computes the hexadecimal representation of an integer
+
+Example: 
+```sql example.sql
+select to_hex(987) as value; -- value '3db' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+

@@ -6,47 +6,36 @@ title: "SDF YML Schema"
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `edition:` | `string`| The SDF edition, should always be 1 (for now)|
-`name:` | `string?`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
+`name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string?`| A description of this workspace|
 `repository:` | `string?`| The URL of the workspace source repository [defaults to 'none' if no repository is given]|
 `remote-location:` | `string?`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
-`includes:` | `[FilePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
+`includes:` | `[IncludePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `[FilePath]?`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `[WorkspacePath]?`| An array of paths to other workspaces, i.e. .sql and .yml files|
-`default-dialect:` | `Dialect?`| The default dialect of this workspace. If not set, defaults to sdf dialect|
+`dialect:` | `Dialect?`| The dialect of this workspace. If not set, defaults to sdf dialect|
 `resources:` | `[FilePath]?`| An array of paths to directories and files, which will be copied to the SDF service on deployment|
 `default-catalog:` | `string?`| Defines a default catalog [If not set, defaults to the directory of the workspace]|
 `default-schema:` | `string?`| Defines a default schema [If not set, defaults to 'pub']|
 `default-profile:` | `string?`| Defines the default profile [if not set, defaults to 'dbg']|
-`variables:` | `[Variable]?`| An array of named values for setting SQL variables from your enviromnent Ex. -dt: dt, used in SQL as @dt|
-## Block: `Catalog`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string`| undefined|
-`description:` | `string?`| undefined|
-`includes:` | `[FilePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
-`excludes:` | `[FilePath]?`| An array of directories and filenames to be skipped when resolving includes|
-`dialect:` | `Dialect?`| The default dialect, defaults to `sdf` if not set|
-## Block: `Schema`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string`| undefined|
-`description:` | `string?`| undefined|
-`includes:` | `[FilePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
-`excludes:` | `[FilePath]?`| An array of directories and filenames to be skipped when resolving includes|
-`dialect:` | `Dialect?`| The dialect, defaults to `sdf` if not set|
+`source-locations:` | `FilePath?`| Workspace defined by these set of files|
+`variables:` | `[Variable]?`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
+`code-reports:` | `[CodeReportPath]?`| An array of queries over the information schema that will be run on sdf describe and sdf deploy|
+`code-checks:` | `[CodeCheckPath]?`| An array of queries over the information schema that will be run on sdf describe and sdf deploy|
+`access-control:` | `[AccessControlPath]?`| An array of attribute based access control queries over the information schema, current user and current job, that will be run on sdf build and sdf deploy|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| undefined|
 `description:` | `string?`| undefined|
-`includes:` | `[FilePath]?`| An array of sql file names [Typically inferred]|
-`dialect:` | `Dialect?`| The dialect of this table, defaults to `sdf`|
+`dialect:` | `Dialect?`| An array of sql file names [Typically inferred]|
+`dependencies:` | `[string]?`| ALl table dependencies (syntax: catalog.schema.table)|
 `columns:` | `[Column]?`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `[Partition]?`| The partitioning format of the table|
 `schedule:` | `string?`| The schedule of the table [expressed as cron]|
 `starting:` | `string?`| The first date of the table [expressed by prefixes of RFC 33]|
 `classifiers:` | `[string]?`| An array of classifier references|
+`reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
 `lineage:` | `Lineage?`| Lineage, a tagged array of column references|
 `materialization:` | `Materialization?`| The materialization scheme of this table|
 `insert-into:` | `string?`| Store data under this catalog.schema.table instead of the original name|
@@ -55,33 +44,34 @@ title: "SDF YML Schema"
 `with-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
 `compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
+`source-locations:` | `[FilePath]?`| Table is defined by these .sql and/or .sdf files|
 ## Block: `Classifier`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the classifier type|
 `description:` | `string?`| A description of this classifier type|
-`elements:` | `[Element]?`| Named classifier elements|
-`subsets:` | `[Subset]?`| Named subsets of classifier elements|
-## Block: `Policy`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string`| The name of the policy|
-`description:` | `string?`| A description of this policy|
-`deny:` | `Deny?`| Deny data access based on this policy Each policy may have only one deny or allow element|
-`allow:` | `Allow?`| Allow data access based on this policy Each policy may have only one deny or allow element|
+`labels:` | `[Label]?`| Named classifier labels|
+`scope:` | `Scope?`| scope of the classifier: table or column|
+`cardinality:` | `Cardinality?`| cardinality of the classifier: zero-or-one, one or zero-or-many|
+`propagate:` | `boolean?`| does the classifier propagate from scope to scope or is it a one scope marker|
+`source-locations:` | `FilePath?`| Classifier defined by these set of .sdf files|
 ## Block: `Function`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the function [syntax: [[catalog.]schema].function]|
+`section:` | `string?`| The generic type bounds|
 `dialect:` | `Dialect?`| The dialect that provides this function|
-`overload:` | `boolean?`| Override an existing function|
 `description:` | `string?`| A description of this function|
 `variadic:` | `Variadic?`| Arbitrary number of arguments of an common type out of a list of valid types|
 `kind:` | `FunctionKind?`| The function kind|
-`parameters:` | `array`| The arguments of this function|
+`parameters:` | `[Parameter]?`| The arguments of this function|
 `returns:` | `Parameter?`| The results of this function (can be a tuple)|
-`with:` | `[TypeBound]?`| The generic type bounds|
+`binds:` | `[TypeBound]?`| The generic type bounds|
 `volatility:` | `Volatility?`| volatility - The volatility of the function.|
+`examples:` | `[Example]?`| example - Example use of the function (tuple with input/output)|
+`cross-link:` | `string?`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
+`reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
+`source-locations:` | `[FilePath]?`| Function defined by these set of .sdf files|
 ## Enum: `Dialect`
 Value | Description|
 | :--- | :------- |
@@ -91,7 +81,7 @@ Value | Description|
 `presto` | Presto dialect|
 `postgresql` | Postgres dialect|
 `bigquery` | BigQuery dialect|
-`legacy-big-query` | LegacyBigQuery dialect|
+`legacy-bigquery` | LegacyBigQuery dialect|
 ## Enum: `Materialization`
 Value | Description|
 | :--- | :------- |
@@ -119,15 +109,22 @@ Value | Description|
 `stable` | Stable - A stable function may return different values given the same input across different queries but must return the same value for a given input within a query.|
 `volatile` | Volatile - A volatile function may change the return value from evaluation to evaluation. Multiple invocations of a volatile function may return different results when used in the same query.|
 ## Nested Elements
-### Nested element: `FilePath`
+### Nested element: `IncludePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| A filepath|
+`default-catalog:` | `string?`| Defines a default catalog for unqualified names. If not set, defaults to the [Workspace] catalog.|
+`default-schema:` | `string?`| Defines a default schema for unqualified names. If not set, defaults to the [Workspace] schema.|
+`dialect:` | `Dialect?`| The dialect of the included files. If not set, defaults to the [Workspace] dialect.|
 ### Nested element: `SystemTime`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `secs_since_epoch:` | `integer`| undefined|
 `nanos_since_epoch:` | `integer`| undefined|
+### Nested element: `FilePath`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`path:` | `string`| A filepath|
 ### Nested element: `WorkspacePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -141,14 +138,52 @@ Value | Description|
 `name:` | `string`| The name of the variable|
 `description:` | `string?`| undefined|
 `value:` | `string?`| The value of this variable (using sql/yaml literals)|
+### Nested element: `CodeReportPath`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`path:` | `string`| A filepath|
+`name:` | `string`| Name of check (default filestem of path)|
+`description:` | `string?`| A description of this report|
+`dialect:` | `Dialect?`| dialect|
+### Nested element: `CodeCheckPath`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`assert:` | `UNKNOWN`| Assertion|
+`name:` | `string?`| Name of check (default filestem of path)|
+`path:` | `string`| A filepath|
+`description:` | `string?`| A description of this assertion|
+`dialect:` | `Dialect?`| dialect|
+### Nested element: `CodeAssertion`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+### Nested element: `AccessControlPath`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`access:` | `UNKNOWN`| Grant access|
+`name:` | `string`| Name of check (default filestem of path)|
+`description:` | `string?`| A description of this access control rule|
+`path:` | `string`| A filepath to a policy authored in .sql|
+### Nested element: `Grant`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `Profile`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| undefined|
-`description:` | `string?`| undefined|
-`includes:` | `[FilePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
+`description:` | `string?`| A description of this workspace|
+`remote-location:` | `string?`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
+`includes:` | `[IncludePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `[FilePath]?`| An array of directories and filenames to be skipped when resolving includes|
-`remote-location:` | `string?`| The default output object store location, e.g. 's3://bucket/dir/' where dir is optional|
+`references:` | `[WorkspacePath]?`| An array of paths to other workspaces, i.e. .sql and .yml files|
+`dialect:` | `Dialect?`| The default dialect of this workspace. If not set, defaults to sdf dialect|
+`resources:` | `[FilePath]?`| An array of paths to directories and files, which will be copied to the SDF service on deployment|
+`default-catalog:` | `string?`| Defines a default catalog [If not set, defaults to the directory of the workspace]|
+`default-schema:` | `string?`| Defines a default schema [If not set, defaults to 'pub']|
+`source-locations:` | `FilePath?`| Workspace defined by these set of files|
+`variables:` | `[Variable]?`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
+`code-reports:` | `[CodeReportPath]?`| An array of queries over the information schema that will be run on sdf describe and sdf deploy|
+`code-checks:` | `[CodeCheckPath]?`| An array of queries over the information schema that will be run on sdf describe and sdf deploy|
+`access-control:` | `[AccessControlPath]?`| An array of attribute based access control queries over the information schema, current user and current job, that will be run on sdf build and sdf deploy|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -158,12 +193,19 @@ Value | Description|
 `nullable:` | `boolean?`| The type of this column|
 `classifiers:` | `[string]?`| An array of classifier references|
 `lineage:` | `Lineage?`| Lineage, a tagged array of column references|
+`reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
 ### Nested element: `Lineage`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `copy:` | `[string]?`| The output column is computed by copying these upstream columns|
 `modify:` | `[string]?`| The output column is computed by transforming these upstream columns|
 `scan:` | `[string]?`| These upstream columns are indirectly used to produce the output (e.g. in WHERE or GROUP BY)|
+`apply:` | `[string]?`| These functions were used to produce the output column|
+### Nested element: `Reclassify`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`to:` | `string?`| Target classifier|
+`from:` | `string?`| Expected source classifier|
 ### Nested element: `Partition`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -173,35 +215,17 @@ Value | Description|
 ### Nested element: `FileFormat`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-### Nested element: `Deny`
+### Nested element: `Label`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`classifiers:` | `array`| Deny access when these classifiers are present|
-`except:` | `[AllowTag]?`| except when these conditions hold|
-### Nested element: `AllowTag`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`allow:` | `UNKNOWN`| Allow access when these classifiers are present|
-### Nested element: `Allow`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`classifiers:` | `array`| Allow access when these classifiers are present|
-`except:` | `[DenyTag]?`| except when these conditions hold|
-### Nested element: `DenyTag`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`deny:` | `UNKNOWN`| Allow access when these classifiers are present|
-### Nested element: `Element`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string`| The name of the element|
+`name:` | `string`| The name of the label, use "*" to allow arbitrary strings as labels|
 `description:` | `string?`| A description of this classifier element|
-### Nested element: `Subset`
+### Nested element: `Scope`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the classifier subset|
-`description:` | `string?`| A description of the classifier subset|
-`values:` | `[string]?`| The subset is defined by unionizing all its values, elements, or subsets|
+### Nested element: `Cardinality`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `FunctionKind`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -218,8 +242,13 @@ Value | Description|
 ### Nested element: `TypeBound`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`generic:` | `string`| undefined|
-`is-one-of:` | `array`| undefined|
+`type-variable:` | `string`| undefined|
+`datatypes:` | `array`| undefined|
+### Nested element: `Example`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`input:` | `string`| The sql string corresponding to the input of this example|
+`output:` | `string`| The output corresponding to running the input string|
 ### Nested element: `Plugin`
 |Field | Type | Description|
 | :---- | :--- | :------- |

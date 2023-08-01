@@ -1,0 +1,301 @@
+---
+title: "Aggregate Functions"
+---
+
+##  approx_distinct
+<Tabs>
+<Tab title="Overview">
+```sql
+function approx_distinct(boolean) returns bigint
+```
+
+Returns the approximate number of distinct input values. This function provides
+an approximation of count(distinct x). Zero is returned if all input values are
+null.
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select approx_distinct(tbl.column1) as value from tbl; -- value '3' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  approx_median
+<Tabs>
+<Tab title="Overview">
+```sql
+function approx_median<S> (values S) returns double
+	Where S in (bigint, int, double)
+```
+
+Returns the approximate median of input values. it is an alias of
+`approx_percentile_cont(x, 0.5)`
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select approx_median(tbl.column1) as value from tbl; -- value '5' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  approx_percentile_cont
+<Tabs>
+<Tab title="Overview">
+```sql
+function approx_percentile_cont<S> (values S, p double) returns double
+	Where S in (bigint, int, double, float)
+```
+
+Returns the approximate percentile of input values, where percentile 'p' is
+between 0 and 1 (inclusive)
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select approx_percentile_cont(tbl.column1, 0.5) as value from tbl; -- value '5' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  approx_percentile_cont_with_weight
+<Tabs>
+<Tab title="Overview">
+```sql
+function approx_percentile_cont_with_weight<S> (values S, p double, weight float) returns double
+	Where S in (bigint, int, double)
+```
+
+returns the approximate percentile of input values with weight, where the weight
+column and percentile 'p' is a double between 0 and 1 (inclusive)
+
+Example: 
+```sql example.sql
+create table tbl as values (1, 0.5), (5, 0.5), (9, 0.5); 
+ select approx_percentile_cont_with_weight(tbl.column1, tbl.column2, 0.5) as value from tbl; -- value '7' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  avg
+<Tabs>
+<Tab title="Overview">
+```sql
+function avg(decimal(p, s)) returns decimal(p, s)
+```
+
+Returns the average (arithmetic mean) of all input values.
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select avg(tbl.column1) as value from tbl; -- value '5.0' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  count
+<Tabs>
+<Tab title="Overview">
+```sql
+function count() returns bigint
+```
+
+Returns number of values
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select count(tbl.column1) as value from tbl; -- value '3' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  count_distinct
+<Tabs>
+<Tab title="Overview">
+```sql
+function count_distinct(values S) returns double
+```
+
+Returns the unique number of values
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (5), (9); 
+ select count_distinct(tbl.column1) as value from tbl; -- value '3' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  max
+<Tabs>
+<Tab title="Overview">
+```sql
+function max(e, bigint) returns array(e)
+```
+
+Returns the maximum value in the column
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select max(tbl.column1) as value from tbl; -- value '9' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  median
+<Tabs>
+<Tab title="Overview">
+```sql
+function median<S> (values S) returns double
+	Where S in (bigint, int, double, float)
+```
+
+Returns the median value in the column
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select median(tbl.column1) as value from tbl; -- value '5' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  min
+<Tabs>
+<Tab title="Overview">
+```sql
+function min<S> (S) returns S
+	Where S in (bigint, int, float, double)
+```
+
+Returns the min value in the column
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select min(tbl.column1) as value from tbl; -- value '1' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  sum
+<Tabs>
+<Tab title="Overview">
+```sql
+function sum(bigint) returns bigint
+```
+
+Returns the sum of all values in the column
+
+Example: 
+```sql example.sql
+create table tbl as values (1), (5), (9); 
+ select sum(tbl.column1) as value from tbl; -- value '15' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+

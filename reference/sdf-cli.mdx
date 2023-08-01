@@ -23,6 +23,8 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf auth logout`↴](#sdf-auth-logout)
 * [`sdf auth status`↴](#sdf-auth-status)
 * [`sdf auth aws`↴](#sdf-auth-aws)
+* [`sdf analyze`↴](#sdf-analyze)
+* [`sdf analyze unused-columns`↴](#sdf-analyze-unused-columns)
 
 ## `sdf`
 
@@ -41,6 +43,7 @@ SDF's modular SQL
 * `lineage` — Display lineage for a given column
 * `system` — System maintenance and generation of reference documentation
 * `auth` — Manage credentials and tokens
+* `analyze` — Display results of various supported analyses (e.g. unused-columns)
 
 
 
@@ -60,6 +63,9 @@ Create a new SDF workspace at PATH
 
   Default value: `false`
 * `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
 * `--list-samples` — List all available samples
 
   Default value: `false`
@@ -83,6 +89,10 @@ Remove generated SDF artifacts in workspace
 
   Default value: `false`
 * `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `-p`, `--profile <PROFILE>` — Clean cache entries for this profile
 
 
@@ -95,7 +105,7 @@ Build, run, and save SDF queries
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or catalog.schema.table targets; no input rebuilds the whole workspace
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or optionally a */workspace.sdf.yml file rebuilds the whole workspace
 
 ###### **Options:**
 
@@ -103,6 +113,10 @@ Build, run, and save SDF queries
 
   Default value: `false`
 * `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--var <VAR>` — Var bindings of the form: n=1 or year="2022 01 01", only string variables supported
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
@@ -162,7 +176,7 @@ Describe SDF table schemas
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Describe these *.sql files, or catalog.schema.table targets; no input describes the whole workspace
+* `<INPUT_FILES>` — Analyze these *.sql files or [[catalog.]schema.]table targets; providing no input or optionally a */workspace.sdf.yml file rebuilds the whole workspace
 
 ###### **Options:**
 
@@ -170,6 +184,10 @@ Describe SDF table schemas
 
   Default value: `false`
 * `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--no-propagate` — Propagate labels
 
   Default value: `false`
@@ -210,6 +228,16 @@ Describe SDF table schemas
 * `--output-file-contents-on-error` — Include file contents when generating error output
 
   Default value: `false`
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--code-reports` — Run code reports against information schemas and metadata
+
+  Default value: `false`
+* `--no-code-checks` — Run code checks against information schemas and metadata
+
+  Default value: `false`
+* `--check-access` — Check attribute based access control, for testing assumes a user.json and a job.json file in workspace directory
 
 
 
@@ -221,7 +249,7 @@ Create a deployment and post it to the SDF service
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Deploy these  *.sql files or catalog.schema.table targets; no input deploys the whole workspace
+* `<INPUT_FILES>` — Deploy these *.sql files or [[catalog.]schema.]table targets; providing no input or optionally a */workspace.sdf.yml file rebuilds the whole workspace
 
 ###### **Options:**
 
@@ -229,30 +257,18 @@ Create a deployment and post it to the SDF service
 
   Default value: `false`
 * `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--date <DATE>` — Backfill all tasks that run (only) on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07 or 2020-12-31
 * `--to <TO>` — Backfill to this datetime (exclusive), use RFC format, e.g., e.g. 2020-12-31T21:07:14-07:00, with optional T part
 * `-p`, `--profile <PROFILE>` — Deploy build artifacts using this profile
-* `--execute <EXECUTE>` — When to execute this job run; defaults to recurring: if --from/--to are given
-
-  Default value: `once-immediately`
-
-  Possible values:
-  - `once-immediately`:
-    Executes the target immediately, disrespecting the target's schedule, if any
-  - `once-on-last-landed`:
-    Executes the target at the last time when all data for the targets time grain was available
-  - `once-on-next-landing`:
-    Executes the target once at the next possible time when all data for the targets time grain is available
-  - `recurring`:
-    Executes the target on schedule starting with --from (default is now) until --to or, if not given, forever
-  - `no-execute`:
-    Only the Metadata is deployed to the console, no runs are scheduled
-
-* `--dry-run` — Create a deploy.json and archive.tar.gz but don't post it to the service
+* `--execute` — When to execute this job run; defaults to recurring: if --from/--to are given
 
   Default value: `false`
-* `--no-exec` — Whether to schedule tasks to run, or just deploy metadata
+* `--dry-run` — Create a deploy.json and archive.tar.gz but don't post it to the service
 
   Default value: `false`
 * `--no-propagate` — Propagate labels for deployed targets
@@ -277,6 +293,10 @@ View existing table content
 
   Default value: `false`
 * `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--date <DATE>` — View catalog.schema.table of this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00, etc
 * `--from <FROM>` — View catalog.schema.table from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00
 * `--to <TO>` — View catalog.schema.table to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T23:59
@@ -318,12 +338,17 @@ Display lineage for a given column
 
   Default value: `false`
 * `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `-p`, `--profile <PROFILE>` — Build data using this profile
 * `--column <COLUMN>` — The column for which to compute lineage
-* `--forward` — Whether to compute downstream lineage. (The default is upstream)
+* `--forward` — Compute downstream lineage instead of the default upstream lineage
 
   Default value: `false`
-* `--collapse` — Whether to collapse the output into a single level of dependencies. (Only relevant for forward=false)
+* `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
+* `--show-scans` — Display scan dependencies in addition to copy and mod dependencies. Unset by default
 
   Default value: `false`
 
@@ -341,6 +366,9 @@ System maintenance and generation of reference documentation
 
   Default value: `false`
 * `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
 * `--show <SHOW>` — Print reference documents on stdout
 
   Possible values:
@@ -350,16 +378,8 @@ System maintenance and generation of reference documentation
     Print json schema for *.sdf.yml documents
   - `deploy-json-schema`:
     Print json schema for deploy.json documents
-  - `sdf-aggregate-functions`:
-    Print all supported SDF Aggregate SQL functions for native SDF Dialect
-  - `sdf-math-functions`:
-    Print all supported SDF Math SQL functions for native SDF Dialect
-  - `sdf-other-functions`:
-    Print all supported SDF Other SQL Expressions for native SDF Dialect
-  - `sdf-string-functions`:
-    Print all supported SDF String SQL functions for native SDF Dialect
-  - `sdf-temporal-functions`:
-    Print all supported SDF Temporal SQL functions for native SDF Dialect
+  - `functions`:
+    Print all supported supported functions of given dialect in given format
 
 * `--update` — Update SDF in place to the latest version
 
@@ -367,6 +387,34 @@ System maintenance and generation of reference documentation
 * `--uninstall` — Uninstall SDF from the system
 
   Default value: `false`
+* `--dialect <DIALECT>` — Pick a dialect to print
+
+  Default value: `sdf`
+
+  Possible values:
+  - `sdf`:
+    SDF Dialect (which is ansi++)
+  - `spark`:
+    Spark Dialect
+  - `presto`:
+    Presto dialect
+  - `postgresql`:
+    Postgres dialect
+  - `bigquery`:
+    BigQuery dialect
+  - `legacy-bigquery`:
+    LegacyBigQuery dialect
+  - `redshift`
+
+* `--format <FORMAT>` — Pick a format to print in
+
+  Default value: `markdown`
+
+  Possible values: `markdown`, `yaml`
+
+* `--section <SECTION>` — Pick a section to print
+
+  Default value: ``
 
 
 
@@ -394,7 +442,6 @@ Obtain credentials for accessing remote resources
 ###### **Options:**
 
 * `--id-token <ID_TOKEN>` — Path to a file containing an OIDC identity token (a JWT)
-* `--org-id <ORG_ID>`
 
 
 
@@ -435,5 +482,52 @@ Configure how to authenticate with AWS
 
 
 
-   Finished system in 0.001 secs
+## `sdf analyze`
+
+Display results of various supported analyses (e.g. unused-columns)
+
+**Usage:** `sdf analyze [OPTIONS] <COMMAND>`
+
+###### **Subcommands:**
+
+* `unused-columns` — Analyze upstream tables for unused columns
+
+###### **Options:**
+
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+
+
+
+## `sdf analyze unused-columns`
+
+Analyze upstream tables for unused columns
+
+**Usage:** `sdf analyze unused-columns [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — The specification of the output tables used as roots for computing unused upstream columns
+
+###### **Options:**
+
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `-p`, `--profile <PROFILE>` — Analyze queries using this profile
+* `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
+
+
+
+   Finished system in 0.002 secs
 

@@ -1,0 +1,239 @@
+---
+title: "Classifiers & Propagation"
+description:
+  "This documents aims to layout how classifiers are defined and propagated through your data warehouse"
+---
+
+The standout feature of SDF is its ability to annotate your SQL sources with rich metadata and reason about them together. SDF classifiers can range from table visibility to privacy policies and more. When SDF performs its static analysis, it takes this metadata into account, propagates it throughout your SQL sources with [Information Flow Theory](https://www.microsoft.com/en-us/research/publication/bootstrapping-privacy-compliance-in-big-data-systems/), and enforces built-in and user-defined rules.
+
+Classifiers are the fundamental metadata unit of the SDF ecosystem. You can think of them like rich types in a language like Typescript. They can be defined, reused, transformed, and propagated programatically by SDF. Let's dive in.
+
+## Basic Propagation
+
+Propagation is the mechanism of inferring the downstream column metadata from
+the upstream column metadata. The inference process is based on the semantics of
+the underlying transformation.
+
+### Defining Classifier Domains
+
+To work with classifiers and propagation we must first define all the relevant
+classifier domains. Here is an example of a simple PII classifier domain,
+defined in a separate section of the global `workspace.sdf.yml` config file:
+
+```yaml workspace.sdf.yml
+workspace:
+  edition: "1.1"
+  includes:
+    - path: src/
+---
+classifier:
+  name: PII
+  labels:
+    - name: Phone
+    - name: Address
+    - name: SSN
+    - name: UID
+```
+
+This configuration defines five distinct labels: `PII`, `PII.Phone`,
+`PII.Address`, `PII.SSN`, and `PII.UID`, where the last four labels denote
+special classes of the first label. (I.e. if some data is labeled with
+`PII.Address`, it is also, implicitly, labeled with `PII`.)
+
+Classifier domains can also be defined in separate .sdf.yml files as long as
+these files are included into the root `workspace.sdf.yml` file as one of the
+paths specified in `includes`.
+
+### Attaching Classifiers to Tables
+
+Once a classifier domain is defined, we can manually attach classifiers to
+tables. Once root tables are annotated with the relevant classifiers, SDF
+automatically propagates classifiers downstream.
+
+Here is an example:
+
+```yaml src/source.sdf.yml
+table:
+  name: source
+  columns:
+    - name: user_id
+      classifiers:
+        - PII.UID
+    - name: phone
+      classifiers:
+        - PII.Phone
+```
+
+Note how this file will be picked up because its in the path included in the
+root `workspace.sdf.yml`. Alternatively, the same information can be included
+directly into the root file as follows:
+
+```yaml workspace.sdf.yml
+workspace:
+  edition: "1.1"
+  includes:
+    - path : src/
+---
+classifier:
+  name: PII
+  labels:
+    - name: Phone
+    - name: Address
+    - name: SSN
+    - name: UID
+–--
+table:
+  name: source
+  columns:
+    - name: user_id
+      classifiers:
+        - PII.UID
+    - name: phone
+      classifiers:
+        - PII.Phone
+```
+
+### Inspecting Propagation Results
+
+Now we can run `sdf describe` to see how classifiers are propagated into the
+tables downstream of `source`:
+
+```bash
+sdf describe
+```
+
+```text
+Schema chain.pub.source
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| user_id     | bigint    | false       | PII.UID    |
+| phone       | varchar   | false       | PII.Phone  |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.middle
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| user_id     | bigint    | false       | PII.UID    |
+| phone       | varchar   | false       | PII.Phone  |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.knis
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+
+Schema chain.pub.sink
++-------------+-----------+-------------+------------+
+| column_name | data_type | is_nullable | classifier |
++-------------+-----------+-------------+------------+
+| uid         | bigint    | false       | PII.UID    |
+| phone       | varchar   | false       | PII.Phone  |
+| txn_date    | varchar   | false       |            |
+| qty         | bigint    | false       |            |
++-------------+-----------+-------------+------------+
+```
+
+Observe how the classifiers attached to the upstream table automatically
+propagated downstream to `middle` and `sink`, but not to `knis` – because it
+doesn’t have any columns derived from the `PII` columns upstream.
+
+## Advanced Propagation
+
+By default classifiers propagate through functions unchanged. For example, if a
+substring is extracted from a piece of data labeled with `PII.phone`, the result
+will also be labeled with `PII.phone` by default. However, this is not reflective of the fact that Phone is no longer a phone number, and instead is now a substring of the phone number.
+
+Let's imagine the substring function is taking out the area code, or the first three digits of a phone number formatted like this `555-555-5555`. We can use a [function block](/reference/sdf-yml#block-function) in our `sdf.yml` files to define the behavior of a classifier in response to this function being called.
+
+In our current example, we'd want to reclassify `PII.phone` to `PII.area_code`. Here's the function overload required to do so:
+```yaml workspace.sdf.yml
+---
+function:
+  name: substring
+  reclassify:
+    - from: PII.phone 
+      to: PII.area_code
+```
+
+Great! Now every time the substring function is called on a column with the classifier `PII.phone`, it will be reclassified to `PII.area_code`.
+
+Another common case is to _prevent_ a classifier from propagating through an aggregation. For example, if a column `user_id` is labeled with the classifier `PII.UID` and we `SELECT COUNT(DISTINCT user_id)` from the table containing this column, we don't want `PII.UID` to propagate since the `COUNT DISTINCT` is not a `PII.UID`. It's a number representing the unique count of `PII.UID`s. We can use the same `reclassify` block to prevent this propagation. Here's an example:
+```yaml workspace.sdf.yml
+---
+function:
+  name: count
+  parameters:
+    - datatype: T
+  returns:
+    - datetype: bigint
+  reclassify:
+    - from: PII.UID
+```
+
+By explicitly not setting a `to` value in the `reclassify` block, we prevent SDF from propagating the `PII.UID` classifier downstream and achieve our desired behavior.
+
+<Note>
+Function reclassifications work across all queries by default. In this way, developers have full programmatic control over how their classifiers propagate and interact with functions across their entire data warehouse.
+</Note>
+
+### Classifier States
+
+Using _labels_, classifiers can also exist in states that communicate how the data is currently represented.
+
+
+Here is how a classifier state could be defined in YML:
+
+```yaml workspace.sdf.yml
+...
+---
+classifier:
+  name: PII_STATE
+  labels:
+    - name: clear_text
+    - name: hashed
+    - name: anonymized
+...
+```
+
+`PII_STATE.clear_text` is meant to represent human-readable PII, and `anonymized` is meant to represent anonymized PII. We can then use these states to define the effect of functions (including [User Defined Functions (UDFs)](/guide/udf)) on classifiers like the examples above. For example, we can define the effect of an `md5` hash as follows:
+
+
+```yaml workspace.sdf.yml
+---
+function:
+  name: md5
+  reclassify:
+    - from: PII_STATE.clear_text
+      to: PII_STATE.hashed
+```
+
+Now let's imagine we have a UDF called `anonymize` which anonymizes PII no matter its current state. For this, we can use a glob pattern (e.g. `*`) to tell SDF to reclassify a `PII_STATE` classifier no matter its current state. Here's an example:
+
+```yaml workspace.sdf.yml
+---
+function:
+  name: anonymize
+  parameters:
+    - name: pii
+      datatype: varchar
+  returns:
+    - datatype: varchar
+  reclassify:
+    - from: PII_STATE.*
+      to: PII_STATE.anonymized
+```
+
+Note the usage of `PII_STATE.*` in the `from` field of the `reclassify` block. This tells SDF to reclassify any `PII_STATE` classifier, no matter its current state, to `PII_STATE.anonymized`.
+
+<Info>
+  Wondering why we also defined the `parameters` and `returns` in this function block? This is because this function is a [`User Defined Function (UDF)`](/guide/udf). For more on function signatures, see the [UDF](/guide/udf) guide.
+</Info>

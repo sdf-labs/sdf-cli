@@ -47,31 +47,31 @@ Let's try these options. Start by creating a new workspace with a sample project
 
 (0) Install and setup your workspace
 
-> `sdf new . --sample source-to-sink`
+> `sdf new --sample lineage`
 
-(1) Usual build
+(0.5) Then, cd into the newly created directory
 
-> `sdf build`
+> `cd lineage/`
 
-(2) Build with limited number of rows; use --limit 0 to show all rows. The default number of rows displayed if this flag is not passed in is `10`
+(1) Usual describe
 
-> `sdf build --limit 2`
+> `sdf describe`
 
-(3) Build without any progress report. This will also prevent the `Finished in [n] seconds` message from displaying at the end of stdout.
+(2) describe without any progress report. This will also prevent the `Finished in [n] seconds` message from displaying at the end of stdout.
 
-> `sdf build --quiet`
+> `sdf describe --quiet`
 
-(4) Build without any table info but with progress info
+(3) describe without any table info but with progress info
 
-> `sdf build --no-show`
+> `sdf describe --no-show`
 
-(5) Build without any output except errors
+(4) describe without any output except errors
 
-> `sdf build --now-show --quiet`
+> `sdf describe --no-show --quiet`
 
-(6) Build with only trace info
+(5) describe with trace log info
 
-> `sdf build --log trace`
+> `sdf describe --log trace`
 
 ### Controlling which tables will be printed
 
@@ -80,46 +80,22 @@ Let's try these options. Start by creating a new workspace with a sample project
 #### Example (cont.)
 (0) Show only the sink table this time via a file
 
-> sdf build src/sink.sql
+> sdf describe src/sink.sql
 
 (1) Show only the `sink` table this time via a target, i.e. a
 _catalog.schema.table_ term
 
-> sdf build source_to_sink.public.sink
+> sdf describe source_to_sink.public.sink
 
 (2) Of course you can pass as many files or targets as you want. Even regex patterns are supported. Use a `*` for example to match all tables in a folder like below.
 
-> sdf build src/\*.sql
-
-## Specifying Input Files and Formats
-
-SDF is compatible with a variety of different file types.
-
-| Filetype | Compatibility                                                             |
-| -------- | ------------------------------------------------------------------------- |
-| csv      | Comma (or other delimiter) separated values, with or without header       |
-| parquet  | A self describing, compressed columnar data format, optimized for reading |
-| json     | Newline delimited json (also called ndjson)                               |
-| gzip     | GZIP compressed json or csv file                                          |
-| bzip2    | BZIP2 compressed json or csv file                                         |
-
-Input locations and file formats are currently specified via `external table` declarations. The external table spec follows this format: 
-```sql
-create external table T
-  <schema>
-  stored as <file-format>
-  <compression-type>
-  <partitions>
-  location '<data-location>';
-```
+> sdf describe src\/*.sql
 
 We now discus each of the parameters in turn.
 
 ### Schema
 
-The `schema` of an external table can be given 
-* **explicitly**, following the [ANSI standard SQL syntax](https://blog.ansi.org/2018/10/sql-standard-iso-iec-9075-2016-ansi-x3-135/) or
-* **implicitly**, in which case it is automatically inferred from the data.
+The `schema` of an external table must be given **explicitly**, following the [ANSI standard SQL syntax](https://blog.ansi.org/2018/10/sql-standard-iso-iec-9075-2016-ansi-x3-135/) or
 
 An example for an explicit table definition looks like this
 
@@ -131,433 +107,5 @@ create external table events (
     ...
 ```
 
-If the schema is inferred you just write
-
-```sql
-create external table events ...
-```
-
 Besides column names, types and nullability, SDF schema definitions have no
 other schema descriptions, no foreign keys, no constraints.
-
-## Data Location - Local
-
-Local files or directories can be specified via 
- * *absolute paths*, like `location '/tmp/data/events.csv'` or 
- * *relative paths*; like  `location 'data/events.csv'`. Relative paths are always *relative to the workspace*. 
-
-To specify a *directory* as input, author it with a trailing `/`, e.g. `location 'data/'`. Providing a directory assumes that all files with the proper extension are used as input, see also [partitions](#partitions) below. 
-
-Only relative local data files and directories, which are inside the workspace, can be deployed to the cloud, see [sdf deploy](/reference/sdf-cli#sdf-deploy). 
-
-#### Example
-(1) Let's adapt our running example `source-to-sink` and read data for `source` from a relative, absolute and remote CSV file.
-
-> `sdf new --sample location-variations-to-sink`
-
-(2) The examples stores the data local to the workspace.
-
-> `cat data/events.csv`
-
-```csv
-2022-01-02,mark,1
-2022-01-02,trish,4
-2022-01-02,mark,2
-2022-01-03,trish,1
-```
-
-(3) As a byproduct of the data being stored locally, our sink must use a local path. We specify this using the `location` property in the `create external table` statement.
-> `cat src/source.sql`
-
-```sql
-create external table T stored as CSV location 'data/';
-```
-
-(4) Next, let's try running the query
-
-> `sdf build src/source.sql`
-
-As you can see, the query created a new table `T` with the data from `data/events.csv`. It also cached the table locally for future use. See the [sdf cache](/reference/caching) reference for more on this.
-
-(5) Now let's try to read the data from an absolute path. First we'll copy the data to an absolute location like `/tmp/data`.
-
-> `cp -r data /tmp/data`
-
-(6) Change the query's `location` property to `'/tmp/data/'`. Our new source should look like this:
-
-```sql title="src/source.sql"
-create external table T stored as CSV location '/tmp/data/';
-```
-
-(6) Finally let's run the query one more time on the absolute path to confirm the output is the same
-> `sdf build`
-
-**Remote files and directories.** SDF is designed to read from and write to any
-object store. Today it is just AWS S3, but Google Cloud Storage and Azure Blob
-Storage are already on the way.
-
-Reading from S3 is trivial; just provide an s3 path, e.g.
-`location 's3://bucket/key'`.
-
-Of course, to read and write s3 object store you need permission. To do so follow the guide on [AWS Authentication](/guide/authentication#aws-access)
-
-#### Example
-
-Let's continue the example `location-variations-to-sink`. Assume we have `~/.aws_credentials` configured and have our AWS environment variables set.
-
-<Note>
-The AWS credentials used must have permissions for creating, reading, writing and listing S3 buckets.
-</Note>
-
-(1) Now, let's create a new bucket test-input-files.
-
-> `aws s3 mb s3://test-output-files`
-
-(2) Next copy the local data to s3:
-
-> `aws s3 cp data s3://test-input-files --recursive`
-
-(3) Change the query location to `'s3://test-input-files/data/'`, i.e the new
-`source should look like this:
-
-```sql
-create external table T stored as CSV location 's3://test-input-files/data/';
-```
-
-(4) Run the query, this time just focussing on the progress messages.
-
-> `sdf build --no-show`
-
-Note that it downloads the data as part of executing the query
-
-```yaml
-
-```
-
-(5) Any subsequent query will only download the remote data again if the remote data is newer than the last downloaded one. That's right, your data has been cached locally to speed up your local development experience. Let's confirm that. To trigger a rebuild let's touch the sink query. 
-
-> `touch src/sink.sql`
-
-(6) Now let's run the query again this time focussing on just the progress
-messages.
-
-> `sdf build --no-show`
-
-```yaml
-
-```
-
-### File format
-SDF supports a wide variety of metadata and data storage formats. Below are a list of currently supported formats
-
-- `parquet`
-- `json`
-- `ndjson`
-- `csv`. 
-
-#### **CSV**
-
-CSV is delimited text file that uses a comma to separate values. Each line of the file will be come a row in a table. A row consists of one or more fields in plain text, strings or numbers, separated by commas. Each line should have the same number of fields. A null value is represented by empty text. Some CSV files also reserve the first row as a header containing a list of field names. 
-
-SDF lets you specify a CSV separator and header. A typical CSV file format specification looks like:   
-```sql title="src/source.sql"
-create external table T stored as CSV delimiter '|' with row header location 'data/';
-```
-
-<Tip>
-We recommend dropping the delimiter clause if your delimiter is `,` and drop the row header clause if your data has no header. These are the defaults
-</Tip>
-
-To play with CSV data and the different options, create the CSV example using the command below. Try running describe and build to understand how it interacts with the data. If you'd like to take it a step further, try changing `data/` or `src/source.sql` to see how these changes interact with SDF's cache.
-
-> `sdf new . --sample csv-variations-to-sink`
-
-#### Parquet
-
-Parquet is SDF's recommended file format for working with data. 
-
-We love Parquet, and here's why:
-* It is self describing, i.e. it knows its own schema. 
-* It is a columnar representation, thus efficient for reading. 
-* It is storage efficient since it is compressed. 
-
-Since Parquet is self decribing, SDF prevents the developer from adding schema specification. Parquet external table specifications can therefore be as simple as:
-
-```sql
-create external table T stored as parquet location 'data/';
-```
-
-<Note>
-Using parquet as input data has no further options other than what is in the query shown above. This is because Parquet is self-describing and contains the schema metadata within the data itself. 
-</Note>
-
-
-##### Example.  
-
-Let's try working with data in the parquet format.
-
-(1) We'll start by creating a new project with the parquet example:
-> `sdf new . --sample parquet-to-sink`
-
-(2) Check that the generated directory contains the data `tree data`
-> `tree data`
-```yaml
-
-```
-
-(3) View the raw data, which requires a file path for view to take as argument.
-
-> `sdf view data/events.parquet`
-
-```yaml
-
-```
-
-(4) Now let's try building the parquet data. 
-> `sdf build`
-
-(5) If we inspect the `.sdfcache`, we'll see SDF has successfully materialized the output:
-> `tree data`
-
-```yaml
-
-```
-
-(6) Lastly let's view the computed result. Note that we we can access the data also via the table notation since it's been materialized by SDF.
-> `sdf view parquet-to-sink.public.sink`
-
-#### Json
-
-SDF natively supports newline delimited json [ndjson](http://ndjson.org/). Working with nested structures is supported with simple dot notation.
-
-##### Example
-
-(1) Let's create a sample project of twitter data:
-
-> `sdf new . --sample json-source-to-sink`
-
-(2) A typical tweet look like this.
-
-> `head 10 data/twitter.json`
-
-```json
-{
-  "tweet_id": "1223489829817577472",
-  "created_at": "Sat Feb 01 06:14:41 +0000 2020",
-  "user_id": "3244922072",
-  "user_location": {
-    "country_code": "th",
-    "state": "Saraburi Province"
-  },
-  "geo": {}
-}
-```
-
-(3) SDF supports dot-notation and index access to access nested fields and array elements to make it easy to work with nested structures. So let's read *user_id*, *country_code*, and *state* from the *user_location* object.
-
-> `cat src/sink.sql`
-
-```sql
-select
-    user_id,
-    user_location.country_code as country_code,
-    user_location.state as state,
-from twitter_json;
-```
-
-(4) Run it
-
-> `sdf build`
-
-
-<Warning>
-SDF does not yet construct JSON and has no operators beyond `.` and `[]` at this time.
-</Warning>
-
-### Compression
-CSV and Json are text formats and as such they compress well. SDF supports two compression types:
-* `GZIP`:  Using GZIP compression is quiet useful for any larger text file, whether CSV or Json.
-* `BZIP2`: At the expense of a higher memory footprint and a slightly longer compression time than GZIP, BZIP2s archives are typically >10% smaller than with GZIP.
-
-Whether GZip or BZip, SDF let's you simply read compressed data by specifying a compressed type, e.g. to read BZIP2 data, write a external table specification like this:
-
-```sql title="src/source.sql"
-create external table events
-  stored as CSV
-  compression type BZIP2
-  location 'data/';
-```
-
-To play with CSV data and different compression options, try the compression sample with the command below
-
-> `sdf new . --sample compression-variations-to-sink`
-
-### Partitions
-SDF support [*Hive partitions*](https://www.tutorialspoint.com/hive/hive_partitioning.htm). Hive partitions split a large table into several smaller parts based on one or multiple columns. In SDF *all partition columns* are of type `varchar not null`. 
-
-#### Example.
-
- Let's look at partitioned input data.
-
-(1) First we'll spin up an example project with partitions using the command below 
-> `sdf new . input-partitions-to-sink`
-
-Let's inspect the `events` table, which is here partitioned by day (column `dt`) and hour (column `hr`)
-
-> `cat src/events.sql`
- 
-```sql title="src/events.sql"
-create external table events (
-    action varchar not null, 
-    user_id smallint not null)
-  ) 
-  stored as csv  
-  partitioned by (dt, hr) 
-  location 'data/';
-```
-
-The `events` table has four columns: two regular ones `action` and `user_id`, and two partition columns `dt` and `hr`. Observe that partition columns are dropped from the schema, since their type and nullability must be `varchar` and `not null`.
-
-(3) SDF maps partitions to directory structures. Let's see this in action. Assume we have a full day of events for Jan 2nd, 2022, where events are grouped every 6 hours, e.g at 00, 06, 12, and 18 hours. We can represent these partitions with a Hive partitioning scheme. The data in this sample is already formatted in this way. Let's take a look in our `data/` directory.
-> `tree data`
-
-<div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
-<pre style={{ fontFamily: 'monospace' }}>
-data
-└─── dt=2022-01-02
-    ├── hr=00
-        └── data.csv
-    ├── hr=06
-        └── data.csv
-    ├── hr=12
-        └── data.csv
-    └── hr=18
-        └── data.csv
-</pre>
-</div>
-
-We see that the events table makes every `dt` and `hr` value into a directory, where  
-* `dt` is  formatted using the strftime format "%Y-%m-%d"
-* `hr` is  formatted using the strftime format "%H"
-
-Since we have a new partition `every 6 hours`, we call the values 2022-01-02, and 00, 06 etc. the *partition keys*
-
-(4) Users however can still access the data from just one table. `Where` clauses allow us to restrict access to sub-tables. 
-
-* Read all partitions
-  * `select * from events`
-* Read a single day partition 
-  * `select * from events where dt='2022-01-02'`
-* Read a single hr partition 
-  * `select * from events where dt='2022-01-02' and hr='00'`
-* Read all hr partitions between hr=00 and hr=12: 
-  * `select * from events where dt='2022-01-02' and hr between '00' and '12'`
-
-The actual `sink.sql` is the second alternative.
-> `cat src/sink.sql`
-```sql title="src/sink.sql"
-select * from events where dt='2022-01-02'
-```
-
-(5) Run it
-
-> `sdf build`
-
-<Warning>
-Note, currently SDF allows you to write only conjunctions as filter predicates. 
-</Warning>
-
-<Tip>
-SDF also supports non-time based input partitions, e.g. you might have split the data by country or organization. It will also do the same for output partitions which we'll describe in the next subsection.
-</Tip>
-
-## Specifying Output Files & Formats
-
-SDF outputs have less flexibility than its inputs. SDF outputs are only available via its cache or external location.
-
-### Data Location - Local
-
-By default SDF writes all table outputs in `parquet` format to its local cache at
-`.sdfcache/[profile]/[target]/[partition]/[file].[suffix]`
-
-* `profile` is the selected workspace profile. 
-* `target`, is the fully qualified table name `catalog.schema.table`
-* `partition` if any, is the Hive partitioning representation (partition key)
-* `file` is a system generated file name,
-* `suffix` is the file format suffix.
-
-### Data Location - Remote 
-
-To tell SDF that an output file should be stored on the cloud, you have to specify the `--location` option on the command line. The option takes an additional string argument:
-
-* -- `location` `s3://bucket` 
-  * This stores all produced target tables under 
-    * `s3://bucket/[[env]/]/<target>[/<partition>]/<file>.<suffix>`
-* -- `location` `remote` 
-  * This is equivalent to the above form, except that it takes the  `s3://bucket` location from the `remote-location` field in [`workspace.sdf.yml`](/reference/sdf-yml#top-level-element-workspace)
-
-#### Example
-Let's try storing the materialized target tables of any of our past projects on s3. Of course this requires that we have `~/.aws_credentials` configured to have permissions for creating, reading, writing and listing buckets.
-
-1) Let's create a new bucket test-output-files. 
-> `aws s3 mb s3://test-output-files`
-
-(2) Let's run `sdf`
-> `sdf build --remote s3://test-output-files` 
-
-(3) Let's check that the data landed on s3:
-> `aws s3 ls s3://test-output-files --recursive`
-```yaml
-2023-03-06 14:06:34        869 output_files/public/main/part-0.parquet
-```
-
-(4) Let's compare the file object size with the size of the local data
-> `ls -lR .sdfcache | grep part-0.parquet`
-```yaml
--rw-r--r--@ 1 wosch  staff  869 Mar  6 14:06 part-0.parquet
-```
-
-(5) But what happens if we run build again? Let's focus just on the progress report by using the `--no-show` flag.
-
-> `sdf build --remote s3://test-output-files --no-show`
-
-```yaml
-
-```
-
-SDF detects that the cloud is up-to-date and thus no file is pushed to the cloud.
-
-### File Format
-
-SDF's preferred file format is `parquet`. 
-You can override it by using a...
-*  the CLI option -- `file-format` set to `csv` or `json`. *Note that this will generate the requested format for all materialized tables.*
-* a [table block](/reference/sdf-yml#top-level-element-table) within an `sdf.yml` specification.  
-  ```yaml
-  table:
-    name: ...
-    file-format: csv
-  ```
-  * This will generate the requested format just for the one table you're interested in.
-
-<Note>
-The new format is only materialized if the table needs to be regenerated, run [`sdf clean`](/reference/sdf-cli#sdf-clean) to force regeneration of tables. 
-</Note>
-
-#### Example (cont.)
-
-(1) Let's run
-> `sdf` `build`  `--file-format` `csv` 
-We see that now SDF outputs the data as csv.
-> `cat .sdfcache/output_files/public/main/part-0.csv
-```yaml
-....
-```
-
-<Note>
-SDF does **not**  support compression for its output. By *using parquet* you get already the best compression possible. 
-</Note>
-
-<Tip>
-SDF supports *Hive output partitions* as well. We will discuss this in the [section on scheduling and partitions](/guide/schedules).
-</Tip>

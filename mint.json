@@ -5,12 +5,15 @@
     "dark": "/assets/logo/dark.svg",
     "light": "/assets/logo/light.svg"
   },
-  "favicon": "/assets/favicon.png", 
+  "favicon": "/assets/favicon.png",
   "colors": {
     "primary": "#527398",
     "light": "#9FBBDC",
     "dark": "#0C1D37",
-    "anchors": { "from": "#527398", "to": "#2C4A6B" }
+    "anchors": {
+      "from": "#527398",
+      "to": "#2C4A6B"
+    }
   },
   "topbarCtaButton": {
     "name": "Get Started",
@@ -31,7 +34,10 @@
   "navigation": [
     {
       "group": "Introduction",
-      "pages": ["intro", "getting-started"]
+      "pages": [
+        "intro",
+        "getting-started"
+      ]
     },
     {
       "group": "Guides",
@@ -39,41 +45,62 @@
         "guide/install",
         "guide/io",
         "guide/workspaces",
-        "guide/schedules",
+        "guide/classifiers",
+        "guide/code_checks",
         "guide/lineage_metadata",
-        "guide/deployment",
-        "guide/authentication",
         "guide/udf",
-        "guide/s3_buckets"
-      ]
-    },
-    {
-      "group": "Examples",
-      "pages": [
-        "examples/hello_world"
+        "guide/authentication",
+        "guide/deployment"
       ]
     },
     {
       "group": "Reference",
       "pages": [
         "reference/sdf-cli",
-        "reference/sdf-yml",
-        "reference/caching"
+        "reference/sdf-yml"
       ]
     },
     {
       "group": "SQL Functions",
       "pages": [
-        "reference/aggregate_functions",
-        "reference/math_functions",
-        "reference/other_expressions",
-        "reference/string_functions",
-        "reference/temporal_functions"
+        {
+          "group": "Redshift Functions",
+          "pages": [
+            "reference/redshift/aggregate_functions",
+            "reference/redshift/math_functions",
+            "reference/redshift/other_expressions",
+            "reference/redshift/string_functions",
+            "reference/redshift/temporal_functions"
+          ]
+        },
+        {
+          "group": "Presto Functions",
+          "pages": [
+            "reference/presto/aggregate_functions",
+            "reference/presto/math_functions",
+            "reference/presto/other_expressions",
+            "reference/presto/string_functions",
+            "reference/presto/temporal_functions"
+          ]
+        },
+        {
+          "group": "SDF Functions",
+          "pages": [
+            "reference/sdf/aggregate_functions",
+            "reference/sdf/math_functions",
+            "reference/sdf/other_expressions",
+            "reference/sdf/string_functions",
+            "reference/sdf/temporal_functions"
+          ]
+        }
       ]
     },
     {
       "group": "Service",
-      "pages": ["service/billing", "service/status"]
+      "pages": [
+        "service/billing",
+        "service/status"
+      ]
     },
     {
       "group": "Releases",
@@ -89,7 +116,7 @@
         "releases/v0.1.17",
         "releases/v0.1.16",
         "releases/v0.1.15",
-        "releases/v0.1.14", 
+        "releases/v0.1.14",
         "releases/v0.1.13",
         "releases/v0.1.11",
         "releases/v0.1.9",

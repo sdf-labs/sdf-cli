@@ -1,5 +1,5 @@
 ---
-title: "Lineage & Classifiers"
+title: "Lineage"
 description:
   "This documents aims to layout a very important part of SDF and how it can
   benefit your data warehouse."
@@ -54,7 +54,8 @@ file:
 
 ```yaml workspace.sdf.yml
 workspace:
-  edition: 1
+  name: lineage
+  edition: "1"
   includes:
     - path: src/
 ```
@@ -234,7 +235,7 @@ access. This interface displays information per-table and it includes only one
 level of upstream dependencies. Here is an example:
 
 ```bash
-sdf lineage --table chain.pub.sink --format yml
+sdf lineage chain.pub.sink
 ```
 
 ```yaml
@@ -313,7 +314,7 @@ this updated `workspace.sdf.yml` file where we added an instruction to track the
 
 ```yaml workspace.sdf.yml
 workspace:
-  edition: 1
+  edition: "1.1"
   lineage:
     functions:
       - sum
@@ -358,13 +359,13 @@ defined in a separate section of the global `workspace.sdf.yml` config file:
 
 ```yaml workspace.sdf.yml
 workspace:
-  edition: 1
+  edition: "1.1"
   includes:
     - path: src/
 ---
 classifier:
   name: PII
-  elements:
+  labels:
     - name: Phone
     - name: Address
     - name: SSN
@@ -406,13 +407,13 @@ directly into the root file as follows:
 
 ```yaml workspace.sdf.yml
 workspace:
-  edition: 1
+  edition: "1.1"
   includes:
     - path : src/
 ---
 classifier:
   name: PII
-  elements:
+  labels:
     - name: Phone
     - name: Address
     - name: SSN
@@ -502,7 +503,7 @@ Here is how classifier states will be defined in YML:
 ---
 classifier:
   name: PII
-  elements:
+  labels:
     - name: Phone
     - name: Address
     - name: SSN
@@ -534,7 +535,7 @@ example.
 ---
 classifier:
   name: PII
-  elements:
+  labels:
     - name: Phone
     - name: Address
     - name: SSN
