@@ -70,7 +70,7 @@ After running the command, you should see the following output:
     Created hello/checks/code_check.sql
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.013 secs
+   Finished new in 0.010 secs
 
 ```
 
@@ -81,7 +81,7 @@ Next, let's take a deeper look at your project.
 
 ## Exploring Your Project
 
-Next we'll run two core commands in SDF: [sdf describe](/guide/basics#sdf-describe) and [sdf build](/guide/basics#sdf-build). 
+Next we'll run the core command of SDF: [sdf describe](/reference/sdf-cli#sdf-describe). 
 Describing our project will *statically* analyze the query and tell you about the table schemas and column-level lineage. Building will run the query locally right on your machine.
 Let's give them a go.
 
@@ -110,7 +110,7 @@ Schema hello.pub.main
 
 CodeChecks 
    [Pass] not exists code_check (checks/code_check.sql)
-   Finished describe in 0.097 secs
+   Finished describe in 0.073 secs
 
 ```
 

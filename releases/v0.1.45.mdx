@@ -1,0 +1,37 @@
+---
+title: "V0.1.45"
+description: "This document contains release notes from patched version v0.1.45 of SDF."
+---
+### July 17th, 2023
+
+We are excited to announce another release to our CLI which brings some exciting fixes, updates, and improvements to SDF.
+
+### What's New?
+- Introduced support for BigQuery dialect
+- Introduced caching for sdf analysis. This means `sdf describe` will only re-analyze changed files in-between runs. The rest will be reused.
+- Introduced `reclassify` functionality in YML files.
+- Introduced `sdf analyze` subcommand for running specific analyses on your queries. For example, `sdf analyze unused-columns` shows all unused columns across your queries.
+- Added support for non-propagating classifiers
+- Added support for table-level propagation
+- Added support for recursive tables in lineage and propagation
+- Added support for `.json` file format
+- Added support for column aliases in `INSERT INTO` statements
+- Support for MAP type and executable redux unnest
+- Added new functionality to prompt user for confirmation before deploy
+- Added Zeta support and began integrating Zeta testing suite
+- Added a `--cache-directory` common argument to relocate .sdfcache
+- Added error detection for mismatched columns in `INSERT INTO` statements
+- Added support for `Not Null` and `Options`
+- Upgraded to [DataFusion 26](https://github.com/apache/arrow-datafusion/releases/tag/26.0.0). Thanks DataFusion team for all your hard work!
+- Clean up of Core functionalities 
+- Significantly Improved Testing Coverage
+- General Bug Fixes and Stability Improvements
+
+### Latest Builds 
+
+| Architecture           | Status | Version | Download |
+| ---------------------- | ------ | ------- | -------- |
+| Linux Intel X86-64     |   ✅   | 0.1.45  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.45-x86_64-unknown-linux-musl.tar.gz) |
+| Linux Arm ARM-64       |   ✅   | 0.1.45  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.45-arm-unknown-linux-gnueabihf.tar.gz) |
+| Apple Intel X86-64     |   ✅   | 0.1.45  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.45-x86_64-apple-darwin.tar.gz) |
+| Apple Arm AARCh-64     |   ✅   | 0.1.45  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.45-aarch64-apple-darwin.tar.gz) |
