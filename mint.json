@@ -92,6 +92,16 @@
             "reference/sdf/string_functions",
             "reference/sdf/temporal_functions"
           ]
+        },
+        {
+          "group": "Bigquery Functions",
+          "pages": [
+            "reference/bigquery/aggregate_functions",
+            "reference/bigquery/math_functions",
+            "reference/bigquery/other_expressions",
+            "reference/bigquery/string_functions",
+            "reference/bigquery/temporal_functions"
+          ]
         }
       ]
     },
