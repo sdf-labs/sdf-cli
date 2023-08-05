@@ -57,7 +57,8 @@
       "group": "Reference",
       "pages": [
         "reference/sdf-cli",
-        "reference/sdf-yml"
+        "reference/sdf-yml",
+        "reference/file-formats"
       ]
     },
     {

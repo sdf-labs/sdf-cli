@@ -1,0 +1,153 @@
+# File Type Compatibility
+
+SDF is compatible with a variety of different file types.
+
+| Filetype  | Compatibility                                                |
+| --------- | ------------------------------------------------------------ |
+|  csv      |  Comma separated values, with or without header              |
+|  parquet  |  A self describing, extremely efficient columnar data format |
+|  json     |  Newline delimited json                                      |
+|  gzip     |  GZIP compressed json or csv file                            |
+|  bzip2    |  BZIP2 compressed json or csv file                           |
+
+## Compression File Modifiers
+
+SDF works with two common compression formats, GZIP, and BZIP2. 
+
+The de-compressed files must be in a supported format (csv, json).
+
+### GZIP & BZIP2
+
+GZIP can only compress a single file, while zip can compress multiple files into a single archive. Additionally GZIP achieves a much higher compression ratio than ZIP archives. GZIP is also very memory efficient, making it useful for systems working with constrained memory or very large amounts of data.
+
+BZIP2 is an alternative to GZIP. At the expense of a higher memory footprint, and slightly longer compression time, the resulting archive is typically >10% smaller than with GZIP.
+
+To import a compressed file with SDF, try the below code snippet.
+```sql
+CREATE EXTERNAL TABLE <table_name> 
+STORED AS <CSV, JSON> 
+COMPRESSION TYPE <GZIP, BZIP2> 
+LOCATION <file_location>
+```
+
+### Parquet
+Parquet is the SDF recommended file format for working with data. Internally, SDF, and the SDF cache, use parquet with data blocks compressed with GZIP.
+
+Parquet files are a self describing column-oriented data file format designed for efficient data storage and retrieval. They contain within them column header information as well as user-defined metadata. Parquet also supports native compression of the data blocks within a file. These offer different compression ratio / processing cost tradeoffs.
+
+To import a parquet file with SDF, try the below code snippet.
+```sql
+CREATE EXTERNAL TABLE <table_name> 
+STORED AS PARQUET 
+LOCATION <parquet_location>
+```
+
+Learn more about [Parquet](https://parquet.apache.org/)
+
+## Raw File Types
+
+### JSON
+SDF natively supports newline delimited json (ndjson). Working with nested structures is supported with simple dot notation. 
+
+To import a json file with SDF, try the below code snippet.
+```sql
+CREATE EXTERNAL TABLE <table_name> 
+STORED AS JSON 
+LOCATION <json_location>
+```
+
+**Working with Nested json Structures**
+
+In the `twitter_json` object below, we wnat to extract the *user_id*, *country_code*, and *state* from the *user_location* object.
+```json
+{
+   "tweet_id":"1223489829817577472",
+   "created_at":"Sat Feb 01 06:14:41 +0000 2020",
+   "user_id":"3244922072",
+   "geo_source":"user_location",
+   "user_location":{
+      "country_code":"th",
+      "state":"Saraburi Province"
+   },
+   "geo":{
+      
+   },
+   "place":{
+      
+   }
+}
+```
+
+SDF supports dot-notation to access nested fields to make it easy to work with even complex strutures. 
+```sql
+CREATE EXTERNAL TABLE twitter_json 
+STORED AS JSON
+LOCATION <>;
+
+select
+    user_id,
+    user_location.country_code as country_code,
+    user_location.state as state,
+from twitter_json;
+```
+
+Learn more about [ndjson](http://ndjson.org/)
+
+### CSV
+SDF works CSVs! They may have a header row, or you can specify the schema information yourself.
+
+To import a csv with header row:
+```sql
+CREATE EXTERNAL TABLE <table_name>
+STORED AS CSV
+WITH HEADER ROW
+LOCATION <csv_location>;
+```
+
+To specify the schema information yourself:
+```sql
+CREATE EXTERNAL TABLE <table_name>  (
+    <column_1>  INT NOT NULL,
+    <column_2>  BIGINT NOT NULL,
+    <column_3>  VARCHAR
+)
+STORED AS CSV
+LOCATION <csv_location>;
+```
+
+## Local & Remote 
+
+
+### Paths
+
+Paths should be relative to workspace.
+
+### Remote Paths
+
+SDF supports some cloud storage URIs natively.
+```sql
+CREATE EXTERNAL TABLE <table_name>
+STORED AS <file_format>
+LOCATION <s3_uri>;
+```
+
+Support for other cloud providers is on the way! If your preferred cloud provider is not listed, drop us a line and let us know, or contribute to our github.
+
+- [x] AWS S3
+- [ ] Google Cloud Storage
+- [ ] Azure Blob Storage
+
+## Registering Tables in YML
+Registering tables in YML is also supported. There is support for identical modifiers.
+
+**note:** There is a bug with registerign locations as S3 paths as of Aug 2023
+
+```yml
+---
+table: 
+  name: <table_name>
+  file-format: <csv, json, parquet>
+  with-header: <true, false>
+  compression: <gzip, bzip2>
+  location: <path/to/local/or/s3/location>
+```
