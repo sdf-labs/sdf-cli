@@ -1,0 +1,71 @@
+---
+title: "SDF Information Schema"
+---
+SDF's Information Schema the output of its powerful static analysis. The tables below can be queried and thereby used to author [Code Checks](/guide/code_checks).
+
+### Tables
+| Name | Data Type | Nullable | Description |
+|------|-----------|----------|-------------|
+| table_ref | Utf8 | false | The fully qualified name of the table (i.e. catalog.schema.table) |
+| catalog_name | Utf8 | false | The name of the catalog that this table belongs to |
+| schema_name | Utf8 | false | The name of the schema that this table belongs to |
+| table_name | Utf8 | false | The table's name |
+| description | Utf8 | true | The description defined in the table's yaml |
+| dialect | Utf8 | false | The dialect of SQL this table was defined in |
+| dependencies | Utf8 | true | A comma separated list of table_ref's that this table selects from (e.g. catalog.schema.table_1,catalog.schema.table_2) |
+| schedule | Utf8 | true | The CRON schedule for this table defined in the table's yaml |
+| table_type | Utf8 | true | The method through which the table is represented. Options are external, view, or standard. |
+| classifiers | Utf8 | true | The classifiers applied to this table. Note that these differ from classifiers applied to columns of this table. These are represented as a list of strings separated by comma (e.g. `classifier_1,classifier_2,classifier_3`) |
+| lineage_scan | Utf8 | true | A list of four part names representing the columns this table scans from to create its output (e.g. catalog.schema.table_1.column_1,catalog.schema.table_2.column_2) |
+### Columns
+| Name | Data Type | Nullable | Description |
+|------|-----------|----------|-------------|
+| table_ref | Utf8 | false | The fully qualified name of the table (i.e. catalog.schema.table) this columns belongs to |
+| catalog_name | Utf8 | false | The name of the catalog containing the table with this column |
+| schema_name | Utf8 | false | The name of the schema containing the table with this column |
+| table_name | Utf8 | false | The name of the table with this column |
+| column_name | Utf8 | false | No description available |
+| description | Utf8 | true | The description of this column defined in the table's yaml |
+| datatype | Utf8 | true | The datatype of the column. This is currently expressed via Presto types. In the future, these types will be derived from the dialect the table was defined in |
+| is_nullable | Boolean | true | Whether or not this column can contain a null value |
+| classifiers | Utf8 | true | The classifiers applied to this column. Note that these differ from classifiers applied to the table. These are represented as a list of strings separated by comma (e.g. `classifier_1,classifier_2,classifier_3`) |
+| lineage_copy | Utf8 | true | A list of four part names representing the columns this tables copies in order to create its output (e.g. catalog.schema.table_1.column_1,catalog.schema.table_2.column_2) |
+| lineage_modify | Utf8 | true | A list of four part names representing the columns this table modifies in order to create its output (e.g. catalog.schema.table_1.column_1,catalog.schema.table_2.column_2) |
+
+
+
+As previously mentioned, these tables are just that - *tables*. Under the hood, SDF stores the analysis output as Parquet. Below are the DDLs representing these tables in SQL.
+
+```sql
+--information_schemas.sql
+
+CREATE TABLE sdf.information_schema.tables(
+    "table_ref" varchar not null,
+    "catalog_name" varchar not null,
+    "schema_name" varchar not null,
+    "table_name" varchar not null,
+    "description" varchar,
+    "dialect" varchar not null,
+    "dependencies" varchar,
+    "schedule" varchar,
+    "table_type" varchar,
+    "classifiers" varchar,
+    "lineage_scan" varchar
+);
+
+CREATE TABLE sdf.information_schema.columns(
+    "table_ref" varchar not null,
+    "catalog_name" varchar not null,
+    "schema_name" varchar not null,
+    "table_name" varchar not null,
+    "column_name" varchar not null,
+    "description" varchar,
+    "datatype" varchar,
+    "is_nullable" boolean,
+    "classifiers" varchar,
+    "lineage_copy" varchar,
+    "lineage_modify" varchar
+);
+
+
+```

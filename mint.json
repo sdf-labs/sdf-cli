@@ -58,7 +58,8 @@
       "pages": [
         "reference/sdf-cli",
         "reference/sdf-yml",
-        "reference/file-formats"
+        "reference/file-formats",
+        "reference/sdf-information-schema"
       ]
     },
     {
@@ -119,6 +120,7 @@
         {
           "group": "August 2023",
           "pages": [
+            "releases/v0.1.52",
             "releases/v0.1.51",
             "releases/v0.1.50",
             "releases/v0.1.49",
@@ -147,7 +149,7 @@
             "releases/v0.1.17",
             "releases/v0.1.16",
             "releases/v0.1.15",
-            "releases/v0.1.14", 
+            "releases/v0.1.14",
             "releases/v0.1.13",
             "releases/v0.1.11",
             "releases/v0.1.9",

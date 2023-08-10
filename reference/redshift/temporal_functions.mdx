@@ -261,10 +261,10 @@ function dateadd<$1> (varchar, bigint, $1) returns date
 <Tabs>
 <Tab title="Overview">
 ```sql
-function datediff<S, T> (varchar, S, T) returns bigint
+function datediff<$1, $2> (varchar, $1, $2) returns bigint
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
-	Where S in (date, timestamp, time with time zone, time)
-	and T in (date, timestamp, time with time zone, time)
+	Where $1 in (date, timestamp, time with time zone, time)
+	and $2 in (date, timestamp, time with time zone, time)
 ```
 
 

@@ -25,6 +25,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf auth aws`↴](#sdf-auth-aws)
 * [`sdf analyze`↴](#sdf-analyze)
 * [`sdf analyze unused-columns`↴](#sdf-analyze-unused-columns)
+* [`sdf show`↴](#sdf-show)
 
 ## `sdf`
 
@@ -37,13 +38,14 @@ SDF's modular SQL
 * `new` — Create a new SDF workspace at PATH
 * `clean` — Remove generated SDF artifacts in workspace
 * `build` — Build, run, and save SDF queries
-* `describe` — Describe SDF table schemas
+* `describe` — Describe inferred table schemas including propagated classifiers, run code code checks
 * `deploy` — Create a deployment and post it to the SDF service
 * `view` — View existing table content
 * `lineage` — Display lineage for a given column
-* `system` — System maintenance and generation of reference documentation
+* `system` — System maintenance, install and update
 * `auth` — Manage credentials and tokens
 * `analyze` — Display results of various supported analyses (e.g. unused-columns)
+* `show` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
 
 
 
@@ -59,6 +61,10 @@ Create a new SDF workspace at PATH
 
 ###### **Options:**
 
+* `--list-samples` — List all available samples
+
+  Default value: `false`
+* `--sample <SAMPLE>` — Create a workspace with the sample content at path
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -66,10 +72,6 @@ Create a new SDF workspace at PATH
 * `--perf <PERF>` — Performance Metric Log Level
 
   Default value: `0`
-* `--list-samples` — List all available samples
-
-  Default value: `false`
-* `--sample <SAMPLE>` — Create a workspace with the sample content at path
 
 
 
@@ -85,6 +87,7 @@ Remove generated SDF artifacts in workspace
 
 ###### **Options:**
 
+* `--profile <PROFILE>` — Clean cache entries for this profile
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -93,7 +96,6 @@ Remove generated SDF artifacts in workspace
 
   Default value: `0`
 * `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `-p`, `--profile <PROFILE>` — Clean cache entries for this profile
 
 
 
@@ -105,31 +107,22 @@ Build, run, and save SDF queries
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or optionally a */workspace.sdf.yml file rebuilds the whole workspace
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--quiet` — Do not print sdf console messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
-
-  Default value: `0`
-* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--var <VAR>` — Var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--profile <PROFILE>` — Build data using this profile
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+
+  Default value: `false`
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
 * `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
 
   Default value: `false`
 * `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
-
-  Default value: `false`
-* `-p`, `--profile <PROFILE>` — Build data using this profile
-* `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
 
   Default value: `false`
 * `--file-format <FILE_FORMAT>` — Save tables in this format
@@ -144,10 +137,10 @@ Build, run, and save SDF queries
 
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
 
-* `--no-save` — Don't save non-source tables
+* `--no-save` — Don't save table data for caching
 
   Default value: `false`
-* `--no-cache` — Don't cache tables
+* `--no-cache` — Don't read cached table data
 
   Default value: `false`
 * `--no-workflow` — Don't run a workflow, just the query
@@ -165,21 +158,9 @@ Build, run, and save SDF queries
 * `--output-file-contents-on-error` — Include file contents when generating error output
 
   Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
 
-
-
-## `sdf describe`
-
-Describe SDF table schemas
-
-**Usage:** `sdf describe [OPTIONS] [INPUT_FILES]...`
-
-###### **Arguments:**
-
-* `<INPUT_FILES>` — Analyze these *.sql files or [[catalog.]schema.]table targets; providing no input or optionally a */workspace.sdf.yml file rebuilds the whole workspace
-
-###### **Options:**
-
+  Default value: `false`
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -188,13 +169,26 @@ Describe SDF table schemas
 
   Default value: `0`
 * `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--no-propagate` — Propagate labels
+
+
+
+## `sdf describe`
+
+Describe inferred table schemas including propagated classifiers, run code code checks
+
+**Usage:** `sdf describe [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Statically analyze these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml reanalyzes the whole workspace
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Describe data using this profile
+* `--no-save` — Don't save table schema for caching
 
   Default value: `false`
-* `--region <REGION>` — The AWS region (default=us-east-1))
-* `-p`, `--profile <PROFILE>` — Describe data using this profile
-* `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
-* `--no-save` — Don't save schema tables
+* `--no-cache` — Don't read cached table schema
 
   Default value: `false`
 * `--print-format <PRINT_FORMAT>` — Show tables in this format
@@ -209,22 +203,6 @@ Describe SDF table schemas
 
   Possible values: `table`, `yml`, `json`
 
-* `--save-filter <SAVE_FILTER>` — Save only what is being filtered
-
-  Default value: `assembly`
-
-  Possible values:
-  - `targets-only`:
-    Saves the target.sdf.yml files in the .sdfcache
-  - `assembly`:
-    Saves all meta build info as an assembly
-
-* `--no-show` — Don't show the result of queries
-
-  Default value: `false`
-* `--no-summary` — Do not generate a all.sdf.yml file
-
-  Default value: `false`
 * `--output-file-contents-on-error` — Include file contents when generating error output
 
   Default value: `false`
@@ -238,6 +216,23 @@ Describe SDF table schemas
 
   Default value: `false`
 * `--check-access` — Check attribute based access control, for testing assumes a user.json and a job.json file in workspace directory
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 
 
 
@@ -253,18 +248,10 @@ Create a deployment and post it to the SDF service
 
 ###### **Options:**
 
-* `--quiet` — Do not print sdf console messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
-
-  Default value: `0`
-* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--profile <PROFILE>` — Deploy build artifacts using this profile
 * `--date <DATE>` — Backfill all tasks that run (only) on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07 or 2020-12-31
 * `--to <TO>` — Backfill to this datetime (exclusive), use RFC format, e.g., e.g. 2020-12-31T21:07:14-07:00, with optional T part
-* `-p`, `--profile <PROFILE>` — Deploy build artifacts using this profile
 * `--execute` — When to execute this job run; defaults to recurring: if --from/--to are given
 
   Default value: `false`
@@ -274,6 +261,14 @@ Create a deployment and post it to the SDF service
 * `--no-propagate` — Propagate labels for deployed targets
 
   Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 
 
 
@@ -289,18 +284,10 @@ View existing table content
 
 ###### **Options:**
 
-* `--quiet` — Do not print sdf console messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
-
-  Default value: `0`
-* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--date <DATE>` — View catalog.schema.table of this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00, etc
 * `--from <FROM>` — View catalog.schema.table from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00
 * `--to <TO>` — View catalog.schema.table to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T23:59
-* `-p`, `--profile <PROFILE>` — View data using this profile
+* `--profile <PROFILE>` — View data using this profile
 * `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
@@ -319,6 +306,14 @@ View existing table content
 * `--no-header` — Assumes that .csv files have a header, use --no-header if they have none
 
   Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 
 
 
@@ -334,6 +329,14 @@ Display lineage for a given column
 
 ###### **Options:**
 
+* `--profile <PROFILE>` — Build data using this profile
+* `--column <COLUMN>` — The column for which to compute lineage
+* `--forward` — Compute downstream lineage instead of the default upstream lineage
+
+  Default value: `false`
+* `--show-scans` — Display scan dependencies in addition to copy and mod dependencies. Unset by default
+
+  Default value: `false`
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -342,44 +345,16 @@ Display lineage for a given column
 
   Default value: `0`
 * `--cache-directory <CACHE_DIRECTORY>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `-p`, `--profile <PROFILE>` — Build data using this profile
-* `--column <COLUMN>` — The column for which to compute lineage
-* `--forward` — Compute downstream lineage instead of the default upstream lineage
-
-  Default value: `false`
-* `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
-* `--show-scans` — Display scan dependencies in addition to copy and mod dependencies. Unset by default
-
-  Default value: `false`
 
 
 
 ## `sdf system`
 
-System maintenance and generation of reference documentation
+System maintenance, install and update
 
 **Usage:** `sdf system [OPTIONS]`
 
 ###### **Options:**
-
-* `--quiet` — Do not print sdf console messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
-
-  Default value: `0`
-* `--show <SHOW>` — Print reference documents on stdout
-
-  Possible values:
-  - `cli-markdown`:
-    Print cli commands and options in markdown format
-  - `sdf-json-schema`:
-    Print json schema for *.sdf.yml documents
-  - `deploy-json-schema`:
-    Print json schema for deploy.json documents
-  - `functions`:
-    Print all supported supported functions of given dialect in given format
 
 * `--update` — Update SDF in place to the latest version
 
@@ -387,34 +362,13 @@ System maintenance and generation of reference documentation
 * `--uninstall` — Uninstall SDF from the system
 
   Default value: `false`
-* `--dialect <DIALECT>` — Pick a dialect to print
+* `--quiet` — Do not print sdf console messages
 
-  Default value: `sdf`
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
 
-  Possible values:
-  - `sdf`:
-    SDF Dialect (which is ansi++)
-  - `spark`:
-    Spark Dialect
-  - `presto`:
-    Presto dialect
-  - `postgresql`:
-    Postgres dialect
-  - `bigquery`:
-    BigQuery dialect
-  - `legacy-bigquery`:
-    LegacyBigQuery dialect
-  - `redshift`
-
-* `--format <FORMAT>` — Pick a format to print in
-
-  Default value: `markdown`
-
-  Possible values: `markdown`, `yaml`
-
-* `--section <SECTION>` — Pick a section to print
-
-  Default value: ``
+  Default value: `0`
 
 
 
@@ -529,5 +483,36 @@ Analyze upstream tables for unused columns
 
 
 
-   Finished system in 0.007 secs
+## `sdf show`
+
+Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+
+**Usage:** `sdf show [OPTIONS]`
+
+###### **Options:**
+
+* `--functions-yml` — Show available built-in user-defined functions in yml format (default option)
+* `--functions-markdown` — Show available built-in user-defined functions in markdown format
+* `--cli-markdown` — Show cli commands and options in markdown format
+* `--information-schema-ddl` — Show information schema as SQL DDL
+* `--information-schema-yml` — Show information schema as yml
+* `--information-schema-markdown` — Show information schema in Markdown format
+* `--sdf-json-schema` — Show json schema for *.sdf.yml metadata documents
+* `--deploy-json-schema` — Show json schema for deploy.json documents
+* `--dialect <DIALECT>` — The dialect to show (only for --functions, `` shows all dialects)
+
+  Possible values: `sdf`, `presto`, `bigquery`, `redshift`
+
+* `--section <SECTION>` — The section to show (only for --functions, `` shows all sections)
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+
+
+
+   Finished show in 0.008 secs
 

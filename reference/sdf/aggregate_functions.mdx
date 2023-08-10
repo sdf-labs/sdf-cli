@@ -27,15 +27,15 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  approx_median
 <Tabs>
 <Tab title="Overview">
 ```sql
-function approx_median<S> (values S) returns double
-	Where S in (bigint, int, double)
+function approx_median<$1> (values $1) returns double
+	Where $1 in (bigint, int, double)
 ```
 
 Returns the approximate median of input values. it is an alias of
@@ -55,15 +55,15 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  approx_percentile_cont
 <Tabs>
 <Tab title="Overview">
 ```sql
-function approx_percentile_cont<S> (values S, p double) returns double
-	Where S in (bigint, int, double, float)
+function approx_percentile_cont<$1> (values $1, p double) returns double
+	Where $1 in (bigint, int, double, float)
 ```
 
 Returns the approximate percentile of input values, where percentile 'p' is
@@ -83,15 +83,15 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  approx_percentile_cont_with_weight
 <Tabs>
 <Tab title="Overview">
 ```sql
-function approx_percentile_cont_with_weight<S> (values S, p double, weight float) returns double
-	Where S in (bigint, int, double)
+function approx_percentile_cont_with_weight<$1> (values $1, p double, weight float) returns double
+	Where $1 in (bigint, int, double)
 ```
 
 returns the approximate percentile of input values with weight, where the weight
@@ -111,7 +111,7 @@ create table tbl as values (1, 0.5), (5, 0.5), (9, 0.5);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  avg
@@ -137,7 +137,7 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  count
@@ -163,14 +163,14 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  count_distinct
 <Tabs>
 <Tab title="Overview">
 ```sql
-function count_distinct(values S) returns double
+function count_distinct(values $1) returns double
 ```
 
 Returns the unique number of values
@@ -189,7 +189,7 @@ create table tbl as values (1), (5), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  max
@@ -215,15 +215,15 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  median
 <Tabs>
 <Tab title="Overview">
 ```sql
-function median<S> (values S) returns double
-	Where S in (bigint, int, double, float)
+function median<$1> (values $1) returns double
+	Where $1 in (bigint, int, double, float)
 ```
 
 Returns the median value in the column
@@ -242,15 +242,15 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  min
 <Tabs>
 <Tab title="Overview">
 ```sql
-function min<S> (S) returns S
-	Where S in (bigint, int, float, double)
+function min<$1> ($1) returns $1
+	Where $1 in (bigint, int, float, double)
 ```
 
 Returns the min value in the column
@@ -269,7 +269,7 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  sum
@@ -295,7 +295,7 @@ create table tbl as values (1), (5), (9);
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 

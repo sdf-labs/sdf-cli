@@ -6,8 +6,8 @@ title: "Temporal Functions"
 <Tabs>
 <Tab title="Overview">
 ```sql
-function date_part<S> (date varchar, part S) returns double
-	Where S in (date, time, datetime, timestamp)
+function date_part<$1> (date varchar, part $1) returns double
+	Where $1 in (date, time, datetime, timestamp)
 ```
 
 Returns date truncated to unit. Valid parts are   * `year`   * `quarter`   *
@@ -27,7 +27,7 @@ select date_part('second', to_timestamp('2023-02-08T15:33:42+00:00')) as value; 
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  date_trunc
@@ -54,7 +54,7 @@ select date_trunc('day', to_timestamp('2023-02-08T15:33:42+00:00')) as value; --
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  from_unixtime
@@ -80,7 +80,7 @@ select from_unixtime(946713601) as value; -- value '2000-01-01 08:00:01'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  now
@@ -105,7 +105,7 @@ select now() as value; -- value '2023-02-28 00:17:47.154040'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  to_timestamp
@@ -133,7 +133,7 @@ select to_timestamp('1992-06-28 08:43:01') as value; -- value '1992-06-28 08:43:
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 **Overload:**
@@ -161,7 +161,7 @@ select to_timestamp('1992-06-28 08:43:01') as value; -- value '1992-06-28 08:43:
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 

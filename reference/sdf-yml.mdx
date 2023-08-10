@@ -65,6 +65,7 @@ title: "SDF YML Schema"
 `variadic:` | `Variadic?`| Arbitrary number of arguments of an common type out of a list of valid types|
 `kind:` | `FunctionKind?`| The function kind|
 `parameters:` | `[Parameter]?`| The arguments of this function|
+`optional-parameters:` | `[OptionalParameter]?`| The arguments of this function|
 `returns:` | `Parameter?`| The results of this function (can be a tuple)|
 `binds:` | `[TypeBound]?`| The generic type bounds|
 `volatility:` | `Volatility?`| volatility - The volatility of the function.|
@@ -72,16 +73,6 @@ title: "SDF YML Schema"
 `cross-link:` | `string?`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
 `reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
 `source-locations:` | `[FilePath]?`| Function defined by these set of .sdf files|
-## Enum: `Dialect`
-Value | Description|
-| :--- | :------- |
-`redshift` | undefined|
-`sdf` | SDF Dialect (which is ansi++)|
-`spark` | Spark Dialect|
-`presto` | Presto dialect|
-`postgresql` | Postgres dialect|
-`bigquery` | BigQuery dialect|
-`legacy-bigquery` | LegacyBigQuery dialect|
 ## Enum: `Materialization`
 Value | Description|
 | :--- | :------- |
@@ -116,6 +107,9 @@ Value | Description|
 `default-catalog:` | `string?`| Defines a default catalog for unqualified names. If not set, defaults to the [Workspace] catalog.|
 `default-schema:` | `string?`| Defines a default schema for unqualified names. If not set, defaults to the [Workspace] schema.|
 `dialect:` | `Dialect?`| The dialect of the included files. If not set, defaults to the [Workspace] dialect.|
+### Nested element: `Dialect`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `SystemTime`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -236,6 +230,15 @@ Value | Description|
 `description:` | `string?`| A description of this parameter|
 `datatype:` | `string?`| The datatype of this parameter|
 `nullable:` | `boolean?`| The nullability of this column|
+`classifier:` | `[string]?`| An array of classifier references|
+`constant:` | `string?`| The required constant value of this parameter|
+`identifiers:` | `[string]?`| The parameter may appear as identifier, without quote|
+### Nested element: `OptionalParameter`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of the parameter|
+`description:` | `string?`| A description of this parameter|
+`datatype:` | `string`| The datatype of this parameter|
 `classifier:` | `[string]?`| An array of classifier references|
 `constant:` | `string?`| The required constant value of this parameter|
 `identifiers:` | `[string]?`| The parameter may appear as identifier, without quote|

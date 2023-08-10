@@ -27,7 +27,7 @@ select ascii('ab') as value -- value '97'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  bit_length
@@ -55,7 +55,7 @@ select bit_length('hello world') as value -- value '88'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  btrim
@@ -86,7 +86,7 @@ select btrim('hi hello world', 'hello') as value; -- value 'hi hello world'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  char_length
@@ -111,7 +111,7 @@ select char_length('hello world!') as value; -- value '12'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  character_length
@@ -136,7 +136,7 @@ select character_length('hello world!') as value; -- value '12'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  chr
@@ -164,7 +164,7 @@ select chr(128521) as value; -- value '😉'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  concat
@@ -193,7 +193,7 @@ select concat(['hello '], ['world!']) as value -- value '[hello ][world!]'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  concat_ws
@@ -226,7 +226,7 @@ select concat_ws(NULL, 'a', 'b') as value; -- value 'NULL'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  digest
@@ -252,7 +252,7 @@ select digest('world', 'md5') as value; -- value '7d793037a0760186574b0282f2f435
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  initcap
@@ -281,7 +281,7 @@ select initcap('aAa') as value; -- value 'Aaa'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  left
@@ -306,7 +306,7 @@ select left('Hello World!', 5) as value; -- value 'Hello'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  length
@@ -334,7 +334,7 @@ select length('Hey there 😉') as value; -- value '11'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  lower
@@ -359,7 +359,7 @@ select lower('Hello World!') as value; -- value 'hello world!'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  lpad
@@ -389,7 +389,7 @@ select lpad('world', 15, 'hello') as value; -- value 'hellohelloworld'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  ltrim
@@ -414,7 +414,7 @@ select ltrim('   😉') as value; -- value '😉'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  md5
@@ -439,7 +439,7 @@ select md5('Hello World!') as value; -- value 'ed076287532e86365e841e92bfc50d8c'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  octet_length
@@ -467,7 +467,7 @@ select octet_length('😉') as value; -- value '4'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  repeat
@@ -492,7 +492,7 @@ select repeat('😉', 4) as value; -- value '😉😉😉😉'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  replace
@@ -517,7 +517,7 @@ select replace('Hello There', 'There') as value; -- value 'Hello '
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 **Overload:**
@@ -542,7 +542,7 @@ select replace('Hello There', 'There') as value; -- value 'Hello '
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  reverse
@@ -567,7 +567,7 @@ select reverse('Hello There') as value; -- value 'ereht olleH'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  right
@@ -592,7 +592,7 @@ select right('Hello World!', 6) as value; -- value 'World!'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  rpad
@@ -622,7 +622,7 @@ select rpad('world', 15, 'hello') as value; -- value 'worldhellohello'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  rtrim
@@ -647,7 +647,7 @@ select rtrim('😉   ') as value; -- value '😉'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  split_part
@@ -673,7 +673,7 @@ select split_part('Hello|World', '|', 1) as value; -- value 'Hello'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  starts_with
@@ -698,7 +698,7 @@ select starts_with('Hello|World', 'Hello') as value; -- value 'true'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  strpos
@@ -724,7 +724,7 @@ select strpos('Hello World', 'World') as value; -- value '7'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 **Overload:**
@@ -750,7 +750,7 @@ select strpos('Hello World', 'World') as value; -- value '7'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  substr
@@ -777,7 +777,7 @@ select substr('Hello World', 6) as value; -- value ' World'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  substring
@@ -804,7 +804,7 @@ select substring('Hello World', 6) as value; -- value ' World'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  translate
@@ -835,7 +835,7 @@ select translate('Hello World', 'Hell', 'N') as value; -- value 'No Word'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  trim
@@ -860,7 +860,7 @@ select trim('  😉  ') as value; -- value '😉'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 ##  upper
@@ -885,7 +885,7 @@ select upper('Hello World!') as value; -- value 'HELLO WORLD!'
         | describe | ✔️ |
         | lineage | ✔️ |
         | propagation | ✔️|
-        | build | ❌|
+        | build | ✔️|
         </Tab>
 </Tabs>
 

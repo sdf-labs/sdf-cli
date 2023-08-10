@@ -39,13 +39,14 @@ Commands:
   new       Create a new SDF workspace at PATH
   clean     Remove generated SDF artifacts in workspace
   build     Build, run, and save SDF queries
-  describe  Describe SDF table schemas
+  describe  Describe inferred table schemas including propagated classifiers, run code code checks
   deploy    Create a deployment and post it to the SDF service
   view      View existing table content
   lineage   Display lineage for a given column
-  system    System maintenance and generation of reference documentation
+  system    System maintenance, install and update
   auth      Manage credentials and tokens
   analyze   Display results of various supported analyses (e.g. unused-columns)
+  show      Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
   help      Print this message or the help of the given subcommand(s)
 
 Options:
@@ -70,7 +71,7 @@ After running the command, you should see the following output:
     Created hello/checks/code_check.sql
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.003 secs
+   Finished new in 0.004 secs
 
 ```
 
@@ -103,14 +104,13 @@ Schema hello.pub.main
 | column_1    | varchar   | false       |            |
 | column_2    | varchar   | false       |            |
 +-------------+-----------+-------------+------------+
-    Written .sdfcache/dbg/assembly.sdf.yml
     Written .sdfcache/dbg/information_schema.sql
     Written .sdfcache/dbg/sdf.information_schema.tables
     Written .sdfcache/dbg/sdf.information_schema.columns
 
 CodeChecks 
    [Pass] not exists code_check (checks/code_check.sql)
-   Finished describe in 0.036 secs
+   Finished describe in 0.041 secs
 
 ```
 
