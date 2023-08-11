@@ -1,98 +1,12 @@
 ---
-title: "Aggregate Functions"
+title: "Datetime Functions"
 ---
 
-##  any_value
+##  current_datetime
 <Tabs>
 <Tab title="Overview">
 ```sql
-function any_value(t) returns t
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_agg
-<Tabs>
-<Tab title="Overview">
-```sql
-function array_agg(T) returns array\<T>
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_avg
-<Tabs>
-<Tab title="Overview">
-```sql
-function array_avg<$1> (array<$1>) returns double
-	Where $1 in (int, bigint, int unsigned, bigint unsigned, float, double)
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_concat_agg
-<Tabs>
-<Tab title="Overview">
-```sql
-function array_concat_agg(array<t>) returns array\<t>
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  avg
-<Tabs>
-<Tab title="Overview">
-```sql
-function avg<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double, interval)
+function current_datetime() returns datetime
 ```
 
 
@@ -113,7 +27,7 @@ function avg<$1> ($1) returns $1
 <Tabs>
 <Tab title="Overview">
 ```sql
-function avg(bigint) returns double
+function current_datetime(varchar) returns datetime
 ```
 
 
@@ -130,201 +44,11 @@ function avg(bigint) returns double
         | build | ❌|
         </Tab>
 </Tabs>
-##  bit_and
+##  datetime
 <Tabs>
 <Tab title="Overview">
 ```sql
-function bit_and(bigint) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bit_or
-<Tabs>
-<Tab title="Overview">
-```sql
-function bit_or(bigint) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bit_xor
-<Tabs>
-<Tab title="Overview">
-```sql
-function bit_xor(bigint) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  count
-<Tabs>
-<Tab title="Overview">
-```sql
-function count(T) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  countif
-<Tabs>
-<Tab title="Overview">
-```sql
-function countif(bool) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  logical_and
-<Tabs>
-<Tab title="Overview">
-```sql
-function logical_and(bool) returns bool
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  logical_or
-<Tabs>
-<Tab title="Overview">
-```sql
-function logical_or(bool) returns bool
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  max_by
-<Tabs>
-<Tab title="Overview">
-```sql
-function max_by(T, U) returns T
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  min_by
-<Tabs>
-<Tab title="Overview">
-```sql
-function min_by(T, U) returns T
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  string_agg
-<Tabs>
-<Tab title="Overview">
-```sql
-function string_agg<$1> ($1) returns $1
-	Where $1 in (varchar, varbinary)
+function datetime(bigint, bigint, bigint, bigint, bigint, bigint) returns datetime
 ```
 
 
@@ -345,8 +69,198 @@ function string_agg<$1> ($1) returns $1
 <Tabs>
 <Tab title="Overview">
 ```sql
-function string_agg<$1> ($1, string) returns array\<$1>
-	Where $1 in (varchar, varbinary)
+function datetime(date) returns datetime
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function datetime(date, time) returns datetime
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function datetime(timestamp) returns datetime
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function datetime(timestamp, varchar) returns datetime
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  datetime_add
+<Tabs>
+<Tab title="Overview">
+```sql
+function datetime_add(datetime, interval day to year) returns datetime
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  datetime_diff
+<Tabs>
+<Tab title="Overview">
+```sql
+function datetime_diff(datetime, datetime, varchar) returns bigint
+	and varchar in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  datetime_sub
+<Tabs>
+<Tab title="Overview">
+```sql
+function datetime_sub(datetime, interval day to year) returns datetime
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  datetime_trunc
+<Tabs>
+<Tab title="Overview">
+```sql
+function datetime_trunc(datetime, varchar) returns datetime
+	and varchar in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  format_datetime
+<Tabs>
+<Tab title="Overview">
+```sql
+function format_datetime(varchar, datetime) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  parse_datetime
+<Tabs>
+<Tab title="Overview">
+```sql
+function parse_datetime(varchar, varchar) returns datetime
 ```
 
 

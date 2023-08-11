@@ -1,0 +1,89 @@
+---
+title: "Approximate Aggregate Functions"
+---
+
+##  approx_count_distinct
+<Tabs>
+<Tab title="Overview">
+```sql
+function approx_count_distinct(t) returns bigint
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  approx_quantiles
+<Tabs>
+<Tab title="Overview">
+```sql
+function approx_quantiles(t, bigint) returns array\<t>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  approx_top_count
+<Tabs>
+<Tab title="Overview">
+```sql
+function approx_top_count(t, bigint) returns array\<struct\<value t, count bigint>>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  approx_top_sum
+<Tabs>
+<Tab title="Overview">
+```sql
+function approx_top_sum(t, t, bigint) returns array\<struct\<value t, sum t>>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+

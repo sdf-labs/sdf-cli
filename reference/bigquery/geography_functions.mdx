@@ -1,0 +1,1727 @@
+---
+title: "Geography Functions"
+---
+
+##  s2_cellidfrompoint
+<Tabs>
+<Tab title="Overview">
+```sql
+function s2_cellidfrompoint(geography) returns bigint
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  s2_coveringcellids
+<Tabs>
+<Tab title="Overview">
+```sql
+function s2_coveringcellids(geography) returns array\<bigint>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_angle
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_angle(geography, geography, geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_area
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_area(geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_area(geography, boolean) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_asbinary
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_asbinary(geography) returns bytes
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_asgeojson
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_asgeojson(geography) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_astext
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_astext(geography) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_azimuth
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_azimuth(geography, geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_boundary
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_boundary(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_boundingbox
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_boundingbox(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_buffer
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_buffer(geography, double) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_buffer(geography, double, double) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_bufferwithtolerance
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_bufferwithtolerance(geography, double, double) returns 
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_centroid
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_centroid(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_centroid_agg
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_centroid_agg(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_closestpoint
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_closestpoint(geography, geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_closestpoint(geography, geography, boolean) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_clusterdbscan
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_clusterdbscan(geography, double, bigint) returns bigint
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_contains
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_contains(geography, geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_convexhull
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_convexhull(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_coveredby
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_coveredby(geography, geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_covers
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_covers(geography, geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_difference
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_difference(geography, geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_dimension
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_dimension(geography) returns bigint
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_disjoint
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_disjoint(geography, geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_distance
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_distance(geography, geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_distance(geography, geography, boolean) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_dump
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_dump(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_dump(geography, bigint) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_dwithin
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_dwithin(geography, geography, double) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_endpoint
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_endpoint(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_equals
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_equals(geography, geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_exteriorring
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_exteriorring(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_geogfrom
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfrom(varchar) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfrom(bytes) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_geogfromgeojson
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfromgeojson(varchar) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_geogfromtext
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfromtext(varchar) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfromtext(varchar, boolean) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfromtext(varchar) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfromtext(varchar, boolean) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfromtext(varchar) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_geogfromwkb
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfromwkb(bytes) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogfromwkb(varchar) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_geogpoint
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogpoint(double, double) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_geogpointfromgeohash
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogpointfromgeohash(varchar) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geogpointfromgeohash(varchar, double, double) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_geohash
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geohash(geography) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geohash(geography, bigint) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_geometrytype
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_geometrytype(geography) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_interiorrings
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_interiorrings(geography) returns array\<geography>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_intersection
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_intersection(geography, geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_intersects
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_intersects(geography, geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_intersectsbox
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_intersectsbox(geography, double, double, double, double) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_isclosed
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_isclosed(geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_iscollection
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_iscollection(geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_isempty
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_isempty(geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_isring
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_isring(geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_length
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_length(geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_length(geography, boolean) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_linelocatepoint
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_linelocatepoint(geography, geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_makeline
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_makeline(geography, geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_makepolygon
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_makepolygon(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_makepolygon(geography, array<geography>) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_makepolygonoriented
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_makepolygonoriented(array<geography>) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_maxdistance
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_maxdistance(geography, geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_maxdistance(geography, geography, boolean) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_npoints
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_npoints(geography) returns bigint
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_numgeometries
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_numgeometries(geography) returns bigint
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_numpoints
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_numpoints(geography) returns bigint
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_perimeter
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_perimeter(geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_perimeter(geography, boolean) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_pointn
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_pointn(geography, bigint) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_simplify
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_simplify(geography, bigint) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_snaptogrid
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_snaptogrid(geography, double) returns 
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_startpoint
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_startpoint(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_touches
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_touches(geography, geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_union
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_union(geography, geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_union_agg
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_union_agg(geography) returns geography
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_within
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_within(geography, geography) returns boolean
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_x
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_x(geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  st_y
+<Tabs>
+<Tab title="Overview">
+```sql
+function st_y(geography) returns double
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+

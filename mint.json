@@ -102,7 +102,27 @@
             "reference/bigquery/math_functions",
             "reference/bigquery/other_expressions",
             "reference/bigquery/string_functions",
-            "reference/bigquery/temporal_functions"
+            "reference/bigquery/temporal_functions",
+            "reference/bigquery/approximate_aggregate_functions",
+            "reference/bigquery/array_functions",
+            "reference/bigquery/bit_functions",
+            "reference/bigquery/date_functions",
+            "reference/bigquery/datetime_functions",
+            "reference/bigquery/debugging_functions",
+            "reference/bigquery/geography_functions",
+            "reference/bigquery/hash_functions",
+            "reference/bigquery/interval_functions",
+            "reference/bigquery/json_functions",
+            "reference/bigquery/math_functions",
+            "reference/bigquery/other_expressions",
+            "reference/bigquery/search_functions",
+            "reference/bigquery/security_functions",
+            "reference/bigquery/statistical_aggregate_functions",
+            "reference/bigquery/string_functions",
+            "reference/bigquery/temporal_functions",
+            "reference/bigquery/time_functions",
+            "reference/bigquery/timestamp_functions",
+            "reference/bigquery/utility_functions"
           ]
         }
       ]

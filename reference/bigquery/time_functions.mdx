@@ -1,98 +1,12 @@
 ---
-title: "Aggregate Functions"
+title: "Time Functions"
 ---
 
-##  any_value
+##  current_time
 <Tabs>
 <Tab title="Overview">
 ```sql
-function any_value(t) returns t
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_agg
-<Tabs>
-<Tab title="Overview">
-```sql
-function array_agg(T) returns array\<T>
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_avg
-<Tabs>
-<Tab title="Overview">
-```sql
-function array_avg<$1> (array<$1>) returns double
-	Where $1 in (int, bigint, int unsigned, bigint unsigned, float, double)
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_concat_agg
-<Tabs>
-<Tab title="Overview">
-```sql
-function array_concat_agg(array<t>) returns array\<t>
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  avg
-<Tabs>
-<Tab title="Overview">
-```sql
-function avg<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double, interval)
+function current_time() returns time
 ```
 
 
@@ -113,7 +27,7 @@ function avg<$1> ($1) returns $1
 <Tabs>
 <Tab title="Overview">
 ```sql
-function avg(bigint) returns double
+function current_time(time_zone varchar) returns time
 ```
 
 
@@ -130,11 +44,11 @@ function avg(bigint) returns double
         | build | ❌|
         </Tab>
 </Tabs>
-##  bit_and
+##  format_time
 <Tabs>
 <Tab title="Overview">
 ```sql
-function bit_and(bigint) returns bigint
+function format_time(varchar, time) returns varchar
 ```
 
 
@@ -151,11 +65,11 @@ function bit_and(bigint) returns bigint
         | build | ❌|
         </Tab>
 </Tabs>
-##  bit_or
+##  parse_time
 <Tabs>
 <Tab title="Overview">
 ```sql
-function bit_or(bigint) returns bigint
+function parse_time(varchar, varchar) returns time
 ```
 
 
@@ -172,159 +86,11 @@ function bit_or(bigint) returns bigint
         | build | ❌|
         </Tab>
 </Tabs>
-##  bit_xor
+##  time
 <Tabs>
 <Tab title="Overview">
 ```sql
-function bit_xor(bigint) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  count
-<Tabs>
-<Tab title="Overview">
-```sql
-function count(T) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  countif
-<Tabs>
-<Tab title="Overview">
-```sql
-function countif(bool) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  logical_and
-<Tabs>
-<Tab title="Overview">
-```sql
-function logical_and(bool) returns bool
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  logical_or
-<Tabs>
-<Tab title="Overview">
-```sql
-function logical_or(bool) returns bool
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  max_by
-<Tabs>
-<Tab title="Overview">
-```sql
-function max_by(T, U) returns T
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  min_by
-<Tabs>
-<Tab title="Overview">
-```sql
-function min_by(T, U) returns T
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  string_agg
-<Tabs>
-<Tab title="Overview">
-```sql
-function string_agg<$1> ($1) returns $1
-	Where $1 in (varchar, varbinary)
+function time(int64, int64, int64) returns time
 ```
 
 
@@ -345,8 +111,135 @@ function string_agg<$1> ($1) returns $1
 <Tabs>
 <Tab title="Overview">
 ```sql
-function string_agg<$1> ($1, string) returns array\<$1>
-	Where $1 in (varchar, varbinary)
+function time(timestamp) returns time
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function time(timestamp, time_zone varchar) returns time
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function time(datetime) returns time
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  time_add
+<Tabs>
+<Tab title="Overview">
+```sql
+function time_add(time, interval microsecond to hour) returns time
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  time_diff
+<Tabs>
+<Tab title="Overview">
+```sql
+function time_diff(time, time, varchar) returns bigint
+	and varchar in (microsecond, millisecond, second, minute, hour)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  time_sub
+<Tabs>
+<Tab title="Overview">
+```sql
+function time_sub(time, interval microsecond to hour) returns time
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  time_trunc
+<Tabs>
+<Tab title="Overview">
+```sql
+function time_trunc(time, varchar) returns time
+	and varchar in (MICROSECOND, MILLISECOND, SECOND, MINUTE, HOUR)
 ```
 
 

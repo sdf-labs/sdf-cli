@@ -1,12 +1,12 @@
 ---
-title: "Aggregate Functions"
+title: "JSON Functions"
 ---
 
-##  any_value
+##  bool
 <Tabs>
 <Tab title="Overview">
 ```sql
-function any_value(t) returns t
+function bool(json) returns bool
 ```
 
 
@@ -23,11 +23,11 @@ function any_value(t) returns t
         | build | ❌|
         </Tab>
 </Tabs>
-##  array_agg
+##  float64
 <Tabs>
 <Tab title="Overview">
 ```sql
-function array_agg(T) returns array\<T>
+function float64(json) returns double
 ```
 
 
@@ -44,12 +44,11 @@ function array_agg(T) returns array\<T>
         | build | ❌|
         </Tab>
 </Tabs>
-##  array_avg
+##  int64
 <Tabs>
 <Tab title="Overview">
 ```sql
-function array_avg<$1> (array<$1>) returns double
-	Where $1 in (int, bigint, int unsigned, bigint unsigned, float, double)
+function int64(json) returns bigint
 ```
 
 
@@ -66,11 +65,11 @@ function array_avg<$1> (array<$1>) returns double
         | build | ❌|
         </Tab>
 </Tabs>
-##  array_concat_agg
+##  json_extract
 <Tabs>
 <Tab title="Overview">
 ```sql
-function array_concat_agg(array<t>) returns array\<t>
+function json_extract(json, varchar) returns json
 ```
 
 
@@ -87,244 +86,11 @@ function array_concat_agg(array<t>) returns array\<t>
         | build | ❌|
         </Tab>
 </Tabs>
-##  avg
+##  json_extract_array
 <Tabs>
 <Tab title="Overview">
 ```sql
-function avg<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double, interval)
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
-```sql
-function avg(bigint) returns double
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bit_and
-<Tabs>
-<Tab title="Overview">
-```sql
-function bit_and(bigint) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bit_or
-<Tabs>
-<Tab title="Overview">
-```sql
-function bit_or(bigint) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bit_xor
-<Tabs>
-<Tab title="Overview">
-```sql
-function bit_xor(bigint) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  count
-<Tabs>
-<Tab title="Overview">
-```sql
-function count(T) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  countif
-<Tabs>
-<Tab title="Overview">
-```sql
-function countif(bool) returns bigint
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  logical_and
-<Tabs>
-<Tab title="Overview">
-```sql
-function logical_and(bool) returns bool
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  logical_or
-<Tabs>
-<Tab title="Overview">
-```sql
-function logical_or(bool) returns bool
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  max_by
-<Tabs>
-<Tab title="Overview">
-```sql
-function max_by(T, U) returns T
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  min_by
-<Tabs>
-<Tab title="Overview">
-```sql
-function min_by(T, U) returns T
-```
-
-
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  string_agg
-<Tabs>
-<Tab title="Overview">
-```sql
-function string_agg<$1> ($1) returns $1
-	Where $1 in (varchar, varbinary)
+function json_extract_array(json) returns array\<json>
 ```
 
 
@@ -345,8 +111,366 @@ function string_agg<$1> ($1) returns $1
 <Tabs>
 <Tab title="Overview">
 ```sql
-function string_agg<$1> ($1, string) returns array\<$1>
-	Where $1 in (varchar, varbinary)
+function json_extract_array(json, varchar) returns array\<json>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  json_extract_scalar
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_extract_scalar(json) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_extract_scalar(json, varchar) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  json_extract_string_array
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_extract_string_array(json) returns array\<varchar>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_extract_string_array(json, varchar) returns array\<varchar>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  json_query
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_query(json, varchar) returns json
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  json_query_array
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_query_array(json, varchar) returns array\<json>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_query_array(json) returns array\<json>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  json_type
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_type(json) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  json_value
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_value(json, varchar) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_value(json) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  json_value_array
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_value_array(json, varchar) returns array\<varchar>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function json_value_array(json) returns array\<varchar>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  parse_json
+<Tabs>
+<Tab title="Overview">
+```sql
+function parse_json(varchar) returns json
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  string
+<Tabs>
+<Tab title="Overview">
+```sql
+function string<$1> ($1) returns varchar
+	Where $1 in (timestamp, json)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function string<$1> ($1, time_zone varchar) returns varchar
+	Where $1 in (timestamp, json)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  to_json_string
+<Tabs>
+<Tab title="Overview">
+```sql
+function to_json_string(T) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function to_json_string(T, pretty_print boolean) returns varchar
 ```
 
 

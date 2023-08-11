@@ -1,0 +1,115 @@
+---
+title: "Hash Functions"
+---
+
+##  farm_fingerprint
+<Tabs>
+<Tab title="Overview">
+```sql
+function farm_fingerprint<$1> ($1) returns bigint
+	Where $1 in (varchar, bytes)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  md5
+<Tabs>
+<Tab title="Overview">
+```sql
+function md5<$1> ($1) returns bytes
+	Where $1 in (varchar, bytes)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  sha1
+<Tabs>
+<Tab title="Overview">
+```sql
+function sha1<$1> ($1) returns bytes
+	Where $1 in (varchar, bytes)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  sha256
+<Tabs>
+<Tab title="Overview">
+```sql
+function sha256<$1> ($1) returns bytes
+	Where $1 in (varchar, bytes)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  sha512
+<Tabs>
+<Tab title="Overview">
+```sql
+function sha512<$1> ($1) returns bytes
+	Where $1 in (varchar, bytes)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+

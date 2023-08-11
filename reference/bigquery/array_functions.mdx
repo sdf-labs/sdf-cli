@@ -1,0 +1,221 @@
+---
+title: "Array Functions"
+---
+
+##  array_concat
+<Tabs>
+<Tab title="Overview">
+```sql
+function array_concat(array<T>, ...) returns array\<T>
+```
+
+
+
+Example: 
+```sql example.sql
+SELECT ARRAY_CONCAT([1, 2], [3, 4], [5, 6]) as count_to_six; -- value '[1,2,3,4,5,6]' 
+```
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  array_length
+<Tabs>
+<Tab title="Overview">
+```sql
+function array_length(array<T>) returns bigint
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  array_reverse
+<Tabs>
+<Tab title="Overview">
+```sql
+function array_reverse(array<T>) returns array\<T>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  array_to_string
+<Tabs>
+<Tab title="Overview">
+```sql
+function array_to_string(array<T>, varchar) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function array_to_string(array<T>, varchar, varchar) returns varchar
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  generate_array
+<Tabs>
+<Tab title="Overview">
+```sql
+function generate_array<$1> ($1, $1) returns array\<int>
+	Where $1 in (bigint, decimal(p,s), double)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function generate_array<$1> ($1, $1, $1) returns array\<int>
+	Where $1 in (bigint, decimal(p,s), double)
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  generate_date_array
+<Tabs>
+<Tab title="Overview">
+```sql
+function generate_date_array(date, date) returns array\[date]
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+**Overload:**
+<Tabs>
+<Tab title="Overview">
+```sql
+function generate_date_array(date, date, interval day to year) returns array\[date]
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+##  generate_timestamp_array
+<Tabs>
+<Tab title="Overview">
+```sql
+function generate_timestamp_array(timestamp, timestamp, interval day to year) returns array\<timestamp>
+```
+
+
+
+</Tab>
+
+        <Tab title="Compatibility">
+
+        | Feature | |
+        |---| :---: |
+        | describe | ✔️ |
+        | lineage | ✔️ |
+        | propagation | ✔️|
+        | build | ❌|
+        </Tab>
+</Tabs>
+
