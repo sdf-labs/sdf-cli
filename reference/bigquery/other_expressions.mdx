@@ -2,75 +2,27 @@
 title: "Other Expressions"
 ---
 
-##  if
-<Tabs>
-<Tab title="Overview">
+## if
 ```sql
 function if(boolean, T, T) returns T
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  reclassify
-<Tabs>
-<Tab title="Overview">
+## reclassify
 ```sql
 function reclassify(T, varchar, varchar) returns T
 ```
-
 Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
 
-Example: 
 ```sql example.sql
 select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function reclassify(T, varchar) returns T
 ```
-
 Changes the classification label of the first argument to the desired classifier specified by the second argument. The first argument is expected to have one or more classifiers from the same classifier group as the desired classifier. All of these classifiers will be removed and replaced by the desired classifier. No other classifiers attached to the first argument will be impacted. The function will emit a warning if the first argument does not have a classifier from the expected classifier group
 
-Example: 
 ```sql example.sql
 select reclassify(12345, 'pii.masked') as value; -- value '12345' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

@@ -2,3124 +2,932 @@
 title: "Math Functions"
 ---
 
-##  abs
-<Tabs>
-<Tab title="Overview">
+## abs
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#abs)
+
 ```sql
 function abs<$1> ($1) returns $1
-	Where $1 in (bigint, numeric, bignumeric, float64)
+	where $1 in (bigint, numeric, bignumeric, float64)
 ```
 
 
+## acos
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#acos)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  acos
-<Tabs>
-<Tab title="Overview">
 ```sql
 function acos<$1> ($1) returns double
-	Where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, numeric, bignumeric)
 ```
 
 
+## acosh
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#acosh)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  acosh
-<Tabs>
-<Tab title="Overview">
 ```sql
 function acosh<$1> ($1) returns double
-	Where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, numeric, bignumeric)
 ```
 
 
+## asin
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#asin)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  asin
-<Tabs>
-<Tab title="Overview">
 ```sql
 function asin<$1> ($1) returns double
-	Where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, numeric, bignumeric)
 ```
 
 
+## asinh
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#asinh)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  asinh
-<Tabs>
-<Tab title="Overview">
 ```sql
 function asinh<$1> ($1) returns double
-	Where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, numeric, bignumeric)
 ```
 
 
+## atan
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atan)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  atan
-<Tabs>
-<Tab title="Overview">
 ```sql
 function atan<$1> ($1) returns double
-	Where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, numeric, bignumeric)
 ```
 
 
+## atan2
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atan2)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  atan2
-<Tabs>
-<Tab title="Overview">
 ```sql
 function atan2<$1, $2> ($1, $2) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 	and $2 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## atanh
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atanh)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  atanh
-<Tabs>
-<Tab title="Overview">
 ```sql
 function atanh<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## cbrt
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cbrt)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  cbrt
-<Tabs>
-<Tab title="Overview">
 ```sql
 function cbrt<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## ceil
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceil)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  ceil
-<Tabs>
-<Tab title="Overview">
 ```sql
 function ceil(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function ceil<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
+## ceiling
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceil)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  ceiling
-<Tabs>
-<Tab title="Overview">
 ```sql
 function ceiling(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function ceiling<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
+## cos
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cos)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  cos
-<Tabs>
-<Tab title="Overview">
 ```sql
 function cos<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## cosh
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cosh)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  cosh
-<Tabs>
-<Tab title="Overview">
 ```sql
 function cosh<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## cot
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cot)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  cot
-<Tabs>
-<Tab title="Overview">
 ```sql
 function cot<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## coth
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#coth)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  coth
-<Tabs>
-<Tab title="Overview">
 ```sql
 function coth<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## csc
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#csc)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  csc
-<Tabs>
-<Tab title="Overview">
 ```sql
 function csc<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## csch
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#csch)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  csch
-<Tabs>
-<Tab title="Overview">
 ```sql
 function csch<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## div
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#div)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  div
-<Tabs>
-<Tab title="Overview">
 ```sql
 function div<$1> ($1, $1) returns $1
-	Where $1 in (bigint, numeric, bignumeric)
+	where $1 in (bigint, numeric, bignumeric)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function div(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function div(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function div(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function div(bigint, bignumeric) returns bignumeric
 ```
 
 
+## exp
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#exp)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  exp
-<Tabs>
-<Tab title="Overview">
 ```sql
 function exp(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function exp<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
+## floor
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#floor)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  floor
-<Tabs>
-<Tab title="Overview">
 ```sql
 function floor<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function floor(bigint) returns double
 ```
 
 
+## greatest
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#greatest)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  greatest
-<Tabs>
-<Tab title="Overview">
 ```sql
 function greatest<$1> ($1, ...) returns $1
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## ieee_divide
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ieee_divide)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  ieee_divide
-<Tabs>
-<Tab title="Overview">
 ```sql
 function ieee_divide<$1, $2> ($1, $2) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 	and $2 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## is_inf
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_inf)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_inf
-<Tabs>
-<Tab title="Overview">
 ```sql
 function is_inf<$1> ($1) returns boolean
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## is_nan
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_nan)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_nan
-<Tabs>
-<Tab title="Overview">
 ```sql
 function is_nan<$1> ($1) returns boolean
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## least
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#least)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  least
-<Tabs>
-<Tab title="Overview">
 ```sql
 function least<$1> ($1, ...) returns $1
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## ln
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ln)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  ln
-<Tabs>
-<Tab title="Overview">
 ```sql
 function ln(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function ln<$1> ($1) returns double
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
+## log
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  log
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log<$1> ($1) returns double
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log<$1> ($1, $1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(bigint, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(bigint, bignumeric) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(double, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(bigint, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(numeric, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(double, numeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(double, bignumeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log(bignumeric, double) returns double
 ```
 
 
+## log10
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log10)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  log10
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log10(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function log10<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
+## mod
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#mod)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  mod
-<Tabs>
-<Tab title="Overview">
 ```sql
 function mod<$1> ($1, $1) returns $1
-	Where $1 in (bigint, numeric, bignumeric)
+	where $1 in (bigint, numeric, bignumeric)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function mod(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function mod(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function mod(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function mod(bigint, bignumeric) returns bignumeric
 ```
 
 
+## pow
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#pow)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  pow
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow<$1> ($1, $1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(bigint, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(bigint, bignumeric) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(double, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(bigint, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(double, numeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(numeric, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(double, bignumeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function pow(bignumeric, double) returns double
 ```
 
 
+## power
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#power)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  power
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power<$1> ($1, $1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(bigint, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(bigint, bignumeric) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(double, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(bigint, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(double, numeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(numeric, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(double, bignumeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function power(bignumeric, double) returns double
 ```
 
 
+## rand
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#rand)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  rand
-<Tabs>
-<Tab title="Overview">
 ```sql
 function rand() returns double
 ```
 
 
+## range_bucket
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#range_bucket)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  range_bucket
-<Tabs>
-<Tab title="Overview">
 ```sql
 function range_bucket($1, array<$1>) returns int64
 ```
 
 
+## round
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#round)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  round
-<Tabs>
-<Tab title="Overview">
 ```sql
 function round(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function round<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function round(bigint, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function round<$1> ($1, bigint) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
-function round(bigint, bigint, varchar) returns double
-	and varchar in (ROUND_HALF_EVEN, ROUND_HALF_AWAY_FROM_ZERO)
+function round(bigint, bigint, rounding_mode varchar) returns double
+	where rounding_mode in (ROUND_HALF_EVEN, ROUND_HALF_AWAY_FROM_ZERO)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
-function round<$1> ($1, bigint, varchar) returns $1
-	and varchar in (ROUND_HALF_EVEN, ROUND_HALF_AWAY_FROM_ZERO)
-	Where $1 in (numeric, bignumeric, double)
+function round<$1> ($1, bigint, rounding_mode varchar) returns $1
+	where rounding_mode in (ROUND_HALF_EVEN, ROUND_HALF_AWAY_FROM_ZERO)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
+## safe_add
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_add)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  safe_add
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add<$1> ($1, $1) returns $1
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(bigint, bignumeric) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(double, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(bigint, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(double, numeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(numeric, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(double, bignumeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_add(bignumeric, double) returns double
 ```
 
 
+## safe_divide
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_divide)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  safe_divide
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide<$1> ($1, $1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(bigint, bignumeric) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(double, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(bigint, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(double, numeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(numeric, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(double, bignumeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_divide(bignumeric, double) returns double
 ```
 
 
+## safe_multiply
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_multiply)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  safe_multiply
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply<$1> ($1, $1) returns $1
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(bigint, bignumeric) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(double, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(bigint, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(double, numeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(numeric, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(double, bignumeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_multiply(bignumeric, double) returns double
 ```
 
 
+## safe_negate
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_negate)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  safe_negate
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_negate<$1> ($1) returns $1
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## safe_subtract
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_subtract)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  safe_subtract
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract<$1> ($1, $1) returns $1
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(bigint, numeric) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(numeric, bigint) returns numeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(bignumeric, bigint) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(bigint, bignumeric) returns bignumeric
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(double, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(bigint, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(double, numeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(numeric, double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(double, bignumeric) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function safe_subtract(bignumeric, double) returns double
 ```
 
 
+## sec
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sec)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sec
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sec<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## sech
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sech)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sech
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sech<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## sign
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sign)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sign
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sign<$1> ($1) returns $1
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## sin
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sin)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sin
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sin<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## sinh
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sinh)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sinh
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sinh<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## sqrt
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sqrt)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sqrt
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sqrt(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sqrt<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
+## tan
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#tan)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  tan
-<Tabs>
-<Tab title="Overview">
 ```sql
 function tan<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## tanh
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#tanh)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  tanh
-<Tabs>
-<Tab title="Overview">
 ```sql
 function tanh<$1> ($1) returns double
-	Where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, numeric, bignumeric, double)
 ```
 
 
+## trunc
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#trunc)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  trunc
-<Tabs>
-<Tab title="Overview">
 ```sql
 function trunc(bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function trunc<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function trunc(bigint, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function trunc<$1> ($1, bigint) returns $1
-	Where $1 in (numeric, bignumeric, double)
+	where $1 in (numeric, bignumeric, double)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

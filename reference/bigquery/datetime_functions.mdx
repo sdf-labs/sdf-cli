@@ -2,279 +2,95 @@
 title: "Datetime Functions"
 ---
 
-##  current_datetime
-<Tabs>
-<Tab title="Overview">
+## current_datetime
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#current_datetime)
+
 ```sql
 function current_datetime() returns datetime
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function current_datetime(varchar) returns datetime
 ```
 
 
+## datetime
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  datetime
-<Tabs>
-<Tab title="Overview">
 ```sql
 function datetime(bigint, bigint, bigint, bigint, bigint, bigint) returns datetime
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function datetime(date) returns datetime
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function datetime(date, time) returns datetime
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function datetime(timestamp) returns datetime
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function datetime(timestamp, varchar) returns datetime
 ```
 
 
+## datetime_add
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_add)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  datetime_add
-<Tabs>
-<Tab title="Overview">
 ```sql
 function datetime_add(datetime, interval day to year) returns datetime
 ```
 
 
+## datetime_diff
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_diff)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  datetime_diff
-<Tabs>
-<Tab title="Overview">
 ```sql
-function datetime_diff(datetime, datetime, varchar) returns bigint
-	and varchar in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+function datetime_diff(datetime, datetime, part varchar) returns bigint
+	where part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
 ```
 
 
+## datetime_sub
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_sub)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  datetime_sub
-<Tabs>
-<Tab title="Overview">
 ```sql
 function datetime_sub(datetime, interval day to year) returns datetime
 ```
 
 
+## datetime_trunc
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_trunc)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  datetime_trunc
-<Tabs>
-<Tab title="Overview">
 ```sql
-function datetime_trunc(datetime, varchar) returns datetime
-	and varchar in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+function datetime_trunc(datetime, date_time_part varchar) returns datetime
+	where date_time_part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
 ```
 
 
+## format_datetime
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#format_datetime)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  format_datetime
-<Tabs>
-<Tab title="Overview">
 ```sql
 function format_datetime(varchar, datetime) returns varchar
 ```
 
 
+## parse_datetime
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#parse_datetime)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  parse_datetime
-<Tabs>
-<Tab title="Overview">
 ```sql
 function parse_datetime(varchar, varchar) returns datetime
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

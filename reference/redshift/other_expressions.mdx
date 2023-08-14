@@ -2,2045 +2,575 @@
 title: "Other Expressions"
 ---
 
-##  add_months
-<Tabs>
-<Tab title="Overview">
+## add_months
 ```sql
 function add_months(varchar, bigint) returns timestamp
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  any_value
-<Tabs>
-<Tab title="Overview">
+## any_value
 ```sql
 function any_value($1) returns $1
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array
-<Tabs>
-<Tab title="Overview">
+## array
 ```sql
-function array($1, ...) returns array\<$1>
+function array($1, ...) returns array<$1>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_flatten
-<Tabs>
-<Tab title="Overview">
+## array_flatten
 ```sql
-function array_flatten(array<array<$1>>) returns array\<$1>
+function array_flatten(array<array<$1>>) returns array<$1>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bpcharcmp
-<Tabs>
-<Tab title="Overview">
+## bpcharcmp
 ```sql
 function bpcharcmp(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bttext_pattern_cmp
-<Tabs>
-<Tab title="Overview">
+## bttext_pattern_cmp
 ```sql
 function bttext_pattern_cmp(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  can_json_parse
-<Tabs>
-<Tab title="Overview">
+## can_json_parse
 ```sql
 function can_json_parse(varchar) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  cbrt
-<Tabs>
-<Tab title="Overview">
+## cbrt
 ```sql
 function cbrt(double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  ceiling
-<Tabs>
-<Tab title="Overview">
+## ceiling
 ```sql
 function ceiling(double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  charindex
-<Tabs>
-<Tab title="Overview">
+## charindex
 ```sql
 function charindex(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  collate
-<Tabs>
-<Tab title="Overview">
+## collate
 ```sql
 function collate(varchar, varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  cot
-<Tabs>
-<Tab title="Overview">
+## cot
 ```sql
 function cot(double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  crc32
-<Tabs>
-<Tab title="Overview">
+## crc32
 ```sql
 function crc32(varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  decimal_precision
-<Tabs>
-<Tab title="Overview">
+## decimal_precision
 ```sql
 function decimal_precision(super) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  decimal_scale
-<Tabs>
-<Tab title="Overview">
+## decimal_scale
 ```sql
 function decimal_scale(super) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  degrees
-<Tabs>
-<Tab title="Overview">
+## degrees
 ```sql
 function degrees(double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  dexp
-<Tabs>
-<Tab title="Overview">
+## dexp
 ```sql
 function dexp(double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  difference
-<Tabs>
-<Tab title="Overview">
+## difference
 ```sql
 function difference(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  dlog1
-<Tabs>
-<Tab title="Overview">
+## dlog1
 ```sql
 function dlog1(double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  dlog10
-<Tabs>
-<Tab title="Overview">
+## dlog10
 ```sql
 function dlog10(double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  farmfingerprint64
-<Tabs>
-<Tab title="Overview">
+## farmfingerprint64
 ```sql
 function farmfingerprint64(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  fnv_hash
-<Tabs>
-<Tab title="Overview">
+## fnv_hash
 ```sql
 function fnv_hash(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  from_hex
-<Tabs>
-<Tab title="Overview">
+## from_hex
 ```sql
 function from_hex(varchar) returns bytea
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  from_varbyte
-<Tabs>
-<Tab title="Overview">
+## from_varbyte
 ```sql
 function from_varbyte(bytea, varchar) returns bytea
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  func_sha1
-<Tabs>
-<Tab title="Overview">
+## func_sha1
 ```sql
 function func_sha1(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  getbit
-<Tabs>
-<Tab title="Overview">
+## getbit
 ```sql
 function getbit(bytea, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  greatest
-<Tabs>
-<Tab title="Overview">
+## greatest
 ```sql
 function greatest($1, ...) returns $1
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  interval_cmp
-<Tabs>
-<Tab title="Overview">
+## interval_cmp
 ```sql
 function interval_cmp(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_array
-<Tabs>
-<Tab title="Overview">
+## is_array
 ```sql
 function is_array(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_bigint
-<Tabs>
-<Tab title="Overview">
+## is_bigint
 ```sql
 function is_bigint(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_boolean
-<Tabs>
-<Tab title="Overview">
+## is_boolean
 ```sql
 function is_boolean(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_char
-<Tabs>
-<Tab title="Overview">
+## is_char
 ```sql
 function is_char(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_decimal
-<Tabs>
-<Tab title="Overview">
+## is_decimal
 ```sql
 function is_decimal(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_float
-<Tabs>
-<Tab title="Overview">
+## is_float
 ```sql
 function is_float(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_object
-<Tabs>
-<Tab title="Overview">
+## is_object
 ```sql
 function is_object(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_scalar
-<Tabs>
-<Tab title="Overview">
+## is_scalar
 ```sql
 function is_scalar(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_smallint
-<Tabs>
-<Tab title="Overview">
+## is_smallint
 ```sql
 function is_smallint(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_valid_json
-<Tabs>
-<Tab title="Overview">
+## is_valid_json
 ```sql
 function is_valid_json(varchar) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_valid_json_array
-<Tabs>
-<Tab title="Overview">
+## is_valid_json_array
 ```sql
 function is_valid_json_array(varchar) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  is_varchar
-<Tabs>
-<Tab title="Overview">
+## is_varchar
 ```sql
 function is_varchar(super) returns boolean
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_extract_array_element_text
-<Tabs>
-<Tab title="Overview">
+## json_extract_array_element_text
 ```sql
 function json_extract_array_element_text(varchar, bigint) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function json_extract_array_element_text(varchar, bigint, boolean) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_extract_path_text
-<Tabs>
-<Tab title="Overview">
+## json_extract_path_text
 ```sql
 function json_extract_path_text(varchar, ...) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_parse
-<Tabs>
-<Tab title="Overview">
+## json_parse
 ```sql
 function json_parse(varchar) returns super
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_serialize
-<Tabs>
-<Tab title="Overview">
+## json_serialize
 ```sql
 function json_serialize($1) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_serialize_to_varbyte
-<Tabs>
-<Tab title="Overview">
+## json_serialize_to_varbyte
 ```sql
 function json_serialize_to_varbyte($1) returns bytea
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_size
-<Tabs>
-<Tab title="Overview">
+## json_size
 ```sql
 function json_size(super) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_typeof
-<Tabs>
-<Tab title="Overview">
+## json_typeof
 ```sql
 function json_typeof(super) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  last_day
-<Tabs>
-<Tab title="Overview">
+## last_day
 ```sql
 function last_day(varchar) returns date
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  least
-<Tabs>
-<Tab title="Overview">
+## least
 ```sql
 function least($1, ...) returns $1
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  len
-<Tabs>
-<Tab title="Overview">
+## len
 ```sql
 function len(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  md5
-<Tabs>
-<Tab title="Overview">
+## md5
 ```sql
 function md5(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  mod
-<Tabs>
-<Tab title="Overview">
+## mod
 ```sql
 function mod(bigint, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  months_between
-<Tabs>
-<Tab title="Overview">
+## months_between
 ```sql
 function months_between(varchar, varchar) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  murmur3_32_hash
-<Tabs>
-<Tab title="Overview">
+## murmur3_32_hash
 ```sql
 function murmur3_32_hash(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function murmur3_32_hash(varchar, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  next_day
-<Tabs>
-<Tab title="Overview">
+## next_day
 ```sql
 function next_day(varchar, varchar) returns date
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  nvl
-<Tabs>
-<Tab title="Overview">
+## nvl
 ```sql
 function nvl($1, ...) returns $1
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  nvl2
-<Tabs>
-<Tab title="Overview">
+## nvl2
 ```sql
 function nvl2($1, $2, $2) returns $2
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  octetindex
-<Tabs>
-<Tab title="Overview">
+## octetindex
 ```sql
 function octetindex(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  pi
-<Tabs>
-<Tab title="Overview">
+## pi
 ```sql
 function pi() returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  quote_ident
-<Tabs>
-<Tab title="Overview">
+## quote_ident
 ```sql
 function quote_ident(varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  quote_literal
-<Tabs>
-<Tab title="Overview">
+## quote_literal
 ```sql
 function quote_literal(varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  radians
-<Tabs>
-<Tab title="Overview">
+## radians
 ```sql
 function radians(double) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  reclassify
-<Tabs>
-<Tab title="Overview">
+## reclassify
 ```sql
 function reclassify($1, varchar, varchar) returns $1
 ```
-
 Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
 
-Example: 
 ```sql example.sql
 select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  regexp_instr
-<Tabs>
-<Tab title="Overview">
+## regexp_instr
 ```sql
 function regexp_instr(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_instr(varchar, varchar, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_instr(varchar, varchar, bigint, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_instr(varchar, varchar, bigint, bigint, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_instr(varchar, varchar, bigint, bigint, bigint, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  regexp_substr
-<Tabs>
-<Tab title="Overview">
+## regexp_substr
 ```sql
 function regexp_substr(varchar, varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_substr(varchar, varchar, varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_substr(varchar, varchar, varchar, bigint) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_substr(varchar, varchar, varchar, bigint, varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  replicate
-<Tabs>
-<Tab title="Overview">
+## replicate
 ```sql
 function replicate(varchar, bigint) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sha
-<Tabs>
-<Tab title="Overview">
+## sha
 ```sql
 function sha(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sha1
-<Tabs>
-<Tab title="Overview">
+## sha1
 ```sql
 function sha1(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sha2
-<Tabs>
-<Tab title="Overview">
+## sha2
 ```sql
 function sha2(varchar, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sign
-<Tabs>
-<Tab title="Overview">
+## sign
 ```sql
 function sign(double) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  size
-<Tabs>
-<Tab title="Overview">
+## size
 ```sql
 function size($1) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  soundex
-<Tabs>
-<Tab title="Overview">
+## soundex
 ```sql
 function soundex(varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  split_to_array
-<Tabs>
-<Tab title="Overview">
+## split_to_array
 ```sql
-function split_to_array(varchar, varchar) returns array\<varchar>
+function split_to_array(varchar, varchar) returns array<varchar>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  strtol
-<Tabs>
-<Tab title="Overview">
+## strtol
 ```sql
 function strtol(varchar, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  subarray
-<Tabs>
-<Tab title="Overview">
+## subarray
 ```sql
-function subarray(array<$1>, bigint, bigint) returns array\<$1>
+function subarray(array<$1>, bigint, bigint) returns array<$1>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  text_to_int_alt
-<Tabs>
-<Tab title="Overview">
+## text_to_int_alt
 ```sql
 function text_to_int_alt(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function text_to_int_alt(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  text_to_numeric_alt
-<Tabs>
-<Tab title="Overview">
+## text_to_numeric_alt
 ```sql
 function text_to_numeric_alt(varchar) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function text_to_numeric_alt(varchar, varchar) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function text_to_numeric_alt(varchar, bigint, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function text_to_numeric_alt(varchar, varchar, bigint, bigint) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  textlen
-<Tabs>
-<Tab title="Overview">
+## textlen
 ```sql
 function textlen(varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  to_char
-<Tabs>
-<Tab title="Overview">
+## to_char
 ```sql
 function to_char($1, varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  to_hex
-<Tabs>
-<Tab title="Overview">
+## to_hex
 ```sql
 function to_hex(bytea) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function to_hex(bigint) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  to_number
-<Tabs>
-<Tab title="Overview">
+## to_number
 ```sql
 function to_number(varchar, varchar) returns double
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  to_varbyte
-<Tabs>
-<Tab title="Overview">
+## to_varbyte
 ```sql
 function to_varbyte(varchar, varchar) returns bytea
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  trunc
-<Tabs>
-<Tab title="Overview">
+## trunc
 ```sql
 function trunc(varchar) returns date
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

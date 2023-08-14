@@ -2,72 +2,36 @@
 title: "String Functions"
 ---
 
-##  ascii
-<Tabs>
-<Tab title="Overview">
+## ascii
 ```sql
 function ascii(x varchar) returns int
 ```
-
 Returns the ascii value of the first character given
 
-Examples: 
 ```sql example.sql
 select ascii('b') as value; -- value '98' 
 ```
 ```sql example.sql
 select ascii('ab') as value -- value '97' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  bit_length
-<Tabs>
-<Tab title="Overview">
+## bit_length
 ```sql
 function bit_length(x varchar) returns int
 ```
-
 Returns the bit length of the given characters
 
-Examples: 
 ```sql example.sql
 select bit_length('b') as value; -- value '8' 
 ```
 ```sql example.sql
 select bit_length('hello world') as value -- value '88' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  btrim
-<Tabs>
-<Tab title="Overview">
+## btrim
 ```sql
 function btrim(x varchar, y varchar) returns varchar
 ```
-
 Trims y from x if x begins with y.
 
-Examples: 
 ```sql example.sql
 select btrim('hello world', 'hello') as value; -- value ' world' 
 ```
@@ -77,137 +41,57 @@ select btrim('hellohello world', 'hello') as value; -- value 'hello world'
 ```sql example.sql
 select btrim('hi hello world', 'hello') as value; -- value 'hi hello world' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  char_length
-<Tabs>
-<Tab title="Overview">
+## char_length
 ```sql
 function char_length(n varchar) returns int
 ```
-
 Returns the number of characters of n
 
-Example: 
 ```sql example.sql
 select char_length('hello world!') as value; -- value '12' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  character_length
-<Tabs>
-<Tab title="Overview">
+## character_length
 ```sql
 function character_length(n varchar) returns int
 ```
-
 Returns the number of characters of n
 
-Example: 
 ```sql example.sql
 select character_length('hello world!') as value; -- value '12' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  chr
-<Tabs>
-<Tab title="Overview">
+## chr
 ```sql
 function chr(bigint) returns varchar
 ```
-
 Returns the Unicode code point n as a single character string.
 
-Examples: 
 ```sql example.sql
 select chr(61) as value; -- value '=' 
 ```
 ```sql example.sql
 select chr(128521) as value; -- value '😉' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  concat
-<Tabs>
-<Tab title="Overview">
+## concat
 ```sql
 function concat(e, array(e)) returns array(e)
 ```
-
 Concatenates the arrays array1, array2, ..., arrayN. This function provides the
 same functionality as the SQL-standard concatenation operator (||).
 
-Examples: 
 ```sql example.sql
 select concat('hello ', 'world!') as value; -- value 'hello world!' 
 ```
 ```sql example.sql
 select concat(['hello '], ['world!']) as value -- value '[hello ][world!]' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  concat_ws
-<Tabs>
-<Tab title="Overview">
+## concat_ws
 ```sql
 function concat_ws(varchar, array<varchar>) returns varchar
 ```
-
 Returns the concatenation of string1, string2, ..., stringN using string0 as a
 separator. If string0 is null, then the return value is null. Any values
 provided in the arguments after the separator are skipped.
 
-Examples: 
 ```sql example.sql
 select concat_ws('|', 'a', 'b') as value; -- value 'a|b' 
 ```
@@ -217,603 +101,234 @@ select concat_ws('|', 'a', NULL, 'b') as value; -- value 'a|b'
 ```sql example.sql
 select concat_ws(NULL, 'a', 'b') as value; -- value 'NULL' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  digest
-<Tabs>
-<Tab title="Overview">
+## digest
 ```sql
 function digest(string varchar, algo varchar) returns 
 ```
-
 Processes string with algo. Currently supported digest algorithms are md5,
 sha224, sha256, sha384, sha512, blake2s, blake2b, blake3
 
-Example: 
 ```sql example.sql
 select digest('world', 'md5') as value; -- value '7d793037a0760186574b0282f2f435e7' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  initcap
-<Tabs>
-<Tab title="Overview">
+## initcap
 ```sql
 function initcap(n varchar) returns varchar
 ```
-
 Capitalizes the first charcter of the provided string. Lower-cases all
 subsequent characters.
 
-Examples: 
 ```sql example.sql
 select initcap('a') as value; -- value 'A' 
 ```
 ```sql example.sql
 select initcap('aAa') as value; -- value 'Aaa' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  left
-<Tabs>
-<Tab title="Overview">
+## left
 ```sql
 function left(n varchar, x bigint) returns varchar
 ```
-
 Returns the left x characters of n
 
-Example: 
 ```sql example.sql
 select left('Hello World!', 5) as value; -- value 'Hello' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  length
-<Tabs>
-<Tab title="Overview">
+## length
 ```sql
 function length(varchar) returns bigint
 ```
-
 Returns the number of characters in n
 
-Examples: 
 ```sql example.sql
 select length('Hello World!') as value; -- value '12' 
 ```
 ```sql example.sql
 select length('Hey there 😉') as value; -- value '11' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  lower
-<Tabs>
-<Tab title="Overview">
+## lower
 ```sql
 function lower(varchar) returns varchar
 ```
-
 Converts string n to lowercase
 
-Example: 
 ```sql example.sql
 select lower('Hello World!') as value; -- value 'hello world!' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  lpad
-<Tabs>
-<Tab title="Overview">
+## lpad
 ```sql
 function lpad(bytea, bigint, bytea) returns bytea
 ```
-
 Left pads string to size characters with padstring. If size is less than the
 length of string, the result is truncated to size characters. size must not be
 negative and padstring must be non-empty.
 
-Examples: 
 ```sql example.sql
 select lpad('😉', 5, '*') as value; -- value '****😉' 
 ```
 ```sql example.sql
 select lpad('world', 15, 'hello') as value; -- value 'hellohelloworld' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  ltrim
-<Tabs>
-<Tab title="Overview">
+## ltrim
 ```sql
 function ltrim(varchar) returns varchar
 ```
-
 Removes all leading whitespace from string.
 
-Example: 
 ```sql example.sql
 select ltrim('   😉') as value; -- value '😉' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  md5
-<Tabs>
-<Tab title="Overview">
+## md5
 ```sql
 function md5(bytea) returns bytea
 ```
-
 Computes the md5 hash of string. Md5 is a consistent hash.
 
-Example: 
 ```sql example.sql
 select md5('Hello World!') as value; -- value 'ed076287532e86365e841e92bfc50d8c' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  octet_length
-<Tabs>
-<Tab title="Overview">
+## octet_length
 ```sql
 function octet_length(string varchar) returns int
 ```
-
 Returns the number of bytes of string
 
-Examples: 
 ```sql example.sql
 select octet_length('Hello World!') as value; -- value '12' 
 ```
 ```sql example.sql
 select octet_length('😉') as value; -- value '4' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  repeat
-<Tabs>
-<Tab title="Overview">
+## repeat
 ```sql
 function repeat(t, bigint) returns array(t)
 ```
-
 Repeats string n times
 
-Example: 
 ```sql example.sql
 select repeat('😉', 4) as value; -- value '😉😉😉😉' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  replace
-<Tabs>
-<Tab title="Overview">
+## replace
 ```sql
 function replace(varchar, varchar, varchar) returns varchar
 ```
-
 Removes all instances of search from string.
 
-Example: 
 ```sql example.sql
 select replace('Hello There', 'There') as value; -- value 'Hello ' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function replace(varchar, varchar, varchar) returns varchar
 ```
-
 Removes all instances of search from string.
 
-Example: 
 ```sql example.sql
 select replace('Hello There', 'There') as value; -- value 'Hello ' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  reverse
-<Tabs>
-<Tab title="Overview">
+## reverse
 ```sql
 function reverse(varchar) returns varchar
 ```
-
 Returns string in reverse order
 
-Example: 
 ```sql example.sql
 select reverse('Hello There') as value; -- value 'ereht olleH' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  right
-<Tabs>
-<Tab title="Overview">
+## right
 ```sql
 function right(n varchar, x bigint) returns varchar
 ```
-
 Returns the right x characters of n
 
-Example: 
 ```sql example.sql
 select right('Hello World!', 6) as value; -- value 'World!' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  rpad
-<Tabs>
-<Tab title="Overview">
+## rpad
 ```sql
 function rpad(bytea, bigint, bytea) returns bytea
 ```
-
 Right pads string to size characters with padstring. If size is less than the
 length of string, the result is truncated to size characters. size must not be
 negative and padstring must be non-empty.
 
-Examples: 
 ```sql example.sql
 select rpad('😉', 5, '*') as value; -- value '😉****' 
 ```
 ```sql example.sql
 select rpad('world', 15, 'hello') as value; -- value 'worldhellohello' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  rtrim
-<Tabs>
-<Tab title="Overview">
+## rtrim
 ```sql
 function rtrim(varchar) returns varchar
 ```
-
 Removes all trailing whitespace from string.
 
-Example: 
 ```sql example.sql
 select rtrim('😉   ') as value; -- value '😉' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  split_part
-<Tabs>
-<Tab title="Overview">
+## split_part
 ```sql
 function split_part(varchar, varchar, bigint) returns varchar
 ```
-
 Splits string on delimiter and returns the field index. Field indexes start with
 1. If the index is larger than the number of fields, then null is returned.
 
-Example: 
 ```sql example.sql
 select split_part('Hello|World', '|', 1) as value; -- value 'Hello' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  starts_with
-<Tabs>
-<Tab title="Overview">
+## starts_with
 ```sql
 function starts_with(varchar, varchar) returns boolean
 ```
-
 Tests whether substring is a prefix of string
 
-Example: 
 ```sql example.sql
 select starts_with('Hello|World', 'Hello') as value; -- value 'true' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  strpos
-<Tabs>
-<Tab title="Overview">
+## strpos
 ```sql
 function strpos(varchar, varchar) returns bigint
 ```
-
 Returns the starting position of the first instance of substring in string.
 Positions start with 1. If not found, 0 is returned.
 
-Example: 
 ```sql example.sql
 select strpos('Hello World', 'World') as value; -- value '7' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function strpos(varchar, varchar) returns bigint
 ```
-
 Returns the starting position of the first instance of substring in string.
 Positions start with 1. If not found, 0 is returned.
 
-Example: 
 ```sql example.sql
 select strpos('Hello World', 'World') as value; -- value '7' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  substr
-<Tabs>
-<Tab title="Overview">
+## substr
 ```sql
 function substr(bytea, bigint) returns bytea
 ```
-
 Returns the rest of string from the starting position start. Positions start
 with 1. A negative starting position is interpreted as being relative to the end
 of the string.
 
-Example: 
 ```sql example.sql
 select substr('Hello World', 6) as value; -- value ' World' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  substring
-<Tabs>
-<Tab title="Overview">
+## substring
 ```sql
 function substring(varchar, bigint) returns varchar
 ```
-
 Returns the rest of string from the starting position start. Positions start
 with 1. A negative starting position is interpreted as being relative to the end
 of the string.
 
-Example: 
 ```sql example.sql
 select substring('Hello World', 6) as value; -- value ' World' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  translate
-<Tabs>
-<Tab title="Overview">
+## translate
 ```sql
 function translate(varchar, varchar, varchar) returns varchar
 ```
-
 Returns the source string translated by replacing characters found in the from
 string with the corresponding characters in the to string. If the from string
 contains duplicates, only the first is used. If the source character does not
@@ -822,70 +337,25 @@ translation. If the index of the matching character in the from string is beyond
 the length of the to string, the source character will be omitted from the
 resulting string.
 
-Example: 
 ```sql example.sql
 select translate('Hello World', 'Hell', 'N') as value; -- value 'No Word' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  trim
-<Tabs>
-<Tab title="Overview">
+## trim
 ```sql
 function trim(varchar) returns varchar
 ```
-
 Removes leading and trailing whitespace from string.
 
-Example: 
 ```sql example.sql
 select trim('  😉  ') as value; -- value '😉' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  upper
-<Tabs>
-<Tab title="Overview">
+## upper
 ```sql
 function upper(varchar) returns varchar
 ```
-
 Converts string n to uppercase
 
-Example: 
 ```sql example.sql
 select upper('Hello World!') as value; -- value 'HELLO WORLD!' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
 

@@ -2,88 +2,26 @@
 title: "Aggregate Functions"
 ---
 
-##  approx_count_distinct
-<Tabs>
-<Tab title="Overview">
+## approx_count_distinct
 ```sql
 function approx_count_distinct(bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  regexp_count
-<Tabs>
-<Tab title="Overview">
+## regexp_count
 ```sql
 function regexp_count(varchar, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_count(varchar, varchar, bigint) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function regexp_count(varchar, varchar, bigint, varchar) returns bigint
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

@@ -2,114 +2,49 @@
 title: "Hash Functions"
 ---
 
-##  farm_fingerprint
-<Tabs>
-<Tab title="Overview">
+## farm_fingerprint
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/hash_functions#farm_fingerprint)
+
 ```sql
 function farm_fingerprint<$1> ($1) returns bigint
-	Where $1 in (varchar, bytes)
+	where $1 in (varchar, bytes)
 ```
 
 
+## md5
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/hash_functions#md5)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  md5
-<Tabs>
-<Tab title="Overview">
 ```sql
 function md5<$1> ($1) returns bytes
-	Where $1 in (varchar, bytes)
+	where $1 in (varchar, bytes)
 ```
 
 
+## sha1
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/hash_functions#sha1)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sha1
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sha1<$1> ($1) returns bytes
-	Where $1 in (varchar, bytes)
+	where $1 in (varchar, bytes)
 ```
 
 
+## sha256
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/hash_functions#sha256)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sha256
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sha256<$1> ($1) returns bytes
-	Where $1 in (varchar, bytes)
+	where $1 in (varchar, bytes)
 ```
 
 
+## sha512
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/hash_functions#sha512)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  sha512
-<Tabs>
-<Tab title="Overview">
 ```sql
 function sha512<$1> ($1) returns bytes
-	Where $1 in (varchar, bytes)
+	where $1 in (varchar, bytes)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

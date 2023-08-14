@@ -2,166 +2,69 @@
 title: "Temporal Functions"
 ---
 
-##  date_part
-<Tabs>
-<Tab title="Overview">
+## date_part
 ```sql
 function date_part<$1> (date varchar, part $1) returns double
-	Where $1 in (date, time, datetime, timestamp)
+	where $1 in (date, time, datetime, timestamp)
 ```
-
 Returns date truncated to unit. Valid parts are   * `year`   * `quarter`   *
 `month`   * `week`   * `day`   * `hour`   * `second`   * `millisecond`   *
 `microsecond`   * `nanosecond`
 
-Example: 
 ```sql example.sql
 select date_part('second', to_timestamp('2023-02-08T15:33:42+00:00')) as value; -- value '42' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  date_trunc
-<Tabs>
-<Tab title="Overview">
+## date_trunc
 ```sql
 function date_trunc(varchar, date) returns date
 ```
-
 Returns date truncated to unit. Valid parts are   * `year`   * `quarter`   *
 `month`   * `week`   * `day`   * `hour`   * `second`   * `millisecond`   *
 `microsecond`   * `nanosecond`
 
-Example: 
 ```sql example.sql
 select date_trunc('day', to_timestamp('2023-02-08T15:33:42+00:00')) as value; -- value '2023-02-08 00:00:00' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  from_unixtime
-<Tabs>
-<Tab title="Overview">
+## from_unixtime
 ```sql
 function from_unixtime(double) returns timestamp(millisecond)
 ```
-
 Returns the UNIX timestamp unixtime as a timestamp with time zone. unixtime is
 the number of seconds since 1970-01-01 00:00:00 UTC.
 
-Example: 
 ```sql example.sql
 select from_unixtime(946713601) as value; -- value '2000-01-01 08:00:01' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  now
-<Tabs>
-<Tab title="Overview">
+## now
 ```sql
 function now() returns timestamp(millisecond)
 ```
-
 Returns the current timestamp
 
-Example: 
 ```sql example.sql
 select now() as value; -- value '2023-02-28 00:17:47.154040' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-##  to_timestamp
-<Tabs>
-<Tab title="Overview">
+## to_timestamp
 ```sql
 function to_timestamp(varchar, varchar) returns timestamp(millisecond)
 ```
-
 Parses string into a timestamp.   Valid Timestamp Strings:   * `YYYY-MM-
 DDThh:mm:ss.nnnZ` - RCF3339   * `YYYY-MM-DDThh:mm:ss.nnn-00:00` - RCF3339   *
 `YYYY-MM-DD hh:mm:ss.nnn-00:00`   * `YYYY-MM-DDThh:mm:ss.nnn`    * `YYYY-MM-DD
 hh:mm:ss.nnn`   * `YYYY-MM-DD hh:mm:ss`
 
-Example: 
 ```sql example.sql
 select to_timestamp('1992-06-28 08:43:01') as value; -- value '1992-06-28 08:43:01' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function to_timestamp(varchar, varchar) returns timestamp(millisecond)
 ```
-
 Parses string into a timestamp.   Valid Timestamp Strings:   * `YYYY-MM-
 DDThh:mm:ss.nnnZ` - RCF3339   * `YYYY-MM-DDThh:mm:ss.nnn-00:00` - RCF3339   *
 `YYYY-MM-DD hh:mm:ss.nnn-00:00`   * `YYYY-MM-DDThh:mm:ss.nnn`    * `YYYY-MM-DD
 hh:mm:ss.nnn`   * `YYYY-MM-DD hh:mm:ss`
 
-Example: 
 ```sql example.sql
 select to_timestamp('1992-06-28 08:43:01') as value; -- value '1992-06-28 08:43:01' 
 ```
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ✔️|
-        </Tab>
-</Tabs>
 

@@ -2,365 +2,136 @@
 title: "Aggregate Functions"
 ---
 
-##  any_value
-<Tabs>
-<Tab title="Overview">
+## any_value
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#any_value)
+
 ```sql
 function any_value(t) returns t
 ```
 
 
+## array_agg
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#array_agg)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_agg
-<Tabs>
-<Tab title="Overview">
 ```sql
-function array_agg(T) returns array\<T>
+function array_agg(T) returns array<T>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_avg
-<Tabs>
-<Tab title="Overview">
+## array_avg
 ```sql
 function array_avg<$1> (array<$1>) returns double
-	Where $1 in (int, bigint, int unsigned, bigint unsigned, float, double)
+	where $1 in (int, bigint, int unsigned, bigint unsigned, float, double)
 ```
 
 
+## array_concat_agg
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#array_concat_agg)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  array_concat_agg
-<Tabs>
-<Tab title="Overview">
 ```sql
-function array_concat_agg(array<t>) returns array\<t>
+function array_concat_agg(array<t>) returns array<t>
 ```
 
 
+## avg
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#avg)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  avg
-<Tabs>
-<Tab title="Overview">
 ```sql
 function avg<$1> ($1) returns $1
-	Where $1 in (numeric, bignumeric, double, interval)
+	where $1 in (numeric, bignumeric, double, interval)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function avg(bigint) returns double
 ```
 
 
+## bit_and
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#bit_and)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bit_and
-<Tabs>
-<Tab title="Overview">
 ```sql
 function bit_and(bigint) returns bigint
 ```
 
 
+## bit_or
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#bit_or)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bit_or
-<Tabs>
-<Tab title="Overview">
 ```sql
 function bit_or(bigint) returns bigint
 ```
 
 
+## bit_xor
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#bit_xor)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  bit_xor
-<Tabs>
-<Tab title="Overview">
 ```sql
 function bit_xor(bigint) returns bigint
 ```
 
 
+## count
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#count)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  count
-<Tabs>
-<Tab title="Overview">
 ```sql
 function count(T) returns bigint
 ```
 
 
+## countif
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#countif)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  countif
-<Tabs>
-<Tab title="Overview">
 ```sql
 function countif(bool) returns bigint
 ```
 
 
+## logical_and
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#logical_and)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  logical_and
-<Tabs>
-<Tab title="Overview">
 ```sql
 function logical_and(bool) returns bool
 ```
 
 
+## logical_or
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#logical_or)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  logical_or
-<Tabs>
-<Tab title="Overview">
 ```sql
 function logical_or(bool) returns bool
 ```
 
 
+## max_by
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#max_by)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  max_by
-<Tabs>
-<Tab title="Overview">
 ```sql
 function max_by(T, U) returns T
 ```
 
 
+## min_by
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#min_by)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  min_by
-<Tabs>
-<Tab title="Overview">
 ```sql
 function min_by(T, U) returns T
 ```
 
 
+## string_agg
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#string_agg)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  string_agg
-<Tabs>
-<Tab title="Overview">
 ```sql
 function string_agg<$1> ($1) returns $1
-	Where $1 in (varchar, varbinary)
+	where $1 in (varchar, varbinary)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
-function string_agg<$1> ($1, string) returns array\<$1>
-	Where $1 in (varchar, varbinary)
+function string_agg<$1> ($1, string) returns array<$1>
+	where $1 in (varchar, varbinary)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

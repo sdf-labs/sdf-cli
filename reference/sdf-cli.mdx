@@ -185,10 +185,7 @@ Describe inferred table schemas including propagated classifiers, run code code 
 ###### **Options:**
 
 * `--profile <PROFILE>` — Describe data using this profile
-* `--no-save` — Don't save table schema for caching
-
-  Default value: `false`
-* `--no-cache` — Don't read cached table schema
+* `--no-cache` — Don't read and write cached table schema
 
   Default value: `false`
 * `--print-format <PRINT_FORMAT>` — Show tables in this format
@@ -259,6 +256,9 @@ Create a deployment and post it to the SDF service
 
   Default value: `false`
 * `--no-propagate` — Propagate labels for deployed targets
+
+  Default value: `false`
+* `--no-cache` — Don't read and write cached table schema
 
   Default value: `false`
 * `--quiet` — Do not print sdf console messages
@@ -514,5 +514,5 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 
 
-   Finished show in 0.005 secs
+   Finished show in 0.006 secs
 

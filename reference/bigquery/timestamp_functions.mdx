@@ -2,469 +2,159 @@
 title: "Timestamp Functions"
 ---
 
-##  current_timestamp
-<Tabs>
-<Tab title="Overview">
+## current_timestamp
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#current_timestamp)
+
 ```sql
 function current_timestamp() returns timestamp
 ```
 
 
+## format_timestamp
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#format_timestamp)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  format_timestamp
-<Tabs>
-<Tab title="Overview">
 ```sql
 function format_timestamp(varchar, timestamp) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function format_timestamp(varchar, timestamp, time_zone varchar) returns varchar
 ```
 
 
+## parse_timestamp
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#parse_timestamp)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  parse_timestamp
-<Tabs>
-<Tab title="Overview">
 ```sql
 function parse_timestamp(varchar, varchar) returns timestamp
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function parse_timestamp(varchar, varchar, time_zone varchar) returns timestamp
 ```
 
 
+## timestamp
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  timestamp
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp(varchar) returns timestamp
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp(varchar, time_zone varchar) returns timestamp
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp(date) returns timestamp
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp(date, time_zone varchar) returns timestamp
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp(datetime) returns timestamp
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp(datetime, time_zone varchar) returns timestamp
 ```
 
 
+## timestamp_add
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_add)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  timestamp_add
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp_add(timestamp, interval microsecond to day) returns timestamp
 ```
 
 
+## timestamp_diff
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_diff)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  timestamp_diff
-<Tabs>
-<Tab title="Overview">
 ```sql
-function timestamp_diff(timestamp, timestamp, varchar) returns bigint
-	and varchar in (microsecond, millisecond, second, minute, hour, day, week, month, quarter, year)
+function timestamp_diff(timestamp, timestamp, date_part varchar) returns bigint
+	where date_part in (microsecond, millisecond, second, minute, hour, day, week, month, quarter, year)
 ```
 
 
+## timestamp_micros
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_micros)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  timestamp_micros
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp_micros(int64) returns timestamp
 ```
 
 
+## timestamp_millis
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_millis)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  timestamp_millis
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp_millis(int64) returns timestamp
 ```
 
 
+## timestamp_seconds
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_seconds)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  timestamp_seconds
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp_seconds(int64) returns timestamp
 ```
 
 
+## timestamp_sub
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_sub)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  timestamp_sub
-<Tabs>
-<Tab title="Overview">
 ```sql
 function timestamp_sub(timestamp, interval microsecond to day) returns timestamp
 ```
 
 
+## timestamp_trunc
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  timestamp_trunc
-<Tabs>
-<Tab title="Overview">
 ```sql
-function timestamp_trunc(timestamp, varchar) returns timestamp
-	and varchar in (MICROSECOND, MILLISECOND, SECOND, MINUTE, HOUR, DAY, WEEK, week(monday), WEEK(TUESDAY), WEEK(WEDNESDAY), WEEK(THURSDAY), WEEK(FRIDAY), WEEK(SATURDAY), WEEK(SUNDAY), ISOWEEK, MONTH, QUARTER, YEAR, ISOYEAR)
+function timestamp_trunc(timestamp, date_time_part varchar) returns timestamp
+	where date_time_part in (microsecond, MILLISECOND, SECOND, MINUTE, HOUR, DAY, WEEK, week(monday), WEEK(TUESDAY), WEEK(WEDNESDAY), WEEK(THURSDAY), WEEK(FRIDAY), WEEK(SATURDAY), WEEK(SUNDAY), ISOWEEK, MONTH, QUARTER, YEAR, ISOYEAR)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
-function timestamp_trunc(timestamp, varchar, time_zone varchar) returns timestamp
-	and varchar in (MICROSECOND, MILLISECOND, SECOND, MINUTE, HOUR, DAY, WEEK, WEEK(MONDAY), WEEK(TUESDAY), WEEK(WEDNESDAY), WEEK(THURSDAY), WEEK(FRIDAY), WEEK(SATURDAY), WEEK(SUNDAY), ISOWEEK, MONTH, QUARTER, YEAR, ISOYEAR)
+function timestamp_trunc(timestamp, date_time_part varchar, time_zone varchar) returns timestamp
+	where date_time_part in (microsecond, MILLISECOND, SECOND, MINUTE, HOUR, DAY, WEEK, WEEK(MONDAY), WEEK(TUESDAY), WEEK(WEDNESDAY), WEEK(THURSDAY), WEEK(FRIDAY), WEEK(SATURDAY), WEEK(SUNDAY), ISOWEEK, MONTH, QUARTER, YEAR, ISOYEAR)
 ```
 
 
+## unix_micros
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_micros)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  unix_micros
-<Tabs>
-<Tab title="Overview">
 ```sql
 function unix_micros(timestamp) returns int64
 ```
 
 
+## unix_millis
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_millis)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  unix_millis
-<Tabs>
-<Tab title="Overview">
 ```sql
 function unix_millis(timestamp) returns int64
 ```
 
 
+## unix_seconds
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_seconds)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  unix_seconds
-<Tabs>
-<Tab title="Overview">
 ```sql
 function unix_seconds(timestamp) returns int64
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

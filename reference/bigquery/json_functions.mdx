@@ -2,489 +2,166 @@
 title: "JSON Functions"
 ---
 
-##  bool
-<Tabs>
-<Tab title="Overview">
+## bool
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#bool_for_json)
+
 ```sql
 function bool(json) returns bool
 ```
 
 
+## float64
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#float64_for_json)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  float64
-<Tabs>
-<Tab title="Overview">
 ```sql
 function float64(json) returns double
 ```
 
 
+## int64
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#int64_for_json)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  int64
-<Tabs>
-<Tab title="Overview">
 ```sql
 function int64(json) returns bigint
 ```
 
 
+## json_extract
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_extract)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_extract
-<Tabs>
-<Tab title="Overview">
 ```sql
 function json_extract(json, varchar) returns json
 ```
 
 
+## json_extract_array
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_extract_array)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_extract_array
-<Tabs>
-<Tab title="Overview">
 ```sql
-function json_extract_array(json) returns array\<json>
+function json_extract_array(json) returns array<json>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
-function json_extract_array(json, varchar) returns array\<json>
+function json_extract_array(json, varchar) returns array<json>
 ```
 
 
+## json_extract_scalar
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_extract_scalar)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_extract_scalar
-<Tabs>
-<Tab title="Overview">
 ```sql
 function json_extract_scalar(json) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function json_extract_scalar(json, varchar) returns varchar
 ```
 
 
+## json_extract_string_array
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_extract_string_array)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_extract_string_array
-<Tabs>
-<Tab title="Overview">
 ```sql
-function json_extract_string_array(json) returns array\<varchar>
+function json_extract_string_array(json) returns array<varchar>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
-function json_extract_string_array(json, varchar) returns array\<varchar>
+function json_extract_string_array(json, varchar) returns array<varchar>
 ```
 
 
+## json_query
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_query)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_query
-<Tabs>
-<Tab title="Overview">
 ```sql
 function json_query(json, varchar) returns json
 ```
 
 
+## json_query_array
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_query_array)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_query_array
-<Tabs>
-<Tab title="Overview">
 ```sql
-function json_query_array(json, varchar) returns array\<json>
+function json_query_array(json, varchar) returns array<json>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
-function json_query_array(json) returns array\<json>
+function json_query_array(json) returns array<json>
 ```
 
 
+## json_type
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_type)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_type
-<Tabs>
-<Tab title="Overview">
 ```sql
 function json_type(json) returns varchar
 ```
 
 
+## json_value
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_value)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_value
-<Tabs>
-<Tab title="Overview">
 ```sql
 function json_value(json, varchar) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function json_value(json) returns varchar
 ```
 
 
+## json_value_array
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_value_array)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  json_value_array
-<Tabs>
-<Tab title="Overview">
 ```sql
-function json_value_array(json, varchar) returns array\<varchar>
+function json_value_array(json, varchar) returns array<varchar>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
-function json_value_array(json) returns array\<varchar>
+function json_value_array(json) returns array<varchar>
 ```
 
 
+## parse_json
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#parse_json)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  parse_json
-<Tabs>
-<Tab title="Overview">
 ```sql
 function parse_json(varchar) returns json
 ```
 
 
+## string
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#string_for_json)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  string
-<Tabs>
-<Tab title="Overview">
 ```sql
 function string<$1> ($1) returns varchar
-	Where $1 in (timestamp, json)
+	where $1 in (timestamp, json)
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function string<$1> ($1, time_zone varchar) returns varchar
-	Where $1 in (timestamp, json)
+	where $1 in (timestamp, json)
 ```
 
 
+## to_json_string
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#to_json_string)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  to_json_string
-<Tabs>
-<Tab title="Overview">
 ```sql
 function to_json_string(T) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-**Overload:**
-<Tabs>
-<Tab title="Overview">
 ```sql
 function to_json_string(T, pretty_print boolean) returns varchar
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 

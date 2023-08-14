@@ -2,88 +2,36 @@
 title: "Approximate Aggregate Functions"
 ---
 
-##  approx_count_distinct
-<Tabs>
-<Tab title="Overview">
+## approx_count_distinct
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions#approx_count_distinct)
+
 ```sql
 function approx_count_distinct(t) returns bigint
 ```
 
 
+## approx_quantiles
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions#approx_quantiles)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  approx_quantiles
-<Tabs>
-<Tab title="Overview">
 ```sql
-function approx_quantiles(t, bigint) returns array\<t>
+function approx_quantiles(t, bigint) returns array<t>
 ```
 
 
+## approx_top_count
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions#approx_top_count)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  approx_top_count
-<Tabs>
-<Tab title="Overview">
 ```sql
-function approx_top_count(t, bigint) returns array\<struct\<value t, count bigint>>
+function approx_top_count(t, bigint) returns array<struct<value t, count bigint>>
 ```
 
 
+## approx_top_sum
+[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions#approx_top_sum)
 
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
-##  approx_top_sum
-<Tabs>
-<Tab title="Overview">
 ```sql
-function approx_top_sum(t, t, bigint) returns array\<struct\<value t, sum t>>
+function approx_top_sum(t, t, bigint) returns array<struct<value t, sum t>>
 ```
 
 
-
-</Tab>
-
-        <Tab title="Compatibility">
-
-        | Feature | |
-        |---| :---: |
-        | describe | ✔️ |
-        | lineage | ✔️ |
-        | propagation | ✔️|
-        | build | ❌|
-        </Tab>
-</Tabs>
 
