@@ -1,13 +1,21 @@
 ---
-title: "Status"
+title: "V0.1.60"
+description: "This document contains release notes from patched version v0.1.60 of SDF."
 ---
+### August 17th, 2023
 
-## SDF Engine
+We released another version of the CLI which contains many updates, bug fixes, and other improvements to SDF.
 
-SDF is compiled for various architectures, with various optimizations. Extensive
-test suites are run as part of releases.
+### What's New?
+- Added support for dialect-specific "system" tables to user queries on the information schema
+- Fixed the raw string literal syntax for BigQuery 
+- Fixed `xtask sync-binders` for BigQuery 
+- Added an error output when the table prefix does not include any table
+- Refactored and improved testing infrastructure
+- Fixed issues handling DF 26 Function Casing Recognition
+- General bug fixes and stability improvements
 
-### Latest Builds
+### Latest Builds 
 
 | Architecture           | Status | Version | Download |
 | ---------------------- | ------ | ------- | -------- |

@@ -4,7 +4,8 @@ title: "Temporal Functions"
 
 ## date_sub
 ```sql
-function date_sub(date, interval day to year) returns date
+function date_sub<$1> ($1, interval day to year) returns $1
+	where $1 in (date, datetime, timestamp)
 ```
 
 

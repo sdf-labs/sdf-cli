@@ -2,6 +2,15 @@
 title: "Other Expressions"
 ---
 
+## random
+```sql
+function random() returns bigint
+```
+Creates a pseudo-random number between 0 and 1
+
+```sql example.sql
+select random() as value; -- value '0.8781138533805801' 
+```
 ## reclassify
 ```sql
 function reclassify(T, varchar, varchar) returns T

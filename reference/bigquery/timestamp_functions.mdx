@@ -14,7 +14,8 @@ function current_timestamp() returns timestamp
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#format_timestamp)
 
 ```sql
-function format_timestamp(varchar, timestamp) returns varchar
+function format_timestamp<$1> (varchar, $1) returns varchar
+	where $1 in (timestamp, datetime)
 ```
 
 
@@ -73,7 +74,8 @@ function timestamp(datetime, time_zone varchar) returns timestamp
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_add)
 
 ```sql
-function timestamp_add(timestamp, interval microsecond to day) returns timestamp
+function timestamp_add<$1> ($1, interval microsecond to day) returns $1
+	where $1 in (timestamp, datetime)
 ```
 
 
@@ -81,8 +83,9 @@ function timestamp_add(timestamp, interval microsecond to day) returns timestamp
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_diff)
 
 ```sql
-function timestamp_diff(timestamp, timestamp, date_part varchar) returns bigint
+function timestamp_diff<$1> ($1, $1, date_part varchar) returns bigint
 	where date_part in (microsecond, millisecond, second, minute, hour, day, week, month, quarter, year)
+	where $1 in (timestamp, datetime)
 ```
 
 
@@ -114,7 +117,8 @@ function timestamp_seconds(int64) returns timestamp
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_sub)
 
 ```sql
-function timestamp_sub(timestamp, interval microsecond to day) returns timestamp
+function timestamp_sub<$1> ($1, interval microsecond to day) returns $1
+	where $1 in (timestamp, datetime)
 ```
 
 
@@ -122,8 +126,9 @@ function timestamp_sub(timestamp, interval microsecond to day) returns timestamp
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc)
 
 ```sql
-function timestamp_trunc(timestamp, date_time_part varchar) returns timestamp
+function timestamp_trunc<$1> ($1, date_time_part varchar) returns $1
 	where date_time_part in (microsecond, MILLISECOND, SECOND, MINUTE, HOUR, DAY, WEEK, week(monday), WEEK(TUESDAY), WEEK(WEDNESDAY), WEEK(THURSDAY), WEEK(FRIDAY), WEEK(SATURDAY), WEEK(SUNDAY), ISOWEEK, MONTH, QUARTER, YEAR, ISOYEAR)
+	where $1 in (timestamp, datetime)
 ```
 
 

@@ -42,7 +42,8 @@ function date(datetime) returns date
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_add)
 
 ```sql
-function date_add(date, interval day to year) returns date
+function date_add<$1> ($1, interval day to year) returns $1
+	where $1 in (date, datetime, timestamp)
 ```
 
 
@@ -50,8 +51,9 @@ function date_add(date, interval day to year) returns date
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_diff)
 
 ```sql
-function date_diff(date, date, date_part varchar) returns bigint
+function date_diff<$1> ($1, $1, date_part varchar) returns bigint
 	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+	where $1 in (date, datetime, timestamp)
 ```
 
 
@@ -67,8 +69,9 @@ function date_from_unix_date(bigint) returns date
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_trunc)
 
 ```sql
-function date_trunc(date, date_part varchar) returns date
+function date_trunc<$1> ($1, date_part varchar) returns $1
 	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+	where $1 in (date, datetime, timestamp)
 ```
 
 
@@ -76,7 +79,8 @@ function date_trunc(date, date_part varchar) returns date
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#format_date)
 
 ```sql
-function format_date(varchar, date) returns varchar
+function format_date<$1> (varchar, $1) returns varchar
+	where $1 in (date, datetime, timestamp)
 ```
 
 
@@ -89,8 +93,9 @@ function last_day(date) returns date
 
 
 ```sql
-function last_day(date, date_part varchar) returns date
+function last_day<$1> ($1, date_part varchar) returns date
 	where date_part in (week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+	where $1 in (date, datetime)
 ```
 
 
