@@ -155,6 +155,7 @@ Build, run, and save SDF queries
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
+* `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -216,6 +217,7 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
+* `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -370,7 +372,7 @@ System maintenance, install and update
 
 Manage credentials and tokens
 
-**Usage:** `sdf auth <COMMAND>`
+**Usage:** `sdf auth [OPTIONS] <COMMAND>`
 
 ###### **Subcommands:**
 
@@ -379,17 +381,31 @@ Manage credentials and tokens
 * `status` — Show status of credentials / tokens
 * `aws` — Configure how to authenticate with AWS
 
+###### **Options:**
+
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+
 
 
 ## `sdf auth login`
 
 Obtain credentials for accessing remote resources
 
+Default behavior is to open a browser window and prompt the user to log in.
+
 **Usage:** `sdf auth login [OPTIONS]`
 
 ###### **Options:**
 
 * `--id-token <ID_TOKEN>` — Path to a file containing an OIDC identity token (a JWT)
+* `--access-key <ACCESS_KEY>` — Access key for headless authentication
+* `--secret-key <SECRET_KEY>` — Secret key for headless authentication
 
 
 
@@ -508,5 +524,5 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 
 
-   Finished show in 0.005 secs
+   Finished show in 0.006 secs
 

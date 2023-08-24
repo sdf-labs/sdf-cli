@@ -572,13 +572,13 @@ function round<$1> ($1, bigint) returns $1
 
 ```sql
 function round(bigint, bigint, rounding_mode varchar) returns double
-	where rounding_mode in (ROUND_HALF_EVEN, ROUND_HALF_AWAY_FROM_ZERO)
+	where rounding_mode in (round_half_even, round_half_away_from_zero)
 ```
 
 
 ```sql
 function round<$1> ($1, bigint, rounding_mode varchar) returns $1
-	where rounding_mode in (ROUND_HALF_EVEN, ROUND_HALF_AWAY_FROM_ZERO)
+	where rounding_mode in (round_half_even, round_half_away_from_zero)
 	where $1 in (numeric, bignumeric, double)
 ```
 
