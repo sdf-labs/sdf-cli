@@ -82,6 +82,7 @@ Value | Description|
 `ephemeral` | Ephemeral|
 `recursive` | Recursive warehouse tables must be  explicitly  marked|
 `system` | System tables are not materialized|
+`catalog` | Catalog tables are not materialized|
 ## Enum: `CompressionType`
 Value | Description|
 | :--- | :------- |
@@ -260,4 +261,12 @@ Value | Description|
 `binary:` | `string`| Full path to the binary [e.g.: /usr/bin/python3]|
 `extension:` | `string`| File extension to scan in the includes directories; must be unique [e.g.: .py]|
 `format:` | `string`| Format of the output files; must be known to SDF [e.g.: spark-lp-json]|
+### Nested element: `Catalog`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of the catalog [e.g.: database]|
+`type:` | `UNKNOWN`| The type of the catalog [e.g.: hive]|
+### Nested element: `CatalogType`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 

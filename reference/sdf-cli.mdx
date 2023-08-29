@@ -96,6 +96,7 @@ Remove generated SDF artifacts in workspace
 
   Default value: `0`
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
 
 
 
@@ -164,6 +165,7 @@ Build, run, and save SDF queries
 
   Default value: `0`
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
 
 
 
@@ -226,6 +228,7 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
   Default value: `0`
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
 
 
 
@@ -265,6 +268,7 @@ Create a deployment and post it to the SDF service
 
   Default value: `0`
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
 
 
 
@@ -310,6 +314,7 @@ View existing table content
 
   Default value: `0`
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
 
 
 
@@ -341,6 +346,7 @@ Display lineage for a given column
 
   Default value: `0`
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
 
 
 
@@ -406,6 +412,7 @@ Default behavior is to open a browser window and prompt the user to log in.
 * `--id-token <ID_TOKEN>` — Path to a file containing an OIDC identity token (a JWT)
 * `--access-key <ACCESS_KEY>` — Access key for headless authentication
 * `--secret-key <SECRET_KEY>` — Secret key for headless authentication
+* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials will be stored (default is platform specific)
 
 
 
@@ -413,7 +420,11 @@ Default behavior is to open a browser window and prompt the user to log in.
 
 Log out of SDF Service
 
-**Usage:** `sdf auth logout`
+**Usage:** `sdf auth logout [OPTIONS]`
+
+###### **Options:**
+
+* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials are be stored (default is platform specific)
 
 
 
@@ -421,7 +432,11 @@ Log out of SDF Service
 
 Show status of credentials / tokens
 
-**Usage:** `sdf auth status`
+**Usage:** `sdf auth status [OPTIONS]`
+
+###### **Options:**
+
+* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials will be stored (default is platform specific)
 
 
 
@@ -433,16 +448,17 @@ Configure how to authenticate with AWS
 
 ###### **Options:**
 
-* `--default-region <DEFAULT_REGION>` — AWS Region to use
+* `--default-region <DEFAULT_REGION>` — AWS Region to use (default: us-east-1)
 
   Default value: `us-east-1`
-* `--profile <PROFILE>` — AWS profile to use, as usually defined in ~/.aws/config
+* `--profile <PROFILE>` — AWS profile to use, as usually defined in ~/.aws/config or ~/.aws/credentials
 * `--role-arn <ROLE_ARN>` — ARN of the role to assume
-* `--external-id <EXTERNAL_ID>` — ARN of the role to assume
-* `--use-web-identity` — ARN of the role to assume
+* `--external-id <EXTERNAL_ID>` — External ID to use when assuming the role
+* `--use-web-identity` — Use web identity to authenticate
 
   Default value: `false`
 * `--bucket-region-map <BUCKET_REGION_MAP>` — Mapping of bucket names to regions
+* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials will be stored (default is platform specific)
 
 
 
@@ -466,6 +482,7 @@ Display results of various supported analyses (e.g. unused-columns)
 
   Default value: `0`
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
 
 
 
@@ -524,5 +541,5 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 
 
-   Finished show in 0.009 secs
+   Finished show in 0.006 secs
 
