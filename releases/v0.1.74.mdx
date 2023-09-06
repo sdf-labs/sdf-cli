@@ -1,0 +1,30 @@
+---
+title: "V0.1.74"
+description: "This document contains release notes from version 0.1.74 of SDF."
+---
+### September 6th, 2023
+
+We are excited to announce that a new release of our CLI is now available, bringing some exciting updates and improvements to SDF.
+
+### What's New?
+- Added prioritization to error messages
+- General refactoring of binding context 
+- Updated and improved support for Iceberg and Iceberg Spark 
+- Implemented fixes for general BigQuery support 
+- Added BigQuery binary bitwise operators 
+- Made BigQuery backquoting case-insensitive 
+- Added support for variable as a function parameter. Ex:
+<div>
+`SELECT CONCAT(@codec, '-------------------')`
+</div>
+- General bug fixes and stability improvements
+
+
+### Latest Builds 
+
+| Architecture           | Status | Version | Download |
+| ---------------------- | ------ | ------- | -------- |
+| Linux Intel X86-64     |   ✅   | 0.1.74  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.74-x86_64-unknown-linux-musl.tar.gz) |
+| Linux Arm ARM-64       |   ✅   | 0.1.74  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.74-arm-unknown-linux-gnueabihf.tar.gz) |
+| Apple Intel X86-64     |   ✅   | 0.1.74  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.74-x86_64-apple-darwin.tar.gz) |
+| Apple Arm AARCh-64     |   ✅   | 0.1.74  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.74-aarch64-apple-darwin.tar.gz) |

@@ -138,6 +138,13 @@
       "group": "Releases",
       "pages": [
         {
+          "group": "September 2023",
+          "pages": [
+            "releases/v0.1.75",
+            "releases/v0.1.74"
+          ]
+        },
+        {
           "group": "August 2023",
           "pages": [
             "releases/v0.1.73",
