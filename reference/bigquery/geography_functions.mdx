@@ -35,7 +35,7 @@ function st_area(geography) returns double
 
 
 ```sql
-function st_area(geography, boolean) returns double
+function st_area(geography, bool) returns double
 ```
 
 
@@ -51,7 +51,7 @@ function st_asbinary(geography) returns bytes
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_asgeojson)
 
 ```sql
-function st_asgeojson(geography) returns varchar
+function st_asgeojson(geography) returns string
 ```
 
 
@@ -59,7 +59,7 @@ function st_asgeojson(geography) returns varchar
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_astext)
 
 ```sql
-function st_astext(geography) returns varchar
+function st_astext(geography) returns string
 ```
 
 
@@ -133,7 +133,7 @@ function st_closestpoint(geography, geography) returns geography
 
 
 ```sql
-function st_closestpoint(geography, geography, boolean) returns geography
+function st_closestpoint(geography, geography, bool) returns geography
 ```
 
 
@@ -149,7 +149,7 @@ function st_clusterdbscan(geography, double, bigint) returns bigint
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_contains)
 
 ```sql
-function st_contains(geography, geography) returns boolean
+function st_contains(geography, geography) returns bool
 ```
 
 
@@ -165,7 +165,7 @@ function st_convexhull(geography) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_coveredby)
 
 ```sql
-function st_coveredby(geography, geography) returns boolean
+function st_coveredby(geography, geography) returns bool
 ```
 
 
@@ -173,7 +173,7 @@ function st_coveredby(geography, geography) returns boolean
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_covers)
 
 ```sql
-function st_covers(geography, geography) returns boolean
+function st_covers(geography, geography) returns bool
 ```
 
 
@@ -197,7 +197,7 @@ function st_dimension(geography) returns bigint
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_disjoint)
 
 ```sql
-function st_disjoint(geography, geography) returns boolean
+function st_disjoint(geography, geography) returns bool
 ```
 
 
@@ -210,7 +210,7 @@ function st_distance(geography, geography) returns double
 
 
 ```sql
-function st_distance(geography, geography, boolean) returns double
+function st_distance(geography, geography, bool) returns double
 ```
 
 
@@ -231,7 +231,7 @@ function st_dump(geography, bigint) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_dwithin)
 
 ```sql
-function st_dwithin(geography, geography, double) returns boolean
+function st_dwithin(geography, geography, double) returns bool
 ```
 
 
@@ -247,7 +247,7 @@ function st_endpoint(geography) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_equals)
 
 ```sql
-function st_equals(geography, geography) returns boolean
+function st_equals(geography, geography) returns bool
 ```
 
 
@@ -263,7 +263,7 @@ function st_exteriorring(geography) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogfrom)
 
 ```sql
-function st_geogfrom(varchar) returns geography
+function st_geogfrom(string) returns geography
 ```
 
 
@@ -276,7 +276,7 @@ function st_geogfrom(bytes) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogfromgeojson)
 
 ```sql
-function st_geogfromgeojson(varchar) returns geography
+function st_geogfromgeojson(string) returns geography
 ```
 
 
@@ -284,27 +284,27 @@ function st_geogfromgeojson(varchar) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogfromtext)
 
 ```sql
-function st_geogfromtext(varchar) returns geography
+function st_geogfromtext(string) returns geography
 ```
 
 
 ```sql
-function st_geogfromtext(varchar, boolean) returns geography
+function st_geogfromtext(string, bool) returns geography
 ```
 
 
 ```sql
-function st_geogfromtext(varchar) returns geography
+function st_geogfromtext(string) returns geography
 ```
 
 
 ```sql
-function st_geogfromtext(varchar, boolean) returns geography
+function st_geogfromtext(string, bool) returns geography
 ```
 
 
 ```sql
-function st_geogfromtext(varchar) returns geography
+function st_geogfromtext(string) returns geography
 ```
 
 
@@ -317,7 +317,7 @@ function st_geogfromwkb(bytes) returns geography
 
 
 ```sql
-function st_geogfromwkb(varchar) returns geography
+function st_geogfromwkb(string) returns geography
 ```
 
 
@@ -333,12 +333,12 @@ function st_geogpoint(double, double) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogpointfromgeohash)
 
 ```sql
-function st_geogpointfromgeohash(varchar) returns geography
+function st_geogpointfromgeohash(string) returns geography
 ```
 
 
 ```sql
-function st_geogpointfromgeohash(varchar, double, double) returns geography
+function st_geogpointfromgeohash(string, double, double) returns geography
 ```
 
 
@@ -346,12 +346,12 @@ function st_geogpointfromgeohash(varchar, double, double) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geohash)
 
 ```sql
-function st_geohash(geography) returns varchar
+function st_geohash(geography) returns string
 ```
 
 
 ```sql
-function st_geohash(geography, bigint) returns varchar
+function st_geohash(geography, bigint) returns string
 ```
 
 
@@ -359,7 +359,7 @@ function st_geohash(geography, bigint) returns varchar
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geometrytype)
 
 ```sql
-function st_geometrytype(geography) returns varchar
+function st_geometrytype(geography) returns string
 ```
 
 
@@ -383,7 +383,7 @@ function st_intersection(geography, geography) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_intersects)
 
 ```sql
-function st_intersects(geography, geography) returns boolean
+function st_intersects(geography, geography) returns bool
 ```
 
 
@@ -391,7 +391,7 @@ function st_intersects(geography, geography) returns boolean
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_intersectsbox)
 
 ```sql
-function st_intersectsbox(geography, double, double, double, double) returns boolean
+function st_intersectsbox(geography, double, double, double, double) returns bool
 ```
 
 
@@ -399,7 +399,7 @@ function st_intersectsbox(geography, double, double, double, double) returns boo
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_isclosed)
 
 ```sql
-function st_isclosed(geography) returns boolean
+function st_isclosed(geography) returns bool
 ```
 
 
@@ -407,7 +407,7 @@ function st_isclosed(geography) returns boolean
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_iscollection)
 
 ```sql
-function st_iscollection(geography) returns boolean
+function st_iscollection(geography) returns bool
 ```
 
 
@@ -415,7 +415,7 @@ function st_iscollection(geography) returns boolean
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_isempty)
 
 ```sql
-function st_isempty(geography) returns boolean
+function st_isempty(geography) returns bool
 ```
 
 
@@ -423,7 +423,7 @@ function st_isempty(geography) returns boolean
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_isring)
 
 ```sql
-function st_isring(geography) returns boolean
+function st_isring(geography) returns bool
 ```
 
 
@@ -436,7 +436,7 @@ function st_length(geography) returns double
 
 
 ```sql
-function st_length(geography, boolean) returns double
+function st_length(geography, bool) returns double
 ```
 
 
@@ -486,7 +486,7 @@ function st_maxdistance(geography, geography) returns double
 
 
 ```sql
-function st_maxdistance(geography, geography, boolean) returns double
+function st_maxdistance(geography, geography, bool) returns double
 ```
 
 
@@ -523,7 +523,7 @@ function st_perimeter(geography) returns double
 
 
 ```sql
-function st_perimeter(geography, boolean) returns double
+function st_perimeter(geography, bool) returns double
 ```
 
 
@@ -563,7 +563,7 @@ function st_startpoint(geography) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_touches)
 
 ```sql
-function st_touches(geography, geography) returns boolean
+function st_touches(geography, geography) returns bool
 ```
 
 
@@ -587,7 +587,7 @@ function st_union_agg(geography) returns geography
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_within)
 
 ```sql
-function st_within(geography, geography) returns boolean
+function st_within(geography, geography) returns bool
 ```
 
 

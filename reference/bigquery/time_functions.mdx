@@ -11,7 +11,7 @@ function current_time() returns time
 
 
 ```sql
-function current_time(time_zone varchar) returns time
+function current_time(time_zone string) returns time
 ```
 
 
@@ -19,7 +19,7 @@ function current_time(time_zone varchar) returns time
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#format_time)
 
 ```sql
-function format_time(varchar, time) returns varchar
+function format_time(string, time) returns string
 ```
 
 
@@ -27,7 +27,7 @@ function format_time(varchar, time) returns varchar
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#parse_time)
 
 ```sql
-function parse_time(varchar, varchar) returns time
+function parse_time(string, string) returns time
 ```
 
 
@@ -45,7 +45,7 @@ function time(timestamp) returns time
 
 
 ```sql
-function time(timestamp, time_zone varchar) returns time
+function time(timestamp, time_zone string) returns time
 ```
 
 
@@ -66,7 +66,7 @@ function time_add(time, interval microsecond to hour) returns time
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_diff)
 
 ```sql
-function time_diff(time, time, date_time_part varchar) returns bigint
+function time_diff(time, time, date_time_part string) returns bigint
 	where date_time_part in (microsecond, millisecond, second, minute, hour)
 ```
 
@@ -83,7 +83,7 @@ function time_sub(time, interval microsecond to hour) returns time
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_trunc)
 
 ```sql
-function time_trunc(time, time_part varchar) returns time
+function time_trunc(time, time_part string) returns time
 	where time_part in (microsecond, millisecond, second, minute, hour)
 ```
 

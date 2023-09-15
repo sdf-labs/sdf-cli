@@ -6,7 +6,7 @@ title: "Aggregate Functions"
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#any_value)
 
 ```sql
-function any_value(t) returns t
+function any_value($1) returns $1
 ```
 
 
@@ -14,14 +14,14 @@ function any_value(t) returns t
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#array_agg)
 
 ```sql
-function array_agg(T) returns array<T>
+function array_agg($1) returns array<$1>
 ```
 
 
 ## array_avg
 ```sql
 function array_avg<$1> (array<$1>) returns double
-	where $1 in (int, bigint, int unsigned, bigint unsigned, float, double)
+	where $1 in (int, bigint, float, double)
 ```
 
 
@@ -29,7 +29,7 @@ function array_avg<$1> (array<$1>) returns double
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#array_concat_agg)
 
 ```sql
-function array_concat_agg(array<t>) returns array<t>
+function array_concat_agg(array<$1>) returns array<$1>
 ```
 
 
@@ -38,7 +38,7 @@ function array_concat_agg(array<t>) returns array<t>
 
 ```sql
 function avg<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double, interval)
+	where $1 in (decimal(p,s), double, interval)
 ```
 
 
@@ -75,7 +75,7 @@ function bit_xor(bigint) returns bigint
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#count)
 
 ```sql
-function count(T) returns bigint
+function count($1) returns bigint
 ```
 
 
@@ -107,7 +107,7 @@ function logical_or(bool) returns bool
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#max_by)
 
 ```sql
-function max_by(T, U) returns T
+function max_by($1, $2) returns $1
 ```
 
 
@@ -115,7 +115,7 @@ function max_by(T, U) returns T
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#min_by)
 
 ```sql
-function min_by(T, U) returns T
+function min_by($1, $2) returns $1
 ```
 
 
@@ -124,13 +124,13 @@ function min_by(T, U) returns T
 
 ```sql
 function string_agg<$1> ($1) returns $1
-	where $1 in (varchar, varbinary)
+	where $1 in (string, bytes)
 ```
 
 
 ```sql
 function string_agg<$1> ($1, string) returns array<$1>
-	where $1 in (varchar, varbinary)
+	where $1 in (string, bytes)
 ```
 
 

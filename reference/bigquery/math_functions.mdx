@@ -7,7 +7,7 @@ title: "Math Functions"
 
 ```sql
 function abs<$1> ($1) returns $1
-	where $1 in (bigint, numeric, bignumeric, float64)
+	where $1 in (bigint, decimal(p,s), float64)
 ```
 
 
@@ -16,7 +16,7 @@ function abs<$1> ($1) returns $1
 
 ```sql
 function acos<$1> ($1) returns double
-	where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, decimal(p,s))
 ```
 
 
@@ -25,7 +25,7 @@ function acos<$1> ($1) returns double
 
 ```sql
 function acosh<$1> ($1) returns double
-	where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, decimal(p,s))
 ```
 
 
@@ -34,7 +34,7 @@ function acosh<$1> ($1) returns double
 
 ```sql
 function asin<$1> ($1) returns double
-	where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, decimal(p,s))
 ```
 
 
@@ -43,7 +43,7 @@ function asin<$1> ($1) returns double
 
 ```sql
 function asinh<$1> ($1) returns double
-	where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, decimal(p,s))
 ```
 
 
@@ -52,7 +52,7 @@ function asinh<$1> ($1) returns double
 
 ```sql
 function atan<$1> ($1) returns double
-	where $1 in (double, bigint, numeric, bignumeric)
+	where $1 in (double, bigint, decimal(p,s))
 ```
 
 
@@ -61,8 +61,8 @@ function atan<$1> ($1) returns double
 
 ```sql
 function atan2<$1, $2> ($1, $2) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
-	and $2 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
+	and $2 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -71,7 +71,7 @@ function atan2<$1, $2> ($1, $2) returns double
 
 ```sql
 function atanh<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -80,7 +80,7 @@ function atanh<$1> ($1) returns double
 
 ```sql
 function cbrt<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -94,7 +94,7 @@ function ceil(bigint) returns double
 
 ```sql
 function ceil<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -108,7 +108,7 @@ function ceiling(bigint) returns double
 
 ```sql
 function ceiling<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -117,7 +117,7 @@ function ceiling<$1> ($1) returns $1
 
 ```sql
 function cos<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -126,7 +126,7 @@ function cos<$1> ($1) returns double
 
 ```sql
 function cosh<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -135,7 +135,7 @@ function cosh<$1> ($1) returns double
 
 ```sql
 function cot<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -144,7 +144,7 @@ function cot<$1> ($1) returns double
 
 ```sql
 function coth<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -153,7 +153,7 @@ function coth<$1> ($1) returns double
 
 ```sql
 function csc<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -162,7 +162,7 @@ function csc<$1> ($1) returns double
 
 ```sql
 function csch<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -171,27 +171,27 @@ function csch<$1> ($1) returns double
 
 ```sql
 function div<$1> ($1, $1) returns $1
-	where $1 in (bigint, numeric, bignumeric)
+	where $1 in (bigint, decimal(p,s))
 ```
 
 
 ```sql
-function div(bigint, numeric) returns numeric
+function div(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function div(numeric, bigint) returns numeric
+function div(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function div(bignumeric, bigint) returns bignumeric
+function div(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function div(bigint, bignumeric) returns bignumeric
+function div(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -205,7 +205,7 @@ function exp(bigint) returns double
 
 ```sql
 function exp<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -214,7 +214,7 @@ function exp<$1> ($1) returns $1
 
 ```sql
 function floor<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -228,7 +228,7 @@ function floor(bigint) returns double
 
 ```sql
 function greatest<$1> ($1, ...) returns $1
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -237,8 +237,8 @@ function greatest<$1> ($1, ...) returns $1
 
 ```sql
 function ieee_divide<$1, $2> ($1, $2) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
-	and $2 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
+	and $2 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -246,8 +246,8 @@ function ieee_divide<$1, $2> ($1, $2) returns double
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_inf)
 
 ```sql
-function is_inf<$1> ($1) returns boolean
-	where $1 in (bigint, numeric, bignumeric, double)
+function is_inf<$1> ($1) returns bool
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -255,8 +255,8 @@ function is_inf<$1> ($1) returns boolean
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_nan)
 
 ```sql
-function is_nan<$1> ($1) returns boolean
-	where $1 in (bigint, numeric, bignumeric, double)
+function is_nan<$1> ($1) returns bool
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -265,7 +265,7 @@ function is_nan<$1> ($1) returns boolean
 
 ```sql
 function least<$1> ($1, ...) returns $1
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -279,7 +279,7 @@ function ln(bigint) returns double
 
 ```sql
 function ln<$1> ($1) returns double
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -293,13 +293,13 @@ function log(bigint) returns double
 
 ```sql
 function log<$1> ($1) returns double
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
 ```sql
 function log<$1> ($1, $1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -309,22 +309,22 @@ function log(bigint, bigint) returns double
 
 
 ```sql
-function log(bigint, numeric) returns numeric
+function log(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function log(numeric, bigint) returns numeric
+function log(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function log(bignumeric, bigint) returns bignumeric
+function log(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function log(bigint, bignumeric) returns bignumeric
+function log(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -339,22 +339,22 @@ function log(bigint, double) returns double
 
 
 ```sql
-function log(numeric, double) returns double
+function log(decimal(p,s), double) returns double
 ```
 
 
 ```sql
-function log(double, numeric) returns double
+function log(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function log(double, bignumeric) returns double
+function log(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function log(bignumeric, double) returns double
+function log(decimal(p,s), double) returns double
 ```
 
 
@@ -368,7 +368,7 @@ function log10(bigint) returns double
 
 ```sql
 function log10<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -377,27 +377,27 @@ function log10<$1> ($1) returns $1
 
 ```sql
 function mod<$1> ($1, $1) returns $1
-	where $1 in (bigint, numeric, bignumeric)
+	where $1 in (bigint, decimal(p,s))
 ```
 
 
 ```sql
-function mod(bigint, numeric) returns numeric
+function mod(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function mod(numeric, bigint) returns numeric
+function mod(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function mod(bignumeric, bigint) returns bignumeric
+function mod(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function mod(bigint, bignumeric) returns bignumeric
+function mod(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -406,7 +406,7 @@ function mod(bigint, bignumeric) returns bignumeric
 
 ```sql
 function pow<$1> ($1, $1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -416,22 +416,22 @@ function pow(bigint, bigint) returns double
 
 
 ```sql
-function pow(bigint, numeric) returns numeric
+function pow(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function pow(numeric, bigint) returns numeric
+function pow(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function pow(bignumeric, bigint) returns bignumeric
+function pow(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function pow(bigint, bignumeric) returns bignumeric
+function pow(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -446,22 +446,22 @@ function pow(bigint, double) returns double
 
 
 ```sql
-function pow(double, numeric) returns double
+function pow(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function pow(numeric, double) returns double
+function pow(decimal(p,s), double) returns double
 ```
 
 
 ```sql
-function pow(double, bignumeric) returns double
+function pow(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function pow(bignumeric, double) returns double
+function pow(decimal(p,s), double) returns double
 ```
 
 
@@ -470,7 +470,7 @@ function pow(bignumeric, double) returns double
 
 ```sql
 function power<$1> ($1, $1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -480,22 +480,22 @@ function power(bigint, bigint) returns double
 
 
 ```sql
-function power(bigint, numeric) returns numeric
+function power(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function power(numeric, bigint) returns numeric
+function power(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function power(bignumeric, bigint) returns bignumeric
+function power(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function power(bigint, bignumeric) returns bignumeric
+function power(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -510,22 +510,22 @@ function power(bigint, double) returns double
 
 
 ```sql
-function power(double, numeric) returns double
+function power(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function power(numeric, double) returns double
+function power(decimal(p,s), double) returns double
 ```
 
 
 ```sql
-function power(double, bignumeric) returns double
+function power(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function power(bignumeric, double) returns double
+function power(decimal(p,s), double) returns double
 ```
 
 
@@ -555,7 +555,7 @@ function round(bigint) returns double
 
 ```sql
 function round<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -566,20 +566,20 @@ function round(bigint, bigint) returns double
 
 ```sql
 function round<$1> ($1, bigint) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
 ```sql
-function round(bigint, bigint, rounding_mode varchar) returns double
+function round(bigint, bigint, rounding_mode string) returns double
 	where rounding_mode in (round_half_even, round_half_away_from_zero)
 ```
 
 
 ```sql
-function round<$1> ($1, bigint, rounding_mode varchar) returns $1
+function round<$1> ($1, bigint, rounding_mode string) returns $1
 	where rounding_mode in (round_half_even, round_half_away_from_zero)
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -588,27 +588,27 @@ function round<$1> ($1, bigint, rounding_mode varchar) returns $1
 
 ```sql
 function safe_add<$1> ($1, $1) returns $1
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
 ```sql
-function safe_add(bigint, numeric) returns numeric
+function safe_add(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_add(numeric, bigint) returns numeric
+function safe_add(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_add(bignumeric, bigint) returns bignumeric
+function safe_add(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_add(bigint, bignumeric) returns bignumeric
+function safe_add(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -623,22 +623,22 @@ function safe_add(bigint, double) returns double
 
 
 ```sql
-function safe_add(double, numeric) returns double
+function safe_add(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function safe_add(numeric, double) returns double
+function safe_add(decimal(p,s), double) returns double
 ```
 
 
 ```sql
-function safe_add(double, bignumeric) returns double
+function safe_add(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function safe_add(bignumeric, double) returns double
+function safe_add(decimal(p,s), double) returns double
 ```
 
 
@@ -647,27 +647,27 @@ function safe_add(bignumeric, double) returns double
 
 ```sql
 function safe_divide<$1> ($1, $1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
 ```sql
-function safe_divide(bigint, numeric) returns numeric
+function safe_divide(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_divide(numeric, bigint) returns numeric
+function safe_divide(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_divide(bignumeric, bigint) returns bignumeric
+function safe_divide(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_divide(bigint, bignumeric) returns bignumeric
+function safe_divide(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -682,22 +682,22 @@ function safe_divide(bigint, double) returns double
 
 
 ```sql
-function safe_divide(double, numeric) returns double
+function safe_divide(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function safe_divide(numeric, double) returns double
+function safe_divide(decimal(p,s), double) returns double
 ```
 
 
 ```sql
-function safe_divide(double, bignumeric) returns double
+function safe_divide(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function safe_divide(bignumeric, double) returns double
+function safe_divide(decimal(p,s), double) returns double
 ```
 
 
@@ -706,27 +706,27 @@ function safe_divide(bignumeric, double) returns double
 
 ```sql
 function safe_multiply<$1> ($1, $1) returns $1
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
 ```sql
-function safe_multiply(bigint, numeric) returns numeric
+function safe_multiply(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_multiply(numeric, bigint) returns numeric
+function safe_multiply(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_multiply(bignumeric, bigint) returns bignumeric
+function safe_multiply(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_multiply(bigint, bignumeric) returns bignumeric
+function safe_multiply(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -741,22 +741,22 @@ function safe_multiply(bigint, double) returns double
 
 
 ```sql
-function safe_multiply(double, numeric) returns double
+function safe_multiply(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function safe_multiply(numeric, double) returns double
+function safe_multiply(decimal(p,s), double) returns double
 ```
 
 
 ```sql
-function safe_multiply(double, bignumeric) returns double
+function safe_multiply(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function safe_multiply(bignumeric, double) returns double
+function safe_multiply(decimal(p,s), double) returns double
 ```
 
 
@@ -765,7 +765,7 @@ function safe_multiply(bignumeric, double) returns double
 
 ```sql
 function safe_negate<$1> ($1) returns $1
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -774,27 +774,27 @@ function safe_negate<$1> ($1) returns $1
 
 ```sql
 function safe_subtract<$1> ($1, $1) returns $1
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
 ```sql
-function safe_subtract(bigint, numeric) returns numeric
+function safe_subtract(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_subtract(numeric, bigint) returns numeric
+function safe_subtract(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_subtract(bignumeric, bigint) returns bignumeric
+function safe_subtract(decimal(p,s), bigint) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_subtract(bigint, bignumeric) returns bignumeric
+function safe_subtract(bigint, decimal(p,s)) returns decimal(p,s)
 ```
 
 
@@ -809,22 +809,22 @@ function safe_subtract(bigint, double) returns double
 
 
 ```sql
-function safe_subtract(double, numeric) returns double
+function safe_subtract(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function safe_subtract(numeric, double) returns double
+function safe_subtract(decimal(p,s), double) returns double
 ```
 
 
 ```sql
-function safe_subtract(double, bignumeric) returns double
+function safe_subtract(double, decimal(p,s)) returns double
 ```
 
 
 ```sql
-function safe_subtract(bignumeric, double) returns double
+function safe_subtract(decimal(p,s), double) returns double
 ```
 
 
@@ -833,7 +833,7 @@ function safe_subtract(bignumeric, double) returns double
 
 ```sql
 function sec<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -842,7 +842,7 @@ function sec<$1> ($1) returns double
 
 ```sql
 function sech<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -851,7 +851,7 @@ function sech<$1> ($1) returns double
 
 ```sql
 function sign<$1> ($1) returns $1
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -860,7 +860,7 @@ function sign<$1> ($1) returns $1
 
 ```sql
 function sin<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -869,7 +869,7 @@ function sin<$1> ($1) returns double
 
 ```sql
 function sinh<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -883,7 +883,7 @@ function sqrt(bigint) returns double
 
 ```sql
 function sqrt<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -892,7 +892,7 @@ function sqrt<$1> ($1) returns $1
 
 ```sql
 function tan<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -901,7 +901,7 @@ function tan<$1> ($1) returns double
 
 ```sql
 function tanh<$1> ($1) returns double
-	where $1 in (bigint, numeric, bignumeric, double)
+	where $1 in (bigint, decimal(p,s), double)
 ```
 
 
@@ -915,7 +915,7 @@ function trunc(bigint) returns double
 
 ```sql
 function trunc<$1> ($1) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 
@@ -926,7 +926,7 @@ function trunc(bigint, bigint) returns double
 
 ```sql
 function trunc<$1> ($1, bigint) returns $1
-	where $1 in (numeric, bignumeric, double)
+	where $1 in (decimal(p,s), double)
 ```
 
 

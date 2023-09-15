@@ -157,6 +157,10 @@ Build, run, and save SDF queries
 
   Default value: `false`
 * `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
+* `--no-parallel` — Do NOT run in parallel
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -220,6 +224,10 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
   Default value: `false`
 * `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
+* `--no-parallel` — Do NOT run in parallel
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -236,11 +244,11 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
 Create a deployment and post it to the SDF service
 
-**Usage:** `sdf deploy [OPTIONS] [INPUT_FILES]...`
+**Usage:** `sdf deploy [OPTIONS] [TARGET]`
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Deploy these *.sql files or [[catalog.]schema.]table targets; providing no input or optionally a */workspace.sdf.yml file rebuilds the whole workspace
+* `<TARGET>` — Target Workspace
 
 ###### **Options:**
 
@@ -260,6 +268,9 @@ Create a deployment and post it to the SDF service
 * `--no-cache` — Don't read and write cached table schema
 
   Default value: `false`
+* `--delete` — Delete this workspace from the SDF Console
+
+  Default value: `false`
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -269,6 +280,9 @@ Create a deployment and post it to the SDF service
   Default value: `0`
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
+* `-y`, `--yes` — Answer yes to all prompts
+
+  Default value: `false`
 
 
 
@@ -544,5 +558,5 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 
 
-   Finished show in 0.010 secs
+   Finished show in 0.008 secs
 
