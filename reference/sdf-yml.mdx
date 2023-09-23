@@ -73,6 +73,7 @@ title: "SDF YML Schema"
 `cross-link:` | `string?`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
 `reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
 `source-locations:` | `[FilePath]?`| Function defined by these set of .sdf files|
+`implemented-by:` | `FunctionImplSpec?`| undefined|
 ## Enum: `Materialization`
 Value | Description|
 | :--- | :------- |
@@ -129,9 +130,11 @@ Value | Description|
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| The relative path from this workspace to the referenced workspace, for a Git repo, from the root of the depot to the workspace|
-`git:` | `string`| The Git repo|
-`rev:` | `string`| the Git revision|
-`branch:` | `string`| the Git branch|
+`profile:` | `string?`| The chosen workspace profile (none means default)|
+`git:` | `string?`| The Git repo|
+`rev:` | `string?`| the Git revision (choose only one of the fields: rev, branch, tag)|
+`branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
+`tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
 ### Nested element: `Variable`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -258,13 +261,17 @@ Value | Description|
 | :---- | :--- | :------- |
 `input:` | `string`| The sql string corresponding to the input of this example|
 `output:` | `string`| The output corresponding to running the input string|
+### Nested element: `FunctionImplSpec`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `Plugin`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the plugin [e.g.: pyspark]|
-`binary:` | `string`| Full path to the binary [e.g.: /usr/bin/python3]|
-`extension:` | `string`| File extension to scan in the includes directories; must be unique [e.g.: .py]|
-`format:` | `string`| Format of the output files; must be known to SDF [e.g.: spark-lp-json]|
+`image-uri:` | `string?`| Image URI of the plugin [e.g.: docker.io/sdf/pyspark:latest]|
+`dockerfile:` | `string?`| Path to the dockerfile of the plugin [e.g.: dockerfile]|
+`keep-alive:` | `boolean?`| Whether to keep the plugin container alive after execution|
+`includes:` | `array`| An array of directories and filenames containing files processed by this plugin|
 ### Nested element: `Catalog`
 |Field | Type | Description|
 | :---- | :--- | :------- |
