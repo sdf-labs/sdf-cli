@@ -71,7 +71,7 @@ After running the command, you should see the following output:
     Created hello/checks/code_check.sql
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.005 secs
+   Finished new in 0.012 secs
 
 ```
 
@@ -94,23 +94,13 @@ sdf describe
 ```
 
 ```shell
-  Analyzing hello.pub.main (./src/main.sql)
-    Written .sdfcache/dbg/hello/pub/main/table.sdf.yml
-
-Schema hello.pub.main
 +-------------+-----------+-------------+------------+
 | column_name | data_type | is_nullable | classifier |
 +-------------+-----------+-------------+------------+
 | column_1    | varchar   | false       |            |
 | column_2    | varchar   | false       |            |
 +-------------+-----------+-------------+------------+
-    Written .sdfcache/dbg/information_schema.sql
-    Written .sdfcache/dbg/sdf.information_schema.tables
-    Written .sdfcache/dbg/sdf.information_schema.columns
-
-CodeChecks 
-   [Pass] not exists code_check (checks/code_check.sql)
-   Finished describe in 0.092 secs
+   Finished describe in 0.086 secs
 
 ```
 
