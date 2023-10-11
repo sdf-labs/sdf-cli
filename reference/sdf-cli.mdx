@@ -155,6 +155,9 @@ Build, run, and save SDF queries
 * `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
@@ -237,6 +240,9 @@ Describe inferred table schemas including propagated classifiers, run code code 
   Default value: `false`
 * `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
 * `--no-parallel` — Do NOT run in parallel
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
@@ -606,5 +612,5 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 
 
-   Finished show in 0.014 secs
+   Finished show in 0.011 secs
 
