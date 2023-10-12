@@ -272,6 +272,14 @@ Value | Description|
 `dockerfile:` | `string?`| Path to the dockerfile of the plugin [e.g.: dockerfile]|
 `keep-alive:` | `boolean?`| Whether to keep the plugin container alive after execution|
 `includes:` | `array`| An array of directories and filenames containing files processed by this plugin|
+### Nested element: `PluginIncludePath`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`path:` | `string`| A filepath|
+`kind:` | `PluginIncludePathKind?`| Type of Plugin Path (Default: queries)|
+### Nested element: `PluginIncludePathKind`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `Catalog`
 |Field | Type | Description|
 | :---- | :--- | :------- |
