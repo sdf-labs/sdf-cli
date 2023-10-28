@@ -26,6 +26,10 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf analyze`↴](#sdf-analyze)
 * [`sdf analyze unused-columns`↴](#sdf-analyze-unused-columns)
 * [`sdf show`↴](#sdf-show)
+* [`sdf test`↴](#sdf-test)
+* [`sdf query`↴](#sdf-query)
+* [`sdf report`↴](#sdf-report)
+* [`sdf obfuscate`↴](#sdf-obfuscate)
 
 ## `sdf`
 
@@ -46,6 +50,10 @@ SDF's modular SQL
 * `auth` — Manage credentials and tokens
 * `analyze` — Display results of various supported analyses (e.g. unused-columns)
 * `show` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+* `test` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+* `query` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+* `report` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+* `obfuscate` — Obfuscate the workspace into the provided directory
 
 
 
@@ -76,6 +84,10 @@ Create a new SDF workspace at PATH
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 
 
 
@@ -103,8 +115,16 @@ Remove generated SDF artifacts in workspace
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -149,6 +169,12 @@ Build, run, and save SDF queries
 * `--no-cache` — Don't read and write cached table data
 
   Default value: `false`
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
@@ -168,6 +194,9 @@ Build, run, and save SDF queries
 
   Default value: `false`
 * `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
+* `--obfuscate-all` — Obfuscate all tables
+
+  Default value: `false`
 * `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
@@ -183,8 +212,16 @@ Build, run, and save SDF queries
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -204,6 +241,12 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--no-cache` — Don't read and write cached table schema
 
   Default value: `false`
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
 * `--print-format <PRINT_FORMAT>` — Show tables in this format
 
   Default value: `table`
@@ -235,10 +278,16 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
 * `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
+* `--obfuscate-all` — Obfuscate all tables
+
+  Default value: `false`
 * `--no-parallel` — Do NOT run in parallel
 * `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
@@ -257,8 +306,16 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -304,8 +361,16 @@ Create a deployment and post it to the SDF service
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
@@ -357,8 +422,16 @@ View existing table content
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -393,8 +466,16 @@ Display lineage for a given column
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -423,6 +504,10 @@ System maintenance, install and update
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 
 
 
@@ -452,6 +537,10 @@ Manage credentials and tokens
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 
 
 
@@ -544,8 +633,16 @@ Display results of various supported analyses (e.g. unused-columns)
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -572,6 +669,10 @@ Analyze upstream tables for unused columns
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 * `-p`, `--profile <PROFILE>` — Analyze queries using this profile
 * `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
 
@@ -595,7 +696,14 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 * `--deploy-json-schema` — Show json schema for deploy.json documents
 * `--dialect <DIALECT>` — The dialect to show (only for --functions, `` shows all dialects)
 
-  Possible values: `sdf`, `presto`, `bigquery`, `redshift`
+  Possible values:
+  - `sdf`
+  - `spark-sql`
+  - `snowflake`:
+    Snowflake Dialect
+  - `presto`
+  - `bigquery`
+  - `redshift`
 
 * `--section <SECTION>` — The section to show (only for --functions, `` shows all sections)
 * `--quiet` — Do not print sdf console messages
@@ -609,8 +717,306 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
 
 
 
-   Finished show in 0.012 secs
+## `sdf test`
+
+Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+
+**Usage:** `sdf test [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Test these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml reanalyzes the whole workspace
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Describe data using this profile
+* `--no-cache` — Don't read and write cached table schema
+
+  Default value: `false`
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--print-format <PRINT_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--file-format <FILE_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--data` — Do only run data tests
+
+  Default value: `false`
+* `--code` — Do only run code tests
+
+  Default value: `false`
+* `--no-parallel` — Do NOT run in parallel
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+
+
+
+## `sdf query`
+
+Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+
+**Usage:** `sdf query [OPTIONS] <QUERY>`
+
+###### **Arguments:**
+
+* `<QUERY>`
+
+###### **Options:**
+
+* `--input-files <INPUT_FILES>` — Run data or code checks for the dirs or *.sql files or [[catalog.]schema.]table targets Providing no input or a path to workspace.sdf.yml runs all tests of the whole workspace
+* `--file <FILE>`
+* `--profile <PROFILE>` — Describe data using this profile
+* `--no-cache` — Don't read and write cached table schema
+
+  Default value: `false`
+* `--print-format <PRINT_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--file-format <FILE_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--no-parallel` — Do NOT run in parallel
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
+
+
+
+## `sdf report`
+
+Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+
+**Usage:** `sdf report [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Test these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml reanalyzes the whole workspace
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Describe data using this profile
+* `--no-cache` — Don't read and write cached table schema
+
+  Default value: `false`
+* `--print-format <PRINT_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--file-format <FILE_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--no-parallel` — Do NOT run in parallel
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
+
+
+
+## `sdf obfuscate`
+
+Obfuscate the workspace into the provided directory
+
+**Usage:** `sdf obfuscate [OPTIONS] --output <OUTPUT> [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Statically analyze these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml reanalyzes the whole workspace
+
+###### **Options:**
+
+* `--output <OUTPUT>` — Obfuscate the workspace into the provided directory
+* `--profile <PROFILE>` — Describe data using this profile
+* `--no-cache` — Don't read and write cached table schema
+
+  Default value: `false`
+* `--print-format <PRINT_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--file-format <FILE_FORMAT>` — Save tables in this format
+
+  Default value: `json`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--code-reports` — Run code reports against information schemas and metadata
+
+  Default value: `false`
+* `--no-code-checks` — Run code checks against information schemas and metadata
+
+  Default value: `false`
+* `--check-access` — Check attribute based access control, for testing assumes a user.json and a job.json file in workspace directory
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--no-parallel` — Do NOT run in parallel
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+
+  Default value: `false`
+* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
+
+
+
+   Finished show in 0.006 secs
 

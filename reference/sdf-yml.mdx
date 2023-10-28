@@ -11,18 +11,14 @@ title: "SDF YML Schema"
 `repository:` | `string?`| The URL of the workspace source repository [defaults to 'none' if no repository is given]|
 `remote-location:` | `string?`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
 `includes:` | `[IncludePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
-`excludes:` | `[FilePath]?`| An array of directories and filenames to be skipped when resolving includes|
+`excludes:` | `[ExcludePath]?`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `[WorkspacePath]?`| An array of paths to other workspaces, i.e. .sql and .yml files|
 `dialect:` | `Dialect?`| The dialect of this workspace. If not set, defaults to sdf dialect|
-`resources:` | `[FilePath]?`| An array of paths to directories and files, which will be copied to the SDF service on deployment|
 `default-catalog:` | `string?`| Defines a default catalog [If not set, defaults to the directory of the workspace]|
 `default-schema:` | `string?`| Defines a default schema [If not set, defaults to 'pub']|
 `default-profile:` | `string?`| Defines the default profile [if not set, defaults to 'dbg']|
 `source-locations:` | `FilePath?`| Workspace defined by these set of files|
 `variables:` | `[Variable]?`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
-`code-reports:` | `[CodeReportPath]?`| An array of queries over the information schema that will be run on sdf describe and sdf deploy|
-`code-checks:` | `[CodeCheckPath]?`| An array of queries over the information schema that will be run on sdf describe and sdf deploy|
-`access-control:` | `[AccessControlPath]?`| An array of attribute based access control queries over the information schema, current user and current job, that will be run on sdf build and sdf deploy|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -74,6 +70,22 @@ title: "SDF YML Schema"
 `reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
 `source-locations:` | `[FilePath]?`| Function defined by these set of .sdf files|
 `implemented-by:` | `FunctionImplSpec?`| undefined|
+## Enum: `IncludeType`
+Value | Description|
+| :--- | :------- |
+`code-check` | undefined|
+`data-asset` | Contains data definition or data query|
+`resource` | Contains resources used by the application (e.g. static csv files)|
+## Enum: `Dialect`
+Value | Description|
+| :--- | :------- |
+`sdf` | undefined|
+`snowflake` | Snowflake Dialect|
+## Enum: `ExcludeType`
+Value | Description|
+| :--- | :------- |
+`timeouts` | undefined|
+`path` | Contains data definition or data query|
 ## Enum: `Materialization`
 Value | Description|
 | :--- | :------- |
@@ -84,6 +96,10 @@ Value | Description|
 `recursive` | Recursive warehouse tables must be  explicitly  marked|
 `system` | System tables are not materialized|
 `catalog` | Catalog tables are not materialized|
+`code-check` | Code check query|
+`data-check` | Data check query|
+`code-report` | Code report query|
+`access-check` | Access check query|
 ## Enum: `CompressionType`
 Value | Description|
 | :--- | :------- |
@@ -107,13 +123,11 @@ Value | Description|
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| A filepath|
+`include-type:` | `IncludeType?`| Type of included artifacts|
 `default-catalog:` | `string?`| Defines a default catalog for unqualified names. If not set, defaults to the [Workspace] catalog.|
 `default-schema:` | `string?`| Defines a default schema for unqualified names. If not set, defaults to the [Workspace] schema.|
 `dialect:` | `Dialect?`| The dialect of the included files. If not set, defaults to the [Workspace] dialect.|
 `access-with:` | `AccessMethod?`| Last modified of the file|
-### Nested element: `Dialect`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `AccessMethod`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -122,10 +136,11 @@ Value | Description|
 | :---- | :--- | :------- |
 `secs_since_epoch:` | `integer`| undefined|
 `nanos_since_epoch:` | `integer`| undefined|
-### Nested element: `FilePath`
+### Nested element: `ExcludePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| A filepath|
+`exclude-type:` | `ExcludeType?`| Type of excluded artifacts|
 ### Nested element: `WorkspacePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -135,40 +150,16 @@ Value | Description|
 `rev:` | `string?`| the Git revision (choose only one of the fields: rev, branch, tag)|
 `branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
 `tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
+### Nested element: `FilePath`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`path:` | `string`| A filepath|
 ### Nested element: `Variable`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the variable|
 `description:` | `string?`| undefined|
 `value:` | `string?`| The value of this variable (using sql/yaml literals)|
-### Nested element: `CodeReportPath`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`path:` | `string`| A filepath|
-`name:` | `string`| Name of check (default filestem of path)|
-`description:` | `string?`| A description of this report|
-`dialect:` | `Dialect?`| dialect|
-### Nested element: `CodeCheckPath`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`assert:` | `UNKNOWN`| Assertion|
-`name:` | `string?`| Name of check (default filestem of path)|
-`path:` | `string`| A filepath|
-`description:` | `string?`| A description of this assertion|
-`dialect:` | `Dialect?`| dialect|
-### Nested element: `CodeAssertion`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `AccessControlPath`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`access:` | `UNKNOWN`| Grant access|
-`name:` | `string`| Name of check (default filestem of path)|
-`description:` | `string?`| A description of this access control rule|
-`path:` | `string`| A filepath to a policy authored in .sql|
-### Nested element: `Grant`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `Profile`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -176,7 +167,7 @@ Value | Description|
 `description:` | `string?`| A description of this workspace|
 `remote-location:` | `string?`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
 `includes:` | `[IncludePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
-`excludes:` | `[FilePath]?`| An array of directories and filenames to be skipped when resolving includes|
+`excludes:` | `[ExcludePath]?`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `[WorkspacePath]?`| An array of paths to other workspaces, i.e. .sql and .yml files|
 `dialect:` | `Dialect?`| The default dialect of this workspace. If not set, defaults to sdf dialect|
 `resources:` | `[FilePath]?`| An array of paths to directories and files, which will be copied to the SDF service on deployment|
@@ -184,9 +175,6 @@ Value | Description|
 `default-schema:` | `string?`| Defines a default schema [If not set, defaults to 'pub']|
 `source-locations:` | `FilePath?`| Workspace defined by these set of files|
 `variables:` | `[Variable]?`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
-`code-reports:` | `[CodeReportPath]?`| An array of queries over the information schema that will be run on sdf describe and sdf deploy|
-`code-checks:` | `[CodeCheckPath]?`| An array of queries over the information schema that will be run on sdf describe and sdf deploy|
-`access-control:` | `[AccessControlPath]?`| An array of attribute based access control queries over the information schema, current user and current job, that will be run on sdf build and sdf deploy|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
