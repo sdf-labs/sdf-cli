@@ -1,0 +1,100 @@
+---
+title: "Databricks Spark Listener"
+description:
+  "Install SDF's Spark Listener in your Databricks Cluster"
+---
+
+The SDF Console can be configured to listen for Spark events on your Databricks Cluster and automatically ingest and analyze the lineage of your Spark Warehouse.
+
+## Prerequisites
+
+Ensure that you have the following installed and configured locally before beginning.
+
+<CardGroup cols={1}>
+  <Card title="Databricks CLI" icon="square-1">
+    For more information on how to install, see the **[Databricks CLI Tutorial](https://docs.databricks.com/en/dev-tools/cli/tutorial.html)**
+  </Card>
+</CardGroup>
+
+## Installation
+
+Follow the steps below to install the SDF Spark Listener on your Databricks Cluster.
+
+<Steps>
+  <Step title="Upload SDF Spark Listener to Databricks File System">
+    Using the databricks cli, create a directory on your Databricks File System (DBFS) called `databricks/spark-listener`.
+    ```bash
+    databricks fs mkdirs dbfs:/databricks/sdf-listener
+    ```
+    Next, run the following to upload the latest version of the SDF Spark Listener to the dbfs directory you just created.
+    ```bash
+    databricks fs cp <(curl -L https://cdn.sdf.com/spark-listener/releases/download/sdf-spark-listener-latest.jar) dbfs:/databricks/sdf-listener/sdf-spark-listener-latest.jar
+    ```
+  </Step>
+  <Step title="Add the Spark Listener init script to your Workspace">
+    Using the databricks cli, create a directory in your databricks workspace called `/Shared/sdf-listener`.
+    ```bash
+    databricks workspace mkdirs /Shared/sdf-listener
+    ```
+    Log into the Databricks Workspace UI and navigate to **Workspace** in the side bar. Navigate to the `/Shared/sdf-listener` directory. Once there, click the **Add** dropdown and select **File**. Name the file `init-script.sh` and paste the following into the file.
+
+    ```bash init-script.sh
+    #!/bin/bash
+
+    STAGE_DIR="/dbfs/databricks/sdf-listener"
+
+    echo "BEGIN: Upload Spark Listener JARs"
+    cp -f $STAGE_DIR/sdf-spark-listener*.jar /mnt/driver-daemon/jars || { echo "Error copying Spark Listener library file"; exit 1;}
+    echo "END: Upload Spark Listener JARs"
+
+    echo "BEGIN: Modify Spark config settings"
+    cat << 'EOF' > /databricks/driver/conf/openlineage-spark-driver-defaults.conf
+    [driver] {
+      "spark.extraListeners" = "io.openlineage.spark.agent.OpenLineageSparkListener"
+    }
+    EOF
+    echo "END: Modify Spark config settings"
+    ```
+  </Step>
+  <Step title="Create a Databricks Integration in the SDF Console">
+    Navigate to [console.sdf.com](https://console.sdf.com) and log in. Go to **Settings > Integrations** and click **Connect Database**.
+
+    Name your integration and select **Databricks** as the type. Click **Next** and follow the on-screen instructions to complete the integration.
+
+    <Note>You must be an Admin to create a databricks integration</Note>
+  </Step>
+  <Step title="Add generated Spark Config to Databricks Compute">
+    In the Databricks UI, navigate to **Compute** in the sidebar. Select the cluster (or clusters) that you want to enable the SDF Spark Listener on.
+
+    Alternativelly, you can create a new compute cluster by clicking **Create compute** and following these [instructions](https://docs.databricks.com/en/clusters/configure.html).
+
+    In the **Cluster Configuration** page, click **Edit**. Note, if your cluster is currently running, you will need to restart it in order for changes to apply. In the section labeled **Spark**, add the spark configuration generated in the previous step to the **Spark Config** section. 
+    
+    <Note>If you know your workspace and project names as well as your sdf cluster endpoint, you can populate the below template. Remember to replace `<SDF_CLUSTER_ENDPOINT>`, `<SDF_WORKSPACE_NAME>`, and `<SDF_PROJECT_NAME>` with your values.</Note>
+
+    ```config Spark Config
+    spark.openlineage.version v1
+    spark.extraListeners io.openlineage.spark.agent.OpenLineageSparkListener
+    spark.openlineage.debugFacet enabled
+    spark.openlineage.transport.type http
+    spark.openlineage.transport.url <SDF_CLUSTER_ENDPOINT>
+    spark.openlineage.transport.endpoint /api/v1/open-lineage/lineage
+    spark.openlineage.transport.headers.workspace <SDF_WORKSPACE_NAME>
+    spark.openlineage.transport.headers.project <SDF_PROJECT_NAME>
+    spark.openlineage.transport.auth.type api_key
+    spark.openlineage.transport.auth.apiKey {{secrets/sdf-integration/events-access-key}}
+    ```
+
+    Save your changes by clicking **Confirm** and then start your cluster by clicking **Start**.
+  </Step>
+  <Step title="(Optional) Run a Test Query">
+    In a Databricks Notebook, select the **Connect** button and select the compute cluster that you just configured. Run the following query to test that the SDF Spark Listener is working.
+
+    ```python
+    spark.createDataFrame([
+      {'a': 1, 'b': 2},
+      {'a': 3, 'b': 4}
+    ]).write.mode("overwrite").saveAsTable("default.test_sdf_integration")
+    ```
+  </Step>
+</Steps>

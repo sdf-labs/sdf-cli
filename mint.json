@@ -54,6 +54,12 @@
       ]
     },
     {
+      "group": "Integrations",
+      "pages": [
+        "integrations/databricks"
+      ]
+    },
+    {
       "group": "Reference",
       "pages": [
         "reference/sdf-cli",
