@@ -68,7 +68,9 @@ Follow the steps below to install the SDF Spark Listener on your Databricks Clus
 
     Alternativelly, you can create a new compute cluster by clicking **Create compute** and following these [instructions](https://docs.databricks.com/en/clusters/configure.html).
 
-    In the **Cluster Configuration** page, click **Edit**. Note, if your cluster is currently running, you will need to restart it in order for changes to apply. In the section labeled **Spark**, add the spark configuration generated in the previous step to the **Spark Config** section. 
+    In the **Cluster Configuration** page, click **Edit**. Note, if your cluster is currently running, you will need to restart it in order for changes to apply. Expand the section labeled **Advanced options** and in the section labeled **Spark**, add the spark configuration generated in the previous step to the **Spark Config** section. 
+
+    Next, click the **Init Scripts** Tab and select the init script located at `/Shared/sdf-listener/init-script.sh`.
     
     <Note>If you know your workspace and project names as well as your sdf cluster endpoint, you can populate the below template. Remember to replace `<SDF_CLUSTER_ENDPOINT>`, `<SDF_WORKSPACE_NAME>`, and `<SDF_PROJECT_NAME>` with your values.</Note>
 
