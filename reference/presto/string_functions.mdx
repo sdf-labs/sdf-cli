@@ -79,7 +79,7 @@ function map_concat(map(k, v), ...) returns map(k, v)
 
 ## regexp_replace
 ```sql
-function regexp_replace(varchar, varchar, lambda <(array<varchar>) -> varchar>) returns varchar
+function regexp_replace(varchar, varchar, function(array<varchar>, varchar)) returns varchar
 ```
 
 

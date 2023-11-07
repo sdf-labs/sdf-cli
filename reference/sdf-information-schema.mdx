@@ -40,31 +40,31 @@ As previously mentioned, these tables are just that - *tables*. Under the hood, 
 --information_schemas.sql
 
 CREATE TABLE sdf.information_schema.tables(
-    "table_ref" varchar not null,
-    "catalog_name" varchar not null,
-    "schema_name" varchar not null,
-    "table_name" varchar not null,
-    "description" varchar,
-    "dialect" varchar not null,
-    "dependencies" varchar,
-    "schedule" varchar,
-    "table_type" varchar,
-    "classifiers" varchar,
-    "lineage_scan" varchar
+    "table_ref" string! not null,
+    "catalog_name" string! not null,
+    "schema_name" string! not null,
+    "table_name" string! not null,
+    "description" string,
+    "dialect" string! not null,
+    "dependencies" string,
+    "schedule" string,
+    "table_type" string,
+    "classifiers" string,
+    "lineage_scan" string
 );
 
 CREATE TABLE sdf.information_schema.columns(
-    "table_ref" varchar not null,
-    "catalog_name" varchar not null,
-    "schema_name" varchar not null,
-    "table_name" varchar not null,
-    "column_name" varchar not null,
-    "description" varchar,
-    "datatype" varchar,
+    "table_ref" string! not null,
+    "catalog_name" string! not null,
+    "schema_name" string! not null,
+    "table_name" string! not null,
+    "column_name" string! not null,
+    "description" string,
+    "datatype" string,
     "is_nullable" boolean,
-    "classifiers" varchar,
-    "lineage_copy" varchar,
-    "lineage_modify" varchar
+    "classifiers" string,
+    "lineage_copy" string,
+    "lineage_modify" string
 );
 
 

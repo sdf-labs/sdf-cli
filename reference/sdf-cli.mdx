@@ -28,7 +28,6 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf show`↴](#sdf-show)
 * [`sdf test`↴](#sdf-test)
 * [`sdf query`↴](#sdf-query)
-* [`sdf report`↴](#sdf-report)
 * [`sdf obfuscate`↴](#sdf-obfuscate)
 
 ## `sdf`
@@ -52,7 +51,6 @@ SDF's modular SQL
 * `show` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
 * `test` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
 * `query` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
-* `report` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
 * `obfuscate` — Obfuscate the workspace into the provided directory
 
 
@@ -121,10 +119,6 @@ Remove generated SDF artifacts in workspace
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
-
-  Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -148,19 +142,13 @@ Build, run, and save SDF queries
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
-
-  Default value: `false`
-* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
-
-  Default value: `false`
-* `--file-format <FILE_FORMAT>` — Save tables in this format
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-format <PRINT_FORMAT>` — Show tables in this format
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
 
   Default value: `table`
 
@@ -187,18 +175,32 @@ Build, run, and save SDF queries
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
 * `--output-file-contents-on-error` — Include file contents when generating error output
 
   Default value: `false`
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
-* `--obfuscate-all` — Obfuscate all tables
-
-  Default value: `false`
 * `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
 
   Default value: `false`
 * `--quiet` — Do not print sdf console messages
@@ -218,10 +220,6 @@ Build, run, and save SDF queries
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
-
-  Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -233,12 +231,31 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Statically analyze these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml reanalyzes the whole workspace
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Describe data using this profile
-* `--no-cache` — Don't read and write cached table schema
+* `--profile <PROFILE>` — Build data using this profile
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+
+  Default value: `false`
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-cache` — Don't read and write cached table data
 
   Default value: `false`
 * `--cache-use <CACHE_USE>` — Controls read and write cached table data
@@ -247,52 +264,44 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
   Possible values: `none`, `read-only`, `read-write`, `write-only`
 
-* `--print-format <PRINT_FORMAT>` — Show tables in this format
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
 
   Default value: `table`
 
   Possible values: `table`, `yml`, `json`
 
-* `--file-format <FILE_FORMAT>` — Save tables in this format
-
-  Default value: `json`
-
-  Possible values: `table`, `yml`, `json`
-
-* `--output-file-contents-on-error` — Include file contents when generating error output
-
-  Default value: `false`
 * `--generate-information-schema` — Generate information schemas and metadata
 
   Default value: `false`
-* `--code-reports` — Run code reports against information schemas and metadata
-
-  Default value: `false`
-* `--no-code-checks` — Run code checks against information schemas and metadata
-
-  Default value: `false`
-* `--check-access` — Check attribute based access control, for testing assumes a user.json and a job.json file in workspace directory
 * `--no-propagate` — Propagate labels
 
   Default value: `false`
-* `--no-show` — Don't show the result of queries
-
-  Default value: `false`
-* `--no-workflow` — Don't run a workflow, just the query
+* `--output-file-contents-on-error` — Include file contents when generating error output
 
   Default value: `false`
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--obfuscate <OBFUSCATE>` — Obfuscate the workspace into the provided directory
-* `--obfuscate-all` — Obfuscate all tables
+* `--no-parallel` — Do NOT run in parallel
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
 
-  Default value: `30`
-* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
 
   Default value: `false`
 * `--quiet` — Do not print sdf console messages
@@ -312,10 +321,6 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
-
-  Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -323,31 +328,81 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
 Create a deployment and post it to the SDF service
 
-**Usage:** `sdf deploy [OPTIONS] [TARGET]`
+**Usage:** `sdf deploy [OPTIONS] [INPUT_FILES]...`
 
 ###### **Arguments:**
 
-* `<TARGET>` — Target Workspace
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Deploy build artifacts using this profile
-* `--date <DATE>` — Backfill all tasks that run (only) on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07 or 2020-12-31
-* `--to <TO>` — Backfill to this datetime (exclusive), use RFC format, e.g., e.g. 2020-12-31T21:07:14-07:00, with optional T part
-* `--execute` — When to execute this job run; defaults to recurring: if --from/--to are given
+* `--profile <PROFILE>` — Build data using this profile
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
 
   Default value: `false`
-* `--dry-run` — Create a deploy.json and archive.tar.gz but don't post it to the service
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-cache` — Don't read and write cached table data
 
   Default value: `false`
-* `--no-propagate` — Propagate labels for deployed targets
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
+* `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--no-cache` — Don't read and write cached table schema
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--delete` — Delete this workspace from the SDF Console
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--no-parallel` — Do NOT run in parallel
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
 
   Default value: `false`
 * `--quiet` — Do not print sdf console messages
@@ -367,10 +422,12 @@ Create a deployment and post it to the SDF service
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+* `--execute` — When to execute this job run; defaults to recurring: if --from/--to are given
 
   Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
+* `--delete` — Delete this workspace from the SDF Console
+
+  Default value: `false`
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
@@ -428,10 +485,6 @@ View existing table content
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
-
-  Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -443,16 +496,77 @@ Display lineage for a given column
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — The specification of the table for whose columns to compute lineage
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
 * `--profile <PROFILE>` — Build data using this profile
-* `--column <COLUMN>` — The column for which to compute lineage
-* `--forward` — Compute downstream lineage instead of the default upstream lineage
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
 
   Default value: `false`
-* `--show-scans` — Display scan dependencies in addition to copy and mod dependencies. Unset by default
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-cache` — Don't read and write cached table data
+
+  Default value: `false`
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--no-parallel` — Do NOT run in parallel
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
 
   Default value: `false`
 * `--quiet` — Do not print sdf console messages
@@ -472,10 +586,13 @@ Display lineage for a given column
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+* `--column <COLUMN>` — The column for which to compute lineage
+* `--forward` — Compute downstream lineage instead of the default upstream lineage
 
   Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
+* `--show-scans` — Display scan dependencies in addition to copy and mod dependencies. Unset by default
+
+  Default value: `false`
 
 
 
@@ -639,10 +756,6 @@ Display results of various supported analyses (e.g. unused-columns)
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
-
-  Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -698,12 +811,14 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
   Possible values:
   - `sdf`
-  - `spark-sql`
+  - `spark-sql`:
+    SparkSQL Dialect
   - `snowflake`:
     Snowflake Dialect
   - `presto`
   - `bigquery`
   - `redshift`
+  - `spark-lp`
 
 * `--section <SECTION>` — The section to show (only for --functions, `` shows all sections)
 * `--quiet` — Do not print sdf console messages
@@ -732,51 +847,79 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Test these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml reanalyzes the whole workspace
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Describe data using this profile
-* `--no-cache` — Don't read and write cached table schema
+* `--profile <PROFILE>` — Build data using this profile
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
 
   Default value: `false`
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--print-format <PRINT_FORMAT>` — Show tables in this format
-
-  Default value: `table`
-
-  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
-
-* `--file-format <FILE_FORMAT>` — Save tables in this format
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--output-file-contents-on-error` — Include file contents when generating error output
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-cache` — Don't read and write cached table data
 
   Default value: `false`
-* `--no-show` — Don't show the result of queries
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
 
-  Default value: `false`
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--data` — Do only run data tests
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--code` — Do only run code tests
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
 * `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
-* `--save-assembly` — Save assembly in yaml format
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
 
   Default value: `false`
-* `--skip-describe` — Skip describe
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
+
+  Default value: `false`
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -794,13 +937,9 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
+* `--skip-describe` — Describe data using this profile
 
   Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
-
-  Default value: `10`
 
 
 
@@ -808,42 +947,82 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
 
-**Usage:** `sdf query [OPTIONS] <QUERY>`
+**Usage:** `sdf query [OPTIONS] <QUERY> [INPUT_FILES]...`
 
 ###### **Arguments:**
 
-* `<QUERY>`
+* `<QUERY>` — Pass a query before you pass all other arguments
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--input-files <INPUT_FILES>` — Run data or code checks for the dirs or *.sql files or [[catalog.]schema.]table targets Providing no input or a path to workspace.sdf.yml runs all tests of the whole workspace
-* `--file <FILE>`
-* `--profile <PROFILE>` — Describe data using this profile
-* `--no-cache` — Don't read and write cached table schema
+* `--profile <PROFILE>` — Build data using this profile
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
 
   Default value: `false`
-* `--print-format <PRINT_FORMAT>` — Show tables in this format
-
-  Default value: `table`
-
-  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
-
-* `--file-format <FILE_FORMAT>` — Save tables in this format
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-cache` — Don't read and write cached table data
+
+  Default value: `false`
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
 * `--output-file-contents-on-error` — Include file contents when generating error output
 
   Default value: `false`
-* `--no-show` — Don't show the result of queries
+* `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
 * `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
 
   Default value: `false`
 * `--quiet` — Do not print sdf console messages
@@ -863,74 +1042,6 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
-
-  Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
-
-
-
-## `sdf report`
-
-Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
-
-**Usage:** `sdf report [OPTIONS] [INPUT_FILES]...`
-
-###### **Arguments:**
-
-* `<INPUT_FILES>` — Test these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml reanalyzes the whole workspace
-
-###### **Options:**
-
-* `--profile <PROFILE>` — Describe data using this profile
-* `--no-cache` — Don't read and write cached table schema
-
-  Default value: `false`
-* `--print-format <PRINT_FORMAT>` — Show tables in this format
-
-  Default value: `table`
-
-  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
-
-* `--file-format <FILE_FORMAT>` — Save tables in this format
-
-  Default value: `parquet`
-
-  Possible values: `parquet`, `csv`, `json`
-
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--output-file-contents-on-error` — Include file contents when generating error output
-
-  Default value: `false`
-* `--no-show` — Don't show the result of queries
-
-  Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
-* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
-
-  Default value: `false`
-* `--quiet` — Do not print sdf console messages
-
-  Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
-
-  Default value: `0`
-* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
-
-  Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
-
-  Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
 
 
 
@@ -938,61 +1049,81 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 Obfuscate the workspace into the provided directory
 
-**Usage:** `sdf obfuscate [OPTIONS] --output <OUTPUT> [INPUT_FILES]...`
+**Usage:** `sdf obfuscate [OPTIONS] [INPUT_FILES]...`
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Statically analyze these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml reanalyzes the whole workspace
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--output <OUTPUT>` — Obfuscate the workspace into the provided directory
-* `--profile <PROFILE>` — Describe data using this profile
-* `--no-cache` — Don't read and write cached table schema
+* `--profile <PROFILE>` — Build data using this profile
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
 
   Default value: `false`
-* `--print-format <PRINT_FORMAT>` — Show tables in this format
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-cache` — Don't read and write cached table data
+
+  Default value: `false`
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
 
   Default value: `table`
 
   Possible values: `table`, `yml`, `json`
 
-* `--file-format <FILE_FORMAT>` — Save tables in this format
-
-  Default value: `json`
-
-  Possible values: `table`, `yml`, `json`
-
-* `--output-file-contents-on-error` — Include file contents when generating error output
-
-  Default value: `false`
 * `--generate-information-schema` — Generate information schemas and metadata
 
   Default value: `false`
-* `--code-reports` — Run code reports against information schemas and metadata
-
-  Default value: `false`
-* `--no-code-checks` — Run code checks against information schemas and metadata
-
-  Default value: `false`
-* `--check-access` — Check attribute based access control, for testing assumes a user.json and a job.json file in workspace directory
 * `--no-propagate` — Propagate labels
 
   Default value: `false`
-* `--no-show` — Don't show the result of queries
-
-  Default value: `false`
-* `--no-workflow` — Don't run a workflow, just the query
+* `--output-file-contents-on-error` — Include file contents when generating error output
 
   Default value: `false`
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
 * `--no-parallel` — Do NOT run in parallel
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
-
-  Default value: `30`
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
 
   Default value: `false`
 * `--quiet` — Do not print sdf console messages
@@ -1012,11 +1143,10 @@ Obfuscate the workspace into the provided directory
 * `--runlog <RUNLOG>` — Save the runlog to this file
 * `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
 * `--credentials-dir <CREDENTIALS_DIR>`
-* `--skip-special-excludes` — Skip source files specified in excludes.txt (if exists)
-
-  Default value: `false`
-* `--exclude-timeouts <EXCLUDE_TIMEOUTS>` — Skip timeouts for queries
+* `--obfuscate-dir <OBFUSCATE_DIR>` — Obfuscate the workspace into the provided directory
 
 
+
+   Finished show in 0.006 secs
 
 

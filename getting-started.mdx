@@ -49,7 +49,6 @@ Commands:
   show       Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
   test       Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
   query      Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
-  report     Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
   obfuscate  Obfuscate the workspace into the provided directory
   help       Print this message or the help of the given subcommand(s)
 
@@ -71,10 +70,12 @@ sdf new --sample hello
 After running the command, you should see the following output: 
  
 ```shell
+   Finished new in 0.000 secs
     Created hello/.gitignore
     Created hello/checks/code_check.sql
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
+
 
 ```
 
@@ -97,27 +98,27 @@ sdf describe
 ```
 
 ```shell
-  Analyzing hello.pub.code_check (./checks/code_check.sql)
+Start parsing 2 files
   Analyzing hello.pub.main (./src/main.sql)
+  Analyzing hello.pub.code_check (./checks/code_check.sql)
+------------
+Summary [0.062s] 2 queries run: 2 passed
 
 Schema hello.pub.main
-+-------------+-----------+-------------+------------+
-| column_name | data_type | is_nullable | classifier |
-+-------------+-----------+-------------+------------+
-| column_1    | varchar   | false       |            |
-| column_2    | varchar   | false       |            |
-+-------------+-----------+-------------+------------+
-
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| column_1    | string!   |            |
+| column_2    | string!   |            |
++-------------+-----------+------------+
 Schema hello.pub.code_check
-+-------------+-----------+-------------+------------+
-| column_name | data_type | is_nullable | classifier |
-+-------------+-----------+-------------+------------+
-| table_name  | varchar   | true        |            |
-| column name | varchar   | true        |            |
-| classifiers | varchar   | true        |            |
-+-------------+-----------+-------------+------------+
-    Written .sdfcache/dbg/hello/pub/main/table.sdf.yml
-    Written .sdfcache/dbg/hello/pub/code_check/table.sdf.yml
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| table_name  | string    |            |
+| column name | string    |            |
+| classifiers | string    |            |
++-------------+-----------+------------+
 
 ```
 

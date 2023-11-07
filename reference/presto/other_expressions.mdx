@@ -4,13 +4,13 @@ title: "Other Expressions"
 
 ## all_match
 ```sql
-function all_match(array(t), lambda <(t) -> boolean>) returns boolean
+function all_match(array(t), function(t, boolean)) returns boolean
 ```
 
 
 ## any_match
 ```sql
-function any_match(array(t), lambda <(t) -> boolean>) returns boolean
+function any_match(array(t), function(t, boolean)) returns boolean
 ```
 
 
@@ -202,7 +202,7 @@ function array_sort(array(e)) returns array(e)
 
 
 ```sql
-function array_sort(array(t), lambda <(t, t) -> bigint>) returns array(t)
+function array_sort(array(t), function(t, t, bigint)) returns array(t)
 ```
 
 
@@ -812,7 +812,7 @@ function features(double, double, double, double, double, double, double, double
 
 ## filter
 ```sql
-function filter(array(t), lambda <(t) -> boolean>) returns array(t)
+function filter(array(t), function(t, boolean)) returns array(t)
 ```
 
 
@@ -1493,7 +1493,7 @@ function map_entries(map(k, v)) returns array(row(c0 k, c1 v))
 
 ## map_filter
 ```sql
-function map_filter(map(k, v), lambda <(k, v) -> boolean>) returns map(k, v)
+function map_filter(map(k, v), function(k, v, boolean)) returns map(k, v)
 ```
 
 
@@ -1523,7 +1523,7 @@ function map_values(map(k, v)) returns array(v)
 
 ## map_zip_with
 ```sql
-function map_zip_with(map(k, v1), map(k, v2), lambda <(k, v1, v2) -> v3>) returns map(k, v3)
+function map_zip_with(map(k, v1), map(k, v2), function(k, v1, v2, v3)) returns map(k, v3)
 ```
 
 
@@ -1670,7 +1670,7 @@ function ngrams(array(t), bigint) returns array(array(t))
 
 ## none_match
 ```sql
-function none_match(array(t), lambda <(t) -> boolean>) returns boolean
+function none_match(array(t), function(t, boolean)) returns boolean
 ```
 
 
@@ -1979,13 +1979,13 @@ select reclassify(12345, 'pii.masked') as value; -- value '12345'
 ```
 ## reduce
 ```sql
-function reduce(array(t), s, lambda <(s, t) -> s>, lambda <(s) -> r>) returns r
+function reduce(array(t), s, function (s, t, s), function(s, r)) returns r
 ```
 
 
 ## reduce_agg
 ```sql
-function reduce_agg(t, s, lambda <(s, t) -> s>, lambda <(s, s) -> s>) returns s
+function reduce_agg(t, s, function (s, t, s), function(s, s, s)) returns s
 ```
 
 
@@ -2951,19 +2951,19 @@ function to_utf8(varchar) returns bytea
 
 ## transform
 ```sql
-function transform(array(t), lambda <(t) -> u>) returns array(u)
+function transform(array(t), function(t, u)) returns array(u)
 ```
 
 
 ## transform_keys
 ```sql
-function transform_keys(map(k1, v), lambda <(k1, v) -> k2>) returns map(k2, v)
+function transform_keys(map(k1, v), function(k1, v, k2)) returns map(k2, v)
 ```
 
 
 ## transform_values
 ```sql
-function transform_values(map(k, v1), lambda <(k, v1) -> v2>) returns map(k, v2)
+function transform_values(map(k, v1), function(k, v1, v2)) returns map(k, v2)
 ```
 
 
@@ -3297,7 +3297,7 @@ function zip(array(t1), array(t2), array(t3), array(t4), array(t5)) returns arra
 
 ## zip_with
 ```sql
-function zip_with(array(t), array(u), lambda <(t, u) -> r>) returns array(r)
+function zip_with(array(t), array(u), function(t, u, r)) returns array(r)
 ```
 
 
