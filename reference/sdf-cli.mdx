@@ -29,6 +29,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf test`↴](#sdf-test)
 * [`sdf query`↴](#sdf-query)
 * [`sdf obfuscate`↴](#sdf-obfuscate)
+* [`sdf add`↴](#sdf-add)
 
 ## `sdf`
 
@@ -52,6 +53,7 @@ SDF's modular SQL
 * `test` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
 * `query` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
 * `obfuscate` — Obfuscate the workspace into the provided directory
+* `add` — Add new versioned files to the workspace
 
 
 
@@ -1147,6 +1149,56 @@ Obfuscate the workspace into the provided directory
 
 
 
-   Finished show in 0.004 secs
+## `sdf add`
+
+Add new versioned files to the workspace
+
+**Usage:** `sdf add [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Add these files/or directories to the selected workspace/profile
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Add the files using this profile
+* `--workspace-path <WORKSPACE_PATH>` — Add these files to this workspace (defaults to current working dir or any of its parents*)
+* `--includes-path <INCLUDES_PATH>` — Add them to this include path (default folder is ./src)
+* `--dialect <DIALECT>` — Assume this dialect for all files (default dialect is the workspace dialect)
+
+  Possible values:
+  - `sdf`
+  - `spark-sql`:
+    SparkSQL Dialect
+  - `snowflake`:
+    Snowflake Dialect
+  - `presto`
+  - `bigquery`
+  - `redshift`
+  - `spark-lp`
+
+* `--default-catalog <DEFAULT_CATALOG>` — Assume this default catalog for all files (default dialect is the workspace dialect)
+* `--default-schema <DEFAULT_SCHEMA>` — Assume this default schema for all files (default dialect is the workspace dialect)
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+
+
+
+   Finished show in 0.007 secs
 
 
