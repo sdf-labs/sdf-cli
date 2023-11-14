@@ -83,6 +83,7 @@ Follow the steps below to install the SDF Spark Listener on your Databricks Clus
     spark.openlineage.transport.endpoint /api/v1/open-lineage/lineage
     spark.openlineage.transport.headers.workspace <SDF_WORKSPACE_NAME>
     spark.openlineage.transport.headers.project <SDF_PROJECT_NAME>
+    spark.openlineage.transport.headers.cluster <OPTIONAL_NAME_OF_CLUSTER>
     spark.openlineage.transport.auth.type api_key
     spark.openlineage.transport.auth.apiKey {{secrets/sdf-integration/events-access-key}}
     ```
