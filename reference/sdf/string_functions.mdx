@@ -4,7 +4,7 @@ title: "String Functions"
 
 ## ascii
 ```sql
-function ascii(x varchar) returns int
+function ascii(x varchar) returns +i32
 ```
 Returns the ascii value of the first character given
 
@@ -16,7 +16,7 @@ select ascii('ab') as value -- value '97'
 ```
 ## bit_length
 ```sql
-function bit_length(x varchar) returns int
+function bit_length(x varchar) returns +i32
 ```
 Returns the bit length of the given characters
 
@@ -43,7 +43,7 @@ select btrim('hi hello world', 'hello') as value; -- value 'hi hello world'
 ```
 ## char_length
 ```sql
-function char_length(n varchar) returns int
+function char_length(n varchar) returns +i32
 ```
 Returns the number of characters of n
 
@@ -52,7 +52,7 @@ select char_length('hello world!') as value; -- value '12'
 ```
 ## character_length
 ```sql
-function character_length(n varchar) returns int
+function character_length(n varchar) returns +i32
 ```
 Returns the number of characters of n
 
@@ -61,7 +61,7 @@ select character_length('hello world!') as value; -- value '12'
 ```
 ## chr
 ```sql
-function chr(bigint) returns varchar
+function chr(+i64) returns varchar
 ```
 Returns the Unicode code point n as a single character string.
 
@@ -73,7 +73,7 @@ select chr(128521) as value; -- value '😉'
 ```
 ## concat
 ```sql
-function concat(e, array(e)) returns array(e)
+function concat($1, +list<$1>) returns +list<$1>
 ```
 Concatenates the arrays array1, array2, ..., arrayN. This function provides the
 same functionality as the SQL-standard concatenation operator (||).
@@ -86,7 +86,7 @@ select concat(['hello '], ['world!']) as value -- value '[hello ][world!]'
 ```
 ## concat_ws
 ```sql
-function concat_ws(varchar, array<varchar>) returns varchar
+function concat_ws(varchar, +list<varchar>) returns varchar
 ```
 Returns the concatenation of string1, string2, ..., stringN using string0 as a
 separator. If string0 is null, then the return value is null. Any values
@@ -126,7 +126,7 @@ select initcap('aAa') as value; -- value 'Aaa'
 ```
 ## left
 ```sql
-function left(n varchar, x bigint) returns varchar
+function left(n varchar, x +i64) returns varchar
 ```
 Returns the left x characters of n
 
@@ -135,7 +135,7 @@ select left('Hello World!', 5) as value; -- value 'Hello'
 ```
 ## length
 ```sql
-function length(varchar) returns bigint
+function length(varchar) returns +i64
 ```
 Returns the number of characters in n
 
@@ -156,7 +156,7 @@ select lower('Hello World!') as value; -- value 'hello world!'
 ```
 ## lpad
 ```sql
-function lpad(bytea, bigint, bytea) returns bytea
+function lpad(+binary, +i64, +binary) returns +binary
 ```
 Left pads string to size characters with padstring. If size is less than the
 length of string, the result is truncated to size characters. size must not be
@@ -179,7 +179,7 @@ select ltrim('   😉') as value; -- value '😉'
 ```
 ## md5
 ```sql
-function md5(bytea) returns bytea
+function md5(+binary) returns +binary
 ```
 Computes the md5 hash of string. Md5 is a consistent hash.
 
@@ -188,7 +188,7 @@ select md5('Hello World!') as value; -- value 'ed076287532e86365e841e92bfc50d8c'
 ```
 ## octet_length
 ```sql
-function octet_length(string varchar) returns int
+function octet_length(string varchar) returns +i32
 ```
 Returns the number of bytes of string
 
@@ -200,7 +200,7 @@ select octet_length('😉') as value; -- value '4'
 ```
 ## repeat
 ```sql
-function repeat(t, bigint) returns array(t)
+function repeat($1, +i64) returns +list<$1>
 ```
 Repeats string n times
 
@@ -235,7 +235,7 @@ select reverse('Hello There') as value; -- value 'ereht olleH'
 ```
 ## right
 ```sql
-function right(n varchar, x bigint) returns varchar
+function right(n varchar, x +i64) returns varchar
 ```
 Returns the right x characters of n
 
@@ -244,7 +244,7 @@ select right('Hello World!', 6) as value; -- value 'World!'
 ```
 ## rpad
 ```sql
-function rpad(bytea, bigint, bytea) returns bytea
+function rpad(+binary, +i64, +binary) returns +binary
 ```
 Right pads string to size characters with padstring. If size is less than the
 length of string, the result is truncated to size characters. size must not be
@@ -267,7 +267,7 @@ select rtrim('😉   ') as value; -- value '😉'
 ```
 ## split_part
 ```sql
-function split_part(varchar, varchar, bigint) returns varchar
+function split_part(varchar, varchar, +i64) returns varchar
 ```
 Splits string on delimiter and returns the field index. Field indexes start with
 1. If the index is larger than the number of fields, then null is returned.
@@ -286,7 +286,7 @@ select starts_with('Hello|World', 'Hello') as value; -- value 'true'
 ```
 ## strpos
 ```sql
-function strpos(varchar, varchar) returns bigint
+function strpos(varchar, varchar) returns +i64
 ```
 Returns the starting position of the first instance of substring in string.
 Positions start with 1. If not found, 0 is returned.
@@ -295,7 +295,7 @@ Positions start with 1. If not found, 0 is returned.
 select strpos('Hello World', 'World') as value; -- value '7' 
 ```
 ```sql
-function strpos(varchar, varchar) returns bigint
+function strpos(varchar, varchar) returns +i64
 ```
 Returns the starting position of the first instance of substring in string.
 Positions start with 1. If not found, 0 is returned.
@@ -305,7 +305,7 @@ select strpos('Hello World', 'World') as value; -- value '7'
 ```
 ## substr
 ```sql
-function substr(bytea, bigint) returns bytea
+function substr(+binary, +i64) returns +binary
 ```
 Returns the rest of string from the starting position start. Positions start
 with 1. A negative starting position is interpreted as being relative to the end
@@ -316,7 +316,7 @@ select substr('Hello World', 6) as value; -- value ' World'
 ```
 ## substring
 ```sql
-function substring(varchar, bigint) returns varchar
+function substring(varchar, +i64) returns varchar
 ```
 Returns the rest of string from the starting position start. Positions start
 with 1. A negative starting position is interpreted as being relative to the end

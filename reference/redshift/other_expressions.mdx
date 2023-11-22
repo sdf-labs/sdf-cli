@@ -16,13 +16,13 @@ function any_value($1) returns $1
 
 ## array
 ```sql
-function array($1, ...) returns array<$1>
+function array($1, ...) returns +list<$1>
 ```
 
 
 ## array_flatten
 ```sql
-function array_flatten(array<array<$1>>) returns array<$1>
+function array_flatten(+list<list<$1>>) returns +list<$1>
 ```
 
 
@@ -46,13 +46,13 @@ function can_json_parse(varchar) returns boolean
 
 ## cbrt
 ```sql
-function cbrt(double) returns double
+function cbrt(float) returns float
 ```
 
 
 ## ceiling
 ```sql
-function ceiling(double) returns double
+function ceiling(float) returns float
 ```
 
 
@@ -70,7 +70,7 @@ function collate(varchar, varchar) returns varchar
 
 ## cot
 ```sql
-function cot(double) returns double
+function cot(float) returns float
 ```
 
 
@@ -94,13 +94,13 @@ function decimal_scale(super) returns bigint
 
 ## degrees
 ```sql
-function degrees(double) returns double
+function degrees(float) returns float
 ```
 
 
 ## dexp
 ```sql
-function dexp(double) returns double
+function dexp(float) returns float
 ```
 
 
@@ -112,13 +112,13 @@ function difference(varchar, varchar) returns bigint
 
 ## dlog1
 ```sql
-function dlog1(double) returns double
+function dlog1(float) returns float
 ```
 
 
 ## dlog10
 ```sql
-function dlog10(double) returns double
+function dlog10(float) returns float
 ```
 
 
@@ -136,13 +136,13 @@ function fnv_hash(varchar) returns bigint
 
 ## from_hex
 ```sql
-function from_hex(varchar) returns bytea
+function from_hex(varchar) returns varbyte
 ```
 
 
 ## from_varbyte
 ```sql
-function from_varbyte(bytea, varchar) returns bytea
+function from_varbyte(varbyte, varchar) returns varbyte
 ```
 
 
@@ -154,7 +154,7 @@ function func_sha1(varchar) returns bigint
 
 ## getbit
 ```sql
-function getbit(bytea, bigint) returns bigint
+function getbit(varbyte, bigint) returns bigint
 ```
 
 
@@ -273,7 +273,7 @@ function json_serialize($1) returns varchar
 
 ## json_serialize_to_varbyte
 ```sql
-function json_serialize_to_varbyte($1) returns bytea
+function json_serialize_to_varbyte($1) returns varbyte
 ```
 
 
@@ -321,7 +321,7 @@ function mod(bigint, bigint) returns bigint
 
 ## months_between
 ```sql
-function months_between(varchar, varchar) returns double
+function months_between(varchar, varchar) returns float
 ```
 
 
@@ -362,7 +362,7 @@ function octetindex(varchar, varchar) returns bigint
 
 ## pi
 ```sql
-function pi() returns double
+function pi() returns float
 ```
 
 
@@ -380,7 +380,7 @@ function quote_literal(varchar) returns varchar
 
 ## radians
 ```sql
-function radians(double) returns double
+function radians(float) returns float
 ```
 
 
@@ -466,7 +466,7 @@ function sha2(varchar, bigint) returns bigint
 
 ## sign
 ```sql
-function sign(double) returns bigint
+function sign(float) returns bigint
 ```
 
 
@@ -484,7 +484,7 @@ function soundex(varchar) returns varchar
 
 ## split_to_array
 ```sql
-function split_to_array(varchar, varchar) returns array<varchar>
+function split_to_array(varchar, varchar) returns +list<varchar>
 ```
 
 
@@ -496,7 +496,7 @@ function strtol(varchar, bigint) returns bigint
 
 ## subarray
 ```sql
-function subarray(array<$1>, bigint, bigint) returns array<$1>
+function subarray(+list<$1>, bigint, bigint) returns +list<$1>
 ```
 
 
@@ -513,22 +513,22 @@ function text_to_int_alt(varchar, varchar) returns bigint
 
 ## text_to_numeric_alt
 ```sql
-function text_to_numeric_alt(varchar) returns double
+function text_to_numeric_alt(varchar) returns float
 ```
 
 
 ```sql
-function text_to_numeric_alt(varchar, varchar) returns double
+function text_to_numeric_alt(varchar, varchar) returns float
 ```
 
 
 ```sql
-function text_to_numeric_alt(varchar, bigint, bigint) returns double
+function text_to_numeric_alt(varchar, bigint, bigint) returns float
 ```
 
 
 ```sql
-function text_to_numeric_alt(varchar, varchar, bigint, bigint) returns double
+function text_to_numeric_alt(varchar, varchar, bigint, bigint) returns float
 ```
 
 
@@ -546,7 +546,7 @@ function to_char($1, varchar) returns varchar
 
 ## to_hex
 ```sql
-function to_hex(bytea) returns varchar
+function to_hex(varbyte) returns varchar
 ```
 
 
@@ -557,13 +557,13 @@ function to_hex(bigint) returns varchar
 
 ## to_number
 ```sql
-function to_number(varchar, varchar) returns double
+function to_number(varchar, varchar) returns float
 ```
 
 
 ## to_varbyte
 ```sql
-function to_varbyte(varchar, varchar) returns bytea
+function to_varbyte(varchar, varchar) returns varbyte
 ```
 
 

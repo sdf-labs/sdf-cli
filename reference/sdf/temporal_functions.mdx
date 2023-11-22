@@ -4,8 +4,8 @@ title: "Temporal Functions"
 
 ## date_part
 ```sql
-function date_part<$1> (date varchar, part $1) returns double
-	where $1 in (date, time, datetime, timestamp)
+function date_part<$1> (date varchar, part $1) returns +fp64
+	where $1 in (date, time, timestamp)
 ```
 Returns date truncated to unit. Valid parts are   * `year`   * `quarter`   *
 `month`   * `week`   * `day`   * `hour`   * `second`   * `millisecond`   *
@@ -14,20 +14,9 @@ Returns date truncated to unit. Valid parts are   * `year`   * `quarter`   *
 ```sql example.sql
 select date_part('second', to_timestamp('2023-02-08T15:33:42+00:00')) as value; -- value '42' 
 ```
-## date_trunc
-```sql
-function date_trunc(varchar, date) returns date
-```
-Returns date truncated to unit. Valid parts are   * `year`   * `quarter`   *
-`month`   * `week`   * `day`   * `hour`   * `second`   * `millisecond`   *
-`microsecond`   * `nanosecond`
-
-```sql example.sql
-select date_trunc('day', to_timestamp('2023-02-08T15:33:42+00:00')) as value; -- value '2023-02-08 00:00:00' 
-```
 ## from_unixtime
 ```sql
-function from_unixtime(double) returns timestamp(millisecond)
+function from_unixtime(+fp64) returns timestamp(millisecond)
 ```
 Returns the UNIX timestamp unixtime as a timestamp with time zone. unixtime is
 the number of seconds since 1970-01-01 00:00:00 UTC.

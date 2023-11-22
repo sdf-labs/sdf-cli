@@ -4,7 +4,7 @@ title: "Other Expressions"
 
 ## random
 ```sql
-function random() returns bigint
+function random() returns +i64
 ```
 Creates a pseudo-random number between 0 and 1
 
@@ -13,7 +13,7 @@ select random() as value; -- value '0.8781138533805801'
 ```
 ## reclassify
 ```sql
-function reclassify(T, varchar, varchar) returns T
+function reclassify($1, varchar, varchar) returns $1
 ```
 Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
 
@@ -22,7 +22,7 @@ select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '123
 ```
 ## sha224
 ```sql
-function sha224(varchar) returns bytea
+function sha224(varchar) returns +binary
 ```
 Computes the SHA224 hash of string.
 
@@ -31,7 +31,7 @@ select sha224('Hello World!') as value; -- value '4575bb4ec129df6380cedde6d71217
 ```
 ## sha256
 ```sql
-function sha256(varchar) returns bytea
+function sha256(varchar) returns +binary
 ```
 Computes the SHA256 hash of string
 
@@ -40,7 +40,7 @@ select sha256('Hello World!') as value; -- value '7f83b1657ff1fc53b92dc18148a1d6
 ```
 ## sha384
 ```sql
-function sha384(varchar) returns bytea
+function sha384(varchar) returns +binary
 ```
 Computes the SHA384 hash of string
 
@@ -49,7 +49,7 @@ select sha384('Hello World!') as value; -- value 'bfd76c0ebbd006fee583410547c188
 ```
 ## sha512
 ```sql
-function sha512(varchar) returns bytea
+function sha512(varchar) returns +binary
 ```
 Computes the SHA512 hash of string
 
@@ -58,7 +58,7 @@ select sha512('Hello World!') as value; -- value '861844d6704e8573fec34d967e20bc
 ```
 ## to_hex
 ```sql
-function to_hex(int) returns varchar
+function to_hex(+i32) returns varchar
 ```
 Computes the hexadecimal representation of an integer
 

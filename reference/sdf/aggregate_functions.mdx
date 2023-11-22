@@ -4,7 +4,7 @@ title: "Aggregate Functions"
 
 ## approx_distinct
 ```sql
-function approx_distinct(boolean) returns bigint
+function approx_distinct(boolean) returns +i64
 ```
 Returns the approximate number of distinct input values. This function provides
 an approximation of count(distinct x). Zero is returned if all input values are
@@ -16,8 +16,8 @@ create table tbl as values (1), (5), (9);
 ```
 ## approx_median
 ```sql
-function approx_median<$1> (values $1) returns double
-	where $1 in (bigint, int, double)
+function approx_median<$1> (values $1) returns +fp64
+	where $1 in (+i64, +i32, +fp64)
 ```
 Returns the approximate median of input values. it is an alias of
 `approx_percentile_cont(x, 0.5)`
@@ -28,8 +28,8 @@ create table tbl as values (1), (5), (9);
 ```
 ## approx_percentile_cont
 ```sql
-function approx_percentile_cont<$1> (values $1, p double) returns double
-	where $1 in (bigint, int, double, float)
+function approx_percentile_cont<$1> (values $1, p +fp64) returns +fp64
+	where $1 in (+i64, +i32, +fp64, +fp32)
 ```
 Returns the approximate percentile of input values, where percentile 'p' is
 between 0 and 1 (inclusive)
@@ -40,11 +40,11 @@ create table tbl as values (1), (5), (9);
 ```
 ## approx_percentile_cont_with_weight
 ```sql
-function approx_percentile_cont_with_weight<$1> (values $1, p double, weight float) returns double
-	where $1 in (bigint, int, double)
+function approx_percentile_cont_with_weight<$1> (values $1, p +fp64, weight +fp32) returns +fp64
+	where $1 in (+i64, +i32, +fp64)
 ```
 returns the approximate percentile of input values with weight, where the weight
-column and percentile 'p' is a double between 0 and 1 (inclusive)
+column and percentile 'p' is a +fp64 between 0 and 1 (inclusive)
 
 ```sql example.sql
 create table tbl as values (1, 0.5), (5, 0.5), (9, 0.5); 
@@ -52,7 +52,7 @@ create table tbl as values (1, 0.5), (5, 0.5), (9, 0.5);
 ```
 ## avg
 ```sql
-function avg(decimal(p, s)) returns decimal(p, s)
+function avg(+decimal<$1, $2>) returns +decimal<$1, $2>
 ```
 Returns the average (arithmetic mean) of all input values.
 
@@ -62,7 +62,7 @@ create table tbl as values (1), (5), (9);
 ```
 ## count
 ```sql
-function count() returns bigint
+function count() returns +i64
 ```
 Returns number of values
 
@@ -72,7 +72,7 @@ create table tbl as values (1), (5), (9);
 ```
 ## count_distinct
 ```sql
-function count_distinct(values $1) returns double
+function count_distinct(values $1) returns +fp64
 ```
 Returns the unique number of values
 
@@ -82,7 +82,7 @@ create table tbl as values (1), (5), (5), (9);
 ```
 ## max
 ```sql
-function max(e, bigint) returns array(e)
+function max($1, +i64) returns +list<$1>
 ```
 Returns the maximum value in the column
 
@@ -92,8 +92,8 @@ create table tbl as values (1), (5), (9);
 ```
 ## median
 ```sql
-function median<$1> (values $1) returns double
-	where $1 in (bigint, int, double, float)
+function median<$1> (values $1) returns +fp64
+	where $1 in (+i64, +i32, +fp64, +fp32)
 ```
 Returns the median value in the column
 
@@ -104,7 +104,7 @@ create table tbl as values (1), (5), (9);
 ## min
 ```sql
 function min<$1> ($1) returns $1
-	where $1 in (bigint, int, float, double)
+	where $1 in (+i64, +i32, +fp32, +fp64)
 ```
 Returns the min value in the column
 
@@ -114,7 +114,7 @@ create table tbl as values (1), (5), (9);
 ```
 ## sum
 ```sql
-function sum(bigint) returns bigint
+function sum(+i64) returns +i64
 ```
 Returns the sum of all values in the column
 

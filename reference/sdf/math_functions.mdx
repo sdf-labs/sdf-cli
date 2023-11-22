@@ -4,7 +4,7 @@ title: "Math Functions"
 
 ## abs
 ```sql
-function abs(decimal(p, s)) returns decimal(p, s)
+function abs(+decimal<$1, $2>) returns +decimal<$1, $2>
 ```
 Returns the absolute value of x. Input must be a number
 
@@ -13,7 +13,7 @@ select abs(-1) as value; -- value '1.0'
 ```
 ## acos
 ```sql
-function acos(double) returns double
+function acos(+fp64) returns +fp64
 ```
 Returns the inverse cosine of x
 
@@ -25,7 +25,7 @@ select acos(1) as value; -- value '0.0'
 ```
 ## asin
 ```sql
-function asin(double) returns double
+function asin(+fp64) returns +fp64
 ```
 Returns the inverse sine of x
 
@@ -37,7 +37,7 @@ select asin(0) as value; -- value '0.0'
 ```
 ## atan
 ```sql
-function atan(double) returns double
+function atan(+fp64) returns +fp64
 ```
 Returns the inverse tangent of x
 
@@ -49,7 +49,7 @@ select asin(0.5) as value; -- value '0.46364760900080615'
 ```
 ## atan2
 ```sql
-function atan2(double, double) returns double
+function atan2(+fp64, +fp64) returns +fp64
 ```
 Returns the inverse tangent value of y/x
 
@@ -58,7 +58,7 @@ select atan2(1, 0.5) as value; -- value '1.1071487177940904'
 ```
 ## ceil
 ```sql
-function ceil(bigint) returns bigint
+function ceil(+i64) returns +i64
 ```
 Returns the nearest integer greater than or equal to x
 
@@ -67,7 +67,7 @@ select ceil(1.35) as value; -- value '2.0'
 ```
 ## cos
 ```sql
-function cos(double) returns double
+function cos(+fp64) returns +fp64
 ```
 Returns the cosine of x
 
@@ -76,7 +76,7 @@ select cos(1.0) as value; -- value '0.5403023058681398'
 ```
 ## exp
 ```sql
-function exp(double) returns double
+function exp(+fp64) returns +fp64
 ```
 Returns the Euler's number raised to the power of x
 
@@ -85,7 +85,7 @@ select exp(1.0) as value; -- value '2.718281828459045'
 ```
 ## floor
 ```sql
-function floor(bigint) returns bigint
+function floor(+i64) returns +i64
 ```
 Returns the nearest integer less than or equal to x
 
@@ -94,7 +94,7 @@ select floor(2.718) as value; -- value '2.0'
 ```
 ## ln
 ```sql
-function ln(double) returns double
+function ln(+fp64) returns +fp64
 ```
 Returns the natural logarithm of x
 
@@ -103,7 +103,7 @@ select ln(2.1) as value; -- value '0.7419373447293773'
 ```
 ## log10
 ```sql
-function log10(double) returns double
+function log10(+fp64) returns +fp64
 ```
 Returns the base 10 logarithm x
 
@@ -112,7 +112,7 @@ select log10(10) as value; -- value '1.0'
 ```
 ## log2
 ```sql
-function log2(double) returns double
+function log2(+fp64) returns +fp64
 ```
 Returns the base 2 logarithm x
 
@@ -121,7 +121,7 @@ select log2(2) as value; -- value '1.0'
 ```
 ## power
 ```sql
-function power(double, double) returns double
+function power(+fp64, +fp64) returns +fp64
 ```
 Returns x to the power of y
 
@@ -133,7 +133,7 @@ select power(2.1, 8.1) as value; -- value '407.35803528257424'
 ```
 ## round
 ```sql
-function round(bigint) returns bigint
+function round(+i64) returns +i64
 ```
 Rounds x to the nearest integer
 
@@ -142,7 +142,7 @@ select round(2.1) as value; -- value '2.0'
 ```
 ## signum
 ```sql
-function signum(x double) returns double
+function signum(x +fp64) returns +fp64
 ```
 Returns the sign of x, either (-1, 0, +1)
 
@@ -151,7 +151,7 @@ select signum(2.1) as value; -- value '1.0'
 ```
 ## sin
 ```sql
-function sin(double) returns double
+function sin(+fp64) returns +fp64
 ```
 Returns the sin of x
 
@@ -160,7 +160,7 @@ select sin(2.1) as value; -- value '-0.8632093666488737'
 ```
 ## sqrt
 ```sql
-function sqrt(double) returns double
+function sqrt(+fp64) returns +fp64
 ```
 Returns the square root of x
 
@@ -169,7 +169,7 @@ select sqrt(16) as value; -- value '4.0'
 ```
 ## tan
 ```sql
-function tan(double) returns double
+function tan(+fp64) returns +fp64
 ```
 Returns the tangent of x
 
@@ -178,7 +178,7 @@ select tan(0.5) as value; -- value '0.5463024898437905'
 ```
 ## trunc
 ```sql
-function trunc(x double) returns double
+function trunc(x +fp64) returns +fp64
 ```
 Truncates x towards zero
 
