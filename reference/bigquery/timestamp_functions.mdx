@@ -74,7 +74,7 @@ function timestamp(datetime, time_zone string) returns timestamp
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_add)
 
 ```sql
-function timestamp_add<$1> ($1, interval microsecond to day) returns $1
+function timestamp_add<$1> ($1, interval) returns $1
 	where $1 in (timestamp, datetime)
 ```
 
@@ -117,7 +117,7 @@ function timestamp_seconds(int64) returns timestamp
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_sub)
 
 ```sql
-function timestamp_sub<$1> ($1, interval microsecond to day) returns $1
+function timestamp_sub<$1> ($1, interval) returns $1
 	where $1 in (timestamp, datetime)
 ```
 

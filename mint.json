@@ -1,236 +1,227 @@
 {
-  "name": "SDF",
-  "sidebarDescription": "Docs for the Semantic Data Fabric",
-  "logo": {
-    "dark": "/assets/logo/dark.svg",
-    "light": "/assets/logo/light.svg"
-  },
-  "favicon": "/assets/favicon.png",
-  "colors": {
-    "primary": "#527398",
-    "light": "#9FBBDC",
-    "dark": "#0C1D37",
-    "anchors": {
-      "from": "#527398",
-      "to": "#2C4A6B"
-    }
-  },
-  "topbarCtaButton": {
-    "name": "Get Started",
-    "url": "https://console.sdf.com/"
-  },
-  "anchors": [
-    {
-      "name": "Reference",
-      "icon": "rectangle-terminal",
-      "url": "reference"
-    },
-    {
-      "name": "Releases",
-      "icon": "circle",
-      "url": "releases"
-    }
-  ],
-  "navigation": [
-    {
-      "group": "Introduction",
-      "pages": [
-        "intro",
-        "getting-started"
-      ]
-    },
-    {
-      "group": "Guides",
-      "pages": [
-        "guide/install",
-        "guide/io",
-        "guide/workspaces",
-        "guide/classifiers",
-        "guide/code_checks",
-        "guide/lineage_metadata",
-        "guide/udf",
-        "guide/authentication",
-        "guide/deployment"
-      ]
-    },
-    {
-      "group": "Integrations",
-      "pages": [
-        "integrations/databricks"
-      ]
-    },
-    {
-      "group": "Reference",
-      "pages": [
-        "reference/sdf-cli",
-        "reference/sdf-yml",
-        "reference/file-formats",
-        "reference/sdf-information-schema"
-      ]
-    },
-    {
-      "group": "SQL Functions",
-      "pages": [
-        {
-          "group": "Redshift Functions",
-          "pages": [
-            "reference/redshift/aggregate_functions",
-            "reference/redshift/math_functions",
-            "reference/redshift/other_expressions",
-            "reference/redshift/string_functions",
-            "reference/redshift/temporal_functions"
-          ]
-        },
-        {
-          "group": "Presto Functions",
-          "pages": [
-            "reference/presto/aggregate_functions",
-            "reference/presto/math_functions",
-            "reference/presto/other_expressions",
-            "reference/presto/string_functions",
-            "reference/presto/temporal_functions"
-          ]
-        },
-        {
-          "group": "SDF Functions",
-          "pages": [
-            "reference/sdf/aggregate_functions",
-            "reference/sdf/math_functions",
-            "reference/sdf/other_expressions",
-            "reference/sdf/string_functions",
-            "reference/sdf/temporal_functions"
-          ]
-        },
-        {
-          "group": "Bigquery Functions",
-          "pages": [
-            "reference/bigquery/aggregate_functions",
-            "reference/bigquery/math_functions",
-            "reference/bigquery/other_expressions",
-            "reference/bigquery/string_functions",
-            "reference/bigquery/temporal_functions",
-            "reference/bigquery/approximate_aggregate_functions",
-            "reference/bigquery/array_functions",
-            "reference/bigquery/bit_functions",
-            "reference/bigquery/date_functions",
-            "reference/bigquery/datetime_functions",
-            "reference/bigquery/debugging_functions",
-            "reference/bigquery/geography_functions",
-            "reference/bigquery/hash_functions",
-            "reference/bigquery/interval_functions",
-            "reference/bigquery/json_functions",
-            "reference/bigquery/math_functions",
-            "reference/bigquery/other_expressions",
-            "reference/bigquery/search_functions",
-            "reference/bigquery/security_functions",
-            "reference/bigquery/statistical_aggregate_functions",
-            "reference/bigquery/string_functions",
-            "reference/bigquery/temporal_functions",
-            "reference/bigquery/time_functions",
-            "reference/bigquery/timestamp_functions",
-            "reference/bigquery/utility_functions"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Service",
-      "pages": [
-        "service/billing",
-        "service/status"
-      ]
-    },
-    {
-      "group": "Releases",
-      "pages": [
-        {
-          "group": "September 2023",
-          "pages": [
-            "releases/v0.1.90",
-            "releases/v0.1.89",
-            "releases/v0.1.88",
-            "releases/v0.1.87",
-            "releases/v0.1.86",
-            "releases/v0.1.85",
-            "releases/v0.1.84",
-            "releases/v0.1.83",
-            "releases/v0.1.82",
-            "releases/v0.1.81",
-            "releases/v0.1.80",
-            "releases/v0.1.79",
-            "releases/v0.1.78",
-            "releases/v0.1.77",
-            "releases/v0.1.76",
-            "releases/v0.1.75",
-            "releases/v0.1.74"
-          ]
-        },
-        {
-          "group": "August 2023",
-          "pages": [
-            "releases/v0.1.73",
-            "releases/v0.1.72",
-            "releases/v0.1.71",
-            "releases/v0.1.70",
-            "releases/v0.1.69",
-            "releases/v0.1.68",
-            "releases/v0.1.67",
-            "releases/v0.1.66",
-            "releases/v0.1.65",
-            "releases/v0.1.64",
-            "releases/v0.1.63",
-            "releases/v0.1.62",
-            "releases/v0.1.61",
-            "releases/v0.1.60",
-            "releases/v0.1.59",
-            "releases/v0.1.58",
-            "releases/v0.1.57",
-            "releases/v0.1.56",
-            "releases/v0.1.55",
-            "releases/v0.1.54",
-            "releases/v0.1.53",
-            "releases/v0.1.52",
-            "releases/v0.1.51",
-            "releases/v0.1.50",
-            "releases/v0.1.49",
-            "releases/v0.1.48",
-            "releases/v0.1.47"
-          ]
-        },
-        {
-          "group": "July 2023",
-          "pages": [
-            "releases/v0.1.46",
-            "releases/v0.1.45"
-          ]
-        },
-        {
-          "group": "June 2023",
-          "pages": [
-            "releases/v0.1.25",
-            "releases/v0.1.24",
-            "releases/v0.1.23",
-            "releases/v0.1.22",
-            "releases/v0.1.21",
-            "releases/v0.1.20",
-            "releases/v0.1.19",
-            "releases/v0.1.18",
-            "releases/v0.1.17",
-            "releases/v0.1.16",
-            "releases/v0.1.15",
-            "releases/v0.1.14",
-            "releases/v0.1.13",
-            "releases/v0.1.11",
-            "releases/v0.1.9",
-            "releases/v0.1.8",
-            "releases/v0.1.7"
-          ]
-        }
-      ]
-    }
-  ],
-  "footerSocials": {
-    "twitter": "https://twitter.com/sdfdata",
-    "linkedin": "https://www.linkedin.com/company/sdflabs/about/"
-  }
+	"name": "SDF",
+	"sidebarDescription": "Docs for the Semantic Data Fabric",
+	"logo": {
+		"dark": "/assets/logo/dark.svg",
+		"light": "/assets/logo/light.svg"
+	},
+	"favicon": "/assets/favicon.png",
+	"colors": {
+		"primary": "#527398",
+		"light": "#9FBBDC",
+		"dark": "#0C1D37",
+		"anchors": {
+			"from": "#527398",
+			"to": "#2C4A6B"
+		}
+	},
+	"topbarCtaButton": {
+		"name": "Get Started",
+		"url": "https://console.sdf.com/"
+	},
+	"anchors": [
+		{
+			"name": "Reference",
+			"icon": "rectangle-terminal",
+			"url": "reference"
+		},
+		{
+			"name": "Releases",
+			"icon": "circle",
+			"url": "releases"
+		}
+	],
+	"navigation": [
+		{
+			"group": "Introduction",
+			"pages": [
+				"intro",
+				"getting-started"
+			]
+		},
+		{
+			"group": "Guides",
+			"pages": [
+				"guide/install",
+				"guide/io",
+				"guide/workspaces",
+				"guide/classifiers",
+				"guide/code_checks",
+				"guide/lineage_metadata",
+				"guide/udf",
+				"guide/authentication",
+				"guide/deployment",
+				"guide/data_deletion"
+			]
+		},
+		{
+			"group": "Integrations",
+			"pages": [
+				"integrations/databricks"
+			]
+		},
+		{
+			"group": "Reference",
+			"pages": [
+				"reference/sdf-cli",
+				"reference/sdf-yml",
+				"reference/file-formats",
+				"reference/sdf-information-schema"
+			]
+		},
+		{
+			"group": "SQL Functions",
+			"pages": [
+				{
+					"group": "Redshift Functions",
+					"pages": [
+						"reference/redshift/aggregate_functions",
+						"reference/redshift/math_functions",
+						"reference/redshift/other_expressions",
+						"reference/redshift/string_functions",
+						"reference/redshift/temporal_functions"
+					]
+				},
+				{
+					"group": "Presto Functions",
+					"pages": [
+						"reference/presto/aggregate_functions",
+						"reference/presto/math_functions",
+						"reference/presto/other_expressions",
+						"reference/presto/string_functions",
+						"reference/presto/temporal_functions"
+					]
+				},
+				{
+					"group": "Bigquery Functions",
+					"pages": [
+						"reference/bigquery/aggregate_functions",
+						"reference/bigquery/math_functions",
+						"reference/bigquery/other_expressions",
+						"reference/bigquery/string_functions",
+						"reference/bigquery/temporal_functions",
+						"reference/bigquery/approximate_aggregate_functions",
+						"reference/bigquery/array_functions",
+						"reference/bigquery/bit_functions",
+						"reference/bigquery/date_functions",
+						"reference/bigquery/datetime_functions",
+						"reference/bigquery/debugging_functions",
+						"reference/bigquery/geography_functions",
+						"reference/bigquery/hash_functions",
+						"reference/bigquery/interval_functions",
+						"reference/bigquery/json_functions",
+						"reference/bigquery/math_functions",
+						"reference/bigquery/other_expressions",
+						"reference/bigquery/search_functions",
+						"reference/bigquery/security_functions",
+						"reference/bigquery/statistical_aggregate_functions",
+						"reference/bigquery/string_functions",
+						"reference/bigquery/temporal_functions",
+						"reference/bigquery/time_functions",
+						"reference/bigquery/timestamp_functions",
+						"reference/bigquery/utility_functions"
+					]
+				}
+			]
+		},
+		{
+			"group": "Service",
+			"pages": [
+				"service/billing",
+				"service/status"
+			]
+		},
+		{
+			"group": "Releases",
+			"pages": [
+				{
+					"group": "September 2023",
+					"pages": [
+						"releases/v0.1.90",
+						"releases/v0.1.89",
+						"releases/v0.1.88",
+						"releases/v0.1.87",
+						"releases/v0.1.86",
+						"releases/v0.1.85",
+						"releases/v0.1.84",
+						"releases/v0.1.83",
+						"releases/v0.1.82",
+						"releases/v0.1.81",
+						"releases/v0.1.80",
+						"releases/v0.1.79",
+						"releases/v0.1.78",
+						"releases/v0.1.77",
+						"releases/v0.1.76",
+						"releases/v0.1.75",
+						"releases/v0.1.74"
+					]
+				},
+				{
+					"group": "August 2023",
+					"pages": [
+						"releases/v0.1.73",
+						"releases/v0.1.72",
+						"releases/v0.1.71",
+						"releases/v0.1.70",
+						"releases/v0.1.69",
+						"releases/v0.1.68",
+						"releases/v0.1.67",
+						"releases/v0.1.66",
+						"releases/v0.1.65",
+						"releases/v0.1.64",
+						"releases/v0.1.63",
+						"releases/v0.1.62",
+						"releases/v0.1.61",
+						"releases/v0.1.60",
+						"releases/v0.1.59",
+						"releases/v0.1.58",
+						"releases/v0.1.57",
+						"releases/v0.1.56",
+						"releases/v0.1.55",
+						"releases/v0.1.54",
+						"releases/v0.1.53",
+						"releases/v0.1.52",
+						"releases/v0.1.51",
+						"releases/v0.1.50",
+						"releases/v0.1.49",
+						"releases/v0.1.48",
+						"releases/v0.1.47"
+					]
+				},
+				{
+					"group": "July 2023",
+					"pages": [
+						"releases/v0.1.46",
+						"releases/v0.1.45"
+					]
+				},
+				{
+					"group": "June 2023",
+					"pages": [
+						"releases/v0.1.25",
+						"releases/v0.1.24",
+						"releases/v0.1.23",
+						"releases/v0.1.22",
+						"releases/v0.1.21",
+						"releases/v0.1.20",
+						"releases/v0.1.19",
+						"releases/v0.1.18",
+						"releases/v0.1.17",
+						"releases/v0.1.16",
+						"releases/v0.1.15",
+						"releases/v0.1.14",
+						"releases/v0.1.13",
+						"releases/v0.1.11",
+						"releases/v0.1.9",
+						"releases/v0.1.8",
+						"releases/v0.1.7"
+					]
+				}
+			]
+		}
+	],
+	"footerSocials": {
+		"twitter": "https://twitter.com/sdfdata",
+		"linkedin": "https://www.linkedin.com/company/sdflabs/about/"
+	}
 }

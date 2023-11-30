@@ -1,0 +1,267 @@
+# Retention and Data Deletion with SDF
+
+## Overview of Approach
+
+We present a method to fully automate data deletion and retention policies for GDPR compliance in a daily updated warehouse.
+
+All versions require the following main components for automation:
+
+- **Classifiers**. We have to categorize data, their purpose and retention period.
+- **Date ranges and partitions**. We have to know which table partition captures what data range.
+- **User state.** We have to know whether is a user is still active or left the service.
+- **Policy evaluation.** On any change to the warehouse or at least once a day, deletion policies must be upheld and enforced.
+
+## Simple Version
+
+SDF introduces three features which are central to the proposed automation.
+
+1. SDF introduces classifiers and classifier propagation. This builds the foundation for having a perfect record of data categories and purpose for all data assets in the warehouse. 
+2. SDF introduces a table and column information schema that captures the result of aforementioned annotation and propagation. In addition SDF has a partition schema, keeping a record of each table and its landing time.  
+3. SDF introduces Code Reports and Code Contracts, e.g. queries that run against above information schema. A code check might for example be that all tables specify their purpose.   
+A code report, for example, can represent the partitions that have expired and thus should be deleted. 
+
+We introduce each of these three SDF concepts in turn.
+
+### **Classifiers**
+
+SDF distinguishes between Table classifiers and Column classifiers. 
+
+We define the **column classifier** PII with a single label tag to label columns that have PII. PII label are automatically propagated following the flow of information through the warehouse. Of course users can refine PII labels, for instance specify that data is user_id, phone, email, full_name, etc. But here it is sufficient to just have a tag. 
+
+```yaml
+classifier:
+	name: PII
+	kind: column
+	propagate: true
+	labels:
+	- name: tag
+
+```
+
+We define two **table classifiers**. The table classifier Content has the labels machine data, static data, and user data. The table classifiers machine data and static data flow automatically based on information flow of tables. User data represents any table containing a column with PII
+
+```yaml
+classifier:
+	name: TableContent
+	kind: table
+	propagate: true
+	labels:
+	- name: machine_data
+	- name: static_data
+  - name: user_data
+```
+
+Legal might require that certain tables have to be kept for a specified number of years. That’s we also introduce a classifier `LegalHold` with label is_true. `LegalHold` is a static table classifier, that the metadata which is attached to a particular table does not propagate.   
+
+```yaml
+classifier:
+	name: LegalHold
+	kind: table
+	propagate: false
+	labels:
+	- name: is_true
+```
+
+We **classify all root tables** as either machine or static or user data. A table that is classified as user data must have at least one column labeled as PII. We can write a code check to ensure any table containing PII also contains a `user_data` table classifier.
+
+For example, here is a daily user event table in SQL
+
+```sql
+create table daily_user_events (
+   uid biginteger,  
+   event varchar,   
+   _date varchar 
+	 ...);
+```
+
+and here is its companion SDF block with classifiers TableContent.user_data and PII.tag
+
+```yaml
+table:
+	name: daily_user_events
+	classifiers: user_data
+	columns:
+		- name: uid
+		  classifiers:
+			 - PII.tag
+```
+
+A machine event table might have very similar structure, except it has no PII and its table classifier is machine_data.
+
+### Writing our first code check
+
+We want to make sure that root tables are either machine data, static data. For that check we can rely on SDF tables information schema, whcih quintessence is
+
+```sql
+create table sdf.information_schema.tables (
+   table_id varchar,  -- of the form catalog.schema.table
+   depends varchar,   -- list of table_id separated by ','
+   classifiers varchar -- list of classifier.label separated by ','
+	 ...);
+
+```
+
+Here  is query that finds all root tables that have no TableContent, and thus violate our policy!
+
+```sql
+-- check that this returns an empty set
+select t.id from tables t 
+where t.depends is null 
+  and t.classifiers not like '%TableContent.%
+```
+
+### Ad-hoc and Recurring Queries, Dates, **Date Partitions and Time Grains**
+
+All SDF **queries are parameterized by an @date parameter**. Evaluating a query for a particular date write a table (partition) for that date. 
+
+Every materialized table(partition) is stored in the SDF’s table partition information schema.
+
+```sql
+create table sdf.information_schema.partitions (
+   table_id varchar,  -- of the form catalog.schema.table
+	 _date varchar
+	 ...);
+```
+
+**SDF distinguishes between ad-hoc and recurring tables. Ad hoc queries** have a default @date value of now(). So if ad hoc query catalog.schema.table runs for @date, we insert this record into partitions.
+
+```sql
+INSERT INTO sdf.information_schema.partitions (table_id, _date)
+VALUES ('catalog.schema.table', '@date');
+```
+
+**Each recurring query** runs on a **schedule**. While the schedule can be an arbitrary cron expression, here we consider a simpler language, following this [+-]d+[dwmy] label format, a daily schedule is +1d, a weekly schedule  +7d, a yearly schedule +1y, etc.
+
+Every recurring table has a schedule field. For instance if we have a daily root table for user-events, we say 
+
+```sql
+table:
+	name: daily_user_events
+  schedule: +1d
+  ...
+```
+
+For a monthly accumulating table we say:
+
+```sql
+table:
+	name: monthly_user_events
+  schedule: +1m
+	...
+```
+
+<aside>
+💡 For now, users will have to attach these to tables manually. However, propagation still applies to schedules, so it’s unlikely the user will have to label more than 1 - 2% of their queries with a schedule.
+
+</aside>
+
+SDF stores a recurring query also under its date parameter. But this time not any date can be passed, but only those that fit the schedule. 
+
+- A daily query of @date *yyyy-mm-dd* is run as soon as all the data of the day *yyyy-mm-dd* has landed
+- A monthly query of @date *yyyy-mm*-01, where01 is constant, is run immediately after all the data of the month *yyyy-mm* has landed
+- A yearly query of @date *yyyy-01*-01 is run immediately after all the data of the year yyyy has landed, etc
+
+Example: let’s run a monthly accumulation of daily events. We run this on midnight 2022/01/02 with a @date value of 2022/01/01. 
+
+```sql
+create table monthly_user_events
+select uid, event, count(*) as count, @date as _date
+from daily_events
+where _date between @date and @date + interval 1 month
+group by uid, event, _date;
+```
+
+ So we write monthly_user_events for date 2022/01/01.
+
+### Time Grains
+
+The monthly user events captured the data for one month. But often the ingestion frequency and time range that a query captures don’t align. For instance an “L7 daily active users" counts the number of unique users who have interacted with a service over the course of the last seven days. So while the metric has a time range of a week, it is calculated daily.
+
+We introduce a new **table qualifier TimeGrain** to capture the fact that the accumulated data is for a week. `TimeGrain` propagates automatically. The default `TimeGrain` label is set to the table’s schedule label. 
+
+### **Policy**
+
+In SDF we implement policies with code checks against the information schema. Recall that we have three information schema: tables, columns, and partitions.
+
+A simple GDPR compliant policy might say:
+
+- Retain machine data for 7 days
+- Retain user data for 90 days
+- Retain unlabeled data for 360 days
+- Retain legal hold for 7 years
+- Retain static data (like country code mappings) indefinitely
+
+In addition we want to 
+
+- Guarantee that users that left the service are deleted after 90 days
+
+Let’s start the policy evaluation with the user deletion followed by partition deletion.
+
+**Deletion of users.** We distinguish three cases. 
+
+- Implicit deletion for *recurring* *daily time grain tables*. If a user U quits the service at day 2022/12/01, there will be no more interactions from U after 2022/12/01, so if all user data partitions are deleted after 90 days, users U last trace of the system will be deleted on 2022/12/01 +90d.
+- Explicit handling needed for *recurring* *non daily time grain tables*. Suppose we have an L7 daily active users table. This table keeps track of all users who were active during this period. We can handle deletion for time-grain tables in two ways:
+    - To implicit delete a user from this table we add a new column last_seen: date. When we join at @date a daily active user table with the accumulating L7 table, we distinguish for each user U:
+        - if U is in the daily table then keep the user with last_seen @date,
+        - if U wasn’t in the daily table, then keep the user last_seen > @date-timegrain,
+        - otherwise drop the user in the new table.
+- Implicit handling for ad hoc tables. Every ad hoc table behaves like a daily recurring table. Traces of users are deleted as soon as the table is deleted.
+
+**Deletion of partitions:** Here is a sql snippet for a code report that for given @date lists all partitions that should be deleted since they fall their retention period is expired.
+
+```sql
+-- partitions_to_delete
+select t.table_id
+from tables t
+join partitions p on t.table_id = p.table_id
+where
+    (
+        (t.classifiers IS NULL 
+				OR (
+                t.classifiers NOT LIKE '%TableContent.machine_data%'
+                AND t.classifiers NOT LIKE '%TableContent.user_data%'
+								AND t.classifiers NOT LIKE '%LegalHold.is_true'
+            )
+        AND DATEDIFF(@date, p._date) > 360
+    )
+    OR (
+        t.classifiers like '%TableContent.machine_data%'
+				AND t.classifiers NOT LIKE '%LegalHold.is_true'
+        AND DATEDIFF(@date, p._date) > 7
+    )
+    OR (
+        t.classifiers = '%TableContent.user_data%'
+        AND t.classifiers NOT LIKE '%LegalHold.is_true'
+        AND DATEDIFF(@date, p._date) > 90
+    )
+    OR (
+        t.classifiers = '%LegalHold.is_true%'
+        AND DATEDIFF(@date, p._date) > 2555  -- Approximately 7 years
+    );
+```
+
+### Edge Cases
+
+Is this policy good enough? It is close, but not perfect: Here are two small issues we can address. 
+
+**Schedule period > deletion period.** ** Suppose you have a yearly query YQ capturing user data. According to above policy YQ will be deleted after 90days. But then it is no longer of any use. 
+This table thus makes no sense. Let’s introduce a code check that makes sure that at least all user tables are rerun within 90 days (the udf as_interval takes a list of [+-]d+[dwmy] strings and casts it as an interval).   
+
+```sql
+-- user data tables with a schedule period > 90 days
+select t.table_id
+from tables t
+where (t.classifiers like %TableContent.user_data% 
+  and as_interval(t.schedule) > interval 90 DAY)  
+```
+
+**Timegrain greater than +1d***.* A table with timegrain **greater than** 1d, captures past events . Suppose you have the L7 daily user action table, which timegrain is +7d. Assume that you have the L7 table starting on 2023-01-01, 02, etc. The L7 table from 2023-01-10 captures all data from 2023-01-04 to 2023-01-10. Suppose a user leaves on 2023-01-05. The user is fully gone on 2023-01-12. So if we delete the L7 table only after 90 days, we still might have PII for a user that we promised to delete after 90 days.  
+
+There are two ways to deal with time grains that are greater than 1day. First, simply adopt above query and use the time grain in addition to the policy value, e.g
+
+```sql
+   t.classifiers = '%TableContent.user_data%'
+        AND DATEDIFF(@date, p._date) > (90 - duration_of_time_grain(t.classifiers))
+```
+
+An alternative approach is to simply say that no table can have a schedule > 45d. This guarantees that after 90 days a user is automatically deleted.

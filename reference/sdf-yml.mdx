@@ -79,9 +79,8 @@ Value | Description|
 ## Enum: `Dialect`
 Value | Description|
 | :--- | :------- |
-`sdf` | undefined|
-`spark-sql` | SparkSQL Dialect|
-`snowflake` | Snowflake Dialect|
+`presto` | undefined|
+`snowflake` | SparkSQL Dialect Snowflake Dialect|
 ## Enum: `ExcludeType`
 Value | Description|
 | :--- | :------- |
@@ -90,6 +89,7 @@ Value | Description|
 ## Enum: `Materialization`
 Value | Description|
 | :--- | :------- |
+`compat` | undefined|
 `cached` | All derived tables are cached by default|
 `external` | External tables must be explicitly marked When using 'Create external table` SQL syntax|
 `view` | View|
@@ -185,6 +185,7 @@ Value | Description|
 `classifiers:` | `[string]?`| An array of classifier references|
 `lineage:` | `Lineage?`| Lineage, a tagged array of column references|
 `reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
+`samples:` | `[string]?`| An array of representative literals of this column [experimental!]|
 ### Nested element: `Lineage`
 |Field | Type | Description|
 | :---- | :--- | :------- |

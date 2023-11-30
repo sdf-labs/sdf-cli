@@ -4,13 +4,13 @@ title: "String Functions"
 
 ## array_concat
 ```sql
-function array_concat(+list<$1>, ...) returns +list<$1>
+function array_concat(super, ...) returns super
 ```
 
 
 ## get_array_length
 ```sql
-function get_array_length(+list<$1>) returns bigint
+function get_array_length(super) returns bigint
 ```
 
 

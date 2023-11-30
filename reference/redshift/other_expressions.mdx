@@ -16,13 +16,13 @@ function any_value($1) returns $1
 
 ## array
 ```sql
-function array($1, ...) returns +list<$1>
+function array($1, ...) returns super
 ```
 
 
 ## array_flatten
 ```sql
-function array_flatten(+list<list<$1>>) returns +list<$1>
+function array_flatten(super) returns super
 ```
 
 
@@ -484,7 +484,7 @@ function soundex(varchar) returns varchar
 
 ## split_to_array
 ```sql
-function split_to_array(varchar, varchar) returns +list<varchar>
+function split_to_array(varchar, varchar) returns super
 ```
 
 
@@ -496,7 +496,7 @@ function strtol(varchar, bigint) returns bigint
 
 ## subarray
 ```sql
-function subarray(+list<$1>, bigint, bigint) returns +list<$1>
+function subarray(super, bigint, bigint) returns super
 ```
 
 

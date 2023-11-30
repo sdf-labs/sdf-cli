@@ -23,6 +23,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf auth logout`↴](#sdf-auth-logout)
 * [`sdf auth status`↴](#sdf-auth-status)
 * [`sdf auth aws`↴](#sdf-auth-aws)
+* [`sdf auth openai`↴](#sdf-auth-openai)
 * [`sdf analyze`↴](#sdf-analyze)
 * [`sdf analyze unused-columns`↴](#sdf-analyze-unused-columns)
 * [`sdf show`↴](#sdf-show)
@@ -30,6 +31,8 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf query`↴](#sdf-query)
 * [`sdf obfuscate`↴](#sdf-obfuscate)
 * [`sdf add`↴](#sdf-add)
+* [`sdf ai`↴](#sdf-ai)
+* [`sdf ai classify`↴](#sdf-ai-classify)
 
 ## `sdf`
 
@@ -50,10 +53,11 @@ SDF's modular SQL
 * `auth` — Manage credentials and tokens
 * `analyze` — Display results of various supported analyses (e.g. unused-columns)
 * `show` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
-* `test` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
-* `query` — Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+* `test` — Test code and data contracts
+* `query` — Run a query against your current workspace
 * `obfuscate` — Obfuscate the workspace into the provided directory
 * `add` — Add new versioned files to the workspace
+* `ai` — Infer artifacts like classifiers and add them optionally to the workspace
 
 
 
@@ -84,6 +88,7 @@ Create a new SDF workspace at PATH
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -115,6 +120,7 @@ Remove generated SDF artifacts in workspace
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -195,7 +201,6 @@ Build, run, and save SDF queries
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
@@ -216,6 +221,7 @@ Build, run, and save SDF queries
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -296,7 +302,6 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
@@ -317,6 +322,7 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -397,7 +403,6 @@ Create a deployment and post it to the SDF service
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
@@ -418,6 +423,7 @@ Create a deployment and post it to the SDF service
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -481,6 +487,7 @@ View existing table content
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -561,7 +568,6 @@ Display lineage for a given column
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
@@ -582,6 +588,7 @@ Display lineage for a given column
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -623,6 +630,7 @@ System maintenance, install and update
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -642,6 +650,7 @@ Manage credentials and tokens
 * `logout` — Log out of SDF Service
 * `status` — Show status of credentials / tokens
 * `aws` — Configure how to authenticate with AWS
+* `openai` — Configure how to authenticate with OpenAI
 
 ###### **Options:**
 
@@ -656,6 +665,7 @@ Manage credentials and tokens
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -729,6 +739,19 @@ Configure how to authenticate with AWS
 
 
 
+## `sdf auth openai`
+
+Configure how to authenticate with OpenAI
+
+**Usage:** `sdf auth openai [OPTIONS] --api-key <API_KEY>`
+
+###### **Options:**
+
+* `--api-key <API_KEY>` — Mapping of bucket names to regions
+* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials will be stored (default is platform specific)
+
+
+
 ## `sdf analyze`
 
 Display results of various supported analyses (e.g. unused-columns)
@@ -752,6 +775,7 @@ Display results of various supported analyses (e.g. unused-columns)
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -784,6 +808,7 @@ Analyze upstream tables for unused columns
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -812,11 +837,8 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 * `--dialect <DIALECT>` — The dialect to show (only for --functions, `` shows all dialects)
 
   Possible values:
-  - `sdf`
-  - `spark-sql`:
-    SparkSQL Dialect
   - `snowflake`:
-    Snowflake Dialect
+    SparkSQL Dialect Snowflake Dialect
   - `presto`
   - `bigquery`
   - `redshift`
@@ -834,6 +856,7 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -843,7 +866,7 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 ## `sdf test`
 
-Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+Test code and data contracts
 
 **Usage:** `sdf test [OPTIONS] [INPUT_FILES]...`
 
@@ -912,7 +935,6 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
@@ -933,6 +955,7 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -947,7 +970,7 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
 ## `sdf query`
 
-Generation of reference documentation: for CLI, metadata definition blocks, information schema and functions
+Run a query against your current workspace
 
 **Usage:** `sdf query [OPTIONS] <QUERY> [INPUT_FILES]...`
 
@@ -1017,7 +1040,6 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
@@ -1038,6 +1060,7 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -1118,7 +1141,6 @@ Obfuscate the workspace into the provided directory
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--no-parallel` — Do NOT run in parallel
 * `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
 
   Default value: `false`
@@ -1139,6 +1161,7 @@ Obfuscate the workspace into the provided directory
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -1167,11 +1190,8 @@ Add new versioned files to the workspace
 * `--dialect <DIALECT>` — Assume this dialect for all files (default dialect is the workspace dialect)
 
   Possible values:
-  - `sdf`
-  - `spark-sql`:
-    SparkSQL Dialect
   - `snowflake`:
-    Snowflake Dialect
+    SparkSQL Dialect Snowflake Dialect
   - `presto`
   - `bigquery`
   - `redshift`
@@ -1190,6 +1210,7 @@ Add new versioned files to the workspace
 
   Default value: `false`
 * `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
 * `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
 * `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
@@ -1199,6 +1220,64 @@ Add new versioned files to the workspace
 
 
 
-   Finished show in 0.009 secs
+## `sdf ai`
+
+Infer artifacts like classifiers and add them optionally to the workspace
+
+**Usage:** `sdf ai [OPTIONS] <COMMAND>`
+
+###### **Subcommands:**
+
+* `classify` — 
+
+###### **Options:**
+
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+
+
+
+## `sdf ai classify`
+
+**Usage:** `sdf ai classify [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Scope inference to these *.sql files; providing no input or a path to workspace.sdf.yml infers something for the whole workspace
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Scope inference to using this profile
+* `--save-location <SAVE_LOCATION>` — Add inferred classifiers to this include path (default folder is ./src)
+* `--classifiers <CLASSIFIERS>` — Infer these classifiers (--classifier can be repeated), no classifier means all classifiers in scope
+* `--no-use-of-samples` — Do NOT pass samples to inference engine
+
+  Default value: `false`
+* `--no-use-of-data` — Do NOT pass data values (at most 5 values randomly chosen) to inference engine
+
+  Default value: `false`
+* `--no-use-of-description` — Do NOT pass table/column descriptions (just first sentence) to inference engine
+
+  Default value: `false`
+
+
+
+   Finished show in 0.006 secs
 
 

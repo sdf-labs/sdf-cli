@@ -42,7 +42,7 @@ function date(datetime) returns date
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_add)
 
 ```sql
-function date_add<$1> ($1, interval day to year) returns $1
+function date_add<$1> ($1, interval) returns $1
 	where $1 in (date, datetime, timestamp)
 ```
 

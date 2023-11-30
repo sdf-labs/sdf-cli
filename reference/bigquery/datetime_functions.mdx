@@ -47,7 +47,7 @@ function datetime(timestamp, string) returns datetime
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_add)
 
 ```sql
-function datetime_add<$1> ($1, interval day to year) returns $1
+function datetime_add<$1> ($1, interval) returns $1
 	where $1 in (datetime, timestamp)
 ```
 
@@ -66,7 +66,7 @@ function datetime_diff<$1> ($1, $1, part string) returns bigint
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_sub)
 
 ```sql
-function datetime_sub<$1> ($1, interval day to year) returns $1
+function datetime_sub<$1> ($1, interval) returns $1
 	where $1 in (datetime, timestamp)
 ```
 

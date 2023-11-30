@@ -78,12 +78,12 @@ function approx_percentile(double, double, array<double>) returns array<double>
 
 
 ```sql
-function approx_percentile(float, array<double>) returns array<float>
+function approx_percentile(real, array<double>) returns array<real>
 ```
 
 
 ```sql
-function approx_percentile(float, double, array<double>) returns array<float>
+function approx_percentile(real, double, array<double>) returns array<real>
 ```
 
 
@@ -118,33 +118,33 @@ function approx_percentile(double, double, double, double) returns double
 
 
 ```sql
-function approx_percentile(float, double) returns float
+function approx_percentile(real, double) returns real
 ```
 
 
 ```sql
-function approx_percentile(float, double, double) returns float
+function approx_percentile(real, double, double) returns real
 ```
 
 
 ```sql
-function approx_percentile(float, double, double, double) returns float
+function approx_percentile(real, double, double, double) returns real
 ```
 
 
 ## approx_set
 ```sql
-function approx_set(bigint) returns bytea
+function approx_set(bigint) returns varbinary
 ```
 
 
 ```sql
-function approx_set(double) returns bytea
+function approx_set(double) returns varbinary
 ```
 
 
 ```sql
-function approx_set(varchar) returns bytea
+function approx_set(varchar) returns varbinary
 ```
 
 
@@ -254,7 +254,7 @@ function bing_tile_at(double, double, bigint) returns varchar
 
 ## bing_tile_coordinates
 ```sql
-function bing_tile_coordinates(varchar) returns struct<x int, y int>
+function bing_tile_coordinates(varchar) returns row(x int, y int)
 ```
 
 
@@ -405,7 +405,7 @@ function cardinality(array(e)) returns bigint
 
 
 ```sql
-function cardinality(bytea) returns bigint
+function cardinality(varbinary) returns bigint
 ```
 
 
@@ -437,7 +437,7 @@ function ceil(double) returns double
 
 
 ```sql
-function ceil(float) returns float
+function ceil(real) returns real
 ```
 
 
@@ -453,7 +453,7 @@ function ceiling(double) returns double
 
 
 ```sql
-function ceiling(float) returns float
+function ceiling(real) returns real
 ```
 
 
@@ -533,7 +533,7 @@ function corr(double, double) returns double
 
 
 ```sql
-function corr(float, float) returns float
+function corr(real, real) returns real
 ```
 
 
@@ -544,7 +544,7 @@ function covar_pop(double, double) returns double
 
 
 ```sql
-function covar_pop(float, float) returns float
+function covar_pop(real, real) returns real
 ```
 
 
@@ -555,13 +555,13 @@ function covar_samp(double, double) returns double
 
 
 ```sql
-function covar_samp(float, float) returns float
+function covar_samp(real, real) returns real
 ```
 
 
 ## crc32
 ```sql
-function crc32(bytea) returns bigint
+function crc32(varbinary) returns bigint
 ```
 
 
@@ -732,7 +732,7 @@ function element_at(array(e), bigint) returns e
 
 ## empty_approx_set
 ```sql
-function empty_approx_set() returns bytea
+function empty_approx_set() returns varbinary
 ```
 
 
@@ -840,7 +840,7 @@ function floor(double) returns double
 
 
 ```sql
-function floor(float) returns float
+function floor(real) returns real
 ```
 
 
@@ -869,46 +869,46 @@ function from_base(varchar, bigint) returns bigint
 
 ## from_base32
 ```sql
-function from_base32(bytea) returns bytea
+function from_base32(varbinary) returns varbinary
 ```
 
 
 ```sql
-function from_base32(varchar) returns bytea
+function from_base32(varchar) returns varbinary
 ```
 
 
 ## from_base64
 ```sql
-function from_base64(bytea) returns bytea
+function from_base64(varbinary) returns varbinary
 ```
 
 
 ```sql
-function from_base64(varchar) returns bytea
+function from_base64(varchar) returns varbinary
 ```
 
 
 ## from_base64url
 ```sql
-function from_base64url(bytea) returns bytea
+function from_base64url(varbinary) returns varbinary
 ```
 
 
 ```sql
-function from_base64url(varchar) returns bytea
+function from_base64url(varchar) returns varbinary
 ```
 
 
 ## from_big_endian_32
 ```sql
-function from_big_endian_32(bytea) returns int
+function from_big_endian_32(varbinary) returns int
 ```
 
 
 ## from_big_endian_64
 ```sql
-function from_big_endian_64(bytea) returns bigint
+function from_big_endian_64(varbinary) returns bigint
 ```
 
 
@@ -926,46 +926,46 @@ function from_geojson_geometry(varchar) returns varchar
 
 ## from_hex
 ```sql
-function from_hex(bytea) returns bytea
+function from_hex(varbinary) returns varbinary
 ```
 
 
 ```sql
-function from_hex(varchar) returns bytea
+function from_hex(varchar) returns varbinary
 ```
 
 
 ## from_ieee754_32
 ```sql
-function from_ieee754_32(bytea) returns float
+function from_ieee754_32(varbinary) returns real
 ```
 
 
 ## from_ieee754_64
 ```sql
-function from_ieee754_64(bytea) returns double
+function from_ieee754_64(varbinary) returns double
 ```
 
 
 ## from_utf8
 ```sql
-function from_utf8(bytea) returns varchar
+function from_utf8(varbinary) returns varchar
 ```
 
 
 ```sql
-function from_utf8(bytea, bigint) returns varchar
+function from_utf8(varbinary, bigint) returns varchar
 ```
 
 
 ```sql
-function from_utf8(bytea, varchar) returns varchar
+function from_utf8(varbinary, varchar) returns varchar
 ```
 
 
 ## geometry_from_hadoop_shape
 ```sql
-function geometry_from_hadoop_shape(bytea) returns varchar
+function geometry_from_hadoop_shape(varbinary) returns varchar
 ```
 
 
@@ -977,7 +977,7 @@ function geometry_invalid_reason(varchar) returns varchar
 
 ## geometry_nearest_points
 ```sql
-function geometry_nearest_points(varchar, varchar) returns struct<c0 varchar, c1 varchar>
+function geometry_nearest_points(varchar, varchar) returns row(c0 varchar, c1 varchar)
 ```
 
 
@@ -1013,25 +1013,25 @@ function histogram(t) returns map(t, bigint)
 
 ## hmac_md5
 ```sql
-function hmac_md5(bytea, bytea) returns bytea
+function hmac_md5(varbinary, varbinary) returns varbinary
 ```
 
 
 ## hmac_sha1
 ```sql
-function hmac_sha1(bytea, bytea) returns bytea
+function hmac_sha1(varbinary, varbinary) returns varbinary
 ```
 
 
 ## hmac_sha256
 ```sql
-function hmac_sha256(bytea, bytea) returns bytea
+function hmac_sha256(varbinary, varbinary) returns varbinary
 ```
 
 
 ## hmac_sha512
 ```sql
-function hmac_sha512(bytea, bytea) returns bytea
+function hmac_sha512(varbinary, varbinary) returns varbinary
 ```
 
 
@@ -1133,7 +1133,7 @@ function is_nan(double) returns boolean
 
 
 ```sql
-function is_nan(float) returns boolean
+function is_nan(real) returns boolean
 ```
 
 
@@ -1426,7 +1426,7 @@ function lower(varchar) returns varchar
 
 ## lpad
 ```sql
-function lpad(bytea, bigint, bytea) returns bytea
+function lpad(varbinary, bigint, varbinary) returns varbinary
 ```
 
 
@@ -1529,13 +1529,13 @@ function map_zip_with(map(k, v1), map(k, v2), function(k, v1, v2, v3)) returns m
 
 ## md5
 ```sql
-function md5(bytea) returns bytea
+function md5(varbinary) returns varbinary
 ```
 
 
 ## merge
 ```sql
-function merge(bytea) returns bytea
+function merge(varbinary) returns varbinary
 ```
 
 
@@ -1603,7 +1603,7 @@ function mod(int, int) returns int
 
 
 ```sql
-function mod(float, float) returns float
+function mod(real, real) returns real
 ```
 
 
@@ -1652,7 +1652,7 @@ function multimap_from_entries(array(row(c0 k, c1 v))) returns map(k, array(v))
 
 ## murmur3
 ```sql
-function murmur3(bytea) returns bytea
+function murmur3(varbinary) returns varbinary
 ```
 
 
@@ -1688,7 +1688,7 @@ function normalize(varchar, varchar) returns varchar
 
 ## now
 ```sql
-function now() returns timestamp(millisecond)
+function now() returns timestamp(3)
 ```
 
 
@@ -1716,12 +1716,12 @@ function numeric_histogram(bigint, double, double) returns map<double, double>
 
 
 ```sql
-function numeric_histogram(bigint, float) returns map<float, float>
+function numeric_histogram(bigint, real) returns map<real, real>
 ```
 
 
 ```sql
-function numeric_histogram(bigint, float, double) returns map<float, float>
+function numeric_histogram(bigint, real, double) returns map<real, real>
 ```
 
 
@@ -1810,17 +1810,17 @@ function qdigest_agg(double, bigint, double) returns varchar
 
 
 ```sql
-function qdigest_agg(float) returns varchar
+function qdigest_agg(real) returns varchar
 ```
 
 
 ```sql
-function qdigest_agg(float, bigint) returns varchar
+function qdigest_agg(real, bigint) returns varchar
 ```
 
 
 ```sql
-function qdigest_agg(float, bigint, double) returns varchar
+function qdigest_agg(real, bigint, double) returns varchar
 ```
 
 
@@ -1836,7 +1836,7 @@ function quantile_at_value(varchar, double) returns double
 
 
 ```sql
-function quantile_at_value(varchar, float) returns double
+function quantile_at_value(varchar, real) returns double
 ```
 
 
@@ -2046,7 +2046,7 @@ function regr_intercept(double, double) returns double
 
 
 ```sql
-function regr_intercept(float, float) returns float
+function regr_intercept(real, real) returns real
 ```
 
 
@@ -2057,7 +2057,7 @@ function regr_slope(double, double) returns double
 
 
 ```sql
-function regr_slope(float, float) returns float
+function regr_slope(real, real) returns real
 ```
 
 
@@ -2101,7 +2101,7 @@ function reverse(array(e)) returns array(e)
 
 
 ```sql
-function reverse(bytea) returns bytea
+function reverse(varbinary) returns varbinary
 ```
 
 
@@ -2158,12 +2158,12 @@ function round(int, bigint) returns int
 
 
 ```sql
-function round(float) returns float
+function round(real) returns real
 ```
 
 
 ```sql
-function round(float, bigint) returns float
+function round(real, bigint) returns real
 ```
 
 
@@ -2195,7 +2195,7 @@ function row_number() returns bigint
 
 ## rpad
 ```sql
-function rpad(bytea, bigint, bytea) returns bytea
+function rpad(varbinary, bigint, varbinary) returns varbinary
 ```
 
 
@@ -2268,12 +2268,8 @@ function sequence(date, date) returns array[date]
 
 
 ```sql
-function sequence(date, date, interval day to second) returns array[date]
-```
-
-
-```sql
-function sequence(date, date, interval day to second) returns array[date]
+function sequence<$1> (date, date, $1) returns array[date]
+	where $1 in (interval day to second, interval year to month)
 ```
 
 
@@ -2289,19 +2285,19 @@ function sequence(timestamp(p), timestamp(p), interval day to second) returns ar
 
 ## sha1
 ```sql
-function sha1(bytea) returns bytea
+function sha1(varbinary) returns varbinary
 ```
 
 
 ## sha256
 ```sql
-function sha256(bytea) returns bytea
+function sha256(varbinary) returns varbinary
 ```
 
 
 ## sha512
 ```sql
-function sha512(bytea) returns bytea
+function sha512(varbinary) returns varbinary
 ```
 
 
@@ -2333,7 +2329,7 @@ function sign(int) returns int
 
 
 ```sql
-function sign(float) returns float
+function sign(real) returns real
 ```
 
 
@@ -2424,13 +2420,13 @@ function split_to_multimap(varchar, varchar, varchar) returns map<varchar, array
 
 ## spooky_hash_v2_32
 ```sql
-function spooky_hash_v2_32(bytea) returns bytea
+function spooky_hash_v2_32(varbinary) returns varbinary
 ```
 
 
 ## spooky_hash_v2_64
 ```sql
-function spooky_hash_v2_64(bytea) returns bytea
+function spooky_hash_v2_64(varbinary) returns varbinary
 ```
 
 
@@ -2453,7 +2449,7 @@ function st_area(varchar) returns double
 
 ## st_asbinary
 ```sql
-function st_asbinary(varchar) returns bytea
+function st_asbinary(varchar) returns varbinary
 ```
 
 
@@ -2579,7 +2575,7 @@ function st_geometrytype(varchar) returns varchar
 
 ## st_geomfrombinary
 ```sql
-function st_geomfrombinary(bytea) returns varchar
+function st_geomfrombinary(varbinary) returns varchar
 ```
 
 
@@ -2797,12 +2793,12 @@ function strpos(varchar, varchar, bigint) returns bigint
 
 ## substr
 ```sql
-function substr(bytea, bigint) returns bytea
+function substr(varbinary, bigint) returns varbinary
 ```
 
 
 ```sql
-function substr(bytea, bigint, bigint) returns bytea
+function substr(varbinary, bigint, bigint) returns varbinary
 ```
 
 
@@ -2835,31 +2831,31 @@ function to_base(bigint, bigint) returns varchar
 
 ## to_base32
 ```sql
-function to_base32(bytea) returns varchar
+function to_base32(varbinary) returns varchar
 ```
 
 
 ## to_base64
 ```sql
-function to_base64(bytea) returns varchar
+function to_base64(varbinary) returns varchar
 ```
 
 
 ## to_base64url
 ```sql
-function to_base64url(bytea) returns varchar
+function to_base64url(varbinary) returns varchar
 ```
 
 
 ## to_big_endian_32
 ```sql
-function to_big_endian_32(bigint) returns bytea
+function to_big_endian_32(bigint) returns varbinary
 ```
 
 
 ## to_big_endian_64
 ```sql
-function to_big_endian_64(bigint) returns bytea
+function to_big_endian_64(bigint) returns varbinary
 ```
 
 
@@ -2889,19 +2885,19 @@ function to_geometry(varchar) returns varchar
 
 ## to_hex
 ```sql
-function to_hex(bytea) returns varchar
+function to_hex(varbinary) returns varchar
 ```
 
 
 ## to_ieee754_32
 ```sql
-function to_ieee754_32(float) returns bytea
+function to_ieee754_32(real) returns varbinary
 ```
 
 
 ## to_ieee754_64
 ```sql
-function to_ieee754_64(double) returns bytea
+function to_ieee754_64(double) returns varbinary
 ```
 
 
@@ -2923,7 +2919,8 @@ function to_iso8601(timestamp(p)) returns varchar
 
 ## to_milliseconds
 ```sql
-function to_milliseconds(interval day to second) returns bigint
+function to_milliseconds<$1> ($1) returns bigint
+	where $1 in (interval day to second, interval year to month)
 ```
 
 
@@ -2935,7 +2932,7 @@ function to_spherical_geography(varchar) returns varchar
 
 ## to_utf8
 ```sql
-function to_utf8(varchar) returns bytea
+function to_utf8(varchar) returns varbinary
 ```
 
 
@@ -3007,7 +3004,7 @@ function truncate(double) returns double
 
 
 ```sql
-function truncate(float) returns float
+function truncate(real) returns real
 ```
 
 
@@ -3207,7 +3204,7 @@ function word_stem(varchar, varchar) returns varchar
 
 ## xxhash64
 ```sql
-function xxhash64(bytea) returns bytea
+function xxhash64(varbinary) returns varbinary
 ```
 
 

@@ -22,22 +22,22 @@ function current_time() returns time
 
 ## current_timestamp
 ```sql
-function current_timestamp() returns timestamp(millisecond)
+function current_timestamp() returns timestamp(3)
 ```
 
 
 ```sql
-function current_timestamp(0) returns timestamp(second)
+function current_timestamp(0) returns timestamp(0)
 ```
 
 
 ```sql
-function current_timestamp(3) returns timestamp(millisecond)
+function current_timestamp(3) returns timestamp(3)
 ```
 
 
 ```sql
-function current_timestamp(6) returns timestamp(microsecond)
+function current_timestamp(6) returns timestamp(6)
 ```
 
 
@@ -133,7 +133,7 @@ function date_format(timestamp(p), varchar) returns varchar
 
 ## date_parse
 ```sql
-function date_parse(varchar, varchar) returns timestamp(millisecond)
+function date_parse(varchar, varchar) returns timestamp(3)
 ```
 
 
@@ -182,7 +182,7 @@ function from_iso8601_date(varchar) returns date
 
 ## from_iso8601_timestamp
 ```sql
-function from_iso8601_timestamp(varchar) returns timestamp(millisecond)
+function from_iso8601_timestamp(varchar) returns timestamp(3)
 ```
 
 
@@ -194,17 +194,17 @@ function from_iso8601_timestamp_nanos(varchar) returns timestamp
 
 ## from_unixtime
 ```sql
-function from_unixtime(double) returns timestamp(millisecond)
+function from_unixtime(double) returns timestamp(3)
 ```
 
 
 ```sql
-function from_unixtime(double, bigint, bigint) returns timestamp(millisecond)
+function from_unixtime(double, bigint, bigint) returns timestamp(3)
 ```
 
 
 ```sql
-function from_unixtime(double, varchar) returns timestamp(millisecond)
+function from_unixtime(double, varchar) returns timestamp(3)
 ```
 
 
@@ -227,22 +227,22 @@ function localtime() returns time
 
 ## localtimestamp
 ```sql
-function localtimestamp() returns timestamp(millisecond)
+function localtimestamp() returns timestamp(3)
 ```
 
 
 ```sql
-function localtimestamp(0) returns timestamp(second)
+function localtimestamp(0) returns timestamp(0)
 ```
 
 
 ```sql
-function localtimestamp(3) returns timestamp(millisecond)
+function localtimestamp(3) returns timestamp(3)
 ```
 
 
 ```sql
-function localtimestamp(6) returns timestamp(microsecond)
+function localtimestamp(6) returns timestamp(6)
 ```
 
 
@@ -253,19 +253,19 @@ function localtimestamp(9) returns timestamp
 
 ## objectid_timestamp
 ```sql
-function objectid_timestamp(varchar) returns timestamp(millisecond)
+function objectid_timestamp(varchar) returns timestamp(3)
 ```
 
 
 ## parse_datetime
 ```sql
-function parse_datetime(varchar, varchar) returns timestamp(millisecond)
+function parse_datetime(varchar, varchar) returns timestamp(3)
 ```
 
 
 ## timestamp_objectid
 ```sql
-function timestamp_objectid(timestamp(second)) returns varchar
+function timestamp_objectid(timestamp(0)) returns varchar
 ```
 
 
@@ -294,7 +294,7 @@ function to_date(varchar, varchar) returns date
 
 ## to_timestamp
 ```sql
-function to_timestamp(varchar, varchar) returns timestamp(millisecond)
+function to_timestamp(varchar, varchar) returns timestamp(3)
 ```
 
 
