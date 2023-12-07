@@ -129,7 +129,7 @@ function string_agg<$1> ($1) returns $1
 
 
 ```sql
-function string_agg<$1> ($1, string) returns array<$1>
+function string_agg<$1> ($1, $1) returns array<$1>
 	where $1 in (string, bytes)
 ```
 

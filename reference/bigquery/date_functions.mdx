@@ -88,7 +88,8 @@ function format_date<$1> (string, $1) returns string
 [🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#last_day)
 
 ```sql
-function last_day(date) returns date
+function last_day<$1> ($1) returns date
+	where $1 in (date, datetime)
 ```
 
 
