@@ -46,18 +46,24 @@
 				"guide/io",
 				"guide/workspaces",
 				"guide/classifiers",
-				"guide/code_checks",
+				"guide/code_contracts",
 				"guide/lineage_metadata",
 				"guide/udf",
 				"guide/authentication",
-				"guide/deployment",
-				"guide/data_deletion"
+				"guide/deployment"
 			]
 		},
 		{
 			"group": "Integrations",
 			"pages": [
+				"integrations/dbt",
 				"integrations/databricks"
+			]
+		},
+		{
+			"group": "Use Cases",
+			"pages": [
+				"use-case/data_deletion"
 			]
 		},
 		{

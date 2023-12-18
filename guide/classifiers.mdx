@@ -40,9 +40,11 @@ This configuration defines five distinct labels: `PII`, `PII.Phone`,
 special classes of the first label. (I.e. if some data is labeled with
 `PII.Address`, it is also, implicitly, labeled with `PII`.)
 
-Classifier domains can also be defined in separate .sdf.yml files as long as
+<Note>
+Classifier domains can also be defined in separate `sdf.yml` files as long as
 these files are included into the root `workspace.sdf.yml` file as one of the
 paths specified in `includes`.
+</Note>
 
 ### Attaching Classifiers to Tables
 
@@ -184,6 +186,20 @@ By explicitly not setting a `to` value in the `reclassify` block, we prevent SDF
 <Note>
 Function reclassifications work across all queries by default. In this way, developers have full programmatic control over how their classifiers propagate and interact with functions across their entire data warehouse.
 </Note>
+
+Lastly, this same reclassification mechanism can be used on a single column or table using the same `reclassify` block. Here's an example below:
+
+```yaml src/phone_trimmed.sdf.yml
+table:
+	name: phone_trimmed
+	columns:
+		- name: phone_first_three_digits
+	reclassify:
+		- from: PII.phone
+			to: PII.area_code
+```
+
+In this example, the column `phone_first_three_digits` will be reclassified to `PII.area_code` if it is derived from a column with the classifier `PII.phone`.
 
 ### Classifier States
 

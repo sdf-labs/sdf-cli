@@ -1,7 +1,7 @@
 ---
 title: "SDF Information Schema"
 ---
-SDF's Information Schema the output of its powerful static analysis. The tables below can be queried and thereby used to author [Code Checks](/guide/code_checks).
+SDF's Information Schema the output of its powerful static analysis. The tables below can be queried and thereby used to author [Code Contracts](/guide/code_checks).
 
 ### Tables
 | Name | Data Type | Nullable | Description |
@@ -36,7 +36,6 @@ SDF's Information Schema the output of its powerful static analysis. The tables 
 
 As previously mentioned, these tables are just that - *tables*. Under the hood, SDF stores the analysis output as Parquet. Below are the DDLs representing these tables in SQL.
 
-```sql
 --information_schemas.sql
 
 CREATE TABLE sdf.information_schema.tables(
@@ -68,4 +67,3 @@ CREATE TABLE sdf.information_schema.columns(
 );
 
 
-```

@@ -1,0 +1,144 @@
+---
+title: "DBT"
+description:
+  "SDF can work alongside an existent DBT project to power column-level lineage, code contracts, and data classification / governance for DBT models."
+---
+
+## Overview
+
+This guide will take you through the steps to integrate SDF with an existing DBT project. SDF currently works with DBT `v1.7.0` and above.
+
+## Prerequisites
+
+Ensure that you have the following installed and configured locally before beginning.
+
+- [DBT](https://docs.getdbt.com/dbt-cli/installation)
+- [SDF](/guide/install)
+- A valid `profiles.yml` file configured wth DBT. See [here](https://docs.getdbt.com/dbt-cli/configure-your-profile) for more information.
+
+Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You can clone it from [here](https://github.com/dbt-labs/jaffle_shop?tab=readme-ov-file).
+
+<Warning>
+	Without a valid `profiles.yml`, the Jaffle Shop example will not be able to compile, and SDF will not work.
+</Warning>
+<Info>
+	We use this example as it doesn't require authentication to a database or existing warehouse. In a production scenario, you'd likely compile DBT with your own models and remote warehouse, requiring authentication. To use SDF in this context, check our [authentication](/guide/authentication) page to see if we support your warehouse. If not, DDLs can be manually added to SDF alongside the DBT project to enable SDF compilation.
+</Info>
+
+## Guide
+
+<Steps>
+  <Step title="Compile DBT">
+		`dbt compile` will compile the DBT project and generate the manifest file. This must be run first before SDF can work.
+
+		```shell	
+		dbt compile
+		```
+	</Step>
+	<Step title="Initialize the SDF DBT Workspace">
+		Using the next command, SDF will create a `workspace.sdf.yml` based on your DBT project's configuration. This file will be placed adjacent to your `dbt_project.yml` file and should be committed to your repository.	
+
+		```shell
+		sdf dbt init
+		```
+
+		Notice that your `workspace.sdf.yml` [includes block](/reference/sdf-yml#nested-element-includepath) points to files within the `target` directory. This is because SDF deals with raw SQL directly and not DBT models. 
+
+		<Note>
+		You may notice an issue where the includes block does not include all compiled models in the `target` directory. If this is the case, simply add them to the `include` block manually by specifying another `path`. 
+		</Note>
+	</Step>
+	<Step title="Define DBT Seed Tables">
+		SDF works best with raw SQL, but in certain cases like [DBT seeds](https://docs.getdbt.com/docs/build/seeds), it's necessary to give SDF a bit more information on where to look for these. In our current project, we have three seeds providing the data to compute our models. We'll need to add these to our `workspace.sdf.yml` file using the yml below:
+
+		```yaml
+		table:
+			name: raw_orders
+			location: seeds/raw_orders.csv
+			file-format: csv
+			with-header: true
+
+		---
+		table:
+			name: raw_payments
+			location: seeds/raw_payments.csv
+			file-format: csv
+			with-header: true
+
+		---
+		table:
+			name: raw_customers
+			location: seeds/raw_customers.csv
+			file-format: csv
+			with-header: true
+		```
+
+		All SDF needs to know is the name of the table, the location of the file, and the file format. From there, it can infer the schema and data types.
+
+	</Step>
+	<Step title="Compile SDF">
+		Now that we have our `workspace.sdf.yml` file configured, we can compile SDF. This will generate the column level lineage and place it in the `.sdfcache` directory local to your DBT project. 
+
+		```shell
+		sdf describe
+		```
+
+		Great, now that we have our lineage, let's try adding some metadata to our models.
+	</Step>
+	<Step title="Classify a DBT Model">
+		In our jaffle shop example, we have a table created from a dbt seed called `raw_customers`. This table contains two columns (`first_name`, `last_name`) with personally identifiable information (PII). Let's classify these columns as `PII` in SDF, and ensure any downstream usage of these columns also inherits this classification.
+
+		First, let's define our PII classifier in the `workspace.sdf.yml` file. 
+
+		```yaml
+		---
+		classifier: 
+			name: pii
+			description: Personally Identifiable Information
+			labels: 
+				- name: name
+					description: An individual's first, middle, or last name
+		```
+
+		Next, let's attach this to the right columns `raw_customers` table in the `workspace.sdf.yml` file.
+
+		```yaml
+		---
+		table:
+			name: raw_customers
+			location: seeds/raw_customers.csv
+			file-format: csv
+			with-header: true
+			columns:
+				- name: first_name
+					classifiers:
+						- pii.name
+				- name: last_name
+					classifiers:
+						- pii.name
+		```
+
+		Great, now let's compile SDF again and see what happens.
+
+		```shell
+		sdf describe
+		```
+
+		You'll notice the classification is not only attached to the `raw_customers` table, but also to the downstream `customers` table and others. This is because SDF is able to infer the lineage between these two tables and propagate the classification.
+	</Step>
+	<Step title="Deploy & Explore the Lineage (Optional)">
+		Now that we have our lineage and metadata generated, we can deploy it to the SDF cloud and explore it in the UI. Note this is only available to users who have been granted access to the SDF Cloud Console.
+
+		```shell
+		sdf auth login
+		```
+
+		```shell
+		sdf deploy
+		```
+	</Step>
+</Steps> 
+
+## Conclusion
+
+SDF can work alongside an existent DBT project to power column-level lineage, code contracts, and data classification & data governance for DBT models. This integration is actively under development, with tons more in the pipeline. 

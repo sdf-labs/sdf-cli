@@ -1,0 +1,98 @@
+---
+title: "Code Contracts"
+---
+
+## Understanding Code checks
+Code Contracts are an example of [**Metaprogramming**](https://en.wikipedia.org/wiki/Metaprogramming). SDF takes your SQL workspace, classifiers, and lineage and creates a rich information schema whenever you run `sdf describe`.
+
+Code Contracts are simply small SQL queries that run against this information schema and check for the existence of certain properties which you want to assure. Some examples of effective code contracts are:
+
+ - Check Data Privacy: Ensure all personally identifiable information (PII) is appropriately anonymized
+ - Check Data Ownership: Guarantee every table has an owner (a staple of GDPR)
+ - Check Data Quality: Prevent different currency types from combining in calculations (e.g. preventing £ + $ )
+
+## Writing Your First Code Contract
+Let's write and modify a code contract, starting with one of the sdf samples.
+
+```shell
+sdf new --sample hello
+```
+This sample contains a Code Contract and a commented out classifier. Each Code Contract has a name, description, an assertion, and a path to the SQL statement that will be executed against the information schema.
+
+```yml
+  workspace:
+		name: hello
+		...
+		includes:
+			- path: src
+			- include-type: Code Contract
+				path: checks/code_check.sql
+				#Ensure that there is no PII.name
+
+```
+To run the Code Contract, simply execute `sdf describe`. During describe, SDF runs all its static analysis on the workspace, creating lineage, metadata, and ultimately executing the Code Contracts.
+
+Hurray! The code contract passes.
+
+But, carefully read the Code Contract. It queries for any column that contains PII.name and asserts that this query should be empty. But we never added the classifier in the first place!
+
+```sql
+SELECT
+    DISTINCT c.t_name as "table_name",
+    c.c_name as "column name",
+    c.classifiers
+FROM
+    columns c
+WHERE
+    c.classifiers like '%PII.name%'
+```
+
+To add the classifier and change the behavior, uncomment the following classifier later in the workspace, run `sdf describe` and the Code Contract will now fail.
+```yml
+table:
+  name: main
+  columns:
+    - name: column_2
+      # UNCOMMENT THE BELOW
+      # classifiers:
+      #   - PII.name
+```
+
+## Modifying Classifiers
+Let's fix this failing Code Contract! We can apply an `md5()` hash to column_2 (the name column) to obfuscate it. This is called a **reclassification** since we are transforming one classifier into another.
+
+Let's add a function block that attaches a reclassify statement to the built-in md5 function. In your workspace.sdf.yml create the following function block.
+
+```yml
+---
+function:
+  name: md5
+  reclassify:
+    - from: PII.name
+```
+Now, create a second table that uses the md5 function. 
+In the same directory as *main.sql*, create *sink.sql* with the line
+```sql
+select md5(column_2) from main;
+```
+Update the *code_check.sql* with the following line `and c.t_name like '%.sink'`. It should now look like the check below.
+Now, the code contract specifically checks the *sink* table for the PII.name classifier.
+
+```sql
+SELECT
+    DISTINCT c.t_name as "table_name",
+    c.c_name as "column name",
+    c.classifiers
+FROM
+    columns c
+WHERE
+    c.classifiers like '%PII.name%'
+    and c.t_name like '%.sink'
+```
+
+Run `sdf describe` again and voila! All code contracts pass. The source table has PII.name, the sink table does not. 
+
+## Advanced Code Contracts
+
+ - To learn more about transforming classifiers across functions, see: [UDFs](/guide/udf)
+ - To learn more about the SDF internal information schema, see: [Information Schema](/reference/sdf-information-schema)

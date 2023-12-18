@@ -8,9 +8,9 @@ Along with running workflows locally with sdf build, you can use `sdf deploy` to
 The SDF Platform is only available via inquiry with our team at this time. If you'd like to get access, please [inquire](https://sdf.com/inquiries)
 </Note>
 
-Running deploy allows you to execute your workflows remotely, search, monitor and interact with your assets via SDF's [console](https://console.sdf.xyz).
+Running deploy allows you to execute your workflows remotely, search, monitor and interact with your assets via SDF's cloud.
 
-<img src="https://uploads-ssl.webflow.com/6420e53ce6ce55294b114432/642376dbe407e0510fab14fc_Screenshot%202023-03-28%20at%204.22.58%20PM.png" />
+<video autoPlay muted src="https://cdn.sdf.com/vid/lineage-vid.mov" />
 
 ## What is Deploy?
 
@@ -20,9 +20,9 @@ SDF Deploy is just like running `sdf describe`, but with the intention of deploy
 Before you can deploy your assets to the SDF Platform, you'll need to authenticate with the platform. Follow our guide on [authentication](/guide/authentication) to get started.
 </Info>
 
-## Deploying Your Assets
+## Deploying Your Workspace
 
-Deploying your assets is easy. All of the flags associated with the [sdf describe](/reference/sdf-cli#sdf-describe) also work with deploy, but deploy has a few extra functionalities and tweaks to watch out for. Let's take a look at the following example:
+Deploying your workspace is easy. All of the flags associated with the [sdf describe](/reference/sdf-cli#sdf-describe) also work with deploy, but deploy has a few extra functionalities and tweaks to watch out for. Let's take a look at the following example:
 
 > First, we'll [authenticate with platform](/guide/authentication).
 ```shell
@@ -37,7 +37,7 @@ sdf new deploy_sample
 > Next, let's take a look at the workspace.sdf.yml file
 ```yaml
 workspace:
-  name: deploy_sample
+  name: hello
   edition: "1.1"
   includes:
      - path: src/
@@ -48,9 +48,3 @@ workspace:
 ```shell
 sdf deploy
 ```
-
-## Viewing your Deployments
-
-Click on the deployment link to navigate to your [console](https://console.sdf.com/catalog/data/default?workspace=s3_project&profile=dbg) to see your deployments in action! See the screen below for an example.
-
-<img src="https://cdn.sdf.com/img/main-catalog-screen.png" />

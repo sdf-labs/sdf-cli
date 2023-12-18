@@ -4,10 +4,10 @@ title: "Authentication"
 
 ## Authenticating the CLI
 
-Before you can deploy your assets to the SDF Platform, you'll first need to authenticate with the platform. 
+Before you can deploy your assets to the SDF Cloud, you'll first need to authenticate with the platform. 
 
 <Note>
-The SDF Platform is only available via inquiry with our team at this time. If you'd like to get access, please [inquire](https://sdf.com/inquiries)
+The SDF Cloud is only available via inquiry with our team at this time. If you'd like to get access, please [inquire](https://sdf.com/inquiries)
 </Note>
 
 Authenticating with your CLI is easy. Simply run the command below to begin:
@@ -34,5 +34,15 @@ Run the following command:
 ```shell
 sdf auth aws --profile [PROFILE]
 ```
+
+If you use a region other than `us-east-1`, you'll need to specify it with the `--default-region` flag.
+
+```shell
+sdf auth aws --profile [PROFILE] --default-region [AWS_REGION]
+```
+
+<Warning>
+	AWS SSO Session Names are not currently supported if using AWS SSO locally to authenticate with sdf. To accomplish this, make sure to not set a session name here -> `SSO session name (Recommended):` after running `aws configure sso --profile [PROFILE]`
+</Warning>
 
 For more on this, see the [CLI Reference](/reference/sdf-cli#sdf-auth-aws).

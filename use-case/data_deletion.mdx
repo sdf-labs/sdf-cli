@@ -1,10 +1,13 @@
+---
+title: "Data Deletion"
+description: "SDF can be used to fully automate data deletion and retention policies for GDPR compliance."
+---
+
 # Retention and Data Deletion with SDF
 
 ## Overview of Approach
 
-We present a method to fully automate data deletion and retention policies for GDPR compliance in a daily updated warehouse.
-
-All versions require the following main components for automation:
+Our approach assumes the data warehoue is updated daily and contains the following main components for automation:
 
 - **Classifiers**. We have to categorize data, their purpose and retention period.
 - **Date ranges and partitions**. We have to know which table partition captures what data range.
@@ -17,7 +20,7 @@ SDF introduces three features which are central to the proposed automation.
 
 1. SDF introduces classifiers and classifier propagation. This builds the foundation for having a perfect record of data categories and purpose for all data assets in the warehouse. 
 2. SDF introduces a table and column information schema that captures the result of aforementioned annotation and propagation. In addition SDF has a partition schema, keeping a record of each table and its landing time.  
-3. SDF introduces Code Reports and Code Contracts, e.g. queries that run against above information schema. A code check might for example be that all tables specify their purpose.   
+3. SDF introduces Code Reports and Code Contracts, e.g. queries that run against above information schema. A code contract might for example be that all tables specify their purpose.   
 A code report, for example, can represent the partitions that have expired and thus should be deleted. 
 
 We introduce each of these three SDF concepts in turn.
@@ -62,7 +65,7 @@ classifier:
 	- name: is_true
 ```
 
-We **classify all root tables** as either machine or static or user data. A table that is classified as user data must have at least one column labeled as PII. We can write a code check to ensure any table containing PII also contains a `user_data` table classifier.
+We **classify all root tables** as either machine or static or user data. A table that is classified as user data must have at least one column labeled as PII. We can write a code contract to ensure any table containing PII also contains a `user_data` table classifier.
 
 For example, here is a daily user event table in SQL
 
@@ -88,7 +91,7 @@ table:
 
 A machine event table might have very similar structure, except it has no PII and its table classifier is machine_data.
 
-### Writing our first code check
+### Writing our first code contract
 
 We want to make sure that root tables are either machine data, static data. For that check we can rely on SDF tables information schema, whcih quintessence is
 
@@ -181,7 +184,7 @@ We introduce a new **table qualifier TimeGrain** to capture the fact that the ac
 
 ### **Policy**
 
-In SDF we implement policies with code checks against the information schema. Recall that we have three information schema: tables, columns, and partitions.
+In SDF we implement policies with code contracts against the information schema. Recall that we have three information schema: tables, columns, and partitions.
 
 A simple GDPR compliant policy might say:
 
@@ -245,7 +248,7 @@ where
 Is this policy good enough? It is close, but not perfect: Here are two small issues we can address. 
 
 **Schedule period > deletion period.** ** Suppose you have a yearly query YQ capturing user data. According to above policy YQ will be deleted after 90days. But then it is no longer of any use. 
-This table thus makes no sense. Let’s introduce a code check that makes sure that at least all user tables are rerun within 90 days (the udf as_interval takes a list of [+-]d+[dwmy] strings and casts it as an interval).   
+This table thus makes no sense. Let’s introduce a code contract that makes sure that at least all user tables are rerun within 90 days (the udf as_interval takes a list of [+-]d+[dwmy] strings and casts it as an interval).   
 
 ```sql
 -- user data tables with a schedule period > 90 days

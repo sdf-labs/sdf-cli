@@ -30,15 +30,14 @@ There are 5 commandline options to control the output.
   - `debug` prints more of the above, cache hits, etc
   - `trace` prints internal state changes
 
-- `--print-format (json | csv | yml | tbl)` - Specifies the table representation
+- `--print-meta-format (table | json | yml)` - Specifies the table representation
   on stdout.
 
-  - `tbl` is the normal ascii table representation.
-  - `csv` is a CSV representation
+  - `table` is the normal ascii table representation.
   - `json` is a JSON representation
   - `yml`, only available for `sdf describe`, is YAML representation
 
-- `--limit number` - Limits the number of shown rows. Run with `--limit 0` to
+- `--limit <number>` - Limits the number of shown rows. Run with `--limit 0` to
   show all rows.
 
 ### Example
@@ -73,25 +72,9 @@ Let's try these options. Start by creating a new workspace with a sample project
 
 > `sdf describe --log trace`
 
-### Controlling which tables will be printed
+(6) Show only the sink table this time via a file
 
-`sdf` shows all tables that are explicitly passed as arguments on the commandline. If you pass no input argument, it prints all tables of the workspace.
-
-#### Example (cont.)
-(0) Show only the sink table this time via a file
-
-> sdf describe src/sink.sql
-
-(1) Show only the `sink` table this time via a target, i.e. a
-_catalog.schema.table_ term
-
-> sdf describe source_to_sink.public.sink
-
-(2) Of course you can pass as many files or targets as you want. Even regex patterns are supported. Use a `*` for example to match all tables in a folder like below.
-
-> sdf describe src\/*.sql
-
-We now discus each of the parameters in turn.
+> `sdf describe src/sink.sql`
 
 ### Schema
 
