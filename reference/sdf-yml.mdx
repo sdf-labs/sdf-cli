@@ -7,93 +7,101 @@ title: "SDF YML Schema"
 | :---- | :--- | :------- |
 `edition:` | `string`| The SDF edition, should always be 1 (for now)|
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
-`description:` | `string?`| A description of this workspace|
-`repository:` | `string?`| The URL of the workspace source repository [defaults to 'none' if no repository is given]|
-`remote-location:` | `string?`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
-`includes:` | `[IncludePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
-`excludes:` | `[ExcludePath]?`| An array of directories and filenames to be skipped when resolving includes|
-`references:` | `[WorkspacePath]?`| An array of paths to other workspaces, i.e. .sql and .yml files|
-`dialect:` | `Dialect?`| The dialect of this workspace. If not set, defaults to sdf dialect|
-`default-catalog:` | `string?`| Defines a default catalog [If not set, defaults to the directory of the workspace]|
-`default-schema:` | `string?`| Defines a default schema [If not set, defaults to 'pub']|
-`default-profile:` | `string?`| Defines the default profile [if not set, defaults to 'dbg']|
-`source-locations:` | `FilePath?`| Workspace defined by these set of files|
-`variables:` | `[Variable]?`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
+`description:` | `string`| A description of this workspace|
+`repository:` | `string`| The URL of the workspace source repository (defaults to 'none' if no repository is given)|
+`remote-location:` | `string`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
+`includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
+`excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
+`references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files Todo why do we skip this serialization?|
+`dialect:` | `UNKNOWN`| The dialect of this workspace. If not set, defaults to Presto dialect|
+`default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
+`default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
+`default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
+`source-locations:` | `array`| Workspace defined by these set of files|
+`variables:` | `array`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
+`is-dbt-project:` | `boolean`| Experimental: This is a dbt project..|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| undefined|
 `description:` | `string?`| undefined|
 `dialect:` | `Dialect?`| An array of sql file names [Typically inferred]|
-`dependencies:` | `[string]?`| ALl table dependencies (syntax: catalog.schema.table)|
-`columns:` | `[Column]?`| The columns of the schema: name, type, metadata|
-`partitioned-by:` | `[Partition]?`| The partitioning format of the table|
-`schedule:` | `string?`| The schedule of the table [expressed as cron]|
-`starting:` | `string?`| The first date of the table [expressed by prefixes of RFC 33]|
-`classifiers:` | `[string]?`| An array of classifier references|
-`reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
+`table-type:` | `TableType?`| The table-type of this table|
+`dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
+`columns:` | `array`| The columns of the schema: name, type, metadata|
+`partitioned-by:` | `array`| The partitioning format of the table|
+`schedule:` | `string`| The schedule of the table [expressed as cron]|
+`starting:` | `string`| The first date of the table [expressed by prefixes of RFC 33]|
+`classifiers:` | `array`| An array of classifier references|
+`reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `lineage:` | `Lineage?`| Lineage, a tagged array of column references|
-`materialization:` | `Materialization?`| The materialization scheme of this table|
-`insert-into:` | `string?`| Store data under this catalog.schema.table instead of the original name|
 `location:` | `string?`| Data is at this location|
 `file-format:` | `FileFormat?`| Store table in this format [only for external tables]|
 `with-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
 `compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
-`source-locations:` | `[FilePath]?`| Table is defined by these .sql and/or .sdf files|
+`source-locations:` | `array`| Table is defined by these .sql and/or .sdf files|
 ## Block: `Classifier`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the classifier type|
-`description:` | `string?`| A description of this classifier type|
-`labels:` | `[Label]?`| Named classifier labels|
-`scope:` | `Scope?`| scope of the classifier: table or column|
-`cardinality:` | `Cardinality?`| cardinality of the classifier: zero-or-one, one or zero-or-many|
-`propagate:` | `boolean?`| does the classifier propagate from scope to scope or is it a one scope marker|
-`source-locations:` | `FilePath?`| Classifier defined by these set of .sdf files|
+`description:` | `string`| A description of this classifier type|
+`labels:` | `array`| Named classifier labels|
+`scope:` | `UNKNOWN`| Scope of the classifier: table or column|
+`cardinality:` | `UNKNOWN`| Cardinality of the classifier: zero-or-one, one or zero-or-many|
+`propagate:` | `boolean`| Does the classifier propagate from scope to scope or is it a one scope marker|
+`source-locations:` | `array`| Classifier defined by these set of .sdf files|
 ## Block: `Function`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the function [syntax: [[catalog.]schema].function]|
-`section:` | `string?`| The generic type bounds|
+`section:` | `string`| The generic type bounds|
 `dialect:` | `Dialect?`| The dialect that provides this function|
-`description:` | `string?`| A description of this function|
-`variadic:` | `Variadic?`| Arbitrary number of arguments of an common type out of a list of valid types|
-`kind:` | `FunctionKind?`| The function kind|
+`description:` | `string`| A description of this function|
+`variadic:` | `UNKNOWN`| Arbitrary number of arguments of an common type out of a list of valid types|
+`kind:` | `UNKNOWN`| The function kind|
 `parameters:` | `[Parameter]?`| The arguments of this function|
 `optional-parameters:` | `[OptionalParameter]?`| The arguments of this function|
 `returns:` | `Parameter?`| The results of this function (can be a tuple)|
-`binds:` | `[TypeBound]?`| The generic type bounds|
-`volatility:` | `Volatility?`| volatility - The volatility of the function.|
-`examples:` | `[Example]?`| example - Example use of the function (tuple with input/output)|
-`cross-link:` | `string?`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
-`reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
-`source-locations:` | `[FilePath]?`| Function defined by these set of .sdf files|
+`binds:` | `array`| The generic type bounds|
+`volatility:` | `UNKNOWN`| volatility - The volatility of the function.|
+`examples:` | `array`| example - Example use of the function (tuple with input/output)|
+`cross-link:` | `string`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
+`reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
+`source-locations:` | `array`| Function defined by these set of .sdf files|
 `implemented-by:` | `FunctionImplSpec?`| undefined|
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
-`code-check` | undefined|
-`data-asset` | Contains data definition or data query|
-`resource` | Contains resources used by the application (e.g. static csv files)|
-## Enum: `Dialect`
+`model` | Contains models, i.e ddls or select statements, used for data transformation|
+`test` | Contains static and dynamic test queries, the check holds if the data returns zero rows|
+`stats` | Contains queries for data exploration, data profiling, data description and summarization|
+`resource` | Contains resources used by the application, like static .csv files|
+`metadata` | Contains meta data like classifiers, etc|
+`code-check` | INTERNAL USE ONLY, temporary, will be removed|
+`data-check` | INTERNAL USE ONLY, temporary, will be removed|
+`code-report` | INTERNAL USE ONLY, temporary, will be removed|
+`data-report` | INTERNAL USE ONLY, temporary, will be removed|
+`access-check` | INTERNAL USE ONLY, temporary, will be removed|
+## Enum: `SyncType`
 Value | Description|
 | :--- | :------- |
-`presto` | undefined|
-`snowflake` | SparkSQL Dialect Snowflake Dialect|
+`always` | Synchronizes directory on pull and push|
+`on-pull` | Synchronizes directory on every pull|
+`on-push` | Synchronizes directory on every push|
+`never` | Never synchronizes directory|
 ## Enum: `ExcludeType`
 Value | Description|
 | :--- | :------- |
 `timeouts` | undefined|
 `path` | Contains data definition or data query|
-## Enum: `Materialization`
+## Enum: `TableType`
 Value | Description|
 | :--- | :------- |
 `compat` | undefined|
 `cached` | All derived tables are cached by default|
 `external` | External tables must be explicitly marked When using 'Create external table` SQL syntax|
 `view` | View|
-`ephemeral` | Ephemeral|
 `recursive` | Recursive warehouse tables must be  explicitly  marked|
 `system` | System tables are not materialized|
 `catalog` | Catalog tables are not materialized|
@@ -111,6 +119,7 @@ Value | Description|
 ## Enum: `Variadic`
 Value | Description|
 | :--- | :------- |
+`non-uniform` | undefined|
 `uniform` | All arguments have the same types|
 `even-odd` | All even arguments have one type, odd arguments have another type|
 ## Enum: `Volatility`
@@ -124,19 +133,18 @@ Value | Description|
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| A filepath|
-`include-type:` | `IncludeType?`| Type of included artifacts|
+`type:` | `UNKNOWN`| Type of included artifacts: model | test | stats | metadata | resource|
 `default-catalog:` | `string?`| Defines a default catalog for unqualified names. If not set, defaults to the [Workspace] catalog.|
 `default-schema:` | `string?`| Defines a default schema for unqualified names. If not set, defaults to the [Workspace] schema.|
 `dialect:` | `Dialect?`| The dialect of the included files. If not set, defaults to the [Workspace] dialect.|
-`access-with:` | `AccessMethod?`| Last modified of the file|
-### Nested element: `AccessMethod`
+`index:` | `UNKNOWN`| Index method for this include path: scan | table | schema-table | catalog-schema-table|
+`sync:` | `UNKNOWN`| Synchronization schema for this include path: always | on-pull | on-push | never|
+### Nested element: `Dialect`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-### Nested element: `SystemTime`
+### Nested element: `IndexMethod`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`secs_since_epoch:` | `integer`| undefined|
-`nanos_since_epoch:` | `integer`| undefined|
 ### Nested element: `ExcludePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -155,6 +163,11 @@ Value | Description|
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| A filepath|
+### Nested element: `SystemTime`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`secs_since_epoch:` | `integer`| undefined|
+`nanos_since_epoch:` | `integer`| undefined|
 ### Nested element: `Variable`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -164,35 +177,36 @@ Value | Description|
 ### Nested element: `Profile`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| undefined|
-`description:` | `string?`| A description of this workspace|
-`remote-location:` | `string?`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
-`includes:` | `[IncludePath]?`| An array of directories and filenames containing .sql and .sdf.yml files|
-`excludes:` | `[ExcludePath]?`| An array of directories and filenames to be skipped when resolving includes|
-`references:` | `[WorkspacePath]?`| An array of paths to other workspaces, i.e. .sql and .yml files|
-`dialect:` | `Dialect?`| The default dialect of this workspace. If not set, defaults to sdf dialect|
-`resources:` | `[FilePath]?`| An array of paths to directories and files, which will be copied to the SDF service on deployment|
-`default-catalog:` | `string?`| Defines a default catalog [If not set, defaults to the directory of the workspace]|
-`default-schema:` | `string?`| Defines a default schema [If not set, defaults to 'pub']|
-`source-locations:` | `FilePath?`| Workspace defined by these set of files|
-`variables:` | `[Variable]?`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
+`name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
+`description:` | `string`| A description of this workspace|
+`repository:` | `string`| The URL of the workspace source repository (defaults to 'none' if no repository is given)|
+`remote-location:` | `string`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
+`includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
+`excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
+`references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files Todo why do we skip this serialization?|
+`dialect:` | `UNKNOWN`| The dialect of this workspace. If not set, defaults to Presto dialect|
+`default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
+`default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
+`default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
+`source-locations:` | `array`| Workspace defined by these set of files|
+`variables:` | `array`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the column|
-`description:` | `string?`| A description of this column|
+`description:` | `string`| A description of this column|
 `datatype:` | `string?`| The type of this column|
-`classifiers:` | `[string]?`| An array of classifier references|
+`classifiers:` | `array`| An array of classifier references|
 `lineage:` | `Lineage?`| Lineage, a tagged array of column references|
-`reclassify:` | `[Reclassify]?`| Array of reclassify instructions for changing the attached classifier labels|
-`samples:` | `[string]?`| An array of representative literals of this column [experimental!]|
+`reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
+`samples:` | `array`| An array of representative literals of this column [experimental!]|
 ### Nested element: `Lineage`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`copy:` | `[string]?`| The output column is computed by copying these upstream columns|
-`modify:` | `[string]?`| The output column is computed by transforming these upstream columns|
-`scan:` | `[string]?`| These upstream columns are indirectly used to produce the output (e.g. in WHERE or GROUP BY)|
-`apply:` | `[string]?`| These functions were used to produce the output column|
+`copy:` | `array`| The output column is computed by copying these upstream columns|
+`modify:` | `array`| The output column is computed by transforming these upstream columns|
+`scan:` | `array`| These upstream columns are indirectly used to produce the output (e.g. in WHERE or GROUP BY)|
+`apply:` | `array`| These functions were used to produce the output column|
 ### Nested element: `Reclassify`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -273,6 +287,7 @@ Value | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the catalog [e.g.: database]|
 `type:` | `UNKNOWN`| The type of the catalog [e.g.: hive]|
+`cluster-identifier:` | `string?`| The cluster identifier for redshift server|
 ### Nested element: `CatalogType`
 |Field | Type | Description|
 | :---- | :--- | :------- |

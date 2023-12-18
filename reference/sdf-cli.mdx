@@ -33,6 +33,12 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf add`↴](#sdf-add)
 * [`sdf ai`↴](#sdf-ai)
 * [`sdf ai classify`↴](#sdf-ai-classify)
+* [`sdf dbt`↴](#sdf-dbt)
+* [`sdf dbt build`↴](#sdf-dbt-build)
+* [`sdf dbt test`↴](#sdf-dbt-test)
+* [`sdf dbt run`↴](#sdf-dbt-run)
+* [`sdf dbt compile`↴](#sdf-dbt-compile)
+* [`sdf dbt init`↴](#sdf-dbt-init)
 
 ## `sdf`
 
@@ -58,6 +64,7 @@ SDF's modular SQL
 * `obfuscate` — Obfuscate the workspace into the provided directory
 * `add` — Add new versioned files to the workspace
 * `ai` — Infer artifacts like classifiers and add them optionally to the workspace
+* `dbt` — Run Dbt commands via sdf
 
 
 
@@ -836,13 +843,7 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 * `--deploy-json-schema` — Show json schema for deploy.json documents
 * `--dialect <DIALECT>` — The dialect to show (only for --functions, `` shows all dialects)
 
-  Possible values:
-  - `snowflake`:
-    SparkSQL Dialect Snowflake Dialect
-  - `presto`
-  - `bigquery`
-  - `redshift`
-  - `spark-lp`
+  Possible values: `snowflake`, `presto`, `bigquery`, `redshift`, `spark-lp`
 
 * `--section <SECTION>` — The section to show (only for --functions, `` shows all sections)
 * `--quiet` — Do not print sdf console messages
@@ -1189,13 +1190,7 @@ Add new versioned files to the workspace
 * `--includes-path <INCLUDES_PATH>` — Add them to this include path (default folder is ./src)
 * `--dialect <DIALECT>` — Assume this dialect for all files (default dialect is the workspace dialect)
 
-  Possible values:
-  - `snowflake`:
-    SparkSQL Dialect Snowflake Dialect
-  - `presto`
-  - `bigquery`
-  - `redshift`
-  - `spark-lp`
+  Possible values: `snowflake`, `presto`, `bigquery`, `redshift`, `spark-lp`
 
 * `--default-catalog <DEFAULT_CATALOG>` — Assume this default catalog for all files (default dialect is the workspace dialect)
 * `--default-schema <DEFAULT_SCHEMA>` — Assume this default schema for all files (default dialect is the workspace dialect)
@@ -1278,6 +1273,260 @@ Infer artifacts like classifiers and add them optionally to the workspace
 
 
 
-   Finished show in 0.010 secs
+## `sdf dbt`
+
+Run Dbt commands via sdf
+
+**Usage:** `sdf dbt <COMMAND>`
+
+###### **Subcommands:**
+
+* `build` — Corresponds to dbt build: runs models, test tests, snapshot snapshots, seed seeds
+* `test` — Corresponds to dbt test: runs tests defined on models, sources, snapshots, and seeds
+* `run` — Corresponds to dbt run: executes compiled sql model files against the current target database
+* `compile` — Corresponds to dbt compile:  generates executable SQL from source model, test, and analysis files (and puts it into target)
+* `init` — Init
+
+
+
+## `sdf dbt build`
+
+Corresponds to dbt build: runs models, test tests, snapshot snapshots, seed seeds
+
+**Usage:** `sdf dbt build [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Scope inference to using this SDF profile
+* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '{my_variable: my_value}'
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+
+
+
+## `sdf dbt test`
+
+Corresponds to dbt test: runs tests defined on models, sources, snapshots, and seeds
+
+**Usage:** `sdf dbt test [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Scope inference to using this SDF profile
+* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '{my_variable: my_value}'
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+
+
+
+## `sdf dbt run`
+
+Corresponds to dbt run: executes compiled sql model files against the current target database
+
+**Usage:** `sdf dbt run [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Scope inference to using this SDF profile
+* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '{my_variable: my_value}'
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+
+
+
+## `sdf dbt compile`
+
+Corresponds to dbt compile:  generates executable SQL from source model, test, and analysis files (and puts it into target)
+
+**Usage:** `sdf dbt compile [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Scope inference to using this SDF profile
+* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '{my_variable: my_value}'
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+
+
+
+## `sdf dbt init`
+
+Init
+
+**Usage:** `sdf dbt init [OPTIONS]`
+
+###### **Options:**
+
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+
+
+
+   Finished show in 0.013 secs
 
 

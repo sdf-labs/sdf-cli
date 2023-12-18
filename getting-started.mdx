@@ -52,6 +52,7 @@ Commands:
   obfuscate  Obfuscate the workspace into the provided directory
   add        Add new versioned files to the workspace
   ai         Infer artifacts like classifiers and add them optionally to the workspace
+  dbt        Run Dbt commands via sdf
   help       Print this message or the help of the given subcommand(s)
 
 Options:
@@ -72,7 +73,7 @@ sdf new --sample hello
 After running the command, you should see the following output: 
  
 ```shell
-   Finished new in 0.002 secs
+   Finished new in 0.001 secs
     Created hello/.gitignore
     Created hello/checks/code_check.sql
     Created hello/src/main.sql
@@ -104,7 +105,7 @@ Start parsing 2 files
   Analyzing hello.pub.code_check (./checks/code_check.sql)
   Analyzing hello.pub.main (./src/main.sql)
 ------------
-Summary [0.358s] 2 queries run: 2 passed
+Summary [0.474s] 2 queries run: 2 passed
 
 Schema hello.pub.main
 +-------------+------------------+------------+
