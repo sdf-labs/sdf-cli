@@ -73,11 +73,11 @@ sdf new --sample hello
 After running the command, you should see the following output: 
  
 ```shell
-   Finished new in 0.002 secs
     Created hello/.gitignore
     Created hello/checks/code_check.sql
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
+   Finished new in 0.002 secs
 
 
 ```
@@ -105,15 +105,8 @@ Start parsing 2 files
   Analyzing hello.pub.code_check (./checks/code_check.sql)
   Analyzing hello.pub.main (./src/main.sql)
 ------------
-Summary [0.326s] 2 queries run: 2 passed
+Summary [0.358s] 2 queries run: 2 passed
 
-Schema hello.pub.main
-+-------------+------------------+------------+
-| column_name | data_type        | classifier |
-+-------------+------------------+------------+
-| column_1    | varchar not null |            |
-| column_2    | varchar not null |            |
-+-------------+------------------+------------+
 Schema hello.pub.code_check
 +-------------+-----------+------------+
 | column_name | data_type | classifier |
@@ -122,6 +115,13 @@ Schema hello.pub.code_check
 | column name | varchar   |            |
 | classifiers | varchar   |            |
 +-------------+-----------+------------+
+Schema hello.pub.main
++-------------+------------------+------------+
+| column_name | data_type        | classifier |
++-------------+------------------+------------+
+| column_1    | varchar not null |            |
+| column_2    | varchar not null |            |
++-------------+------------------+------------+
 
 ```
 

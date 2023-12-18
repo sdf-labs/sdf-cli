@@ -153,7 +153,7 @@ Build, run, and save SDF queries
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -254,7 +254,7 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -355,7 +355,7 @@ Create a deployment and post it to the SDF service
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -520,7 +520,7 @@ Display lineage for a given column
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -881,7 +881,7 @@ Test code and data contracts
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -986,7 +986,7 @@ Run a query against your current workspace
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -1087,7 +1087,7 @@ Obfuscate the workspace into the provided directory
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/{profile}/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -1319,7 +1319,7 @@ Corresponds to dbt build: runs models, test tests, snapshot snapshots, seed seed
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '{my_variable: my_value}'
+* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '[my_variable: my_value]'
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -1371,7 +1371,7 @@ Corresponds to dbt test: runs tests defined on models, sources, snapshots, and s
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '{my_variable: my_value}'
+* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '[my_variable: my_value]'
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -1423,7 +1423,7 @@ Corresponds to dbt run: executes compiled sql model files against the current ta
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '{my_variable: my_value}'
+* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '[my_variable: my_value]'
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -1475,7 +1475,7 @@ Corresponds to dbt compile:  generates executable SQL from source model, test, a
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '{my_variable: my_value}'
+* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '[my_variable: my_value]'
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -1526,7 +1526,5 @@ Init
 * `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
 
 
-
-   Finished show in 0.010 secs
 
 
