@@ -15,6 +15,8 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf build`↴](#sdf-build)
 * [`sdf describe`↴](#sdf-describe)
 * [`sdf deploy`↴](#sdf-deploy)
+* [`sdf push`↴](#sdf-push)
+* [`sdf pull`↴](#sdf-pull)
 * [`sdf view`↴](#sdf-view)
 * [`sdf lineage`↴](#sdf-lineage)
 * [`sdf system`↴](#sdf-system)
@@ -53,6 +55,8 @@ SDF's modular SQL
 * `build` — Build, run, and save SDF queries
 * `describe` — Describe inferred table schemas including propagated classifiers, run code code checks
 * `deploy` — Create a deployment and post it to the SDF service
+* `push` — Push a local workspace to the SDF Console
+* `pull` — Pull a remote workspace from the SDF Console
 * `view` — View existing table content
 * `lineage` — Display lineage for a given column
 * `system` — System maintenance, install and update
@@ -153,7 +157,7 @@ Build, run, and save SDF queries
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -254,7 +258,7 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -355,7 +359,7 @@ Create a deployment and post it to the SDF service
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -449,6 +453,218 @@ Create a deployment and post it to the SDF service
 
 
 
+## `sdf push`
+
+Push a local workspace to the SDF Console
+
+**Usage:** `sdf push [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Build data using this profile
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+
+  Default value: `false`
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-cache` — Don't read and write cached table data
+
+  Default value: `false`
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+* `--delete` — Delete this workspace from the SDF Console
+
+  Default value: `false`
+* `-y`, `--yes` — Answer yes to all prompts
+
+  Default value: `false`
+
+
+
+## `sdf pull`
+
+Pull a remote workspace from the SDF Console
+
+**Usage:** `sdf pull [OPTIONS] [INPUT_FILES]...`
+
+###### **Arguments:**
+
+* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+
+###### **Options:**
+
+* `--profile <PROFILE>` — Build data using this profile
+* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+
+  Default value: `false`
+* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+
+  Default value: `parquet`
+
+  Possible values: `parquet`, `csv`, `json`
+
+* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
+
+* `--no-cache` — Don't read and write cached table data
+
+  Default value: `false`
+* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+
+  Default value: `read-write`
+
+  Possible values: `none`, `read-only`, `read-write`, `write-only`
+
+* `--no-workflow` — Don't run a workflow, just the query
+
+  Default value: `false`
+* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+
+  Default value: `10`
+* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+
+  Default value: `30`
+* `--no-show` — Don't show the result of queries
+
+  Default value: `false`
+* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `yml`, `json`
+
+* `--generate-information-schema` — Generate information schemas and metadata
+
+  Default value: `false`
+* `--no-propagate` — Propagate labels
+
+  Default value: `false`
+* `--output-file-contents-on-error` — Include file contents when generating error output
+
+  Default value: `false`
+* `--save-assembly` — Save assembly in yaml format
+
+  Default value: `false`
+* `--infer-functions` — When queries make use of undeclared functions, generate implied signatures based on how the function is called instead of failing
+
+  Default value: `false`
+* `--upload` — Uploads tables to workspace's remote-location (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--download` — Downloads tables to the workspace's cache (if need to), a user specified s3://bucket
+
+  Default value: `false`
+* `--quiet` — Do not print sdf console messages
+
+  Default value: `false`
+* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
+* `--perf <PERF>` — Performance Metric Log Level
+
+  Default value: `0`
+* `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
+
+  Default value: `false`
+* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
+* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir <CREDENTIALS_DIR>`
+* `-y`, `--yes` — Answer yes to all prompts
+
+  Default value: `false`
+* `--workspace-name <WORKSPACE_NAME>`
+
+
+
 ## `sdf view`
 
 View existing table content
@@ -520,7 +736,7 @@ Display lineage for a given column
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -881,7 +1097,7 @@ Test code and data contracts
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -986,7 +1202,7 @@ Run a query against your current workspace
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -1087,7 +1303,7 @@ Obfuscate the workspace into the provided directory
 * `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
 * `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
 
   Default value: `false`
 * `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
@@ -1319,7 +1535,7 @@ Corresponds to dbt build: runs models, test tests, snapshot snapshots, seed seed
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '[my_variable: my_value]'
+* `--vars <VARS>` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -1371,7 +1587,7 @@ Corresponds to dbt test: runs tests defined on models, sources, snapshots, and s
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '[my_variable: my_value]'
+* `--vars <VARS>` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -1423,7 +1639,7 @@ Corresponds to dbt run: executes compiled sql model files against the current ta
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '[my_variable: my_value]'
+* `--vars <VARS>` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
@@ -1475,7 +1691,7 @@ Corresponds to dbt compile:  generates executable SQL from source model, test, a
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a YAML string, eg. '[my_variable: my_value]'
+* `--vars <VARS>` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`

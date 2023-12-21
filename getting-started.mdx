@@ -41,6 +41,8 @@ Commands:
   build      Build, run, and save SDF queries
   describe   Describe inferred table schemas including propagated classifiers, run code code checks
   deploy     Create a deployment and post it to the SDF service
+  push       Push a local workspace to the SDF Console
+  pull       Pull a remote workspace from the SDF Console
   view       View existing table content
   lineage    Display lineage for a given column
   system     System maintenance, install and update
@@ -73,11 +75,10 @@ sdf new --sample hello
 After running the command, you should see the following output: 
  
 ```shell
+   Finished new in 0.002 secs
     Created hello/.gitignore
-    Created hello/checks/code_check.sql
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.002 secs
 
 
 ```
@@ -101,20 +102,11 @@ sdf describe
 ```
 
 ```shell
-Start parsing 2 files
-  Analyzing hello.pub.code_check (./checks/code_check.sql)
+Start parsing 1 files
   Analyzing hello.pub.main (./src/main.sql)
 ------------
-Summary [0.358s] 2 queries run: 2 passed
+Summary [0.327s] 1 query run: 1 passed
 
-Schema hello.pub.code_check
-+-------------+-----------+------------+
-| column_name | data_type | classifier |
-+-------------+-----------+------------+
-| table_name  | varchar   |            |
-| column name | varchar   |            |
-| classifiers | varchar   |            |
-+-------------+-----------+------------+
 Schema hello.pub.main
 +-------------+------------------+------------+
 | column_name | data_type        | classifier |

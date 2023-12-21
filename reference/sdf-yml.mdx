@@ -19,7 +19,7 @@ title: "SDF YML Schema"
 `default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `variables:` | `array`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
-`is-dbt-project:` | `boolean`| Experimental: This is a dbt project..|
+`is-dbt-project:` | `boolean?`| Experimental: This is a dbt project..|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -93,8 +93,8 @@ Value | Description|
 ## Enum: `ExcludeType`
 Value | Description|
 | :--- | :------- |
-`timeouts` | undefined|
-`path` | Contains data definition or data query|
+`content` | undefined|
+`path` | Excludes this path, can be a glob expression|
 ## Enum: `TableType`
 Value | Description|
 | :--- | :------- |
@@ -190,6 +190,7 @@ Value | Description|
 `default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `variables:` | `array`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
+`is-dbt-project:` | `boolean?`| Experimental: This is a dbt project..|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
