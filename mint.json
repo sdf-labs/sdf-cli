@@ -57,7 +57,8 @@
 			"group": "Integrations",
 			"pages": [
 				"integrations/dbt",
-				"integrations/databricks"
+				"integrations/databricks",
+				"integrations/large_workspace"
 			]
 		},
 		{

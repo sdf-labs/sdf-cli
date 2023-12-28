@@ -1,0 +1,128 @@
+---
+title: "Large Workspaces"
+description:
+  "Does your data warehouse have thousands of tables? Can you make a cup of coffee waiting for DBT to compile? If so, this guide is for you!"
+---
+
+## Overview
+
+This guide will take you through the process of onboarding a large data warehouse onto SDF. SDF's philosophy - like any good compiler - is completeness, and correctness.
+
+## Prerequisites
+ - SDF installed
+ - A folder of all DDL files in one environment. Please have the DDLs structured in a folder like `ddls/<catalog>/<schema>/<table>.sql`
+ - Your compiled DBT output in the /target folder (see [dbt guide](/guide/dbt)). Or, your SQL transformations as files.
+
+
+## Guide
+
+<Steps>
+    <Step title="Successfully Load All DDLs">
+		Before referencing any transformations, we start by onboarding all DDLs.
+
+        To include your ddls, use the following syntax in your `workspace.sdf.yml`. The *index* directive allows SDF to use the folder structure to reference fully qualified names in a more efficient manner.
+		``` 
+		includes:
+            - path: ddls
+            index: catalog-schema-table-name
+		```
+
+        To validate that all DDLs are successfully ingested by SDF, run describe.
+        ``` shell
+        sdf describe --no-show
+        ```
+        <Note>
+        For any DDLs where there are errors, please add that file's path to the excludes list. If it is a valid SQL DDL, please report it to the SDF team.
+		</Note>
+    </Step>
+	<Step title="Add DBT Seed Tables (optional)">
+		Skip this part if you do not use DBT Seeds.
+
+
+        For [DBT seeds](https://docs.getdbt.com/docs/build/seeds). For the 'raw_orders' seed table in the DBT Jaffle Shop example, we would update our `workspace.sdf.yml` as follows:
+
+		```yaml
+        ---
+		table:
+			name: <catalog>.<schema>.<table>
+			location: <location>/<to>/<table>.csv
+			file-format: csv
+			with-header: true
+        ```
+
+        Run `sdf describe` to confirm that the seeds tables are properly represented in your schema.
+        <Note>
+        For Seeds, it's best to add their fully qualified name, including catalog and schema.
+		</Note>
+    </Step>
+    <Step title="Add a Single Compiled Query">
+        Now that you are able to run `sdf describe` on all ddls in your warehouse, it's time to add your transformations.
+
+        We start by adding a single SQL transformation. Your *includes* yml will look something like this:
+     	``` 
+		includes:
+            - path: ddls
+            index: schema-table-name
+            - path: <dbt>/<target/<path1/<file>.sql 
+            default-schema: <default_schema_for_this_directory>
+		```   
+
+        To verify your query has been loaded successfully, run `sdf describe --no-show` and to see lineage, run `sdf lineage <dbt>/<target/[path]/<to>/transformation.sql`
+
+        `sdf describe` should produce no errors.
+
+    </Step>
+    <Step title="Add a Full Directory">
+        Assuming that all transformations in one DBT output directory are in the same schema, you may add a whole directory as in the yml below:
+                ``` 
+		includes:
+            - path: ddls
+            index: schema-table-name
+            - path: <dbt>/<target/<path1>
+            default-schema: <default_schema_for_this_directory>
+        #excludes:
+        #    - path: <Some file paths to exclude> 
+		```
+    </Step>
+    <Step title="Repeat for All Directories">
+        Continue adding compiled directories to your includes, validating that each addition was successful with `sdf describe --no-show` producing no errors.
+        ``` 
+		includes:
+            - path: ddls
+              index: schema-table-name
+            - path: <dbt>/<target/<path1>
+              default-schema: <default_schema_for_this_directory>
+            - path: <dbt>/<target/<path2>
+              default-schema: <default_schema_for_this_directory>
+            - path: <dbt>/<target/<path3>
+              default-schema: <default_schema_for_this_directory>
+        #excludes:
+        #    - path: <Some file paths to exclude> 
+		```
+    </Step>
+</Steps>
+
+### Excluding Errors
+For files that produce errors, please add them to your excludes list. In the same way that SDF can include either a specific file or directory, it can exclude a specific file or directory. Excludes overwrites includes.
+
+
+To maintain as strong of a dependency tree as possible, it is preferable to only add individual erroring files to excludes rather than whole directories.
+``` 
+includes:
+    - path: <some>/<include>/[path]
+    - path: <some>/<include>/file.sql
+    - path: <some>/<include>/file.sdf.yml
+excludes:
+    - path: <some>/<exclude>/[path]
+    - path: <some>/<exclude>/file.sql
+    - path: <some>/<exclude>/file.sdf.yml
+```
+
+<Note>
+For any valid file producing an SDF error, please contact the SDF team to report a bug.
+</Note>
+
+
+### Next Steps
+
+Once you have successfully built up your workspace you can move on to defining [Classifers](/guide/classifiers)!
