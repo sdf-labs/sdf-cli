@@ -46,7 +46,7 @@ This document contains the help content for the `sdf` command-line program.
 
 SDF's modular SQL
 
-**Usage:** `sdf <COMMAND>`
+**Usage:** `sdf [COMMAND]`
 
 ###### **Subcommands:**
 
@@ -80,30 +80,30 @@ Create a new SDF workspace at PATH
 
 ###### **Arguments:**
 
-* `<PATH>` — Create a new SDF workspace at PATH
+* `[PATH]` — Create a new SDF workspace at PATH
 
 ###### **Options:**
 
 * `--list-samples` — List all available samples
 
   Default value: `false`
-* `--sample <SAMPLE>` — Create a workspace with the sample content at path
+* `--sample [SAMPLE]` — Create a workspace with the sample content at path
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
 
 
 
@@ -115,29 +115,29 @@ Remove generated SDF artifacts in workspace
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Remove all derived artifacts from a workspace, where workspace is identified by any input location or, if none is given, by the current working directory
+* `[INPUT_FILES]` — Remove all derived artifacts from a workspace, where workspace is identified by any input location or, if none is given, by the current working directory
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Clean cache entries for this profile
+* `--profile [PROFILE]` — Clean cache entries for this profile
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -149,25 +149,25 @@ Build, run, and save SDF queries
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -179,7 +179,7 @@ Build, run, and save SDF queries
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -188,16 +188,16 @@ Build, run, and save SDF queries
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -227,21 +227,21 @@ Build, run, and save SDF queries
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -253,25 +253,25 @@ Describe inferred table schemas including propagated classifiers, run code code 
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -283,7 +283,7 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -292,16 +292,16 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -331,21 +331,21 @@ Describe inferred table schemas including propagated classifiers, run code code 
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -357,25 +357,25 @@ Create a deployment and post it to the SDF service
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -387,7 +387,7 @@ Create a deployment and post it to the SDF service
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -396,16 +396,16 @@ Create a deployment and post it to the SDF service
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -435,21 +435,21 @@ Create a deployment and post it to the SDF service
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 * `--execute` — When to execute this job run; defaults to recurring: if --from/--to are given
 
   Default value: `false`
@@ -470,25 +470,25 @@ Push a local workspace to the SDF Console
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -500,7 +500,7 @@ Push a local workspace to the SDF Console
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -509,16 +509,16 @@ Push a local workspace to the SDF Console
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -548,21 +548,21 @@ Push a local workspace to the SDF Console
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 * `--delete` — Delete this workspace from the SDF Console
 
   Default value: `false`
@@ -580,25 +580,25 @@ Pull a remote workspace from the SDF Console
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -610,7 +610,7 @@ Pull a remote workspace from the SDF Console
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -619,16 +619,16 @@ Pull a remote workspace from the SDF Console
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -658,25 +658,25 @@ Pull a remote workspace from the SDF Console
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
-* `--workspace-name <WORKSPACE_NAME>`
+* `--workspace-name [WORKSPACE_NAME]`
 
 
 
@@ -684,28 +684,28 @@ Pull a remote workspace from the SDF Console
 
 View existing table content
 
-**Usage:** `sdf view [OPTIONS] <INPUT_FILE>`
+**Usage:** `sdf view [OPTIONS] [INPUT_FILE]`
 
 ###### **Arguments:**
 
-* `<INPUT_FILE>` — Input is catalog.schema.table target, or a .json, .csv, or .parquet file, or a directory ending in '/' containing parquet files
+* `[INPUT_FILE]` — Input is catalog.schema.table target, or a .json, .csv, or .parquet file, or a directory ending in '/' containing parquet files
 
 ###### **Options:**
 
-* `--date <DATE>` — View catalog.schema.table of this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00, etc
-* `--from <FROM>` — View catalog.schema.table from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00
-* `--to <TO>` — View catalog.schema.table to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T23:59
-* `--profile <PROFILE>` — View data using this profile
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--date [DATE]` — View catalog.schema.table of this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00, etc
+* `--from [FROM]` — View catalog.schema.table from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T00:00
+* `--to [TO]` — View catalog.schema.table to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31 with default T23:59
+* `--profile [PROFILE]` — View data using this profile
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--print-format <PRINT_FORMAT>` — Show tables in this format
+* `--print-format [PRINT_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`
 
-* `--file-format <FILE_FORMAT>` — Read tables having this format
+* `--file-format [FILE_FORMAT]` — Read tables having this format
 
   Default value: `parquet`
 
@@ -717,21 +717,21 @@ View existing table content
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -743,25 +743,25 @@ Display lineage for a given column
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -773,7 +773,7 @@ Display lineage for a given column
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -782,16 +782,16 @@ Display lineage for a given column
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -821,22 +821,22 @@ Display lineage for a given column
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
-* `--column <COLUMN>` — The column for which to compute lineage
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
+* `--column [COLUMN]` — The column for which to compute lineage
 * `--forward` — Compute downstream lineage instead of the default upstream lineage
 
   Default value: `false`
@@ -863,19 +863,19 @@ System maintenance, install and update
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
 
 
 
@@ -883,7 +883,7 @@ System maintenance, install and update
 
 Manage credentials and tokens
 
-**Usage:** `sdf auth [OPTIONS] <COMMAND>`
+**Usage:** `sdf auth [OPTIONS] [COMMAND]`
 
 ###### **Subcommands:**
 
@@ -898,19 +898,19 @@ Manage credentials and tokens
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
 
 
 
@@ -924,10 +924,10 @@ Default behavior is to open a browser window and prompt the user to log in.
 
 ###### **Options:**
 
-* `--id-token <ID_TOKEN>` — Path to a file containing an OIDC identity token (a JWT)
-* `--access-key <ACCESS_KEY>` — Access key for headless authentication
-* `--secret-key <SECRET_KEY>` — Secret key for headless authentication
-* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials will be stored (default is platform specific)
+* `--id-token [ID_TOKEN]` — Path to a file containing an OIDC identity token (a JWT)
+* `--access-key [ACCESS_KEY]` — Access key for headless authentication
+* `--secret-key [SECRET_KEY]` — Secret key for headless authentication
+* `--credentials-dir [CREDENTIALS_DIR]` — Path to the file where credentials will be stored (default is platform specific)
 
 
 
@@ -942,7 +942,7 @@ Log out of SDF Service
 * `--aws` — Delete SDF's AWS Credential State
 
   Default value: `false`
-* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials are be stored (default is platform specific)
+* `--credentials-dir [CREDENTIALS_DIR]` — Path to the file where credentials are be stored (default is platform specific)
 
 
 
@@ -954,7 +954,7 @@ Show status of credentials / tokens
 
 ###### **Options:**
 
-* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials will be stored (default is platform specific)
+* `--credentials-dir [CREDENTIALS_DIR]` — Path to the file where credentials will be stored (default is platform specific)
 
 
 
@@ -966,17 +966,17 @@ Configure how to authenticate with AWS
 
 ###### **Options:**
 
-* `--default-region <DEFAULT_REGION>` — AWS Region to use (default: us-east-1)
+* `--default-region [DEFAULT_REGION]` — AWS Region to use (default: us-east-1)
 
   Default value: `us-east-1`
-* `--profile <PROFILE>` — AWS profile to use, as usually defined in ~/.aws/config or ~/.aws/credentials
-* `--role-arn <ROLE_ARN>` — ARN of the role to assume
-* `--external-id <EXTERNAL_ID>` — External ID to use when assuming the role
+* `--profile [PROFILE]` — AWS profile to use, as usually defined in ~/.aws/config or ~/.aws/credentials
+* `--role-arn [ROLE_ARN]` — ARN of the role to assume
+* `--external-id [EXTERNAL_ID]` — External ID to use when assuming the role
 * `--use-web-identity` — Use web identity to authenticate
 
   Default value: `false`
-* `--bucket-region-map <BUCKET_REGION_MAP>` — Mapping of bucket names to regions
-* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials will be stored (default is platform specific)
+* `--bucket-region-map [BUCKET_REGION_MAP]` — Mapping of bucket names to regions
+* `--credentials-dir [CREDENTIALS_DIR]` — Path to the file where credentials will be stored (default is platform specific)
 
 
 
@@ -984,12 +984,12 @@ Configure how to authenticate with AWS
 
 Configure how to authenticate with OpenAI
 
-**Usage:** `sdf auth openai [OPTIONS] --api-key <API_KEY>`
+**Usage:** `sdf auth openai [OPTIONS] --api-key [API_KEY]`
 
 ###### **Options:**
 
-* `--api-key <API_KEY>` — Mapping of bucket names to regions
-* `--credentials-dir <CREDENTIALS_DIR>` — Path to the file where credentials will be stored (default is platform specific)
+* `--api-key [API_KEY]` — Mapping of bucket names to regions
+* `--credentials-dir [CREDENTIALS_DIR]` — Path to the file where credentials will be stored (default is platform specific)
 
 
 
@@ -997,7 +997,7 @@ Configure how to authenticate with OpenAI
 
 Display results of various supported analyses (e.g. unused-columns)
 
-**Usage:** `sdf analyze [OPTIONS] <COMMAND>`
+**Usage:** `sdf analyze [OPTIONS] [COMMAND]`
 
 ###### **Subcommands:**
 
@@ -1008,21 +1008,21 @@ Display results of various supported analyses (e.g. unused-columns)
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -1034,28 +1034,28 @@ Analyze upstream tables for unused columns
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — The specification of the output tables used as roots for computing unused upstream columns
+* `[INPUT_FILES]` — The specification of the output tables used as roots for computing unused upstream columns
 
 ###### **Options:**
 
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `-p`, `--profile <PROFILE>` — Analyze queries using this profile
-* `-t`, `--test-profile <TEST_PROFILE>` — Build data using the given --profile but renamed to this
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `-p`, `--profile [PROFILE]` — Analyze queries using this profile
+* `-t`, `--test-profile [TEST_PROFILE]` — Build data using the given --profile but renamed to this
 
 
 
@@ -1075,27 +1075,27 @@ Generation of reference documentation: for CLI, metadata definition blocks, info
 * `--information-schema-markdown` — Show information schema in Markdown format
 * `--sdf-json-schema` — Show json schema for *.sdf.yml metadata documents
 * `--deploy-json-schema` — Show json schema for deploy.json documents
-* `--dialect <DIALECT>` — The dialect to show (only for --functions, `` shows all dialects)
+* `--dialect [DIALECT]` — The dialect to show (only for --functions, `` shows all dialects)
 
   Possible values: `snowflake`, `presto`, `bigquery`, `redshift`, `spark-lp`
 
-* `--section <SECTION>` — The section to show (only for --functions, `` shows all sections)
+* `--section [SECTION]` — The section to show (only for --functions, `` shows all sections)
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
 
 
 
@@ -1107,25 +1107,25 @@ Test code and data contracts
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1137,7 +1137,7 @@ Test code and data contracts
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -1146,16 +1146,16 @@ Test code and data contracts
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1185,21 +1185,21 @@ Test code and data contracts
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 * `--skip-describe` — Describe data using this profile
 
   Default value: `false`
@@ -1210,30 +1210,30 @@ Test code and data contracts
 
 Run a query against your current workspace
 
-**Usage:** `sdf query [OPTIONS] <QUERY> [INPUT_FILES]...`
+**Usage:** `sdf query [OPTIONS] [QUERY] [INPUT_FILES]...`
 
 ###### **Arguments:**
 
-* `<QUERY>` — Pass a query before you pass all other arguments
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[QUERY]` — Pass a query before you pass all other arguments
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1245,7 +1245,7 @@ Run a query against your current workspace
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -1254,16 +1254,16 @@ Run a query against your current workspace
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1293,21 +1293,21 @@ Run a query against your current workspace
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -1319,25 +1319,25 @@ Obfuscate the workspace into the provided directory
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
+* `[INPUT_FILES]` — Build these *.sql files or [[catalog.]schema.]table targets; providing no input or a path to workspace.sdf.yml rebuilds the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Build data using this profile
-* `--date <DATE>` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--from <FROM>` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
-* `--to <TO>` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
-* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/<profile>/commands.sh
+* `--profile [PROFILE]` — Build data using this profile
+* `--date [DATE]` — Run all tasks that run on this datetime, [ENV] use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--from [FROM]` — Backfill from this datetime (inclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc
+* `--to [TO]` — Backfill to this datetime (exclusive), use prefixes of RFC format, e.g. 2020-12-31T21:07, or 2020-12-31, etc (default is now)
+* `--dry-run` — Plan but don't execute backfills, output as a shell script in .sdfcache/[profile]/commands.sh
 
   Default value: `false`
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--file-data-format <FILE_DATA_FORMAT>` — Save tables in this format
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--file-data-format [FILE_DATA_FORMAT]` — Save tables in this format
 
   Default value: `parquet`
 
   Possible values: `parquet`, `csv`, `json`
 
-* `--print-data-format <PRINT_DATA_FORMAT>` — Show tables in this format
+* `--print-data-format [PRINT_DATA_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1349,7 +1349,7 @@ Obfuscate the workspace into the provided directory
 * `--sync-cache` — Delete irrelevant data from .sdfcache (tables, classifier, function, config)
 
   Default value: `false`
-* `--cache-use <CACHE_USE>` — Controls read and write cached table data
+* `--cache-use [CACHE_USE]` — Controls read and write cached table data
 
   Default value: `read-write`
 
@@ -1358,16 +1358,16 @@ Obfuscate the workspace into the provided directory
 * `--no-workflow` — Don't run a workflow, just the query
 
   Default value: `false`
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
-* `--job-time-limit-s <JOB_TIME_LIMIT_S>` — Impose a hard time limit on the execution of each query. Default is 30 seconds
+* `--job-time-limit-s [JOB_TIME_LIMIT_S]` — Impose a hard time limit on the execution of each query. Default is 30 seconds
 
   Default value: `30`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1397,22 +1397,22 @@ Obfuscate the workspace into the provided directory
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
-* `--obfuscate-dir <OBFUSCATE_DIR>` — Obfuscate the workspace into the provided directory
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
+* `--obfuscate-dir [OBFUSCATE_DIR]` — Obfuscate the workspace into the provided directory
 
 
 
@@ -1424,37 +1424,37 @@ Add new versioned files to the workspace
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Add these files/or directories to the selected workspace/profile
+* `[INPUT_FILES]` — Add these files/or directories to the selected workspace/profile
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Add the files using this profile
-* `--workspace-path <WORKSPACE_PATH>` — Add these files to this workspace (defaults to current working dir or any of its parents*)
-* `--includes-path <INCLUDES_PATH>` — Add them to this include path (default folder is ./src)
-* `--dialect <DIALECT>` — Assume this dialect for all files (default dialect is the workspace dialect)
+* `--profile [PROFILE]` — Add the files using this profile
+* `--workspace-path [WORKSPACE_PATH]` — Add these files to this workspace (defaults to current working dir or any of its parents*)
+* `--includes-path [INCLUDES_PATH]` — Add them to this include path (default folder is ./src)
+* `--dialect [DIALECT]` — Assume this dialect for all files (default dialect is the workspace dialect)
 
   Possible values: `snowflake`, `presto`, `bigquery`, `redshift`, `spark-lp`
 
-* `--default-catalog <DEFAULT_CATALOG>` — Assume this default catalog for all files (default dialect is the workspace dialect)
-* `--default-schema <DEFAULT_SCHEMA>` — Assume this default schema for all files (default dialect is the workspace dialect)
+* `--default-catalog [DEFAULT_CATALOG]` — Assume this default catalog for all files (default dialect is the workspace dialect)
+* `--default-schema [DEFAULT_SCHEMA]` — Assume this default schema for all files (default dialect is the workspace dialect)
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -1462,7 +1462,7 @@ Add new versioned files to the workspace
 
 Infer artifacts like classifiers and add them optionally to the workspace
 
-**Usage:** `sdf ai [OPTIONS] <COMMAND>`
+**Usage:** `sdf ai [OPTIONS] [COMMAND]`
 
 ###### **Subcommands:**
 
@@ -1473,21 +1473,21 @@ Infer artifacts like classifiers and add them optionally to the workspace
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -1497,13 +1497,13 @@ Infer artifacts like classifiers and add them optionally to the workspace
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — Scope inference to these *.sql files; providing no input or a path to workspace.sdf.yml infers something for the whole workspace
+* `[INPUT_FILES]` — Scope inference to these *.sql files; providing no input or a path to workspace.sdf.yml infers something for the whole workspace
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Scope inference to using this profile
-* `--save-location <SAVE_LOCATION>` — Add inferred classifiers to this include path (default folder is ./src)
-* `--classifiers <CLASSIFIERS>` — Infer these classifiers (--classifier can be repeated), no classifier means all classifiers in scope
+* `--profile [PROFILE]` — Scope inference to using this profile
+* `--save-location [SAVE_LOCATION]` — Add inferred classifiers to this include path (default folder is ./src)
+* `--classifiers [CLASSIFIERS]` — Infer these classifiers (--classifier can be repeated), no classifier means all classifiers in scope
 * `--no-use-of-samples` — Do NOT pass samples to inference engine
 
   Default value: `false`
@@ -1520,7 +1520,7 @@ Infer artifacts like classifiers and add them optionally to the workspace
 
 Run Dbt commands via sdf
 
-**Usage:** `sdf dbt <COMMAND>`
+**Usage:** `sdf dbt [COMMAND]`
 
 ###### **Subcommands:**
 
@@ -1540,20 +1540,20 @@ Corresponds to dbt build: runs models, test tests, snapshot snapshots, seed seed
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
+* `[INPUT_FILES]` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Scope inference to using this SDF profile
-* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--profile [PROFILE]` — Scope inference to using this SDF profile
+* `--profiles-dir [PROFILES_DIR]` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1562,25 +1562,25 @@ Corresponds to dbt build: runs models, test tests, snapshot snapshots, seed seed
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
+* `--vars [VARS]` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -1592,20 +1592,20 @@ Corresponds to dbt test: runs tests defined on models, sources, snapshots, and s
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
+* `[INPUT_FILES]` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Scope inference to using this SDF profile
-* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--profile [PROFILE]` — Scope inference to using this SDF profile
+* `--profiles-dir [PROFILES_DIR]` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1614,25 +1614,25 @@ Corresponds to dbt test: runs tests defined on models, sources, snapshots, and s
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
+* `--vars [VARS]` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -1644,20 +1644,20 @@ Corresponds to dbt run: executes compiled sql model files against the current ta
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
+* `[INPUT_FILES]` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Scope inference to using this SDF profile
-* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--profile [PROFILE]` — Scope inference to using this SDF profile
+* `--profiles-dir [PROFILES_DIR]` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1666,25 +1666,25 @@ Corresponds to dbt run: executes compiled sql model files against the current ta
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
+* `--vars [VARS]` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -1696,20 +1696,20 @@ Corresponds to dbt compile:  generates executable SQL from source model, test, a
 
 ###### **Arguments:**
 
-* `<INPUT_FILES>` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
+* `[INPUT_FILES]` — corresponds to selectors in dbt: just give a list of directories or files, e.g. models, models/my_model.sql, models/my_model.yml
 
 ###### **Options:**
 
-* `--profile <PROFILE>` — Scope inference to using this SDF profile
-* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
-* `--var <VAR>` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
-* `--limit <LIMIT>` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
+* `--profile [PROFILE]` — Scope inference to using this SDF profile
+* `--profiles-dir [PROFILES_DIR]` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--var [VAR]` — Provide var bindings of the form: n=1 or year="2022 01 01", only string variables supported
+* `--limit [LIMIT]` — "Limiting number of shown rows. Run with --limit 0 to remove limit.",
 
   Default value: `10`
 * `--no-show` — Don't show the result of queries
 
   Default value: `false`
-* `--print-meta-format <PRINT_META_FORMAT>` — Show tables in this format
+* `--print-meta-format [PRINT_META_FORMAT]` — Show tables in this format
 
   Default value: `table`
 
@@ -1718,25 +1718,25 @@ Corresponds to dbt compile:  generates executable SQL from source model, test, a
 * `--save-assembly` — Save assembly in yaml format
 
   Default value: `false`
-* `--vars <VARS>` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
+* `--vars [VARS]` — Supply variables to the project. This argument should be a binding of the form name=value, this argument can be supplied multiple times
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
 
 
 
@@ -1751,22 +1751,22 @@ Init
 * `--quiet` — Do not print sdf console messages
 
   Default value: `false`
-* `--log <LOG>` — Set log level (by setting env var RUST_LOG)
-* `--perf <PERF>` — Performance Metric Log Level
+* `--log [LOG]` — Set log level (by setting env var RUST_LOG)
+* `--perf [PERF]` — Performance Metric Log Level
 
   Default value: `0`
 * `--dedup` — Deduplicate compiler error messages. This has a slight memory overhead
 
   Default value: `false`
-* `--summary <SUMMARY>` — Save summary of analyzed source files to this file
+* `--summary [SUMMARY]` — Save summary of analyzed source files to this file
 * `--no-parallel` — Do NOT run in parallel
-* `--num-threads <NUM_THREADS>` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size <STACK_SIZE>` — Set stack size for worker thread in bytes
-* `--zero-stmt-sources <ZERO_STMT_SOURCES>` — Set the skip list file
-* `--runlog <RUNLOG>` — Save the runlog to this file
-* `--cache-dir <CACHE_DIR>` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
-* `--credentials-dir <CREDENTIALS_DIR>`
-* `--profiles-dir <PROFILES_DIR>` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `--num-threads [NUM_THREADS]` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size [STACK_SIZE]` — Set stack size for worker thread in bytes
+* `--zero-stmt-sources [ZERO_STMT_SOURCES]` — Set the skip list file
+* `--runlog [RUNLOG]` — Save the runlog to this file
+* `--cache-dir [CACHE_DIR]` — Sets the 'cache' directory which will contain all output files. Normally, this is `.sdfcache` under the workspace root
+* `--credentials-dir [CREDENTIALS_DIR]`
+* `--profiles-dir [PROFILES_DIR]` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
 
 
 
