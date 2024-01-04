@@ -3,24 +3,8 @@ title: "Getting Started"
 description: We're glad to see you here. Today we're going to install SDF and create a hello world project. Let's get started.
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import CodeBlock from '@theme/CodeBlock';
-
 ## Installing SDF
-<Tabs>
-  <Tab title="Binary Download">
-    Our install script will first check your operating system and architecture,
-    then install the latest version of SDF and its dependencies for your system.
-    The `sdf` command will also be added to your path. 
-    ```shell 
-    curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s
-    ```
-
-  Alternatively, you can download and save the `install.sh` script to a
-  local file and inspect it before passing to your shell for execution.
-  </Tab>
-</Tabs>
+Installation is currently by invitation only. If you'd like to try SDF, please [request a demo](https://www.sdf.com/inquiries).
 
 ### Verify Installation
 
@@ -75,8 +59,8 @@ sdf new --sample hello
 After running the command, you should see the following output: 
  
 ```shell
+   Finished new in 0.001 secs
     Created hello/.gitignore
-   Finished new in 0.003 secs
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
 
@@ -105,7 +89,7 @@ sdf describe
 Start parsing 1 files
   Analyzing hello.pub.main (./src/main.sql)
 ------------
-Summary [0.155s] 1 query run: 1 passed
+Summary [0.153s] 1 query run: 1 passed
 
 Schema hello.pub.main
 +-------------+------------------+------------+

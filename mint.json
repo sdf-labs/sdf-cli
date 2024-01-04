@@ -42,7 +42,6 @@
 		{
 			"group": "Guides",
 			"pages": [
-				"guide/install",
 				"guide/io",
 				"guide/workspaces",
 				"guide/classifiers",
