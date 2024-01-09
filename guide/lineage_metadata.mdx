@@ -68,11 +68,11 @@ supports two types of root tables – those that define their data inline using
 fixed values – and those that refer to a data file in an external store (e.g.
 collection of S3 blobs) The root table source is an example of the former.
 
-With the above definitions, we can run sdf describe to list the tables and their
+With the above definitions, we can run sdf compile to list the tables and their
 schemas:
 
 ```bash
-sdf describe
+sdf compile
 ```
 
 ```text
@@ -120,7 +120,7 @@ Schema chain.pub.sink
 When SDF is used in the context of an existing warehouse, the YML files must
 provide URLs to table definitions in the underlying systems (Snowflake, Spark,
 BigQuery, etc.). SDF can then deliver the same functionality as for the tables
-defined natively. This includes being able to run sdf describe as shown above,
+defined natively. This includes being able to run `sdf compile` as shown above,
 and perform lineage analysis and label propagation described below.
 
 ## Basic Column-Level Lineage

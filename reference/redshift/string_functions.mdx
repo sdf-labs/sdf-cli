@@ -2,4 +2,69 @@
 title: "String Functions"
 ---
 
+## array_concat
+[🔗 Official Documentation](#)
+
+```sql
+function array_concat(super, ...) returns super
+```
+
+
+## get_array_length
+[🔗 Official Documentation](#)
+
+```sql
+function get_array_length(<super>) returns bigint
+```
+
+
+## json_array_length
+[🔗 Official Documentation](#)
+
+```sql
+function json_array_length(<varchar>) returns bigint
+```
+
+
+```sql
+function json_array_length(<varchar, boolean>) returns bigint
+```
+
+
+## regexp_replace
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_replace(<varchar, varchar>) returns varchar
+```
+
+
+```sql
+function regexp_replace(<varchar, varchar, varchar>) returns varchar
+```
+
+
+```sql
+function regexp_replace(<varchar, varchar, varchar, bigint>) returns varchar
+```
+
+
+```sql
+function regexp_replace(<varchar, varchar, varchar, bigint, varchar>) returns varchar
+```
+
+
+## substring
+[🔗 Official Documentation](#)
+
+```sql
+function substring(<varchar, bigint>) returns varchar
+```
+
+
+```sql
+function substring(<varchar, bigint, bigint>) returns varchar
+```
+
+
 

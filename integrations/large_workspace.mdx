@@ -11,7 +11,7 @@ This guide will take you through the process of onboarding a large data warehous
 ## Prerequisites
  - SDF installed
  - A folder of all DDL files in one environment. Please have the DDLs structured in a folder like `ddls/<catalog>/<schema>/<table>.sql`
- - Your compiled DBT output in the /target folder (see [dbt guide](/guide/dbt)). Or, your SQL transformations as files.
+ - Your compiled DBT output in the /target folder (see [dbt guide](/integrations/dbt)). Or, your SQL transformations as files.
 
 
 ## Guide
@@ -27,9 +27,9 @@ This guide will take you through the process of onboarding a large data warehous
             index: catalog-schema-table-name
 		```
 
-        To validate that all DDLs are successfully ingested by SDF, run describe.
+        To validate that all DDLs are successfully ingested by SDF, run compile.
         ``` shell
-        sdf describe --no-show
+        sdf compile --no-show
         ```
         <Note>
         For any DDLs where there are errors, please add that file's path to the excludes list. If it is a valid SQL DDL, please report it to the SDF team.
@@ -50,13 +50,13 @@ This guide will take you through the process of onboarding a large data warehous
 			with-header: true
         ```
 
-        Run `sdf describe` to confirm that the seeds tables are properly represented in your schema.
+        Run `sdf compile` to confirm that the seeds tables are properly represented in your schema.
         <Note>
         For Seeds, it's best to add their fully qualified name, including catalog and schema.
 		</Note>
     </Step>
     <Step title="Add a Single Compiled Query">
-        Now that you are able to run `sdf describe` on all ddls in your warehouse, it's time to add your transformations.
+        Now that you are able to run `sdf compile` on all ddls in your warehouse, it's time to add your transformations.
 
         We start by adding a single SQL transformation. Your *includes* yml will look something like this:
      	``` 
@@ -67,9 +67,9 @@ This guide will take you through the process of onboarding a large data warehous
             default-schema: <default_schema_for_this_directory>
 		```   
 
-        To verify your query has been loaded successfully, run `sdf describe --no-show` and to see lineage, run `sdf lineage <dbt>/<target/[path]/<to>/transformation.sql`
+        To verify your query has been loaded successfully, run `sdf compile --no-show` and to see lineage, run `sdf lineage <dbt>/<target/[path]/<to>/transformation.sql`
 
-        `sdf describe` should produce no errors.
+        `sdf compile` should produce no errors.
 
     </Step>
     <Step title="Add a Full Directory">
@@ -85,7 +85,7 @@ This guide will take you through the process of onboarding a large data warehous
 		```
     </Step>
     <Step title="Repeat for All Directories">
-        Continue adding compiled directories to your includes, validating that each addition was successful with `sdf describe --no-show` producing no errors.
+        Continue adding compiled directories to your includes, validating that each addition was successful with `sdf compile --no-show` producing no errors.
         ``` 
 		includes:
             - path: ddls

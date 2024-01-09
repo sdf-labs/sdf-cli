@@ -74,16 +74,13 @@ title: "SDF YML Schema"
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
-`model` | Contains models, i.e ddls or select statements, used for data transformation|
-`test` | Contains static and dynamic test queries, the check holds if the data returns zero rows|
-`stats` | Contains queries for data exploration, data profiling, data description and summarization|
-`resource` | Contains resources used by the application, like static .csv files|
-`metadata` | Contains meta data like classifiers, etc|
-`code-check` | INTERNAL USE ONLY, temporary, will be removed|
-`data-check` | INTERNAL USE ONLY, temporary, will be removed|
-`code-report` | INTERNAL USE ONLY, temporary, will be removed|
-`data-report` | INTERNAL USE ONLY, temporary, will be removed|
-`access-check` | INTERNAL USE ONLY, temporary, will be removed|
+`model` | Contains models, i.e ddls or queries, used for data transformation|
+`data-contract` | Contains queries against the data of the models, the check holds if the data returns zero rows|
+`code-contract` | Contains queries against the information schema of the models, the check holds if the data returns zero rows|
+`code-report` | Contains queries for the information schema of the model|
+`data-report` | Contains queries against the data of the models|
+`resource` | Contains resources like csv files that are shipped to the service, etc|
+`metadata` | Contains meta data like classifiers, etc [deprecated]|
 ## Enum: `SyncType`
 Value | Description|
 | :--- | :------- |

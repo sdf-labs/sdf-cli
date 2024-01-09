@@ -33,11 +33,11 @@ SDF automatically creates a .gitignore file to ignore the sdfcache.
 
 ``` 
 
-## Describe & View
-Let's explore the workspace. Try running `describe`. You'll see the local tables like, **popdata** and **world_metrics** and the remote tables specified in the cloud. You'll also see the raw CSV data file under /local/popdata.csv. Internally SDF has learned the schema of the tables from the CSV header and SQL statements. SDF has also generated the dependecy graph for this workspace, in this case only for these two tables.
+## Compile
+Let's explore the workspace. Try running `compile`. You'll see the local tables like, **popdata** and **world_metrics** and the remote tables specified in the cloud. You'll also see the raw CSV data file under /local/popdata.csv. Internally SDF has learned the schema of the tables from the CSV header and SQL statements. SDF has also generated the dependecy graph for this workspace, in this case only for these two tables.
 
 ```bash
-sdf describe
+sdf compile
 ```
 
 ```shell
@@ -46,28 +46,13 @@ sdf describe
 
 You will see numerous table definitions, including column_name, datatype, and classifiers. This is your workspace.
 
-### View
-
-You can always view data by providing the path and datatype.
-
-```bash
-sdf view local/pop.csv --file-format csv
-```
-
-The view utility can be used **outside** your workspace, so information like
-table name is lost. Let's take a look at _pop.csv_.
-
-```shell
-
-```
-
 ## Local Data
 
 Let's build this workspace! You can either build the whole workspace with
 `sdf build` or a specific asset with _catalog.schema.table_ notation.
 
 ```bash
-sdf build local/world_metrics.sql
+sdf run local/world_metrics.sql
 ```
 
 SDF will show output for all non-root tables. In this example that is currently
@@ -134,7 +119,7 @@ Table hello_world.pub.q1
 
 ## SDF Cache
 
-Notice that as soon as `describe` is run, SDF creates a /.sdfcache directory.
+Notice that as soon as `compile` is run, SDF creates a /.sdfcache directory.
 This cache is used internally by SDF to optimally store data and metadata for
 reuse. The cache keeps
 

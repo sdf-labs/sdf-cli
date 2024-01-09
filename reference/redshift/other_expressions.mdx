@@ -2,4 +2,786 @@
 title: "Other Expressions"
 ---
 
+## add_months
+[🔗 Official Documentation](#)
+
+```sql
+function add_months(<varchar, bigint>) returns timestamp
+```
+
+
+## any_value
+[🔗 Official Documentation](#)
+
+```sql
+function any_value(<$1>) returns $1
+```
+
+
+## array
+[🔗 Official Documentation](#)
+
+```sql
+function array($1, ...) returns super
+```
+
+
+## array_flatten
+[🔗 Official Documentation](#)
+
+```sql
+function array_flatten(<super>) returns super
+```
+
+
+## bpcharcmp
+[🔗 Official Documentation](#)
+
+```sql
+function bpcharcmp(<varchar, varchar>) returns bigint
+```
+
+
+## bttext_pattern_cmp
+[🔗 Official Documentation](#)
+
+```sql
+function bttext_pattern_cmp(<varchar, varchar>) returns bigint
+```
+
+
+## can_json_parse
+[🔗 Official Documentation](#)
+
+```sql
+function can_json_parse(<varchar>) returns boolean
+```
+
+
+## cbrt
+[🔗 Official Documentation](#)
+
+```sql
+function cbrt(<float>) returns float
+```
+
+
+## ceiling
+[🔗 Official Documentation](#)
+
+```sql
+function ceiling(<float>) returns float
+```
+
+
+## charindex
+[🔗 Official Documentation](#)
+
+```sql
+function charindex(<varchar, varchar>) returns bigint
+```
+
+
+## collate
+[🔗 Official Documentation](#)
+
+```sql
+function collate(<varchar, varchar>) returns varchar
+```
+
+
+## cot
+[🔗 Official Documentation](#)
+
+```sql
+function cot(<float>) returns float
+```
+
+
+## crc32
+[🔗 Official Documentation](#)
+
+```sql
+function crc32(<varchar>) returns varchar
+```
+
+
+## decimal_precision
+[🔗 Official Documentation](#)
+
+```sql
+function decimal_precision(<super>) returns bigint
+```
+
+
+## decimal_scale
+[🔗 Official Documentation](#)
+
+```sql
+function decimal_scale(<super>) returns bigint
+```
+
+
+## degrees
+[🔗 Official Documentation](#)
+
+```sql
+function degrees(<float>) returns float
+```
+
+
+## dexp
+[🔗 Official Documentation](#)
+
+```sql
+function dexp(<float>) returns float
+```
+
+
+## difference
+[🔗 Official Documentation](#)
+
+```sql
+function difference(<varchar, varchar>) returns bigint
+```
+
+
+## dlog1
+[🔗 Official Documentation](#)
+
+```sql
+function dlog1(<float>) returns float
+```
+
+
+## dlog10
+[🔗 Official Documentation](#)
+
+```sql
+function dlog10(<float>) returns float
+```
+
+
+## farmfingerprint64
+[🔗 Official Documentation](#)
+
+```sql
+function farmfingerprint64(<varchar>) returns bigint
+```
+
+
+## fnv_hash
+[🔗 Official Documentation](#)
+
+```sql
+function fnv_hash(<varchar>) returns bigint
+```
+
+
+## from_hex
+[🔗 Official Documentation](#)
+
+```sql
+function from_hex(<varchar>) returns varbyte
+```
+
+
+## from_varbyte
+[🔗 Official Documentation](#)
+
+```sql
+function from_varbyte(<varbyte, varchar>) returns varbyte
+```
+
+
+## func_sha1
+[🔗 Official Documentation](#)
+
+```sql
+function func_sha1(<varchar>) returns bigint
+```
+
+
+## getbit
+[🔗 Official Documentation](#)
+
+```sql
+function getbit(<varbyte, bigint>) returns bigint
+```
+
+
+## greatest
+[🔗 Official Documentation](#)
+
+```sql
+function greatest($1, ...) returns $1
+```
+
+
+## interval_cmp
+[🔗 Official Documentation](#)
+
+```sql
+function interval_cmp(<varchar, varchar>) returns bigint
+```
+
+
+## is_array
+[🔗 Official Documentation](#)
+
+```sql
+function is_array(<super>) returns boolean
+```
+
+
+## is_bigint
+[🔗 Official Documentation](#)
+
+```sql
+function is_bigint(<super>) returns boolean
+```
+
+
+## is_boolean
+[🔗 Official Documentation](#)
+
+```sql
+function is_boolean(<super>) returns boolean
+```
+
+
+## is_char
+[🔗 Official Documentation](#)
+
+```sql
+function is_char(<super>) returns boolean
+```
+
+
+## is_decimal
+[🔗 Official Documentation](#)
+
+```sql
+function is_decimal(<super>) returns boolean
+```
+
+
+## is_float
+[🔗 Official Documentation](#)
+
+```sql
+function is_float(<super>) returns boolean
+```
+
+
+## is_object
+[🔗 Official Documentation](#)
+
+```sql
+function is_object(<super>) returns boolean
+```
+
+
+## is_scalar
+[🔗 Official Documentation](#)
+
+```sql
+function is_scalar(<super>) returns boolean
+```
+
+
+## is_smallint
+[🔗 Official Documentation](#)
+
+```sql
+function is_smallint(<super>) returns boolean
+```
+
+
+## is_valid_json
+[🔗 Official Documentation](#)
+
+```sql
+function is_valid_json(<varchar>) returns boolean
+```
+
+
+## is_valid_json_array
+[🔗 Official Documentation](#)
+
+```sql
+function is_valid_json_array(<varchar>) returns boolean
+```
+
+
+## is_varchar
+[🔗 Official Documentation](#)
+
+```sql
+function is_varchar(<super>) returns boolean
+```
+
+
+## json_extract_array_element_text
+[🔗 Official Documentation](#)
+
+```sql
+function json_extract_array_element_text(<varchar, bigint>) returns varchar
+```
+
+
+```sql
+function json_extract_array_element_text(<varchar, bigint, boolean>) returns varchar
+```
+
+
+## json_extract_path_text
+[🔗 Official Documentation](#)
+
+```sql
+function json_extract_path_text(<varchar, varchar>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, varchar>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, varchar, varchar>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, varchar>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, boolean>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, varchar, boolean>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, varchar, varchar, boolean>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, boolean>) returns varchar
+```
+
+
+```sql
+function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, varchar, boolean>) returns varchar
+```
+
+
+## json_parse
+[🔗 Official Documentation](#)
+
+```sql
+function json_parse(<varchar>) returns super
+```
+
+
+## json_serialize
+[🔗 Official Documentation](#)
+
+```sql
+function json_serialize(<$1>) returns varchar
+```
+
+
+## json_serialize_to_varbyte
+[🔗 Official Documentation](#)
+
+```sql
+function json_serialize_to_varbyte(<$1>) returns varbyte
+```
+
+
+## json_size
+[🔗 Official Documentation](#)
+
+```sql
+function json_size(<super>) returns bigint
+```
+
+
+## json_typeof
+[🔗 Official Documentation](#)
+
+```sql
+function json_typeof(<super>) returns varchar
+```
+
+
+## last_day
+[🔗 Official Documentation](#)
+
+```sql
+function last_day(<varchar>) returns date
+```
+
+
+## least
+[🔗 Official Documentation](#)
+
+```sql
+function least($1, ...) returns $1
+```
+
+
+## len
+[🔗 Official Documentation](#)
+
+```sql
+function len(<varchar>) returns bigint
+```
+
+
+## md5
+[🔗 Official Documentation](#)
+
+```sql
+function md5(<varchar>) returns bigint
+```
+
+
+## mod
+[🔗 Official Documentation](#)
+
+```sql
+function mod(<bigint, bigint>) returns bigint
+```
+
+
+## months_between
+[🔗 Official Documentation](#)
+
+```sql
+function months_between(<varchar, varchar>) returns float
+```
+
+
+## murmur3_32_hash
+[🔗 Official Documentation](#)
+
+```sql
+function murmur3_32_hash(<varchar>) returns bigint
+```
+
+
+```sql
+function murmur3_32_hash(<varchar, bigint>) returns bigint
+```
+
+
+## next_day
+[🔗 Official Documentation](#)
+
+```sql
+function next_day(<varchar, varchar>) returns date
+```
+
+
+## nvl
+[🔗 Official Documentation](#)
+
+```sql
+function nvl($1, ...) returns $1
+```
+
+
+## nvl2
+[🔗 Official Documentation](#)
+
+```sql
+function nvl2(<$1, $2, $2>) returns $2
+```
+
+
+## octetindex
+[🔗 Official Documentation](#)
+
+```sql
+function octetindex(<varchar, varchar>) returns bigint
+```
+
+
+## pi
+[🔗 Official Documentation](#)
+
+```sql
+function pi(<>) returns float
+```
+
+
+## quote_ident
+[🔗 Official Documentation](#)
+
+```sql
+function quote_ident(<varchar>) returns varchar
+```
+
+
+## quote_literal
+[🔗 Official Documentation](#)
+
+```sql
+function quote_literal(<varchar>) returns varchar
+```
+
+
+## radians
+[🔗 Official Documentation](#)
+
+```sql
+function radians(<float>) returns float
+```
+
+
+## reclassify
+[🔗 Official Documentation](#)
+
+```sql
+function reclassify(<$1, varchar, varchar>) returns $1
+```
+Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
+
+```sql example.sql
+select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345' 
+```
+## regexp_instr
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_instr(<varchar, varchar>) returns bigint
+```
+
+
+```sql
+function regexp_instr(<varchar, varchar, bigint>) returns bigint
+```
+
+
+```sql
+function regexp_instr(<varchar, varchar, bigint, bigint>) returns bigint
+```
+
+
+```sql
+function regexp_instr(<varchar, varchar, bigint, bigint, bigint>) returns bigint
+```
+
+
+```sql
+function regexp_instr(<varchar, varchar, bigint, bigint, bigint, varchar>) returns bigint
+```
+
+
+## regexp_substr
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_substr(<varchar, varchar>) returns varchar
+```
+
+
+```sql
+function regexp_substr(<varchar, varchar, varchar>) returns varchar
+```
+
+
+```sql
+function regexp_substr(<varchar, varchar, varchar, bigint>) returns varchar
+```
+
+
+```sql
+function regexp_substr(<varchar, varchar, varchar, bigint, varchar>) returns varchar
+```
+
+
+## replicate
+[🔗 Official Documentation](#)
+
+```sql
+function replicate(<varchar, bigint>) returns varchar
+```
+
+
+## sha
+[🔗 Official Documentation](#)
+
+```sql
+function sha(<varchar>) returns bigint
+```
+
+
+## sha1
+[🔗 Official Documentation](#)
+
+```sql
+function sha1(<varchar>) returns bigint
+```
+
+
+## sha2
+[🔗 Official Documentation](#)
+
+```sql
+function sha2(<varchar, bigint>) returns bigint
+```
+
+
+## sign
+[🔗 Official Documentation](#)
+
+```sql
+function sign(<float>) returns bigint
+```
+
+
+## size
+[🔗 Official Documentation](#)
+
+```sql
+function size(<$1>) returns bigint
+```
+
+
+## soundex
+[🔗 Official Documentation](#)
+
+```sql
+function soundex(<varchar>) returns varchar
+```
+
+
+## split_to_array
+[🔗 Official Documentation](#)
+
+```sql
+function split_to_array(<varchar, varchar>) returns super
+```
+
+
+## strtol
+[🔗 Official Documentation](#)
+
+```sql
+function strtol(<varchar, bigint>) returns bigint
+```
+
+
+## subarray
+[🔗 Official Documentation](#)
+
+```sql
+function subarray(<super, bigint, bigint>) returns super
+```
+
+
+## text_to_int_alt
+[🔗 Official Documentation](#)
+
+```sql
+function text_to_int_alt(<varchar>) returns bigint
+```
+
+
+```sql
+function text_to_int_alt(<varchar, varchar>) returns bigint
+```
+
+
+## text_to_numeric_alt
+[🔗 Official Documentation](#)
+
+```sql
+function text_to_numeric_alt(<varchar>) returns float
+```
+
+
+```sql
+function text_to_numeric_alt(<varchar, varchar>) returns float
+```
+
+
+```sql
+function text_to_numeric_alt(<varchar, bigint, bigint>) returns float
+```
+
+
+```sql
+function text_to_numeric_alt(<varchar, varchar, bigint, bigint>) returns float
+```
+
+
+## textlen
+[🔗 Official Documentation](#)
+
+```sql
+function textlen(<varchar>) returns bigint
+```
+
+
+## to_char
+[🔗 Official Documentation](#)
+
+```sql
+function to_char(<$1, varchar>) returns varchar
+```
+
+
+## to_hex
+[🔗 Official Documentation](#)
+
+```sql
+function to_hex(<varbyte>) returns varchar
+```
+
+
+```sql
+function to_hex(<bigint>) returns varchar
+```
+
+
+## to_number
+[🔗 Official Documentation](#)
+
+```sql
+function to_number(<varchar, varchar>) returns float
+```
+
+
+## to_varbyte
+[🔗 Official Documentation](#)
+
+```sql
+function to_varbyte(<varchar, varchar>) returns varbyte
+```
+
+
+## trunc
+[🔗 Official Documentation](#)
+
+```sql
+function trunc(<varchar>) returns date
+```
+
+
 

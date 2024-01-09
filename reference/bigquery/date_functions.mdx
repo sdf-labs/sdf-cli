@@ -2,4 +2,118 @@
 title: "Date Functions"
 ---
 
+## current_date
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#current_date)
+
+```sql
+function current_date(<>) returns date
+```
+
+
+```sql
+function current_date(<string>) returns date
+```
+
+
+## date
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date)
+
+```sql
+function date(<bigint, bigint, bigint>) returns date
+```
+
+
+```sql
+function date(<timestamp>) returns date
+```
+
+
+```sql
+function date(<timestamp, string>) returns date
+```
+
+
+```sql
+function date(<datetime>) returns date
+```
+
+
+## date_add
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_add)
+
+```sql
+function date_add<$1> (<$1, interval>) returns $1
+	where $1 in (date, datetime, timestamp)
+```
+
+
+## date_diff
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_diff)
+
+```sql
+function date_diff<$1> (<$1, $1, date_part string>) returns bigint
+	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+	where $1 in (date, datetime, timestamp)
+```
+
+
+## date_from_unix_date
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_from_unix_date)
+
+```sql
+function date_from_unix_date(<bigint>) returns date
+```
+
+
+## date_trunc
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_trunc)
+
+```sql
+function date_trunc<$1> (<$1, date_part string>) returns $1
+	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+	where $1 in (date, datetime, timestamp)
+```
+
+
+## format_date
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#format_date)
+
+```sql
+function format_date<$1> (<string, $1>) returns string
+	where $1 in (date, datetime, timestamp)
+```
+
+
+## last_day
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#last_day)
+
+```sql
+function last_day<$1> (<$1>) returns date
+	where $1 in (date, datetime)
+```
+
+
+```sql
+function last_day<$1> (<$1, date_part string>) returns date
+	where date_part in (week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+	where $1 in (date, datetime)
+```
+
+
+## parse_date
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#parse_date)
+
+```sql
+function parse_date(<string, string>) returns date
+```
+
+
+## unix_date
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#unix_date)
+
+```sql
+function unix_date([date]) returns bigint
+```
+
+
 

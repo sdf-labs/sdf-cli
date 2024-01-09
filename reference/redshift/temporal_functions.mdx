@@ -2,4 +2,214 @@
 title: "Temporal Functions"
 ---
 
+## add_months
+[🔗 Official Documentation](#)
+
+```sql
+function add_months(<date, bigint>) returns timestamp
+```
+
+
+```sql
+function add_months(<timestamp, bigint>) returns timestamp
+```
+
+
+## convert_timezone
+[🔗 Official Documentation](#)
+
+```sql
+function convert_timezone(<varchar, varchar>) returns timestamp
+```
+
+
+```sql
+function convert_timezone(<varchar, varchar, varchar>) returns timestamp
+```
+
+
+## current_date
+[🔗 Official Documentation](#)
+
+```sql
+function current_date(<>) returns date
+```
+
+
+## date
+[🔗 Official Documentation](#)
+
+```sql
+function date(<$1>) returns date
+```
+
+
+## date_cmp
+[🔗 Official Documentation](#)
+
+```sql
+function date_cmp(<varchar, varchar>) returns bigint
+```
+
+
+## date_cmp_timestamp
+[🔗 Official Documentation](#)
+
+```sql
+function date_cmp_timestamp(<varchar, varchar>) returns bigint
+```
+
+
+## date_cmp_timestampz
+[🔗 Official Documentation](#)
+
+```sql
+function date_cmp_timestampz(<varchar, varchar>) returns bigint
+```
+
+
+## date_part
+[🔗 Official Documentation](#)
+
+```sql
+function date_part(<varchar, varchar>) returns float
+	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, dayofweek, dow, dw, weekday, dayofyear, doy, dy, yearday, days, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
+```
+
+
+## date_part_year
+[🔗 Official Documentation](#)
+
+```sql
+function date_part_year(<varchar>) returns bigint
+```
+
+
+## dateadd
+[🔗 Official Documentation](#)
+
+```sql
+function dateadd<$1> (<varchar, bigint, $1>) returns date
+	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
+	where $1 in (date, timestamp, time, varchar)
+```
+
+
+## datediff
+[🔗 Official Documentation](#)
+
+```sql
+function datediff<$1, $2> (<varchar, $1, $2>) returns bigint
+	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
+	where $1 in (date, timestamp, time with time zone, time, varchar)
+	and $2 in (date, timestamp, time with time zone, time, varchar)
+```
+
+
+## getdate
+[🔗 Official Documentation](#)
+
+```sql
+function getdate(<>) returns timestamp
+```
+
+
+## sysdate
+[🔗 Official Documentation](#)
+
+```sql
+function sysdate(<>) returns date
+```
+
+
+## timeofday
+[🔗 Official Documentation](#)
+
+```sql
+function timeofday(<>) returns varchar
+```
+
+
+## timestamp_cmp
+[🔗 Official Documentation](#)
+
+```sql
+function timestamp_cmp(<varchar, varchar>) returns bigint
+```
+
+
+## timestamp_cmp_date
+[🔗 Official Documentation](#)
+
+```sql
+function timestamp_cmp_date(<varchar, varchar>) returns bigint
+```
+
+
+## timestamp_cmp_timestampz
+[🔗 Official Documentation](#)
+
+```sql
+function timestamp_cmp_timestampz(<varchar, varchar>) returns bigint
+```
+
+
+## timestampz_cmp
+[🔗 Official Documentation](#)
+
+```sql
+function timestampz_cmp(<varchar, varchar>) returns bigint
+```
+
+
+## timestampz_cmp_date
+[🔗 Official Documentation](#)
+
+```sql
+function timestampz_cmp_date(<varchar, varchar>) returns bigint
+```
+
+
+## timestampz_cmp_timestamp
+[🔗 Official Documentation](#)
+
+```sql
+function timestampz_cmp_timestamp(<varchar, varchar>) returns bigint
+```
+
+
+## timezone
+[🔗 Official Documentation](#)
+
+```sql
+function timezone(<varchar, varchar>) returns timestamp
+```
+
+
+## to_date
+[🔗 Official Documentation](#)
+
+```sql
+function to_date(<varchar, varchar>) returns date
+```
+
+
+```sql
+function to_date(<varchar, varchar, boolean>) returns date
+```
+
+
+## to_timestamp
+[🔗 Official Documentation](#)
+
+```sql
+function to_timestamp(<varchar, varchar>) returns timestamp
+```
+
+
+```sql
+function to_timestamp(<varchar, varchar, boolean>) returns timestamp
+```
+
+
 

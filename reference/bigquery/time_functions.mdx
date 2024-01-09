@@ -2,4 +2,90 @@
 title: "Time Functions"
 ---
 
+## current_time
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#current_time)
+
+```sql
+function current_time(<>) returns time
+```
+
+
+```sql
+function current_time(<time_zone string>) returns time
+```
+
+
+## format_time
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#format_time)
+
+```sql
+function format_time(<string, time>) returns string
+```
+
+
+## parse_time
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#parse_time)
+
+```sql
+function parse_time(<string, string>) returns time
+```
+
+
+## time
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time)
+
+```sql
+function time(<int64, int64, int64>) returns time
+```
+
+
+```sql
+function time(<timestamp>) returns time
+```
+
+
+```sql
+function time(<timestamp, time_zone string>) returns time
+```
+
+
+```sql
+function time(<datetime>) returns time
+```
+
+
+## time_add
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_add)
+
+```sql
+function time_add(<time, interval microsecond to hour>) returns time
+```
+
+
+## time_diff
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_diff)
+
+```sql
+function time_diff(<time, time, date_time_part string>) returns bigint
+	where date_time_part in (microsecond, millisecond, second, minute, hour)
+```
+
+
+## time_sub
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_sub)
+
+```sql
+function time_sub(<time, interval microsecond to hour>) returns time
+```
+
+
+## time_trunc
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_trunc)
+
+```sql
+function time_trunc(<time, time_part string>) returns time
+	where time_part in (microsecond, millisecond, second, minute, hour)
+```
+
+
 

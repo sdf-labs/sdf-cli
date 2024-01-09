@@ -2,4 +2,932 @@
 title: "Math Functions"
 ---
 
+## abs
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#abs)
+
+```sql
+function abs<$1> (<$1>) returns $1
+	where $1 in (bigint, float64)
+```
+
+
+## acos
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#acos)
+
+```sql
+function acos<$1> (<$1>) returns double
+	where $1 in (double, bigint)
+```
+
+
+## acosh
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#acosh)
+
+```sql
+function acosh<$1> (<$1>) returns double
+	where $1 in (double, bigint)
+```
+
+
+## asin
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#asin)
+
+```sql
+function asin<$1> (<$1>) returns double
+	where $1 in (double, bigint)
+```
+
+
+## asinh
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#asinh)
+
+```sql
+function asinh<$1> (<$1>) returns double
+	where $1 in (double, bigint)
+```
+
+
+## atan
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atan)
+
+```sql
+function atan<$1> (<$1>) returns double
+	where $1 in (double, bigint)
+```
+
+
+## atan2
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atan2)
+
+```sql
+function atan2<$1, $2> (<$1, $2>) returns double
+	where $1 in (bigint, double)
+	and $2 in (bigint, double)
+```
+
+
+## atanh
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atanh)
+
+```sql
+function atanh<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## cbrt
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cbrt)
+
+```sql
+function cbrt<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## ceil
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceil)
+
+```sql
+function ceil(<bigint>) returns double
+```
+
+
+```sql
+function ceil<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## ceiling
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceil)
+
+```sql
+function ceiling(<bigint>) returns double
+```
+
+
+```sql
+function ceiling<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## cos
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cos)
+
+```sql
+function cos<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## cosh
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cosh)
+
+```sql
+function cosh<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## cot
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cot)
+
+```sql
+function cot<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## coth
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#coth)
+
+```sql
+function coth<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## csc
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#csc)
+
+```sql
+function csc<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## csch
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#csch)
+
+```sql
+function csch<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## div
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#div)
+
+```sql
+function div<$1> (<$1, $1>) returns $1
+	where $1 in (bigint)
+```
+
+
+```sql
+function div(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function div(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function div(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function div(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+## exp
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#exp)
+
+```sql
+function exp(<bigint>) returns double
+```
+
+
+```sql
+function exp<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## floor
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#floor)
+
+```sql
+function floor<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function floor(<bigint>) returns double
+```
+
+
+## greatest
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#greatest)
+
+```sql
+function greatest<$1> ($1, ...) returns $1
+	where $1 in (bigint, double)
+```
+
+
+## ieee_divide
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ieee_divide)
+
+```sql
+function ieee_divide<$1, $2> (<$1, $2>) returns double
+	where $1 in (bigint, double)
+	and $2 in (bigint, double)
+```
+
+
+## is_inf
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_inf)
+
+```sql
+function is_inf<$1> (<$1>) returns bool
+	where $1 in (bigint, double)
+```
+
+
+## is_nan
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_nan)
+
+```sql
+function is_nan<$1> (<$1>) returns bool
+	where $1 in (bigint, double)
+```
+
+
+## least
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#least)
+
+```sql
+function least<$1> ($1, ...) returns $1
+	where $1 in (bigint, double)
+```
+
+
+## ln
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ln)
+
+```sql
+function ln(<bigint>) returns double
+```
+
+
+```sql
+function ln<$1> (<$1>) returns double
+	where $1 in (double)
+```
+
+
+## log
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log)
+
+```sql
+function log(<bigint>) returns double
+```
+
+
+```sql
+function log<$1> (<$1>) returns double
+	where $1 in (double)
+```
+
+
+```sql
+function log<$1> (<$1, $1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function log(<bigint, bigint>) returns double
+```
+
+
+```sql
+function log(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function log(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function log(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function log(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function log(<double, bigint>) returns double
+```
+
+
+```sql
+function log(<bigint, double>) returns double
+```
+
+
+```sql
+function log(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function log(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function log(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function log(<decimal(p,s), double>) returns double
+```
+
+
+## log10
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log10)
+
+```sql
+function log10(<bigint>) returns double
+```
+
+
+```sql
+function log10<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## mod
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#mod)
+
+```sql
+function mod<$1> (<$1, $1>) returns $1
+	where $1 in (bigint)
+```
+
+
+```sql
+function mod(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function mod(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function mod(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function mod(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+## pow
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#pow)
+
+```sql
+function pow<$1> (<$1, $1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function pow(<bigint, bigint>) returns double
+```
+
+
+```sql
+function pow(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function pow(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function pow(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function pow(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function pow(<double, bigint>) returns double
+```
+
+
+```sql
+function pow(<bigint, double>) returns double
+```
+
+
+```sql
+function pow(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function pow(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function pow(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function pow(<decimal(p,s), double>) returns double
+```
+
+
+## power
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#power)
+
+```sql
+function power<$1> (<$1, $1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function power(<bigint, bigint>) returns double
+```
+
+
+```sql
+function power(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function power(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function power(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function power(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function power(<double, bigint>) returns double
+```
+
+
+```sql
+function power(<bigint, double>) returns double
+```
+
+
+```sql
+function power(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function power(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function power(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function power(<decimal(p,s), double>) returns double
+```
+
+
+## rand
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#rand)
+
+```sql
+function rand(<>) returns double
+```
+
+
+## range_bucket
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#range_bucket)
+
+```sql
+function range_bucket(<$1, array<$1>>) returns int64
+```
+
+
+## round
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#round)
+
+```sql
+function round(<bigint>) returns double
+```
+
+
+```sql
+function round<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function round(<bigint, bigint>) returns double
+```
+
+
+```sql
+function round<$1> (<$1, bigint>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function round(<bigint, bigint, rounding_mode string>) returns double
+	where rounding_mode in (round_half_even, round_half_away_from_zero)
+```
+
+
+```sql
+function round<$1> (<$1, bigint, rounding_mode string>) returns $1
+	where rounding_mode in (round_half_even, round_half_away_from_zero)
+	where $1 in (double)
+```
+
+
+## safe_add
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_add)
+
+```sql
+function safe_add<$1> (<$1, $1>) returns $1
+	where $1 in (bigint, double)
+```
+
+
+```sql
+function safe_add(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_add(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_add(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_add(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_add(<double, bigint>) returns double
+```
+
+
+```sql
+function safe_add(<bigint, double>) returns double
+```
+
+
+```sql
+function safe_add(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_add(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function safe_add(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_add(<decimal(p,s), double>) returns double
+```
+
+
+## safe_divide
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_divide)
+
+```sql
+function safe_divide<$1> (<$1, $1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+```sql
+function safe_divide(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_divide(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_divide(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_divide(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_divide(<double, bigint>) returns double
+```
+
+
+```sql
+function safe_divide(<bigint, double>) returns double
+```
+
+
+```sql
+function safe_divide(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_divide(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function safe_divide(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_divide(<decimal(p,s), double>) returns double
+```
+
+
+## safe_multiply
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_multiply)
+
+```sql
+function safe_multiply<$1> (<$1, $1>) returns $1
+	where $1 in (bigint, double)
+```
+
+
+```sql
+function safe_multiply(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_multiply(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_multiply(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_multiply(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_multiply(<double, bigint>) returns double
+```
+
+
+```sql
+function safe_multiply(<bigint, double>) returns double
+```
+
+
+```sql
+function safe_multiply(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_multiply(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function safe_multiply(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_multiply(<decimal(p,s), double>) returns double
+```
+
+
+## safe_negate
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_negate)
+
+```sql
+function safe_negate<$1> (<$1>) returns $1
+	where $1 in (bigint, double)
+```
+
+
+## safe_subtract
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_subtract)
+
+```sql
+function safe_subtract<$1> (<$1, $1>) returns $1
+	where $1 in (bigint, double)
+```
+
+
+```sql
+function safe_subtract(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_subtract(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_subtract(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_subtract(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_subtract(<double, bigint>) returns double
+```
+
+
+```sql
+function safe_subtract(<bigint, double>) returns double
+```
+
+
+```sql
+function safe_subtract(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_subtract(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function safe_subtract(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_subtract(<decimal(p,s), double>) returns double
+```
+
+
+## sec
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sec)
+
+```sql
+function sec<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## sech
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sech)
+
+```sql
+function sech<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## sign
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sign)
+
+```sql
+function sign<$1> (<$1>) returns $1
+	where $1 in (bigint, double)
+```
+
+
+## sin
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sin)
+
+```sql
+function sin<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## sinh
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sinh)
+
+```sql
+function sinh<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## sqrt
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sqrt)
+
+```sql
+function sqrt(<bigint>) returns double
+```
+
+
+```sql
+function sqrt<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## tan
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#tan)
+
+```sql
+function tan<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## tanh
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#tanh)
+
+```sql
+function tanh<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## trunc
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#trunc)
+
+```sql
+function trunc(<bigint>) returns double
+```
+
+
+```sql
+function trunc<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function trunc(<bigint, bigint>) returns double
+```
+
+
+```sql
+function trunc<$1> (<$1, bigint>) returns $1
+	where $1 in (double)
+```
+
+
 

@@ -35,7 +35,7 @@ There are 5 commandline options to control the output.
 
   - `table` is the normal ascii table representation.
   - `json` is a JSON representation
-  - `yml`, only available for `sdf describe`, is YAML representation
+  - `yml`, only available for `sdf compile`, is YAML representation
 
 - `--limit <number>` - Limits the number of shown rows. Run with `--limit 0` to
   show all rows.
@@ -52,29 +52,29 @@ Let's try these options. Start by creating a new workspace with a sample project
 
 > `cd lineage/`
 
-(1) Usual describe
+(1) Usual compile
 
-> `sdf describe`
+> `sdf compile`
 
-(2) describe without any progress report. This will also prevent the `Finished in [n] seconds` message from displaying at the end of stdout.
+(2) compile without any progress report. This will also prevent the `Finished in [n] seconds` message from displaying at the end of stdout.
 
-> `sdf describe --quiet`
+> `sdf compile --quiet`
 
-(3) describe without any table info but with progress info
+(3) compile without any table info but with progress info
 
-> `sdf describe --no-show`
+> `sdf compile --no-show`
 
-(4) describe without any output except errors
+(4) compile without any output except errors
 
-> `sdf describe --no-show --quiet`
+> `sdf compile --no-show --quiet`
 
-(5) describe with trace log info
+(5) compile with trace log info
 
-> `sdf describe --log trace`
+> `sdf compile --log trace`
 
 (6) Show only the sink table this time via a file
 
-> `sdf describe src/sink.sql`
+> `sdf compile src/sink.sql`
 
 ### Schema
 

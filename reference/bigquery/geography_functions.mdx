@@ -2,4 +2,594 @@
 title: "Geography Functions"
 ---
 
+## s2_cellidfrompoint
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#s2_cellidfrompoint)
+
+```sql
+function s2_cellidfrompoint(<geography>) returns bigint
+```
+
+
+## s2_coveringcellids
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#s2_coveringcellids)
+
+```sql
+function s2_coveringcellids(<geography>) returns array<bigint>
+```
+
+
+## st_angle
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_angle)
+
+```sql
+function st_angle(<geography, geography, geography>) returns double
+```
+
+
+## st_area
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_area)
+
+```sql
+function st_area(<geography>) returns double
+```
+
+
+```sql
+function st_area(<geography, bool>) returns double
+```
+
+
+## st_asbinary
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_asbinary)
+
+```sql
+function st_asbinary(<geography>) returns bytes
+```
+
+
+## st_asgeojson
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_asgeojson)
+
+```sql
+function st_asgeojson(<geography>) returns string
+```
+
+
+## st_astext
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_astext)
+
+```sql
+function st_astext(<geography>) returns string
+```
+
+
+## st_azimuth
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_azimuth)
+
+```sql
+function st_azimuth(<geography, geography>) returns double
+```
+
+
+## st_boundary
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_boundary)
+
+```sql
+function st_boundary(<geography>) returns geography
+```
+
+
+## st_boundingbox
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_boundingbox)
+
+```sql
+function st_boundingbox(<geography>) returns geography
+```
+
+
+## st_buffer
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_buffer)
+
+```sql
+function st_buffer(<geography, double>) returns geography
+```
+
+
+```sql
+function st_buffer(<geography, double, double>) returns geography
+```
+
+
+## st_bufferwithtolerance
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_bufferwithtolerance)
+
+```sql
+function st_bufferwithtolerance(<geography, double, double>) returns 
+```
+
+
+## st_centroid
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_centroid)
+
+```sql
+function st_centroid(<geography>) returns geography
+```
+
+
+## st_centroid_agg
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_centroid_agg)
+
+```sql
+function st_centroid_agg(<geography>) returns geography
+```
+
+
+## st_closestpoint
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_closestpoint)
+
+```sql
+function st_closestpoint(<geography, geography>) returns geography
+```
+
+
+```sql
+function st_closestpoint(<geography, geography, bool>) returns geography
+```
+
+
+## st_clusterdbscan
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_clusterdbscan)
+
+```sql
+function st_clusterdbscan(<geography, double, bigint>) returns bigint
+```
+
+
+## st_contains
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_contains)
+
+```sql
+function st_contains(<geography, geography>) returns bool
+```
+
+
+## st_convexhull
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_convexhull)
+
+```sql
+function st_convexhull(<geography>) returns geography
+```
+
+
+## st_coveredby
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_coveredby)
+
+```sql
+function st_coveredby(<geography, geography>) returns bool
+```
+
+
+## st_covers
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_covers)
+
+```sql
+function st_covers(<geography, geography>) returns bool
+```
+
+
+## st_difference
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_difference)
+
+```sql
+function st_difference(<geography, geography>) returns geography
+```
+
+
+## st_dimension
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_dimension)
+
+```sql
+function st_dimension(<geography>) returns bigint
+```
+
+
+## st_disjoint
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_disjoint)
+
+```sql
+function st_disjoint(<geography, geography>) returns bool
+```
+
+
+## st_distance
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_distance)
+
+```sql
+function st_distance(<geography, geography>) returns double
+```
+
+
+```sql
+function st_distance(<geography, geography, bool>) returns double
+```
+
+
+## st_dump
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_dump)
+
+```sql
+function st_dump(<geography>) returns geography
+```
+
+
+```sql
+function st_dump(<geography, bigint>) returns geography
+```
+
+
+## st_dwithin
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_dwithin)
+
+```sql
+function st_dwithin(<geography, geography, double>) returns bool
+```
+
+
+## st_endpoint
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_endpoint)
+
+```sql
+function st_endpoint(<geography>) returns geography
+```
+
+
+## st_equals
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_equals)
+
+```sql
+function st_equals(<geography, geography>) returns bool
+```
+
+
+## st_exteriorring
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_exteriorring)
+
+```sql
+function st_exteriorring(<geography>) returns geography
+```
+
+
+## st_geogfrom
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogfrom)
+
+```sql
+function st_geogfrom(<string>) returns geography
+```
+
+
+```sql
+function st_geogfrom(<bytes>) returns geography
+```
+
+
+## st_geogfromgeojson
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogfromgeojson)
+
+```sql
+function st_geogfromgeojson(<string>) returns geography
+```
+
+
+## st_geogfromtext
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogfromtext)
+
+```sql
+function st_geogfromtext(<string, bool>) returns geography
+```
+
+
+```sql
+function st_geogfromtext(<string>) returns geography
+```
+
+
+## st_geogfromwkb
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogfromwkb)
+
+```sql
+function st_geogfromwkb(<bytes>) returns geography
+```
+
+
+```sql
+function st_geogfromwkb(<string>) returns geography
+```
+
+
+## st_geogpoint
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogpoint)
+
+```sql
+function st_geogpoint(<double, double>) returns geography
+```
+
+
+## st_geogpointfromgeohash
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geogpointfromgeohash)
+
+```sql
+function st_geogpointfromgeohash(<string>) returns geography
+```
+
+
+```sql
+function st_geogpointfromgeohash(<string, double, double>) returns geography
+```
+
+
+## st_geohash
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geohash)
+
+```sql
+function st_geohash(<geography>) returns string
+```
+
+
+```sql
+function st_geohash(<geography, bigint>) returns string
+```
+
+
+## st_geometrytype
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_geometrytype)
+
+```sql
+function st_geometrytype(<geography>) returns string
+```
+
+
+## st_interiorrings
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_interiorrings)
+
+```sql
+function st_interiorrings(<geography>) returns array<geography>
+```
+
+
+## st_intersection
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_intersection)
+
+```sql
+function st_intersection(<geography, geography>) returns geography
+```
+
+
+## st_intersects
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_intersects)
+
+```sql
+function st_intersects(<geography, geography>) returns bool
+```
+
+
+## st_intersectsbox
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_intersectsbox)
+
+```sql
+function st_intersectsbox(<geography, double, double, double, double>) returns bool
+```
+
+
+## st_isclosed
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_isclosed)
+
+```sql
+function st_isclosed(<geography>) returns bool
+```
+
+
+## st_iscollection
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_iscollection)
+
+```sql
+function st_iscollection(<geography>) returns bool
+```
+
+
+## st_isempty
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_isempty)
+
+```sql
+function st_isempty(<geography>) returns bool
+```
+
+
+## st_isring
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_isring)
+
+```sql
+function st_isring(<geography>) returns bool
+```
+
+
+## st_length
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_length)
+
+```sql
+function st_length(<geography>) returns double
+```
+
+
+```sql
+function st_length(<geography, bool>) returns double
+```
+
+
+## st_linelocatepoint
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_linelocatepoint)
+
+```sql
+function st_linelocatepoint(<geography, geography>) returns double
+```
+
+
+## st_makeline
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_makeline)
+
+```sql
+function st_makeline(<geography, geography>) returns geography
+```
+
+
+## st_makepolygon
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_makepolygon)
+
+```sql
+function st_makepolygon(<geography>) returns geography
+```
+
+
+```sql
+function st_makepolygon(<geography, array<geography>>) returns geography
+```
+
+
+## st_makepolygonoriented
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_makepolygonoriented)
+
+```sql
+function st_makepolygonoriented(<array<geography>>) returns geography
+```
+
+
+## st_maxdistance
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_maxdistance)
+
+```sql
+function st_maxdistance(<geography, geography>) returns double
+```
+
+
+```sql
+function st_maxdistance(<geography, geography, bool>) returns double
+```
+
+
+## st_npoints
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_npoints)
+
+```sql
+function st_npoints(<geography>) returns bigint
+```
+
+
+## st_numgeometries
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_numpoints)
+
+```sql
+function st_numgeometries(<geography>) returns bigint
+```
+
+
+## st_numpoints
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_numpoints)
+
+```sql
+function st_numpoints(<geography>) returns bigint
+```
+
+
+## st_perimeter
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_perimeter)
+
+```sql
+function st_perimeter(<geography>) returns double
+```
+
+
+```sql
+function st_perimeter(<geography, bool>) returns double
+```
+
+
+## st_pointn
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_pointn)
+
+```sql
+function st_pointn(<geography, bigint>) returns geography
+```
+
+
+## st_simplify
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_simplify)
+
+```sql
+function st_simplify(<geography, bigint>) returns geography
+```
+
+
+## st_snaptogrid
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_snaptogrid)
+
+```sql
+function st_snaptogrid(<geography, double>) returns 
+```
+
+
+## st_startpoint
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_snaptogrid)
+
+```sql
+function st_startpoint(<geography>) returns geography
+```
+
+
+## st_touches
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_touches)
+
+```sql
+function st_touches(<geography, geography>) returns bool
+```
+
+
+## st_union
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_union)
+
+```sql
+function st_union(<geography, geography>) returns geography
+```
+
+
+## st_union_agg
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_union_agg)
+
+```sql
+function st_union_agg(<geography>) returns geography
+```
+
+
+## st_within
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_within)
+
+```sql
+function st_within(<geography, geography>) returns bool
+```
+
+
+## st_x
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_x)
+
+```sql
+function st_x(<geography>) returns double
+```
+
+
+## st_y
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions#st_y)
+
+```sql
+function st_y(<geography>) returns double
+```
+
+
 

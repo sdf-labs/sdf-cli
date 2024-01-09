@@ -80,7 +80,7 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 		Now that we have our `workspace.sdf.yml` file configured, we can compile SDF. This will generate the column level lineage and place it in the `.sdfcache` directory local to your DBT project. 
 
 		```shell
-		sdf describe
+		sdf compile
 		```
 
 		Great, now that we have our lineage, let's try adding some metadata to our models.
@@ -121,7 +121,7 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 		Great, now let's compile SDF again and see what happens.
 
 		```shell
-		sdf describe
+		sdf compile
 		```
 
 		You'll notice the classification is not only attached to the `raw_customers` table, but also to the downstream `customers` table and others. This is because SDF is able to infer the lineage between these two tables and propagate the classification.

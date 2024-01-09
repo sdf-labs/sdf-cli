@@ -79,6 +79,12 @@
 			"group": "SQL Functions",
 			"pages": [
 				{
+					"group": "Snowflake Functions",
+					"pages": [
+						"reference/snowflake/all_functions"
+					]
+				},
+				{
 					"group": "Redshift Functions",
 					"pages": [
 						"reference/redshift/aggregate_functions",
@@ -91,11 +97,7 @@
 				{
 					"group": "Presto Functions",
 					"pages": [
-						"reference/presto/aggregate_functions",
-						"reference/presto/math_functions",
-						"reference/presto/other_expressions",
-						"reference/presto/string_functions",
-						"reference/presto/temporal_functions"
+						"reference/presto/all_functions"
 					]
 				},
 				{
@@ -122,7 +124,6 @@
 						"reference/bigquery/security_functions",
 						"reference/bigquery/statistical_aggregate_functions",
 						"reference/bigquery/string_functions",
-						"reference/bigquery/temporal_functions",
 						"reference/bigquery/time_functions",
 						"reference/bigquery/timestamp_functions",
 						"reference/bigquery/utility_functions"
