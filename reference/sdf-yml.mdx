@@ -96,17 +96,17 @@ Value | Description|
 ## Enum: `TableType`
 Value | Description|
 | :--- | :------- |
-`compat` | undefined|
-`cached` | All derived tables are cached by default|
-`external` | External tables must be explicitly marked When using 'Create external table` SQL syntax|
-`view` | View|
-`recursive` | Recursive warehouse tables must be  explicitly  marked|
-`system` | System tables are not materialized|
-`catalog` | Catalog tables are not materialized|
-`code-check` | Code check query|
-`data-check` | Data check query|
-`code-report` | Code report query|
-`access-check` | Access check query|
+`table` | Computed tables have type table|
+`external` | Given tables are called external|
+`view` | Table Views|
+`recursive` | Recursive warehouse tables [SDF specific]]|
+`system` | System tables (like sdf.information-schema.*)|
+`managed` | A managed table is managed by an external table provider like Iceberg, Glue, etc|
+`code-contract` | A table representing a code contract query|
+`data-contract` | A table representing a data contract query|
+`code-report` | A table representing a code report|
+`data-report` | A table representing a data report|
+`dialect-specific-table` | A dialect specific table, like BigQueries information_schema|
 ## Enum: `CompressionType`
 Value | Description|
 | :--- | :------- |
@@ -281,10 +281,10 @@ Value | Description|
 ### Nested element: `PluginIncludePathKind`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-### Nested element: `Catalog`
+### Nested element: `TableProvider`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the catalog [e.g.: database]|
+`catalog:` | `string`| The catalog name of the catalog [e.g.: database]|
 `type:` | `UNKNOWN`| The type of the catalog [e.g.: hive]|
 `cluster-identifier:` | `string?`| The cluster identifier for redshift server|
 ### Nested element: `CatalogType`

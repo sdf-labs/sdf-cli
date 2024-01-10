@@ -66,7 +66,7 @@ sdf new --sample hello
 After running the command, you should see the following output: 
  
 ```shell
-   Finished new in 0.003 secs
+   Finished new in 0.001 secs
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
@@ -96,15 +96,8 @@ sdf compile
 Start parsing 1 files
   Analyzing hello.pub.main (./src/main.sql)
 ------------
-Summary [0.208s] 1 query run: 1 passed
+Summary [0.164s] 1 query run: 1 passed
 
-Schema hello.pub.main
-+-------------+------------------+------------+
-| column_name | data_type        | classifier |
-+-------------+------------------+------------+
-| column_1    | varchar not null |            |
-| column_2    | varchar not null |            |
-+-------------+------------------+------------+
 
 ```
 
