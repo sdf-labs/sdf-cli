@@ -1,0 +1,69 @@
+# 0.1.134 - Release Notes Draft
+
+Status - Done: In Progress
+Created By: Kendrick
+Created: January 10, 2024 11:24 AM
+Last Edited Time: January 10, 2024 3:40 PM
+Date: January 10, 2024
+Last Edited By: Elias DeFaria
+
+# January 10, 2023
+
+## Introducing `compile` command
+
+`sdf compile [OPTIONS] [TARGETS]…`command is used to compile models and parse files within the directory. It will statically analyze and return a summary of the actions completed. This replaces `sdf describe`.
+
+This command defaults to `--no-show` and will return the following:
+
+```sql
+Start parsing 1 files
+  Analyzing hello.pub.main (./src/main.sql)
+------------
+Summary [0.164s] 1 query run: 1 passed
+```
+
+To view the results of the compiled modules and produced tables you can either add —show or specify a target.
+
+`sdf compile --show`
+
+```sql
+Start parsing 1 files
+------------
+Summary [0.114s] 1 query run: 1 passed
+
+Schema hello.pub.main
++-------------+------------------+-------------+
+| column_name | data_type        | classifier  |
++-------------+------------------+-------------+
+| column_1    | varchar not null |             |
+| column_2    |                  | PII.name    |
+| column_3    |                  | PII.phone   |
+| column_4    |                  | PII.user_id |
++-------------+------------------+-------------+
+```
+
+## Target via table name or as a block
+
+When targeting a table or a block of tables, there are updates on how to best accomplish this. Similar to how typescript approaches targeting directories and folders, the following actions have the same effect of collecting all files within a specified target directory and sub-directories:
+
+- `sdf compile catalog.schema.table`
+- `sdf compile target_directory`
+- `sdf compile target_directory/`
+- `sdf compile target_directory/**/*`
+
+To target files within a specific directory and no sub-directories, the following command is used:
+
+- `sdf compile target_directory/*`
+
+## Deprecating Commands (describe and deploy)
+
+The commands `describe` and `deploy` have been deprecated.
+
+### Latest Builds
+
+| Architecture | Status | Version | Download |
+| --- | --- | --- | --- |
+| Linux Intel X86-64 | ✅ | 0.1.134 | https://cdn.sdf.com/releases/download/sdf-v0.1.134-x86_64-unknown-linux-musl.tar.gz |
+| Linux Arm ARM-64 | ✅ | 0.1.134 | https://cdn.sdf.com/releases/download/sdf-v0.1.134-arm-unknown-linux-gnueabihf.tar.gz |
+| Apple Intel X86-64 | ✅ | 0.1.134 | https://cdn.sdf.com/releases/download/sdf-v0.1.134-x86_64-apple-darwin.tar.gz |
+| Apple Arm AARCh-64 | ✅ | 0.1.134 | https://cdn.sdf.com/releases/download/sdf-v0.1.134-aarch64-apple-darwin.tar.gz |
