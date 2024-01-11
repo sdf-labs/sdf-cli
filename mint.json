@@ -142,6 +142,13 @@
 			"group": "Releases",
 			"pages": [
 				{
+					"group": "January 2024",
+					"pages": [
+						"releases/v0.1.135",
+						"releases/v0.1.134"
+					]
+				},
+				{
 					"group": "September 2023",
 					"pages": [
 						"releases/v0.1.90",
