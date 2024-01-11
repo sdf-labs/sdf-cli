@@ -2,12 +2,44 @@
 title: "String Functions"
 ---
 
+## ascii
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ascii)
+
+```sql
+function ascii(<string>) returns int64
+```
+
+
 ## byte_length
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#byte_length)
 
 ```sql
 function byte_length<$1> (<$1>) returns int64
 	where $1 in (string, bytes)
+```
+
+
+## char_length
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#char_length)
+
+```sql
+function char_length(<string>) returns int64
+```
+
+
+## character_length
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#character_length)
+
+```sql
+function character_length(<string>) returns int64
+```
+
+
+## chr
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#chr)
+
+```sql
+function chr(<int64>) returns string
 ```
 
 
@@ -32,6 +64,15 @@ function code_points_to_string(<array<int64>>) returns string
 
 ```sql
 function collate(<string, string>) returns string
+```
+
+
+## concat
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#concat)
+
+```sql
+function concat<$1> ($1, ...) returns $1
+	where $1 in (string, bytes)
 ```
 
 
@@ -120,6 +161,11 @@ function from_hex(<string>) returns bytes
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#initcap)
 
 ```sql
+function initcap(<string>) returns string
+```
+
+
+```sql
 function initcap(<string, string>) returns string
 ```
 
@@ -157,6 +203,40 @@ function left<$1> (<$1, int64>) returns $1
 ```sql
 function length<$1> (<$1>) returns int64
 	where $1 in (string, bytes)
+```
+
+
+## lower
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lower)
+
+```sql
+function lower(<string>) returns string
+```
+
+
+## lpad
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lpad)
+
+```sql
+function lpad(<string, int64, string>) returns string
+```
+
+
+```sql
+function lpad(<string, int64>) returns string
+```
+
+
+## ltrim
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ltrim)
+
+```sql
+function ltrim(<string>) returns string
+```
+
+
+```sql
+function ltrim(<string, string>) returns string
 ```
 
 
@@ -308,6 +388,32 @@ function right<$1> (<$1, int64>) returns $1
 ```
 
 
+## rpad
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rpad)
+
+```sql
+function rpad(<string, int64, string>) returns string
+```
+
+
+```sql
+function rpad(<string, int64>) returns string
+```
+
+
+## rtrim
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rtrim)
+
+```sql
+function rtrim(<string>) returns string
+```
+
+
+```sql
+function rtrim(<string, string>) returns string
+```
+
+
 ## safe_convert_bytes_to_string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#safe_convert_bytes_to_string)
 
@@ -336,6 +442,27 @@ function split<$1> (<$1>) returns array<$1>
 ```sql
 function split<$1> (<$1, $1>) returns array<$1>
 	where $1 in (string, bytes)
+```
+
+
+## starts_with
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#starts_with)
+
+```sql
+function starts_with(<string, string>) returns bool
+```
+
+
+## substr
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#substr)
+
+```sql
+function substr(<string, int64>) returns string
+```
+
+
+```sql
+function substr(<string, int64, int64>) returns string
 ```
 
 
@@ -396,11 +523,32 @@ function translate<$1> (<$1, $1, $1>) returns $1
 ```
 
 
+## trim
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#trim)
+
+```sql
+function trim(<string>) returns string
+```
+
+
+```sql
+function trim(<string, string>) returns string
+```
+
+
 ## unicode
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#unicode)
 
 ```sql
 function unicode(<string>) returns int64
+```
+
+
+## upper
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#upper)
+
+```sql
+function upper(<string>) returns string
 ```
 
 
