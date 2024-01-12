@@ -15,7 +15,7 @@ Code Contracts are simply small SQL queries that run against this information sc
 Let's write and modify a code contract, starting with one of the sdf samples.
 
 ```shell
-sdf new --sample hello
+sdf new --sample hello_with_pii
 ```
 This sample contains a Code Contract and a commented out classifier. Each Code Contract has a name, description, an assertion, and a path to the SQL statement that will be executed against the information schema.
 
@@ -25,16 +25,17 @@ This sample contains a Code Contract and a commented out classifier. Each Code C
 		...
 		includes:
 			- path: src
-			- include-type: Code Contract
-				path: checks/code_check.sql
-				#Ensure that there is no PII.name
-
+            # ADD THE BELOW #
+            - path: checks
+              type: code-contract
+              default-schema: test
+              default-catalog: sdf
 ```
 To run the Code Contract, simply execute `sdf test`. During compile, SDF runs all its static analysis on the workspace, creating lineage, metadata, and ultimately executing the Code Contracts.
 
 Hurray! The code contract passes.
 
-But, carefully read the Code Contract. It queries for any column that contains PII.name and asserts that this query should be empty. But we never added the classifier in the first place!
+But, carefully read the Code Contract. 
 
 ```sql
 SELECT
@@ -46,6 +47,8 @@ FROM
 WHERE
     c.classifiers like '%PII.name%'
 ```
+
+It queries for any column that contains PII.name and asserts that this query should be empty. But we never added the classifier in the first place!
 
 To add the classifier and change the behavior, uncomment the following classifier later in the workspace, run `sdf test` and the Code Contract will now fail.
 ```yml
