@@ -22,7 +22,6 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf lineage`↴](#sdf-lineage)
 * [`sdf push`↴](#sdf-push)
 * [`sdf pull`↴](#sdf-pull)
-* [`sdf add`↴](#sdf-add)
 * [`sdf system`↴](#sdf-system)
 * [`sdf system update`↴](#sdf-system-update)
 * [`sdf system uninstall`↴](#sdf-system-uninstall)
@@ -36,16 +35,15 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf man cli`↴](#sdf-man-cli)
 * [`sdf man functions`↴](#sdf-man-functions)
 * [`sdf man definition-schema`↴](#sdf-man-definition-schema)
-* [`sdf man deploy-schema`↴](#sdf-man-deploy-schema)
 * [`sdf man information-schema`↴](#sdf-man-information-schema)
 * [`sdf dbt`↴](#sdf-dbt)
 * [`sdf dbt init`↴](#sdf-dbt-init)
 
 ## `sdf`
 
-SDF's modular SQL
+SDF's multi-dialect SQL compiler and governance framework
 
-**Usage:** `sdf [OPTIONS]  COMMAND `
+**Usage:** `sdf  COMMAND `
 
 ###### **Subcommands:**
 
@@ -57,18 +55,16 @@ SDF's modular SQL
 * `report` — Report stats for models
 * `build` — Runs models, tests contracts, reports stats
 * `ai` — Infer metadata like classifiers and add them optionally to the workspace
-* `lineage` — Display lineage for a given column
+* `lineage` — Display lineage for a given table and/or column
 * `push` — Push a local workspace to the SDF Service
 * `pull` — Pull a remote workspace from the SDF Service
-* `add` — Add new versioned files to the workspace
-* `system` — System maintenance, install and update, reference docs
-* `auth` — Authenticate client to services: SDF, AWS, OpenAI etc
-* `man` — Display reference material, CLI, functions, schemas
+* `system` — System maintenance, install and update
+* `auth` — Authenticate CLI to services like SDF, AWS, OpenAI, etc
+* `man` — Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
 * `dbt` — Initialize an sdf workspace from an existing dbt project
 
 ###### **Options:**
 
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -94,13 +90,18 @@ Create a new sdf workspace
 
   Default value: `false`
 * `--sample  SAMPLE ` — Create a workspace with the sample content at  path 
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+* `-s`, `--show  SHOW ` — Display progress messages
+
+  Default value: `progress`
+
+  Possible values: `progress`, `none`
+
 
 
 
@@ -112,9 +113,14 @@ Remove artifacts that sdf has generated in the past
 
 ###### **Options:**
 
-* `-p`, `--profile  PROFILE ` — Remove artifacts at  path  that sdf has created in the past [default: current workspace directory] Clean cache entries for this profile
-* `--path  PATH `
-* `-q`, `--quiet` — Do not print sdf log messages
+* `-p`, `--profile  PROFILE `
+* `--path  PATH ` — Remove artifacts at  path  that sdf has created in the past [default: current workspace directory]
+* `-s`, `--show  SHOW ` — Display progress messages
+
+  Default value: `progress`
+
+  Possible values: `progress`, `none`
+
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -132,7 +138,7 @@ Compile models
 
 ###### **Arguments:**
 
-* ` TARGETS ` — Compile only the given source dirs, files or tables and run code contracts [default: all models]
+* ` TARGETS ` — Compile only the given source dirs, files or tables [default: all models]
 
 ###### **Options:**
 
@@ -146,7 +152,7 @@ Compile models
 
   Default value: `false`
 * `-p`, `--profile  PROFILE ` — Use this profile
-* `-Q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
   Possible values: `parse`, `resolve`, `classify`, `execute`
@@ -164,28 +170,19 @@ Compile models
 
   Default value: `false`
 * `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-n`, `--no-show` — Don't show the result of queries
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
-  Default value: `false`
-* `-s`, `--show` — Show the result of queries
+  Possible values: `all`, `progress`, `result`, `none`
 
-  Default value: `false`
-* `--display-mode  DISPLAY_MODE ` — Display messages
-
-  Default value: `verbose`
-
-  Possible values: `verbose`, `log-only`, `result-only`, `quiet`
-
-* `--display-format  DISPLAY_FORMAT ` — Show tables in this format
+* `--format  FORMAT ` — Show tables in this format [ony table, json and yml supported]
 
   Default value: `table`
 
-  Possible values: `table`, `csv`, `tsv`, `json`, `yml`
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -203,12 +200,12 @@ Run models
 
 ###### **Arguments:**
 
-* ` TARGETS ` — Run only the given source dirs, files or @tables [default: all models]
+* ` TARGETS ` — Run only the given source dirs, files or tables [default: all models]
 
 ###### **Options:**
 
 * `-p`, `--profile  PROFILE ` — Use this profile
-* `-Q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
   Possible values: `parse`, `resolve`, `classify`, `execute`
@@ -232,28 +229,19 @@ Run models
 * `--dry-run` — Plan command but don't evaluate it
 
   Default value: `false`
-* `-n`, `--no-show` — Don't show the result of queries
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
-  Default value: `false`
-* `-s`, `--show` — Show the result of queries
+  Possible values: `all`, `progress`, `result`, `none`
 
-  Default value: `false`
-* `--display-mode  DISPLAY_MODE ` — Display messages
-
-  Default value: `verbose`
-
-  Possible values: `verbose`, `log-only`, `result-only`, `quiet`
-
-* `--display-format  DISPLAY_FORMAT ` — Show tables in this format
+* `--format  FORMAT ` — Show tables in this format
 
   Default value: `table`
 
-  Possible values: `table`, `csv`, `tsv`, `json`, `yml`
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -271,7 +259,7 @@ Test contracts for models
 
 ###### **Arguments:**
 
-* ` TARGETS ` — Test only the given source dirs, files or @tables [default: all contracts]
+* ` TARGETS ` — Test models restricted to models and tests found in the given source dirs, files or tables [default: all models and all contracts]
 
 ###### **Options:**
 
@@ -282,7 +270,7 @@ Test contracts for models
 
   Default value: `false`
 * `-p`, `--profile  PROFILE ` — Use this profile
-* `-Q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
   Possible values: `parse`, `resolve`, `classify`, `execute`
@@ -300,34 +288,19 @@ Test contracts for models
 
   Default value: `false`
 * `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
-* `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
-* `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
-* `--dry-run` — Plan command but don't evaluate it
+* `-s`, `--show  SHOW ` — Display messages [default: all]
 
-  Default value: `false`
-* `-n`, `--no-show` — Don't show the result of queries
+  Possible values: `all`, `progress`, `result`, `none`
 
-  Default value: `false`
-* `-s`, `--show` — Show the result of queries
-
-  Default value: `false`
-* `--display-mode  DISPLAY_MODE ` — Display messages
-
-  Default value: `verbose`
-
-  Possible values: `verbose`, `log-only`, `result-only`, `quiet`
-
-* `--display-format  DISPLAY_FORMAT ` — Show tables in this format
+* `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
 
-  Possible values: `table`, `csv`, `tsv`, `json`, `yml`
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -345,7 +318,7 @@ Report stats for models
 
 ###### **Arguments:**
 
-* ` TARGETS ` — Test only the given source dirs, files or @tables [default: all contracts]
+* ` TARGETS ` — Run reports defined by the given source dirs, files or tables [default: all reports]
 
 ###### **Options:**
 
@@ -356,7 +329,7 @@ Report stats for models
 
   Default value: `false`
 * `-p`, `--profile  PROFILE ` — Use this profile
-* `-Q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
   Possible values: `parse`, `resolve`, `classify`, `execute`
@@ -374,34 +347,19 @@ Report stats for models
 
   Default value: `false`
 * `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
-* `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
-* `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
-* `--dry-run` — Plan command but don't evaluate it
+* `-s`, `--show  SHOW ` — Display messages [default: all]
 
-  Default value: `false`
-* `-n`, `--no-show` — Don't show the result of queries
+  Possible values: `all`, `progress`, `result`, `none`
 
-  Default value: `false`
-* `-s`, `--show` — Show the result of queries
-
-  Default value: `false`
-* `--display-mode  DISPLAY_MODE ` — Display messages
-
-  Default value: `verbose`
-
-  Possible values: `verbose`, `log-only`, `result-only`, `quiet`
-
-* `--display-format  DISPLAY_FORMAT ` — Show tables in this format
+* `--format  FORMAT ` — Show tables in this format
 
   Default value: `table`
 
-  Possible values: `table`, `csv`, `tsv`, `json`, `yml`
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -424,7 +382,7 @@ Runs models, tests contracts, reports stats
 ###### **Options:**
 
 * `-p`, `--profile  PROFILE ` — Use this profile
-* `-Q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
   Possible values: `parse`, `resolve`, `classify`, `execute`
@@ -448,28 +406,19 @@ Runs models, tests contracts, reports stats
 * `--dry-run` — Plan command but don't evaluate it
 
   Default value: `false`
-* `-n`, `--no-show` — Don't show the result of queries
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
-  Default value: `false`
-* `-s`, `--show` — Show the result of queries
+  Possible values: `all`, `progress`, `result`, `none`
 
-  Default value: `false`
-* `--display-mode  DISPLAY_MODE ` — Display messages
-
-  Default value: `verbose`
-
-  Possible values: `verbose`, `log-only`, `result-only`, `quiet`
-
-* `--display-format  DISPLAY_FORMAT ` — Show tables in this format
+* `--format  FORMAT ` — Show tables in this format
 
   Default value: `table`
 
-  Possible values: `table`, `csv`, `tsv`, `json`, `yml`
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -483,11 +432,20 @@ Runs models, tests contracts, reports stats
 
 Infer metadata like classifiers and add them optionally to the workspace
 
-**Usage:** `sdf ai  COMMAND `
+**Usage:** `sdf ai [OPTIONS]  COMMAND `
 
 ###### **Subcommands:**
 
 * `classify` — Auto classify columns
+
+###### **Options:**
+
+* `-s`, `--show  SHOW `
+
+  Default value: `all`
+
+  Possible values: `all`, `progress`, `result`, `none`
+
 
 
 
@@ -515,11 +473,9 @@ Auto classify columns
 * `--no-use-of-description` — Do NOT pass table/column descriptions to inference engine
 
   Default value: `false`
-* `-c`, `--config  CONFIG ` — Supply a config yml file or provide config as yml string e.g. '(key: value)'
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -531,7 +487,7 @@ Auto classify columns
 
 ## `sdf lineage`
 
-Display lineage for a given column
+Display lineage for a given table and/or column
 
 **Usage:** `sdf lineage [OPTIONS] [TARGETS]...`
 
@@ -549,7 +505,7 @@ Display lineage for a given column
 
   Default value: `false`
 * `-p`, `--profile  PROFILE ` — Use this profile
-* `-Q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
   Possible values: `parse`, `resolve`, `classify`, `execute`
@@ -567,7 +523,19 @@ Display lineage for a given column
 
   Default value: `false`
 * `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-q`, `--quiet` — Do not print sdf log messages
+* `-s`, `--show  SHOW ` — Display messages [default: all]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `--format  FORMAT ` — Show tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+
+  Default value: `10`
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -595,13 +563,18 @@ Push a local workspace to the SDF Service
 * `-d`, `--dry-run` — No changes will be made to the console when this is set
 
   Default value: `false`
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+* `-s`, `--show  SHOW ` — Display messages
+
+  Default value: `progress`
+
+  Possible values: `progress`, `none`
+
 
 
 
@@ -618,38 +591,12 @@ Pull a remote workspace from the SDF Service
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
-* `-q`, `--quiet` — Do not print sdf log messages
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
+* `-s`, `--show  SHOW ` — Display messages
 
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
+  Default value: `progress`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+  Possible values: `progress`, `none`
 
-
-
-## `sdf add`
-
-Add new versioned files to the workspace
-
-**Usage:** `sdf add [OPTIONS] [INPUT_FILES]...`
-
-###### **Arguments:**
-
-* ` INPUT_FILES ` — Add these source dirs and/or files to the selected workspace, profile and includes-dir
-
-###### **Options:**
-
-* `--path  PATH ` — Add these files to the workspace at  path  [default: this workspace]
-* `-p`, `--profile  PROFILE ` — Add the files using this profile [default: this workspace profile]
-* `--includes-dir  INCLUDES_DIR ` — Add them to this include path [default: ./src]
-* `--dialect  DIALECT ` — Dialect for all files [default: includes-dir dialect]
-
-  Possible values: `snowflake`, `presto`, `bigquery`, `redshift`, `spark-lp`
-
-* `--default-catalog  DEFAULT_CATALOG ` — Default catalog for all files [default: includes-dir catalog]
-* `--default-schema  DEFAULT_SCHEMA ` — Default schema for all files [default: includes-dir schema]
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -661,14 +608,23 @@ Add new versioned files to the workspace
 
 ## `sdf system`
 
-System maintenance, install and update, reference docs
+System maintenance, install and update
 
-**Usage:** `sdf system  COMMAND `
+**Usage:** `sdf system [OPTIONS]  COMMAND `
 
 ###### **Subcommands:**
 
 * `update` — Update sdf in place to the latest version
 * `uninstall` — Uninstall sdf from the system
+
+###### **Options:**
+
+* `-s`, `--show  SHOW ` — Display messages
+
+  Default value: `progress`
+
+  Possible values: `progress`, `none`
+
 
 
 
@@ -694,9 +650,9 @@ Uninstall sdf from the system
 
 ## `sdf auth`
 
-Authenticate client to services: SDF, AWS, OpenAI etc
+Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
-**Usage:** `sdf auth  COMMAND `
+**Usage:** `sdf auth [OPTIONS]  COMMAND `
 
 ###### **Subcommands:**
 
@@ -705,6 +661,15 @@ Authenticate client to services: SDF, AWS, OpenAI etc
 * `status` — Show status of credentials / tokens
 * `aws` — Configure how to authenticate with AWS
 * `openai` — Configure how to authenticate with OpenAI
+
+###### **Options:**
+
+* `-s`, `--show  SHOW ` — Display messages [default: progress]
+
+  Default value: `progress`
+
+  Possible values: `progress`, `none`
+
 
 
 
@@ -787,38 +752,46 @@ Configure how to authenticate with OpenAI
 
 ## `sdf man`
 
-Display reference material, CLI, functions, schemas
+Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
 
 **Usage:** `sdf man [OPTIONS]  COMMAND `
 
 ###### **Subcommands:**
 
-* `cli` — Display SDF's command line interface [default only: markdown]
-* `functions` — Display SDF's functions definitions [default: markdown, only markdown and yml]
-* `definition-schema` — Display SDF's yml blocks as a json schema doc [default only: json]
-* `deploy-schema` — Display SDF's deploy structure as a json schema doc [default only: json]
-* `information-schema` — Display SDF's information schemas [default only: sql]
+* `cli` — Display SDF's command line interface
+* `functions` — Display SDF's functions definitions
+* `definition-schema` — Display SDF's yml blocks as a json schema doc [only: json]
+* `information-schema` — Display SDF's information schemas [only: sql]
 
 ###### **Options:**
 
-* `--man-format  MAN_FORMAT `
+* `-s`, `--show  SHOW ` — Display messages [default: progress]
 
-  Possible values: `sql`, `yml`, `markdown`, `json`
+  Default value: `result`
+
+  Possible values: `all`, `progress`, `result`, `none`
 
 
 
 
 ## `sdf man cli`
 
-Display SDF's command line interface [default only: markdown]
+Display SDF's command line interface
 
-**Usage:** `sdf man cli`
+**Usage:** `sdf man cli [OPTIONS]`
+
+###### **Options:**
+
+* `--format  FORMAT ` — Format reference material in this  format  [only: markdown]
+
+  Possible values: `sql`, `yml`, `markdown`, `json`
+
 
 
 
 ## `sdf man functions`
 
-Display SDF's functions definitions [default: markdown, only markdown and yml]
+Display SDF's functions definitions
 
 **Usage:** `sdf man functions [OPTIONS]`
 
@@ -830,33 +803,43 @@ Display SDF's functions definitions [default: markdown, only markdown and yml]
 
   Possible values: `snowflake`, `presto`, `bigquery`, `redshift`, `spark-lp`
 
-* `--section  SECTION ` — Section to display [default: all]
+* `--section  SECTION ` — Section to display [ section  value must appear in the function registry]
 
   Default value: `all`
+* `--format  FORMAT ` — Format reference material in this  format  [default: markdown | yml]
+
+  Possible values: `sql`, `yml`, `markdown`, `json`
+
 
 
 
 ## `sdf man definition-schema`
 
-Display SDF's yml blocks as a json schema doc [default only: json]
+Display SDF's yml blocks as a json schema doc [only: json]
 
-**Usage:** `sdf man definition-schema`
+**Usage:** `sdf man definition-schema [OPTIONS]`
 
+###### **Options:**
 
+* `--format  FORMAT ` — Format reference material in this  format  [only: json]
 
-## `sdf man deploy-schema`
+  Possible values: `sql`, `yml`, `markdown`, `json`
 
-Display SDF's deploy structure as a json schema doc [default only: json]
-
-**Usage:** `sdf man deploy-schema`
 
 
 
 ## `sdf man information-schema`
 
-Display SDF's information schemas [default only: sql]
+Display SDF's information schemas [only: sql]
 
-**Usage:** `sdf man information-schema`
+**Usage:** `sdf man information-schema [OPTIONS]`
+
+###### **Options:**
+
+* `--format  FORMAT ` — Format reference material in this  format  [only: sql]
+
+  Possible values: `sql`, `yml`, `markdown`, `json`
+
 
 
 
@@ -872,13 +855,18 @@ Initialize an sdf workspace from an existing dbt project
 
 ###### **Options:**
 
-* `-q`, `--quiet` — Do not print sdf log messages
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+* `-s`, `--show  SHOW ` — Display messages
+
+  Default value: `progress`
+
+  Possible values: `progress`, `none`
+
 
 
 

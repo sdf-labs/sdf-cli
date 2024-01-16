@@ -46,6 +46,7 @@
 				"guide/workspaces",
 				"guide/classifiers",
 				"guide/code_contracts",
+				"guide/code_reports",
 				"guide/lineage_metadata",
 				"guide/udf",
 				"guide/authentication",
@@ -97,7 +98,17 @@
 				{
 					"group": "Presto Functions",
 					"pages": [
-						"reference/presto/all_functions"
+						"reference/presto/all_functions",
+						{
+							"group": "SDF Execution Support",
+							"pages": [
+								"reference/presto/sdf_execution_support/aggregate_functions",
+								"reference/presto/sdf_execution_support/math_functions",
+								"reference/presto/sdf_execution_support/other_expressions",
+								"reference/presto/sdf_execution_support/string_functions",
+								"reference/presto/sdf_execution_support/time_functions"
+							]
+						}
 					]
 				},
 				{
@@ -144,6 +155,7 @@
 				{
 					"group": "January 2024",
 					"pages": [
+						"releases/v0.1.136",
 						"releases/v0.1.135",
 						"releases/v0.1.134"
 					]

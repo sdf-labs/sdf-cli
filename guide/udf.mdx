@@ -4,21 +4,20 @@ description: "SDF allows you to author user defined functions using function sig
 "
 ---
 
-User-defined functions allow to extend a database by adding a new function, that can be evaluated in SQL. The SQL standard distinguishes between scalar, aggregate and  
+User-defined functions allow you to extend a database by adding a new function, that can be evaluated in SQL. The SQL standard distinguishes between scalar, aggregate and  
 table functions. A scalar function takes a set of values and returns only a single value (or NULL), an aggregate function takes a column of values and return
 a single value, whereas a table function returns a (relational) table comprising zero or more rows, each row with one or more columns.
 
-SDF allows you to define almost any imagenable user-defined function. The following sections define how to add user defined function signatures. 
-Section \cite() will explain how to author user defined functions.  
+SDF allows you to define almost any imagenable user-defined function. The following sections define how to add user defined function signatures.   
 
 ## Scalar functions
 
-SDF distinguish scalar functions in various dimensions:
-- They can have fixed or varying arity, i.e number oif parameters
-- They can have one defintion or overloaded, i.e. have manay defintions.
-- They can be monmorphic, i.e., defined for one type only, or polymorphic, i.e. defined to perate on all types
+SDF distinguishes scalar functions in various dimensions:
+- They can have fixed or varying arity, i.e number of parameters
+- They can have one defintion or be overloaded, i.e. have manay defintions.
+- They can be monmorphic, i.e., defined for one type only, or polymorphic, i.e. defined to operate on all types
 - They can be first-order, i.e., take only data as parameters, or higher order, take also functions as parameter.
-We erxplain eac of these concepts and the authoring of the correspsondng function signature in turn.  
+We explain each of these concepts and the authoring of the correspsondng function signature in turn.  
 
 ### Fixed Arity
 The function `substr` ia a typical scalar function. It takes two arguments of the types `varchar` and `int`, respectively. 
@@ -132,7 +131,7 @@ function:
 ### Bounded types
 Sometimes functions don;t work over all ttpes, but can only applied to a limited set of types. 
 We call this set **type parameter bounds**. The `abs` function for instance can only be applied to number types and to intervals.
-So we define abs as a type parameter bounded function.
+So we define `abs` as a type parameter bounded function.
 
 ```yaml
 function:
@@ -153,7 +152,7 @@ function:
 
 Aggregate functions take a column of values and return a scalar value. For instance `select sum(x) from values (1),(2),(3) T(x)` computes the sum of the `x` column, here `5`.
 
-While the implementation might be non-trivial the signature of aggregate functions is  easy. We just specify the functions kind as aggregate, the type of the aggregate function is its column type. 
+While the implementation might be non-trivial the signature of aggregate functions is easy. We just specify the functions kind as aggregate, the type of the aggregate function is its column type. 
 Thus for `sum` we get the trivial signature:
 
 ```yaml

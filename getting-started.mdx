@@ -15,9 +15,9 @@ sdf --help
 ```
 
 ```shell
-SDF's modular SQL
+SDF's multi-dialect SQL compiler and governance framework
 
-Usage: sdf [OPTIONS] <COMMAND>
+Usage: sdf <COMMAND>
 
 Commands:
   new      Create a new sdf workspace
@@ -28,29 +28,18 @@ Commands:
   report   Report stats for models
   build    Runs models, tests contracts, reports stats
   ai       Infer metadata like classifiers and add them optionally to the workspace
-  lineage  Display lineage for a given column
+  lineage  Display lineage for a given table and/or column
   push     Push a local workspace to the SDF Service
   pull     Pull a remote workspace from the SDF Service
-  add      Add new versioned files to the workspace
-  system   System maintenance, install and update, reference docs
-  auth     Authenticate client to services: SDF, AWS, OpenAI etc
-  man      Display reference material, CLI, functions, schemas
+  system   System maintenance, install and update
+  auth     Authenticate CLI to services like SDF, AWS, OpenAI, etc
+  man      Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
   dbt      Initialize an sdf workspace from an existing dbt project
   help     Print this message or the help of the given subcommand(s)
 
 Options:
-  -q, --quiet
-          Do not print sdf log messages
-      --log-level <LOG_LEVEL>
-          Set log level (by setting env var RUST_LOG) [possible values: trace, debug, info, warn, error]
-      --cache-dir <CACHE_DIR>
-          Set the <cache-dir> for this session
-      --credentials-dir <CREDENTIALS_DIR>
-          Read the credentials from <credentials-dir>
-  -h, --help
-          Print help
-  -V, --version
-          Print version
+  -h, --help     Print help
+  -V, --version  Print version
 
 ```
 
@@ -66,10 +55,10 @@ sdf new --sample hello
 After running the command, you should see the following output: 
  
 ```shell
-   Finished new in 0.001 secs
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
+   Finished  in 0.002 secs
 
 
 ```
@@ -93,10 +82,9 @@ sdf compile
 ```
 
 ```shell
-Start parsing 1 files
-  Analyzing hello.pub.main (./src/main.sql)
-------------
-Summary [0.246s] 1 query run: 1 passed
+Working set 1 model, 1 sdf files
+  Compiling hello.pub.main (./src/main.sql)
+   Finished 1 model in 0.246 secs
 
 
 ```

@@ -19,7 +19,7 @@ SDF writes progress or results on stdout. It provides the developer with a varie
 
 There are 5 commandline options to control the output.
 
-- `--quiet` - Do not print `sdf` progress messages.
+- `` - Do not print `sdf` progress messages.
 
 - `--no-show` - Do not print `sdf` results, i.e., produced tables.
 
@@ -58,7 +58,7 @@ Let's try these options. Start by creating a new workspace with a sample project
 
 (2) compile without any progress report. This will also prevent the `Finished in [n] seconds` message from displaying at the end of stdout.
 
-> `sdf compile --quiet`
+> `sdf compile `
 
 (3) compile without any table info but with progress info
 
@@ -66,7 +66,7 @@ Let's try these options. Start by creating a new workspace with a sample project
 
 (4) compile without any output except errors
 
-> `sdf compile --no-show --quiet`
+> `sdf compile --no-show `
 
 (5) compile with trace log info
 

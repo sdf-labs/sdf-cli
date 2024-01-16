@@ -70,7 +70,7 @@ title: "SDF YML Schema"
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `source-locations:` | `array`| Function defined by these set of .sdf files|
 `implemented-by:` | `FunctionImplSpec?`| undefined|
-`special:` | `boolean`| Function can be called without parentheses, e.g. current_date|
+`special:` | `boolean`| Function can be called without parentheses, e.g. as if it were a constant, e.g. current_date|
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
@@ -80,7 +80,7 @@ Value | Description|
 `code-report` | Contains queries for the information schema of the model|
 `data-report` | Contains queries against the data of the models|
 `resource` | Contains resources like csv files that are shipped to the service, etc|
-`metadata` | Contains meta data like classifiers, etc [deprecated]|
+`metadata` | Contains meta data like classifiers, etc|
 ## Enum: `SyncType`
 Value | Description|
 | :--- | :------- |

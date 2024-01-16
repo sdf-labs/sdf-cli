@@ -66,6 +66,10 @@ table:
         - PII.Phone
 ```
 
+<Note>
+When attaching classifiers to tables, using the fully qualified name is required. For example, in an environment that uses catalog and schema names, the name must be listed as `<catalog-name>.<schema-name>.<table>`.
+</Note>
+
 Note how this file will be picked up because its in the path included in the
 root `workspace.sdf.yml`. Alternatively, the same information can be included
 directly into the root file as follows:
@@ -253,3 +257,15 @@ Note the usage of `PII_STATE.*` in the `from` field of the `reclassify` block. T
 <Info>
   Wondering why we also defined the `parameters` and `returns` in this function block? This is because this function is a [`User Defined Function (UDF)`](/guide/udf). For more on function signatures, see the [UDF](/guide/udf) guide.
 </Info>
+
+### Organizing Classifiers
+
+When organizing classifiers, it is recommended to create a folder to host all Classfiers created by you and your team.
+Setting up a location within the working directory called `classifiers` is the recommended setting.
+Once created, this location will need to be ammended to the `workspace.sdf.yml` so that it is included.
+
+```yaml workspace.sdf.yml
+---
+includes:
+  - path: classifiers/
+```
