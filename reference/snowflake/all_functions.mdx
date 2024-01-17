@@ -7891,6 +7891,16 @@ function timestamp_tz_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0)
 ```
 Construct a timestamp from individual components
 
+## timestampdiff
+[🔗 Official Documentation](#)
+
+```sql
+function timestampdiff<$1> (<string, $1, $1>) returns bigint
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp)
+```
+
+
 ## timestampfromparts
 [🔗 Official Documentation](#)
 
@@ -8727,6 +8737,42 @@ Tries to parse binary input in WKB format into a GEOMETRY object
 function try_to_geometry(<binary, boolean>) returns geometry
 ```
 Tries to parse binary input in WKB format into a GEOMETRY object
+
+## try_to_number
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_number(<$1>) returns decimal(38, 0)
+```
+Convert anything to a number
+
+```sql
+function try_to_number(<$1, bigint>) returns decimal(38, 0)
+```
+Convert anything to a number
+
+```sql
+function try_to_number(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+Convert anything to a number
+
+## try_to_numeric
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_numeric(<$1>) returns decimal(38, 0)
+```
+Convert anything to a number
+
+```sql
+function try_to_numeric(<$1, bigint>) returns decimal(38, 0)
+```
+Convert anything to a number
+
+```sql
+function try_to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+Convert anything to a number
 
 ## try_to_time
 [🔗 Official Documentation](#)

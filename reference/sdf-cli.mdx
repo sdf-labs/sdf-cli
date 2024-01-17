@@ -65,6 +65,9 @@ SDF's multi-dialect SQL compiler and governance framework
 
 ###### **Options:**
 
+* `--no-parallel` — Do NOT run in parallel
+* `--num-threads  NUM_THREADS ` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
+* `--stack-size  STACK_SIZE ` — Set stack size for worker thread, in bytes
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
@@ -90,10 +93,6 @@ Create a new sdf workspace
 
   Default value: `false`
 * `--sample  SAMPLE ` — Create a workspace with the sample content at  path 
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `-s`, `--show  SHOW ` — Display progress messages
@@ -120,10 +119,6 @@ Remove artifacts that sdf has generated in the past
   Default value: `progress`
 
   Possible values: `progress`, `none`
-
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
@@ -183,10 +178,6 @@ Compile models
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -242,10 +233,6 @@ Run models
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -301,10 +288,6 @@ Test contracts for models
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -360,10 +343,6 @@ Report stats for models
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -419,10 +398,6 @@ Runs models, tests contracts, reports stats
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -476,10 +451,6 @@ Auto classify columns
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -536,10 +507,6 @@ Display lineage for a given table and/or column
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -563,10 +530,6 @@ Push a local workspace to the SDF Service
 * `-d`, `--dry-run` — No changes will be made to the console when this is set
 
   Default value: `false`
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
-
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `-s`, `--show  SHOW ` — Display messages
@@ -596,10 +559,6 @@ Pull a remote workspace from the SDF Service
   Default value: `progress`
 
   Possible values: `progress`, `none`
-
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
@@ -854,10 +813,6 @@ Initialize an sdf workspace from an existing dbt project
 * `init` — Initialize a sdf workspace from a dbt project -- best effort
 
 ###### **Options:**
-
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
-
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
