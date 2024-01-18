@@ -2,6 +2,16 @@
 title: "All Functions"
 ---
 
+## !=
+[🔗 Official Documentation](#)
+
+```sql
+function !=<$1, $2> (<$1, $2>) returns boolean
+	where $1 in (variant, varchar)
+	and $2 in (variant, varchar)
+```
+
+
 ## *
 [🔗 Official Documentation](#)
 
@@ -22,6 +32,20 @@ Add two numbers
 function +(<date, bigint>) returns date
 ```
 Add two numbers
+
+```sql
+function +<$1, $2> (<$1, $2>) returns $1
+	where $1 in (date, time, timestamp)
+	and $2 in (interval)
+```
+
+
+```sql
+function +<$1, $2> (<$2, $1>) returns $2
+	where $1 in (date, time, timestamp)
+	and $2 in (interval)
+```
+
 
 ## -
 [🔗 Official Documentation](#)
@@ -48,6 +72,48 @@ Subtract two numbers
 function /(<$1, $1>) returns $1
 ```
 Divide two numbers
+
+## <
+[🔗 Official Documentation](#)
+
+```sql
+function <(<variant, variant>) returns boolean
+```
+
+
+## <=
+[🔗 Official Documentation](#)
+
+```sql
+function <=(<variant, variant>) returns boolean
+```
+
+
+## =
+[🔗 Official Documentation](#)
+
+```sql
+function =<$1, $2> (<$1, $2>) returns boolean
+	where $1 in (variant, varchar)
+	and $2 in (variant, varchar)
+```
+
+
+## >
+[🔗 Official Documentation](#)
+
+```sql
+function >(<variant, variant>) returns boolean
+```
+
+
+## >=
+[🔗 Official Documentation](#)
+
+```sql
+function >=(<variant, variant>) returns boolean
+```
+
 
 ## abs
 [🔗 Official Documentation](#)
@@ -3393,6 +3459,7 @@ function last_day<$1> (<$1>) returns date
 
 ```sql
 function last_day<$1> (<$1, string>) returns date
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp)
 ```
 
@@ -3663,12 +3730,12 @@ Returns the maximum of a column
 [🔗 Official Documentation](#)
 
 ```sql
-function max_by(<$1, $1>) returns $1
+function max_by(<$1, $2>) returns $1
 ```
 Returns value of first column with maximum second column val
 
 ```sql
-function max_by(<$1, $1, decimal(38, 0)>) returns array
+function max_by(<$1, $2, decimal(38, 0)>) returns array
 ```
 Returns value of first column with maximum second column val
 
@@ -3765,12 +3832,12 @@ Returns the minimum of a column
 [🔗 Official Documentation](#)
 
 ```sql
-function min_by(<$1, $1>) returns $1
+function min_by(<$1, $2>) returns $1
 ```
 Returns value of first column with minimum second column val
 
 ```sql
-function min_by(<$1, $1, decimal(38, 0)>) returns array
+function min_by(<$1, $2, decimal(38, 0)>) returns array
 ```
 Returns value of first column with minimum second column val
 
