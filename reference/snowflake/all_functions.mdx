@@ -7863,6 +7863,16 @@ function time_slice<$1> (<$1, bigint, string, string>) returns $1
 ```
 
 
+## timeadd
+[🔗 Official Documentation](#)
+
+```sql
+function timeadd<$1> (<string, double, $1>) returns $1
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp)
+```
+
+
 ## timediff
 [🔗 Official Documentation](#)
 
