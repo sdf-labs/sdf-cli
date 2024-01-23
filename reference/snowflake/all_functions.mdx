@@ -2558,7 +2558,7 @@ function external_table_files(<table_name string>) returns struct<
 
 ```sql
 function extract<$1> (<string, $1>) returns double
-	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, dayofweek_iso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
 	where $1 in (date, time, timestamp)
 ```
 
@@ -3710,6 +3710,112 @@ function ltrim(<varchar, varchar>) returns varchar
 ```
 return string trimmed from left
 
+## map_cat
+[🔗 Official Documentation](#)
+
+```sql
+function map_cat(<object, object>) returns object
+```
+
+
+## map_contains_key
+[🔗 Official Documentation](#)
+
+```sql
+function map_contains_key(<varchar, object>) returns boolean
+```
+
+
+## map_delete
+[🔗 Official Documentation](#)
+
+```sql
+function map_delete(<object, varchar>) returns object
+```
+
+
+```sql
+function map_delete(<object, varchar, varchar>) returns object
+```
+
+
+```sql
+function map_delete(<object, varchar, varchar, varchar>) returns object
+```
+
+
+```sql
+function map_delete(<object, varchar, varchar, varchar, varchar>) returns object
+```
+
+
+```sql
+function map_delete(<object, varchar, varchar, varchar, varchar, varchar>) returns object
+```
+
+
+## map_insert
+[🔗 Official Documentation](#)
+
+```sql
+function map_insert(<object, $1, $2>) returns object
+```
+
+
+```sql
+function map_insert(<object, $1, $2, boolean>) returns object
+```
+
+
+## map_keys
+[🔗 Official Documentation](#)
+
+```sql
+function map_keys(<object>) returns array
+```
+
+
+## map_pick
+[🔗 Official Documentation](#)
+
+```sql
+function map_pick(<object, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, string, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, string, string, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, string, string, string, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, string, string, string, string, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, array>) returns object
+```
+
+
+## map_size
+[🔗 Official Documentation](#)
+
+```sql
+function map_size(<object>) returns bigint
+```
+
+
 ## materialized_view_refresh_history
 [🔗 Official Documentation](#)
 
@@ -4065,6 +4171,31 @@ output object
 function object_construct($1, ...) returns object
 ```
 the resulting object
+
+```sql
+function object_construct(<$1>) returns object
+```
+
+
+```sql
+function object_construct(<$1, $2>) returns object
+```
+
+
+```sql
+function object_construct(<$1, $2, $3>) returns object
+```
+
+
+```sql
+function object_construct(<$1, $2, $3, $4>) returns object
+```
+
+
+```sql
+function object_construct(<$1, $2, $3, $4, $5>) returns object
+```
+
 
 ## object_construct_keep_null
 [🔗 Official Documentation](#)
@@ -7627,6 +7758,14 @@ function system$task_runtime_info(<varchar>) returns varchar
 ```
 result
 
+## system$typeof
+[🔗 Official Documentation](#)
+
+```sql
+function system$typeof(<$1>) returns varchar
+```
+
+
 ## system$ui_replication_information
 [🔗 Official Documentation](#)
 
@@ -8343,11 +8482,21 @@ function to_timestamp(<$1>) returns timestamp
 ```
 
 
+```sql
+function to_timestamp(<$1, string>) returns timestamp
+```
+
+
 ## to_timestamp_ltz
 [🔗 Official Documentation](#)
 
 ```sql
 function to_timestamp_ltz(<$1>) returns timestamp
+```
+
+
+```sql
+function to_timestamp_ltz(<$1, string>) returns timestamp
 ```
 
 
@@ -8622,6 +8771,19 @@ function try_parse_json(<varchar>) returns variant
 ```
 Parses string as a JSON document
 
+## try_to_binary
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_binary(<$1>) returns binary
+```
+
+
+```sql
+function try_to_binary(<string, string>) returns binary
+```
+
+
 ## try_to_boolean
 [🔗 Official Documentation](#)
 
@@ -8869,6 +9031,11 @@ function try_to_time(<$1, string>) returns time
 
 ```sql
 function try_to_timestamp(<$1>) returns timestamp
+```
+
+
+```sql
+function try_to_timestamp(<$1, string>) returns timestamp
 ```
 
 
