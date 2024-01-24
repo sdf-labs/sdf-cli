@@ -168,6 +168,9 @@ Compile models
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -218,6 +221,9 @@ Run models
   Default value: `false`
 * `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
 * `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
@@ -284,6 +290,9 @@ Test contracts for models
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
 * `-s`, `--show  SHOW ` — Display messages [default: all]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -342,6 +351,9 @@ Report stats for models
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
 * `-s`, `--show  SHOW ` — Display messages [default: all]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -392,6 +404,9 @@ Runs models, tests contracts, reports stats
   Default value: `false`
 * `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
 * `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
@@ -512,6 +527,9 @@ Display lineage for a given table and/or column
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
 * `-s`, `--show  SHOW ` — Display messages [default: all]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -534,11 +552,17 @@ Display lineage for a given table and/or column
 
 Push a local workspace to the SDF Service
 
-**Usage:** `sdf push [OPTIONS]`
+**Usage:** `sdf push [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Target selection: push only the given source dirs, files or tables [default: current workspace directory]
 
 ###### **Options:**
 
-* `--path  PATH ` — Push the workspace at  path  to the SDF Service [default: current workspace directory]
+* `--downstream` — Push not only the given  targets  but also all its downstream artifacts
+
+  Default value: `false`
 * `--delete` — Delete this workspace from the SDF Service
 
   Default value: `false`

@@ -35,14 +35,14 @@ Add two numbers
 
 ```sql
 function +<$1, $2> (<$1, $2>) returns $1
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 	and $2 in (interval)
 ```
 
 
 ```sql
 function +<$1, $2> (<$2, $1>) returns $2
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 	and $2 in (interval)
 ```
 
@@ -921,7 +921,7 @@ function auto_refresh_registration_history(<>) returns struct<
 [🔗 Official Documentation](#)
 
 ```sql
-function automatic_clustering_history(<>) returns struct<
+function automatic_clustering_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   table_name string,
@@ -930,6 +930,8 @@ function automatic_clustering_history(<>) returns struct<
   num_rows_reclustered bigint
 >
 
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
@@ -1585,12 +1587,14 @@ returns TRUE if arg1 constains arg2
 [🔗 Official Documentation](#)
 
 ```sql
-function convert_timezone(<varchar, varchar, timestamp>) returns timestamp
+function convert_timezone<$1> (<varchar, varchar, $1>) returns timestamp
+	where $1 in (timestamp, string)
 ```
 Returns the input timestamp converted from source timezone to a destination timezone
 
 ```sql
-function convert_timezone(<varchar, timestamp>) returns timestamp
+function convert_timezone<$1> (<varchar, $1>) returns timestamp
+	where $1 in (timestamp, string)
 ```
 Returns the input timestamp converted from source timezone to a destination timezone
 
@@ -2021,7 +2025,7 @@ function database_refresh_progress_by_job(<string>) returns struct<
 [🔗 Official Documentation](#)
 
 ```sql
-function database_replication_usage_history(<>) returns struct<
+function database_replication_usage_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   database_name string,
@@ -2029,6 +2033,8 @@ function database_replication_usage_history(<>) returns struct<
   bytes_transferred bigint
 >
 
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
@@ -2036,12 +2042,14 @@ function database_replication_usage_history(<>) returns struct<
 [🔗 Official Documentation](#)
 
 ```sql
-function database_storage_usage_history(<>) returns struct<usage_date date,
+function database_storage_usage_history<$1, $2> (<>) returns struct<usage_date date,
   database_name string,
   average_database_bytes bigint,
   average_fail_safe_bytes bigint
 >
 
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
@@ -2087,7 +2095,7 @@ Construct a date from individual components
 ```sql
 function date_part<$1> (<string, $1>) returns double
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -2097,7 +2105,7 @@ function date_part<$1> (<string, $1>) returns double
 ```sql
 function date_trunc<$1> (<string, $1>) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -2106,8 +2114,8 @@ function date_trunc<$1> (<string, $1>) returns $1
 
 ```sql
 function dateadd<$1> (<string, double, $1>) returns $1
-	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
-	where $1 in (date, time, timestamp)
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -2117,7 +2125,7 @@ function dateadd<$1> (<string, double, $1>) returns $1
 ```sql
 function datediff<$1> (<string, $1, $1>) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -2141,9 +2149,10 @@ function day(<$1>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function dayname([date]) returns varchar
+function dayname<$1> (<$1>) returns varchar
+	where $1 in (date, string)
 ```
-Day name
+
 
 ## dayofmonth
 [🔗 Official Documentation](#)
@@ -2559,7 +2568,7 @@ function external_table_files(<table_name string>) returns struct<
 ```sql
 function extract<$1> (<string, $1>) returns double
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, dayofweek_iso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -3147,7 +3156,7 @@ function hour(<$1>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function iff(<boolean, $1, $1>) returns $1
+function iff(<boolean, $1, $2>) returns $1
 ```
 Returns arg2 if arg1 is true, arg3 otherwise.
 
@@ -3155,7 +3164,7 @@ Returns arg2 if arg1 is true, arg3 otherwise.
 [🔗 Official Documentation](#)
 
 ```sql
-function ifnull(<$1, $1>) returns $1
+function ifnull(<$1, $2>) returns $1
 ```
 Returns second expression if the first expression is NULL, the first expression otherwise.
 
@@ -3453,14 +3462,14 @@ Returns the value of an expression at the specified offset row
 
 ```sql
 function last_day<$1> (<$1>) returns date
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
 ```sql
 function last_day<$1> (<$1, string>) returns date
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -3659,7 +3668,9 @@ returns the logarithm base b of a
 [🔗 Official Documentation](#)
 
 ```sql
-function login_history(<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
+function login_history<$1, $2> (<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
 ```
 
 
@@ -3667,7 +3678,9 @@ function login_history(<>) returns struct<event_timestamp timestamp, event_id bi
 [🔗 Official Documentation](#)
 
 ```sql
-function login_history_by_user(<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
+function login_history_by_user<$1, $2> (<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
 ```
 
 
@@ -3820,7 +3833,9 @@ function map_size(<object>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function materialized_view_refresh_history(<>) returns struct< start_time timestamp, end_time timestamp, credits_used string, materialized_view_name string >
+function materialized_view_refresh_history<$1, $2> (<>) returns struct< start_time timestamp, end_time timestamp, credits_used string, materialized_view_name string >
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
@@ -4004,16 +4019,17 @@ function month(<$1>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function monthname([date]) returns varchar
+function monthname<$1> (<$1>) returns varchar
+	where $1 in (date, string)
 ```
-Month name
+
 
 ## months_between
 [🔗 Official Documentation](#)
 
 ```sql
 function months_between<$1> (<$1, $1>) returns bigint
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -4034,9 +4050,10 @@ returns the negative value of its input argument.
 [🔗 Official Documentation](#)
 
 ```sql
-function next_day(<date, varchar>) returns date
+function next_day<$1> (<$1, varchar>) returns date
+	where $1 in (date, string)
 ```
-returns the first weekday named by weekday that is later than date
+
 
 ## normal
 [🔗 Official Documentation](#)
@@ -4123,9 +4140,9 @@ Number of groups (ntiles) per window
 [🔗 Official Documentation](#)
 
 ```sql
-function nullif(<$1, $1>) returns $1
+function nullif(<$1, $2>) returns $1
 ```
-Returns the 1st input, with values equal to the 2nd input replaced with NULL
+
 
 ## nullifzero
 [🔗 Official Documentation](#)
@@ -4168,32 +4185,7 @@ output object
 [🔗 Official Documentation](#)
 
 ```sql
-function object_construct($1, ...) returns object
-```
-the resulting object
-
-```sql
-function object_construct(<$1>) returns object
-```
-
-
-```sql
-function object_construct(<$1, $2>) returns object
-```
-
-
-```sql
-function object_construct(<$1, $2, $3>) returns object
-```
-
-
-```sql
-function object_construct(<$1, $2, $3, $4>) returns object
-```
-
-
-```sql
-function object_construct(<$1, $2, $3, $4, $5>) returns object
+function object_construct(...) returns object
 ```
 
 
@@ -4470,9 +4462,10 @@ returns x raised to the y'th power
 [🔗 Official Documentation](#)
 
 ```sql
-function previous_day(<date, varchar>) returns date
+function previous_day<$1> (<$1, varchar>) returns date
+	where $1 in (date, string)
 ```
-returns the last weekday named by weekday that is earlier than date
+
 
 ## projection_constraint
 [🔗 Official Documentation](#)
@@ -4494,7 +4487,7 @@ function quarter(<$1>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function query_acceleration_history(<>) returns struct<start_time timestamp,
+function query_acceleration_history<$1, $2> (<>) returns struct<start_time timestamp,
   end_time timestamp,
   credits_used bigint,
   warehouse_name string,
@@ -4502,6 +4495,8 @@ function query_acceleration_history(<>) returns struct<start_time timestamp,
   num_bytes_scanned bigint
 >
 
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
@@ -4509,7 +4504,7 @@ function query_acceleration_history(<>) returns struct<start_time timestamp,
 [🔗 Official Documentation](#)
 
 ```sql
-function query_history(<>) returns struct<query_id string,
+function query_history<$1, $2> (<>) returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -4556,6 +4551,8 @@ function query_history(<>) returns struct<query_id string,
   query_parameterized_hash string,
   query_parameterized_hash_version bigint>
 
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
 ```
 
 
@@ -4563,7 +4560,7 @@ function query_history(<>) returns struct<query_id string,
 [🔗 Official Documentation](#)
 
 ```sql
-function query_history_by_session(<>) returns struct<query_id string,
+function query_history_by_session<$1, $2> (<>) returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -4610,6 +4607,8 @@ function query_history_by_session(<>) returns struct<query_id string,
   query_parameterized_hash string,
   query_parameterized_hash_version bigint>
 
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
 ```
 
 
@@ -4617,7 +4616,7 @@ function query_history_by_session(<>) returns struct<query_id string,
 [🔗 Official Documentation](#)
 
 ```sql
-function query_history_by_user(<>) returns struct<query_id string,
+function query_history_by_user<$1, $2> (<>) returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -4664,6 +4663,8 @@ function query_history_by_user(<>) returns struct<query_id string,
   query_parameterized_hash string,
   query_parameterized_hash_version bigint>
 
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
 ```
 
 
@@ -4671,7 +4672,7 @@ function query_history_by_user(<>) returns struct<query_id string,
 [🔗 Official Documentation](#)
 
 ```sql
-function query_history_by_warehouse(<>) returns struct<query_id string,
+function query_history_by_warehouse<$1, $2> (<>) returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -4718,6 +4719,8 @@ function query_history_by_warehouse(<>) returns struct<query_id string,
   query_parameterized_hash string,
   query_parameterized_hash_version bigint>
 
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
 ```
 
 
@@ -5146,7 +5149,7 @@ function replication_group_usage_history(<>) returns struct<
 [🔗 Official Documentation](#)
 
 ```sql
-function replication_usage_history(<>) returns struct<
+function replication_usage_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   database_name string,
@@ -5154,6 +5157,8 @@ function replication_usage_history(<>) returns struct<
   bytes_transferred bigint
 >
 
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
@@ -5323,13 +5328,15 @@ Returns the length of the input string without trailing blanks
 [🔗 Official Documentation](#)
 
 ```sql
-function search_optimization_history(<>) returns struct<
+function search_optimization_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   credits_used string,
   table_name string
 >
 
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
 ```
 
 
@@ -5397,13 +5404,15 @@ returns a sequence of 8-byte integers
 [🔗 Official Documentation](#)
 
 ```sql
-function serverless_task_history(<>) returns struct<
+function serverless_task_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   task_name string,
   credits_used string
 >
 
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
 ```
 
 
@@ -6838,7 +6847,7 @@ The minimum Y coordinate
 [🔗 Official Documentation](#)
 
 ```sql
-function stage_directory_file_registration_history(<stage_name string>) returns struct<
+function stage_directory_file_registration_history<$1> (<stage_name string>) returns struct<
   job_created_time timestamp,
   file_name string,
   operation_status string,
@@ -6847,6 +6856,7 @@ function stage_directory_file_registration_history(<stage_name string>) returns 
   last_modified timestamp
 >
 
+	where $1 in (timestamp, string)
 ```
 
 
@@ -6854,8 +6864,10 @@ function stage_directory_file_registration_history(<stage_name string>) returns 
 [🔗 Official Documentation](#)
 
 ```sql
-function stage_storage_usage_history(<>) returns struct<usage_date date, average_stage_bytes bigint>
+function stage_storage_usage_history<$1, $2> (<>) returns struct<usage_date date, average_stage_bytes bigint>
 
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
@@ -7992,13 +8004,13 @@ Construct a time from individual components
 
 ```sql
 function time_slice<$1> (<$1, bigint, string>) returns $1
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
 ```sql
 function time_slice<$1> (<$1, bigint, string, string>) returns $1
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -8008,7 +8020,7 @@ function time_slice<$1> (<$1, bigint, string, string>) returns $1
 ```sql
 function timeadd<$1> (<string, double, $1>) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -8018,7 +8030,7 @@ function timeadd<$1> (<string, double, $1>) returns $1
 ```sql
 function timediff<$1> (<string, $1, $1>) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -8113,7 +8125,7 @@ Construct a timestamp from individual components
 ```sql
 function timestampdiff<$1> (<string, $1, $1>) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
-	where $1 in (date, time, timestamp)
+	where $1 in (date, time, timestamp, varchar)
 ```
 
 
@@ -9292,7 +9304,7 @@ L2 distance between vectors
 [🔗 Official Documentation](#)
 
 ```sql
-function warehouse_load_history(<>) returns struct<start_time timestamp,
+function warehouse_load_history<$1, $2> (<>) returns struct<start_time timestamp,
   end_time timestamp,
   warehouse_name string,
   avg_running decimal(38,2),
@@ -9301,6 +9313,8 @@ function warehouse_load_history(<>) returns struct<start_time timestamp,
   avg_blocked decimal(38,2)
 >
 
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
@@ -9308,7 +9322,7 @@ function warehouse_load_history(<>) returns struct<start_time timestamp,
 [🔗 Official Documentation](#)
 
 ```sql
-function warehouse_metering_history(<>) returns struct<start_time timestamp,
+function warehouse_metering_history<$1, $2> (<>) returns struct<start_time timestamp,
   end_time timestamp,
   warehouse_name string,
   credits_used bigint,
@@ -9316,6 +9330,8 @@ function warehouse_metering_history(<>) returns struct<start_time timestamp,
   credits_used_cloud_services bigint
 >
 
+	where $1 in (date, string)
+	and $2 in (date, string)
 ```
 
 
