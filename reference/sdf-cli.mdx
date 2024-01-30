@@ -164,7 +164,7 @@ Compile models
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
-* `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
@@ -219,7 +219,7 @@ Run models
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
-* `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
@@ -258,14 +258,11 @@ Test contracts for models
 
 ###### **Arguments:**
 
-* ` TARGETS ` — Test models restricted to models and tests found in the given source dirs, files or tables [default: all models and all contracts]
+* ` TARGETS ` — Assess code (data) quality: use source dirs, files or tables to determine which code (data) contracts to run [default: all code (data) contracts]
 
 ###### **Options:**
 
-* `--code` — Only run code code contracts
-
-  Default value: `false`
-* `--data` — Only run code code contracts
+* `--data` — Run data contracts (instead of code contracts)
 
   Default value: `false`
 * `-p`, `--profile  PROFILE ` — Use this profile
@@ -286,7 +283,7 @@ Test contracts for models
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
-* `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
@@ -319,14 +316,11 @@ Report stats for models
 
 ###### **Arguments:**
 
-* ` TARGETS ` — Run reports defined by the given source dirs, files or tables [default: all reports]
+* ` TARGETS ` — Profile code (data) quality, use source dirs, files or tables to determine which code (data) reports to run [default: all code (data) reports]
 
 ###### **Options:**
 
-* `--code` — Only run code code contracts
-
-  Default value: `false`
-* `--data` — Only run code code contracts
+* `--data` — Run data reports instead of code reports
 
   Default value: `false`
 * `-p`, `--profile  PROFILE ` — Use this profile
@@ -347,7 +341,7 @@ Report stats for models
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
-* `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
@@ -402,7 +396,7 @@ Runs models, tests contracts, reports stats
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
-* `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
@@ -505,6 +499,9 @@ Display lineage for a given table and/or column
 * `--show-scans` — Display scan dependencies in addition to copy and mod dependencies. Unset by default
 
   Default value: `false`
+* `--max-depth  MAX_DEPTH ` — Limiting the depth of shown lineage tree. Default value of 0 shows full lineage
+
+  Default value: `0`
 * `-p`, `--profile  PROFILE ` — Use this profile
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
@@ -523,7 +520,7 @@ Display lineage for a given table and/or column
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
-* `--var  VAR ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
