@@ -27,13 +27,27 @@ This guide will take you through the process of onboarding a large data warehous
             index: catalog-schema-table-name
 		```
 
-        To validate that all DDLs are successfully ingested by SDF, run compile.
+        To validate that all DDLs are successfully parsed, type bound, and ultimately ingested by SDF, run the following series of commands.
+        First - make sure that all DDLs are synctactically valid.
         ``` shell
-        sdf compile --no-show
+        sdf compile --stage parse
         ```
+        Second - make sure that all names and types are properly resolved.
+        ``` shell
+        sdf compile --stage resolve
+        ```
+        Ultimately to run both stages of the compiler:
+        ``` shell
+        sdf compile
+        ```
+
+        From here on, the default will always be `sdf compile`.
         <Note>
-        For any DDLs where there are errors, please add that file's path to the excludes list. If it is a valid SQL DDL, please report it to the SDF team.
-		</Note>
+        For any DDLs where there are errors, please comment out the offending error or add that file's path to the excludes list. If it is a valid SQL DDL, please report it to the SDF team.
+		    </Note>
+        <Note>
+        In this example, the names of the DDLs follow the directory structure. The directory is structured as `catalog/schema/table` and the sdf-compiled fully qualified names will follow the directory structure. So, a ddl in the path database/analytics/dau_fast.sql will be interpreted as `database.analytics.dau_fast`. You may overwrite this by setting the default-catalog in your workspace globally, or for each includes path individually.
+		    </Note>
     </Step>
 	<Step title="Add DBT Seed Tables (optional)">
 		Skip this part if you do not use DBT Seeds.
@@ -62,40 +76,45 @@ This guide will take you through the process of onboarding a large data warehous
      	``` 
 		includes:
             - path: ddls
-            index: schema-table-name
-            - path: <dbt>/<target/<path1/<file>.sql 
-            default-schema: <default_schema_for_this_directory>
+            index: catalog-schema-table-name
+            - path: <queries>/<target/<path1/<file>.sql 
+            default-schema: <default_schema_for_this_query>
+            default-catalog: <default_catalog_for_this_query>
 		```   
 
-        To verify your query has been loaded successfully, run `sdf compile --no-show` and to see lineage, run `sdf lineage <dbt>/<target/[path]/<to>/transformation.sql`
+        To verify your query has been loaded successfully, run `sdf compile` and to see lineage, run `sdf lineage catalog.schema.table`
 
         `sdf compile` should produce no errors.
 
     </Step>
     <Step title="Add a Full Directory">
-        Assuming that all transformations in one DBT output directory are in the same schema, you may add a whole directory as in the yml below:
+        Assuming that all transformations in one directory are in the same catalog, you may add a whole directory as in the yml below:
                 ``` 
 		includes:
             - path: ddls
+            index: catalog-schema-table-name
+            - path: <queries>/<target/<path1>
+            default-catalog: <default_catalog_for_this_directory>
             index: schema-table-name
-            - path: <dbt>/<target/<path1>
-            default-schema: <default_schema_for_this_directory>
         #excludes:
         #    - path: <Some file paths to exclude> 
 		```
+    <Note> 
+    In this example, the catalog is given explicitly for the directory we are including, but the schema and the table name will be inferred from the directory tree structure. 
+    </Note>
     </Step>
     <Step title="Repeat for All Directories">
-        Continue adding compiled directories to your includes, validating that each addition was successful with `sdf compile --no-show` producing no errors.
+        Continue adding transformation directories to your includes list, validating that each addition was successful with `sdf compile` producing no errors.
         ``` 
 		includes:
             - path: ddls
-              index: schema-table-name
-            - path: <dbt>/<target/<path1>
-              default-schema: <default_schema_for_this_directory>
-            - path: <dbt>/<target/<path2>
-              default-schema: <default_schema_for_this_directory>
-            - path: <dbt>/<target/<path3>
-              default-schema: <default_schema_for_this_directory>
+              index: catalog-schema-table-name
+            - path: <queries>/<target/<path1>
+              default-catalog: <default_catalog_for_this_directory>
+            - path: <queries>/<target/<path2>
+              default-catalog: <default_catalog_for_this_directory>
+            - path: <queries>/<target/<path3>
+              default-catalog: <default_catalog_for_this_directory>
         #excludes:
         #    - path: <Some file paths to exclude> 
 		```
