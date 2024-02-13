@@ -8,6 +8,13 @@ description:
 
 This guide will take you through the steps to integrate SDF with an existing DBT project. SDF currently works with DBT `v1.7.0` and above.
 
+- [Example](#example)
+- [Commands](#commands)
+
+<a name="example"></a>
+## Example 
+This first section will walk you through the steps to integrate SDF with an existing DBT project. We'll use the `jaffle_shop` example project from DBT to demonstrate this.
+
 ## Prerequisites
 
 Ensure that you have the following installed and configured locally before beginning.
@@ -43,15 +50,12 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 		```
 
 		Notice that your `workspace.sdf.yml` [includes block](/reference/sdf-yml#nested-element-includepath) points to files within the `target` directory. This is because SDF deals with raw SQL directly and not DBT models. 
+		To accomplish this, SDF copies the necessary compiled DBT models into the `sdf` directory with `target/compiled` (or your configured `target-path`).
 
-		<Note>
-		You may notice an issue where the includes block does not include all compiled models in the `target` directory. If this is the case, simply add them to the `include` block manually by specifying another `path`. 
-		</Note>
-	</Step>
-	<Step title="Define DBT Seed Tables">
-		SDF works best with raw SQL, but in certain cases like [DBT seeds](https://docs.getdbt.com/docs/build/seeds), it's necessary to give SDF a bit more information on where to look for these. In our current project, we have three seeds providing the data to compute our models. We'll need to add these to our `workspace.sdf.yml` file using the yml below:
+		This command will also compile DBT snapshots into a format SDF can understand, and it will configure SDF to work with your DBT seeds. It will add these DBT seed configurations to the `workspace.sdf.yml` file like so:
 
 		```yaml
+		...
 		table:
 			name: raw_orders
 			location: seeds/raw_orders.csv
@@ -71,10 +75,10 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 			location: seeds/raw_customers.csv
 			file-format: csv
 			with-header: true
+		...
 		```
 
-		All SDF needs to know is the name of the table, the location of the file, and the file format. From there, it can infer the schema and data types.
-
+		All SDF needs to know is the name of the table, the location of the file, and the file format. From there, it can infer the schema and data types. As new seeds are added, simply running `sdf dbt refresh` will update the `workspace.sdf.yml` file with the new seeds. Seeds can also be configured manually according to the YAML specification for [SDF Table Blocks](/reference/sdf-yml#block-table)
 	</Step>
 	<Step title="Compile SDF">
 		Now that we have our `workspace.sdf.yml` file configured, we can compile SDF. This will generate the column level lineage and place it in the `.sdfcache` directory local to your DBT project. 
@@ -97,7 +101,7 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 			description: Personally Identifiable Information
 			labels: 
 				- name: name
-					description: An individual's first, middle, or last name
+				  description: An individual's first, middle, or last name
 		```
 
 		Next, let's attach this to the right columns `raw_customers` table in the `workspace.sdf.yml` file.
@@ -134,11 +138,61 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 		```
 
 		```shell
-		sdf deploy
+		sdf push
 		```
 	</Step>
 </Steps> 
 
+<a name="commands"></a>
+## Commands 
+Here we layout the `sdf dbt` commands available for us when developing with SDF and DBT locally.
+
+### `sdf dbt init`
+This command will initialize the SDF workspace for your DBT project. It will create a `workspace.sdf.yml` file adjacent to your `dbt_project.yml` file. It will also configure all DBT seeds and compile DBT snapshots into a format SDF can understand. Lastly, it will copy the compiled models into the `sdf` directory with `target/compiled` (or your configured `target-path`).
+
+```shell
+sdf dbt init
+```
+```shell
+Initialize a sdf workspace from a dbt project -- best effort
+
+Usage: sdf dbt init [OPTIONS]
+
+Options:
+      --target <TARGET>              Use this DBT target over the default target in profiles.yml
+      --profiles-dir <PROFILES_DIR>  Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+  -c, --config <CONFIG>              Supply a config yml file or provide config as yml string e.g. '{key: value}'
+  -h, --help                         Print help
+
+```
+
+<Warning>
+	`dbt compile` must be run before running `sdf dbt init`
+</Warning>
+
+### `sdf dbt refresh`
+This command will refresh the SDF workspace for your DBT project. This is useful if you make changes to DBT models during development, then would like to ensure SDF works with your latest models without regenerating the `workspace.sdf.yml` file. It will recompile the DBT snapshots and move the compiled models into the `sdf` directory with `target/compiled` (or your configured `target-path`).
+
+```shell
+sdf dbt refresh
+```
+```shell
+Re-initialize a sdf workspace from a dbt project -- best effort
+
+Usage: sdf dbt refresh [OPTIONS]
+
+Options:
+      --target <TARGET>              Use this DBT target over the default target in profiles.yml
+      --profiles-dir <PROFILES_DIR>  Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+  -c, --config <CONFIG>              Supply a config yml file or provide config as yml string e.g. '{key: value}'
+  -h, --help                         Print help
+
+```
+
+<Note>
+	`sdf dbt refresh` is run automatically when you run `sdf compile`, `sdf lineage`, and `sdf push`. Therefore, this command is rarely necessary since `sdf compile` will run off the latest DBT models.
+</Note>
+
 ## Conclusion
 
-SDF can work alongside an existent DBT project to power column-level lineage, code contracts, and data classification & data governance for DBT models. This integration is actively under development, with tons more in the pipeline. 
+SDF can work alongside an existent DBT project to power column-level lineage, SQL compilation and validation, impact analysis, data classification, and much more for DBT models. This integration is actively under development, with tons more coming soon. 

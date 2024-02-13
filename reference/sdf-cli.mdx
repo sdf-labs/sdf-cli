@@ -27,10 +27,14 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf system uninstall`↴](#sdf-system-uninstall)
 * [`sdf auth`↴](#sdf-auth)
 * [`sdf auth login`↴](#sdf-auth-login)
+* [`sdf auth login aws`↴](#sdf-auth-login-aws)
+* [`sdf auth login openai`↴](#sdf-auth-login-openai)
+* [`sdf auth login snowflake`↴](#sdf-auth-login-snowflake)
 * [`sdf auth logout`↴](#sdf-auth-logout)
+* [`sdf auth logout aws`↴](#sdf-auth-logout-aws)
+* [`sdf auth logout openai`↴](#sdf-auth-logout-openai)
+* [`sdf auth logout snowflake`↴](#sdf-auth-logout-snowflake)
 * [`sdf auth status`↴](#sdf-auth-status)
-* [`sdf auth aws`↴](#sdf-auth-aws)
-* [`sdf auth openai`↴](#sdf-auth-openai)
 * [`sdf man`↴](#sdf-man)
 * [`sdf man cli`↴](#sdf-man-cli)
 * [`sdf man functions`↴](#sdf-man-functions)
@@ -38,6 +42,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf man information-schema`↴](#sdf-man-information-schema)
 * [`sdf dbt`↴](#sdf-dbt)
 * [`sdf dbt init`↴](#sdf-dbt-init)
+* [`sdf dbt refresh`↴](#sdf-dbt-refresh)
 
 ## `sdf`
 
@@ -654,11 +659,9 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
 ###### **Subcommands:**
 
-* `login` — Login to SDF Service
+* `login` — 
 * `logout` — Log out of SDF Service
 * `status` — Show status of credentials / tokens
-* `aws` — Configure how to authenticate with AWS
-* `openai` — Configure how to authenticate with OpenAI
 
 ###### **Options:**
 
@@ -673,9 +676,13 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
 ## `sdf auth login`
 
-Login to SDF Service
+**Usage:** `sdf auth login [OPTIONS] [COMMAND]`
 
-**Usage:** `sdf auth login [OPTIONS]`
+###### **Subcommands:**
+
+* `aws` — Configure how to authenticate with AWS
+* `openai` — Configure how to authenticate with OpenAI
+* `snowflake` — Configure how to authenticate with Snowflake
 
 ###### **Options:**
 
@@ -686,38 +693,11 @@ Login to SDF Service
 
 
 
-## `sdf auth logout`
-
-Log out of SDF Service
-
-**Usage:** `sdf auth logout [OPTIONS]`
-
-###### **Options:**
-
-* `--aws` — Delete SDF's AWS Credential State
-
-  Default value: `false`
-* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials are be stored (default is platform specific)
-
-
-
-## `sdf auth status`
-
-Show status of credentials / tokens
-
-**Usage:** `sdf auth status [OPTIONS]`
-
-###### **Options:**
-
-* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
-
-
-
-## `sdf auth aws`
+## `sdf auth login aws`
 
 Configure how to authenticate with AWS
 
-**Usage:** `sdf auth aws [OPTIONS]`
+**Usage:** `sdf auth login aws [OPTIONS]`
 
 ###### **Options:**
 
@@ -735,15 +715,88 @@ Configure how to authenticate with AWS
 
 
 
-## `sdf auth openai`
+## `sdf auth login openai`
 
 Configure how to authenticate with OpenAI
 
-**Usage:** `sdf auth openai [OPTIONS] --api-key  API_KEY `
+**Usage:** `sdf auth login openai [OPTIONS] --api-key  API_KEY `
 
 ###### **Options:**
 
 * `--api-key  API_KEY ` — Mapping of bucket names to regions
+* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
+
+
+
+## `sdf auth login snowflake`
+
+Configure how to authenticate with Snowflake
+
+**Usage:** `sdf auth login snowflake [OPTIONS] --account-id  ACCOUNT_ID  --username  USERNAME `
+
+###### **Options:**
+
+* `-a`, `--account-id  ACCOUNT_ID ` — Snowflake account id
+* `-U`, `--username  USERNAME ` — Snowflake username
+* `-P`, `--password  PASSWORD ` — Snowflake password
+* `-r`, `--role  ROLE ` — Snowflake role
+* `-W`, `--warehouse  WAREHOUSE ` — Snowflake warehouse
+* `-D`, `--database  DATABASE ` — Snowflake database
+* `-S`, `--schema  SCHEMA ` — Snowflake schema
+* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
+
+
+
+## `sdf auth logout`
+
+Log out of SDF Service
+
+**Usage:** `sdf auth logout [OPTIONS] [COMMAND]`
+
+###### **Subcommands:**
+
+* `aws` — Logout from AWS
+* `openai` — Logout from OpenAI
+* `snowflake` — Logout from Snowflake
+
+###### **Options:**
+
+* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials are be stored (default is platform specific)
+
+
+
+## `sdf auth logout aws`
+
+Logout from AWS
+
+**Usage:** `sdf auth logout aws`
+
+
+
+## `sdf auth logout openai`
+
+Logout from OpenAI
+
+**Usage:** `sdf auth logout openai`
+
+
+
+## `sdf auth logout snowflake`
+
+Logout from Snowflake
+
+**Usage:** `sdf auth logout snowflake`
+
+
+
+## `sdf auth status`
+
+Show status of credentials / tokens
+
+**Usage:** `sdf auth status [OPTIONS]`
+
+###### **Options:**
+
 * `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
 
 
@@ -765,9 +818,9 @@ Display reference material, like the CLI, dialect specific functions, schemas fo
 
 * `-s`, `--show  SHOW ` — Display messages [default: progress]
 
-  Default value: `result`
+  Default value: `progress`
 
-  Possible values: `all`, `progress`, `result`, `none`
+  Possible values: `progress`, `none`
 
 
 
@@ -850,6 +903,7 @@ Initialize an sdf workspace from an existing dbt project
 ###### **Subcommands:**
 
 * `init` — Initialize a sdf workspace from a dbt project -- best effort
+* `refresh` — Re-initialize a sdf workspace from a dbt project -- best effort
 
 ###### **Options:**
 
@@ -878,4 +932,19 @@ Initialize a sdf workspace from a dbt project -- best effort
 
 
 
+## `sdf dbt refresh`
+
+Re-initialize a sdf workspace from a dbt project -- best effort
+
+**Usage:** `sdf dbt refresh [OPTIONS]`
+
+###### **Options:**
+
+* `--target  TARGET ` — Use this DBT target over the default target in profiles.yml
+* `--profiles-dir  PROFILES_DIR ` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+* `-c`, `--config  CONFIG ` — Supply a config yml file or provide config as yml string e.g. '(key: value)'
+
+
+
+   Finished man in 0.009 secs
 
