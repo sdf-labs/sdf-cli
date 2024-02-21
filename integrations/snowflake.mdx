@@ -1,0 +1,58 @@
+---
+title: "Snowflake"
+description:
+  "SDF can hydrate table schemas and execute queries against a Snowflake DB."
+---
+
+## Overview
+
+This guide will walk you through the steps of creating a Snowflake integration. By the end, you will be able to reference tables in your snowflake instance in SDF.
+
+SDF will use remote Snowflake schema information to do type bindings and other static analysis checks on your workspace.
+
+
+## Guide
+
+<Steps>
+    <Step title="Collect Required Information">
+        To connect to Snowflake, you need the following materials:
+        * Account ID - the 8 digit organization identifier
+        * Username - your Snowflake username
+        * Password - your Snowflake password
+        * Role - a role with appropriate permissions
+        * Warehouse - The warehouse you are connecting to.
+
+        Log in to your [Snowflake](https://app.snowflake.com/) account to find the relevant information.
+
+        <Note>
+	        Run `sdf auth login snowflake --help` to see all login options.
+        </Note>
+
+    </Step>
+    <Step title="Connect SDF to Snowflake">
+        Connect SDF to snowflake. SDF will prompt you for your Snowflake password.
+        ``` shell
+        sdf auth login snowflake --account-id <ACCOUNT_ID> --username <USERNAME> --role <ROLE> --warehouse <WAREHOUSE_NAME>
+        ```
+    </Step>
+    <Step title="Add Snowflake Provider in Workspace">
+        Once authenticated, add a table provider block in your `workspace.sdf.yml`. This tells SDF to use Snowflake to hydrate missing table schemas.
+        
+        ``` yml
+        ---
+        table-provider:
+          catalog: <DATABASE> 
+          type: snowflake
+        ```
+    </Step>
+    <Step title="Try it out!">
+        Now that you're connected, let's make sure SDF can pull the schema information it needs. 
+
+        Run `sdf compile -q "select * from <DATABASE>.<SCHEMA>.<TABLE>" --show all`
+
+        If the connection is successful, you will see the schema for the table you selected.
+    </Step>
+</Steps>
+
+Some things to keep in mind
+  - The term 'DATABASE' in Snowflake is interchangeable with the term 'CATALOG' in SDF.

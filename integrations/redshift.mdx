@@ -1,0 +1,105 @@
+---
+title: "AWS & Redshift"
+description:
+  "SDF can hydrate table schemas and execute queries against a Redshift DB."
+---
+
+## Overview
+
+This guide will walk you through the steps of creating a Redshift integration. By the end, you will be able to reference remote Redshift tables in SDF as if they were locally defined!
+
+SDF will use remote Redshift schema information to do type bindings, column level lineage, and other static analysis checks on your workspace.
+
+
+Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model.
+<img src="https://cdn.sdf.com/docs/redshift_warehouse_structure.png" alt="drawing" width="500"/>
+
+## Guide using an IAM access_key and secret_key
+
+<Steps>
+    <Step title="Collect Required Information">
+        To connect to Redshift via IAM credentials, you need a valid keypair with the minimum credentials to read schema information in your redshift instance.
+        * `access_key` the access key of your IAM profile
+        * `secret_access_key` the secret key of your IAM profile
+        * `CLUSTER_IDENTIFIER` - The Redshift cluster you want to connect to
+
+        <Note>
+	        Run `sdf auth login aws --help` to see all login options.
+        </Note>
+
+        If you already have an IAM role, you may use that one. Or, simply create a new IAM user. The below is the minimum viable allow ARN policy.
+        ```json
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "Statement1",
+                    "Effect": "Allow",
+                    "Action": [
+                        "redshift:ListDatabases",
+                        "redshift:ListSchemas",
+                        "redshift:ListTables",
+                        "redshift:ListSavedQueries",
+                        "redshift:DescribeQuery",
+                        "redshift:DescribeSavedQueries",
+                        "redshift:DescribeTable",
+                        "redshift:DescribeTableRestoreStatus",
+                        "redshift:FetchResults",
+                        "redshift:CreateSavedQuery",
+                        "redshift:ExecuteQuery",
+                        "redshift:GetClusterCredentials",
+                        "redshift:GetClusterCredentialsWithIAM"
+                    ],
+                    "Resource": [
+                        "arn:aws:redshift:{region}:{account-number}:dbname:{cluster-identifier}/{dbname}"
+                    ]
+                },
+                {
+                    "Sid": "Statement2",
+                    "Effect": "Allow",
+                    "Action": [
+                        "redshift-data:*"
+                    ],
+                    "Resource": [
+                        "arn:aws:redshift:{region}:{account-number}:cluster:{cluster-identifier}"
+                    ]
+                }
+            ]
+        }
+        ```
+
+    </Step>
+    <Step title="Register the User in the AWS CLI">
+    The newly created user needs to be registered with the AWS CLI. You can optionally provide a profile name. As default region, please use the AWS region that your redshift instance is located in. 
+
+    The example below configures a profile called *redshift*
+    ``` shell
+    aws configure --profile redshift  
+    ```
+    
+    </Step>
+    <Step title="Connect SDF to AWS">
+        Connect SDF to AWS by telling SDF which of your AWS profiles to use.
+        ``` shell
+        sdf auth login aws --profile redshift --default-region <REGION>
+        ```
+    </Step>
+    <Step title="Add Redshift Provider in Workspace">
+        Once authenticated, add a table provider block in your `workspace.sdf.yml`. This tells SDF to use Redshift to hydrate missing table schemas.
+        
+        ``` yml
+        ---
+        table-provider:
+          catalog: <DATABASE> 
+          type: redshift
+          cluster-identifier: <CLUSTER_IDENTIFIER>
+        ```
+    </Step>
+    <Step title="Try it out!">
+        Now that you're connected, let's make sure SDF can pull the schema information it needs. 
+
+        Run `sdf compile -q "select * from <DATABASE>.<SCHEMA>.<TABLE>" --show all`
+
+        If the connection is successful, you will see the schema for the table you selected.
+    </Step>
+</Steps>

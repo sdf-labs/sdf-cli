@@ -98,21 +98,21 @@ Let's write and modify a code report, starting with one of the sdf samples.
 
 ```shell
 Working set 12 model files, 3 .sdf files
-  Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
   Compiling payment.public.users (./ddls/payment/public/users.sql)
   Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
-  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
+  Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
+  Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
+  Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
+  Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
   Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
-  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
   Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
   Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
-  Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
-  Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
+  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
   Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
-  Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
+  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 succeeded], 1 code-report [1 succeeded] in 1.350 secs
+   Finished 12 models [12 succeeded], 1 code-report [1 succeeded] in 1.516 secs
 
 CodeReport sdf.reports.tables_with_pii
 +----------------------------------------------+-------------------------+-----------+
@@ -150,19 +150,19 @@ CodeReport sdf.reports.tables_with_pii
 Working set 12 model files, 3 .sdf files
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 reused], 1 code-report [1 succeeded] in 0.788 secs
+   Finished 12 models [12 reused], 1 code-report [1 succeeded] in 1.447 secs
 
 CodeReport sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+
 | table_ref                                    | column_name  | description             | dialect   |
 +----------------------------------------------+--------------+-------------------------+-----------+
+| transformations.external.invoice_stats       | email        |                         | snowflake |
+| payment.public.users                         | name         | DDL for the users table | snowflake |
 | transformations.external.invoice_stats       | name         |                         | snowflake |
 | transformations.internal.users_per_domain    | email_domain |                         | snowflake |
 | payment.public.users                         | email        | DDL for the users table | snowflake |
 | payment.public.users                         | phone        | DDL for the users table | snowflake |
 | transformations.internal.most_frequent_payer | email        |                         | snowflake |
-| transformations.external.invoice_stats       | email        |                         | snowflake |
-| payment.public.users                         | name         | DDL for the users table | snowflake |
 +----------------------------------------------+--------------+-------------------------+-----------+
 7 rows.
 
@@ -185,7 +185,7 @@ CodeReport sdf.reports.tables_with_pii
 Working set 12 model files, 3 .sdf files
 Working set 2 report files, 1 .sdf file
   Reporting sdf.reports.pii_datatypes (./reports/pii_datatypes.sql)
-   Finished 12 models [12 reused], 2 code-reports [1 succeeded, 1 reused] in 0.780 secs
+   Finished 12 models [12 reused], 2 code-reports [1 succeeded, 1 reused] in 0.927 secs
 
 CodeReport sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+

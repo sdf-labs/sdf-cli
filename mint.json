@@ -57,6 +57,8 @@
 			"group": "Integrations",
 			"pages": [
 				"integrations/dbt",
+				"integrations/snowflake",
+				"integrations/redshift",
 				"integrations/databricks",
 				"integrations/large_workspace"
 			]
