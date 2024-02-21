@@ -98,32 +98,21 @@ Let's write and modify a code report, starting with one of the sdf samples.
 
 ```shell
 Working set 12 model files, 3 .sdf files
-  Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
-  Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
   Compiling payment.public.users (./ddls/payment/public/users.sql)
-  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
-  Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
-  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
-  Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
-  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
-  Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
-  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
-  Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
+  Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
+  Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
   Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
+  Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
+  Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
+  Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
+  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
+  Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
+  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
+  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
+  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 succeeded], 1 code-report [1 succeeded] in 1.350 secs
-
-CodeReport sdf.reports.tables_with_pii
-+----------------------------------------------+-------------------------+-----------+
-| table_ref                                    | description             | dialect   |
-+----------------------------------------------+-------------------------+-----------+
-| payment.public.users                         | DDL for the users table | snowflake |
-| transformations.internal.most_frequent_payer |                         | snowflake |
-| transformations.external.invoice_stats       |                         | snowflake |
-| transformations.internal.users_per_domain    |                         | snowflake |
-+----------------------------------------------+-------------------------+-----------+
-4 rows.
+   Finished 12 models [12 succeeded], 1 code-report [1 succeeded] in 1.540 secs
 
 ```
 
@@ -150,21 +139,7 @@ CodeReport sdf.reports.tables_with_pii
 Working set 12 model files, 3 .sdf files
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 reused], 1 code-report [1 succeeded] in 0.791 secs
-
-CodeReport sdf.reports.tables_with_pii
-+----------------------------------------------+--------------+-------------------------+-----------+
-| table_ref                                    | column_name  | description             | dialect   |
-+----------------------------------------------+--------------+-------------------------+-----------+
-| transformations.external.invoice_stats       | name         |                         | snowflake |
-| transformations.internal.users_per_domain    | email_domain |                         | snowflake |
-| payment.public.users                         | email        | DDL for the users table | snowflake |
-| payment.public.users                         | phone        | DDL for the users table | snowflake |
-| transformations.internal.most_frequent_payer | email        |                         | snowflake |
-| transformations.external.invoice_stats       | email        |                         | snowflake |
-| payment.public.users                         | name         | DDL for the users table | snowflake |
-+----------------------------------------------+--------------+-------------------------+-----------+
-7 rows.
+   Finished 12 models [12 reused], 1 code-report [1 succeeded] in 0.883 secs
 
 ```
   </Step>
@@ -185,29 +160,7 @@ CodeReport sdf.reports.tables_with_pii
 Working set 12 model files, 3 .sdf files
 Working set 2 report files, 1 .sdf file
   Reporting sdf.reports.pii_datatypes (./reports/pii_datatypes.sql)
-   Finished 12 models [12 reused], 2 code-reports [1 succeeded, 1 reused] in 0.800 secs
-
-CodeReport sdf.reports.tables_with_pii
-+----------------------------------------------+--------------+-------------------------+-----------+
-| table_ref                                    | column_name  | description             | dialect   |
-+----------------------------------------------+--------------+-------------------------+-----------+
-| payment.public.users                         | name         | DDL for the users table | snowflake |
-| transformations.external.invoice_stats       | email        |                         | snowflake |
-| payment.public.users                         | email        | DDL for the users table | snowflake |
-| payment.public.users                         | phone        | DDL for the users table | snowflake |
-| transformations.internal.most_frequent_payer | email        |                         | snowflake |
-| transformations.external.invoice_stats       | name         |                         | snowflake |
-| transformations.internal.users_per_domain    | email_domain |                         | snowflake |
-+----------------------------------------------+--------------+-------------------------+-----------+
-7 rows.
-
-CodeReport sdf.reports.pii_datatypes
-+-----------+-----------+
-| data_type | frequency |
-+-----------+-----------+
-|           | 7         |
-+-----------+-----------+
-1 rows.
+   Finished 12 models [12 reused], 2 code-reports [1 succeeded, 1 reused] in 0.885 secs
 
 ```
   </Step>
