@@ -17,24 +17,32 @@ SDF writes progress or results on stdout. It provides the developer with a varie
 
 ### Command-line options 
 
-There are 5 commandline options to control the output.
+There are 4 commandline options to control the output.
 
-- `` - Do not print `sdf` progress messages.
+- `--show (all | progress | result | none)` - Print desired amount of information, i.e., produced tables.
 
-- `--no-show` - Do not print `sdf` results, i.e., produced tables.
+  - `all` prints progress, results, and any warnings and errors
+  - `progress` prints the progress of files as they are compiled
+  - `result` prints the tables parsed and the schema assocaited
+  - `none` prints nothing. This will also prevent the `Finished in [n] seconds` message from displaying at the end of stdout.
 
-- `--log (info | trace | debug)` - Print logs in various degrees.
+- `--log-level (trace | debug | info | warn | error)` - Print logs in various degrees.
 
+  - `trace` prints internal state changes
+  - `debug` prints more of the above, cache hits, etc
   - `info` prints internal progress, SQL statements being processed, logical
     plan being produced
-  - `debug` prints more of the above, cache hits, etc
-  - `trace` prints internal state changes
+  - `warn` prints warnings associated with the compile
+  - `error` prints errors assocaited with the compile 
 
-- `--print-meta-format (table | json | yml)` - Specifies the table representation
+- `--format (table | csv | tsv | json | nd-json | yml)` - Specifies the table representation
   on stdout.
 
   - `table` is the normal ascii table representation.
+  - `csv` is a CSV representation
+  - `tsv` is a TSV representation
   - `json` is a JSON representation
+  - `nd-json` is an ndJSON representation
   - `yml`, only available for `sdf compile`, is YAML representation
 
 - `--limit <number>` - Limits the number of shown rows. Run with `--limit 0` to
@@ -43,39 +51,129 @@ There are 5 commandline options to control the output.
 ### Example
 
 Let's try these options. Start by creating a new workspace with a sample project or change directories into an existing one.
+<Steps>
 
-(0) Install and setup your workspace
+  <Step title="Install and setup your workspace">
+    To start with a sample workspace lineage 'new --sample lineage' will generate a new workspace folder to walk through this example.
+    
+    ```shell	
+		sdf new --sample lineage
+		```
+    After running the command, you should see the folloing output:
+    
+```shell
+    Created lineage/checks/check_sink_phone_is_pii.sql
+    Created lineage/src/knis.sql
+    Created lineage/src/middle.sql
+    Created lineage/src/sink.sql
+    Created lineage/src/source.sql
+    Created lineage/workspace.sdf.yml
+   Finished new in 0.001 secs
 
-> `sdf new --sample lineage`
+```
+  </Step>
 
-(0.5) Then, cd into the newly created directory
+  <Step title="Change Directory">
+    Switch directories into the newly created lineage workspace.
+    
+```shell	
+cd lineage/
+```
+  </Step>
 
-> `cd lineage/`
+  <Step title="Compile lineage Workspace with --show command">
+    Compile the workspace and review the output.
+    
+```shell	
+sdf compile
+```
+    Reviewing this output, multiple files have been compiled and SDF has statically analyzed the queries.
 
-(1) Usual compile
+```shell
+Working set 4 model files, 1 .sdf file
+  Compiling lineage.pub.source (./src/source.sql)
+  Compiling lineage.pub.middle (./src/middle.sql)
+  Compiling lineage.pub.knis (./src/knis.sql)
+  Compiling lineage.pub.sink (./src/sink.sql)
+   Finished 4 models [4 succeeded] in 0.202 secs
 
-> `sdf compile`
+```
 
-(2) compile without any progress report. This will also prevent the `Finished in [n] seconds` message from displaying at the end of stdout.
+    Add the `--show all` command to display all information after compile
 
-> `sdf compile `
+```shell
+sdf compile --show all
+```
 
-(3) compile without any table info but with progress info
+    Reviewing this output, SDF provides progress and table information. SDF reuses model files that have already been compiled and have not been edited. 
+```shell
+Working set 4 model files, 1 .sdf file
+   Finished 4 models [4 reused] in 0.171 secs
 
-> `sdf compile --no-show`
+Schema lineage.pub.source
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| user_id     | integer   | DATA.uid   |
+| phone       | varchar   | DATA.pii   |
+| txn_date    | varchar   |            |
+| qty         | integer   |            |
++-------------+-----------+------------+
 
-(4) compile without any output except errors
+Schema lineage.pub.middle
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| user_id     | integer   | DATA.uid   |
+| phone       | varchar   | DATA.pii   |
+| txn_date    | varchar   |            |
+| qty         | bigint    |            |
++-------------+-----------+------------+
 
-> `sdf compile --no-show `
+Schema lineage.pub.knis
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| txn_date    | varchar   |            |
+| qty         | bigint    |            |
++-------------+-----------+------------+
 
-(5) compile with trace log info
+Schema lineage.pub.sink
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| uid         | integer   | DATA.uid   |
+| phone       | varchar   | DATA.pii   |
+| txn_date    | varchar   |            |
+| qty         | bigint    |            |
++-------------+-----------+------------+
 
-> `sdf compile --log trace`
+```
+  </Step>
+  <Step title="Diplay a single sink table">
+  To select the output of only one table, use the table name directly after the `compile` command.
 
-(6) Show only the sink table this time via a file
+```shell
+sdf compile src/sink.sql
+```
+```shell
+Working set 4 model files, 1 .sdf file
+   Finished 3 models [3 reused] in 0.168 secs
 
-> `sdf compile src/sink.sql`
+Schema lineage.pub.sink
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| uid         | integer   | DATA.uid   |
+| phone       | varchar   | DATA.pii   |
+| txn_date    | varchar   |            |
+| qty         | bigint    |            |
++-------------+-----------+------------+
 
+```
+
+  </Step>
+</Steps>  
 ### Schema
 
 The `schema` of an external table must be given **explicitly**, following the [ANSI standard SQL syntax](https://blog.ansi.org/2018/10/sql-standard-iso-iec-9075-2016-ansi-x3-135/) or

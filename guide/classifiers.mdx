@@ -14,11 +14,16 @@ Propagation is the mechanism of inferring the downstream column metadata from
 the upstream column metadata. The inference process is based on the semantics of
 the underlying transformation.
 
+<Note>
+In the following example, the `lineage` sample workspace is used. If this workspace is not already
+set up, it can be created with an `sdf new --sample lineage` command.
+</Note>
+
 ### Defining Classifier Domains
 
 To work with classifiers and propagation we must first define all the relevant
 classifier domains. Here is an example of a simple PII classifier domain,
-defined in a separate section of the global `workspace.sdf.yml` config file:
+defined in a separate section of the global `workspace.sdf.yml` config file.
 
 ```yaml workspace.sdf.yml
 workspace:
@@ -101,11 +106,11 @@ table:
 
 ### Inspecting Propagation Results
 
-Now we can run `sdf compile` to see how classifiers are propagated into the
+Now we can run `sdf compile --show all` to see how classifiers are propagated into the
 tables downstream of `source`:
 
 ```bash
-sdf compile
+sdf compile --show all
 ```
 
 ```text

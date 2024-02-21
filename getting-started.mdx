@@ -73,17 +73,25 @@ Next we'll run the core command of SDF: [sdf compile](/reference/sdf-cli#sdf-com
 Describing our project will *statically* analyze the query and tell you about the table schemas and column-level lineage. Building will run the query locally right on your machine.
 Let's give them a go.
 
-First we'll try `sdf compile`
+First we'll try `sdf compile --show all`
   
 ```shell
 cd hello/
-sdf compile
+sdf compile --show all
 ```
 
 ```shell
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.206 secs
+   Finished 1 model [1 succeeded] in 0.203 secs
+
+Schema hello.pub.main
++-------------+------------------+------------+
+| column_name | data_type        | classifier |
++-------------+------------------+------------+
+| column_1    | varchar not null |            |
+| column_2    | varchar not null |            |
++-------------+------------------+------------+
 
 ```
 

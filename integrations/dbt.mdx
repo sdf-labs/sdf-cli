@@ -125,8 +125,50 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 		Great, now let's compile SDF again and see what happens.
 
 		```shell
-		sdf compile
+		sdf compile --show all
 		```
+
+		```yaml
+		Working set 6 model files, 1 .sdf file
+        Finished 8 models [8 reused] in 0.089 secs
+
+Schema jaffle_shop.dbt_alice.raw_customers
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| id          | bigint    |            |
+| first_name  | varchar   | pii.name   |
+| last_name   | varchar   | pii.name   |
++-------------+-----------+------------+
+
+...
+...
+
+Schema jaffle_shop.dbt_alice.stg_customers
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| customer_id | bigint    |            |
+| first_name  | varchar   | pii.name   |
+| last_name   | varchar   | pii.name   |
++-------------+-----------+------------+
+
+...
+...
+
+Schema jaffle_shop.dbt_alice.customers
++-------------------------+-----------+------------+
+| column_name             | data_type | classifier |
++-------------------------+-----------+------------+
+| customer_id             | bigint    |            |
+| first_name              | varchar   | pii.name   |
+| last_name               | varchar   | pii.name   |
+| first_order             | date      |            |
+| most_recent_order       | date      |            |
+| number_of_orders        | bigint    |            |
+| customer_lifetime_value | bigint    |            |
++-------------------------+-----------+------------+
+```
 
 		You'll notice the classification is not only attached to the `raw_customers` table, but also to the downstream `customers` table and others. This is because SDF is able to infer the lineage between these two tables and propagate the classification.
 	</Step>
