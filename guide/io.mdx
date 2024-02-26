@@ -68,7 +68,7 @@ Let's try these options. Start by creating a new workspace with a sample project
     Created lineage/src/sink.sql
     Created lineage/src/source.sql
     Created lineage/workspace.sdf.yml
-   Finished new in 0.001 secs
+   Finished new in 0.000 secs
 
 ```
   </Step>
@@ -95,7 +95,7 @@ Working set 4 model files, 1 .sdf file
   Compiling lineage.pub.middle (./src/middle.sql)
   Compiling lineage.pub.knis (./src/knis.sql)
   Compiling lineage.pub.sink (./src/sink.sql)
-   Finished 4 models [4 succeeded] in 0.153 secs
+   Finished 4 models [4 succeeded] in 0.158 secs
 
 ```
 
@@ -108,7 +108,7 @@ sdf compile --show all
     Reviewing this output, SDF provides progress and table information. SDF reuses model files that have already been compiled and have not been edited. 
 ```shell
 Working set 4 model files, 1 .sdf file
-   Finished 4 models [4 reused] in 0.130 secs
+   Finished 4 models [4 reused] in 0.131 secs
 
 Schema lineage.pub.source
 +-------------+-----------+------------+
@@ -158,7 +158,7 @@ sdf compile src/sink.sql
 ```
 ```shell
 Working set 4 model files, 1 .sdf file
-   Finished 3 models [3 reused] in 0.130 secs
+   Finished 3 models [3 reused] in 0.129 secs
 
 Schema lineage.pub.sink
 +-------------+-----------+------------+
