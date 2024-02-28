@@ -46,7 +46,7 @@ To run the Code Contract, simply execute `sdf test`. During compile, SDF runs al
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
 Working set 1 .sdf file
-   Finished 1 model [1 succeeded] in 0.738 secs
+   Finished 1 model [1 succeeded] in 0.753 secs
 
 ```
 
@@ -56,8 +56,8 @@ But, carefully read the Code Contract.
 
 ```sql
 SELECT
-    DISTINCT c.t_name as "table_name",
-    c.c_name as "column name",
+    DISTINCT c.table_name as "table_name",
+    c.column_name as "column name",
     c.classifiers
 FROM
     columns c
@@ -114,19 +114,19 @@ In the same directory as *main.sql*, create *sink.sql* with the line
 ```sql
 select md5(column_2) from main;
 ```
-Update the *code_check.sql* with the following line `and c.t_name like '%.sink'`. It should now look like the check below.
+Update the *code_check.sql* with the following line `and c.table_name like '%.sink'`. It should now look like the check below.
 Now, the code contract specifically checks the *sink* table for the PII.name classifier.
 
 ```sql
 SELECT
-    DISTINCT c.t_name as "table_name",
-    c.c_name as "column name",
+    DISTINCT c.table_name as "table_name",
+    c.column_name as "column name",
     c.classifiers
 FROM
     columns c
 WHERE
     c.classifiers like '%PII.name%'
-    and c.t_name like '%.sink'
+    and c.table_name like '%.sink'
 ```
 
 Run `sdf test` again and voila! All code contracts pass. The source table has PII.name, the sink table does not. 

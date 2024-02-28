@@ -40,10 +40,38 @@ SDF will use remote Snowflake schema information to do type bindings and other s
         
         ``` yml
         ---
-        table-provider:
-          catalog: <DATABASE> 
+        provider:
+          name: my_first_snowflake_provider
           type: snowflake
+          sources: 
+            - <DATABASE>
         ```
+
+        Replace `<DATABASE>` with the name of the database you want to hydrate. Note this is configurable and can be changed to any database you have access to. For example, if I wanted SDF to pull from two databases, called `db1` and `db2`, I would write:
+        ``` yml
+        ---
+        provider:
+          name: my_first_snowflake_provider
+          type: snowflake
+          sources: 
+            - db1
+            - db2
+        ```
+
+        Sources are even configurable at the schema and table level, for example if I only wanted to pull the schema for a table called `my_table` in schema `schema1`, but I wanted to pull the schema for all tables in `schema2`, I would write:
+        ``` yml
+        ---
+        provider:
+          name: my_first_snowflake_provider
+          type: snowflake
+          sources: 
+            - db1.schema1.my_table
+            - db1.schema2.*
+        ```
+
+        <Note>
+            The `*` character is a wildcard (glob pattern). Specifying a database alone is shorthand for writing, `db1.*.*`.
+        </Note>
     </Step>
     <Step title="Try it out!">
         Now that you're connected, let's make sure SDF can pull the schema information it needs. 
@@ -54,5 +82,6 @@ SDF will use remote Snowflake schema information to do type bindings and other s
     </Step>
 </Steps>
 
-Some things to keep in mind
-  - The term 'DATABASE' in Snowflake is interchangeable with the term 'CATALOG' in SDF.
+<Info>
+The term 'DATABASE' in Snowflake is interchangeable with the term 'CATALOG' in SDF.
+</Info>
