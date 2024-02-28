@@ -283,11 +283,13 @@ Value | Description|
 ### Nested element: `PluginIncludePathKind`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-### Nested element: `TableProvider`
+### Nested element: `Provider`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`catalog:` | `string`| The catalog name of the catalog [e.g.: database]|
+`name:` | `string`| The name of the table provider|
+`sources:` | `array`| A list of sources, backed by the table provider, source can use globs, e.g. catalog.schema.*|
 `type:` | `UNKNOWN`| The type of the catalog [e.g.: hive]|
+`warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
 `cluster-identifier:` | `string?`| The cluster identifier for redshift server|
 `source-locations:` | `array`| undefined|
 ### Nested element: `CatalogType`
