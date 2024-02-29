@@ -1450,6 +1450,14 @@ function chr(<decimal(38, 0)>) returns varchar
 ```
 Convert an ASCII or Unicode code into a single character
 
+## classifier
+[🔗 Official Documentation](#)
+
+```sql
+function classifier(<>) returns varchar
+```
+
+
 ## cleanup_database_role_grants
 [🔗 Official Documentation](#)
 
@@ -2580,6 +2588,14 @@ function factorial(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Factorial of f
 
+## first
+[🔗 Official Documentation](#)
+
+```sql
+function first(<$1>) returns $1
+```
+
+
 ## first_value
 [🔗 Official Documentation](#)
 
@@ -3465,6 +3481,14 @@ function lag(<$1, decimal(38, 0), $1>) returns $1
 ```
 Returns the value of an expression at the specified offset row
 
+## last
+[🔗 Official Documentation](#)
+
+```sql
+function last(<$1>) returns $1
+```
+
+
 ## last_day
 [🔗 Official Documentation](#)
 
@@ -3834,6 +3858,22 @@ function map_pick(<object, array>) returns object
 
 ```sql
 function map_size(<object>) returns bigint
+```
+
+
+## match_number
+[🔗 Official Documentation](#)
+
+```sql
+function match_number(<>) returns int
+```
+
+
+## match_sequence_number
+[🔗 Official Documentation](#)
+
+```sql
+function match_sequence_number(<>) returns int
 ```
 
 
@@ -9453,5 +9493,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.040 secs
+   Finished man in 0.036 secs
 
