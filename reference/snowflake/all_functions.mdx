@@ -1450,14 +1450,6 @@ function chr(<decimal(38, 0)>) returns varchar
 ```
 Convert an ASCII or Unicode code into a single character
 
-## classifier
-[🔗 Official Documentation](#)
-
-```sql
-function classifier(<>) returns varchar
-```
-
-
 ## cleanup_database_role_grants
 [🔗 Official Documentation](#)
 
@@ -2112,7 +2104,7 @@ function date_part<$1> (<string, $1>) returns double
 
 ```sql
 function date_trunc<$1> (<string, $1>) returns $1
-	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
 
@@ -2132,7 +2124,7 @@ function dateadd<$1> (<string, double, $1>) returns $1
 
 ```sql
 function datediff<$1> (<string, $1, $1>) returns bigint
-	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
 
@@ -2587,14 +2579,6 @@ function extract<$1> (<string, $1>) returns double
 function factorial(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Factorial of f
-
-## first
-[🔗 Official Documentation](#)
-
-```sql
-function first(<$1>) returns $1
-```
-
 
 ## first_value
 [🔗 Official Documentation](#)
@@ -3481,14 +3465,6 @@ function lag(<$1, decimal(38, 0), $1>) returns $1
 ```
 Returns the value of an expression at the specified offset row
 
-## last
-[🔗 Official Documentation](#)
-
-```sql
-function last(<$1>) returns $1
-```
-
-
 ## last_day
 [🔗 Official Documentation](#)
 
@@ -3500,7 +3476,7 @@ function last_day<$1> (<$1>) returns date
 
 ```sql
 function last_day<$1> (<$1, string>) returns date
-	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
 
@@ -3861,22 +3837,6 @@ function map_size(<object>) returns bigint
 ```
 
 
-## match_number
-[🔗 Official Documentation](#)
-
-```sql
-function match_number(<>) returns int
-```
-
-
-## match_sequence_number
-[🔗 Official Documentation](#)
-
-```sql
-function match_sequence_number(<>) returns int
-```
-
-
 ## materialized_view_refresh_history
 [🔗 Official Documentation](#)
 
@@ -3988,6 +3948,46 @@ value of sort key at specified percentile
 function median(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 value of sort key at specified percentile
+
+## metadata$file_content_key
+[🔗 Official Documentation](#)
+
+```sql
+function metadata$file_content_key(<>) returns varchar
+```
+
+
+## metadata$file_last_modified
+[🔗 Official Documentation](#)
+
+```sql
+function metadata$file_last_modified(<>) returns timestamp
+```
+
+
+## metadata$file_row_number
+[🔗 Official Documentation](#)
+
+```sql
+function metadata$file_row_number(<>) returns int
+```
+
+
+## metadata$filename
+[🔗 Official Documentation](#)
+
+```sql
+function metadata$filename(<>) returns varchar
+```
+
+
+## metadata$start_scan_time
+[🔗 Official Documentation](#)
+
+```sql
+function metadata$start_scan_time(<>) returns timestamp
+```
+
 
 ## min
 [🔗 Official Documentation](#)
@@ -8067,7 +8067,7 @@ function time_slice<$1> (<$1, bigint, string, string>) returns $1
 
 ```sql
 function timeadd<$1> (<string, double, $1>) returns $1
-	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
 
@@ -8296,6 +8296,11 @@ function to_boolean(<$1>) returns boolean
 
 ```sql
 function to_char(<$1, string>) returns string
+```
+
+
+```sql
+function to_char(<$1>) returns string
 ```
 
 
@@ -9493,5 +9498,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.036 secs
+   Finished man in 0.038 secs
 
