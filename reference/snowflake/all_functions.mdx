@@ -6,9 +6,14 @@ title: "All Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function !=<$1, $2> (<$1, $2>) returns boolean
-	where $1 in (variant, varchar)
-	and $2 in (variant, varchar)
+function !=<$1> (<$1, boolean>) returns boolean
+	where $1 in (bigint, int, smallint, tinyint, varchar)
+```
+
+
+```sql
+function !=<$1> (<boolean, $1>) returns boolean
+	where $1 in (bigint, int, smallint, tinyint, varchar)
 ```
 
 
@@ -65,6 +70,13 @@ function -(<date, bigint>) returns date
 ```
 Subtract two numbers
 
+```sql
+function -<$1, $2> (<$1, $2>) returns $1
+	where $1 in (date, time, timestamp, varchar)
+	and $2 in (interval)
+```
+
+
 ## /
 [🔗 Official Documentation](#)
 
@@ -73,19 +85,18 @@ function /(<$1, $1>) returns $1
 ```
 Divide two numbers
 
-## <
+## <>
 [🔗 Official Documentation](#)
 
 ```sql
-function <(<variant, variant>) returns boolean
+function <><$1> (<$1, boolean>) returns boolean
+	where $1 in (bigint, int, smallint, tinyint, varchar)
 ```
 
 
-## <=
-[🔗 Official Documentation](#)
-
 ```sql
-function <=(<variant, variant>) returns boolean
+function <><$1> (<boolean, $1>) returns boolean
+	where $1 in (bigint, int, smallint, tinyint, varchar)
 ```
 
 
@@ -93,25 +104,14 @@ function <=(<variant, variant>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function =<$1, $2> (<$1, $2>) returns boolean
-	where $1 in (variant, varchar)
-	and $2 in (variant, varchar)
+function =<$1> (<$1, boolean>) returns boolean
+	where $1 in (bigint, int, smallint, tinyint, varchar)
 ```
 
 
-## >
-[🔗 Official Documentation](#)
-
 ```sql
-function >(<variant, variant>) returns boolean
-```
-
-
-## >=
-[🔗 Official Documentation](#)
-
-```sql
-function >=(<variant, variant>) returns boolean
+function =<$1> (<boolean, $1>) returns boolean
+	where $1 in (bigint, int, smallint, tinyint, varchar)
 ```
 
 
@@ -9498,5 +9498,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.060 secs
+   Finished man in 0.059 secs
 
