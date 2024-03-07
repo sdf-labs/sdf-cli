@@ -71,6 +71,9 @@ SDF's multi-dialect SQL compiler and governance framework
 ###### **Options:**
 
 * `--no-parallel` — Do NOT run in parallel
+
+  Possible values: `true`, `false`
+
 * `--num-threads  NUM_THREADS ` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size  STACK_SIZE ` — Set stack size for worker thread, in bytes
 * `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
@@ -97,6 +100,9 @@ Create a new sdf workspace
 * `--list-samples` — List all available samples
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--sample  SAMPLE ` — Create a workspace with the sample content at  path 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
@@ -145,12 +151,21 @@ Compile models
 * `--no-code-contract` — Do NOT run code code contracts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--infer-functions` — Infer function signature
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-p`, `--profile  PROFILE ` — Use this profile
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
@@ -166,16 +181,28 @@ Compile models
 * `--no-cache` — Shorthand for cache policy none
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -221,22 +248,37 @@ Run models
 * `--no-cache` — Shorthand for cache policy none
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
 * `--dry-run` — Plan command but don't evaluate it
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -270,6 +312,9 @@ Test contracts for models
 * `--data` — Run data contracts (instead of code contracts)
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-p`, `--profile  PROFILE ` — Use this profile
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
@@ -285,16 +330,28 @@ Test contracts for models
 * `--no-cache` — Shorthand for cache policy none
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-s`, `--show  SHOW ` — Display messages [default: all]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -328,6 +385,9 @@ Report stats for models
 * `--data` — Run data reports instead of code reports
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-p`, `--profile  PROFILE ` — Use this profile
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
@@ -343,16 +403,28 @@ Report stats for models
 * `--no-cache` — Shorthand for cache policy none
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-s`, `--show  SHOW ` — Display messages [default: all]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -398,22 +470,37 @@ Runs models, tests contracts, reports stats
 * `--no-cache` — Shorthand for cache policy none
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
 * `--dry-run` — Plan command but don't evaluate it
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -471,15 +558,27 @@ Auto classify columns
 * `--no-use-of-samples` — Do NOT pass samples to inference engine
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--no-use-of-data` — Do NOT pass at most 5 data values to inference engine
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--no-use-of-description` — Do NOT pass table/column descriptions to inference engine
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -501,9 +600,15 @@ Display lineage for a given table and/or column
 * `--forward` — Compute downstream lineage instead of the default upstream lineage
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--show-scans` — Display scan dependencies in addition to copy and mod dependencies. Unset by default
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--max-depth  MAX_DEPTH ` — Limiting the depth of shown lineage tree. Default value of 0 shows full lineage
 
   Default value: `0`
@@ -522,16 +627,28 @@ Display lineage for a given table and/or column
 * `--no-cache` — Shorthand for cache policy none
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-s`, `--show  SHOW ` — Display messages [default: all]
 
   Possible values: `all`, `progress`, `result`, `none`
@@ -565,15 +682,27 @@ Push a local workspace to the SDF Service
 * `--downstream` — Push not only the given  targets  but also all its downstream artifacts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--delete` — Delete this workspace from the SDF Service
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-d`, `--dry-run` — No changes will be made to the console when this is set
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `-s`, `--show  SHOW ` — Display messages
@@ -598,6 +727,9 @@ Pull a remote workspace from the SDF Service
 * `-y`, `--yes` — Answer yes to all prompts
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-s`, `--show  SHOW ` — Display messages
 
   Default value: `progress`
@@ -710,6 +842,9 @@ Configure how to authenticate with AWS
 * `--use-web-identity` — Use web identity to authenticate
 
   Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--bucket-region-map  BUCKET_REGION_MAP ` — Mapping of bucket names to regions
 * `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
 
@@ -929,6 +1064,12 @@ Initialize a sdf workspace from a dbt project -- best effort
 * `--target  TARGET ` — Use this DBT target over the default target in profiles.yml
 * `--profiles-dir  PROFILES_DIR ` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
 * `--workspace-dir  WORKSPACE_DIR ` — Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
+* `-n`, `--no-save` — Skip saving and overwriting the workspace file
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-c`, `--config  CONFIG ` — Supply a config yml file or provide config as yml string e.g. '(key: value)'
 
 
@@ -944,9 +1085,15 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 * `--target  TARGET ` — Use this DBT target over the default target in profiles.yml
 * `--profiles-dir  PROFILES_DIR ` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
 * `--workspace-dir  WORKSPACE_DIR ` — Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
+* `-n`, `--no-save` — Skip saving and overwriting the workspace file
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-c`, `--config  CONFIG ` — Supply a config yml file or provide config as yml string e.g. '(key: value)'
 
 
 
-   Finished man in 0.007 secs
+   Finished man in 0.006 secs
 

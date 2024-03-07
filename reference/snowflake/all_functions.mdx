@@ -3164,7 +3164,7 @@ function hour(<$1>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function iff(<boolean, $1, $2>) returns $1
+function iff(<boolean, $1, $1>) returns $1
 ```
 Returns arg2 if arg1 is true, arg3 otherwise.
 
@@ -3172,7 +3172,7 @@ Returns arg2 if arg1 is true, arg3 otherwise.
 [🔗 Official Documentation](#)
 
 ```sql
-function ifnull(<$1, $2>) returns $1
+function ifnull(<$1, $1>) returns $1
 ```
 Returns second expression if the first expression is NULL, the first expression otherwise.
 
@@ -4188,7 +4188,7 @@ Number of groups (ntiles) per window
 [🔗 Official Documentation](#)
 
 ```sql
-function nullif(<$1, $2>) returns $1
+function nullif(<$1, $1>) returns $1
 ```
 
 
@@ -9498,5 +9498,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.059 secs
+   Finished man in 0.032 secs
 
