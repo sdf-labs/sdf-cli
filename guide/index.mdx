@@ -1,0 +1,179 @@
+---
+title: "Indexing"
+description:
+  "This document aims to outline the concept of indexing within the SDF CLI and outline a specific example to better articulate how to take advantage of this powerful feature."
+---
+
+It is recommended to store all models within a directory structure of 
+`catalog/schema/table-name`. Following this structure, SDF auto-applies 
+fully qualified names to the DDLs allowing for faster search and compilation. 
+
+Within SDF, the process of indexing begins with the first `sdf compile` command. 
+This creates an index of the local filesystem and workspace, allowing for files 
+and dependencies to be mapped. The default index type, unless specified within 
+the workspace, is set to `none`.
+
+<Note>
+In the following example, the `csv_123` sample workspace is used. If this workspace is not already
+set up, it can be created with an `sdf new --sample csv_123` command.
+</Note>
+
+## Example
+
+<Steps> 
+  <Step title= "Basic Index">
+
+Within a workspace.sdf.yml file, the index field can be updated to specify 
+the type of index desired. In this example, the following csv_123 workspace 
+can edited and utilized where index is specified as none. 
+
+
+```yaml workspace.sdf.yml
+workspace:
+   name: csv_123
+   edition: "1.1"
+   dialect: presto
+   includes:
+      - path: src
+        index: none
+      - path: local
+        index: none
+      - path: data
+        type: resource
+```
+By setting the index value to `none`, every time you run `sdf compile` SDF begins a lookup to 
+find the SQL defining the table in question. SDF begins by parsing a query, understands that it 
+depends on another table and attempts to find the subsequent table. With indexing set appropriately,
+ SDF knows exactly where the query files needed are stored. Comparitively, without indexing, or 
+ indexing set to `none`, SDF has to scan until it located the query needed. 
+
+In this example, the current directory is set to:
+
+```bash
+csv_123
+├── data
+│   └── a.csv
+├── local
+│   └── one.sql
+├── remote
+│   └── one.sql
+├── src
+│   ├── three.sql
+│   └── two.sql
+└── workspace.sdf.yml
+```
+
+And running an SDF compile results in a total run-time of 0.162 seconds:
+```bash 
+Working set 3 model files, 1 .sdf file
+  Compiling example.pub.one (./local/one.sql)
+  Compiling example.pub.two (./src/two.sql)
+  Compiling example.pub.three (./src/three.sql)
+   Finished 3 models [3 succeeded] in 0.162 secs
+```
+</Step>
+<Step title= "Indexing at Scale with Catalog-Schema-Table-Name">
+
+Utilizing the default index function of `none` for indexing works at reasonable scale, 
+but when it comes to large organizations that have thousands of tables utilizing a different 
+index function can drastically increase the speed of the process. 
+
+Three other options are the following:
+
+- `catalog-schema-table-name`
+- `schema-table-name`
+- `table-name`
+
+Let's test the speed improvement by changing the index and directories:
+
+Begin by specifying the index type to `catalog-schema-table-name` and defining the `default-catalog` and `default-schema`:
+```yaml workspace.sdf.yml
+workspace:
+   name: csv_123
+   edition: "1.1"
+   dialect: presto
+   default-catalog: example
+   default-schema: pub
+   includes:
+      - path: src
+        index: catalog-schema-table-name
+      - path: local
+        index: catalog-schema-table-name
+      - path: data
+        type: resource
+```
+
+Making the above change to index, where we specify `catalog-schema-table-name` as 
+the index type, requires that under `src` and `local` files are structured in a directories like  
+`<catalog>/<schema>/<table-name>.sql`.
+```bash
+csv_123
+├── data
+│   └── a.csv
+├── local
+│   └── example
+│       └── pub
+│           └── one.sql
+├── remote
+│   └── one.sql
+├── src
+│   └── example
+│       └── pub
+│           ├── three.sql
+│           └── two.sql
+└── workspace.sdf.yml
+```
+
+<Note>
+SDF workspaces default the catalog name to the workspace name specified in `workspace.sdf.yml`. It is 
+important to add and update the `default-catalog` field within the `workspace.sdf.yml` file to reflect 
+the appropriate catalog SDF will use for indexing. 
+</Note>
+
+Running `sdf compile` after making these changes and updating the index results in an improvemnet of total 
+time to run, reducing down to less than 0.1 seconds. 
+
+```bash 
+Working set 3 model files, 1 .sdf file
+  Compiling example.pub.one (./local/one.sql)
+  Compiling example.pub.two (./src/example/pub/two.sql)
+  Compiling example.pub.three (./src/example/pub/three.sql)
+   Finished 3 models [3 succeeded] in 0.094 secs
+```
+</Step>
+
+<Step title = "Indexing with Schema-Table-Name">
+
+Another option, if your directories are set up as `<schema>/<table-name>` then you 
+are able to use the index type schema-table-name. 
+
+To test this example type, update the `workspace.sdf.yml` to reflect the new indexing types and update 
+the folder directories to reflect this change. It is important to set the `default-catalog` on each 
+of the includes paths. For example, add the `dafault-catalog` to each path, `src` and `local` below. 
+If the `default-catalog` is not set in each path, the catalog will default to the workspace name.
+
+```yaml workspace.sdf.yml
+workspace:
+   name: csv_123
+   edition: "1.1"
+   dialect: presto
+   default-schema: pub
+   includes:
+      - path: src
+        index: schema-table-name
+        default-catalog: example
+      - path: local
+        index: schema-table-name
+        dafualt-catalog: example
+      - path: data
+```
+
+```bash
+Working set 3 model files, 1 .sdf file
+  Compiling csv_123.pub.one (./local/pub/one.sql)
+  Compiling csv_123.pub.two (./src/pub/two.sql)
+  Compiling csv_123.pub.three (./src/pub/three.sql)
+   Finished 3 models [3 succeeded] in 0.081 secs
+```
+</Step>
+</Steps>

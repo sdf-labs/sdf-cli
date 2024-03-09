@@ -44,6 +44,7 @@
 			"pages": [
 				"guide/io",
 				"guide/workspaces",
+				"guide/index",
 				"guide/classifiers",
 				"guide/code_contracts",
 				"guide/code_reports",
