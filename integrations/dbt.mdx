@@ -235,9 +235,12 @@ Options:
 
 ```
 
-<Note>
-	`sdf dbt refresh` is run automatically when you run `sdf compile`, `sdf lineage`, and `sdf push`. Therefore, this command is rarely necessary since `sdf compile` will run off the latest DBT models.
-</Note>
+By default, `sdf dbt refresh` will make changes to your `workspace.sdf.yml` in order to reflect any updates to your DBT project. However, in certain cases when you want to preserve things like comments in your `workspace.sdf.yml` file, for this you can use the `--no-save` flag.
+This will output the changes to the `workspace.sdf.yml` file to the console, but not save them to the file.
+
+```shell
+sdf dbt refresh --no-save
+```
 
 ## Conclusion
 
