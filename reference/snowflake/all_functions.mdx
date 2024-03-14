@@ -2,7 +2,7 @@
 title: "All Functions"
 ---
 
-## !=
+## `!=`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -17,7 +17,7 @@ function !=<$1> (<boolean, $1>) returns boolean
 ```
 
 
-## *
+## `*`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -25,7 +25,7 @@ function *(<$1, $1>) returns $1
 ```
 Multiply two numbers
 
-## +
+## `+`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -52,7 +52,7 @@ function +<$1, $2> (<$2, $1>) returns $2
 ```
 
 
-## -
+## `-`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -77,7 +77,7 @@ function -<$1, $2> (<$1, $2>) returns $1
 ```
 
 
-## /
+## `/`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -130,7 +130,7 @@ function <><$1> (<boolean, $1>) returns boolean
 ```
 
 
-## =
+## `=`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -145,7 +145,7 @@ function =<$1> (<boolean, $1>) returns boolean
 ```
 
 
-## >
+## `>`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -160,7 +160,7 @@ function ><$1> (<boolean, $1>) returns boolean
 ```
 
 
-## >=
+## `>=`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -175,7 +175,7 @@ function >=<$1> (<boolean, $1>) returns boolean
 ```
 
 
-## abs
+## `abs`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -188,7 +188,7 @@ function abs(<double>) returns double
 ```
 returns absolute value of x
 
-## acos
+## `acos`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -196,7 +196,7 @@ function acos(<double>) returns double
 ```
 Compute the arccosine of the input expression (returned as radians).
 
-## acosh
+## `acosh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -204,7 +204,7 @@ function acosh(<double>) returns double
 ```
 Compute the inverse hyperbolic cosine of the input expression.
 
-## add_months
+## `add_months`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -212,7 +212,7 @@ function add_months(<string, bigint>) returns timestamp
 ```
 
 
-## alert_history
+## `alert_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -234,7 +234,7 @@ function alert_history(<>) returns struct<
 ```
 
 
-## all_user_names
+## `all_user_names`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -242,7 +242,7 @@ function all_user_names(<>) returns array
 ```
 
 
-## any_value
+## `any_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -250,7 +250,7 @@ function any_value(<$1>) returns $1
 ```
 Returns the first non-null value of a column
 
-## approx_count_distinct
+## `approx_count_distinct`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -258,7 +258,7 @@ function approx_count_distinct($1, ...) returns decimal(38, 0)
 ```
 approximate distinct row count
 
-## approx_percentile
+## `approx_percentile`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -266,7 +266,7 @@ function approx_percentile(<double, double>) returns double
 ```
 percentile approximation of inputs
 
-## approx_percentile_accumulate
+## `approx_percentile_accumulate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -274,7 +274,7 @@ function approx_percentile_accumulate(<double>) returns object
 ```
 tdigest state in JSON format
 
-## approx_percentile_combine
+## `approx_percentile_combine`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -282,7 +282,7 @@ function approx_percentile_combine(<object>) returns object
 ```
 A tdigest state in JSON format
 
-## approx_percentile_estimate
+## `approx_percentile_estimate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -290,7 +290,7 @@ function approx_percentile_estimate(<object, double>) returns double
 ```
 ESTIMATED PERCENTILE VALUE
 
-## approx_top_k
+## `approx_top_k`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -308,7 +308,7 @@ function approx_top_k(<$1, decimal(38, 0), decimal(38, 0)>) returns array
 ```
 Array containing top k items and their frequencies
 
-## approx_top_k_accumulate
+## `approx_top_k_accumulate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -316,7 +316,7 @@ function approx_top_k_accumulate(<$1, decimal(38, 0)>) returns object
 ```
 An internal state
 
-## approx_top_k_combine
+## `approx_top_k_combine`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -329,7 +329,7 @@ function approx_top_k_combine(<object, decimal(38, 0)>) returns object
 ```
 A state created by combining information from combining  all input
 
-## approx_top_k_estimate
+## `approx_top_k_estimate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -342,7 +342,7 @@ function approx_top_k_estimate(<object, decimal(38, 0)>) returns array
 ```
 Array containing most common k items and their frequencies
 
-## approximate_count_distinct
+## `approximate_count_distinct`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -350,7 +350,7 @@ function approximate_count_distinct($1, ...) returns decimal(38, 0)
 ```
 approximate distinct row count
 
-## approximate_jaccard_index
+## `approximate_jaccard_index`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -358,7 +358,7 @@ function approximate_jaccard_index(<variant>) returns double
 ```
 Similarity approximation of inputs
 
-## approximate_similarity
+## `approximate_similarity`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -366,7 +366,7 @@ function approximate_similarity(<variant>) returns double
 ```
 Similarity approximation of inputs
 
-## array_agg
+## `array_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -374,7 +374,7 @@ function array_agg(<$1>) returns array
 ```
 output array
 
-## array_append
+## `array_append`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -387,7 +387,7 @@ function array_append(<array, $1>) returns array
 ```
 the resulting array
 
-## array_cat
+## `array_cat`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -415,7 +415,7 @@ function array_cat(<array, array>) returns array
 ```
 Concatenate two arrays
 
-## array_compact
+## `array_compact`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -433,7 +433,7 @@ function array_compact(<array>) returns array
 ```
 Compact array by removing nulls
 
-## array_construct
+## `array_construct`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -461,7 +461,7 @@ function array_construct(<$1, $2, $3, $4, $5>) returns array
 ```
 the resulting array
 
-## array_construct_compact
+## `array_construct_compact`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -469,7 +469,7 @@ function array_construct_compact($1, ...) returns array
 ```
 the resulting array
 
-## array_contains
+## `array_contains`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -482,7 +482,7 @@ function array_contains(<$1, array>) returns boolean
 ```
 Returns true if array contains value
 
-## array_distinct
+## `array_distinct`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -495,7 +495,7 @@ function array_distinct(<array>) returns array
 ```
 the resulting array
 
-## array_except
+## `array_except`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -508,7 +508,7 @@ function array_except(<array, array>) returns array
 ```
 the resulting array
 
-## array_flatten
+## `array_flatten`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -516,7 +516,7 @@ function array_flatten(<array>) returns array
 ```
 the resulting array
 
-## array_generate_range
+## `array_generate_range`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -529,7 +529,7 @@ function array_generate_range(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) 
 ```
 the resulting array
 
-## array_insert
+## `array_insert`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -542,7 +542,7 @@ function array_insert(<array, decimal(38, 0), $1>) returns array
 ```
 the resulting array
 
-## array_intersection
+## `array_intersection`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -555,7 +555,7 @@ function array_intersection(<array, array>) returns array
 ```
 the resulting array
 
-## array_max
+## `array_max`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -568,7 +568,7 @@ function array_max(<array>) returns $1
 ```
 the maximum defined element in the array, or NULL
 
-## array_min
+## `array_min`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -581,7 +581,7 @@ function array_min(<array>) returns $1
 ```
 the minimum defined element in the array, or NULL
 
-## array_position
+## `array_position`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -594,7 +594,7 @@ function array_position(<$1, array>) returns decimal(38, 0)
 ```
 Returns the first index position of the element in the array
 
-## array_prepend
+## `array_prepend`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -607,7 +607,7 @@ function array_prepend(<array, $1>) returns array
 ```
 the resulting array
 
-## array_remove
+## `array_remove`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -620,7 +620,7 @@ function array_remove(<array, $1>) returns array
 ```
 the resulting array
 
-## array_remove_at
+## `array_remove_at`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -633,7 +633,7 @@ function array_remove_at(<array, decimal(38, 0)>) returns array
 ```
 the resulting array
 
-## array_size
+## `array_size`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -651,7 +651,7 @@ function array_size(<variant>) returns decimal(38, 0)
 ```
 Returns array size
 
-## array_slice
+## `array_slice`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -664,7 +664,7 @@ function array_slice(<array, decimal(38, 0), decimal(38, 0)>) returns array
 ```
 the resulting array
 
-## array_sort
+## `array_sort`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -682,7 +682,7 @@ function array_sort(<array, boolean, boolean>) returns array
 ```
 the sorted array
 
-## array_to_string
+## `array_to_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -695,7 +695,7 @@ function array_to_string(<variant, varchar>) returns varchar
 ```
 Convert array to a string
 
-## array_union_agg
+## `array_union_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -708,7 +708,7 @@ function array_union_agg(<array>) returns array
 ```
 output array
 
-## array_unique_agg
+## `array_unique_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -716,7 +716,7 @@ function array_unique_agg(<$1>) returns array
 ```
 output array
 
-## arrayagg
+## `arrayagg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -724,7 +724,7 @@ function arrayagg(<$1>) returns array
 ```
 output array
 
-## arrays_overlap
+## `arrays_overlap`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -737,7 +737,7 @@ function arrays_overlap(<array, array>) returns boolean
 ```
 Returns true if two arrays have elements in common
 
-## arrays_to_object
+## `arrays_to_object`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -745,7 +745,7 @@ function arrays_to_object(<array, array>) returns object
 ```
 the resulting object
 
-## as_array
+## `as_array`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -753,7 +753,7 @@ function as_array(<variant>) returns array
 ```
 Use VARIANT value as ARRAY
 
-## as_binary
+## `as_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -761,7 +761,7 @@ function as_binary(<variant>) returns binary
 ```
 Use VARIANT value as binary string
 
-## as_boolean
+## `as_boolean`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -769,7 +769,7 @@ function as_boolean(<variant>) returns boolean
 ```
 Use VARIANT value as Boolean
 
-## as_char
+## `as_char`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -777,7 +777,7 @@ function as_char(<variant>) returns varchar
 ```
 Use VARIANT value as text string
 
-## as_date
+## `as_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -785,7 +785,7 @@ function as_date(<variant>) returns date
 ```
 Use VARIANT value as DATE
 
-## as_decimal
+## `as_decimal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -803,7 +803,7 @@ function as_decimal(<variant, decimal(38, 0), decimal(38, 0)>) returns decimal(3
 ```
 Use VARIANT value as decimal fixed-point
 
-## as_double
+## `as_double`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -811,7 +811,7 @@ function as_double(<variant>) returns double
 ```
 Use VARIANT value as real
 
-## as_integer
+## `as_integer`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -824,7 +824,7 @@ function as_integer(<variant, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Use VARIANT value as integer
 
-## as_number
+## `as_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -842,7 +842,7 @@ function as_number(<variant, decimal(38, 0), decimal(38, 0)>) returns decimal(38
 ```
 Use VARIANT value as as decimal fixed-point
 
-## as_object
+## `as_object`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -850,7 +850,7 @@ function as_object(<variant>) returns object
 ```
 Use VARIANT value as OBJECT
 
-## as_real
+## `as_real`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -858,7 +858,7 @@ function as_real(<variant>) returns double
 ```
 Use VARIANT value as real
 
-## as_time
+## `as_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -866,7 +866,7 @@ function as_time(<variant>) returns time
 ```
 Use VARIANT value as TIME
 
-## as_timestamp_ltz
+## `as_timestamp_ltz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -879,7 +879,7 @@ function as_timestamp_ltz(<variant, decimal(38, 0)>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_LTZ
 
-## as_timestamp_ntz
+## `as_timestamp_ntz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -892,7 +892,7 @@ function as_timestamp_ntz(<variant, decimal(38, 0)>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_NTZ
 
-## as_timestamp_tz
+## `as_timestamp_tz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -905,7 +905,7 @@ function as_timestamp_tz(<variant, decimal(38, 0)>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_TZ
 
-## as_varchar
+## `as_varchar`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -913,7 +913,7 @@ function as_varchar(<variant>) returns varchar
 ```
 Use VARIANT value as text sting
 
-## ascii
+## `ascii`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -921,7 +921,7 @@ function ascii(<varchar>) returns decimal(38, 0)
 ```
 Returns the ascii code of the first character of the string
 
-## asin
+## `asin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -929,7 +929,7 @@ function asin(<double>) returns double
 ```
 Compute the arcsine of the input expression (returned as radians).
 
-## asinh
+## `asinh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -937,7 +937,7 @@ function asinh(<double>) returns double
 ```
 Compute the inverse hyperbolic sine of the input expression.
 
-## atan
+## `atan`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -945,7 +945,7 @@ function atan(<double>) returns double
 ```
 Compute the arctangent of the input expression (returned as radians).
 
-## atan2
+## `atan2`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -953,7 +953,7 @@ function atan2(<double, double>) returns double
 ```
 Compute the angle (in radians) between the x-axis and point (x, y).
 
-## atanh
+## `atanh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -961,7 +961,7 @@ function atanh(<double>) returns double
 ```
 Compute the inverse hyperbolic tangent of the input expression (as radians).
 
-## auto_refresh_registration_history
+## `auto_refresh_registration_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -977,7 +977,7 @@ function auto_refresh_registration_history(<>) returns struct<
 ```
 
 
-## automatic_clustering_history
+## `automatic_clustering_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -995,7 +995,7 @@ function automatic_clustering_history<$1, $2> (<>) returns struct<
 ```
 
 
-## avg
+## `avg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1013,7 +1013,7 @@ function avg(<string>) returns string
 ```
 
 
-## base64_decode_binary
+## `base64_decode_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1026,7 +1026,7 @@ function base64_decode_binary(<varchar, varchar>) returns binary
 ```
 return decoded binary
 
-## base64_decode_string
+## `base64_decode_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1039,7 +1039,7 @@ function base64_decode_string(<varchar, varchar>) returns varchar
 ```
 return decoded string
 
-## base64_encode
+## `base64_encode`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1072,7 +1072,7 @@ function base64_encode(<binary, decimal(38, 0), varchar>) returns varchar
 ```
 return encoded string
 
-## binary_as_string
+## `binary_as_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1080,7 +1080,7 @@ function binary_as_string(<binary>) returns varchar
 ```
 Returns the input interpreted as a string.
 
-## bit_and
+## `bit_and`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1088,7 +1088,7 @@ function bit_and(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of bitwise AND of integers x and y
 
-## bit_and_agg
+## `bit_and_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1096,7 +1096,7 @@ function bit_and_agg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise AND of a column. Null values are ignored.
 
-## bit_andagg
+## `bit_andagg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1104,7 +1104,7 @@ function bit_andagg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise AND of a column. Null values are ignored.
 
-## bit_length
+## `bit_length`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1117,7 +1117,7 @@ function bit_length(<binary>) returns decimal(38, 0)
 ```
 Returns the length of the object in bits
 
-## bit_not
+## `bit_not`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1125,7 +1125,7 @@ function bit_not(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of bitwise negation of integer x
 
-## bit_or
+## `bit_or`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1133,7 +1133,7 @@ function bit_or(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of bitwise OR of integers x and y
 
-## bit_or_agg
+## `bit_or_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1141,7 +1141,7 @@ function bit_or_agg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise OR of a column. Null values are ignored.
 
-## bit_oragg
+## `bit_oragg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1149,7 +1149,7 @@ function bit_oragg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise OR of a column. Null values are ignored.
 
-## bit_shiftleft
+## `bit_shiftleft`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1157,7 +1157,7 @@ function bit_shiftleft(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of arg1 bit-shifted left by arg2 bits
 
-## bit_shiftright
+## `bit_shiftright`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1165,7 +1165,7 @@ function bit_shiftright(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of arg1 bit-shifted right by arg2 bits
 
-## bit_xor
+## `bit_xor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1173,7 +1173,7 @@ function bit_xor(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of bitwise XOR of integers x and y
 
-## bit_xor_agg
+## `bit_xor_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1181,7 +1181,7 @@ function bit_xor_agg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise XOR of a column. Null values are ignored.
 
-## bit_xoragg
+## `bit_xoragg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1189,7 +1189,7 @@ function bit_xoragg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise XOR of a column. Null values are ignored.
 
-## bitand
+## `bitand`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1197,7 +1197,7 @@ function bitand(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of bitwise AND of integers x and y
 
-## bitand_agg
+## `bitand_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1210,7 +1210,7 @@ function bitand_agg(<string>) returns string
 ```
 
 
-## bitandagg
+## `bitandagg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1218,7 +1218,7 @@ function bitandagg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise AND of a column. Null values are ignored.
 
-## bitcount
+## `bitcount`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1226,7 +1226,7 @@ function bitcount(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns the number of bits set in integer x
 
-## bitmap_bit_position
+## `bitmap_bit_position`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1234,7 +1234,7 @@ function bitmap_bit_position(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 relative position in bitmap
 
-## bitmap_bucket_number
+## `bitmap_bucket_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1242,7 +1242,7 @@ function bitmap_bucket_number(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 bucket index of the destination bitmap
 
-## bitmap_construct_agg
+## `bitmap_construct_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1250,7 +1250,7 @@ function bitmap_construct_agg(<decimal(38, 0)>) returns binary
 ```
 bitmap
 
-## bitmap_count
+## `bitmap_count`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1258,7 +1258,7 @@ function bitmap_count(<binary>) returns decimal(38, 0)
 ```
 number of set bits in the bitmap
 
-## bitmap_or_agg
+## `bitmap_or_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1266,7 +1266,7 @@ function bitmap_or_agg(<binary>) returns binary
 ```
 destination bitmap
 
-## bitnot
+## `bitnot`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1274,7 +1274,7 @@ function bitnot(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of bitwise negation of integer x
 
-## bitor
+## `bitor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1282,7 +1282,7 @@ function bitor(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of bitwise OR of integers x and y
 
-## bitor_agg
+## `bitor_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1295,7 +1295,7 @@ function bitor_agg(<string>) returns string
 ```
 
 
-## bitoragg
+## `bitoragg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1303,7 +1303,7 @@ function bitoragg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise OR of a column. Null values are ignored.
 
-## bitshiftleft
+## `bitshiftleft`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1311,7 +1311,7 @@ function bitshiftleft(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of arg1 bit-shifted left by arg2 bits
 
-## bitshiftright
+## `bitshiftright`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1319,7 +1319,7 @@ function bitshiftright(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of arg1 bit-shifted right by arg2 bits
 
-## bitxor
+## `bitxor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1327,7 +1327,7 @@ function bitxor(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of bitwise XOR of integers x and y
 
-## bitxor_agg
+## `bitxor_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1340,7 +1340,7 @@ function bitxor_agg(<string>) returns string
 ```
 
 
-## bitxoragg
+## `bitxoragg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1348,7 +1348,7 @@ function bitxoragg(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the bitwise XOR of a column. Null values are ignored.
 
-## booland
+## `booland`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1356,7 +1356,7 @@ function booland(<decimal(38, 0), decimal(38, 0)>) returns boolean
 ```
 returns result of logical (Boolean) AND of x and y
 
-## booland_agg
+## `booland_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1369,7 +1369,7 @@ function booland_agg(<boolean>) returns boolean
 ```
 
 
-## boolnot
+## `boolnot`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1377,7 +1377,7 @@ function boolnot(<decimal(38, 0)>) returns boolean
 ```
 returns result of logical (Boolean) NOT of x
 
-## boolor
+## `boolor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1385,7 +1385,7 @@ function boolor(<decimal(38, 0), decimal(38, 0)>) returns boolean
 ```
 returns result of logical (Boolean) OR of x and y
 
-## boolor_agg
+## `boolor_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1398,7 +1398,7 @@ function boolor_agg(<boolean>) returns boolean
 ```
 
 
-## boolxor
+## `boolxor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1406,7 +1406,7 @@ function boolxor(<decimal(38, 0), decimal(38, 0)>) returns boolean
 ```
 returns result of logical (Boolean) XOR of x and y
 
-## boolxor_agg
+## `boolxor_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1419,7 +1419,7 @@ function boolxor_agg(<boolean>) returns boolean
 ```
 
 
-## cbrt
+## `cbrt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1427,7 +1427,7 @@ function cbrt(<double>) returns double
 ```
 Compute the cubic root of the input expression.
 
-## ceil
+## `ceil`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1450,7 +1450,7 @@ function ceil(<double, double>) returns double
 ```
 round to the nearest integer not smaller than input
 
-## char
+## `char`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1458,7 +1458,7 @@ function char(<decimal(38, 0)>) returns varchar
 ```
 Convert an ASCII or Unicode code into a single character
 
-## charindex
+## `charindex`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1481,7 +1481,7 @@ function charindex(<binary, binary, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
-## check_json
+## `check_json`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1489,7 +1489,7 @@ function check_json(<varchar>) returns varchar
 ```
 Checks JSON for errors
 
-## check_xml
+## `check_xml`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1502,7 +1502,7 @@ function check_xml(<varchar, boolean>) returns varchar
 ```
 Checks XML for errors
 
-## chr
+## `chr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1510,7 +1510,7 @@ function chr(<decimal(38, 0)>) returns varchar
 ```
 Convert an ASCII or Unicode code into a single character
 
-## cleanup_database_role_grants
+## `cleanup_database_role_grants`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1518,7 +1518,7 @@ function cleanup_database_role_grants(<string, string>) returns string
 ```
 
 
-## coalesce
+## `coalesce`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1526,7 +1526,7 @@ function coalesce($1, $1, ...) returns $1
 ```
 returns the first non-null expression among its arguments
 
-## collate
+## `collate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1534,7 +1534,7 @@ function collate(<$1, string>) returns $1
 ```
 
 
-## collation
+## `collation`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1542,7 +1542,7 @@ function collation(<$1>) returns string
 ```
 
 
-## complete_task_graphs
+## `complete_task_graphs`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1570,7 +1570,7 @@ function complete_task_graphs(<>) returns struct<
 ```
 
 
-## compress
+## `compress`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1583,7 +1583,7 @@ function compress(<binary, varchar>) returns binary
 ```
 compressed data (return)
 
-## concat
+## `concat`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1596,7 +1596,7 @@ function concat(binary, ...) returns binary
 ```
 Returns concatenation of the input strings, or null if any one of them is null.
 
-## concat_ws
+## `concat_ws`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1609,7 +1609,7 @@ function concat_ws(binary, binary, ...) returns binary
 ```
 Returns concatenation of the input strings with separator, or null if any one of them is null.
 
-## conditional_change_event
+## `conditional_change_event`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1617,7 +1617,7 @@ function conditional_change_event(<$1>) returns decimal(38, 0)
 ```
 Returns the event window number of this row in the window based on whether the argument expression on the current row differs from that on the previous row 
 
-## conditional_true_event
+## `conditional_true_event`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1630,7 +1630,7 @@ function conditional_true_event(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 
 
-## contains
+## `contains`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1643,7 +1643,7 @@ function contains(<binary, binary>) returns boolean
 ```
 returns TRUE if arg1 constains arg2
 
-## convert_timezone
+## `convert_timezone`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1658,7 +1658,7 @@ function convert_timezone<$1> (<varchar, $1>) returns timestamp
 ```
 Returns the input timestamp converted from source timezone to a destination timezone
 
-## copy_history
+## `copy_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1688,7 +1688,7 @@ function copy_history(<table_name string, start_time timestamp>) returns struct<
 ```
 
 
-## corr
+## `corr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1696,7 +1696,7 @@ function corr(<double, double>) returns double
 ```
 Returns the correlation coefficient for non-null pairs in a group.
 
-## cos
+## `cos`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1704,7 +1704,7 @@ function cos(<double>) returns double
 ```
 Compute the cosine of the input expression (as radians).
 
-## cosh
+## `cosh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1712,7 +1712,7 @@ function cosh(<double>) returns double
 ```
 Compute the hyperbolic cosine of the input expression.
 
-## cot
+## `cot`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1720,7 +1720,7 @@ function cot(<double>) returns double
 ```
 Compute the cotangent of the input expression (as radians).
 
-## count
+## `count`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1728,7 +1728,7 @@ function count($1, ...) returns decimal(38, 0)
 ```
 Return number of non-null values of a given expression
 
-## count_if
+## `count_if`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1741,7 +1741,7 @@ function count_if(<boolean>) returns double
 ```
 Returns a conditional count
 
-## count_internal
+## `count_internal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1749,7 +1749,7 @@ function count_internal($1, ...) returns decimal(38, 0)
 ```
 Return number of non-null values of a given expression
 
-## covar_pop
+## `covar_pop`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1757,7 +1757,7 @@ function covar_pop(<double, double>) returns double
 ```
 Returns the population covariance for non-null pairs in a group.
 
-## covar_samp
+## `covar_samp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1765,7 +1765,7 @@ function covar_samp(<double, double>) returns double
 ```
 Returns the sample covariance for non-null pairs in a group.
 
-## cume_dist
+## `cume_dist`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1773,7 +1773,7 @@ function cume_dist(<>) returns double
 ```
 Returns the cumulative distribution of a row in the window
 
-## current_account
+## `current_account`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1781,7 +1781,7 @@ function current_account(<>) returns string
 ```
 
 
-## current_account_name
+## `current_account_name`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1789,7 +1789,7 @@ function current_account_name(<>) returns string
 ```
 
 
-## current_available_roles
+## `current_available_roles`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1797,7 +1797,7 @@ function current_available_roles(<>) returns string
 ```
 
 
-## current_client
+## `current_client`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1810,7 +1810,7 @@ function current_client(<>) returns string
 ```
 
 
-## current_database
+## `current_database`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1818,7 +1818,7 @@ function current_database(<>) returns varchar
 ```
 Returns the current database.
 
-## current_date
+## `current_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1826,7 +1826,7 @@ function current_date(<>) returns date
 ```
 Returns the current date.
 
-## current_ip_address
+## `current_ip_address`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1834,7 +1834,7 @@ function current_ip_address(<>) returns varchar
 ```
 Returns the Client Internet Protocol address (IP address) of the current request.
 
-## current_organization_name
+## `current_organization_name`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1842,7 +1842,7 @@ function current_organization_name(<>) returns varchar
 ```
 Returns the name of the organization the current account belongs to.
 
-## current_region
+## `current_region`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1850,7 +1850,7 @@ function current_region(<>) returns varchar
 ```
 Returns the current region name.
 
-## current_role
+## `current_role`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1858,7 +1858,7 @@ function current_role(<>) returns varchar
 ```
 Returns the currently active role name.
 
-## current_role_type
+## `current_role_type`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1866,7 +1866,7 @@ function current_role_type(<>) returns varchar
 ```
 Returns if the current role is of type account or database
 
-## current_schema
+## `current_schema`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1874,7 +1874,7 @@ function current_schema(<>) returns varchar
 ```
 Returns the current schema.
 
-## current_schemas
+## `current_schemas`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1882,7 +1882,7 @@ function current_schemas(<>) returns varchar
 ```
 Returns active search path schemas
 
-## current_secondary_roles
+## `current_secondary_roles`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1890,7 +1890,7 @@ function current_secondary_roles(<>) returns varchar
 ```
 Returns the currently active secondary roles' names.
 
-## current_session
+## `current_session`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1898,7 +1898,7 @@ function current_session(<>) returns varchar
 ```
 Returns the current session.
 
-## current_statement
+## `current_statement`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1906,7 +1906,7 @@ function current_statement(<>) returns varchar
 ```
 Returns the text of the currently executing statement.
 
-## current_task_graphs
+## `current_task_graphs`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1934,7 +1934,7 @@ function current_task_graphs(<>) returns struct<
 ```
 
 
-## current_time
+## `current_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1947,7 +1947,7 @@ function current_time(<decimal(38, 0)>) returns time
 ```
 Returns the current time.
 
-## current_timestamp
+## `current_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1960,7 +1960,7 @@ function current_timestamp(<decimal(38, 0)>) returns timestamp
 ```
 Returns the current timestamp.
 
-## current_transaction
+## `current_transaction`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1968,7 +1968,7 @@ function current_transaction(<>) returns decimal(38, 0)
 ```
 Returns the transaction id of an open transaction in the current session or scope.
 
-## current_user
+## `current_user`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1976,7 +1976,7 @@ function current_user(<>) returns varchar
 ```
 Returns the current user name.
 
-## current_version
+## `current_version`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1984,7 +1984,7 @@ function current_version(<>) returns varchar
 ```
 Returns the current software version (major.minor.patch).
 
-## current_warehouse
+## `current_warehouse`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1992,7 +1992,7 @@ function current_warehouse(<>) returns varchar
 ```
 Returns the warehouse currently in use.
 
-## data_transfer_history
+## `data_transfer_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2010,7 +2010,7 @@ function data_transfer_history(<>) returns struct<
 ```
 
 
-## database_refresh_history
+## `database_refresh_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2039,7 +2039,7 @@ function database_refresh_history(<>) returns struct<
 ```
 
 
-## database_refresh_progress
+## `database_refresh_progress`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2066,7 +2066,7 @@ function database_refresh_progress(<>) returns struct<
 ```
 
 
-## database_refresh_progress_by_job
+## `database_refresh_progress_by_job`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2081,7 +2081,7 @@ function database_refresh_progress_by_job(<string>) returns struct<
 ```
 
 
-## database_replication_usage_history
+## `database_replication_usage_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2098,7 +2098,7 @@ function database_replication_usage_history<$1, $2> (<>) returns struct<
 ```
 
 
-## database_storage_usage_history
+## `database_storage_usage_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2113,7 +2113,7 @@ function database_storage_usage_history<$1, $2> (<>) returns struct<usage_date d
 ```
 
 
-## date
+## `date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2141,7 +2141,7 @@ function date(<varchar, varchar>) returns date
 ```
 Converts the string argument to a date according to a format argument
 
-## date_from_parts
+## `date_from_parts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2149,7 +2149,7 @@ function date_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) retur
 ```
 Construct a date from individual components
 
-## date_part
+## `date_part`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2159,7 +2159,7 @@ function date_part<$1> (<string, $1>) returns double
 ```
 
 
-## date_trunc
+## `date_trunc`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2169,7 +2169,7 @@ function date_trunc<$1> (<string, $1>) returns $1
 ```
 
 
-## dateadd
+## `dateadd`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2179,7 +2179,7 @@ function dateadd<$1> (<string, double, $1>) returns $1
 ```
 
 
-## datediff
+## `datediff`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2189,7 +2189,7 @@ function datediff<$1> (<string, $1, $1>) returns bigint
 ```
 
 
-## datefromparts
+## `datefromparts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2197,7 +2197,7 @@ function datefromparts(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns
 ```
 Construct a date from individual components
 
-## day
+## `day`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2205,7 +2205,7 @@ function day(<$1>) returns bigint
 ```
 
 
-## dayname
+## `dayname`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2214,7 +2214,7 @@ function dayname<$1> (<$1>) returns varchar
 ```
 
 
-## dayofmonth
+## `dayofmonth`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2222,7 +2222,7 @@ function dayofmonth(<$1>) returns bigint
 ```
 
 
-## dayofweek
+## `dayofweek`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2230,7 +2230,7 @@ function dayofweek(<$1>) returns bigint
 ```
 
 
-## dayofweekiso
+## `dayofweekiso`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2238,7 +2238,7 @@ function dayofweekiso(<$1>) returns bigint
 ```
 
 
-## dayofyear
+## `dayofyear`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2246,7 +2246,7 @@ function dayofyear(<$1>) returns bigint
 ```
 
 
-## decode
+## `decode`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2254,7 +2254,7 @@ function decode($1, $1, $1, ...) returns $1
 ```
 compare an expression to search values and returns the matching one
 
-## decompress_binary
+## `decompress_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2262,7 +2262,7 @@ function decompress_binary(<binary, varchar>) returns binary
 ```
 decompressed binary (return)
 
-## decompress_string
+## `decompress_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2270,7 +2270,7 @@ function decompress_string(<binary, varchar>) returns varchar
 ```
 decompressed string (return)
 
-## decrypt
+## `decrypt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2303,7 +2303,7 @@ function decrypt(<binary, varchar, varchar, varchar>) returns binary
 ```
 decrypted binary string (return)
 
-## decrypt_raw
+## `decrypt_raw`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2331,7 +2331,7 @@ function decrypt_raw(<binary, binary, binary, binary, varchar, binary>) returns 
 ```
 decrypted binary string (return)
 
-## degrees
+## `degrees`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2339,7 +2339,7 @@ function degrees(<double>) returns double
 ```
 convert r (radians) to degrees.
 
-## dense_rank
+## `dense_rank`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2347,7 +2347,7 @@ function dense_rank(<>) returns decimal(38, 0)
 ```
 Returns the dense rank of a row in the window
 
-## div
+## `div`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2360,7 +2360,7 @@ function div(double, double, ...) returns double
 ```
 Divides two numbers
 
-## div0
+## `div0`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2373,7 +2373,7 @@ function div0(double, double, ...) returns double
 ```
 Divides two numbers; returns 0 if divisor is 0
 
-## div0null
+## `div0null`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2386,7 +2386,7 @@ function div0null(<double, double>) returns double
 ```
 Divides two numbers; returns 0 if divisor is 0 or null
 
-## dynamic_table_graph_history
+## `dynamic_table_graph_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2407,7 +2407,7 @@ function dynamic_table_graph_history(<>) returns struct<
 ```
 
 
-## dynamic_table_refresh_history
+## `dynamic_table_refresh_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2433,7 +2433,7 @@ function dynamic_table_refresh_history(<>) returns struct<
 ```
 
 
-## editdistance
+## `editdistance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2446,7 +2446,7 @@ function editdistance(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the Levenshtein edit distance between two strings.
 
-## encrypt
+## `encrypt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2509,7 +2509,7 @@ function encrypt(<varchar, varchar, varchar, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
-## encrypt_raw
+## `encrypt_raw`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2532,7 +2532,7 @@ function encrypt_raw(<binary, binary, binary, binary, varchar>) returns variant
 ```
 variant containing the encrypted binary string and additional data (return)
 
-## endswith
+## `endswith`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2545,7 +2545,7 @@ function endswith(<binary, binary>) returns boolean
 ```
 returns TRUE if arg1 ends with arg2
 
-## equal_null
+## `equal_null`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2558,7 +2558,7 @@ function equal_null(<array, array>) returns boolean
 ```
 Checks if two values are equal, with NULL=NULL semantic
 
-## exp
+## `exp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2566,7 +2566,7 @@ function exp(<double>) returns double
 ```
 returns e raised to the x'th power
 
-## external_functions_history
+## `external_functions_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2590,7 +2590,7 @@ function external_functions_history(<>) returns struct<
 ```
 
 
-## external_table_file_registration_history
+## `external_table_file_registration_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2606,7 +2606,7 @@ function external_table_file_registration_history(<table_name string>) returns s
 ```
 
 
-## external_table_files
+## `external_table_files`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2622,7 +2622,7 @@ function external_table_files(<table_name string>) returns struct<
 ```
 
 
-## extract
+## `extract`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2632,7 +2632,7 @@ function extract<$1> (<string, $1>) returns double
 ```
 
 
-## factorial
+## `factorial`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2640,7 +2640,7 @@ function factorial(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Factorial of f
 
-## first_value
+## `first_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2648,7 +2648,7 @@ function first_value(<$1>) returns $1
 ```
 Returns the first value of a column
 
-## flatten
+## `flatten`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2657,7 +2657,7 @@ function flatten<$1> (<input $1>) returns struct<seq bigint, key string, path st
 ```
 
 
-## floor
+## `floor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2680,7 +2680,7 @@ function floor(<double, double>) returns double
 ```
 round to the nearest integer not greater than input
 
-## generate_column_description
+## `generate_column_description`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2688,7 +2688,7 @@ function generate_column_description(<array, varchar>) returns varchar
 ```
 parse the result from INFER_SCHEMA and generate a copy-able column description
 
-## generator
+## `generator`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2696,7 +2696,7 @@ function generator(<>) returns struct<dummy bigint>
 ```
 
 
-## get
+## `get`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2724,7 +2724,7 @@ function get(<object, $1>) returns variant
 ```
 Get VARIANT element value from an array or object
 
-## get_ddl
+## `get_ddl`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2747,7 +2747,7 @@ function get_ddl(<varchar, decimal(38, 0), boolean>) returns varchar
 ```
 DDL used to create the object
 
-## get_ignore_case
+## `get_ignore_case`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2770,7 +2770,7 @@ function get_ignore_case(<object, $1>) returns $1
 ```
 Get VARIANT element value from an array or object with path name
 
-## get_object_references
+## `get_object_references`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2778,7 +2778,7 @@ function get_object_references(<>) returns struct<database_name string, schema_n
 ```
 
 
-## get_path
+## `get_path`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2811,7 +2811,7 @@ function get_path(<object, varchar>) returns $1
 ```
 Get VARIANT element value from an array or object with path name
 
-## get_query_operator_stats
+## `get_query_operator_stats`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2820,7 +2820,7 @@ function get_query_operator_stats(<string>) returns struct<query_id string, step
 ```
 
 
-## get_query_stats
+## `get_query_stats`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2833,7 +2833,7 @@ function get_query_stats(<varchar, decimal(38, 0)>) returns variant
 ```
 Returns query stats
 
-## getbit
+## `getbit`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2841,7 +2841,7 @@ function getbit(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns result of the bit of base in specific bit index
 
-## getdate
+## `getdate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2849,7 +2849,7 @@ function getdate(<>) returns timestamp
 ```
 Returns the current timestamp
 
-## getvariable
+## `getvariable`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2857,7 +2857,7 @@ function getvariable(<string>) returns string
 ```
 
 
-## greatest
+## `greatest`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2865,7 +2865,7 @@ function greatest($1, ...) returns $1
 ```
 returns the largest value from a list of expressions
 
-## greatest_ignore_nulls
+## `greatest_ignore_nulls`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2873,7 +2873,7 @@ function greatest_ignore_nulls($1, ...) returns $1
 ```
 returns the largest value from a list of expressions
 
-## grouping
+## `grouping`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2881,7 +2881,7 @@ function grouping(...) returns int
 ```
 
 
-## grouping_id
+## `grouping_id`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2889,7 +2889,7 @@ function grouping_id($1, ...) returns decimal(38, 0)
 ```
 Returns grouping bit-vector
 
-## h3_cell_to_boundary
+## `h3_cell_to_boundary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2902,7 +2902,7 @@ function h3_cell_to_boundary(<varchar>) returns geography
 ```
 Returns a polygon containing the h3 string cell boundaries
 
-## h3_cell_to_children
+## `h3_cell_to_children`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2910,7 +2910,7 @@ function h3_cell_to_children(<decimal(38, 0), decimal(38, 0)>) returns array
 ```
 Returns the H3 children cells as integers for a given H3 index
 
-## h3_cell_to_children_string
+## `h3_cell_to_children_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2918,7 +2918,7 @@ function h3_cell_to_children_string(<varchar, decimal(38, 0)>) returns array
 ```
 Returns the H3 children cells as strings for a given H3 index
 
-## h3_cell_to_parent
+## `h3_cell_to_parent`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2931,7 +2931,7 @@ function h3_cell_to_parent(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns the H3 parent cell as a string for a given H3 index
 
-## h3_cell_to_point
+## `h3_cell_to_point`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2944,7 +2944,7 @@ function h3_cell_to_point(<varchar>) returns geography
 ```
 Returns a point (geography) corresponding to the center of the h3 string cell passed
 
-## h3_coverage
+## `h3_coverage`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2952,7 +2952,7 @@ function h3_coverage(<geography, decimal(38, 0)>) returns array
 ```
 Returns the full spherical based covering of H3 cells as integers for any geography type
 
-## h3_coverage_strings
+## `h3_coverage_strings`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2960,7 +2960,7 @@ function h3_coverage_strings(<geography, decimal(38, 0)>) returns array
 ```
 Returns the full spherical based covering of H3 cells as strings for any geography type
 
-## h3_get_resolution
+## `h3_get_resolution`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2973,7 +2973,7 @@ function h3_get_resolution(<varchar>) returns decimal(38, 0)
 ```
 Returns the cell resolution for a given H3 string cell
 
-## h3_grid_disk
+## `h3_grid_disk`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2986,7 +2986,7 @@ function h3_grid_disk(<varchar, decimal(38, 0)>) returns array
 ```
 Returns all H3 cells that are at most k steps away from the input cell
 
-## h3_grid_distance
+## `h3_grid_distance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2999,7 +2999,7 @@ function h3_grid_distance(<varchar, varchar>) returns decimal(38, 0)
 ```
 Returns the number of H3 cells that are betweem two input cells
 
-## h3_grid_path
+## `h3_grid_path`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3012,7 +3012,7 @@ function h3_grid_path(<varchar, varchar>) returns array
 ```
 Returns all H3 cells that are along the straight line connecting both cells
 
-## h3_int_to_string
+## `h3_int_to_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3020,7 +3020,7 @@ function h3_int_to_string(<decimal(38, 0)>) returns varchar
 ```
 Returns the H3 cell formatted as a string given its integer representation
 
-## h3_latlng_to_cell
+## `h3_latlng_to_cell`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3028,7 +3028,7 @@ function h3_latlng_to_cell(<double, double, decimal(38, 0)>) returns decimal(38,
 ```
 Returns an H3 index as an integer that corresponds to a given point (lat/lng) and resolution
 
-## h3_latlng_to_cell_string
+## `h3_latlng_to_cell_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3036,7 +3036,7 @@ function h3_latlng_to_cell_string(<double, double, decimal(38, 0)>) returns varc
 ```
 Returns an H3 index as a string that corresponds to a given point (lat/lng) and resolution
 
-## h3_point_to_cell
+## `h3_point_to_cell`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3044,7 +3044,7 @@ function h3_point_to_cell(<geography, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns an H3 integer cell that corresponds to a given point (geography) and resolution
 
-## h3_point_to_cell_string
+## `h3_point_to_cell_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3052,7 +3052,7 @@ function h3_point_to_cell_string(<geography, decimal(38, 0)>) returns varchar
 ```
 Returns an H3 string cell that corresponds to a given point (geography) and resolution
 
-## h3_polygon_to_cells
+## `h3_polygon_to_cells`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3060,7 +3060,7 @@ function h3_polygon_to_cells(<geography, decimal(38, 0)>) returns array
 ```
 Returns the planar centroid based covering of H3 cells as integers for a polygon/multipolygon
 
-## h3_polygon_to_cells_strings
+## `h3_polygon_to_cells_strings`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3068,7 +3068,7 @@ function h3_polygon_to_cells_strings(<geography, decimal(38, 0)>) returns array
 ```
 Returns the planar centroid based covering of H3 cells as strings for a polygon/multipolygon
 
-## h3_string_to_int
+## `h3_string_to_int`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3076,7 +3076,7 @@ function h3_string_to_int(<varchar>) returns decimal(38, 0)
 ```
 Returns the H3 cell formatted as an integer given its string representation
 
-## hash
+## `hash`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3084,7 +3084,7 @@ function hash($1, ...) returns decimal(38, 0)
 ```
 hash value
 
-## hash_agg
+## `hash_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3117,7 +3117,7 @@ function hash_agg(<$1, $2, $3, $4, $5>) returns decimal(38, 0)
 ```
 aggregate hash value
 
-## haversine
+## `haversine`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3125,7 +3125,7 @@ function haversine(<double, double, double, double>) returns double
 ```
 Calculate great circle distance (in km) from two (lat, lon) locations (degrees).
 
-## hex_decode_binary
+## `hex_decode_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3133,7 +3133,7 @@ function hex_decode_binary(<varchar>) returns binary
 ```
 return decoded binary
 
-## hex_decode_string
+## `hex_decode_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3141,7 +3141,7 @@ function hex_decode_string(<varchar>) returns varchar
 ```
 return decoded string
 
-## hex_encode
+## `hex_encode`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3164,7 +3164,7 @@ function hex_encode(<binary, decimal(38, 0)>) returns varchar
 ```
 return encoded string
 
-## hll
+## `hll`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3172,7 +3172,7 @@ function hll($1, ...) returns decimal(38, 0)
 ```
 approximate distinct row count
 
-## hll_accumulate
+## `hll_accumulate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3180,7 +3180,7 @@ function hll_accumulate($1, ...) returns binary
 ```
 HyperLogLog state
 
-## hll_combine
+## `hll_combine`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3188,7 +3188,7 @@ function hll_combine(<binary>) returns binary
 ```
 combined HyperLogLog state
 
-## hll_estimate
+## `hll_estimate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3196,7 +3196,7 @@ function hll_estimate(<binary>) returns decimal(38, 0)
 ```
 approximate distinct row count
 
-## hll_export
+## `hll_export`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3204,7 +3204,7 @@ function hll_export(<binary>) returns object
 ```
 HyperLogLog state as a compound OBJECT
 
-## hll_import
+## `hll_import`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3212,7 +3212,7 @@ function hll_import(<object>) returns binary
 ```
 HyperLogLog state in binary format
 
-## hour
+## `hour`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3220,7 +3220,7 @@ function hour(<$1>) returns bigint
 ```
 
 
-## iff
+## `iff`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3228,7 +3228,7 @@ function iff(<boolean, $1, $1>) returns $1
 ```
 Returns arg2 if arg1 is true, arg3 otherwise.
 
-## ifnull
+## `ifnull`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3236,7 +3236,7 @@ function ifnull(<$1, $1>) returns $1
 ```
 Returns second expression if the first expression is NULL, the first expression otherwise.
 
-## ilike
+## `ilike`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3249,7 +3249,7 @@ function ilike(<varchar, varchar, varchar>) returns boolean
 ```
 returns TRUE if subject ILIKE pattern
 
-## ilike_any
+## `ilike_any`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3257,7 +3257,7 @@ function ilike_any(varchar, varchar, varchar, ...) returns boolean
 ```
 returns TRUE if subject ILIKE any of the patterns
 
-## infer_schema
+## `infer_schema`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3273,7 +3273,7 @@ function infer_schema(<>) returns struct<
 ```
 
 
-## initcap
+## `initcap`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3286,7 +3286,7 @@ function initcap(<varchar, varchar>) returns varchar
 ```
 return string with all the initial letter of each word is LOWERcase.
 
-## insert
+## `insert`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3294,7 +3294,7 @@ function insert(<varchar, decimal(38, 0), decimal(38, 0), varchar>) returns varc
 ```
 Returns the first string with a substring at the given position and length replaced with the second string
 
-## invoker_role
+## `invoker_role`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3302,7 +3302,7 @@ function invoker_role(<>) returns varchar
 ```
 Returns the invoker role
 
-## invoker_share
+## `invoker_share`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3310,7 +3310,7 @@ function invoker_share(<>) returns varchar
 ```
 Returns the invoker role
 
-## is_application_role_in_session
+## `is_application_role_in_session`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3318,7 +3318,7 @@ function is_application_role_in_session(<varchar>) returns boolean
 ```
 Returns true if the specified application role is in the current role hierarchy
 
-## is_array
+## `is_array`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3326,7 +3326,7 @@ function is_array(<variant>) returns boolean
 ```
 Returns true if VARIANT value is an array
 
-## is_binary
+## `is_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3334,7 +3334,7 @@ function is_binary(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a binary string
 
-## is_boolean
+## `is_boolean`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3342,7 +3342,7 @@ function is_boolean(<variant>) returns boolean
 ```
 Returns true if VARIANT value is Boolean
 
-## is_char
+## `is_char`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3350,7 +3350,7 @@ function is_char(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a text string
 
-## is_database_role_in_session
+## `is_database_role_in_session`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3358,7 +3358,7 @@ function is_database_role_in_session(<varchar>) returns boolean
 ```
 Return true if the db role is in current role hierarchy
 
-## is_date
+## `is_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3366,7 +3366,7 @@ function is_date(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a DATE
 
-## is_date_value
+## `is_date_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3374,7 +3374,7 @@ function is_date_value(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a DATE
 
-## is_decimal
+## `is_decimal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3382,7 +3382,7 @@ function is_decimal(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a decimal fixed-point number
 
-## is_double
+## `is_double`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3390,7 +3390,7 @@ function is_double(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a real number
 
-## is_granted_to_invoker_role
+## `is_granted_to_invoker_role`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3398,7 +3398,7 @@ function is_granted_to_invoker_role(<varchar>) returns boolean
 ```
 Returns true if the arg is in invoker_role's hierarchy
 
-## is_integer
+## `is_integer`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3406,7 +3406,7 @@ function is_integer(<variant>) returns boolean
 ```
 Returns true if VARIANT value is integer
 
-## is_null_value
+## `is_null_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3414,7 +3414,7 @@ function is_null_value(<variant>) returns boolean
 ```
 Returns true if VARIANT value is null
 
-## is_object
+## `is_object`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3422,7 +3422,7 @@ function is_object(<variant>) returns boolean
 ```
 Returns true if VARIANT value is an object
 
-## is_real
+## `is_real`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3430,7 +3430,7 @@ function is_real(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a real number
 
-## is_role_in_session
+## `is_role_in_session`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3438,7 +3438,7 @@ function is_role_in_session(<varchar>) returns boolean
 ```
 Return true if in current hierarchy
 
-## is_time
+## `is_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3446,7 +3446,7 @@ function is_time(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a TIME
 
-## is_timestamp_ltz
+## `is_timestamp_ltz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3454,7 +3454,7 @@ function is_timestamp_ltz(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a TIMESTAMP_LTZ
 
-## is_timestamp_ntz
+## `is_timestamp_ntz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3462,7 +3462,7 @@ function is_timestamp_ntz(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a TIMESTAMP_NTZ
 
-## is_timestamp_tz
+## `is_timestamp_tz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3470,7 +3470,7 @@ function is_timestamp_tz(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a TIMESTAMP_TZ
 
-## is_varchar
+## `is_varchar`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3478,7 +3478,7 @@ function is_varchar(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a text string
 
-## jarowinkler_similarity
+## `jarowinkler_similarity`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3486,7 +3486,7 @@ function jarowinkler_similarity(<varchar, varchar>) returns decimal(38, 0)
 ```
 Returns the Jaro-Winkler similarity metric between two strings.
 
-## json_extract_path_text
+## `json_extract_path_text`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3494,7 +3494,7 @@ function json_extract_path_text(<varchar, varchar>) returns varchar
 ```
 Parses the first argument as a JSON and returns the value of the element pointed to by the second argument
 
-## kurtosis
+## `kurtosis`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3507,7 +3507,7 @@ function kurtosis(<double>) returns double
 ```
 Returns the sample kurtosis of the values in a group. Null values are ignored.
 
-## lag
+## `lag`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3525,7 +3525,7 @@ function lag(<$1, decimal(38, 0), $1>) returns $1
 ```
 Returns the value of an expression at the specified offset row
 
-## last_day
+## `last_day`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3541,7 +3541,7 @@ function last_day<$1> (<$1, string>) returns date
 ```
 
 
-## last_query_id
+## `last_query_id`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3554,7 +3554,7 @@ function last_query_id(<decimal(38, 0)>) returns varchar
 ```
 Returns the id of the last executed statement in the current session.
 
-## last_transaction
+## `last_transaction`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3562,7 +3562,7 @@ function last_transaction(<>) returns decimal(38, 0)
 ```
 Returns the transaction id of the last committed or rolled back transaction in the current session.
 
-## last_value
+## `last_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3570,7 +3570,7 @@ function last_value(<$1>) returns $1
 ```
 Returns the last value of a column
 
-## lead
+## `lead`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3588,7 +3588,7 @@ function lead(<$1, decimal(38, 0), $1>) returns $1
 ```
 Returns the value of an expression at the specified offset row
 
-## least
+## `least`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3596,7 +3596,7 @@ function least($1, ...) returns $1
 ```
 returns the smallest value from a list of expressions
 
-## least_ignore_nulls
+## `least_ignore_nulls`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3604,7 +3604,7 @@ function least_ignore_nulls($1, ...) returns $1
 ```
 returns the smallest value from a list of expressions
 
-## left
+## `left`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3612,7 +3612,7 @@ function left(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns leftmost N characters of the input string
 
-## len
+## `len`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3625,7 +3625,7 @@ function len(<binary>) returns decimal(38, 0)
 ```
 Returns length of binary input
 
-## length
+## `length`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3638,7 +3638,7 @@ function length(<binary>) returns decimal(38, 0)
 ```
 Returns the length of the string
 
-## like
+## `like`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3661,7 +3661,7 @@ function like(<array, array, varchar>) returns boolean
 ```
 returns TRUE if subject LIKE pattern
 
-## like_all
+## `like_all`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3669,7 +3669,7 @@ function like_all(varchar, varchar, varchar, ...) returns boolean
 ```
 returns TRUE if subject LIKE all of the patterns
 
-## like_any
+## `like_any`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3677,7 +3677,7 @@ function like_any(varchar, varchar, varchar, ...) returns boolean
 ```
 returns TRUE if subject LIKE any of the patterns
 
-## listagg
+## `listagg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3690,7 +3690,7 @@ function listagg(<varchar, varchar>) returns varchar
 ```
 output string
 
-## ln
+## `ln`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3698,7 +3698,7 @@ function ln(<double>) returns double
 ```
 returns the natural logarithm of a
 
-## localtime
+## `localtime`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3711,7 +3711,7 @@ function localtime(<decimal(38, 0)>) returns time
 ```
 Returns the current time.
 
-## localtimestamp
+## `localtimestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3724,7 +3724,7 @@ function localtimestamp(<decimal(38, 0)>) returns timestamp
 ```
 Returns the current timestamp.
 
-## log
+## `log`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3732,7 +3732,7 @@ function log(<double, double>) returns double
 ```
 returns the logarithm base b of a
 
-## login_history
+## `login_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3742,7 +3742,7 @@ function login_history<$1, $2> (<>) returns struct<event_timestamp timestamp, ev
 ```
 
 
-## login_history_by_user
+## `login_history_by_user`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3752,7 +3752,7 @@ function login_history_by_user<$1, $2> (<>) returns struct<event_timestamp times
 ```
 
 
-## lower
+## `lower`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3760,7 +3760,7 @@ function lower(<varchar>) returns varchar
 ```
 return string with all characters in lowercase
 
-## lpad
+## `lpad`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3778,7 +3778,7 @@ function lpad(<binary, decimal(38, 0), binary>) returns binary
 ```
 padded result string
 
-## ltrim
+## `ltrim`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3791,7 +3791,7 @@ function ltrim(<varchar, varchar>) returns varchar
 ```
 return string trimmed from left
 
-## map_cat
+## `map_cat`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3799,7 +3799,7 @@ function map_cat(<object, object>) returns object
 ```
 
 
-## map_contains_key
+## `map_contains_key`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3807,7 +3807,7 @@ function map_contains_key(<varchar, object>) returns boolean
 ```
 
 
-## map_delete
+## `map_delete`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3835,7 +3835,7 @@ function map_delete(<object, varchar, varchar, varchar, varchar, varchar>) retur
 ```
 
 
-## map_insert
+## `map_insert`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3848,7 +3848,7 @@ function map_insert(<object, $1, $2, boolean>) returns object
 ```
 
 
-## map_keys
+## `map_keys`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3856,7 +3856,7 @@ function map_keys(<object>) returns array
 ```
 
 
-## map_pick
+## `map_pick`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3889,7 +3889,7 @@ function map_pick(<object, array>) returns object
 ```
 
 
-## map_size
+## `map_size`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3897,7 +3897,7 @@ function map_size(<object>) returns bigint
 ```
 
 
-## materialized_view_refresh_history
+## `materialized_view_refresh_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3907,7 +3907,7 @@ function materialized_view_refresh_history<$1, $2> (<>) returns struct< start_ti
 ```
 
 
-## max
+## `max`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3915,7 +3915,7 @@ function max(<$1>) returns $1
 ```
 Returns the maximum of a column
 
-## max_by
+## `max_by`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3928,7 +3928,7 @@ function max_by(<$1, $2, decimal(38, 0)>) returns array
 ```
 Returns value of first column with maximum second column val
 
-## md5
+## `md5`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3941,7 +3941,7 @@ function md5(<binary>) returns varchar
 ```
 Hex-encoded MD5 digest
 
-## md5_binary
+## `md5_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3954,7 +3954,7 @@ function md5_binary(<binary>) returns binary
 ```
 Binary MD5 digest
 
-## md5_hex
+## `md5_hex`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3967,7 +3967,7 @@ function md5_hex(<binary>) returns varchar
 ```
 Hex-encoded MD5 digest
 
-## md5_number
+## `md5_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3980,7 +3980,7 @@ function md5_number(<binary>) returns decimal(38, 0)
 ```
 Integral MD5 digest
 
-## md5_number_lower64
+## `md5_number_lower64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3988,7 +3988,7 @@ function md5_number_lower64(<string>) returns binary
 ```
 
 
-## md5_number_upper64
+## `md5_number_upper64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3996,7 +3996,7 @@ function md5_number_upper64(<string>) returns binary
 ```
 
 
-## median
+## `median`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4009,7 +4009,7 @@ function median(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 value of sort key at specified percentile
 
-## metadata$file_content_key
+## `metadata$file_content_key`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4017,7 +4017,7 @@ function metadata$file_content_key(<>) returns varchar
 ```
 
 
-## metadata$file_last_modified
+## `metadata$file_last_modified`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4025,7 +4025,7 @@ function metadata$file_last_modified(<>) returns timestamp
 ```
 
 
-## metadata$file_row_number
+## `metadata$file_row_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4033,7 +4033,7 @@ function metadata$file_row_number(<>) returns int
 ```
 
 
-## metadata$filename
+## `metadata$filename`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4041,7 +4041,7 @@ function metadata$filename(<>) returns varchar
 ```
 
 
-## metadata$start_scan_time
+## `metadata$start_scan_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4049,7 +4049,7 @@ function metadata$start_scan_time(<>) returns timestamp
 ```
 
 
-## min
+## `min`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4057,7 +4057,7 @@ function min(<$1>) returns $1
 ```
 Returns the minimum of a column
 
-## min_by
+## `min_by`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4070,7 +4070,7 @@ function min_by(<$1, $2, decimal(38, 0)>) returns array
 ```
 Returns value of first column with minimum second column val
 
-## minhash
+## `minhash`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4078,7 +4078,7 @@ function minhash(decimal(38, 0), $1, ...) returns variant
 ```
 Minhash state including an array of k (first input arg) minimum hash values
 
-## minhash_combine
+## `minhash_combine`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4086,7 +4086,7 @@ function minhash_combine(<variant>) returns variant
 ```
 Combined result of two (or more) minhash states
 
-## minute
+## `minute`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4094,7 +4094,7 @@ function minute(<$1>) returns bigint
 ```
 
 
-## mod
+## `mod`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4107,7 +4107,7 @@ function mod(<double, double>) returns double
 ```
 Computes modulo of two numbers
 
-## mode
+## `mode`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4115,7 +4115,7 @@ function mode(<$1>) returns $1
 ```
 Returns the most frequent item of a column
 
-## month
+## `month`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4123,7 +4123,7 @@ function month(<$1>) returns bigint
 ```
 
 
-## monthname
+## `monthname`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4132,7 +4132,7 @@ function monthname<$1> (<$1>) returns varchar
 ```
 
 
-## months_between
+## `months_between`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4141,7 +4141,7 @@ function months_between<$1> (<$1, $1>) returns bigint
 ```
 
 
-## negate
+## `negate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4154,7 +4154,7 @@ function negate(<double>) returns double
 ```
 returns the negative value of its input argument.
 
-## next_day
+## `next_day`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4163,7 +4163,7 @@ function next_day<$1> (<$1, varchar>) returns date
 ```
 
 
-## normal
+## `normal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4171,7 +4171,7 @@ function normal(<double, double, decimal(38, 0)>) returns double
 ```
 Returns a normal distribution
 
-## normalize
+## `normalize`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4204,7 +4204,7 @@ function normalize(<date, date, date>) returns double
 ```
 normalized value
 
-## not
+## `not`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4212,7 +4212,7 @@ function not(<boolean>) returns boolean
 ```
 returns TRUE if input is FALSE, FALSE otherwise
 
-## notification_history
+## `notification_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4228,7 +4228,7 @@ function notification_history(<>) returns struct<
 ```
 
 
-## nth_value
+## `nth_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4236,7 +4236,7 @@ function nth_value(<$1, decimal(38, 0)>) returns $1
 ```
 Returns the first value of a column
 
-## ntile
+## `ntile`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4244,7 +4244,7 @@ function ntile(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 Number of groups (ntiles) per window
 
-## nullif
+## `nullif`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4252,7 +4252,7 @@ function nullif(<$1, $1>) returns $1
 ```
 
 
-## nullifzero
+## `nullifzero`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4265,7 +4265,7 @@ function nullifzero(<double>) returns double
 ```
 Returns the 1st input, with values equal to 0 replaced with NULL
 
-## nvl
+## `nvl`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4273,7 +4273,7 @@ function nvl(<$1, $1>) returns $1
 ```
 Returns second expression if the first expression is NULL, the first expression otherwise.
 
-## nvl2
+## `nvl2`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4281,7 +4281,7 @@ function nvl2(<$1, $1, $1>) returns $1
 ```
 Returns second expression if the first expression is NOT NULL. Returns the third expression otherwise.
 
-## object_agg
+## `object_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4289,7 +4289,7 @@ function object_agg(<varchar, variant>) returns object
 ```
 output object
 
-## object_construct
+## `object_construct`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4297,7 +4297,7 @@ function object_construct(...) returns object
 ```
 
 
-## object_construct_keep_null
+## `object_construct_keep_null`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4305,7 +4305,7 @@ function object_construct_keep_null($1, ...) returns object
 ```
 the resulting object with null value
 
-## object_delete
+## `object_delete`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4318,7 +4318,7 @@ function object_delete(object, varchar, ...) returns object
 ```
 the resulting OBJECT
 
-## object_insert
+## `object_insert`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4341,7 +4341,7 @@ function object_insert(<object, varchar, $1, boolean>) returns object
 ```
 the resulting OBJECT
 
-## object_keys
+## `object_keys`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4354,7 +4354,7 @@ function object_keys(<object>) returns array
 ```
 the resulting ARRAY
 
-## object_pick
+## `object_pick`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4372,7 +4372,7 @@ function object_pick(object, varchar, ...) returns object
 ```
 the resulting OBJECT
 
-## objectagg
+## `objectagg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4380,7 +4380,7 @@ function objectagg(<varchar, variant>) returns object
 ```
 output object
 
-## octet_length
+## `octet_length`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4393,7 +4393,7 @@ function octet_length(<binary>) returns decimal(38, 0)
 ```
 Returns the length of the string in bytes
 
-## parse_ip
+## `parse_ip`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4406,7 +4406,7 @@ function parse_ip(<varchar, varchar, decimal(38, 0)>) returns object
 ```
 Returns an object with all the components of the IP
 
-## parse_json
+## `parse_json`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4414,7 +4414,7 @@ function parse_json(<varchar>) returns variant
 ```
 Parses string as a JSON document
 
-## parse_url
+## `parse_url`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4427,7 +4427,7 @@ function parse_url(<varchar, decimal(38, 0)>) returns object
 ```
 Returns an object with all the components of the URL
 
-## parse_xml
+## `parse_xml`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4445,7 +4445,7 @@ function parse_xml(<>) returns variant
 ```
 
 
-## percent_rank
+## `percent_rank`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4453,7 +4453,7 @@ function percent_rank(<>) returns double
 ```
 Returns the percent rank of a row in the window
 
-## percentile_cont
+## `percentile_cont`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4466,7 +4466,7 @@ function percentile_cont(<decimal(38, 0)>) returns double
 ```
 value of sort key at specified percentile
 
-## percentile_disc
+## `percentile_disc`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4479,7 +4479,7 @@ function percentile_disc(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 value of sort key at specified percentile
 
-## pi
+## `pi`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4487,7 +4487,7 @@ function pi(<>) returns double
 ```
 Returns the constant pi.
 
-## pipe_usage_history
+## `pipe_usage_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4503,7 +4503,7 @@ function pipe_usage_history(<>) returns struct<
 ```
 
 
-## policy_references
+## `policy_references`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4527,7 +4527,7 @@ function policy_references(<>) returns struct<
 ```
 
 
-## position
+## `position`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4550,7 +4550,7 @@ function position(<binary, binary, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
-## pow
+## `pow`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4558,7 +4558,7 @@ function pow(<double, double>) returns double
 ```
 returns x raised to the y'th power
 
-## power
+## `power`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4566,7 +4566,7 @@ function power(<double, double>) returns double
 ```
 returns x raised to the y'th power
 
-## previous_day
+## `previous_day`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4575,7 +4575,7 @@ function previous_day<$1> (<$1, varchar>) returns date
 ```
 
 
-## projection_constraint
+## `projection_constraint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4583,7 +4583,7 @@ function projection_constraint(<boolean>) returns boolean
 ```
 Returns the projection constraint
 
-## quarter
+## `quarter`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4591,7 +4591,7 @@ function quarter(<$1>) returns bigint
 ```
 
 
-## query_acceleration_history
+## `query_acceleration_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4608,7 +4608,7 @@ function query_acceleration_history<$1, $2> (<>) returns struct<start_time times
 ```
 
 
-## query_history
+## `query_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4664,7 +4664,7 @@ function query_history<$1, $2> (<>) returns struct<query_id string,
 ```
 
 
-## query_history_by_session
+## `query_history_by_session`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4720,7 +4720,7 @@ function query_history_by_session<$1, $2> (<>) returns struct<query_id string,
 ```
 
 
-## query_history_by_user
+## `query_history_by_user`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4776,7 +4776,7 @@ function query_history_by_user<$1, $2> (<>) returns struct<query_id string,
 ```
 
 
-## query_history_by_warehouse
+## `query_history_by_warehouse`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4832,7 +4832,7 @@ function query_history_by_warehouse<$1, $2> (<>) returns struct<query_id string,
 ```
 
 
-## radians
+## `radians`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4840,7 +4840,7 @@ function radians(<double>) returns double
 ```
 convert d (degrees) to radians.
 
-## random
+## `random`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4853,7 +4853,7 @@ function random(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a random number sequence
 
-## randstr
+## `randstr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4861,7 +4861,7 @@ function randstr(<decimal(38, 0), decimal(38, 0)>) returns varchar
 ```
 Returns a random string of alphanumeric characters
 
-## rank
+## `rank`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4869,7 +4869,7 @@ function rank(<>) returns decimal(38, 0)
 ```
 Returns the rank of a row in the window
 
-## ratio_to_report
+## `ratio_to_report`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4892,7 +4892,7 @@ function ratio_to_report(<double, decimal(38, 0)>) returns double
 ```
 Returns a cumulative ratio_to_report of a column
 
-## regexp
+## `regexp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4905,7 +4905,7 @@ function regexp(<varchar, varchar, varchar>) returns boolean
 ```
 returns TRUE if subject RLIKE pattern
 
-## regexp_count
+## `regexp_count`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4923,7 +4923,7 @@ function regexp_count(<varchar, varchar, decimal(38, 0), varchar>) returns decim
 ```
 returns number of matches of regular expression pattern in subject
 
-## regexp_extract_all
+## `regexp_extract_all`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4951,7 +4951,7 @@ function regexp_extract_all(<varchar, varchar, decimal(38, 0), decimal(38, 0), v
 ```
 returns all substring in subject which matches the regular expression pattern
 
-## regexp_instr
+## `regexp_instr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4984,7 +4984,7 @@ function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0), decimal
 ```
 returns position at which the subject matches the regular expression pattern
 
-## regexp_like
+## `regexp_like`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4997,7 +4997,7 @@ function regexp_like(<varchar, varchar, varchar>) returns boolean
 ```
 returns TRUE if subject RLIKE pattern
 
-## regexp_replace
+## `regexp_replace`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5025,7 +5025,7 @@ function regexp_replace(<varchar, varchar, varchar, decimal(38, 0), decimal(38, 
 ```
 replaces substring in subject matching a regular expression pattern
 
-## regexp_substr
+## `regexp_substr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5053,7 +5053,7 @@ function regexp_substr(<varchar, varchar, decimal(38, 0), decimal(38, 0), varcha
 ```
 returns substring in subject which matches the regular expression pattern
 
-## regexp_substr_all
+## `regexp_substr_all`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5081,7 +5081,7 @@ function regexp_substr_all(<varchar, varchar, decimal(38, 0), decimal(38, 0), va
 ```
 returns all substring in subject which matches the regular expression pattern
 
-## regr_avgx
+## `regr_avgx`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5089,7 +5089,7 @@ function regr_avgx(<double, double>) returns double
 ```
 Returns the average of the independent variable (2nd parameter) for non-null pairs.
 
-## regr_avgy
+## `regr_avgy`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5097,7 +5097,7 @@ function regr_avgy(<double, double>) returns double
 ```
 Returns the average of the dependent variable (1st parameter) for non-null pairs.
 
-## regr_count
+## `regr_count`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5105,7 +5105,7 @@ function regr_count(<double, double>) returns double
 ```
 Returns the number of non-null number pairs.
 
-## regr_intercept
+## `regr_intercept`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5113,7 +5113,7 @@ function regr_intercept(<double, double>) returns double
 ```
 Returns the intercept of the univariate linear regression line for non-null pairs.
 
-## regr_r2
+## `regr_r2`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5121,7 +5121,7 @@ function regr_r2(<double, double>) returns double
 ```
 Returns the coefficient of determination for non-null pairs.
 
-## regr_slope
+## `regr_slope`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5129,7 +5129,7 @@ function regr_slope(<double, double>) returns double
 ```
 Returns the slope of the linear regression line for non-null pairs.
 
-## regr_sxx
+## `regr_sxx`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5137,7 +5137,7 @@ function regr_sxx(<double, double>) returns double
 ```
 Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr2) for non-null pairs.
 
-## regr_sxy
+## `regr_sxy`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5145,7 +5145,7 @@ function regr_sxy(<double, double>) returns double
 ```
 Returns REGR_COUNT(expr1, expr2) * COVAR_POP(expr1, expr2) for non-null pairs.
 
-## regr_syy
+## `regr_syy`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5153,7 +5153,7 @@ function regr_syy(<double, double>) returns double
 ```
 Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr1) for non-null pairs.
 
-## regr_valx
+## `regr_valx`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5161,7 +5161,7 @@ function regr_valx(<double, double>) returns double
 ```
 Returns the value of the dependent variable (2nd param) if both values are not-null.
 
-## regr_valy
+## `regr_valy`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5169,7 +5169,7 @@ function regr_valy(<double, double>) returns double
 ```
 Returns the value of the independent variable (1st param) if both values are not-null.
 
-## repeat
+## `repeat`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5177,7 +5177,7 @@ function repeat(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns the input string repeated N times
 
-## replace
+## `replace`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5190,7 +5190,7 @@ function replace(<varchar, varchar, varchar>) returns varchar
 ```
 replaces all occurrences of searched substring in subject with a replacement
 
-## replication_group_refresh_history
+## `replication_group_refresh_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5208,7 +5208,7 @@ function replication_group_refresh_history(<string>) returns struct<
 ```
 
 
-## replication_group_refresh_progress
+## `replication_group_refresh_progress`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5223,7 +5223,7 @@ function replication_group_refresh_progress(<string>) returns struct<
 ```
 
 
-## replication_group_refresh_progress_by_job
+## `replication_group_refresh_progress_by_job`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5238,7 +5238,7 @@ function replication_group_refresh_progress_by_job(<string>) returns struct<
 ```
 
 
-## replication_group_usage_history
+## `replication_group_usage_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5253,7 +5253,7 @@ function replication_group_usage_history(<>) returns struct<
 ```
 
 
-## replication_usage_history
+## `replication_usage_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5270,7 +5270,7 @@ function replication_usage_history<$1, $2> (<>) returns struct<
 ```
 
 
-## rest_event_history
+## `rest_event_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5293,7 +5293,7 @@ function rest_event_history(<rest_service_type string>) returns struct<
 ```
 
 
-## reverse
+## `reverse`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5306,7 +5306,7 @@ function reverse(<binary>) returns binary
 ```
 return string with character order reversed
 
-## right
+## `right`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5314,7 +5314,7 @@ function right(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns rightmost N characters of the input string
 
-## rlike
+## `rlike`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5327,7 +5327,7 @@ function rlike(<varchar, varchar, varchar>) returns boolean
 ```
 returns TRUE if subject RLIKE pattern
 
-## round
+## `round`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5385,7 +5385,7 @@ function round(<>) returns bigint
 ```
 
 
-## row_number
+## `row_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5393,7 +5393,7 @@ function row_number(<>) returns decimal(38, 0)
 ```
 Returns the position of this row in the window
 
-## rpad
+## `rpad`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5411,7 +5411,7 @@ function rpad(<binary, decimal(38, 0), binary>) returns binary
 ```
 padded result string
 
-## rtrim
+## `rtrim`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5424,7 +5424,7 @@ function rtrim(<varchar, varchar>) returns varchar
 ```
 return string trimmed from right
 
-## rtrimmed_length
+## `rtrimmed_length`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5432,7 +5432,7 @@ function rtrimmed_length(<varchar>) returns varchar
 ```
 Returns the length of the input string without trailing blanks
 
-## search_optimization_history
+## `search_optimization_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5448,7 +5448,7 @@ function search_optimization_history<$1, $2> (<>) returns struct<
 ```
 
 
-## second
+## `second`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5456,7 +5456,7 @@ function second(<$1>) returns bigint
 ```
 
 
-## seq1
+## `seq1`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5469,7 +5469,7 @@ function seq1(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a sequence of 1-byte integers
 
-## seq2
+## `seq2`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5482,7 +5482,7 @@ function seq2(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a sequence of 2-byte integers
 
-## seq4
+## `seq4`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5495,7 +5495,7 @@ function seq4(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a sequence of 4-byte integers
 
-## seq8
+## `seq8`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5508,7 +5508,7 @@ function seq8(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a sequence of 8-byte integers
 
-## serverless_task_history
+## `serverless_task_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5524,7 +5524,7 @@ function serverless_task_history<$1, $2> (<>) returns struct<
 ```
 
 
-## sha1
+## `sha1`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5537,7 +5537,7 @@ function sha1(<binary>) returns varchar
 ```
 Hex-encoded SHA1 digest
 
-## sha1_binary
+## `sha1_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5550,7 +5550,7 @@ function sha1_binary(<binary>) returns binary
 ```
 Binary SHA1 digest
 
-## sha1_hex
+## `sha1_hex`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5563,7 +5563,7 @@ function sha1_hex(<binary>) returns varchar
 ```
 Hex-encoded SHA1 digest
 
-## sha2
+## `sha2`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5586,7 +5586,7 @@ function sha2(<binary, decimal(38, 0)>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
-## sha2_binary
+## `sha2_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5609,7 +5609,7 @@ function sha2_binary(<binary, decimal(38, 0)>) returns binary
 ```
 Binary SHA2 digest
 
-## sha2_hex
+## `sha2_hex`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5632,7 +5632,7 @@ function sha2_hex(<binary, decimal(38, 0)>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
-## shared_result_generate_token
+## `shared_result_generate_token`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5640,7 +5640,7 @@ function shared_result_generate_token(<varchar>) returns varchar
 ```
 ResultShare token string
 
-## shared_result_readable
+## `shared_result_readable`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5648,7 +5648,7 @@ function shared_result_readable(<varchar>) returns boolean
 ```
 readable to current user
 
-## sign
+## `sign`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5661,7 +5661,7 @@ function sign(<double>) returns double
 ```
 returns sign of x
 
-## sin
+## `sin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5669,7 +5669,7 @@ function sin(<double>) returns double
 ```
 Compute the sine of the input expression (as radians).
 
-## sinh
+## `sinh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5677,7 +5677,7 @@ function sinh(<double>) returns double
 ```
 Compute the hyperbolic sine of the input expression.
 
-## skew
+## `skew`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5690,7 +5690,7 @@ function skew(<double>) returns double
 ```
 Returns the sample skew of the values in a group. Null values are ignored.
 
-## soundex
+## `soundex`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5698,7 +5698,7 @@ function soundex(<varchar>) returns varchar
 ```
 soundex encoding of string
 
-## soundex_p123
+## `soundex_p123`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5706,7 +5706,7 @@ function soundex_p123(<varchar>) returns varchar
 ```
 soundex_p123 encoding of string
 
-## space
+## `space`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5714,7 +5714,7 @@ function space(<decimal(38, 0)>) returns varchar
 ```
 N spaces
 
-## split
+## `split`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5722,7 +5722,7 @@ function split(<varchar, varchar>) returns array
 ```
 return split string as array
 
-## split_part
+## `split_part`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5730,7 +5730,7 @@ function split_part(<varchar, varchar, decimal(38, 0)>) returns varchar
 ```
 Splits a string with a delimiter and returns the requested part
 
-## split_to_table
+## `split_to_table`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5738,7 +5738,7 @@ function split_to_table(<string, string>) returns struct<seq int, index int, val
 ```
 
 
-## sqrt
+## `sqrt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5746,7 +5746,7 @@ function sqrt(<double>) returns double
 ```
 Compute the square root of the input expression.
 
-## square
+## `square`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5754,7 +5754,7 @@ function square(<double>) returns double
 ```
 Compute the square of the input expression.
 
-## st_area
+## `st_area`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5767,7 +5767,7 @@ function st_area(<geometry>) returns double
 ```
 Area of the object in the same units as the input coordinates
 
-## st_asbinary
+## `st_asbinary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5780,7 +5780,7 @@ function st_asbinary(<geometry>) returns binary
 ```
 Return the WKB representation of the GEOMETRY object
 
-## st_asewkb
+## `st_asewkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5793,7 +5793,7 @@ function st_asewkb(<geometry>) returns binary
 ```
 Return the EWKB representation of the GEOMETRY object
 
-## st_asewkt
+## `st_asewkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5806,7 +5806,7 @@ function st_asewkt(<geometry>) returns varchar
 ```
 Return the WKB representation of the GEOMETRY object
 
-## st_asgeojson
+## `st_asgeojson`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5819,7 +5819,7 @@ function st_asgeojson(<geometry>) returns object
 ```
 Return the GeoJSON representation of the GEOMETRY object
 
-## st_astext
+## `st_astext`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5832,7 +5832,7 @@ function st_astext(<geometry>) returns varchar
 ```
 Return the WKT representation of the GEOMETRY object
 
-## st_aswkb
+## `st_aswkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5845,7 +5845,7 @@ function st_aswkb(<geometry>) returns binary
 ```
 Return the WKB representation of the GEOMETRY object
 
-## st_aswkt
+## `st_aswkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5858,7 +5858,7 @@ function st_aswkt(<geometry>) returns varchar
 ```
 Return the WKB representation of the GEOMETRY object
 
-## st_azimuth
+## `st_azimuth`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5871,7 +5871,7 @@ function st_azimuth(<geometry, geometry>) returns double
 ```
 Returns the azimuth in radians of the segment defined by the given point
 
-## st_buffer
+## `st_buffer`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5879,7 +5879,7 @@ function st_buffer(<geometry, double>) returns geometry
 ```
 Returns the geometry generated by the buffer operation upon the given input geometry using the diven distance
 
-## st_centroid
+## `st_centroid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5892,7 +5892,7 @@ function st_centroid(<geometry>) returns geometry
 ```
 The centroid of geometry
 
-## st_collect
+## `st_collect`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5905,7 +5905,7 @@ function st_collect(<geography, geography>) returns geography
 ```
 Version of ST_COLLECT that merges the two input geographies into one
 
-## st_contains
+## `st_contains`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5918,7 +5918,7 @@ function st_contains(<geometry, geometry>) returns boolean
 ```
 True if the first object fully contains the second
 
-## st_coveredby
+## `st_coveredby`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5931,7 +5931,7 @@ function st_coveredby(<geometry, geometry>) returns boolean
 ```
 True if the second object covers the first
 
-## st_covers
+## `st_covers`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5944,7 +5944,7 @@ function st_covers(<geometry, geometry>) returns boolean
 ```
 True if the first object covers the second
 
-## st_difference
+## `st_difference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5952,7 +5952,7 @@ function st_difference(<geography, geography>) returns geography
 ```
 Geometry representing the set difference a minus b
 
-## st_dimension
+## `st_dimension`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5965,7 +5965,7 @@ function st_dimension(<geometry>) returns decimal(38, 0)
 ```
 The dimension of the input geometry
 
-## st_disjoint
+## `st_disjoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5978,7 +5978,7 @@ function st_disjoint(<geometry, geometry>) returns boolean
 ```
 True if the two objects not intersect
 
-## st_distance
+## `st_distance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5991,7 +5991,7 @@ function st_distance(<geometry, geometry>) returns double
 ```
 Distance between two geometries in the same units as the input coordinates
 
-## st_dwithin
+## `st_dwithin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5999,7 +5999,7 @@ function st_dwithin(<geography, geography, double>) returns boolean
 ```
 True if the minimum distance between two objects is smaller than or equal to the specified distance in meters
 
-## st_endpoint
+## `st_endpoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6012,7 +6012,7 @@ function st_endpoint(<geometry>) returns geometry
 ```
 The last point in the geometry, only supports LineStrings
 
-## st_envelope
+## `st_envelope`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6025,7 +6025,7 @@ function st_envelope(<geometry>) returns geometry
 ```
 the shape of the minimum bounding box of the supplied geometry
 
-## st_geogfromewkb
+## `st_geogfromewkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6048,7 +6048,7 @@ function st_geogfromewkb(<binary, boolean>) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMWKB
 
-## st_geogfromewkt
+## `st_geogfromewkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6061,7 +6061,7 @@ function st_geogfromewkt(<varchar, boolean>) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMTEXT
 
-## st_geogfromgeohash
+## `st_geogfromgeohash`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6074,7 +6074,7 @@ function st_geogfromgeohash(<varchar>) returns geography
 ```
 The geography represented by the geohash
 
-## st_geogfromtext
+## `st_geogfromtext`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6087,7 +6087,7 @@ function st_geogfromtext(<varchar, boolean>) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMTEXT
 
-## st_geogfromwkb
+## `st_geogfromwkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6110,7 +6110,7 @@ function st_geogfromwkb(<binary, boolean>) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMWKB
 
-## st_geogfromwkt
+## `st_geogfromwkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6123,7 +6123,7 @@ function st_geogfromwkt(<varchar, boolean>) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMTEXT
 
-## st_geogpointfromgeohash
+## `st_geogpointfromgeohash`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6131,7 +6131,7 @@ function st_geogpointfromgeohash(<varchar>) returns geography
 ```
 The point represented by the geohash
 
-## st_geographyfromewkb
+## `st_geographyfromewkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6154,7 +6154,7 @@ function st_geographyfromewkb(<binary, boolean>) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMWKB
 
-## st_geographyfromewkt
+## `st_geographyfromewkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6167,7 +6167,7 @@ function st_geographyfromewkt(<varchar, boolean>) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMTEXT
 
-## st_geographyfromtext
+## `st_geographyfromtext`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6180,7 +6180,7 @@ function st_geographyfromtext(<varchar, boolean>) returns geography
 ```
 Parse WKT or EWKT
 
-## st_geographyfromwkb
+## `st_geographyfromwkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6203,7 +6203,7 @@ function st_geographyfromwkb(<binary, boolean>) returns geography
 ```
 Parse WKB or EWKB
 
-## st_geographyfromwkt
+## `st_geographyfromwkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6216,7 +6216,7 @@ function st_geographyfromwkt(<varchar, boolean>) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMTEXT
 
-## st_geohash
+## `st_geohash`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6229,7 +6229,7 @@ function st_geohash(<geography>) returns varchar
 ```
 The geohash of a geography
 
-## st_geometryfromewkb
+## `st_geometryfromewkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6272,7 +6272,7 @@ function st_geometryfromewkb(<binary, boolean>) returns geometry
 ```
 Parse EWKB from binary
 
-## st_geometryfromewkt
+## `st_geometryfromewkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6295,7 +6295,7 @@ function st_geometryfromewkt(<varchar, boolean>) returns geometry
 ```
 Parse EWKT
 
-## st_geometryfromtext
+## `st_geometryfromtext`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6328,7 +6328,7 @@ function st_geometryfromtext(<varchar, boolean>) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
-## st_geometryfromwkb
+## `st_geometryfromwkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6391,7 +6391,7 @@ function st_geometryfromwkb(<binary, boolean>) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
-## st_geometryfromwkt
+## `st_geometryfromwkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6414,7 +6414,7 @@ function st_geometryfromwkt(<varchar, boolean>) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
-## st_geomfromewkb
+## `st_geomfromewkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6457,7 +6457,7 @@ function st_geomfromewkb(<binary, boolean>) returns geometry
 ```
 Alias of ST_GEOMETRYFROMEWKB
 
-## st_geomfromewkt
+## `st_geomfromewkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6480,7 +6480,7 @@ function st_geomfromewkt(<varchar, boolean>) returns geometry
 ```
 Alias of ST_GEOMETRYFROMEWKT
 
-## st_geomfromtext
+## `st_geomfromtext`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6503,7 +6503,7 @@ function st_geomfromtext(<varchar, boolean>) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
-## st_geomfromwkb
+## `st_geomfromwkb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6546,7 +6546,7 @@ function st_geomfromwkb(<binary, boolean>) returns geometry
 ```
 Alias of ST_GEOMETRYFROMWKB
 
-## st_geomfromwkt
+## `st_geomfromwkt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6569,7 +6569,7 @@ function st_geomfromwkt(<varchar, boolean>) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
-## st_geompoint
+## `st_geompoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6577,7 +6577,7 @@ function st_geompoint(<double, double>) returns geometry
 ```
 Creates a point with the given x and y
 
-## st_hausdorffdistance
+## `st_hausdorffdistance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6585,7 +6585,7 @@ function st_hausdorffdistance(<geography, geography>) returns double
 ```
 the Hausdorff distance between two geometries
 
-## st_intersection
+## `st_intersection`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6593,7 +6593,7 @@ function st_intersection(<geography, geography>) returns geography
 ```
 Geometry representing the intersection of a and b
 
-## st_intersection_agg_geography_internal
+## `st_intersection_agg_geography_internal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6601,7 +6601,7 @@ function st_intersection_agg_geography_internal(<binary>) returns binary
 ```
 output
 
-## st_intersects
+## `st_intersects`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6614,7 +6614,7 @@ function st_intersects(<geometry, geometry>) returns boolean
 ```
 True if the two objects intersect
 
-## st_isrepaired
+## `st_isrepaired`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6622,7 +6622,7 @@ function st_isrepaired(<geometry>) returns boolean
 ```
 Return true if geometry was repaired on construction
 
-## st_isvalid
+## `st_isvalid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6635,7 +6635,7 @@ function st_isvalid(<geometry>) returns boolean
 ```
 Return true if geometry is valid
 
-## st_length
+## `st_length`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6648,7 +6648,7 @@ function st_length(<geometry>) returns double
 ```
 Length of the geometry in the same units as the input coordinates
 
-## st_makegeompoint
+## `st_makegeompoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6656,7 +6656,7 @@ function st_makegeompoint(<double, double>) returns geometry
 ```
 Creates a point with the given x and y
 
-## st_makeline
+## `st_makeline`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6669,7 +6669,7 @@ function st_makeline(<geometry, geometry>) returns geometry
 ```
 Create a LineString out of the points in the input geographies
 
-## st_makepoint
+## `st_makepoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6677,7 +6677,7 @@ function st_makepoint(<double, double>) returns geography
 ```
 Creates a point with the given longitude and latitude
 
-## st_makepolygon
+## `st_makepolygon`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6690,7 +6690,7 @@ function st_makepolygon(<geometry>) returns geometry
 ```
 The Polygon consisting of the LineString as outer shell
 
-## st_makepolygonoriented
+## `st_makepolygonoriented`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6698,7 +6698,7 @@ function st_makepolygonoriented(<geography>) returns geography
 ```
 The Polygon consisting of the LineString as outer shell, with unmodified orientation
 
-## st_npoints
+## `st_npoints`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6711,7 +6711,7 @@ function st_npoints(<geometry>) returns decimal(38, 0)
 ```
 The number of points in the geometry
 
-## st_numpoints
+## `st_numpoints`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6724,7 +6724,7 @@ function st_numpoints(<geometry>) returns decimal(38, 0)
 ```
 Alias for ST_NPOINTS
 
-## st_perimeter
+## `st_perimeter`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6737,7 +6737,7 @@ function st_perimeter(<geometry>) returns double
 ```
 Perimeter of the geometry in the same units as the input coordinates
 
-## st_point
+## `st_point`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6745,7 +6745,7 @@ function st_point(<double, double>) returns geography
 ```
 Creates a point with the given longitude and latitude
 
-## st_pointn
+## `st_pointn`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6758,7 +6758,7 @@ function st_pointn(<geometry, decimal(38, 0)>) returns geometry
 ```
 The nth point in the geometry, only supports LineStrings
 
-## st_polygon
+## `st_polygon`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6771,7 +6771,7 @@ function st_polygon(<geometry>) returns geometry
 ```
 Alias for ST_MAKEPOLYGON
 
-## st_setsrid
+## `st_setsrid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6779,7 +6779,7 @@ function st_setsrid(<geometry, decimal(38, 0)>) returns geometry
 ```
 Returns a geometry same as input geometry but with SRID set to the given value
 
-## st_simplify
+## `st_simplify`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6797,7 +6797,7 @@ function st_simplify(<geometry, double>) returns geometry
 ```
 Returns the geometry generated by the simplify operation upon the given input geometry using the given distance, or NULL if the resulting geometry is invalid
 
-## st_srid
+## `st_srid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6810,7 +6810,7 @@ function st_srid(<geometry>) returns decimal(38, 0)
 ```
 Returns the SRID of a geometry if present. Otherwise 0
 
-## st_startpoint
+## `st_startpoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6823,7 +6823,7 @@ function st_startpoint(<geometry>) returns geometry
 ```
 The first point in the geometry, only supports LineStrings
 
-## st_symdifference
+## `st_symdifference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6831,7 +6831,7 @@ function st_symdifference(<geography, geography>) returns geography
 ```
 Geometry representing the set symmetric difference a minus b
 
-## st_transform
+## `st_transform`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6844,7 +6844,7 @@ function st_transform(<geometry, decimal(38, 0)>) returns geometry
 ```
 Returns the geometry transformed to another SRID.
 
-## st_union
+## `st_union`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6852,7 +6852,7 @@ function st_union(<geography, geography>) returns geography
 ```
 Geometry representing the union of a and b
 
-## st_union_agg_geography_internal
+## `st_union_agg_geography_internal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6860,7 +6860,7 @@ function st_union_agg_geography_internal(<binary>) returns binary
 ```
 output
 
-## st_within
+## `st_within`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6873,7 +6873,7 @@ function st_within(<geometry, geometry>) returns boolean
 ```
 True if the second object fully contains the first
 
-## st_x
+## `st_x`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6886,7 +6886,7 @@ function st_x(<geometry>) returns double
 ```
 The X coordinate of a point
 
-## st_xmax
+## `st_xmax`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6899,7 +6899,7 @@ function st_xmax(<geometry>) returns double
 ```
 The maximum X coordinate
 
-## st_xmin
+## `st_xmin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6912,7 +6912,7 @@ function st_xmin(<geometry>) returns double
 ```
 The minimum X coordinate
 
-## st_y
+## `st_y`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6925,7 +6925,7 @@ function st_y(<geometry>) returns double
 ```
 The Y coordinate of a point
 
-## st_ymax
+## `st_ymax`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6938,7 +6938,7 @@ function st_ymax(<geometry>) returns double
 ```
 The maximum Y coordinate
 
-## st_ymin
+## `st_ymin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6951,7 +6951,7 @@ function st_ymin(<geometry>) returns double
 ```
 The minimum Y coordinate
 
-## stage_directory_file_registration_history
+## `stage_directory_file_registration_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6968,7 +6968,7 @@ function stage_directory_file_registration_history<$1> (<stage_name string>) ret
 ```
 
 
-## stage_storage_usage_history
+## `stage_storage_usage_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6979,7 +6979,7 @@ function stage_storage_usage_history<$1, $2> (<>) returns struct<usage_date date
 ```
 
 
-## startswith
+## `startswith`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -6992,7 +6992,7 @@ function startswith(<binary, binary>) returns boolean
 ```
 returns TRUE if arg1 starts with arg2
 
-## stddev
+## `stddev`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7005,7 +7005,7 @@ function stddev(<double>) returns double
 ```
 Returns the sample standard deviation of the values in a group. Null values are ignored.
 
-## stddev_pop
+## `stddev_pop`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7018,7 +7018,7 @@ function stddev_pop(<double>) returns double
 ```
 Returns the population standard deviation of the values in a group. Null values are ignored.
 
-## stddev_samp
+## `stddev_samp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7031,7 +7031,7 @@ function stddev_samp(<double>) returns double
 ```
 Returns the sample standard deviation of the values in a group. Null values are ignored.
 
-## string_as_binary
+## `string_as_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7039,7 +7039,7 @@ function string_as_binary(<varchar>) returns binary
 ```
 Returns the input interpreted as a binary.
 
-## strip_null_value
+## `strip_null_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7047,7 +7047,7 @@ function strip_null_value(<variant>) returns variant
 ```
 Converts null values to SQL NULLs
 
-## strtok
+## `strtok`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7065,7 +7065,7 @@ function strtok(<varchar, varchar, decimal(38, 0)>) returns varchar
 ```
 Tokenizes a string with a delimiter and returns the requested part
 
-## strtok_split_to_table
+## `strtok_split_to_table`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7073,7 +7073,7 @@ function strtok_split_to_table(string, ...) returns struct<seq int, index int, v
 ```
 
 
-## strtok_to_array
+## `strtok_to_array`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7086,7 +7086,7 @@ function strtok_to_array(<varchar, varchar>) returns array
 ```
 Return tokenized string as array
 
-## substr
+## `substr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7109,7 +7109,7 @@ function substr(<binary, decimal(38, 0), decimal(38, 0)>) returns binary
 ```
 Returns string fragment of the input string
 
-## substring
+## `substring`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7132,7 +7132,7 @@ function substring(<binary, decimal(38, 0), decimal(38, 0)>) returns binary
 ```
 Returns string fragment of the input string
 
-## sum
+## `sum`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7145,7 +7145,7 @@ function sum(<double>) returns double
 ```
 Returns a sum of a column
 
-## sum_internal
+## `sum_internal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7158,7 +7158,7 @@ function sum_internal(<double, decimal(38, 0)>) returns double
 ```
 Returns a sum of a column
 
-## sysdate
+## `sysdate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7166,7 +7166,7 @@ function sysdate(<>) returns timestamp
 ```
 Returns the current timestamp in the UTC time zone
 
-## system$abort_session
+## `system$abort_session`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7174,7 +7174,7 @@ function system$abort_session(<decimal(38, 0)>) returns varchar
 ```
 Abort the specified open session
 
-## system$abort_transaction
+## `system$abort_transaction`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7182,7 +7182,7 @@ function system$abort_transaction(<decimal(38, 0)>) returns varchar
 ```
 Abort the specified transaction if it is running. If the transaction is already is committed/rolled back then the state of the transaction is not altered.
 
-## system$add_reference
+## `system$add_reference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7190,7 +7190,7 @@ function system$add_reference(<varchar, varchar>) returns varchar
 ```
 Returns whether the persisted reference is successfully associated
 
-## system$app_validate_permission_request
+## `system$app_validate_permission_request`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7198,7 +7198,7 @@ function system$app_validate_permission_request(<varchar>) returns varchar
 ```
 response message
 
-## system$behavior_change_bundle_status
+## `system$behavior_change_bundle_status`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7206,7 +7206,7 @@ function system$behavior_change_bundle_status(<varchar>) returns varchar
 ```
 returned value
 
-## system$cancel_all_queries
+## `system$cancel_all_queries`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7219,7 +7219,7 @@ function system$cancel_all_queries(<decimal(38, 0)>) returns varchar
 ```
 cancel all the queries running in the specified session
 
-## system$cancel_job
+## `system$cancel_job`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7227,7 +7227,7 @@ function system$cancel_job(<varchar>) returns varchar
 ```
 status
 
-## system$cancel_query
+## `system$cancel_query`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7235,7 +7235,7 @@ function system$cancel_query(<varchar>) returns varchar
 ```
 cancel the specified running query
 
-## system$clustering_depth
+## `system$clustering_depth`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7253,7 +7253,7 @@ function system$clustering_depth(varchar, varchar, varchar, ...) returns double
 ```
 Average depth of the table
 
-## system$clustering_information
+## `system$clustering_information`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7281,7 +7281,7 @@ function system$clustering_information(varchar, decimal(38, 0), ...) returns var
 ```
 returns clustering information as json
 
-## system$clustering_ratio
+## `system$clustering_ratio`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7299,7 +7299,7 @@ function system$clustering_ratio(varchar, varchar, varchar, ...) returns double
 ```
 Clustering ratio for the specified table
 
-## system$convert_global_secondary_share_to_rg_replica
+## `system$convert_global_secondary_share_to_rg_replica`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7307,7 +7307,7 @@ function system$convert_global_secondary_share_to_rg_replica(<varchar, varchar, 
 ```
 Returns success/fail message of the operation
 
-## system$convert_pipes_sqs_to_sns
+## `system$convert_pipes_sqs_to_sns`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7315,7 +7315,7 @@ function system$convert_pipes_sqs_to_sns(<varchar, varchar>) returns varchar
 ```
 returns true if all SQS pipes' metadata based on this bucket are successfully converted to new SNS topic-based pipes.
 
-## system$convert_primary_database_for_replication_group
+## `system$convert_primary_database_for_replication_group`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7323,7 +7323,7 @@ function system$convert_primary_database_for_replication_group(<varchar>) return
 ```
 Returns success/fail message of the operation
 
-## system$convert_primary_share_for_replication_group
+## `system$convert_primary_share_for_replication_group`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7331,7 +7331,7 @@ function system$convert_primary_share_for_replication_group(<varchar>) returns v
 ```
 Returns success/fail message of the operation
 
-## system$convert_secondary_database_for_replication_group
+## `system$convert_secondary_database_for_replication_group`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7339,7 +7339,7 @@ function system$convert_secondary_database_for_replication_group(<varchar>) retu
 ```
 Returns success/fail message of the operation
 
-## system$convert_secondary_share_for_replication_group
+## `system$convert_secondary_share_for_replication_group`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7347,7 +7347,7 @@ function system$convert_secondary_share_for_replication_group(<varchar>) returns
 ```
 Returns success/fail message of the operation
 
-## system$disable_database_replication
+## `system$disable_database_replication`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7355,7 +7355,7 @@ function system$disable_database_replication(<varchar>) returns varchar
 ```
 Returns success/fail message of the operation
 
-## system$estimate_query_acceleration
+## `system$estimate_query_acceleration`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7363,7 +7363,7 @@ function system$estimate_query_acceleration(<varchar>) returns varchar
 ```
 estimate query acceleration result
 
-## system$estimate_search_optimization_costs
+## `system$estimate_search_optimization_costs`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7376,7 +7376,7 @@ function system$estimate_search_optimization_costs(<varchar, varchar>) returns v
 ```
 result: the cost report result for search optimization on the given table
 
-## system$explain_json_to_text
+## `system$explain_json_to_text`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7384,7 +7384,7 @@ function system$explain_json_to_text(<varchar>) returns varchar
 ```
 text format explain plan from json
 
-## system$explain_plan_json
+## `system$explain_plan_json`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7392,7 +7392,7 @@ function system$explain_plan_json(<varchar>) returns varchar
 ```
 json of the explain plan result
 
-## system$external_table_pipe_status
+## `system$external_table_pipe_status`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7400,7 +7400,7 @@ function system$external_table_pipe_status(<varchar>) returns varchar
 ```
 returns pipe status as json
 
-## system$generate_saml_csr
+## `system$generate_saml_csr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7408,7 +7408,7 @@ function system$generate_saml_csr(<>) returns varchar
 ```
 returns the result of the operation.
 
-## system$get_account_locator_url
+## `system$get_account_locator_url`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7416,7 +7416,7 @@ function system$get_account_locator_url(<>) returns varchar
 ```
 Returns default locator url for the current account 
 
-## system$get_all_references
+## `system$get_all_references`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7424,7 +7424,7 @@ function system$get_all_references(<varchar>) returns varchar
 ```
 Returns all persisted references under the definition
 
-## system$get_aws_sns_iam_policy
+## `system$get_aws_sns_iam_policy`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7432,7 +7432,7 @@ function system$get_aws_sns_iam_policy(<varchar>) returns varchar
 ```
 returns IAM policy for the SNS topic
 
-## system$get_dependent_iceberg_tables
+## `system$get_dependent_iceberg_tables`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7440,7 +7440,7 @@ function system$get_dependent_iceberg_tables(<varchar>) returns varchar
 ```
 returns the list of Dependent Iceberg table fully qualified names
 
-## system$get_directory_table_status
+## `system$get_directory_table_status`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7453,7 +7453,7 @@ function system$get_directory_table_status(<varchar>) returns varchar
 ```
 returns the associated directory table status
 
-## system$get_iceberg_table_information
+## `system$get_iceberg_table_information`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7476,7 +7476,7 @@ function system$get_iceberg_table_information(<decimal(38, 0), decimal(38, 0)>) 
 ```
 returns the latest Iceberg metadata information
 
-## system$get_image_repository_metadata
+## `system$get_image_repository_metadata`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7484,7 +7484,7 @@ function system$get_image_repository_metadata(<varchar, varchar>) returns varcha
 ```
 return JSON RepositoryMetadata, if caller has access
 
-## system$get_job_logs
+## `system$get_job_logs`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7497,7 +7497,7 @@ function system$get_job_logs(<varchar, varchar, decimal(38, 0)>) returns varchar
 ```
 return status of operation
 
-## system$get_job_logs_s3
+## `system$get_job_logs_s3`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7505,7 +7505,7 @@ function system$get_job_logs_s3(<varchar, varchar>) returns varchar
 ```
 return status of operation
 
-## system$get_job_status
+## `system$get_job_status`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7518,7 +7518,7 @@ function system$get_job_status(<varchar, decimal(38, 0)>) returns varchar
 ```
 return service resource set status
 
-## system$get_predecessor_return_value
+## `system$get_predecessor_return_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7531,7 +7531,7 @@ function system$get_predecessor_return_value(<varchar>) returns varchar
 ```
 Return data
 
-## system$get_referenced_object_id_hash
+## `system$get_referenced_object_id_hash`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7544,7 +7544,7 @@ function system$get_referenced_object_id_hash(<varchar, varchar>) returns varcha
 ```
 Returns the hashed associated object id with give reference definition name and alias (optional)
 
-## system$get_service_logs
+## `system$get_service_logs`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7557,7 +7557,7 @@ function system$get_service_logs(<varchar, decimal(38, 0), varchar, decimal(38, 
 ```
 return status of operation
 
-## system$get_service_logs_s3
+## `system$get_service_logs_s3`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7565,7 +7565,7 @@ function system$get_service_logs_s3(<varchar, varchar, varchar>) returns varchar
 ```
 return status of operation
 
-## system$get_service_status
+## `system$get_service_status`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7578,7 +7578,7 @@ function system$get_service_status(<$1, decimal(38, 0)>) returns varchar
 ```
 return service resource set status
 
-## system$get_share_refresh_missing_objects
+## `system$get_share_refresh_missing_objects`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7586,7 +7586,7 @@ function system$get_share_refresh_missing_objects(<varchar>) returns varchar
 ```
 returns the missing underlying objects for the most recent share refresh task for a share
 
-## system$get_tag
+## `system$get_tag`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7594,7 +7594,7 @@ function system$get_tag(<>) returns varchar
 ```
 Returns the associated tag value
 
-## system$get_tag_allowed_values
+## `system$get_tag_allowed_values`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7602,7 +7602,7 @@ function system$get_tag_allowed_values(<>) returns varchar
 ```
 Returns the allowed values for a tag
 
-## system$get_tag_on_current_column
+## `system$get_tag_on_current_column`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7610,7 +7610,7 @@ function system$get_tag_on_current_column(<>) returns varchar
 ```
 Returns the associated tag value
 
-## system$get_tag_on_current_table
+## `system$get_tag_on_current_table`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7618,7 +7618,7 @@ function system$get_tag_on_current_table(<>) returns varchar
 ```
 Returns the associated tag value on the current table
 
-## system$get_task_graph_config
+## `system$get_task_graph_config`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7631,7 +7631,7 @@ function system$get_task_graph_config(<varchar>) returns varchar
 ```
 Result
 
-## system$global_account_set_parameter
+## `system$global_account_set_parameter`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7639,7 +7639,7 @@ function system$global_account_set_parameter(<varchar, varchar, varchar>) return
 ```
 param set result from the account
 
-## system$hold_privilege_on_account
+## `system$hold_privilege_on_account`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7647,7 +7647,7 @@ function system$hold_privilege_on_account(<varchar>) returns boolean
 ```
 Return true if any activated role contains the given privilege
 
-## system$iceberg_table_auto_refresh_status
+## `system$iceberg_table_auto_refresh_status`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7655,7 +7655,7 @@ function system$iceberg_table_auto_refresh_status(<varchar>) returns varchar
 ```
 returns pipe status as json
 
-## system$last_change_commit_time
+## `system$last_change_commit_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7663,7 +7663,7 @@ function system$last_change_commit_time(<varchar>) returns decimal(38, 0)
 ```
 returns the largest commit time as a long.
 
-## system$md5_number
+## `system$md5_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7676,7 +7676,7 @@ function system$md5_number(<binary>) returns decimal(38, 0)
 ```
 Integral MD5 digest
 
-## system$migrate_saml_idp_registration
+## `system$migrate_saml_idp_registration`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7689,7 +7689,7 @@ function system$migrate_saml_idp_registration(<varchar, varchar>) returns varcha
 ```
 Returns the result of the operation.
 
-## system$pipe_force_resume
+## `system$pipe_force_resume`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7702,7 +7702,7 @@ function system$pipe_force_resume(<varchar, varchar>) returns varchar
 ```
 returns result of operation
 
-## system$pipe_rebinding_with_notification_channel
+## `system$pipe_rebinding_with_notification_channel`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7710,7 +7710,7 @@ function system$pipe_rebinding_with_notification_channel(<varchar>) returns varc
 ```
 returns true if the pipe successfully rebinds with its assigned notification channel
 
-## system$pipe_status
+## `system$pipe_status`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7718,7 +7718,7 @@ function system$pipe_status(<varchar>) returns varchar
 ```
 returns pipe status as json
 
-## system$query_reference
+## `system$query_reference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7731,7 +7731,7 @@ function system$query_reference(<varchar, boolean>) returns varchar
 ```
 Returns the query reference identifier
 
-## system$reference
+## `system$reference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7764,7 +7764,7 @@ function system$reference(varchar, varchar, varchar, varchar, ...) returns varch
 ```
 Returns the reference identifier
 
-## system$remove_all_delegated_authorizations
+## `system$remove_all_delegated_authorizations`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7772,7 +7772,7 @@ function system$remove_all_delegated_authorizations(<varchar>) returns varchar
 ```
 The Username.
 
-## system$remove_all_references
+## `system$remove_all_references`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7780,7 +7780,7 @@ function system$remove_all_references(<varchar>) returns varchar
 ```
 Returns whether all the Persisted references are successfully dropped under the ref name
 
-## system$remove_reference
+## `system$remove_reference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7793,7 +7793,7 @@ function system$remove_reference(<varchar, varchar>) returns varchar
 ```
 Returns whether the Persisted reference is successfully dropped
 
-## system$run_query_with_session_token
+## `system$run_query_with_session_token`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7806,7 +7806,7 @@ function system$run_query_with_session_token(<varchar, varchar, varchar>) return
 ```
 return query response
 
-## system$set_reference
+## `system$set_reference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7814,7 +7814,7 @@ function system$set_reference(<varchar, varchar>) returns varchar
 ```
 Returns whether the persisted reference is successfully associated
 
-## system$set_return_value
+## `system$set_return_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7822,7 +7822,7 @@ function system$set_return_value(<varchar>) returns varchar
 ```
 Returns "OK" if succeeded
 
-## system$show_active_behavior_change_bundles
+## `system$show_active_behavior_change_bundles`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7830,7 +7830,7 @@ function system$show_active_behavior_change_bundles(<>) returns varchar
 ```
 returned value
 
-## system$snowpipe_streaming_update_channel_offset_token
+## `system$snowpipe_streaming_update_channel_offset_token`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7838,7 +7838,7 @@ function system$snowpipe_streaming_update_channel_offset_token(<varchar, varchar
 ```
 returns status of update
 
-## system$snowservices_resolve_ingress
+## `system$snowservices_resolve_ingress`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7846,7 +7846,7 @@ function system$snowservices_resolve_ingress(<varchar>) returns varchar
 ```
 json info for routing to snowservice ingress
 
-## system$stage_pipe_status
+## `system$stage_pipe_status`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7854,7 +7854,7 @@ function system$stage_pipe_status(<varchar>) returns varchar
 ```
 returns pipe status as json
 
-## system$streamlit_rerun
+## `system$streamlit_rerun`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7862,7 +7862,7 @@ function system$streamlit_rerun(<varchar>) returns boolean
 ```
 Rerun dispatch successful
 
-## system$task_dependents_enable
+## `system$task_dependents_enable`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7870,7 +7870,7 @@ function system$task_dependents_enable(<varchar>) returns varchar
 ```
 Returns "OK" if succeeded
 
-## system$task_runtime_info
+## `system$task_runtime_info`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7878,7 +7878,7 @@ function system$task_runtime_info(<varchar>) returns varchar
 ```
 result
 
-## system$typeof
+## `system$typeof`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7886,7 +7886,7 @@ function system$typeof(<$1>) returns varchar
 ```
 
 
-## system$ui_replication_information
+## `system$ui_replication_information`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7894,7 +7894,7 @@ function system$ui_replication_information(<>) returns varchar
 ```
 returns information about replication databases for the UI
 
-## system$user_task_cancel_ongoing_executions
+## `system$user_task_cancel_ongoing_executions`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7902,7 +7902,7 @@ function system$user_task_cancel_ongoing_executions(<varchar>) returns varchar
 ```
 Returns "OK" if succeeded
 
-## system$verify_external_oauth_token
+## `system$verify_external_oauth_token`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7910,7 +7910,7 @@ function system$verify_external_oauth_token(<>) returns varchar
 ```
 The OAuth Access Token.
 
-## system$wait
+## `system$wait`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7923,7 +7923,7 @@ function system$wait(<decimal(38, 0), varchar>) returns varchar
 ```
 Wait for a finite amount of time
 
-## systimestamp
+## `systimestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7931,7 +7931,7 @@ function systimestamp(<>) returns timestamp
 ```
 Returns the current timestamp
 
-## tag_references
+## `tag_references`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7951,7 +7951,7 @@ function tag_references(<string, string>) returns struct<
 ```
 
 
-## tag_references_all_columns
+## `tag_references_all_columns`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7971,7 +7971,7 @@ function tag_references_all_columns(<string, string>) returns struct<
 ```
 
 
-## tag_references_with_lineage
+## `tag_references_with_lineage`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -7995,7 +7995,7 @@ function tag_references_with_lineage(<string>) returns struct<
 ```
 
 
-## tan
+## `tan`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8003,7 +8003,7 @@ function tan(<double>) returns double
 ```
 Compute the tangent of the input expression (as radians).
 
-## tanh
+## `tanh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8011,7 +8011,7 @@ function tanh(<double>) returns double
 ```
 Compute the hyperbolic tangent of the input expression (as radians).
 
-## task_dependents
+## `task_dependents`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8033,7 +8033,7 @@ function task_dependents(<task_name string>) returns struct<
 ```
 
 
-## task_history
+## `task_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8066,7 +8066,7 @@ function task_history(<>) returns struct<
 ```
 
 
-## time
+## `time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8094,7 +8094,7 @@ function time(<variant>) returns time
 ```
 Converts the timestamp argument to a time
 
-## time_from_parts
+## `time_from_parts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8107,7 +8107,7 @@ function time_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decima
 ```
 Construct a time from individual components
 
-## time_slice
+## `time_slice`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8122,7 +8122,7 @@ function time_slice<$1> (<$1, bigint, string, string>) returns $1
 ```
 
 
-## timeadd
+## `timeadd`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8132,7 +8132,7 @@ function timeadd<$1> (<string, double, $1>) returns $1
 ```
 
 
-## timediff
+## `timediff`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8142,7 +8142,7 @@ function timediff<$1> (<string, $1, $1>) returns bigint
 ```
 
 
-## timefromparts
+## `timefromparts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8155,7 +8155,7 @@ function timefromparts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(
 ```
 Construct a time from individual components
 
-## timestamp_from_parts
+## `timestamp_from_parts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8178,7 +8178,7 @@ function timestamp_from_parts(<date, time>) returns timestamp
 ```
 Construct a timestamp from individual components
 
-## timestamp_ltz_from_parts
+## `timestamp_ltz_from_parts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8191,7 +8191,7 @@ function timestamp_ltz_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0
 ```
 Construct a timestamp from individual components
 
-## timestamp_ntz_from_parts
+## `timestamp_ntz_from_parts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8209,7 +8209,7 @@ function timestamp_ntz_from_parts(<date, time>) returns timestamp
 ```
 Construct a timestamp from individual components
 
-## timestamp_tz_from_parts
+## `timestamp_tz_from_parts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8227,7 +8227,7 @@ function timestamp_tz_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0)
 ```
 Construct a timestamp from individual components
 
-## timestampdiff
+## `timestampdiff`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8237,7 +8237,7 @@ function timestampdiff<$1> (<string, $1, $1>) returns bigint
 ```
 
 
-## timestampfromparts
+## `timestampfromparts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8260,7 +8260,7 @@ function timestampfromparts(<date, time>) returns timestamp
 ```
 Construct a timestamp from individual components
 
-## timestampltzfromparts
+## `timestampltzfromparts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8273,7 +8273,7 @@ function timestampltzfromparts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), 
 ```
 Construct a timestamp from individual components
 
-## timestampntzfromparts
+## `timestampntzfromparts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8291,7 +8291,7 @@ function timestampntzfromparts(<date, time>) returns timestamp
 ```
 Construct a timestamp from individual components
 
-## timestamptzfromparts
+## `timestamptzfromparts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8309,7 +8309,7 @@ function timestamptzfromparts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), d
 ```
 Construct a timestamp from individual components
 
-## tmp_search_fix_900259
+## `tmp_search_fix_900259`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8322,7 +8322,7 @@ function tmp_search_fix_900259(<array, varchar, varchar>) returns boolean
 ```
 Indicates whether the row in question satisfies the query in at least one of the specified columns and variant paths.
 
-## to_array
+## `to_array`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8330,7 +8330,7 @@ function to_array(<$1>) returns array
 ```
 
 
-## to_binary
+## `to_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8343,7 +8343,7 @@ function to_binary(<$1, string>) returns binary
 ```
 
 
-## to_boolean
+## `to_boolean`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8351,7 +8351,7 @@ function to_boolean(<$1>) returns boolean
 ```
 
 
-## to_char
+## `to_char`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8364,7 +8364,7 @@ function to_char(<$1>) returns string
 ```
 
 
-## to_date
+## `to_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8377,7 +8377,7 @@ function to_date(<$1, string>) returns datetime
 ```
 
 
-## to_decimal
+## `to_decimal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8400,7 +8400,7 @@ function to_decimal(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
-## to_double
+## `to_double`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8408,7 +8408,7 @@ function to_double(<$1>) returns double
 ```
 
 
-## to_geggraphy
+## `to_geggraphy`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8416,7 +8416,7 @@ function to_geggraphy(<$1>) returns geography
 ```
 
 
-## to_geography
+## `to_geography`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8459,7 +8459,7 @@ function to_geography(<binary, boolean>) returns geography
 ```
 Parses binary input in WKB format into a GEOGRAPHY object
 
-## to_geometry
+## `to_geometry`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8557,7 +8557,7 @@ function to_geometry(<binary, boolean>) returns geometry
 ```
 Parses binary input in WKB format into a GEOMETRY object
 
-## to_json
+## `to_json`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8565,7 +8565,7 @@ function to_json(<variant>) returns varchar
 ```
 Convert variant data to string as JSON
 
-## to_number
+## `to_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8578,7 +8578,7 @@ function to_number(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
-## to_object
+## `to_object`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8586,7 +8586,7 @@ function to_object(<$1>) returns object
 ```
 
 
-## to_time
+## `to_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8599,7 +8599,7 @@ function to_time(<$1, string>) returns time
 ```
 
 
-## to_timestamp
+## `to_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8612,7 +8612,7 @@ function to_timestamp(<$1, string>) returns timestamp
 ```
 
 
-## to_timestamp_ltz
+## `to_timestamp_ltz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8625,7 +8625,7 @@ function to_timestamp_ltz(<$1, string>) returns timestamp
 ```
 
 
-## to_timestamp_ntz
+## `to_timestamp_ntz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8638,7 +8638,7 @@ function to_timestamp_ntz(<$1, string>) returns timestamp
 ```
 
 
-## to_timestamp_tz
+## `to_timestamp_tz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8651,7 +8651,7 @@ function to_timestamp_tz(<$1, string>) returns timestamp
 ```
 
 
-## to_varchar
+## `to_varchar`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8664,7 +8664,7 @@ function to_varchar(<$1, string>) returns string
 ```
 
 
-## to_variant
+## `to_variant`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8672,7 +8672,7 @@ function to_variant(<$1>) returns variant
 ```
 
 
-## to_xml
+## `to_xml`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8680,7 +8680,7 @@ function to_xml(<variant>) returns varchar
 ```
 Convert variant data to string as XML
 
-## translate
+## `translate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8688,7 +8688,7 @@ function translate(<varchar, varchar, varchar>) returns varchar
 ```
 replaces all occurences of each character of the source alphabet in the subject with the corresponding character in the target alphabet
 
-## trim
+## `trim`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8701,7 +8701,7 @@ function trim(<varchar, varchar>) returns varchar
 ```
 return string trimmed from both sides
 
-## trunc
+## `trunc`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8739,7 +8739,7 @@ function trunc(<timestamp, varchar>) returns timestamp
 ```
 truncate the fractional or date part
 
-## truncate
+## `truncate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8777,7 +8777,7 @@ function truncate(<timestamp, varchar>) returns timestamp
 ```
 truncate the fractional or date part
 
-## try_base64_decode_binary
+## `try_base64_decode_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8790,7 +8790,7 @@ function try_base64_decode_binary(<varchar, varchar>) returns binary
 ```
 return decoded binary
 
-## try_base64_decode_string
+## `try_base64_decode_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8803,7 +8803,7 @@ function try_base64_decode_string(<varchar, varchar>) returns varchar
 ```
 return decoded string
 
-## try_decrypt
+## `try_decrypt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8836,7 +8836,7 @@ function try_decrypt(<binary, varchar, varchar, varchar>) returns binary
 ```
 decrypted binary string (return)
 
-## try_decrypt_raw
+## `try_decrypt_raw`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8864,7 +8864,7 @@ function try_decrypt_raw(<binary, binary, binary, binary, varchar, binary>) retu
 ```
 decrypted binary string (return)
 
-## try_hex_decode_binary
+## `try_hex_decode_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8872,7 +8872,7 @@ function try_hex_decode_binary(<varchar>) returns binary
 ```
 return decoded binary
 
-## try_hex_decode_string
+## `try_hex_decode_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8880,7 +8880,7 @@ function try_hex_decode_string(<varchar>) returns varchar
 ```
 return decoded string
 
-## try_parse_ip
+## `try_parse_ip`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8888,7 +8888,7 @@ function try_parse_ip(<varchar, varchar>) returns object
 ```
 Returns an object with all the components of the IP
 
-## try_parse_json
+## `try_parse_json`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8896,7 +8896,7 @@ function try_parse_json(<varchar>) returns variant
 ```
 Parses string as a JSON document
 
-## try_to_binary
+## `try_to_binary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8909,7 +8909,7 @@ function try_to_binary(<string, string>) returns binary
 ```
 
 
-## try_to_boolean
+## `try_to_boolean`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8917,7 +8917,7 @@ function try_to_boolean(<$1>) returns boolean
 ```
 
 
-## try_to_date
+## `try_to_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8930,7 +8930,7 @@ function try_to_date(<$1, string>) returns datetime
 ```
 
 
-## try_to_decimal
+## `try_to_decimal`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8953,7 +8953,7 @@ function try_to_decimal(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
-## try_to_double
+## `try_to_double`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -8961,7 +8961,7 @@ function try_to_double(<$1>) returns double
 ```
 
 
-## try_to_geography
+## `try_to_geography`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9004,7 +9004,7 @@ function try_to_geography(<binary, boolean>) returns geography
 ```
 Tries to parse binary input in WKB format into a GEOGRAPHY object
 
-## try_to_geometry
+## `try_to_geometry`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9102,7 +9102,7 @@ function try_to_geometry(<binary, boolean>) returns geometry
 ```
 Tries to parse binary input in WKB format into a GEOMETRY object
 
-## try_to_number
+## `try_to_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9120,7 +9120,7 @@ function try_to_number(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 Convert anything to a number
 
-## try_to_numeric
+## `try_to_numeric`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9138,7 +9138,7 @@ function try_to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 Convert anything to a number
 
-## try_to_time
+## `try_to_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9151,7 +9151,7 @@ function try_to_time(<$1, string>) returns time
 ```
 
 
-## try_to_timestamp
+## `try_to_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9164,7 +9164,7 @@ function try_to_timestamp(<$1, string>) returns timestamp
 ```
 
 
-## try_to_timestamp_ntz
+## `try_to_timestamp_ntz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9177,7 +9177,7 @@ function try_to_timestamp_ntz(<$1, string>) returns timestamp
 ```
 
 
-## try_to_timestamp_tz
+## `try_to_timestamp_tz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9190,7 +9190,7 @@ function try_to_timestamp_tz(<$1, string>) returns timestamp
 ```
 
 
-## try_validate_utf8
+## `try_validate_utf8`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9198,7 +9198,7 @@ function try_validate_utf8(<varchar>) returns varchar
 ```
 return the input string if valid UTF8 otherwise null
 
-## typeof
+## `typeof`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9206,7 +9206,7 @@ function typeof(<variant>) returns varchar
 ```
 Returns SQL type word of a variant value
 
-## unicode
+## `unicode`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9214,7 +9214,7 @@ function unicode(<varchar>) returns decimal(38, 0)
 ```
 Returns the Unicode code point of the first character of the string
 
-## uniform
+## `uniform`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9227,7 +9227,7 @@ function uniform(<double, double, decimal(38, 0)>) returns double
 ```
 Returns a uniform random distribution
 
-## upper
+## `upper`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9235,7 +9235,7 @@ function upper(<varchar>) returns varchar
 ```
 return string with all characters in uppercase
 
-## uuid_string
+## `uuid_string`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9248,7 +9248,7 @@ function uuid_string(<varchar, varchar>) returns varchar
 ```
 Returns a pseudo-randomly generated (version 4) UUID.
 
-## validate
+## `validate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9289,7 +9289,7 @@ function validate(<job_id string>) returns struct<
 ```
 
 
-## validate_pipe_load
+## `validate_pipe_load`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9311,7 +9311,7 @@ function validate_pipe_load(<pipe_name string, start_time timestamp>) returns st
 ```
 
 
-## validate_stage_location_against_integration
+## `validate_stage_location_against_integration`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9324,7 +9324,7 @@ function validate_stage_location_against_integration(<varchar, varchar, varchar>
 ```
 returns whether a stage location is allowed or blocked by the integration
 
-## var_pop
+## `var_pop`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9337,7 +9337,7 @@ function var_pop(<double>) returns double
 ```
 Returns the population variance of the values in a group. Null values are ignored.
 
-## var_samp
+## `var_samp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9350,7 +9350,7 @@ function var_samp(<double>) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
-## variance
+## `variance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9363,7 +9363,7 @@ function variance(<double>) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
-## variance_pop
+## `variance_pop`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9376,7 +9376,7 @@ function variance_pop(<double>) returns double
 ```
 Returns the population variance of the values in a group. Null values are ignored.
 
-## variance_samp
+## `variance_samp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9389,7 +9389,7 @@ function variance_samp(<double>) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
-## vector_cosine_distance
+## `vector_cosine_distance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9397,7 +9397,7 @@ function vector_cosine_distance(<array, array>) returns double
 ```
 Cosine distance between vectors
 
-## vector_inner_product
+## `vector_inner_product`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9405,7 +9405,7 @@ function vector_inner_product(<array, array>) returns double
 ```
 Inner product between vectors
 
-## vector_l2_distance
+## `vector_l2_distance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9413,7 +9413,7 @@ function vector_l2_distance(<array, array>) returns double
 ```
 L2 distance between vectors
 
-## warehouse_load_history
+## `warehouse_load_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9431,7 +9431,7 @@ function warehouse_load_history<$1, $2> (<>) returns struct<start_time timestamp
 ```
 
 
-## warehouse_metering_history
+## `warehouse_metering_history`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9448,7 +9448,7 @@ function warehouse_metering_history<$1, $2> (<>) returns struct<start_time times
 ```
 
 
-## week
+## `week`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9456,7 +9456,7 @@ function week(<$1>) returns bigint
 ```
 
 
-## weekiso
+## `weekiso`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9464,7 +9464,7 @@ function weekiso(<$1>) returns bigint
 ```
 
 
-## weekofyear
+## `weekofyear`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9472,7 +9472,7 @@ function weekofyear(<$1>) returns bigint
 ```
 
 
-## width_bucket
+## `width_bucket`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9485,7 +9485,7 @@ function width_bucket(<double, double, double, decimal(38, 0)>) returns decimal(
 ```
 returns the bucket a value falls into in an equiwidth histogram
 
-## xmlget
+## `xmlget`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9508,7 +9508,7 @@ function xmlget(<object, varchar>) returns object
 ```
 Get XML element object by XML tag name
 
-## year
+## `year`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9516,7 +9516,7 @@ function year(<$1>) returns bigint
 ```
 
 
-## yearofweek
+## `yearofweek`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9524,7 +9524,7 @@ function yearofweek(<$1>) returns bigint
 ```
 
 
-## yearofweekiso
+## `yearofweekiso`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9537,7 +9537,7 @@ function yearofweekiso(<$1>) returns bigint
 ```
 
 
-## zeroifnull
+## `zeroifnull`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9550,7 +9550,7 @@ function zeroifnull(<double>) returns double
 ```
 Converts to zero if the input is NULL
 
-## zipf
+## `zipf`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -9558,5 +9558,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.023 secs
+   Finished man in 0.056 secs
 

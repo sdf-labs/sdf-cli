@@ -14,22 +14,28 @@ title: "SDF YML Schema"
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files Todo why do we skip this serialization?|
 `dialect:` | `UNKNOWN`| The dialect of this workspace. If not set, defaults to Presto dialect|
+`compute:` | `UNKNOWN`| The compute platform for this workspace. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
 `default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
 `default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
 `source-locations:` | `array`| Workspace defined by these set of files|
-`variables:` | `array`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, an in Jinja as {{ dt }}|
+`preprocessor:` | `Preprocessor?`| Experimental: This project has jinja, sql_vars, and sql_macros|
+`default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
 `is-dbt-project:` | `boolean?`| Experimental: This is a dbt project..|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| undefined|
 `description:` | `string?`| undefined|
-`dialect:` | `Dialect?`| An array of sql file names [Typically inferred]|
+`dialect:` | `Dialect?`| The dialect of this table, defaults to `presto`|
+`compute:` | `ComputeKind?`| The compute platform for evaluating the query populating this table, defaults to `local`|
 `table-type:` | `TableType?`| The table-type of this table|
 `dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `array`| The partitioning format of the table|
+`default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
+`constraints:` | `array`| undefined|
 `schedule:` | `string`| The schedule of the table [expressed as cron]|
 `starting:` | `string`| The first date of the table [expressed by prefixes of RFC 33]|
 `classifiers:` | `array`| An array of classifier references|
@@ -102,7 +108,8 @@ Value | Description|
 `temporary-view` | Session scoped temporary table views [Spark specific]|
 `recursive` | Recursive warehouse tables [SDF specific]|
 `system` | System tables (like sdf.information-schema.*)|
-`managed` | A managed table is managed by an external table provider like Iceberg, Glue, etc|
+`remote-external` | A root table that is managed by an external table provider like Iceberg, Glue, Snowflake, Redshift, etc|
+`remote-table` | A derived table that is managed by an external compute platform like Snowflake, Redshift, etc|
 `code-contract` | A table representing a code contract query|
 `data-contract` | A table representing a data contract query|
 `code-report` | A table representing a code report|
@@ -137,9 +144,13 @@ Value | Description|
 `default-catalog:` | `string?`| Defines a default catalog for unqualified names. If not set, defaults to the [Workspace] catalog.|
 `default-schema:` | `string?`| Defines a default schema for unqualified names. If not set, defaults to the [Workspace] schema.|
 `dialect:` | `Dialect?`| The dialect of the included files. If not set, defaults to the [Workspace] dialect.|
+`compute:` | `ComputeKind?`| The compute platform for building the included files. If not set, defaults to the [Workspace] compute platform.|
 `index:` | `UNKNOWN`| Index method for this include path: scan | table | schema-table | catalog-schema-table|
 `sync:` | `UNKNOWN`| Synchronization schema for this include path: always | on-pull | on-push | never|
 ### Nested element: `Dialect`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+### Nested element: `ComputeKind`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 ### Nested element: `IndexMethod`
@@ -168,12 +179,15 @@ Value | Description|
 | :---- | :--- | :------- |
 `secs_since_epoch:` | `integer`| undefined|
 `nanos_since_epoch:` | `integer`| undefined|
-### Nested element: `Variable`
+### Nested element: `Constant`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the variable|
-`description:` | `string?`| undefined|
-`value:` | `string?`| The value of this variable (using sql/yaml literals)|
+### Nested element: `Preprocessor`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+### Nested element: `Severity`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `Profile`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -184,13 +198,16 @@ Value | Description|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files|
-`dialect:` | `UNKNOWN`| The dialect of this workspace. If not set, defaults to Presto dialect|
+`dialect:` | `UNKNOWN`| The dialect of this profile. If not set, defaults to Presto dialect|
+`compute:` | `UNKNOWN`| The compute platform for this profile. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
 `default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, an in Jinja as {{ dt }}|
 `default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
 `source-locations:` | `array`| Workspace defined by these set of files|
-`variables:` | `array`| An array of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt|
-`is-dbt-project:` | `boolean?`| Experimental: This is a dbt project..|
+`preprocessor:` | `Preprocessor?`| Experimental: This project has jinja|
+`default-severity:` | `UNKNOWN`| Experimental: This is a dbt project.. The default severity for this tables tests and checks|
+`is-dbt-project:` | `boolean?`| undefined|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -201,6 +218,8 @@ Value | Description|
 `lineage:` | `Lineage?`| Lineage, a tagged array of column references|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `samples:` | `array`| An array of representative literals of this column [experimental!]|
+`default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
+`constraints:` | `array`| undefined|
 ### Nested element: `Lineage`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -213,6 +232,12 @@ Value | Description|
 | :---- | :--- | :------- |
 `to:` | `string?`| Target classifier|
 `from:` | `string?`| Expected source classifier|
+### Nested element: `Constraint`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of the constraint|
+`test:` | `string`| The type of the constraint|
+`severity:` | `UNKNOWN`| The columns that the constraint applies to|
 ### Nested element: `Partition`
 |Field | Type | Description|
 | :---- | :--- | :------- |

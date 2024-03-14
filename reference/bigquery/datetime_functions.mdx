@@ -2,7 +2,7 @@
 title: "Datetime Functions"
 ---
 
-## current_datetime
+## `current_datetime`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#current_datetime)
 
 ```sql
@@ -15,7 +15,7 @@ function current_datetime(<string>) returns datetime
 ```
 
 
-## datetime
+## `datetime`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime)
 
 ```sql
@@ -43,7 +43,7 @@ function datetime(<timestamp, string>) returns datetime
 ```
 
 
-## datetime_add
+## `datetime_add`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_add)
 
 ```sql
@@ -52,7 +52,7 @@ function datetime_add<$1> (<$1, interval>) returns $1
 ```
 
 
-## datetime_diff
+## `datetime_diff`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_diff)
 
 ```sql
@@ -62,7 +62,7 @@ function datetime_diff<$1> (<$1, $1, part string>) returns bigint
 ```
 
 
-## datetime_sub
+## `datetime_sub`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_sub)
 
 ```sql
@@ -71,7 +71,7 @@ function datetime_sub<$1> (<$1, interval>) returns $1
 ```
 
 
-## datetime_trunc
+## `datetime_trunc`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#datetime_trunc)
 
 ```sql
@@ -81,7 +81,7 @@ function datetime_trunc<$1> (<$1, date_time_part string>) returns $1
 ```
 
 
-## format_datetime
+## `format_datetime`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#format_datetime)
 
 ```sql
@@ -90,7 +90,7 @@ function format_datetime<$1> (<string, $1>) returns string
 ```
 
 
-## parse_datetime
+## `parse_datetime`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions#parse_datetime)
 
 ```sql
@@ -98,5 +98,5 @@ function parse_datetime(<string, string>) returns datetime
 ```
 
 
-   Finished man in 0.007 secs
+   Finished man in 0.008 secs
 

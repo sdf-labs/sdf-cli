@@ -2,7 +2,7 @@
 title: "Temporal Functions"
 ---
 
-## add_months
+## `add_months`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -15,7 +15,7 @@ function add_months(<timestamp, bigint>) returns timestamp
 ```
 
 
-## convert_timezone
+## `convert_timezone`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -28,7 +28,7 @@ function convert_timezone(<varchar, varchar, varchar>) returns timestamp
 ```
 
 
-## current_date
+## `current_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -36,7 +36,7 @@ function current_date(<>) returns date
 ```
 
 
-## current_datetime
+## `current_datetime`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -44,7 +44,7 @@ function current_datetime(<>) returns timestamp
 ```
 
 
-## current_time
+## `current_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -52,7 +52,7 @@ function current_time(<>) returns time
 ```
 
 
-## date
+## `date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -60,7 +60,7 @@ function date(<$1>) returns date
 ```
 
 
-## date_cmp
+## `date_cmp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -68,7 +68,7 @@ function date_cmp(<varchar, varchar>) returns bigint
 ```
 
 
-## date_cmp_timestamp
+## `date_cmp_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -76,7 +76,7 @@ function date_cmp_timestamp(<varchar, varchar>) returns bigint
 ```
 
 
-## date_cmp_timestampz
+## `date_cmp_timestampz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -84,7 +84,7 @@ function date_cmp_timestampz(<varchar, varchar>) returns bigint
 ```
 
 
-## date_part
+## `date_part`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -93,7 +93,7 @@ function date_part(<varchar, varchar>) returns float
 ```
 
 
-## date_part_year
+## `date_part_year`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -101,7 +101,7 @@ function date_part_year(<varchar>) returns bigint
 ```
 
 
-## dateadd
+## `dateadd`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -111,7 +111,7 @@ function dateadd<$1> (<varchar, bigint, $1>) returns date
 ```
 
 
-## datediff
+## `datediff`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -122,7 +122,7 @@ function datediff<$1, $2> (<varchar, $1, $2>) returns bigint
 ```
 
 
-## getdate
+## `getdate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -130,7 +130,7 @@ function getdate(<>) returns timestamp
 ```
 
 
-## sysdate
+## `sysdate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -138,7 +138,7 @@ function sysdate(<>) returns date
 ```
 
 
-## timeofday
+## `timeofday`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -146,7 +146,7 @@ function timeofday(<>) returns varchar
 ```
 
 
-## timestamp_cmp
+## `timestamp_cmp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -154,7 +154,7 @@ function timestamp_cmp(<varchar, varchar>) returns bigint
 ```
 
 
-## timestamp_cmp_date
+## `timestamp_cmp_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -162,7 +162,7 @@ function timestamp_cmp_date(<varchar, varchar>) returns bigint
 ```
 
 
-## timestamp_cmp_timestampz
+## `timestamp_cmp_timestampz`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -170,7 +170,7 @@ function timestamp_cmp_timestampz(<varchar, varchar>) returns bigint
 ```
 
 
-## timestampz_cmp
+## `timestampz_cmp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -178,7 +178,7 @@ function timestampz_cmp(<varchar, varchar>) returns bigint
 ```
 
 
-## timestampz_cmp_date
+## `timestampz_cmp_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -186,7 +186,7 @@ function timestampz_cmp_date(<varchar, varchar>) returns bigint
 ```
 
 
-## timestampz_cmp_timestamp
+## `timestampz_cmp_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -194,7 +194,7 @@ function timestampz_cmp_timestamp(<varchar, varchar>) returns bigint
 ```
 
 
-## timezone
+## `timezone`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -202,7 +202,7 @@ function timezone(<varchar, varchar>) returns timestamp
 ```
 
 
-## to_date
+## `to_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -215,7 +215,7 @@ function to_date(<varchar, varchar, boolean>) returns date
 ```
 
 
-## to_timestamp
+## `to_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql

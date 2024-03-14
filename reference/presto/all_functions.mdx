@@ -2,7 +2,7 @@
 title: "All Functions"
 ---
 
-## +
+## `+`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -11,7 +11,7 @@ function +<$1> (<time, $1>) returns time
 ```
 
 
-## -
+## `-`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -20,7 +20,7 @@ function -<$1> (<time, $1>) returns time
 ```
 
 
-## abs
+## `abs`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -53,7 +53,7 @@ function abs(<tinyint>) returns tinyint
 ```
 
 
-## acos
+## `acos`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -61,7 +61,7 @@ function acos(<double>) returns double
 ```
 
 
-## all_match
+## `all_match`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -69,7 +69,7 @@ function all_match(<array<$1>, function($1, boolean)>) returns boolean
 ```
 
 
-## any_match
+## `any_match`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -77,7 +77,7 @@ function any_match(<array<$1>, function($1, boolean)>) returns boolean
 ```
 
 
-## approx_distinct
+## `approx_distinct`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -110,7 +110,7 @@ function approx_distinct(<unknown, double>) returns bigint
 ```
 
 
-## approx_most_frequent
+## `approx_most_frequent`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -123,7 +123,7 @@ function approx_most_frequent(<bigint, varchar, bigint>) returns map<varchar, bi
 ```
 
 
-## approx_percentile
+## `approx_percentile`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -201,7 +201,7 @@ function approx_percentile(<real, double, double, double>) returns real
 ```
 
 
-## approx_set
+## `approx_set`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -219,7 +219,7 @@ function approx_set(<varchar>) returns hyperloglog
 ```
 
 
-## arbitrary
+## `arbitrary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -227,7 +227,7 @@ function arbitrary(<$1>) returns $1
 ```
 
 
-## array_agg
+## `array_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -235,7 +235,7 @@ function array_agg(<$1>) returns array<$1>
 ```
 
 
-## array_distinct
+## `array_distinct`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -243,7 +243,7 @@ function array_distinct(<array<$3>>) returns array<$3>
 ```
 
 
-## array_except
+## `array_except`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -251,7 +251,7 @@ function array_except(<array<$3>, array<$3>>) returns array<$3>
 ```
 
 
-## array_intersect
+## `array_intersect`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -259,7 +259,7 @@ function array_intersect(<array<$3>, array<$3>>) returns array<$3>
 ```
 
 
-## array_join
+## `array_join`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -272,7 +272,7 @@ function array_join(<array<$1>, varchar, varchar>) returns varchar
 ```
 
 
-## array_max
+## `array_max`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -280,7 +280,7 @@ function array_max(<array<$1>>) returns $1
 ```
 
 
-## array_min
+## `array_min`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -288,7 +288,7 @@ function array_min(<array<$1>>) returns $1
 ```
 
 
-## array_position
+## `array_position`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -296,7 +296,7 @@ function array_position(<array<$1>, $1>) returns bigint
 ```
 
 
-## array_remove
+## `array_remove`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -304,7 +304,7 @@ function array_remove(<array<$3>, $3>) returns array<$3>
 ```
 
 
-## array_sort
+## `array_sort`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -317,7 +317,7 @@ function array_sort(<array<$1>, function($1, $1, bigint)>) returns array<$1>
 ```
 
 
-## array_union
+## `array_union`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -325,7 +325,7 @@ function array_union(<array<$3>, array<$3>>) returns array<$3>
 ```
 
 
-## arrays_overlap
+## `arrays_overlap`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -333,7 +333,7 @@ function arrays_overlap(<array<$3>, array<$3>>) returns boolean
 ```
 
 
-## asin
+## `asin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -341,7 +341,7 @@ function asin(<double>) returns double
 ```
 
 
-## at_timezone
+## `at_timezone`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -349,7 +349,7 @@ function at_timezone(<timestamp(p), varchar>) returns timestamp(p)
 ```
 
 
-## atan
+## `atan`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -357,7 +357,7 @@ function atan(<double>) returns double
 ```
 
 
-## atan2
+## `atan2`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -365,7 +365,7 @@ function atan2(<double, double>) returns double
 ```
 
 
-## avg
+## `avg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -398,7 +398,7 @@ function avg(<real>) returns real
 ```
 
 
-## bar
+## `bar`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -411,7 +411,7 @@ function bar(<double, bigint, color, color>) returns varchar
 ```
 
 
-## beta_cdf
+## `beta_cdf`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -419,7 +419,7 @@ function beta_cdf(<double, double, double>) returns double
 ```
 
 
-## bing_tile
+## `bing_tile`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -432,7 +432,7 @@ function bing_tile(<varchar>) returns bingtile
 ```
 
 
-## bing_tile_at
+## `bing_tile_at`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -440,7 +440,7 @@ function bing_tile_at(<double, double, bigint>) returns bingtile
 ```
 
 
-## bing_tile_coordinates
+## `bing_tile_coordinates`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -448,7 +448,7 @@ function bing_tile_coordinates(<bingtile>) returns row(x bigint, y bigint)
 ```
 
 
-## bing_tile_polygon
+## `bing_tile_polygon`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -456,7 +456,7 @@ function bing_tile_polygon(<bingtile>) returns geometry
 ```
 
 
-## bing_tile_quadkey
+## `bing_tile_quadkey`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -464,7 +464,7 @@ function bing_tile_quadkey(<bingtile>) returns varchar
 ```
 
 
-## bing_tile_zoom_level
+## `bing_tile_zoom_level`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -472,7 +472,7 @@ function bing_tile_zoom_level(<bingtile>) returns tinyint
 ```
 
 
-## bing_tiles_around
+## `bing_tiles_around`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -485,7 +485,7 @@ function bing_tiles_around(<double, double, bigint, double>) returns array<bingt
 ```
 
 
-## bit_count
+## `bit_count`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -493,7 +493,7 @@ function bit_count(<bigint, bigint>) returns bigint
 ```
 
 
-## bitwise_and
+## `bitwise_and`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -501,7 +501,7 @@ function bitwise_and(<bigint, bigint>) returns bigint
 ```
 
 
-## bitwise_and_agg
+## `bitwise_and_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -509,7 +509,7 @@ function bitwise_and_agg(<bigint>) returns bigint
 ```
 
 
-## bitwise_left_shift
+## `bitwise_left_shift`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -532,7 +532,7 @@ function bitwise_left_shift(<tinyint, bigint>) returns tinyint
 ```
 
 
-## bitwise_not
+## `bitwise_not`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -540,7 +540,7 @@ function bitwise_not(<bigint>) returns bigint
 ```
 
 
-## bitwise_or
+## `bitwise_or`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -548,7 +548,7 @@ function bitwise_or(<bigint, bigint>) returns bigint
 ```
 
 
-## bitwise_or_agg
+## `bitwise_or_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -556,7 +556,7 @@ function bitwise_or_agg(<bigint>) returns bigint
 ```
 
 
-## bitwise_right_shift
+## `bitwise_right_shift`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -579,7 +579,7 @@ function bitwise_right_shift(<tinyint, bigint>) returns tinyint
 ```
 
 
-## bitwise_right_shift_arithmetic
+## `bitwise_right_shift_arithmetic`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -602,7 +602,7 @@ function bitwise_right_shift_arithmetic(<tinyint, bigint>) returns tinyint
 ```
 
 
-## bitwise_xor
+## `bitwise_xor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -610,7 +610,7 @@ function bitwise_xor(<bigint, bigint>) returns bigint
 ```
 
 
-## bool_and
+## `bool_and`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -618,7 +618,7 @@ function bool_and(<boolean>) returns boolean
 ```
 
 
-## bool_or
+## `bool_or`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -626,7 +626,7 @@ function bool_or(<boolean>) returns boolean
 ```
 
 
-## cardinality
+## `cardinality`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -649,7 +649,7 @@ function cardinality(<setdigest>) returns bigint
 ```
 
 
-## cbrt
+## `cbrt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -657,7 +657,7 @@ function cbrt(<double>) returns double
 ```
 
 
-## ceil
+## `ceil`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -695,7 +695,7 @@ function ceil(<tinyint>) returns tinyint
 ```
 
 
-## ceiling
+## `ceiling`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -733,7 +733,7 @@ function ceiling(<tinyint>) returns tinyint
 ```
 
 
-## char2hexint
+## `char2hexint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -741,7 +741,7 @@ function char2hexint(<varchar>) returns varchar
 ```
 
 
-## checksum
+## `checksum`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -749,7 +749,7 @@ function checksum(<$1>) returns varbinary
 ```
 
 
-## chr
+## `chr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -757,7 +757,7 @@ function chr(<bigint>) returns varchar
 ```
 
 
-## classify
+## `classify`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -770,7 +770,7 @@ function classify(<map<bigint, double>, classifier>) returns varchar
 ```
 
 
-## codepoint
+## `codepoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -778,7 +778,7 @@ function codepoint(<varchar>) returns bigint
 ```
 
 
-## color
+## `color`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -796,7 +796,7 @@ function color(<varchar>) returns color
 ```
 
 
-## combinations
+## `combinations`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -804,7 +804,7 @@ function combinations(<array<$1>, bigint>) returns array<array<$1>>
 ```
 
 
-## concat
+## `concat`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -837,7 +837,7 @@ function concat(<varchar>) returns varchar
 ```
 
 
-## concat_ws
+## `concat_ws`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -850,7 +850,7 @@ function concat_ws(<varchar, varchar>) returns varchar
 ```
 
 
-## contains
+## `contains`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -863,7 +863,7 @@ function contains(<varchar, ipaddress>) returns boolean
 ```
 
 
-## contains_sequence
+## `contains_sequence`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -871,7 +871,7 @@ function contains_sequence(<array<$1>, array<$1>>) returns boolean
 ```
 
 
-## convex_hull_agg
+## `convex_hull_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -879,7 +879,7 @@ function convex_hull_agg(<geometry>) returns geometry
 ```
 
 
-## corr
+## `corr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -892,7 +892,7 @@ function corr(<real, real>) returns real
 ```
 
 
-## cos
+## `cos`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -900,7 +900,7 @@ function cos(<double>) returns double
 ```
 
 
-## cosh
+## `cosh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -908,7 +908,7 @@ function cosh(<double>) returns double
 ```
 
 
-## cosine_similarity
+## `cosine_similarity`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -916,7 +916,7 @@ function cosine_similarity(<map<varchar, double>, map<varchar, double>>) returns
 ```
 
 
-## count
+## `count`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -929,7 +929,7 @@ function count(<$1>) returns bigint
 ```
 
 
-## count_if
+## `count_if`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -937,7 +937,7 @@ function count_if(<boolean>) returns bigint
 ```
 
 
-## covar_pop
+## `covar_pop`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -950,7 +950,7 @@ function covar_pop(<real, real>) returns real
 ```
 
 
-## covar_samp
+## `covar_samp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -963,7 +963,7 @@ function covar_samp(<real, real>) returns real
 ```
 
 
-## crc32
+## `crc32`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -971,7 +971,7 @@ function crc32(<varbinary>) returns bigint
 ```
 
 
-## cume_dist
+## `cume_dist`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -979,7 +979,7 @@ function cume_dist(<>) returns double
 ```
 
 
-## current_catalog
+## `current_catalog`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -987,7 +987,7 @@ function current_catalog(<>) returns varchar
 ```
 
 
-## current_date
+## `current_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -995,7 +995,7 @@ function current_date(<>) returns date
 ```
 
 
-## current_groups
+## `current_groups`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1003,7 +1003,7 @@ function current_groups(<>) returns array<varchar>
 ```
 
 
-## current_schema
+## `current_schema`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1011,7 +1011,7 @@ function current_schema(<>) returns varchar
 ```
 
 
-## current_time
+## `current_time`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1019,7 +1019,7 @@ function current_time(<>) returns time
 ```
 
 
-## current_timestamp
+## `current_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1047,7 +1047,7 @@ function current_timestamp(<9>) returns timestamp(9)
 ```
 
 
-## current_timezone
+## `current_timezone`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1055,7 +1055,7 @@ function current_timezone(<>) returns varchar
 ```
 
 
-## current_user
+## `current_user`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1063,7 +1063,7 @@ function current_user(<>) returns varchar
 ```
 
 
-## date
+## `date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1081,7 +1081,7 @@ function date(<varchar>) returns date
 ```
 
 
-## date_add
+## `date_add`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1109,7 +1109,7 @@ function date_add(<varchar, bigint, timestamp(p)>) returns timestamp(p)
 ```
 
 
-## date_diff
+## `date_diff`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1137,7 +1137,7 @@ function date_diff(<varchar, timestamp(p), timestamp(p)>) returns bigint
 ```
 
 
-## date_format
+## `date_format`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1150,7 +1150,7 @@ function date_format(<timestamp(p), varchar>) returns varchar
 ```
 
 
-## date_parse
+## `date_parse`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1158,7 +1158,7 @@ function date_parse(<varchar, varchar>) returns timestamp
 ```
 
 
-## date_trunc
+## `date_trunc`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1186,7 +1186,7 @@ function date_trunc(<varchar, timestamp(p)>) returns timestamp(p)
 ```
 
 
-## day
+## `day`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1209,7 +1209,7 @@ function day(<timestamp(p)>) returns bigint
 ```
 
 
-## day_of_month
+## `day_of_month`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1232,7 +1232,7 @@ function day_of_month(<timestamp(p)>) returns bigint
 ```
 
 
-## day_of_week
+## `day_of_week`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1250,7 +1250,7 @@ function day_of_week(<timestamp(p)>) returns bigint
 ```
 
 
-## day_of_year
+## `day_of_year`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1268,7 +1268,7 @@ function day_of_year(<timestamp(p)>) returns bigint
 ```
 
 
-## degrees
+## `degrees`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1276,7 +1276,7 @@ function degrees(<double>) returns double
 ```
 
 
-## dense_rank
+## `dense_rank`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1284,7 +1284,7 @@ function dense_rank(<>) returns bigint
 ```
 
 
-## dow
+## `dow`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1302,7 +1302,7 @@ function dow(<timestamp(p)>) returns bigint
 ```
 
 
-## doy
+## `doy`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1320,7 +1320,7 @@ function doy(<timestamp(p)>) returns bigint
 ```
 
 
-## e
+## `e`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1328,7 +1328,7 @@ function e(<>) returns double
 ```
 
 
-## element_at
+## `element_at`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1341,7 +1341,7 @@ function element_at(<array<$3>, bigint>) returns $3
 ```
 
 
-## empty_approx_set
+## `empty_approx_set`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1349,7 +1349,7 @@ function empty_approx_set(<>) returns hyperloglog
 ```
 
 
-## evaluate_classifier_predictions
+## `evaluate_classifier_predictions`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1362,7 +1362,7 @@ function evaluate_classifier_predictions(<varchar, varchar>) returns varchar
 ```
 
 
-## every
+## `every`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1370,7 +1370,7 @@ function every(<boolean>) returns boolean
 ```
 
 
-## exp
+## `exp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1378,7 +1378,7 @@ function exp(<double>) returns double
 ```
 
 
-## features
+## `features`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1431,7 +1431,7 @@ function features(<double, double, double, double, double, double, double, doubl
 ```
 
 
-## filter
+## `filter`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1439,7 +1439,7 @@ function filter(<array<$1>, function($1, boolean)>) returns array<$1>
 ```
 
 
-## first_value
+## `first_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1447,7 +1447,7 @@ function first_value(<$1>) returns $1
 ```
 
 
-## flatten
+## `flatten`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1455,7 +1455,7 @@ function flatten(<array<array<$3>>>) returns array<$3>
 ```
 
 
-## floor
+## `floor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1493,7 +1493,7 @@ function floor(<tinyint>) returns tinyint
 ```
 
 
-## format
+## `format`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1521,7 +1521,7 @@ function format(<varchar, $1, $2, $3, $4, $5>) returns varchar
 ```
 
 
-## format_datetime
+## `format_datetime`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1534,7 +1534,7 @@ function format_datetime(<timestamp(p), varchar>) returns varchar
 ```
 
 
-## format_number
+## `format_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1547,7 +1547,7 @@ function format_number(<double>) returns varchar
 ```
 
 
-## from_base
+## `from_base`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1555,7 +1555,7 @@ function from_base(<varchar, bigint>) returns bigint
 ```
 
 
-## from_base32
+## `from_base32`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1568,7 +1568,7 @@ function from_base32(<varchar>) returns varbinary
 ```
 
 
-## from_base64
+## `from_base64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1581,7 +1581,7 @@ function from_base64(<varchar>) returns varbinary
 ```
 
 
-## from_base64url
+## `from_base64url`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1594,7 +1594,7 @@ function from_base64url(<varchar>) returns varbinary
 ```
 
 
-## from_big_endian_32
+## `from_big_endian_32`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1602,7 +1602,7 @@ function from_big_endian_32(<varbinary>) returns bigint
 ```
 
 
-## from_big_endian_64
+## `from_big_endian_64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1610,7 +1610,7 @@ function from_big_endian_64(<varbinary>) returns bigint
 ```
 
 
-## from_encoded_polyline
+## `from_encoded_polyline`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1618,7 +1618,7 @@ function from_encoded_polyline(<varchar>) returns geometry
 ```
 
 
-## from_geojson_geometry
+## `from_geojson_geometry`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1626,7 +1626,7 @@ function from_geojson_geometry(<varchar>) returns sphericalgeography
 ```
 
 
-## from_hex
+## `from_hex`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1639,7 +1639,7 @@ function from_hex(<varchar>) returns varbinary
 ```
 
 
-## from_ieee754_32
+## `from_ieee754_32`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1647,7 +1647,7 @@ function from_ieee754_32(<varbinary>) returns real
 ```
 
 
-## from_ieee754_64
+## `from_ieee754_64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1655,7 +1655,7 @@ function from_ieee754_64(<varbinary>) returns double
 ```
 
 
-## from_iso8601_date
+## `from_iso8601_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1663,7 +1663,7 @@ function from_iso8601_date(<varchar>) returns date
 ```
 
 
-## from_iso8601_timestamp
+## `from_iso8601_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1671,7 +1671,7 @@ function from_iso8601_timestamp(<varchar>) returns timestamp
 ```
 
 
-## from_iso8601_timestamp_nanos
+## `from_iso8601_timestamp_nanos`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1679,7 +1679,7 @@ function from_iso8601_timestamp_nanos(<varchar>) returns timestamp(9)
 ```
 
 
-## from_unixtime
+## `from_unixtime`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1697,7 +1697,7 @@ function from_unixtime(<double, varchar>) returns timestamp
 ```
 
 
-## from_unixtime_nanos
+## `from_unixtime_nanos`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1710,7 +1710,7 @@ function from_unixtime_nanos(<decimal(p, s)>) returns timestamp(9)
 ```
 
 
-## from_utf8
+## `from_utf8`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1728,7 +1728,7 @@ function from_utf8(<varbinary, varchar>) returns varchar
 ```
 
 
-## geometric_mean
+## `geometric_mean`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1746,7 +1746,7 @@ function geometric_mean(<real>) returns real
 ```
 
 
-## geometry_from_hadoop_shape
+## `geometry_from_hadoop_shape`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1754,7 +1754,7 @@ function geometry_from_hadoop_shape(<varbinary>) returns geometry
 ```
 
 
-## geometry_invalid_reason
+## `geometry_invalid_reason`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1762,7 +1762,7 @@ function geometry_invalid_reason(<geometry>) returns varchar
 ```
 
 
-## geometry_nearest_points
+## `geometry_nearest_points`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1770,7 +1770,7 @@ function geometry_nearest_points(<geometry, geometry>) returns row(c0 geometry, 
 ```
 
 
-## geometry_to_bing_tiles
+## `geometry_to_bing_tiles`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1778,7 +1778,7 @@ function geometry_to_bing_tiles(<geometry, bigint>) returns array<bingtile>
 ```
 
 
-## geometry_union
+## `geometry_union`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1786,7 +1786,7 @@ function geometry_union(<array<geometry>>) returns geometry
 ```
 
 
-## geometry_union_agg
+## `geometry_union_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1794,7 +1794,7 @@ function geometry_union_agg(<geometry>) returns geometry
 ```
 
 
-## great_circle_distance
+## `great_circle_distance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1802,7 +1802,7 @@ function great_circle_distance(<double, double, double, double>) returns double
 ```
 
 
-## greatest
+## `greatest`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1810,7 +1810,7 @@ function greatest($3, ...) returns $3
 ```
 
 
-## hamming_distance
+## `hamming_distance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1818,7 +1818,7 @@ function hamming_distance(<varchar, varchar>) returns bigint
 ```
 
 
-## hash_counts
+## `hash_counts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1826,7 +1826,7 @@ function hash_counts(<setdigest>) returns map<bigint, smallint>
 ```
 
 
-## histogram
+## `histogram`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1834,7 +1834,7 @@ function histogram(<$1>) returns map<$1, bigint>
 ```
 
 
-## hmac_md5
+## `hmac_md5`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1842,7 +1842,7 @@ function hmac_md5(<varbinary, varbinary>) returns varbinary
 ```
 
 
-## hmac_sha1
+## `hmac_sha1`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1850,7 +1850,7 @@ function hmac_sha1(<varbinary, varbinary>) returns varbinary
 ```
 
 
-## hmac_sha256
+## `hmac_sha256`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1858,7 +1858,7 @@ function hmac_sha256(<varbinary, varbinary>) returns varbinary
 ```
 
 
-## hmac_sha512
+## `hmac_sha512`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1866,7 +1866,7 @@ function hmac_sha512(<varbinary, varbinary>) returns varbinary
 ```
 
 
-## hour
+## `hour`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1894,7 +1894,7 @@ function hour(<timestamp(p)>) returns bigint
 ```
 
 
-## human_readable_seconds
+## `human_readable_seconds`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1902,7 +1902,7 @@ function human_readable_seconds(<double>) returns varchar
 ```
 
 
-## if
+## `if`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1910,7 +1910,7 @@ function if(<boolean, $1, $1>) returns $1
 ```
 
 
-## index
+## `index`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1918,7 +1918,7 @@ function index(<varchar, varchar>) returns bigint
 ```
 
 
-## infinity
+## `infinity`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1926,7 +1926,7 @@ function infinity(<>) returns double
 ```
 
 
-## intersection_cardinality
+## `intersection_cardinality`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1934,7 +1934,7 @@ function intersection_cardinality(<setdigest, setdigest>) returns bigint
 ```
 
 
-## inverse_beta_cdf
+## `inverse_beta_cdf`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1942,7 +1942,7 @@ function inverse_beta_cdf(<double, double, double>) returns double
 ```
 
 
-## inverse_normal_cdf
+## `inverse_normal_cdf`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1950,7 +1950,7 @@ function inverse_normal_cdf(<double, double, double>) returns double
 ```
 
 
-## is_finite
+## `is_finite`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1958,7 +1958,7 @@ function is_finite(<double>) returns boolean
 ```
 
 
-## is_infinite
+## `is_infinite`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1966,7 +1966,7 @@ function is_infinite(<double>) returns boolean
 ```
 
 
-## is_json_scalar
+## `is_json_scalar`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1979,7 +1979,7 @@ function is_json_scalar(<varchar>) returns boolean
 ```
 
 
-## is_nan
+## `is_nan`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -1992,7 +1992,7 @@ function is_nan(<real>) returns boolean
 ```
 
 
-## jaccard_index
+## `jaccard_index`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2000,7 +2000,7 @@ function jaccard_index(<setdigest, setdigest>) returns double
 ```
 
 
-## json_array_contains
+## `json_array_contains`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2043,7 +2043,7 @@ function json_array_contains(<varchar, varchar>) returns boolean
 ```
 
 
-## json_array_get
+## `json_array_get`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2056,7 +2056,7 @@ function json_array_get(<varchar, bigint>) returns json
 ```
 
 
-## json_array_length
+## `json_array_length`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2069,7 +2069,7 @@ function json_array_length(<varchar>) returns bigint
 ```
 
 
-## json_extract
+## `json_extract`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2082,7 +2082,7 @@ function json_extract(<varchar, jsonpath>) returns json
 ```
 
 
-## json_extract_scalar
+## `json_extract_scalar`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2095,7 +2095,7 @@ function json_extract_scalar(<varchar, jsonpath>) returns varchar
 ```
 
 
-## json_format
+## `json_format`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2103,7 +2103,7 @@ function json_format(<json>) returns varchar
 ```
 
 
-## json_parse
+## `json_parse`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2111,7 +2111,7 @@ function json_parse(<varchar>) returns json
 ```
 
 
-## json_size
+## `json_size`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2124,7 +2124,7 @@ function json_size(<varchar, jsonpath>) returns bigint
 ```
 
 
-## kurtosis
+## `kurtosis`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2137,7 +2137,7 @@ function kurtosis(<double>) returns double
 ```
 
 
-## lag
+## `lag`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2155,7 +2155,7 @@ function lag(<$1, bigint, $1>) returns $1
 ```
 
 
-## last_day_of_month
+## `last_day_of_month`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2173,7 +2173,7 @@ function last_day_of_month(<timestamp(p)>) returns date
 ```
 
 
-## last_value
+## `last_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2181,7 +2181,7 @@ function last_value(<$1>) returns $1
 ```
 
 
-## lead
+## `lead`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2199,7 +2199,7 @@ function lead(<$1, bigint, $1>) returns $1
 ```
 
 
-## learn_classifier
+## `learn_classifier`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2217,7 +2217,7 @@ function learn_classifier(<varchar, map<bigint, double>>) returns classifier
 ```
 
 
-## learn_libsvm_classifier
+## `learn_libsvm_classifier`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2235,7 +2235,7 @@ function learn_libsvm_classifier(<varchar, map<bigint, double>, varchar>) return
 ```
 
 
-## learn_libsvm_regressor
+## `learn_libsvm_regressor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2248,7 +2248,7 @@ function learn_libsvm_regressor(<double, map<bigint, double>, varchar>) returns 
 ```
 
 
-## learn_regressor
+## `learn_regressor`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2261,7 +2261,7 @@ function learn_regressor(<double, map<bigint, double>>) returns regressor
 ```
 
 
-## least
+## `least`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2269,7 +2269,7 @@ function least($3, ...) returns $3
 ```
 
 
-## length
+## `length`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2287,7 +2287,7 @@ function length(<varchar>) returns bigint
 ```
 
 
-## levenshtein_distance
+## `levenshtein_distance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2295,7 +2295,7 @@ function levenshtein_distance(<varchar, varchar>) returns bigint
 ```
 
 
-## line_interpolate_point
+## `line_interpolate_point`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2303,7 +2303,7 @@ function line_interpolate_point(<geometry, double>) returns geometry
 ```
 
 
-## line_interpolate_points
+## `line_interpolate_points`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2311,7 +2311,7 @@ function line_interpolate_points(<geometry, double>) returns array<geometry>
 ```
 
 
-## line_locate_point
+## `line_locate_point`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2319,7 +2319,7 @@ function line_locate_point(<geometry, geometry>) returns double
 ```
 
 
-## listagg
+## `listagg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2327,7 +2327,7 @@ function listagg(<varchar, varchar, boolean, varchar, boolean>) returns varchar
 ```
 
 
-## ln
+## `ln`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2335,7 +2335,7 @@ function ln(<double>) returns double
 ```
 
 
-## localtime
+## `localtime`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2343,7 +2343,7 @@ function localtime(<>) returns time
 ```
 
 
-## localtimestamp
+## `localtimestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2371,7 +2371,7 @@ function localtimestamp(<9>) returns timestamp(9)
 ```
 
 
-## log
+## `log`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2379,7 +2379,7 @@ function log(<double, double>) returns double
 ```
 
 
-## log10
+## `log10`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2387,7 +2387,7 @@ function log10(<double>) returns double
 ```
 
 
-## log2
+## `log2`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2395,7 +2395,7 @@ function log2(<double>) returns double
 ```
 
 
-## lower
+## `lower`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2408,7 +2408,7 @@ function lower(<varchar>) returns varchar
 ```
 
 
-## lpad
+## `lpad`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2421,7 +2421,7 @@ function lpad(<varchar, bigint, varchar>) returns varchar
 ```
 
 
-## ltrim
+## `ltrim`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2444,7 +2444,7 @@ function ltrim(<varchar, codepoints>) returns varchar
 ```
 
 
-## luhn_check
+## `luhn_check`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2452,7 +2452,7 @@ function luhn_check(<varchar>) returns boolean
 ```
 
 
-## make_set_digest
+## `make_set_digest`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2460,7 +2460,7 @@ function make_set_digest(<$1>) returns setdigest
 ```
 
 
-## map
+## `map`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2473,7 +2473,7 @@ function map(<>) returns map<unknown, unknown>
 ```
 
 
-## map_agg
+## `map_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2481,7 +2481,7 @@ function map_agg(<$4, $5>) returns map<$4, $5>
 ```
 
 
-## map_concat
+## `map_concat`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2489,7 +2489,7 @@ function map_concat(map<$4, $5>, ...) returns map<$4, $5>
 ```
 
 
-## map_entries
+## `map_entries`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2497,7 +2497,7 @@ function map_entries(<map<$4, $5>>) returns array<row(c0 $4, c1 $5)>
 ```
 
 
-## map_filter
+## `map_filter`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2505,7 +2505,7 @@ function map_filter(<map<$4, $5>, function($4, $5, boolean)>) returns map<$4, $5
 ```
 
 
-## map_from_entries
+## `map_from_entries`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2513,7 +2513,7 @@ function map_from_entries(<array<row(c0 $4, c1 $5)>>) returns map<$4, $5>
 ```
 
 
-## map_keys
+## `map_keys`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2521,7 +2521,7 @@ function map_keys(<map<$4, $5>>) returns array<$4>
 ```
 
 
-## map_union
+## `map_union`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2529,7 +2529,7 @@ function map_union(<map<$4, $5>>) returns map<$4, $5>
 ```
 
 
-## map_values
+## `map_values`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2537,7 +2537,7 @@ function map_values(<map<$4, $5>>) returns array<$5>
 ```
 
 
-## map_zip_with
+## `map_zip_with`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2545,7 +2545,7 @@ function map_zip_with(<map<$4, $8>, map<$4, $7>, function($4, $8, $7, $6)>) retu
 ```
 
 
-## max
+## `max`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2558,7 +2558,7 @@ function max(<$1>) returns $1
 ```
 
 
-## max_by
+## `max_by`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2571,7 +2571,7 @@ function max_by(<$5, $4>) returns $5
 ```
 
 
-## md5
+## `md5`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2579,7 +2579,7 @@ function md5(<varbinary>) returns varbinary
 ```
 
 
-## merge
+## `merge`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2597,7 +2597,7 @@ function merge(<tdigest>) returns tdigest
 ```
 
 
-## merge_set_digest
+## `merge_set_digest`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2605,7 +2605,7 @@ function merge_set_digest(<setdigest>) returns setdigest
 ```
 
 
-## millisecond
+## `millisecond`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2633,7 +2633,7 @@ function millisecond(<timestamp(p)>) returns bigint
 ```
 
 
-## min
+## `min`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2646,7 +2646,7 @@ function min(<$1>) returns $1
 ```
 
 
-## min_by
+## `min_by`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2659,7 +2659,7 @@ function min_by(<$5, $4>) returns $5
 ```
 
 
-## minute
+## `minute`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2687,7 +2687,7 @@ function minute(<timestamp(p)>) returns bigint
 ```
 
 
-## mod
+## `mod`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2725,7 +2725,7 @@ function mod(<tinyint, tinyint>) returns tinyint
 ```
 
 
-## month
+## `month`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2748,7 +2748,7 @@ function month(<timestamp(p)>) returns bigint
 ```
 
 
-## multimap_agg
+## `multimap_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2756,7 +2756,7 @@ function multimap_agg(<$4, $5>) returns map<$4, array<$5>>
 ```
 
 
-## multimap_from_entries
+## `multimap_from_entries`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2764,7 +2764,7 @@ function multimap_from_entries(<array<row(c0 $4, c1 $5)>>) returns map<$4, array
 ```
 
 
-## murmur3
+## `murmur3`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2772,7 +2772,7 @@ function murmur3(<varbinary>) returns varbinary
 ```
 
 
-## nan
+## `nan`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2780,7 +2780,7 @@ function nan(<>) returns double
 ```
 
 
-## ngrams
+## `ngrams`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2788,7 +2788,7 @@ function ngrams(<array<$1>, bigint>) returns array<array<$1>>
 ```
 
 
-## none_match
+## `none_match`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2796,7 +2796,7 @@ function none_match(<array<$1>, function($1, boolean)>) returns boolean
 ```
 
 
-## normal_cdf
+## `normal_cdf`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2804,7 +2804,7 @@ function normal_cdf(<double, double, double>) returns double
 ```
 
 
-## normalize
+## `normalize`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2812,7 +2812,7 @@ function normalize(<varchar, varchar>) returns varchar
 ```
 
 
-## now
+## `now`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2820,7 +2820,7 @@ function now(<>) returns timestamp
 ```
 
 
-## nth_value
+## `nth_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2828,7 +2828,7 @@ function nth_value(<$1, bigint>) returns $1
 ```
 
 
-## ntile
+## `ntile`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2836,7 +2836,7 @@ function ntile(<bigint>) returns bigint
 ```
 
 
-## numeric_histogram
+## `numeric_histogram`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2859,7 +2859,7 @@ function numeric_histogram(<bigint, real, double>) returns map<real, real>
 ```
 
 
-## objectid
+## `objectid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2872,7 +2872,7 @@ function objectid(<varchar>) returns objectid
 ```
 
 
-## objectid_timestamp
+## `objectid_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2880,7 +2880,7 @@ function objectid_timestamp(<objectid>) returns timestamp
 ```
 
 
-## parse_data_size
+## `parse_data_size`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2888,7 +2888,7 @@ function parse_data_size(<varchar>) returns decimal(38, 0)
 ```
 
 
-## parse_datetime
+## `parse_datetime`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2896,7 +2896,7 @@ function parse_datetime(<varchar, varchar>) returns timestamp
 ```
 
 
-## parse_duration
+## `parse_duration`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2904,7 +2904,7 @@ function parse_duration(<varchar>) returns interval day to second
 ```
 
 
-## parse_presto_data_size
+## `parse_presto_data_size`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2912,7 +2912,7 @@ function parse_presto_data_size(<varchar>) returns decimal(38, 0)
 ```
 
 
-## percent_rank
+## `percent_rank`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2920,7 +2920,7 @@ function percent_rank(<>) returns double
 ```
 
 
-## pi
+## `pi`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2928,7 +2928,7 @@ function pi(<>) returns double
 ```
 
 
-## pow
+## `pow`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2936,7 +2936,7 @@ function pow(<double, double>) returns double
 ```
 
 
-## power
+## `power`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2944,7 +2944,7 @@ function power(<double, double>) returns double
 ```
 
 
-## qdigest_agg
+## `qdigest_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -2992,7 +2992,7 @@ function qdigest_agg(<real, bigint, double>) returns qdigest
 ```
 
 
-## quantile_at_value
+## `quantile_at_value`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3010,7 +3010,7 @@ function quantile_at_value(<qdigest, real>) returns double
 ```
 
 
-## quarter
+## `quarter`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3028,7 +3028,7 @@ function quarter(<timestamp(p)>) returns bigint
 ```
 
 
-## radians
+## `radians`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3036,7 +3036,7 @@ function radians(<double>) returns double
 ```
 
 
-## rand
+## `rand`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3084,7 +3084,7 @@ function rand(<tinyint, tinyint>) returns tinyint
 ```
 
 
-## random
+## `random`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3132,7 +3132,7 @@ function random(<tinyint, tinyint>) returns tinyint
 ```
 
 
-## rank
+## `rank`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3140,7 +3140,7 @@ function rank(<>) returns bigint
 ```
 
 
-## reclassify
+## `reclassify`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3159,7 +3159,7 @@ Changes the classification label of the first argument to the desired classifier
 ```sql example.sql
 select reclassify(12345, 'pii.masked') as value; -- value '12345' 
 ```
-## reduce
+## `reduce`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3167,7 +3167,7 @@ function reduce(<array<$1>, $10, function($10, $1, $10), function($10, $9)>) ret
 ```
 
 
-## reduce_agg
+## `reduce_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3175,7 +3175,7 @@ function reduce_agg(<$1, $10, function($10, $1, $10), function($10, $10, $10)>) 
 ```
 
 
-## regexp_count
+## `regexp_count`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3183,7 +3183,7 @@ function regexp_count(<varchar, joniregexp>) returns bigint
 ```
 
 
-## regexp_extract
+## `regexp_extract`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3196,7 +3196,7 @@ function regexp_extract(<varchar, joniregexp, bigint>) returns varchar
 ```
 
 
-## regexp_extract_all
+## `regexp_extract_all`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3209,7 +3209,7 @@ function regexp_extract_all(<varchar, joniregexp, bigint>) returns array<varchar
 ```
 
 
-## regexp_like
+## `regexp_like`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3217,7 +3217,7 @@ function regexp_like(<varchar, joniregexp>) returns boolean
 ```
 
 
-## regexp_position
+## `regexp_position`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3235,7 +3235,7 @@ function regexp_position(<varchar, joniregexp, bigint, bigint>) returns bigint
 ```
 
 
-## regexp_replace
+## `regexp_replace`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3253,7 +3253,7 @@ function regexp_replace(<varchar, joniregexp, varchar>) returns varchar
 ```
 
 
-## regexp_split
+## `regexp_split`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3261,7 +3261,7 @@ function regexp_split(<varchar, joniregexp>) returns array<varchar>
 ```
 
 
-## regr_intercept
+## `regr_intercept`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3274,7 +3274,7 @@ function regr_intercept(<real, real>) returns real
 ```
 
 
-## regr_slope
+## `regr_slope`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3287,7 +3287,7 @@ function regr_slope(<real, real>) returns real
 ```
 
 
-## regress
+## `regress`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3295,7 +3295,7 @@ function regress(<map<bigint, double>, regressor>) returns double
 ```
 
 
-## render
+## `render`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3318,7 +3318,7 @@ function render(<varchar, color>) returns varchar
 ```
 
 
-## repeat
+## `repeat`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3326,7 +3326,7 @@ function repeat(<$1, bigint>) returns array<$1>
 ```
 
 
-## replace
+## `replace`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3339,7 +3339,7 @@ function replace(<varchar, varchar>) returns varchar
 ```
 
 
-## reverse
+## `reverse`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3357,7 +3357,7 @@ function reverse(<varchar>) returns varchar
 ```
 
 
-## rgb
+## `rgb`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3365,7 +3365,7 @@ function rgb(<bigint, bigint, bigint>) returns color
 ```
 
 
-## round
+## `round`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3438,7 +3438,7 @@ function round(<tinyint, bigint>) returns tinyint
 ```
 
 
-## row_number
+## `row_number`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3446,7 +3446,7 @@ function row_number(<>) returns bigint
 ```
 
 
-## rpad
+## `rpad`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3459,7 +3459,7 @@ function rpad(<varchar, bigint, varchar>) returns varchar
 ```
 
 
-## rtrim
+## `rtrim`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3482,7 +3482,7 @@ function rtrim(<varchar, codepoints>) returns varchar
 ```
 
 
-## second
+## `second`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3510,7 +3510,7 @@ function second(<timestamp(p)>) returns bigint
 ```
 
 
-## sequence
+## `sequence`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3548,7 +3548,7 @@ function sequence(<timestamp(p), timestamp(p), interval year to month>) returns 
 ```
 
 
-## sha1
+## `sha1`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3556,7 +3556,7 @@ function sha1(<varbinary>) returns varbinary
 ```
 
 
-## sha256
+## `sha256`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3564,7 +3564,7 @@ function sha256(<varbinary>) returns varbinary
 ```
 
 
-## sha512
+## `sha512`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3572,7 +3572,7 @@ function sha512(<varbinary>) returns varbinary
 ```
 
 
-## shuffle
+## `shuffle`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3580,7 +3580,7 @@ function shuffle(<array<$3>>) returns array<$3>
 ```
 
 
-## sign
+## `sign`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3618,7 +3618,7 @@ function sign(<tinyint>) returns tinyint
 ```
 
 
-## simplify_geometry
+## `simplify_geometry`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3626,7 +3626,7 @@ function simplify_geometry(<geometry, double>) returns geometry
 ```
 
 
-## sin
+## `sin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3634,7 +3634,7 @@ function sin(<double>) returns double
 ```
 
 
-## sinh
+## `sinh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3642,7 +3642,7 @@ function sinh(<double>) returns double
 ```
 
 
-## skewness
+## `skewness`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3655,7 +3655,7 @@ function skewness(<double>) returns double
 ```
 
 
-## slice
+## `slice`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3663,7 +3663,7 @@ function slice(<array<$3>, bigint, bigint>) returns array<$3>
 ```
 
 
-## soundex
+## `soundex`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3671,7 +3671,7 @@ function soundex(<varchar>) returns varchar
 ```
 
 
-## spatial_partitioning
+## `spatial_partitioning`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3679,7 +3679,7 @@ function spatial_partitioning(<geometry>) returns varchar
 ```
 
 
-## spatial_partitions
+## `spatial_partitions`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3692,7 +3692,7 @@ function spatial_partitions(<kdbtree, geometry, double>) returns array<bigint>
 ```
 
 
-## split
+## `split`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3705,7 +3705,7 @@ function split(<varchar, varchar, bigint>) returns array<varchar>
 ```
 
 
-## split_part
+## `split_part`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3713,7 +3713,7 @@ function split_part(<varchar, varchar, bigint>) returns varchar
 ```
 
 
-## split_to_map
+## `split_to_map`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3721,7 +3721,7 @@ function split_to_map(<varchar, varchar, varchar>) returns map<varchar, varchar>
 ```
 
 
-## split_to_multimap
+## `split_to_multimap`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3729,7 +3729,7 @@ function split_to_multimap(<varchar, varchar, varchar>) returns map<varchar, arr
 ```
 
 
-## spooky_hash_v2_32
+## `spooky_hash_v2_32`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3737,7 +3737,7 @@ function spooky_hash_v2_32(<varbinary>) returns varbinary
 ```
 
 
-## spooky_hash_v2_64
+## `spooky_hash_v2_64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3745,7 +3745,7 @@ function spooky_hash_v2_64(<varbinary>) returns varbinary
 ```
 
 
-## sqrt
+## `sqrt`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3753,7 +3753,7 @@ function sqrt(<double>) returns double
 ```
 
 
-## st_area
+## `st_area`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3766,7 +3766,7 @@ function st_area(<sphericalgeography>) returns double
 ```
 
 
-## st_asbinary
+## `st_asbinary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3774,7 +3774,7 @@ function st_asbinary(<geometry>) returns varbinary
 ```
 
 
-## st_astext
+## `st_astext`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3782,7 +3782,7 @@ function st_astext(<geometry>) returns varchar
 ```
 
 
-## st_boundary
+## `st_boundary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3790,7 +3790,7 @@ function st_boundary(<geometry>) returns geometry
 ```
 
 
-## st_buffer
+## `st_buffer`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3798,7 +3798,7 @@ function st_buffer(<geometry, double>) returns geometry
 ```
 
 
-## st_centroid
+## `st_centroid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3806,7 +3806,7 @@ function st_centroid(<geometry>) returns geometry
 ```
 
 
-## st_contains
+## `st_contains`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3814,7 +3814,7 @@ function st_contains(<geometry, geometry>) returns boolean
 ```
 
 
-## st_convexhull
+## `st_convexhull`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3822,7 +3822,7 @@ function st_convexhull(<geometry>) returns geometry
 ```
 
 
-## st_coorddim
+## `st_coorddim`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3830,7 +3830,7 @@ function st_coorddim(<geometry>) returns tinyint
 ```
 
 
-## st_crosses
+## `st_crosses`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3838,7 +3838,7 @@ function st_crosses(<geometry, geometry>) returns boolean
 ```
 
 
-## st_difference
+## `st_difference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3846,7 +3846,7 @@ function st_difference(<geometry, geometry>) returns geometry
 ```
 
 
-## st_dimension
+## `st_dimension`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3854,7 +3854,7 @@ function st_dimension(<geometry>) returns tinyint
 ```
 
 
-## st_disjoint
+## `st_disjoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3862,7 +3862,7 @@ function st_disjoint(<geometry, geometry>) returns boolean
 ```
 
 
-## st_distance
+## `st_distance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3875,7 +3875,7 @@ function st_distance(<sphericalgeography, sphericalgeography>) returns double
 ```
 
 
-## st_endpoint
+## `st_endpoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3883,7 +3883,7 @@ function st_endpoint(<geometry>) returns geometry
 ```
 
 
-## st_envelope
+## `st_envelope`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3891,7 +3891,7 @@ function st_envelope(<geometry>) returns geometry
 ```
 
 
-## st_envelopeaspts
+## `st_envelopeaspts`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3899,7 +3899,7 @@ function st_envelopeaspts(<geometry>) returns array<geometry>
 ```
 
 
-## st_equals
+## `st_equals`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3907,7 +3907,7 @@ function st_equals(<geometry, geometry>) returns boolean
 ```
 
 
-## st_exteriorring
+## `st_exteriorring`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3915,7 +3915,7 @@ function st_exteriorring(<geometry>) returns geometry
 ```
 
 
-## st_geometries
+## `st_geometries`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3923,7 +3923,7 @@ function st_geometries(<geometry>) returns array<geometry>
 ```
 
 
-## st_geometryfromtext
+## `st_geometryfromtext`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3931,7 +3931,7 @@ function st_geometryfromtext(<varchar>) returns geometry
 ```
 
 
-## st_geometryn
+## `st_geometryn`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3939,7 +3939,7 @@ function st_geometryn(<geometry, bigint>) returns geometry
 ```
 
 
-## st_geometrytype
+## `st_geometrytype`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3947,7 +3947,7 @@ function st_geometrytype(<geometry>) returns varchar
 ```
 
 
-## st_geomfrombinary
+## `st_geomfrombinary`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3955,7 +3955,7 @@ function st_geomfrombinary(<varbinary>) returns geometry
 ```
 
 
-## st_interiorringn
+## `st_interiorringn`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3963,7 +3963,7 @@ function st_interiorringn(<geometry, bigint>) returns geometry
 ```
 
 
-## st_interiorrings
+## `st_interiorrings`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3971,7 +3971,7 @@ function st_interiorrings(<geometry>) returns array<geometry>
 ```
 
 
-## st_intersection
+## `st_intersection`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3979,7 +3979,7 @@ function st_intersection(<geometry, geometry>) returns geometry
 ```
 
 
-## st_intersects
+## `st_intersects`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3987,7 +3987,7 @@ function st_intersects(<geometry, geometry>) returns boolean
 ```
 
 
-## st_isclosed
+## `st_isclosed`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -3995,7 +3995,7 @@ function st_isclosed(<geometry>) returns boolean
 ```
 
 
-## st_isempty
+## `st_isempty`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4003,7 +4003,7 @@ function st_isempty(<geometry>) returns boolean
 ```
 
 
-## st_isring
+## `st_isring`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4011,7 +4011,7 @@ function st_isring(<geometry>) returns boolean
 ```
 
 
-## st_issimple
+## `st_issimple`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4019,7 +4019,7 @@ function st_issimple(<geometry>) returns boolean
 ```
 
 
-## st_isvalid
+## `st_isvalid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4027,7 +4027,7 @@ function st_isvalid(<geometry>) returns boolean
 ```
 
 
-## st_length
+## `st_length`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4040,7 +4040,7 @@ function st_length(<sphericalgeography>) returns double
 ```
 
 
-## st_linefromtext
+## `st_linefromtext`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4048,7 +4048,7 @@ function st_linefromtext(<varchar>) returns geometry
 ```
 
 
-## st_linestring
+## `st_linestring`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4056,7 +4056,7 @@ function st_linestring(<array<geometry>>) returns geometry
 ```
 
 
-## st_multipoint
+## `st_multipoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4064,7 +4064,7 @@ function st_multipoint(<array<geometry>>) returns geometry
 ```
 
 
-## st_numgeometries
+## `st_numgeometries`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4072,7 +4072,7 @@ function st_numgeometries(<geometry>) returns bigint
 ```
 
 
-## st_numinteriorring
+## `st_numinteriorring`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4080,7 +4080,7 @@ function st_numinteriorring(<geometry>) returns bigint
 ```
 
 
-## st_numpoints
+## `st_numpoints`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4088,7 +4088,7 @@ function st_numpoints(<geometry>) returns bigint
 ```
 
 
-## st_overlaps
+## `st_overlaps`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4096,7 +4096,7 @@ function st_overlaps(<geometry, geometry>) returns boolean
 ```
 
 
-## st_point
+## `st_point`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4104,7 +4104,7 @@ function st_point(<double, double>) returns geometry
 ```
 
 
-## st_pointn
+## `st_pointn`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4112,7 +4112,7 @@ function st_pointn(<geometry, bigint>) returns geometry
 ```
 
 
-## st_points
+## `st_points`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4120,7 +4120,7 @@ function st_points(<geometry>) returns array<geometry>
 ```
 
 
-## st_polygon
+## `st_polygon`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4128,7 +4128,7 @@ function st_polygon(<varchar>) returns geometry
 ```
 
 
-## st_relate
+## `st_relate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4136,7 +4136,7 @@ function st_relate(<geometry, geometry, varchar>) returns boolean
 ```
 
 
-## st_startpoint
+## `st_startpoint`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4144,7 +4144,7 @@ function st_startpoint(<geometry>) returns geometry
 ```
 
 
-## st_symdifference
+## `st_symdifference`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4152,7 +4152,7 @@ function st_symdifference(<geometry, geometry>) returns geometry
 ```
 
 
-## st_touches
+## `st_touches`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4160,7 +4160,7 @@ function st_touches(<geometry, geometry>) returns boolean
 ```
 
 
-## st_union
+## `st_union`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4168,7 +4168,7 @@ function st_union(<geometry, geometry>) returns geometry
 ```
 
 
-## st_within
+## `st_within`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4176,7 +4176,7 @@ function st_within(<geometry, geometry>) returns boolean
 ```
 
 
-## st_x
+## `st_x`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4184,7 +4184,7 @@ function st_x(<geometry>) returns double
 ```
 
 
-## st_xmax
+## `st_xmax`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4192,7 +4192,7 @@ function st_xmax(<geometry>) returns double
 ```
 
 
-## st_xmin
+## `st_xmin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4200,7 +4200,7 @@ function st_xmin(<geometry>) returns double
 ```
 
 
-## st_y
+## `st_y`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4208,7 +4208,7 @@ function st_y(<geometry>) returns double
 ```
 
 
-## st_ymax
+## `st_ymax`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4216,7 +4216,7 @@ function st_ymax(<geometry>) returns double
 ```
 
 
-## st_ymin
+## `st_ymin`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4224,7 +4224,7 @@ function st_ymin(<geometry>) returns double
 ```
 
 
-## starts_with
+## `starts_with`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4232,7 +4232,7 @@ function starts_with(<varchar, varchar>) returns boolean
 ```
 
 
-## stddev
+## `stddev`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4245,7 +4245,7 @@ function stddev(<double>) returns double
 ```
 
 
-## stddev_pop
+## `stddev_pop`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4258,7 +4258,7 @@ function stddev_pop(<double>) returns double
 ```
 
 
-## stddev_samp
+## `stddev_samp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4271,7 +4271,7 @@ function stddev_samp(<double>) returns double
 ```
 
 
-## strpos
+## `strpos`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4284,7 +4284,7 @@ function strpos(<varchar, varchar, bigint>) returns bigint
 ```
 
 
-## substr
+## `substr`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4317,7 +4317,7 @@ function substr(<varchar, bigint, bigint>) returns varchar
 ```
 
 
-## substring
+## `substring`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4340,7 +4340,7 @@ function substring(<varchar, bigint, bigint>) returns varchar
 ```
 
 
-## sum
+## `sum`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4373,7 +4373,7 @@ function sum(<real>) returns real
 ```
 
 
-## tan
+## `tan`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4381,7 +4381,7 @@ function tan(<double>) returns double
 ```
 
 
-## tanh
+## `tanh`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4389,7 +4389,7 @@ function tanh(<double>) returns double
 ```
 
 
-## tdigest_agg
+## `tdigest_agg`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4402,7 +4402,7 @@ function tdigest_agg(<double, double>) returns tdigest
 ```
 
 
-## timestamp_objectid
+## `timestamp_objectid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4410,7 +4410,7 @@ function timestamp_objectid(<timestamp(0)>) returns objectid
 ```
 
 
-## timezone_hour
+## `timezone_hour`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4423,7 +4423,7 @@ function timezone_hour(<timestamp(p)>) returns bigint
 ```
 
 
-## timezone_minute
+## `timezone_minute`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4436,7 +4436,7 @@ function timezone_minute(<timestamp(p)>) returns bigint
 ```
 
 
-## to_base
+## `to_base`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4444,7 +4444,7 @@ function to_base(<bigint, bigint>) returns varchar
 ```
 
 
-## to_base32
+## `to_base32`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4452,7 +4452,7 @@ function to_base32(<varbinary>) returns varchar
 ```
 
 
-## to_base64
+## `to_base64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4460,7 +4460,7 @@ function to_base64(<varbinary>) returns varchar
 ```
 
 
-## to_base64url
+## `to_base64url`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4468,7 +4468,7 @@ function to_base64url(<varbinary>) returns varchar
 ```
 
 
-## to_big_endian_32
+## `to_big_endian_32`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4476,7 +4476,7 @@ function to_big_endian_32(<bigint>) returns varbinary
 ```
 
 
-## to_big_endian_64
+## `to_big_endian_64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4484,7 +4484,7 @@ function to_big_endian_64(<bigint>) returns varbinary
 ```
 
 
-## to_char
+## `to_char`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4492,7 +4492,7 @@ function to_char(<timestamp(p), varchar>) returns varchar
 ```
 
 
-## to_date
+## `to_date`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4500,7 +4500,7 @@ function to_date(<varchar, varchar>) returns date
 ```
 
 
-## to_encoded_polyline
+## `to_encoded_polyline`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4508,7 +4508,7 @@ function to_encoded_polyline(<geometry>) returns varchar
 ```
 
 
-## to_geojson_geometry
+## `to_geojson_geometry`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4516,7 +4516,7 @@ function to_geojson_geometry(<sphericalgeography>) returns varchar
 ```
 
 
-## to_geometry
+## `to_geometry`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4524,7 +4524,7 @@ function to_geometry(<sphericalgeography>) returns geometry
 ```
 
 
-## to_hex
+## `to_hex`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4532,7 +4532,7 @@ function to_hex(<varbinary>) returns varchar
 ```
 
 
-## to_ieee754_32
+## `to_ieee754_32`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4540,7 +4540,7 @@ function to_ieee754_32(<real>) returns varbinary
 ```
 
 
-## to_ieee754_64
+## `to_ieee754_64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4548,7 +4548,7 @@ function to_ieee754_64(<double>) returns varbinary
 ```
 
 
-## to_iso8601
+## `to_iso8601`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4566,7 +4566,7 @@ function to_iso8601(<timestamp(p)>) returns varchar
 ```
 
 
-## to_milliseconds
+## `to_milliseconds`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4574,7 +4574,7 @@ function to_milliseconds(<interval day to second>) returns bigint
 ```
 
 
-## to_spherical_geography
+## `to_spherical_geography`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4582,7 +4582,7 @@ function to_spherical_geography(<geometry>) returns sphericalgeography
 ```
 
 
-## to_timestamp
+## `to_timestamp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4590,7 +4590,7 @@ function to_timestamp(<varchar, varchar>) returns timestamp
 ```
 
 
-## to_unixtime
+## `to_unixtime`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4598,7 +4598,7 @@ function to_unixtime(<timestamp(p)>) returns double
 ```
 
 
-## to_utf8
+## `to_utf8`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4606,7 +4606,7 @@ function to_utf8(<varchar>) returns varbinary
 ```
 
 
-## transform
+## `transform`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4614,7 +4614,7 @@ function transform(<array<$1>, function($1, $11)>) returns array<$11>
 ```
 
 
-## transform_keys
+## `transform_keys`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4622,7 +4622,7 @@ function transform_keys(<map<$13, $5>, function($13, $5, $12)>) returns map<$12,
 ```
 
 
-## transform_values
+## `transform_values`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4630,7 +4630,7 @@ function transform_values(<map<$4, $8>, function($4, $8, $7)>) returns map<$4, $
 ```
 
 
-## translate
+## `translate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4638,7 +4638,7 @@ function translate(<varchar, varchar, varchar>) returns varchar
 ```
 
 
-## trim
+## `trim`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4661,7 +4661,7 @@ function trim(<varchar, codepoints>) returns varchar
 ```
 
 
-## trim_array
+## `trim_array`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4669,7 +4669,7 @@ function trim_array(<array<$3>, bigint>) returns array<$3>
 ```
 
 
-## truncate
+## `truncate`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4692,7 +4692,7 @@ function truncate(<real>) returns real
 ```
 
 
-## try
+## `try`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4700,7 +4700,7 @@ function try(<$1>) returns $1
 ```
 
 
-## typeof
+## `typeof`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4708,7 +4708,7 @@ function typeof(<$1>) returns varchar
 ```
 
 
-## upper
+## `upper`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4721,7 +4721,7 @@ function upper(<varchar>) returns varchar
 ```
 
 
-## url_decode
+## `url_decode`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4729,7 +4729,7 @@ function url_decode(<varchar>) returns varchar
 ```
 
 
-## url_encode
+## `url_encode`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4737,7 +4737,7 @@ function url_encode(<varchar>) returns varchar
 ```
 
 
-## url_extract_fragment
+## `url_extract_fragment`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4745,7 +4745,7 @@ function url_extract_fragment(<varchar>) returns varchar
 ```
 
 
-## url_extract_host
+## `url_extract_host`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4753,7 +4753,7 @@ function url_extract_host(<varchar>) returns varchar
 ```
 
 
-## url_extract_parameter
+## `url_extract_parameter`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4761,7 +4761,7 @@ function url_extract_parameter(<varchar, varchar>) returns varchar
 ```
 
 
-## url_extract_path
+## `url_extract_path`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4769,7 +4769,7 @@ function url_extract_path(<varchar>) returns varchar
 ```
 
 
-## url_extract_port
+## `url_extract_port`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4777,7 +4777,7 @@ function url_extract_port(<varchar>) returns bigint
 ```
 
 
-## url_extract_protocol
+## `url_extract_protocol`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4785,7 +4785,7 @@ function url_extract_protocol(<varchar>) returns varchar
 ```
 
 
-## url_extract_query
+## `url_extract_query`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4793,7 +4793,7 @@ function url_extract_query(<varchar>) returns varchar
 ```
 
 
-## uuid
+## `uuid`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4801,7 +4801,7 @@ function uuid(<>) returns uuid
 ```
 
 
-## value_at_quantile
+## `value_at_quantile`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4824,7 +4824,7 @@ function value_at_quantile(<qdigest, double>) returns real
 ```
 
 
-## values_at_quantiles
+## `values_at_quantiles`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4847,7 +4847,7 @@ function values_at_quantiles(<qdigest, array<double>>) returns array<real>
 ```
 
 
-## var_pop
+## `var_pop`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4860,7 +4860,7 @@ function var_pop(<double>) returns double
 ```
 
 
-## var_samp
+## `var_samp`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4873,7 +4873,7 @@ function var_samp(<double>) returns double
 ```
 
 
-## variance
+## `variance`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4886,7 +4886,7 @@ function variance(<double>) returns double
 ```
 
 
-## week
+## `week`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4904,7 +4904,7 @@ function week(<timestamp(p)>) returns bigint
 ```
 
 
-## week_of_year
+## `week_of_year`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4922,7 +4922,7 @@ function week_of_year(<timestamp(p)>) returns bigint
 ```
 
 
-## width_bucket
+## `width_bucket`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4935,7 +4935,7 @@ function width_bucket(<double, double, double, bigint>) returns bigint
 ```
 
 
-## wilson_interval_lower
+## `wilson_interval_lower`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4943,7 +4943,7 @@ function wilson_interval_lower(<bigint, bigint, double>) returns double
 ```
 
 
-## wilson_interval_upper
+## `wilson_interval_upper`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4951,7 +4951,7 @@ function wilson_interval_upper(<bigint, bigint, double>) returns double
 ```
 
 
-## with_timezone
+## `with_timezone`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4959,7 +4959,7 @@ function with_timezone(<timestamp(p), varchar>) returns timestamp(p)
 ```
 
 
-## word_stem
+## `word_stem`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4972,7 +4972,7 @@ function word_stem(<varchar, varchar>) returns varchar
 ```
 
 
-## xxhash64
+## `xxhash64`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -4980,7 +4980,7 @@ function xxhash64(<varbinary>) returns varbinary
 ```
 
 
-## year
+## `year`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5003,7 +5003,7 @@ function year(<timestamp(p)>) returns bigint
 ```
 
 
-## year_of_week
+## `year_of_week`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5021,7 +5021,7 @@ function year_of_week(<timestamp(p)>) returns bigint
 ```
 
 
-## yow
+## `yow`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5039,7 +5039,7 @@ function yow(<timestamp(p)>) returns bigint
 ```
 
 
-## zip
+## `zip`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5062,7 +5062,7 @@ function zip(<array<$14>, array<$15>, array<$16>, array<$17>, array<$18>>) retur
 ```
 
 
-## zip_with
+## `zip_with`
 [🔗 Official Documentation](#)
 
 ```sql
@@ -5070,5 +5070,5 @@ function zip_with(<array<$1>, array<$11>, function($1, $11, $9)>) returns array<
 ```
 
 
-   Finished man in 0.018 secs
+   Finished man in 0.037 secs
 

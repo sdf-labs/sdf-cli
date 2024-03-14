@@ -42,7 +42,7 @@ There are two open source GitHub repositories we'll be using today, to follow al
     <Step title="Add the GitHub Action">
         Now that we have a working workspace, let's add a GitHub action to run `sdf compile` on each pull request. We'll need to add four files to our workspace: 
         
-        1. **Dockerfile** - We can place this in the repository root, since this Docker image contains everything necessary to run SDF. If you're using DBT, use the contents in the `Dockerfile.dbt` file below. Otherwise, just use the `Dockerfile` contents below.
+        1. **Dockerfile** - We can place this in the repository root, since this Docker image contains everything necessary to run SDF. Note if you're using DBT, you'll need to use a slightly different Dockerfile. We'll cover this later.
         2. **action.yml** - This defines the GitHub action itself. It should also be placed in the repository root.
         3. **entrypoint.sh** - This script will be run when the Docker container is run. It should be placed in the repository root.
         4. **workflow file** - This file will actually run the action. It should be placed in this path `.github/workflows/sdf.yml`.
@@ -70,7 +70,17 @@ There are two open source GitHub repositories we'll be using today, to follow al
                     id: sdf
                     with:
                         command: 'sdf compile'
-                        workspace_dir: '.'
+                        workspace_dir: '.' # Path to your SDF workspace
+                        # Add your SDF credentials if you intend to run `sdf push` 
+                        access_key: ${{ secrets.ACCESS_KEY }}
+                        secret_key: ${{ secrets.SECRET_KEY }}
+                        # (Optional) Add your compute provider credentials and other env vars here
+                        snowflake_account_id: ${{ secrets.SNOWFLAKE_ACCOUNT_ID }}
+                        snowflake_username: ${{ secrets.SNOWFLAKE_USERNAME }}
+                        snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                        snowflake_role: ${{ secrets.SNOWFLAKE_ROLE }}
+                        snowflake_warehouse: ${{ secrets.SNOWFLAKE_WH }}
+                        dbt_target: "prod"
 
                   # Use the output from the `sdf` step
                   - name: Display the sdf output
@@ -225,10 +235,12 @@ There are two open source GitHub repositories we'll be using today, to follow al
     } >>$GITHUB_OUTPUT
     echo "result=passed" >>$GITHUB_OUTPUT
     ```
+    </CodeGroup>
+    
 
     ```dockerfile Dockerfile
     FROM rust:1.76.0-bookworm
-    ARG SDF_VERSION=0.1.170
+    ARG SDF_VERSION=0.1.180
 
     # Install dependencies
     RUN apt-get update && apt-get install -y \
@@ -248,25 +260,50 @@ There are two open source GitHub repositories we'll be using today, to follow al
 
     ```
 
+    <Info>
+        If you'd like to place your `action.yml` file in a different directory, you can change the `uses` field to point to the correct path.
+    </Info>
+    <Tip>
+        The `action.yml` and `Dockerfile` above will one day be replaced by an official open source SDF GitHub action. For now, you can use this action to run `sdf compile` and `sdf test` in your CI/CD workflows.
+    </Tip>
+
+    Next, make sure your `entrypoint.sh` file is executable by running the following command in your terminal:
+    ```shell
+    chmod +x entrypoint.sh
+    ```
+    </Step>
+    <Step title="(Optional) Edit the GitHub Action if Using SDF with DBT">
+    If you're not using DBT alongside SDF, you can skip step. Otherwisem, you'll need to use the following `Dockerfile.dbt` instead of the `Dockerfile` above. This Dockerfile includes the necessary dependencies to run DBT alongside SDF.
+    Furthermore, if you don't have the DBT `profiles.yml` configured in your DBT project (i.e. adjacent to your `dbt_project.yml`), you'll need to write the `profiles.yml` file in the GitHub action. Use the modified `sdf.yml` workflow file (called `sdf_dbt.yml`) below to accomplish this. 
+    Note the example below is for a Snowflake configuration. 
+
+    <Warning>
+        This action will run `dbt compile`, so make sure to replace `[target-name]` and `[relative-path-to-your-dbt-project]` with your own values and ensure they properly map to values in your `dbt_project.yml`. Otherwise `dbt compile` will fail and the action will not be able to run.
+    </Warning>
+
+    <Tip>
+        The snippet below for writing out a `profiles.yml` was contributed by [Chris Hronek](https://github.com/chrishronek). Thanks Chris!
+    </Tip>
+    
+    <CodeGroup>
     ```dockerfile Dockerfile.dbt
-    FROM rust:1.76.0-bookworm
-    ARG SDF_VERSION=0.1.170
+    FROM python:3.12.2-bookworm
+    ARG SDF_VERSION=0.1.180
 
     # Install dependencies
     RUN apt-get update && apt-get install -y \
         yq \
         curl \
-        gnupg \
-        python3 \
-        python3-pip \
-        python3-venv \
         && rm -rf /var/lib/apt/lists/*
 
     # Install sdf
     RUN curl -LSfs https://cdn.sdf.com/releases/download/install.sh | bash -s -- --version ${SDF_VERSION}
 
     # Install dbt-snowflake plugin using pip
-    RUN python3 -m venv .venv && . .venv/bin/activate && python3 -m pip install dbt-snowflake
+    RUN python3.12 -m venv .venv && . .venv/bin/activate \
+        && python3 -m pip install dbt-snowflake==1.7.2 \
+        && python3 -m pip install --upgrade dbt-core==1.7.9 \
+        && python3 -m pip install protobuf==4.25.3
 
     # Copy your code file from your action repository to the filesystem path `/` of the container
     COPY entrypoint.sh /entrypoint.sh
@@ -274,19 +311,69 @@ There are two open source GitHub repositories we'll be using today, to follow al
     # Set the code file as the entry point
     ENTRYPOINT ["/entrypoint.sh"]
     ```
-        </CodeGroup>
+    ```yaml .github/workflows/sdf_dbt.yml
+        name: On Pull Request Run Compile
 
-       <Info>
-            If you'd like to place your `action.yml` file in a different directory, you can change the `uses` field to point to the correct path.
-        </Info>
-        <Tip>
-            The `action.yml` and `Dockerfile` above will one day be replaced by an official open source SDF GitHub action. For now, you can use this action to run `sdf compile` and `sdf test` in your CI/CD workflows.
-        </Tip>
+        on:
+            push:
+                branches:
+                - main
+            pull_request:
 
-        Lastly, make sure to make the `entrypoint.sh` file executable by running the following command in your terminal:
-        ```shell
-        chmod +x entrypoint.sh
+        jobs:
+            dbt_init_challenge_job:
+                runs-on: ubuntu-latest
+                name: Run sdf compile
+                steps:
+                  - name: Checkout
+                    uses: actions/checkout@v4
+                  - name: Generate dbt profile
+                    run: |
+                    echo "
+                    [target-name]:
+                        outputs:
+                        prod:
+                            type: snowflake
+                            account: ${{ secrets.SNOWFLAKE_ACCOUNT_ID }}
+                            user: ${{ secrets.SNOWFLAKE_USERNAME }}
+                            password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                            role: ${{ secrets.SNOWFLAKE_ROLE }}
+                            database: ${{ secrets.SNOWFLAKE_DB }} 
+                            warehouse: ${{ secrets.SNOWFLAKE_WH }}
+                            schema: ${{ secrets.SNOWFLAKE_SCHEMA }}
+                            threads: 1
+                            client_session_keep_alive: False
+                            query_tag: GITHUB_ACTIONS
+                        target: prod
+                    " > [relative-path-to-your-dbt-project]/profiles.yml  
+                  - name: sdf compile step
+                    uses: ./ # Uses an action in the root directory
+                    id: sdf
+                    with:
+                        command: 'sdf compile'
+                        is_dbt: true
+                        workspace_dir: '.' # Path to your SDF workspace
+                        # Add your SDF credentials if you intend to run `sdf push` 
+                        access_key: ${{ secrets.ACCESS_KEY }}
+                        secret_key: ${{ secrets.SECRET_KEY }}
+                        # (Optional) Add your compute provider credentials and other env vars here
+                        snowflake_account_id: ${{ secrets.SNOWFLAKE_ACCOUNT_ID }}
+                        snowflake_username: ${{ secrets.SNOWFLAKE_USERNAME }}
+                        snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                        snowflake_role: ${{ secrets.SNOWFLAKE_ROLE }}
+                        snowflake_warehouse: ${{ secrets.SNOWFLAKE_WH }}
+                        dbt_target: "prod"
+
+                  # Use the output from the `sdf` step
+                  - name: Display the sdf output
+                    if: always()
+                    run: |
+                        echo "### SDF Run Logs 🪵" >> $GITHUB_STEP_SUMMARY
+                        echo '```' >>$GITHUB_STEP_SUMMARY
+                        echo "${{ steps.sdf.outputs.log }}" >>$GITHUB_STEP_SUMMARY
+                        echo '```' >>$GITHUB_STEP_SUMMARY
         ```
+     </CodeGroup>
     </Step>
     <Step title="Create a Pull Request on GitHub">
         Now, we'll commit out changes to a new branch and push them to GitHub to see our new action _in action_. Let's call this branch `add-sdf-action`. 
