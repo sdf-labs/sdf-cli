@@ -21,7 +21,6 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf ai classify`↴](#sdf-ai-classify)
 * [`sdf lineage`↴](#sdf-lineage)
 * [`sdf push`↴](#sdf-push)
-* [`sdf pull`↴](#sdf-pull)
 * [`sdf system`↴](#sdf-system)
 * [`sdf system update`↴](#sdf-system-update)
 * [`sdf system uninstall`↴](#sdf-system-uninstall)
@@ -62,7 +61,6 @@ SDF's modular SQL
 * `ai` — Infer metadata like classifiers and add them optionally to the workspace
 * `lineage` — Display lineage for a given table and/or column
 * `push` — Push a local workspace to the SDF Service
-* `pull` — Pull a remote workspace from the SDF Service
 * `system` — System maintenance, install and update
 * `auth` — Authenticate CLI to services like SDF, AWS, OpenAI, etc
 * `man` — Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
@@ -799,7 +797,7 @@ Push a local workspace to the SDF Service
 
   Possible values: `true`, `false`
 
-* `-y`, `--yes` — Answer yes to all prompts
+* `-y`, `--yes` — Answer yes to all prompts which include credentials' uploading to the console when using a table provider
 
   Default value: `false`
 
@@ -819,33 +817,6 @@ Push a local workspace to the SDF Service
 
   Possible values: `progress`, `none`
 
-
-
-
-## `sdf pull`
-
-Pull a remote workspace from the SDF Service
-
-**Usage:** `sdf pull [OPTIONS]`
-
-###### **Options:**
-
-* `--name  NAME ` — Pull the workspace with this  name  from the SDF Service [default: name of current workspace]
-* `--path  PATH ` — Create or override the workspace at  path   [default: current workspace directory]
-* `-y`, `--yes` — Answer yes to all prompts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `-s`, `--show  SHOW ` — Display messages
-
-  Default value: `progress`
-
-  Possible values: `progress`, `none`
-
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -955,6 +926,8 @@ Configure how to authenticate with AWS
 
 * `--bucket-region-map  BUCKET_REGION_MAP ` — Mapping of bucket names to regions
 * `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
+* `--access-key-id  ACCESS_KEY_ID ` — AWS access key id
+* `--secret-access-key  SECRET_ACCESS_KEY ` — AWS secret access key
 
 
 
@@ -1203,5 +1176,5 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 
 
 
-   Finished man in 0.004 secs
+   Finished man in 0.003 secs
 
