@@ -19,7 +19,7 @@ title: "SDF YML Schema"
 `default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
 `default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
 `source-locations:` | `array`| Workspace defined by these set of files|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, an in Jinja as {{ dt }}|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \{\{ dt \}\}|
 `preprocessor:` | `Preprocessor?`| Experimental: This project has jinja, sql_vars, and sql_macros|
 `default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
 `is-dbt-project:` | `boolean?`| Experimental: This is a dbt project..|
@@ -46,7 +46,8 @@ title: "SDF YML Schema"
 `with-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
 `compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
-`source-locations:` | `array`| Table is defined by these .sql and/or .sdf files|
+`seeded:` | `boolean?`| Table is defined by these .sql and/or .sdf files Is this table backed by a DDL or a type provider|
+`source-locations:` | `array`| undefined|
 ## Block: `Classifier`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -202,7 +203,7 @@ Value | Description|
 `compute:` | `UNKNOWN`| The compute platform for this profile. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
 `default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, an in Jinja as {{ dt }}|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \{\{ dt \}\}|
 `default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `preprocessor:` | `Preprocessor?`| Experimental: This project has jinja|
