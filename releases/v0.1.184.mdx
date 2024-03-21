@@ -1,0 +1,179 @@
+---
+title: "V0.1.184"
+description: "This document contains release notes from version 0.1.184 of SDF."
+---
+### March 15th, 2024
+
+We are excited to announce that a new release of our CLI is now available, bringing some major 
+integrations, improvements, and bug fixes to SDF. Interested in our product roadmap or want to 
+discuss features? Reach out to your SDF point of contact to provide any points of feedback!
+
+### SDF Remote Run for Snowflake
+Introduction of `compute` setting within the configuration objects of the workspace.sdf.yml file.
+Addition of new table type `RemoteTable` and renamed table type managed to `RemoteExternal`. 
+
+SDF Remote Run allows users to execute `sdf run` with the goal of running models on Snowflake compute
+instead of running on local compute. To change compute from the default of `local` to Snowflake, update the 
+`compute:` field within the workspace file. 
+<CodeGroup>
+```yml workspace.sdf.yml
+workspace:
+  name: example
+  edition: "1.1" 
+  description: "A minimal workspace"
+  dialect: snowflake
+  default-catalog: example
+  default-schema: public
+  compute: snowflake
+  includes:
+    - path: src
+```
+```bash sdf_run
+(.venv) [mlevin@Michaels-MacBook-Pro ~/promise-labs/sdf/public/sdf-cli/crates/sdf-cli/workspaces/snw] sdf run
+sdf run
+Working set 21 model files, 1 .sdf file
+Downloading snowflake_sample_data.tpch_sf1.orders (snowflake_sample_data.tpch_sf1.orders)
+Downloading snowflake_sample_data.tpch_sf1.lineitem (snowflake_sample_data.tpch_sf1.lineitem)
+Downloading snowflake_sample_data.tpch_sf1.customer (snowflake_sample_data.tpch_sf1.customer)
+Downloading snowflake_sample_data.tpch_sf1.partsupp (snowflake_sample_data.tpch_sf1.partsupp)
+Downloading snowflake_sample_data.tpch_sf1.supplier (snowflake_sample_data.tpch_sf1.supplier)
+Downloading snowflake_sample_data.tpch_sf1.part (snowflake_sample_data.tpch_sf1.part)
+Downloading snowflake_sample_data.tpch_sf1.nation (snowflake_sample_data.tpch_sf1.nation)
+Downloading snowflake_sample_data.tpch_sf1.region (snowflake_sample_data.tpch_sf1.region)
+    Running tpch.bloop.q11 (./queries/q11.sql)
+    Running tpch.bloop.q17 (./queries/q17.sql)
+    Running tpch.bloop.q18 (./queries/q18.sql)
+    Running tpch.bloop.q8 (./queries/q8.sql)
+    Running tpch.bloop.q19 (./queries/q19.sql)
+    Running tpch.bloop.q3 (./queries/q3.sql)
+    Running tpch.bloop.q16 (./queries/q16.sql)
+    Running tpch.bloop.q1 (./queries/q1.sql)
+    Running tpch.bloop.q21 (./queries/q21.sql)
+    Running tpch.bloop.q5 (./queries/q5.sql)
+    Running tpch.bloop.q9 (./queries/q9.sql)
+    Running tpch.bloop.q10 (./queries/q10.sql)
+    Running tpch.bloop.q20 (./queries/q20.sql)
+    Running tpch.bloop.q7 (./queries/q7.sql)
+    Running tpch.bloop.q2 (./queries/q2.sql)
+    Running tpch.bloop.q14 (./queries/q14.sql)
+    Running tpch.bloop.q4 (./queries/q4.sql)
+    Running tpch.bloop.q6 (./queries/q6.sql)
+    Running tpch.bloop.q22 (./queries/q22.sql)
+    Running tpch.bloop.q13 (./queries/q13.sql)
+    Running tpch.bloop.q12 (./queries/q12.sql)
+   Finished 29 models [21 succeeded, 8 downloaded] in 6.353 secs
+```
+</CodeGroup>
+
+### Snowflake & Redshift Table Providers
+Directly integrate to Snowflake and Redshift in order to hydrate table schemas and execute queries. 
+SDF uses remote Snowflake and Redshift schema information to do type bindings and other static analysis 
+checks on the remote workspace. 
+
+Simply add a provider block to the `workspace.sdf.yml` file and update the dialect to reflect the 
+appropriate dialect used:
+
+For more information check out the specific docs on [Snowflake Integration](/integrations/snowflake) 
+and [AWS & Redshift Integration](/integrations/redshift).
+
+
+<CodeGroup>
+``` yaml Snowflake_Example 
+workspace:
+  name: example
+  edition: "1.1" 
+  description: "A minimal workspace"
+  dialect: snowflake
+  default-catalog: example
+  default-schema: public
+  includes:
+    - path: src
+---
+provider:
+  name: my_first_snowflake_provider
+  type: snowflake
+  sources: 
+    - <DATABASE> 
+```
+``` yaml AWS_Example 
+workspace:
+  name: example
+  edition: "1.1"  
+  description: "A minimal workspace"
+  dialect: redshift
+  default-catalog: example
+  default-schema: public
+  includes:
+    - path: src
+---
+provider:
+  name: my_first_redshift_provider
+  type: redshift
+  cluster-identifier: <CLUSTER_IDENTIFIER>
+  sources: 
+    - <DATABASE> 
+```
+</CodeGroup>
+
+### Integrate SDF Into Your DBT Projects to Extend Functionality
+SDF now works alongside existing DBT projects. SDF allows current DBT project capabilities
+to be extended with column-level lineage, code contracts, and data classifications/governance.
+
+To initialize your DBT project as an SDF project following these instructions: [DBT Integration](/integrations/dbt)
+
+### Take SDF Into Production With CI/CD
+SDF now offers integration with CI/CD workflows and we have prepared example documentation to help amplify the power 
+and value that SDF delivers. 
+
+SDF’s static analyis can supercharge CI/CD workflows for data teams. By compiling your SQL on each pull request, SDF 
+can statically ensure new updates to your models are valid SQL and do not break anything downstream. Additionally, 
+SDF supports the use of code contracts in CI/CD. This feature allows users to define their own static tests, further 
+enhancing the robustness and reliability of your data models. Unlike other CI/CD data tools, SDF checks everything statically, 
+preventing you from having to incur compute costs to validate SQL and run impact analysis.
+
+This new [CI/CD Guide](/guide/ci_cd) will walk you through how to integrate SDF into an example CI/CD workflow with GitHub Actions to 
+run `sdf compile` and `sdf test` on new pull requests and subsequent updates. 
+
+### SDF Push Stability Changes and Updates
+Major improvements to how we compile and manage workspaces in the cloud have been created. These will make `sdf push` much more reliable, 
+and will improve performance across the entire web console.
+
+Workspaces will now be compiled in the cloud instead of pushing up the compiled output. 
+This enables the SDF Cloud to reliably mimic compilation environments locally. 
+
+With this change, only files included via the `includes:` block within the workspace.sdf.yml will be pushed. If you are using 
+dbt seeds with SDF as an extension of capabilities, you will need to add the seeds to the `includes` block such as:
+
+``` yaml workspace.sdf.yml
+includes:
+   ...
+   - path: seeds/*
+     type: resource
+```
+
+If your workspace contains a table provider, credentials used to fetch DDLs will be encrypted during the `sdf push`. 
+These credentials will be used in the SDF Cloud to pull down the table DDLs from the specific provider. All credentials in SDF Cloud 
+are encrypted at rest according to our SOC2 Compliance, and running `sdf push --delete` will immediately remove the encrypted 
+credentials and any history of them from the SDF Cloud. 
+
+### New Docs!
+- [CI/CD Guide](/guide/ci_cd)
+- [Indexing Guide](/guide/index)
+- [Snowflake Integration](/integrations/snowflake)
+- [AWS & Redshift Integration](/integrations/redshift)
+- [DBT Integration](/integrations/dbt)
+
+### General bug fixes and stability improvements:
+- Fix for binding errors and type checking
+- Depth selector bug fix
+- Workspace caching errors and problems
+- 
+
+### Latest Builds
+
+| Architecture           | Status | Version | Download |
+| ---------------------- | ------ | ------- | -------- |
+| Linux Intel X86-64     |   ✅   | 0.1.184  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.184-x86_64-unknown-linux-musl.tar.gz) |
+| Linux Arm ARM-64       |   ✅   | 0.1.184  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.184-arm-unknown-linux-gnueabihf.tar.gz) |
+| Apple Intel X86-64     |   ✅   | 0.1.184  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.184-x86_64-apple-darwin.tar.gz) |
+| Apple Arm AARCh-64     |   ✅   | 0.1.184  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.184-aarch64-apple-darwin.tar.gz) |
