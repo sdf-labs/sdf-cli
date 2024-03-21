@@ -1,5 +1,5 @@
 ---
-title: "Display, Input and Output"
+title: "Display and IO"
 ---
 
 One of the beloved parts of software engineering is how developers have managed to keep their development workflows contained to the terminal. So we thought - why not let the vim and emacs legends of the world develop data workflows in their natural habitat - the terminal. As such, SDF is designed to be a command line tool and can ideally keep the large majority of your data development contained to the terminal (and your IDE of choice). As a byproduct, we take output *seriously*. This guide will take you through how to configure your terminal environment to get the most out of SDF.
@@ -68,7 +68,7 @@ Let's try these options. Start by creating a new workspace with a sample project
     Created lineage/src/sink.sql
     Created lineage/src/source.sql
     Created lineage/workspace.sdf.yml
-   Finished new in 0.002 secs
+   Finished new in 0.001 secs
 
 ```
   </Step>
@@ -95,7 +95,7 @@ Working set 4 model files, 1 .sdf file
   Compiling lineage.pub.middle (./src/middle.sql)
   Compiling lineage.pub.knis (./src/knis.sql)
   Compiling lineage.pub.sink (./src/sink.sql)
-   Finished 4 models [4 succeeded] in 0.203 secs
+   Finished 4 models [4 succeeded] in 0.134 secs
 
 ```
 
@@ -108,7 +108,7 @@ sdf compile --show all
     Reviewing this output, SDF provides progress and table information. SDF reuses model files that have already been compiled and have not been edited. 
 ```shell
 Working set 4 model files, 1 .sdf file
-   Finished 4 models [4 reused] in 0.165 secs
+   Finished 4 models [4 reused] in 0.111 secs
 
 Schema lineage.pub.source
 +-------------+-----------+------------+
@@ -153,24 +153,18 @@ Schema lineage.pub.sink
   <Step title="Diplay a single sink table">
   To select the output of only one table, use the table name directly after the `compile` command.
 
-```shell
-sdf compile src/sink.sql
-```
-```shell
-Working set 4 model files, 1 .sdf file
-   Finished 3 models [3 reused] in 0.169 secs
+  ```shell
+  sdf compile src/sink.sql
+  ```
 
-Schema lineage.pub.sink
-+-------------+-----------+------------+
-| column_name | data_type | classifier |
-+-------------+-----------+------------+
-| uid         | integer   | DATA.uid   |
-| phone       | varchar   | DATA.pii   |
-| txn_date    | varchar   |            |
-| qty         | bigint    |            |
-+-------------+-----------+------------+
-
-```
+  <Note>
+      The `compile` command can take targets in multiple formats.
+      * `sdf compile catalog.schema.table_name` *using fully qualified name*
+      * `sdf compile table_name` *using table name and inferred fully qualified name*
+      * `sdf compile /path/to/table_name.sql` *using file path*
+      * `sdf compile catalog.*.*`  *using glob pattern to compile multiple targets*
+      * `sdf compile [No params]` *using no params compiles the whole workspace*
+  </Note>
 
   </Step>
 </Steps>  

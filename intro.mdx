@@ -4,29 +4,94 @@ title: "Welcome to SDF"
 
 ## Overview
 
-SDF is a **command-line engine** that includes a multi-dialect SQL compiler, static analyzer, dependency manager, and build cache for **running SQL queries** against
-data stored **locally or in the cloud**. SDF works best when paired with the SDF Cloud. You can ask for beta access to the cloud service at **[https://sdf.com/inquiries](https://sdf.com/inquiries)**.
+SDF is a next generation SQL compiler, transformation tool, and analytical database engine. Out of the box, SDF supports the modern data stack with multiple popular SQL dialects, as well as jinja templating, database connectors, and a simple to use YML syntax. 
+
+However, SDF goes much further than existing data tooling by providing column level lineage, excellent error reporting, a type system for SQL, an integrated data governance toolset and database engine all in one. SDF aims to be developer first. To shift left. To provide proactive feedback while authoring SQL statements rather than reactive and process queries after execution.
+The engine is developer focused (designed for CI/CD), written in Rust, and extremely performant at large scale (thousands of transformations). 
+
+<Tip>
+The mission of SDF is to improve data developer productivity by simplifying data development and encouraging best practices. We build tools to make developing data products like developing software products.
+</Tip>
+You can access SDF by installing the engine for free, and start using SDF through the command line interface (**CLI**) on your terminal. This engine (less than 75mb in size) includes everything from the multi-dialect SQL compiler, static analyzer, dependency manager, build cache, and database.
 
 For a more detailed overview, read the [announcement here](https://blog.sdf.com/p/introducing-sdf-the-semantic-data).
 
-In contrast to traditional query engines which can only locally optimize a
-single query, **SDF ingests all queries, Code Contracts, and metadata at once**.
-SDF then builds code level dependencies, time level dependencies, and
-access-level dependencies. SDF also automatically caches intermediate results to dramatically speed up execution. This generational leap in data processing allows for warehouse scale optimizations, AI data classification and automated propagation, multi-engine targeting, and even data use policies to be expressed over a single control plane.
+### SDF as a Type System for SQL
+Imagine a warehouse with hundreds, thousands, or millions of tables. How do you know what purpose each table has, or what each column represents?
 
-SDF has **data governance**, **column-level lineage** and **Code Contracts**
-built-in. Applying Code Contracts requires two user inputs: first, you
-establish **policies** that should be upheld; second, the user has to add
-**classifiers** to root tables. After that, `sdf` takes over: it automatically
-**propagates** the classifiers at analysis time over all queries and workflows,
-and on each access it **enforces** the requested policies by query rewriting,
-or - if that is impossible - restricts access to the data.
+Data Typing refers to the process of assigning additional meaning to tables and columns that goes beyond primitive data types such as INT, VARCHAR, and BOOL. This can include different kinds of PII (e.g. Phone, Address, SSN), levels of sensitivity (e.g. Public, Secret, Top Secret), retention periods (e.g. 90 days, 1 year), units of measurement and many more. Such additional meaning is crucial for an in-depth understanding of the data and for having any hope of warehouse-wide enforcement of data governance policies such as GDPR, CCPA, and HIPAA.
+Or, for understanding which definition of Daily Active User (DAU) is the canonical one. Or, for setting data deletion requirements.
+
+SDF provides an integrated type system (configurable in YML) that let's you *annotate* types on columns and intelligently *propagate* those types to downstream columns. SDF is transformation aware allowing for **reclassification** of types based on:
+* Functional transformation (eg. SHA256())
+* Aggregational Transformation (eg. COUNT())
+
+This capability is built into the transformation layer, allowing you to create **common sense guardrails** and **automated reporting** around data types.
+
+### SDF as a Transformation Layer
+
+* Detailed Error Reporting
+* Jinja templating
+* Environment variables
+* Database Connection 
+
+### SDF as a Data Quality Tool
+
+SDF supports both **code** and **data** tests. 
+
+SDF testing is fast. All executions are automatically cached and intermediates are
+optimally reused. This means that `sdf` only executes the minimal number of
+queries to recompute the requested data. Guaranteed.
+
+#### Static Analysis & Code Tests - Taking the Compiler out of the Warehouse
+Code tests are unique to SDF. They use *static analysis* to evaluate the project, types, and rules to evaluate whether any business logic is broken. Code tests are the data testing framework **that does not need access to a database**. 
+
+SDF code tests can be used to catch data quality issues during development and CI/CD, before bugs make it into production. They are cost-effective to implement because they work on code, not data.
+
+Static Analysis & Code Tests are powerful enough to catch:
+* Breaking changes to downstream transformations (eg. removing an upstream column that is required for downstream columns)
+* Catching type mismatches (eg. a function has a VARCHAR parameter, but you fed it an INT)
+* Environment mis-configurations (eg. a production environment selecting from a development environment)
+* Type Mismatches (eg. joining two similar but distinct types such as US Dollar and British Pound)
+* Business Logic Errors (eg. metric re-definitions)
+* Data Governance issues (eg. leaking Personally Identifiable Information (PII))
 
 <img src="https://cdn.sdf.com/img/sdf-overview.png"/>
 
-And, SDF is fast. All executions are automatically cached and intermediates are
-optimally reused. This means that `sdf` only executes the minimal number of
-queries to recompute the requested data. Guaranteed.
+#### Data Tests
+Data tests function similar to other platforms with *expectations* per column or table. Tests are parameretized and can be used to validate the results of a transformation.
+
+SDF provides an easily referenceable test library that provides expectations like:
+* `test.unique()`
+* `test.in([LIST])`
+* `test.minimum(VALUE)`
+* `test.maximum(VALUE)`
+* `test.between(VALUE, VALUE)                        `
+* `test.column('COLUMN_A = COLUMN_B')`
+
+Tests are user-defineable and simple to integrate into your own workspace.
+
+### SDF as a Multi-Dialect Database
+Under the hood, SDF is more than a preprocessor. SDF creates fully executable logical plans in all supported dialects.
+
+What does this mean?
+
+It means that for supported features, you can write SQL statements with BigQuery (or Redshift, Presto, or Snowflake) SQL syntax, and run it locally on data on your laptop. Or you can take that same SQL statement and run it against terabytes of data in BigQuery directly.
+
+To use SDF as your database you can connect it to 
+* Data in various formats (csv, json, parquet, and more)
+* Compressed data in various formats (gzip, tar, and more)
+* Remote data in S3 via direct `s3://` URIs
+* Partitioned data either locally, or in the cloud.
+
+SDF is a fast engine, made faster by intelligent caching and dynamic recomputation. In day to day development, SDF improves execution time over traditional databases with several strategies:
+* A powerful, intelligent cache which stores remote data locally
+* DAG optimized rebuilds which only recompute transformations which are out of date based on your workspace changes.
+* A fast OLAP engine (via Datafusion) which has performance rivalig DuckDB in many workloads
+
+<Tip>
+`sdf` execution is in Beta. Crucially, support for many functions is missing. 
+</Tip>
 
 ## Engine & Platform
 
@@ -39,6 +104,6 @@ The **SDF Engine** is most powerful when paired with the **SDF Cloud**. The clou
 
 SDF allows you to keep your data where it is, and even re-use your existing compute engine. 
 
-<Note>
-Note `sdf` is powered by [DataFusion](https://github.com/apache/arrow-datafusion), for which we have the greatest appreciation. 
-</Note>
+<Tip>
+`sdf` execution capabilities are powered by [DataFusion](https://github.com/apache/arrow-datafusion), for which we have the greatest appreciation. 
+</Tip>

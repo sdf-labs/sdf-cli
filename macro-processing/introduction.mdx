@@ -1,0 +1,158 @@
+---
+title: "Macro Processing With SDF"
+description:
+  "Working with Jinja in a Scalable Way"
+---
+
+## Overview
+SDF supports macro processing with Jinja.
+
+* Jinja Files - SDF requires macro definitions to be in .jinja files
+* Preprocessor configuration - SDF Requires a workspace to turn on the jinja preprocessor
+* SDF provides some built in functions
+
+## Getting Started With Jinja
+Let's explore some of the capabilities unlocked by using jinja in a minimal SDF workspace.
+<Steps>
+    <Step title="Create a new SDF Workspace">
+        Create a new SDF workspace.
+        `sdf new jinjex && cd jinjex`
+    </Step>
+    <Step title="Configure Your Workspace to Use Jinja">
+        Add a new preprocessor property to the *workspace* block in your `workspace.sdf.yml`
+        ```yml workspace.sdf.yml
+            workspace:
+              name: jinjex
+              preprocessor: jinja
+              ...
+        ```
+        Congratulations! Your workspace is now configured to run with Jinja.
+    </Step>
+    <Step title="Add a Jinja Expression to main.sql">
+        Replace the contents of /src/main.sql with a short jinja expression like:
+        ```sql
+        select 
+        {% for i in range (1, 5)%}
+        {{i}} as col_{{i}},
+        {% endfor %}
+        ;
+        ```
+        This expression creates a table with four columns. 
+        
+        **Compile**
+        To see the schema, run: 
+        
+        `sdf compile main`
+
+        ```shell
+        Schema jinjex.pub.main
+        +-------------+------------------+------------+
+        | column_name | data_type        | classifier |
+        +-------------+------------------+------------+
+        | col_1       | integer not null |            |
+        | col_2       | integer not null |            |
+        | col_3       | integer not null |            |
+        | col_4       | integer not null |            |
+        +-------------+------------------+------------+
+        ```
+
+        **Run**
+        To execute the SQL statement using SDF as the database target, simply run:
+
+        `sdf run main`
+        ``` shell
+        Table jinjex.pub.main
+        +-------+-------+-------+-------+
+        | col_1 | col_2 | col_3 | col_4 |
+        +-------+-------+-------+-------+
+        | 1     | 2     | 3     | 4     |
+        +-------+-------+-------+-------+
+        ```
+    </Step>
+    <Step title="Creating a New Jinja Function">
+        Let's create a new function. This function will be accessible globally in your workspace. To start, create a new folder `macros` and add a new file `macros.jinja` to the folder.
+
+        Add the new directory to your includes in the workspace.
+
+        ```yml workspace.sdf.yml
+        workspace:
+            ...
+            includes:
+            - path: src   
+            - path: macros # <-- add this
+            ...
+        ```
+        In your `macros.jinja` file add a new function which we'll call *switch_schema*
+        ```jinja macros.jinja
+        {% macro switch_schema(schema_name, table_name) -%}
+            {%- if schema_name is none -%}
+                {{ default_schema }}.{{table_name}}
+            {%- else -%}
+                {{schema_name}}.{{table_name}}
+            {%- endif -%}
+
+        {%- endmacro %}
+        ```
+
+        Macros by default inherit their namespace from the Workspace name, in this case **jinjex**
+        To reference any macro defined in your workspace, specify it with the namespace like `jinjex.<function>(params)`
+
+        Check that the function is included by running `sdf compile`. The output should be all green.
+        
+        <Step title="Using the Jinja function">
+        It's time to reference the function.
+        Let's create a new SQL file, `child.sql` in the */src* folder.
+
+        ```sql src/child.sql
+        CREATE TABLE {{ jinjex.switch_schema("private", "child") }}
+        AS
+        SELECT col_1, col_3 
+        FROM main;
+        ```
+
+        We are invoking the fucntion `jinjex.switch_schema`, and creating a new table, in that new schema.
+
+        Let's verify that we are now compiling two tables with `sdf compile --show all`. 
+
+        We can also easily confirm the lineage for our new table - *jinjex.private.child* by running `sdf lineage jinjex.private.child`
+
+        ```shell
+        Table: jinjex.private.child
+        private.child.col_1
+        │
+        │ copy
+        └──────┐
+            main.col_1
+
+        private.child.col_3
+        │
+        │ copy
+        └──────┐
+            main.col_3
+        ```
+
+        Or, if we wanted to execute these SQL statements, you simply run `sdf run`
+
+        ``` shell
+        Table jinjex.pub.main
+        +-------+-------+-------+-------+
+        | col_1 | col_2 | col_3 | col_4 |
+        +-------+-------+-------+-------+
+        | 1     | 2     | 3     | 4     |
+        +-------+-------+-------+-------+
+        1 rows.
+
+        Table jinjex.private.child
+        +-------+-------+
+        | col_1 | col_3 |
+        +-------+-------+
+        | 1     | 3     |
+        +-------+-------+
+        ```
+        </Step>
+
+    </Step>
+</Steps>
+
+For additional resources on effectively using macros, please see SDF docs on:
+* [Environment Variables](macro-processing/env-vars)

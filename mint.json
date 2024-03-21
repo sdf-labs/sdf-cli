@@ -50,9 +50,16 @@
 				"guide/code_reports",
 				"guide/lineage_metadata",
 				"guide/udf",
-				"guide/ci_cd",
 				"guide/authentication",
-				"guide/deployment"
+				"guide/deployment",
+				"integrations/large_workspace"
+			]
+		},
+		{
+			"group":"Macro Processing",
+			"pages":[
+				"macro-processing/introduction",
+				"macro-processing/env-vars"
 			]
 		},
 		{
@@ -62,7 +69,7 @@
 				"integrations/snowflake",
 				"integrations/redshift",
 				"integrations/databricks",
-				"integrations/large_workspace"
+				"integrations/ci_cd"
 			]
 		},
 		{

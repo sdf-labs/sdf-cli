@@ -133,3 +133,11 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
         If the connection is successful, you will see the schema for the table you selected.
     </Step>
 </Steps>
+
+<Warning>
+    The ARN you created also needs user access to the database. Depending on your DBs Access Policy, you might also have to give explicit access to
+    this new user within your Redshift cluster. You can do this through by adding the ARN user to the appropriate redshift group:
+    ``` sql
+    ALTER GROUP <your-group-name> add user "IAMR:<IAM_ROLE_NAME>";
+    ```
+</Warning>
