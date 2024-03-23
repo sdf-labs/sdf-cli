@@ -83,6 +83,7 @@ Let's explore some of the capabilities unlocked by using jinja in a minimal SDF 
             ...
         ```
         In your `macros.jinja` file add a new function which we'll call *switch_schema*
+
         ```jinja macros.jinja
         {% macro switch_schema(schema_name, table_name) -%}
             {%- if schema_name is none -%}
@@ -98,8 +99,8 @@ Let's explore some of the capabilities unlocked by using jinja in a minimal SDF 
         To reference any macro defined in your workspace, specify it with the namespace like `jinjex.<function>(params)`
 
         Check that the function is included by running `sdf compile`. The output should be all green.
-        
-        <Step title="Using the Jinja function">
+    </Step>  
+    <Step title="Using the Jinja function">
         It's time to reference the function.
         Let's create a new SQL file, `child.sql` in the */src* folder.
 
@@ -149,10 +150,8 @@ Let's explore some of the capabilities unlocked by using jinja in a minimal SDF 
         | 1     | 3     |
         +-------+-------+
         ```
-        </Step>
-
     </Step>
 </Steps>
 
 For additional resources on effectively using macros, please see SDF docs on:
-* [Environment Variables](macro-processing/env-vars)
+* [Environment Variables](../macro-processing/env-vars)
