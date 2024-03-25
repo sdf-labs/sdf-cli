@@ -13,7 +13,10 @@ title: "SDF YML Schema"
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files Todo why do we skip this serialization?|
-`dialect:` | `UNKNOWN`| The dialect of this workspace. If not set, defaults to Presto dialect|
+`dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
+`targets:` | `array`| Targets define input and output locations for artifacts read and written by the workspace|
+`default-target:` | `string?`| The default target for this workspace|
+`dialect:` | `UNKNOWN`| undefined|
 `compute:` | `UNKNOWN`| The compute platform for this workspace. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
 `default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
@@ -30,8 +33,11 @@ title: "SDF YML Schema"
 `description:` | `string?`| undefined|
 `dialect:` | `Dialect?`| The dialect of this table, defaults to `presto`|
 `compute:` | `ComputeKind?`| The compute platform for evaluating the query populating this table, defaults to `local`|
-`table-type:` | `TableType?`| The table-type of this table|
+`table-type:` | `TableType?`| The table-type of this table (obsolete)|
+`type:` | `TableType2?`| The table-type of this table (new version)|
+`table-modifier:` | `TableModifier?`| undefined|
 `dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
+`create-options:` | `TableCreateOptions?`| Specify how to create a table|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `array`| The partitioning format of the table|
 `default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
@@ -116,6 +122,26 @@ Value | Description|
 `code-report` | A table representing a code report|
 `data-report` | A table representing a data report|
 `dialect-specific-table` | A dialect specific table, like BigQueries information_schema|
+## Enum: `TableType2`
+Value | Description|
+| :--- | :------- |
+`table` | Computed tables have type table|
+`view` | Table Views|
+## Enum: `TableModifier`
+Value | Description|
+| :--- | :------- |
+`external` | EXternal tables|
+`system` | System Tables/ Views, like external tables but maintained by database|
+`temporary` | Temporary -- per session tables|
+`transient` | Transient table|
+## Enum: `TableCreateOptions`
+Value | Description|
+| :--- | :------- |
+`create-new` | Attempts to create a new table; fails if the table already exists.|
+`drop-if-exists` | Drops the existing table and creates a new one.|
+`skip-if-exists` | Skips table creation if the table already exists.|
+`create-or-replace` | Replaces the existing table with a new one. Implementation may vary by DBMS.|
+`create-if-not-exists` | Creates the table only if it doesn't already exist.|
 ## Enum: `CompressionType`
 Value | Description|
 | :--- | :------- |
@@ -167,10 +193,45 @@ Value | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| The relative path from this workspace to the referenced workspace, for a Git repo, from the root of the depot to the workspace|
 `profile:` | `string?`| The chosen workspace profile (none means default)|
+`target:` | `string?`| The Git repo The chosen workspace target (none means default)|
 `git:` | `string?`| The Git repo|
 `rev:` | `string?`| the Git revision (choose only one of the fields: rev, branch, tag)|
 `branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
 `tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
+### Nested element: `Dependency`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`database:` | `Database?`| undefined|
+`library:` | `string?`| undefined|
+`version:` | `string?`| undefined|
+`imports:` | `array`| undefined|
+### Nested element: `Database`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+### Nested element: `Target`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of the target|
+`description:` | `string`| A description of this target|
+`providers:` | `array`| The providers for this target|
+### Nested element: `TargetProvider`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`scopes:` | `array`| A list of scopes supported by this provider|
+`type:` | `UNKNOWN`| The type of the catalog [e.g.: hive]|
+`credential:` | `string?`| Credential identifier for this provider|
+`warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
+`cluster-identifier:` | `string?`| The cluster identifier for redshift server|
+`source-locations:` | `array`| undefined|
+`batch-size:` | `integer?`| undefined|
+### Nested element: `ProviderScope`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| Matches a three part table name using globs, e.g. *.*.* matches all tables|
+`as:` | `string`| Compose a new table, use * to back reference the matched name, e.g. *.{{env_var('USER'})}}_*.* renames all tables to have the `USER` as a prefix of every schema|
+### Nested element: `CatalogType`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `FilePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -203,6 +264,9 @@ Value | Description|
 `compute:` | `UNKNOWN`| The compute platform for this profile. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
 `default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
+`dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
+`targets:` | `array`| Targets define input and output locations for artifacts read and written by the profile|
+`default-target:` | `string?`| The default target for this profile|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \{\{ dt \}\}|
 `default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
 `source-locations:` | `array`| Workspace defined by these set of files|
@@ -319,9 +383,6 @@ Value | Description|
 `cluster-identifier:` | `string?`| The cluster identifier for redshift server|
 `source-locations:` | `array`| undefined|
 `batch-size:` | `integer?`| undefined|
-### Nested element: `CatalogType`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `Config`
 |Field | Type | Description|
 | :---- | :--- | :------- |
