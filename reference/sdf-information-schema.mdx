@@ -1,8 +1,65 @@
 ---
 title: "SDF Information Schema"
 ---
-SDF's Information Schema the output of its powerful static analysis. The tables below can be queried and thereby used to author [Code Contracts](/guide/code_contracts).
-Under the hood, SDF stores the analysis output as Parquet. Below are the DDLs representing these tables in SQL.
+
+### Overview
+During compilation, SDF creates a comprehensive **Information Schema** (IF) which contains metadata 
+about your workspace. This metadata includes basic information such as tables, columns, data types, and descriptions
+along with more complex metadata like column level lineage, and data classifiers.
+
+This workspace IF can be used to enrich data catalogs, and queried to power [Code Contracts](/guide/code_contracts).
+Under the hood, SDF stores the analysis output as Parquet. 
+
+### Information Schema
+The below tables represent the SDF Information Schema. They are always accessible, after any compilation, in the *.sdfcache* under `.sdfcache/dbg/data/system/information_schema::sdf`
+
+
+You may dynamically query the information schema in any valid SDF workspace.
+
+**To query from tables:**
+``` shell
+sdf run -q "select * from sdf.information_schema.tables " 
+```
+
+**To query from columns:**
+``` shell
+sdf run -q "select * from sdf.information_schema.columns " 
+```
+
+The information schema tables have the following schemas.
+#### `sdf.information_schema.tables`
+| column_name | data_type | description | 
+| ----------- | ---- | ----------- | 
+| `table_ref`    | varchar not null | The fully qualified name of the table (i.e. catalog.schema.table)   |
+| `catalog_name`    | varchar not null | The name of the catalog that this table belongs to.   |
+| `schema_name`    | varchar not null | The name of the schema that this table belongs to   |
+| `table_name`    | varchar not null | The tables name   |
+| `description`    | varchar | The description defined in the table's yaml   |
+| `dialect`    | varchar not null | The dialect of SQL this table was defined in (one of: presto, snowflake, redshift, bigquery, spark)   |
+| `dependencies` | varchar | A comma separated list of table_ref's that this table selects from (e.g. [catalog.schema.table_1,catalog.schema.table_2] |
+| `schedule`    | varchar | The CRON schedule for this table defined in the table's yaml   |
+| `table_type`    | varchar | The method through which the table is represented. Options are *external*, *view*, or *standard*.   |
+| `classifiers`    | varchar | The classifiers applied to this table. Note that these differ from classifiers applied to columns of this table. These are represented as a list of strings separated by comma (e.g. `classifier_1,classifier_2,classifier_3`)   |
+| `lineage_scan`    | varchar | A list of four part names representing the columns this table scans from to create its output (e.g. catalog.schema.table_1.column_1,catalog.schema.table_2.column_2   |
+
+
+#### `sdf.information_schema.columns`
+| column_name | data_type | description | 
+| ----------- | ---- | ----------- | 
+| `table_ref` | varchar not null | The fully qualified name of the table (i.e. catalog.schema.table) this columns belongs to |
+| `catalog_name` | varchar not null | The name of the catalog containing the table with this column |
+| `schema_name` | varchar not null | The name of the schema containing the table with this column |
+| `table_name` | varchar not null | The name of the table with this column |
+| `column_name` | varchar not null | The column's name |
+| `description` | varchar | The description of this column defined in the table's yaml, or in SQL |
+| `datatype` | varchar | The datatype of the column. This is currently expressed via Presto types. In the future, these types will be derived from the dialect the table was defined in |
+| `is_nullable` | boolean | Whether or not this column can contain a null value ('true', 'false') |
+| `classifiers` | varchar | The classifiers applied to this column. Note that these differ from classifiers applied to the table. These are represented as a list of strings separated by comma (e.g. `classifier_1,classifier_2,classifier_3`) |
+| `lineage_copy` | varchar | A list of four part names representing the columns this tables copies in order to create its output (e.g. catalog.schema.table_1.column_1,catalog.schema.table_2.column_2 |
+| `lineage_modify` | varchar | A list of four part names representing the columns this table modifies in order to create its output (e.g. catalog.schema.table_1.column_1,catalog.schema.table_2.column_2 |
+
+### Information Schema DDLs
+Below are the DDLs representing these tables in SQL.
 
 ```sql SDF Information Schema DDLs
 --information_schemas.sql
