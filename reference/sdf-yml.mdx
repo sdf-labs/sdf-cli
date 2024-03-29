@@ -15,7 +15,7 @@ title: "SDF YML Schema"
 `references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files Todo why do we skip this serialization?|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
 `targets:` | `array`| Targets define input and output locations for artifacts read and written by the workspace|
-`default-target:` | `string?`| The default target for this workspace|
+`defaults:` | `Defaults?`| Defaults for this workspace|
 `dialect:` | `UNKNOWN`| undefined|
 `compute:` | `UNKNOWN`| The compute platform for this workspace. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
@@ -34,10 +34,11 @@ title: "SDF YML Schema"
 `dialect:` | `Dialect?`| The dialect of this table, defaults to `presto`|
 `compute:` | `ComputeKind?`| The compute platform for evaluating the query populating this table, defaults to `local`|
 `table-type:` | `TableType?`| The table-type of this table (obsolete)|
-`type:` | `TableType2?`| The table-type of this table (new version)|
-`table-modifier:` | `TableModifier?`| undefined|
+`materialization:` | `Materialization?`| The table-type of this table (new version)|
+`purpose:` | `TablePurpose?`| undefined|
+`table-location:` | `TableLocation?`| Specify table ,location, defaults to none if not set|
+`creation-flag:` | `CreationFlags?`| Defines teh table creation options, defaults to none if not set|
 `dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
-`create-options:` | `TableCreateOptions?`| Specify how to create a table|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `array`| The partitioning format of the table|
 `default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
@@ -101,6 +102,21 @@ Value | Description|
 `on-pull` | Synchronizes directory on every pull|
 `on-push` | Synchronizes directory on every push|
 `never` | Never synchronizes directory|
+## Enum: `CreationFlags`
+Value | Description|
+| :--- | :------- |
+`create-new` | Attempts to create a new table; fails if the table already exists.|
+`drop-if-exists` | Drops the existing table and creates a new one.|
+`skip-if-exists` | Skips table creation if the table already exists.|
+`create-or-replace` | Replaces the existing table with a new one. Implementation may vary by DBMS.|
+`create-if-not-exists` | Creates the table only if it doesn't already exist.|
+## Enum: `CompressionType`
+Value | Description|
+| :--- | :------- |
+`tar` | undefined|
+`bzip2` | BZIP2 Compression (.bz2)|
+`gzip` | GZIP Compression (.gzip)|
+`none` | None, (default)|
 ## Enum: `ExcludeType`
 Value | Description|
 | :--- | :------- |
@@ -122,33 +138,14 @@ Value | Description|
 `code-report` | A table representing a code report|
 `data-report` | A table representing a data report|
 `dialect-specific-table` | A dialect specific table, like BigQueries information_schema|
-## Enum: `TableType2`
+## Enum: `TablePurpose`
 Value | Description|
 | :--- | :------- |
-`table` | Computed tables have type table|
-`view` | Table Views|
-## Enum: `TableModifier`
-Value | Description|
-| :--- | :------- |
-`external` | EXternal tables|
-`system` | System Tables/ Views, like external tables but maintained by database|
-`temporary` | Temporary -- per session tables|
-`transient` | Transient table|
-## Enum: `TableCreateOptions`
-Value | Description|
-| :--- | :------- |
-`create-new` | Attempts to create a new table; fails if the table already exists.|
-`drop-if-exists` | Drops the existing table and creates a new one.|
-`skip-if-exists` | Skips table creation if the table already exists.|
-`create-or-replace` | Replaces the existing table with a new one. Implementation may vary by DBMS.|
-`create-if-not-exists` | Creates the table only if it doesn't already exist.|
-## Enum: `CompressionType`
-Value | Description|
-| :--- | :------- |
-`tar` | undefined|
-`bzip2` | BZIP2 Compression (.bz2)|
-`gzip` | GZIP Compression (.gzip)|
-`none` | None, (default)|
+`code-report` | undefined|
+`system` | A System table/view, maintained by the database system|
+`code-contract` | A code contract|
+`data-contract` | A data contract|
+`data-report` | A data report|
 ## Enum: `Variadic`
 Value | Description|
 | :--- | :------- |
@@ -174,6 +171,7 @@ Value | Description|
 `compute:` | `ComputeKind?`| The compute platform for building the included files. If not set, defaults to the [Workspace] compute platform.|
 `index:` | `UNKNOWN`| Index method for this include path: scan | table | schema-table | catalog-schema-table|
 `sync:` | `UNKNOWN`| Synchronization schema for this include path: always | on-pull | on-push | never|
+`defaults:` | `Defaults?`| Defaults for files on this path|
 ### Nested element: `Dialect`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -181,6 +179,27 @@ Value | Description|
 |Field | Type | Description|
 | :---- | :--- | :------- |
 ### Nested element: `IndexMethod`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+### Nested element: `Defaults`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`target:` | `string?`| The default target (can only be set on the level of the workspace/profile)|
+`dialect:` | `Dialect?`| The dialect of this profile. If not set, defaults to presto|
+`compute:` | `ComputeKind?`| The compute platform for this profile. If not set, defaults to local|
+`catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
+`schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to 'pub'|
+`materialization:` | `Materialization?`| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
+`creation-flag:` | `CreationFlags?`| Defines table creation flags, defaults to  if not set|
+`library:` | `string?`| The default library for test and code generation, std or custom|
+`severity:` | `Severity?`| The default severity for this tables tests and checks|
+`csv-has-header:` | `boolean?`| CSV data has a header [only for external tables]|
+`csv-delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
+`csv-compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
+### Nested element: `Materialization`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+### Nested element: `Severity`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 ### Nested element: `ExcludePath`
@@ -214,6 +233,7 @@ Value | Description|
 `name:` | `string`| The name of the target|
 `description:` | `string`| A description of this target|
 `providers:` | `array`| The providers for this target|
+`defaults:` | `Defaults?`| Defaults for this target|
 ### Nested element: `TargetProvider`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -247,9 +267,6 @@ Value | Description|
 ### Nested element: `Preprocessor`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-### Nested element: `Severity`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `Profile`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -260,6 +277,7 @@ Value | Description|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files|
+`defaults:` | `Defaults?`| Defaults for this workspace|
 `dialect:` | `UNKNOWN`| The dialect of this profile. If not set, defaults to Presto dialect|
 `compute:` | `UNKNOWN`| The compute platform for this profile. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
@@ -273,6 +291,9 @@ Value | Description|
 `preprocessor:` | `Preprocessor?`| Experimental: This project has jinja|
 `default-severity:` | `UNKNOWN`| Experimental: This is a dbt project.. The default severity for this tables tests and checks|
 `is-dbt-project:` | `boolean?`| undefined|
+### Nested element: `TableLocation`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -301,7 +322,7 @@ Value | Description|
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the constraint|
-`test:` | `string`| The type of the constraint|
+`is:` | `string`| The type of the constraint|
 `severity:` | `UNKNOWN`| The columns that the constraint applies to|
 ### Nested element: `Partition`
 |Field | Type | Description|
