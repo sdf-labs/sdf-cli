@@ -1,0 +1,38 @@
+---
+title: "V0.1.191"
+description: "This document contains release notes from version 0.1.191 of SDF."
+---
+### March 29nd, 2024
+
+We are excited to announce that a new release of our CLI is now available, bringing new docs,
+ improvements, and bug fixes to SDF. Interested in our product roadmap or want to 
+discuss features? Reach out to your SDF point of contact to provide any points of feedback!
+
+### Snowflake Credentials Error Responses
+SDF now provides updated error reporting for authenticating to Snowflake. When following the steps to 
+authenticate to Snowflake if the incorrect username or password was provided for the account, the following 
+error response will be displayed:
+
+``` bash Wrong User/Pass
+Please enter your Snowflake password: Password123
+    Warning Failed to validate your Snowflake credentials: Failed to authenticate. Error code: 390100. Message: Incorrect username or password was specified.
+            - Check that your credentials are correct and that you have access to the specified resources.
+    Confirm Saved Snowflake credentials
+   Finished auth in 4.263 secs
+```
+
+
+### General bug fixes and stability improvements:
+- SDF Cache updates and bug fixes
+- Support for GitHub repos as references in SDF Workspaces
+- AWS Workspace Credentials Error Response
+
+
+### Latest Builds
+
+| Architecture           | Status | Version | Download |
+| ---------------------- | ------ | ------- | -------- |
+| Linux Intel X86-64     |   ✅   | 0.1.191  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.191-x86_64-unknown-linux-musl.tar.gz) |
+| Linux Arm ARM-64       |   ✅   | 0.1.191  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.191-arm-unknown-linux-gnueabihf.tar.gz) |
+| Apple Intel X86-64     |   ✅   | 0.1.191  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.191-x86_64-apple-darwin.tar.gz) |
+| Apple Arm AARCh-64     |   ✅   | 0.1.191  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.1.191-aarch64-apple-darwin.tar.gz) |
