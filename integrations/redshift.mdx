@@ -141,3 +141,25 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
     ALTER GROUP <your-group-name> add user "IAMR:<IAM_ROLE_NAME>";
     ```
 </Warning>
+
+## Troubleshoot Resources
+1. **Seeing errors like this `ERROR: permission denied for schema schema1` from `sdf run`?**
+
+    This may be due to the Redshift user not having the correct permissions to this schema.
+    To check if you have the right access, you can run the following query.
+
+    Use `SVV_SCHEMA_PRIVILEGES` to view the schema owner, and schema_acl which shows the access control list for the schema.
+    ```sql
+    SELECT schema_owner, schema_acl FROM SVV_ALL_SCHEMAS WHERE schema_name = 'schema1';
+    ```
+
+    If your user does not have access to the schema, you can grant access to the schema by running the following query.
+    To run this query, you either have to be a superuser or the owner of the schema.
+    ```sql
+    GRANT CREATE ON SCHEMA schema1 TO <username>;
+    ```
+
+    The `<username>` is the user name of your IAM user, with `IAM:` prefix. For example, if your IAM user name is `my_user`, you can run:
+    ```sql
+    GRANT CREATE ON SCHEMA schema1 TO "IAM:my_user";
+    ```
