@@ -5,7 +5,7 @@ title: "SDF YML Schema"
 ## Block: `Workspace`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`edition:` | `string`| The SDF edition, should always be 1 (for now)|
+`edition:` | `string`| The SDF edition, should always 1.2 (1.1. will soon ebe deprecated)|
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string`| A description of this workspace|
 `repository:` | `string`| The URL of the workspace source repository (defaults to 'none' if no repository is given)|
@@ -41,7 +41,7 @@ title: "SDF YML Schema"
 `dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `array`| The partitioning format of the table|
-`default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
+`severity:` | `Severity?`| The default severity for this tables tests and checks|
 `constraints:` | `array`| undefined|
 `schedule:` | `string`| The schedule of the table [expressed as cron]|
 `starting:` | `string`| The first date of the table [expressed by prefixes of RFC 33]|
@@ -95,6 +95,7 @@ Value | Description|
 `data-report` | Contains queries against the data of the models|
 `resource` | Contains resources like csv files that are shipped to the service, etc|
 `metadata` | Contains meta data like classifiers, etc|
+`seed` | Contains seeds, e.g csv files etc|
 ## Enum: `SyncType`
 Value | Description|
 | :--- | :------- |
@@ -192,6 +193,7 @@ Value | Description|
 `materialization:` | `Materialization?`| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
 `creation-flag:` | `CreationFlags?`| Defines table creation flags, defaults to  if not set|
 `library:` | `string?`| The default library for test and code generation, std or custom|
+`index:` | `IndexMethod?`| The default index for this tables tests and checks|
 `severity:` | `Severity?`| The default severity for this tables tests and checks|
 `csv-has-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `csv-delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
@@ -220,13 +222,14 @@ Value | Description|
 ### Nested element: `Dependency`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`database:` | `Database?`| undefined|
-`library:` | `string?`| undefined|
-`version:` | `string?`| undefined|
-`imports:` | `array`| undefined|
-### Nested element: `Database`
-|Field | Type | Description|
-| :---- | :--- | :------- |
+`name:` | `string`| undefined|
+`path:` | `string?`| The relative path from this workspace to the referenced workspace, for a Git repo, from the root of the depot to the workspace|
+`profile:` | `string?`| The chosen workspace profile (none means default)|
+`target:` | `string?`| The Git repo The chosen workspace target (none means default)|
+`git:` | `string?`| The Git repo|
+`rev:` | `string?`| the Git revision (choose only one of the fields: rev, branch, tag)|
+`branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
+`tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
 ### Nested element: `Target`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -321,9 +324,8 @@ Value | Description|
 ### Nested element: `Constraint`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the constraint|
-`is:` | `string`| The type of the constraint|
-`severity:` | `UNKNOWN`| The columns that the constraint applies to|
+`is:` | `string`| The constraint macro: must have the form lib.macro(args,..), where lib is any of the libs in scope, std is available by default|
+`severity:` | `Severity?`| The severity of this constraint|
 ### Nested element: `Partition`
 |Field | Type | Description|
 | :---- | :--- | :------- |
