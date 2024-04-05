@@ -1,0 +1,72 @@
+---
+title: "SQL Variables"
+description:
+  "Simple variables and parameterization in SDF"
+---
+
+SDF supports simple variables and parameterization in SQL queries. This is useful for dynamic queries and for reusing values in multiple queries. 
+These differ from variables in Jinja in the following ways:
+
+1. They are only available for use in SQL, not in YML.
+2. They are typed (bool, int, float, string, and null)
+3. They are used with the `@` syntax, instead of `\{\{ \}\}`
+4. They can be easily be set per run with the `--vars` flag on CLI commands like [`sdf compile`](/reference/sdf-cli#sdf-compile) and [`sdf run`](/reference/sdf-cli#sdf-run)
+
+Let's go through a simple example where we use a variable in a SQL query.
+
+## Example
+
+In this example, we will create a variable `@my_variable` and use it in a SQL query.
+
+```sql
+SELECT * FROM my_table WHERE my_column = @my_variable
+```
+
+In order to enable variable substitution, we'll need to set the `preprocessor` option to `sql-vars` in the `workspace.sdf.yml` like so:
+```yaml workspace.sdf.yml
+     workspace:
+        ...
+        preprocessor: sql-vars
+```
+
+Next, to set the value of `@my_variable`, you can use the `--vars` flag on the CLI. For example:
+```shell
+sdf run --vars '{my_variable: "my_value"}'
+```
+or 
+```shell
+sdf compile --vars '{my_variable: "my_value"}'
+```
+
+This will replace `@my_variable` with `my_value` in the SQL query. The resulting query will look like this:
+```sql
+SELECT * FROM my_table WHERE my_column = 'my_value'
+```
+
+SDF vars also respect types, so if you set a variable to a number, it will be treated as a number in the SQL query. For example:
+```shell
+sdf run --vars '{my_variable: 123}'
+```
+
+This will replace `@my_variable` with `123` in the SQL query. The resulting query will look like this:
+```sql
+SELECT * FROM my_table WHERE my_column = 123
+```
+
+SDF vars also support boolean, float, and null types along with strings and integers.
+
+### Vars in YML
+
+You can also set variables in a `vars.yml` file. This is useful when you have a lot of variables to set. Here is an example of a `vars.yml` file:   
+```yaml vars.yml
+my_variable: "my_value"
+```
+
+You can then use this file with the `--vars` flag like so:
+```shell
+sdf run --vars vars.yml
+```
+
+where `vars.yml` is the path to the file.
+
+

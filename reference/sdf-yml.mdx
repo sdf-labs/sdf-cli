@@ -8,41 +8,41 @@ title: "SDF YML Schema"
 `edition:` | `string`| The SDF edition, should always 1.2 (1.1. will soon ebe deprecated)|
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string`| A description of this workspace|
-`repository:` | `string`| The URL of the workspace source repository (defaults to 'none' if no repository is given)|
-`remote-location:` | `string`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
+`repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
+`remote-location:` | `string`| The default output object store location, e.g. &#39;s3://bucket/key/&#39; where key is optional|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files Todo why do we skip this serialization?|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
 `targets:` | `array`| Targets define input and output locations for artifacts read and written by the workspace|
 `defaults:` | `Defaults?`| Defaults for this workspace|
-`dialect:` | `UNKNOWN`| undefined|
+`dialect:` | `UNKNOWN`| |
 `compute:` | `UNKNOWN`| The compute platform for this workspace. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
-`default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
-`default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
+`default-schema:` | `string`| Defines a default schema (If not set, defaults to &#39;pub&#39;)|
+`default-profile:` | `string`| Defines the default profile (if not set, defaults to &#39;dbg&#39;)|
 `source-locations:` | `array`| Workspace defined by these set of files|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \{\{ dt \}\}|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
 `preprocessor:` | `Preprocessor?`| Experimental: This project has jinja, sql_vars, and sql_macros|
 `default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
 `is-dbt-project:` | `boolean?`| Experimental: This is a dbt project..|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| undefined|
-`description:` | `string?`| undefined|
-`dialect:` | `Dialect?`| The dialect of this table, defaults to `presto`|
-`compute:` | `ComputeKind?`| The compute platform for evaluating the query populating this table, defaults to `local`|
+`name:` | `string`| |
+`description:` | `string?`| |
+`dialect:` | `Dialect?`| The dialect of this table, defaults to &#96;presto&#96;|
+`compute:` | `ComputeKind?`| The compute platform for evaluating the query populating this table, defaults to &#96;local&#96;|
 `table-type:` | `TableType?`| The table-type of this table (obsolete)|
 `materialization:` | `Materialization?`| The table-type of this table (new version)|
-`purpose:` | `TablePurpose?`| undefined|
+`purpose:` | `TablePurpose?`| |
 `table-location:` | `TableLocation?`| Specify table ,location, defaults to none if not set|
 `creation-flag:` | `CreationFlags?`| Defines teh table creation options, defaults to none if not set|
 `dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `array`| The partitioning format of the table|
 `severity:` | `Severity?`| The default severity for this tables tests and checks|
-`constraints:` | `array`| undefined|
+`constraints:` | `array`| |
 `schedule:` | `string`| The schedule of the table [expressed as cron]|
 `starting:` | `string`| The first date of the table [expressed by prefixes of RFC 33]|
 `classifiers:` | `array`| An array of classifier references|
@@ -54,7 +54,7 @@ title: "SDF YML Schema"
 `delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
 `compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
 `seeded:` | `boolean?`| Table is defined by these .sql and/or .sdf files Is this table backed by a DDL or a type provider|
-`source-locations:` | `array`| undefined|
+`source-locations:` | `array`| |
 ## Block: `Classifier`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -83,7 +83,7 @@ title: "SDF YML Schema"
 `cross-link:` | `string`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `source-locations:` | `array`| Function defined by these set of .sdf files|
-`implemented-by:` | `FunctionImplSpec?`| undefined|
+`implemented-by:` | `FunctionImplSpec?`| |
 `special:` | `boolean`| Function can be called without parentheses, e.g. as if it were a constant, e.g. current_date|
 ## Enum: `IncludeType`
 Value | Description|
@@ -189,7 +189,7 @@ Value | Description|
 `dialect:` | `Dialect?`| The dialect of this profile. If not set, defaults to presto|
 `compute:` | `ComputeKind?`| The compute platform for this profile. If not set, defaults to local|
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
-`schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to 'pub'|
+`schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
 `materialization:` | `Materialization?`| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
 `creation-flag:` | `CreationFlags?`| Defines table creation flags, defaults to  if not set|
 `library:` | `string?`| The default library for test and code generation, std or custom|
@@ -222,7 +222,7 @@ Value | Description|
 ### Nested element: `Dependency`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| undefined|
+`name:` | `string`| |
 `path:` | `string?`| The relative path from this workspace to the referenced workspace, for a Git repo, from the root of the depot to the workspace|
 `profile:` | `string?`| The chosen workspace profile (none means default)|
 `target:` | `string?`| The Git repo The chosen workspace target (none means default)|
@@ -245,13 +245,13 @@ Value | Description|
 `credential:` | `string?`| Credential identifier for this provider|
 `warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
 `cluster-identifier:` | `string?`| The cluster identifier for redshift server|
-`source-locations:` | `array`| undefined|
-`batch-size:` | `integer?`| undefined|
+`source-locations:` | `array`| |
+`batch-size:` | `integer?`| |
 ### Nested element: `ProviderScope`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| Matches a three part table name using globs, e.g. *.*.* matches all tables|
-`as:` | `string`| Compose a new table, use * to back reference the matched name, e.g. *.{{env_var('USER'})}}_*.* renames all tables to have the `USER` as a prefix of every schema|
+`as:` | `string`| Compose a new table, use * to back reference the matched name, e.g. *.&#123;&#123;env_var(&#39;USER&#39;&#125;)&#125;&#125;_*.* renames all tables to have the &#96;USER&#96; as a prefix of every schema|
 ### Nested element: `CatalogType`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -262,8 +262,8 @@ Value | Description|
 ### Nested element: `SystemTime`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`secs_since_epoch:` | `integer`| undefined|
-`nanos_since_epoch:` | `integer`| undefined|
+`secs_since_epoch:` | `integer`| |
+`nanos_since_epoch:` | `integer`| |
 ### Nested element: `Constant`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -275,8 +275,8 @@ Value | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string`| A description of this workspace|
-`repository:` | `string`| The URL of the workspace source repository (defaults to 'none' if no repository is given)|
-`remote-location:` | `string`| The default output object store location, e.g. 's3://bucket/key/' where key is optional|
+`repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
+`remote-location:` | `string`| The default output object store location, e.g. &#39;s3://bucket/key/&#39; where key is optional|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files|
@@ -284,16 +284,16 @@ Value | Description|
 `dialect:` | `UNKNOWN`| The dialect of this profile. If not set, defaults to Presto dialect|
 `compute:` | `UNKNOWN`| The compute platform for this profile. If not set, defaults to Local|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
-`default-schema:` | `string`| Defines a default schema (If not set, defaults to 'pub')|
+`default-schema:` | `string`| Defines a default schema (If not set, defaults to &#39;pub&#39;)|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
 `targets:` | `array`| Targets define input and output locations for artifacts read and written by the profile|
 `default-target:` | `string?`| The default target for this profile|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \{\{ dt \}\}|
-`default-profile:` | `string`| Defines the default profile (if not set, defaults to 'dbg')|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
+`default-profile:` | `string`| Defines the default profile (if not set, defaults to &#39;dbg&#39;)|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `preprocessor:` | `Preprocessor?`| Experimental: This project has jinja|
 `default-severity:` | `UNKNOWN`| Experimental: This is a dbt project.. The default severity for this tables tests and checks|
-`is-dbt-project:` | `boolean?`| undefined|
+`is-dbt-project:` | `boolean?`| |
 ### Nested element: `TableLocation`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -308,7 +308,7 @@ Value | Description|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `samples:` | `array`| An array of representative literals of this column [experimental!]|
 `default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
-`constraints:` | `array`| undefined|
+`constraints:` | `array`| |
 ### Nested element: `Lineage`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -338,7 +338,7 @@ Value | Description|
 ### Nested element: `Label`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the label, use "*" to allow arbitrary strings as labels|
+`name:` | `string`| The name of the label, use &quot;*&quot; to allow arbitrary strings as labels|
 `description:` | `string?`| A description of this classifier element|
 ### Nested element: `Scope`
 |Field | Type | Description|
@@ -370,8 +370,8 @@ Value | Description|
 ### Nested element: `TypeBound`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`type-variable:` | `string`| undefined|
-`datatypes:` | `array`| undefined|
+`type-variable:` | `string`| |
+`datatypes:` | `array`| |
 ### Nested element: `Example`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -404,12 +404,12 @@ Value | Description|
 `type:` | `UNKNOWN`| The type of the catalog [e.g.: hive]|
 `warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
 `cluster-identifier:` | `string?`| The cluster identifier for redshift server|
-`source-locations:` | `array`| undefined|
-`batch-size:` | `integer?`| undefined|
+`source-locations:` | `array`| |
+`batch-size:` | `integer?`| |
 ### Nested element: `Config`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the configuration section|
 `description:` | `string?`| A description of this configuration section|
-`properties:` | `object?`| undefined|
+`properties:` | `object?`| |
 

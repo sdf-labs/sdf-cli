@@ -52,14 +52,16 @@
 				"guide/udf",
 				"guide/authentication",
 				"guide/deployment",
-				"integrations/large_workspace"
-			]
-		},
-		{
-			"group":"Macro Processing",
-			"pages":[
-				"macro-processing/introduction",
-				"macro-processing/env-vars"
+				"guide/large_workspace",
+				{  
+					"group":"Macro Processing",
+					"pages":[
+						"guide/macro-processing/overview",
+						"guide/macro-processing/jinja",
+						"guide/macro-processing/jinja-variables",
+						"guide/macro-processing/sql-variables"
+					]
+				}
 			]
 		},
 		{

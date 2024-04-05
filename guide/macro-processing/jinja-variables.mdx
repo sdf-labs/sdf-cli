@@ -1,0 +1,211 @@
+---
+title: "Jinja Variables"
+description:
+  "Work with Variables in Jinja to parameterize your SQL and YML files"
+---
+
+SDF supports several variable types and scopes with Jinja. These allow you to parameterize your SQL and YML files, making them more reusable and easier to maintain. 
+
+In this guide, we'll cover the following variable types:
+- [Local Variables](#local-variables)
+- [Namespaced Variables](#namespace-variables)
+- [Environment Variables](#environment-variables)
+
+## Local Variables
+Local variables are defined in the same file where they are used, and they are scoped to the file they are defined in and not accessible in other files.
+
+Let's look at an example, imagine we have a model that calculates a variety of metrics starting from a specific date, then aggregates them into one table. We can define a local variable to store the start date, and use it in our SQL query. 
+Click between the two files below to see the pre and post processed SQL.
+<CodeGroup>
+```sql start_date_preprocessed.sql
+{% set start_date = '2021-01-01' %}
+
+with total_revenue as (
+    select
+        sum(revenue) as total_revenue
+    from
+        sales
+    where
+        date >= '{{ start_date }}'
+),
+
+total_sales as (
+    select
+        count(*) as total_sales
+    from
+        sales
+    where
+        date >= '{{ start_date }}'
+),
+
+average_revenue_per_sale as (
+    select
+        (sum(revenue) / count(*)) as avg_revenue_per_sale
+    from
+        sales
+    where
+        date >= '{{ start_date }}'
+),
+
+total_customers as (
+    select
+        count(distinct customer_id) as total_customers
+    from
+        sales
+    where
+        date >= '{{ start_date }}'
+)
+
+select
+    total_revenue.total_revenue,
+    total_sales.total_sales,
+    average_revenue_per_sale.avg_revenue_per_sale,
+    total_customers.total_customers
+from
+    total_revenue,
+    total_sales,
+    average_revenue_per_sale,
+    total_customers
+```
+```sql start_date_postprocessed.sql
+with total_revenue as (
+    select
+        sum(revenue) as total_revenue
+    from
+        sales
+    where
+        date >= '2021-01-01'
+),
+
+total_sales as (
+    select
+        count(*) as total_sales
+    from
+        sales
+    where
+        date >= '2021-01-01'
+),
+
+average_revenue_per_sale as (
+    select
+        (sum(revenue) / count(*)) as avg_revenue_per_sale
+    from
+        sales
+    where
+        date >= '2021-01-01'
+),
+
+total_customers as (
+    select
+        count(distinct customer_id) as total_customers
+    from
+        sales
+    where
+        date >= '2021-01-01'
+)
+
+select
+    total_revenue.total_revenue,
+    total_sales.total_sales,
+    average_revenue_per_sale.avg_revenue_per_sale,
+    total_customers.total_customers
+from
+    total_revenue,
+    total_sales,
+    average_revenue_per_sale,
+    total_customers
+```
+</CodeGroup>
+
+
+<Note>
+    Since local variables are scoped to the file they are defined in, you can define a variable with the same name in another file without any conflicts. Furthermore, you can reference the variable by name alone without any prefix or namespace.
+</Note>
+
+## Namespaced Variables
+Namespaced variables are defined in a separate file and are accessible in across the entire workspace. This allows you to define variables once and use them across multiple files. These variables
+are namespaced with the workspace name, and therefore accessed using `<workspace-name>.<variable-name>`.
+
+Let's look at an example, imagine we have several models that all use the same list of countries. We can define a namespaced variable to store the list of countries, and use it in our SQL queries.
+
+For the sake of the this example, let's assume we have a workspace named `transformations`. We can define a namespaced variable in a file named `countries.jinja` as follows:
+
+<CodeGroup>
+```jinja countries.jinja
+{% set countries = "(
+    'United States',
+    'Canada',
+    'Mexico',
+    'Brazil',
+    'Argentina',
+    'Chile'
+)" %}
+```
+
+```sql countries_preprocessed.sql
+select
+    country,
+    count(*) as total_sales
+from
+    sales
+where
+    country in {{ transformations.countries }}
+```
+
+```sql countries_postprocessed.sql
+select
+    country,
+    count(*) as total_sales
+from
+    sales
+where
+    country in (
+    'United States',
+    'Canada',
+    'Mexico',
+    'Brazil',
+    'Argentina',
+    'Chile'
+)
+```
+</CodeGroup>
+<Tip>
+    Macros and variables are both namespaced to the workspace name so that they can be used inside other workspaces. This enables workspaces to act as SDF packages that can be shared and reused across multiple projects.
+</Tip>
+
+## Environment Variables
+Environment variables can be accessed via the built in jinja macro `env_var(VAR)`. This function is accessible in both SQL, and YML files.
+
+Give it a try:
+<Steps>
+    <Step title="Navigate to Your Workspace">
+        Navigate to your SDF workspace. To create a new one, see our getting started section [here](/getting-started).
+    </Step>
+    <Step title="Turn on the macro preprocessor">
+        SDF will only use the macro-processor when instructed. In your `workspace.sdf.yml`, in the workspace, block,
+        add the preprocessor configuration.
+        ```yml
+            workspace:
+              ...
+              preprocessor: jinja
+        ```
+    </Step>
+    <Step title="Give it a Try!">
+        Now you have access to environment variables. Try if for yourself.
+        In your terminal, run an ad-hoc query against SDF:
+        ```bash
+        sdf run -q "select '{{env_var('PWD')}}' as current_directory;"
+        ```
+        You'll see as output:
+        ```shell
+        Table sdf.pub.query
+        +---------------------------------------------+
+        | current_directory                           |
+        +---------------------------------------------+
+        | /Users/name/Documents/workspaces/jinja-demo |
+        +---------------------------------------------+
+        ```
+    </Step>
+</Steps>
+
+

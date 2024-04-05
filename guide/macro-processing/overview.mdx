@@ -1,0 +1,23 @@
+---
+title: "Macro Processing with SDF"
+description:
+  "SDF supports several macro processing features out of the box that enable compilation of queries containing Jinja and SQL Variables."
+---
+
+Macro Processing is critical to implementing DRY patterns, simplifying query writing, and enabling dynamic query generation.
+
+SDF supports two types of macros:
+
+1. **Jinja Macros** - Similar to other frameworks like DBT and Airflow, SDF supports Jinja macros for templating and dynamic query generation.
+2. **SQL Variables** - Modeled after SQL Variables common in SQL dialects like [BigQuery](https://cloud.google.com/bigquery/docs/reference/standard-sql/procedural-language), SDF supports SQL Variables for parameterizing queries.
+
+Both of these are preprocessed before compilation and execution. 
+
+<CardGroup cols={2}>
+  <Card title="Jinja" icon="square-1" href="/guide/macro-processing/jinja">
+    Jinja unlocks the full power of Python for dynamic query generation.
+  </Card>
+  <Card title="SQL Variables" icon="square-2" href="/guide/macro-processing/sql-variables">
+    SDF SQL Variables are the simplest way to parameterize your queries per-command.
+  </Card>
+</CardGroup>
