@@ -166,6 +166,12 @@
 			"group": "Releases",
 			"pages": [
 				{
+					"group": "April 2024",
+					"pages": [
+						"releases/v0.1.192"
+					]
+				},
+				{
 					"group": "March 2024",
 					"pages": [
 						"releases/v0.1.184",
