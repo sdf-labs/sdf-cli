@@ -14,7 +14,7 @@ title: "SDF YML Schema"
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files Todo why do we skip this serialization?|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
-`targets:` | `array`| Targets define input and output locations for artifacts read and written by the workspace|
+`environments:` | `array`| Targets define input and output locations for artifacts read and written by the workspace|
 `defaults:` | `Defaults?`| Defaults for this workspace|
 `dialect:` | `UNKNOWN`| |
 `compute:` | `UNKNOWN`| The compute platform for this workspace. If not set, defaults to Local|
@@ -185,19 +185,26 @@ Value | Description|
 ### Nested element: `Defaults`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`target:` | `string?`| The default target (can only be set on the level of the workspace/profile)|
+`profile:` | `string?`| The default profile (can only be set on the level of the workspace)|
+`environment:` | `string?`| The default environment (can only be set on the level of the workspace/profile)|
 `dialect:` | `Dialect?`| The dialect of this profile. If not set, defaults to presto|
 `compute:` | `ComputeKind?`| The compute platform for this profile. If not set, defaults to local|
+`preprocessor:` | `Preprocessor?`| The compute platform for this profile. If not set, defaults to local|
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
 `materialization:` | `Materialization?`| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
 `creation-flag:` | `CreationFlags?`| Defines table creation flags, defaults to  if not set|
 `library:` | `string?`| The default library for test and code generation, std or custom|
-`index:` | `IndexMethod?`| The default index for this tables tests and checks|
+`index-method:` | `IndexMethod?`| The default index for this tables|
+`include-type:` | `IncludeType?`| The default index for this tables|
+`sync-method:` | `SyncType?`| The default index for this tables|
 `severity:` | `Severity?`| The default severity for this tables tests and checks|
 `csv-has-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `csv-delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
 `csv-compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
+### Nested element: `Preprocessor`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `Materialization`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -230,7 +237,7 @@ Value | Description|
 `rev:` | `string?`| the Git revision (choose only one of the fields: rev, branch, tag)|
 `branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
 `tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
-### Nested element: `Target`
+### Nested element: `TargetEnvironment`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the target|
@@ -267,9 +274,6 @@ Value | Description|
 ### Nested element: `Constant`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-### Nested element: `Preprocessor`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `Profile`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -286,7 +290,7 @@ Value | Description|
 `default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
 `default-schema:` | `string`| Defines a default schema (If not set, defaults to &#39;pub&#39;)|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
-`targets:` | `array`| Targets define input and output locations for artifacts read and written by the profile|
+`environments:` | `array`| Targets define input and output locations for artifacts read and written by the profile|
 `default-target:` | `string?`| The default target for this profile|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
 `default-profile:` | `string`| Defines the default profile (if not set, defaults to &#39;dbg&#39;)|
