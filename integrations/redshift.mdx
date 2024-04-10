@@ -58,10 +58,19 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
                     "Sid": "Statement2",
                     "Effect": "Allow",
                     "Action": [
-                        "redshift-data:*"
+                        "redshift-data:DescribeStatement",
+                        "redshift-data:DescribeTable",
+                        "redshift-data:GetStatementResult",
+                        "redshift-data:ListDatabases",
+                        "redshift-data:ListSchemas",
+                        "redshift-data:ExecuteStatement",
+                        "redshift-data:BatchExecuteStatement",
+                        "redshift-data:CancelStatement",
+                        "redshift-data:ListStatements",
+                        "redshift-data:ListTables"
                     ],
                     "Resource": [
-                        "arn:aws:redshift:{region}:{account-number}:cluster:{cluster-identifier}"
+                        "*"
                     ]
                 }
             ]
