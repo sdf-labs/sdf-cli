@@ -117,7 +117,7 @@ provider:
 
 ### Integrate SDF Into Your DBT Projects to Extend Functionality
 SDF now works alongside existing DBT projects. SDF allows current DBT project capabilities
-to be extended with column-level lineage, code contracts, and data classifications/governance.
+to be extended with column-level lineage, checks, and data classifications/governance.
 
 To initialize your DBT project as an SDF project following these instructions: [DBT Integration](/integrations/dbt)
 
@@ -127,7 +127,7 @@ and value that SDF delivers.
 
 SDF’s static analyis can supercharge CI/CD workflows for data teams. By compiling your SQL on each pull request, SDF 
 can statically ensure new updates to your models are valid SQL and do not break anything downstream. Additionally, 
-SDF supports the use of code contracts in CI/CD. This feature allows users to define their own static tests, further 
+SDF supports the use of checks in CI/CD. This feature allows users to define their own static tests, further 
 enhancing the robustness and reliability of your data models. Unlike other CI/CD data tools, SDF checks everything statically, 
 preventing you from having to incur compute costs to validate SQL and run impact analysis.
 

@@ -46,8 +46,8 @@
 				"guide/workspaces",
 				"guide/index",
 				"guide/classifiers",
-				"guide/code_contracts",
-				"guide/code_reports",
+				"guide/checks",
+				"guide/reports",
 				"guide/lineage_metadata",
 				"guide/udf",
 				"guide/authentication",
@@ -268,6 +268,12 @@
 						"releases/v0.1.9",
 						"releases/v0.1.8",
 						"releases/v0.1.7"
+					]
+				},
+				{
+					"group": "Migration Guides",
+					"pages": [
+						"releases/migrations/1.1-1.2"
 					]
 				}
 			]

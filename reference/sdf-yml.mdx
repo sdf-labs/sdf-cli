@@ -5,37 +5,26 @@ title: "SDF YML Schema"
 ## Block: `Workspace`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`edition:` | `string`| The SDF edition, should always 1.2 (1.1. will soon ebe deprecated)|
+`edition:` | `string`| The SDF edition, should always be 1.2 (1.1 is deprecated)|
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string`| A description of this workspace|
 `repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
-`remote-location:` | `string`| The default output object store location, e.g. &#39;s3://bucket/key/&#39; where key is optional|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
-`references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files Todo why do we skip this serialization?|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
-`environments:` | `array`| Targets define input and output locations for artifacts read and written by the workspace|
+`providers:` | `array`| The providers for this environment|
 `defaults:` | `Defaults?`| Defaults for this workspace|
-`dialect:` | `UNKNOWN`| |
-`compute:` | `UNKNOWN`| The compute platform for this workspace. If not set, defaults to Local|
-`default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
-`default-schema:` | `string`| Defines a default schema (If not set, defaults to &#39;pub&#39;)|
-`default-profile:` | `string`| Defines the default profile (if not set, defaults to &#39;dbg&#39;)|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
-`preprocessor:` | `Preprocessor?`| Experimental: This project has jinja, sql_vars, and sql_macros|
-`default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
-`is-dbt-project:` | `boolean?`| Experimental: This is a dbt project..|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| |
 `description:` | `string?`| |
 `dialect:` | `Dialect?`| The dialect of this table, defaults to &#96;presto&#96;|
-`compute:` | `ComputeKind?`| The compute platform for evaluating the query populating this table, defaults to &#96;local&#96;|
-`table-type:` | `TableType?`| The table-type of this table (obsolete)|
 `materialization:` | `Materialization?`| The table-type of this table (new version)|
-`purpose:` | `TablePurpose?`| |
+`purpose:` | `TablePurpose?`| Specify what kind of table or view this is|
+`origin:` | `TableOrigin?`| The origin of this table &lt;remote&gt; or &lt;local&gt;|
 `table-location:` | `TableLocation?`| Specify table ,location, defaults to none if not set|
 `creation-flag:` | `CreationFlags?`| Defines teh table creation options, defaults to none if not set|
 `dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
@@ -61,8 +50,8 @@ title: "SDF YML Schema"
 `name:` | `string`| The name of the classifier type|
 `description:` | `string`| A description of this classifier type|
 `labels:` | `array`| Named classifier labels|
-`scope:` | `UNKNOWN`| Scope of the classifier: table or column|
-`cardinality:` | `UNKNOWN`| Cardinality of the classifier: zero-or-one, one or zero-or-many|
+`scope:` | [`Scope`](#enum-scope)| Scope of the classifier: table or column|
+`cardinality:` | [`Cardinality`](#enum-cardinality)| Cardinality of the classifier: zero-or-one, one or zero-or-many|
 `propagate:` | `boolean`| Does the classifier propagate from scope to scope or is it a one scope marker|
 `source-locations:` | `array`| Classifier defined by these set of .sdf files|
 ## Block: `Function`
@@ -72,37 +61,92 @@ title: "SDF YML Schema"
 `section:` | `string`| The generic type bounds|
 `dialect:` | `Dialect?`| The dialect that provides this function|
 `description:` | `string`| A description of this function|
-`variadic:` | `UNKNOWN`| Arbitrary number of arguments of an common type out of a list of valid types|
-`kind:` | `UNKNOWN`| The function kind|
+`variadic:` | [`Variadic`](#enum-variadic)| Arbitrary number of arguments of an common type out of a list of valid types|
+`kind:` | [`FunctionKind`](#enum-functionkind)| The function kind|
 `parameters:` | `[Parameter]?`| The arguments of this function|
 `optional-parameters:` | `[OptionalParameter]?`| The arguments of this function|
 `returns:` | `Parameter?`| The results of this function (can be a tuple)|
 `binds:` | `array`| The generic type bounds|
-`volatility:` | `UNKNOWN`| volatility - The volatility of the function.|
+`volatility:` | [`Volatility`](#enum-volatility)| volatility - The volatility of the function.|
 `examples:` | `array`| example - Example use of the function (tuple with input/output)|
 `cross-link:` | `string`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `source-locations:` | `array`| Function defined by these set of .sdf files|
 `implemented-by:` | `FunctionImplSpec?`| |
 `special:` | `boolean`| Function can be called without parentheses, e.g. as if it were a constant, e.g. current_date|
+## Block: `Credential`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of the credential (default = &#39;default&#39;)|
+`description:` | `string?`| A description of this credential|
+`source-locations:` | `array`| Credential defined by these set of .sdf files|
+## Block: `Environment`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
+`description:` | `string`| A description of this workspace|
+`repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
+`includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
+`excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
+`defaults:` | `Defaults?`| Defaults for this workspace|
+`compute:` | [`ComputeKind`](#enum-computekind)| The compute platform for this environment. If not set, defaults to Local|
+`dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
+`providers:` | `array`| The providers for this environment|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
+`source-locations:` | `array`| Workspace defined by these set of files|
+`preprocessor:` | `Preprocessor?`| Experimental: This project has jinja|
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
 `model` | Contains models, i.e ddls or queries, used for data transformation|
-`data-contract` | Contains queries against the data of the models, the check holds if the data returns zero rows|
-`code-contract` | Contains queries against the information schema of the models, the check holds if the data returns zero rows|
-`code-report` | Contains queries for the information schema of the model|
-`data-report` | Contains queries against the data of the models|
+`test` | Contains queries against the data of the models, the check holds if the data returns zero rows|
+`check` | Contains queries against the information schema of the models, the check holds if the data returns zero rows|
+`report` | Contains queries for the information schema of the model|
+`stat` | Contains queries against the data of the models|
 `resource` | Contains resources like csv files that are shipped to the service, etc|
 `metadata` | Contains meta data like classifiers, etc|
 `seed` | Contains seeds, e.g csv files etc|
-## Enum: `SyncType`
-Value | Description|
-| :--- | :------- |
-`always` | Synchronizes directory on pull and push|
-`on-pull` | Synchronizes directory on every pull|
-`on-push` | Synchronizes directory on every push|
-`never` | Never synchronizes directory|
+## Enum: `IndexMethod`
+Values |
+| :--- |
+`none`
+`table-name`
+`schema-table-name`
+`catalog-schema-table-name`
+`scan-dbt`
+## Enum: `Dialect`
+Supported dialects.
+Values |
+| :--- |
+`snowflake`
+`presto`
+`bigquery`
+`redshift`
+`spark-lp`
+## Enum: `ComputeKind`
+Supported compute platforms.
+Values |
+| :--- |
+`local`
+`remote`
+## Enum: `Preprocessor`
+Values |
+| :--- |
+`none`
+`jinja`
+`sql-vars`
+`sql-logic-test`
+`all`
+## Enum: `Materialization`
+Values |
+| :--- |
+`table`
+`temporary-table`
+`external-table`
+`view`
+`materialized-view`
+`incremental-table`
+`recursive-table`
 ## Enum: `CreationFlags`
 Value | Description|
 | :--- | :------- |
@@ -111,6 +155,19 @@ Value | Description|
 `skip-if-exists` | Skips table creation if the table already exists.|
 `create-or-replace` | Replaces the existing table with a new one. Implementation may vary by DBMS.|
 `create-if-not-exists` | Creates the table only if it doesn't already exist.|
+## Enum: `SyncType`
+Value | Description|
+| :--- | :------- |
+`always` | Synchronizes directory on pull and push|
+`on-pull` | Synchronizes directory on every pull|
+`on-push` | Synchronizes directory on every push|
+`never` | Never synchronizes directory|
+## Enum: `Severity`
+Supported dialects.
+Values |
+| :--- |
+`warning`
+`error`
 ## Enum: `CompressionType`
 Value | Description|
 | :--- | :------- |
@@ -123,30 +180,52 @@ Value | Description|
 | :--- | :------- |
 `content` | undefined|
 `path` | Excludes this path, can be a glob expression|
-## Enum: `TableType`
-Value | Description|
-| :--- | :------- |
-`table` | Computed tables have type table|
-`external` | Given tables are called external|
-`view` | Table Views|
-`temporary-view` | Session scoped temporary table views [Spark specific]|
-`recursive` | Recursive warehouse tables [SDF specific]|
-`system` | System tables (like sdf.information-schema.*)|
-`remote-external` | A root table that is managed by an external table provider like Iceberg, Glue, Snowflake, Redshift, etc|
-`remote-table` | A derived table that is managed by an external compute platform like Snowflake, Redshift, etc|
-`code-contract` | A table representing a code contract query|
-`data-contract` | A table representing a data contract query|
-`code-report` | A table representing a code report|
-`data-report` | A table representing a data report|
-`dialect-specific-table` | A dialect specific table, like BigQueries information_schema|
+## Enum: `ProviderType`
+Values |
+| :--- |
+`glue`
+`redshift`
+`snowflake`
 ## Enum: `TablePurpose`
 Value | Description|
 | :--- | :------- |
-`code-report` | undefined|
-`system` | A System table/view, maintained by the database system|
-`code-contract` | A code contract|
-`data-contract` | A data contract|
-`data-report` | A data report|
+`report` | undefined|
+`model` | A regular table|
+`check` | A code contract|
+`test` | A data contract|
+`stat` | A data report|
+`system` | A SDF System table/view, maintained by the sdf cli|
+`external-system` | An External System table/view, maintained by the database system (e.g. Snowflake, Redshift, etc.)|
+## Enum: `TableOrigin`
+Values |
+| :--- |
+`local`
+`remote`
+## Enum: `TableLocation`
+Values |
+| :--- |
+`mirror`
+`local`
+`remote`
+`intrinsic`
+## Enum: `FileFormat`
+Store table data in these formats.
+Values |
+| :--- |
+`parquet`
+`csv`
+`json`
+## Enum: `Scope`
+Values |
+| :--- |
+`column`
+`table`
+## Enum: `Cardinality`
+Values |
+| :--- |
+`zero-or-one`
+`one`
+`zero-or-more`
 ## Enum: `Variadic`
 Value | Description|
 | :--- | :------- |
@@ -154,42 +233,46 @@ Value | Description|
 `uniform` | All arguments have the same types|
 `even-odd` | All even arguments have one type, odd arguments have another type|
 `any` | Any length of arguments, arguments can be different types|
+## Enum: `FunctionKind`
+Values |
+| :--- |
+`scalar`
+`aggregate`
+`window`
+`table`
 ## Enum: `Volatility`
 Value | Description|
 | :--- | :------- |
 `pure` | Pure - An pure function will always return the same output when given the same input.|
 `stable` | Stable - A stable function may return different values given the same input across different queries but must return the same value for a given input within a query.|
 `volatile` | Volatile - A volatile function may change the return value from evaluation to evaluation. Multiple invocations of a volatile function may return different results when used in the same query.|
+## Enum: `FunctionImplSpec`
+Values |
+| :--- |
+`builtin`
+`sql`
+`native`
+## Enum: `SdfAuthVariant`
+Values |
+| :--- |
+`interactive`
+`headless`
+`id_token_from_file`
 ## Nested Elements
 ### Nested element: `IncludePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| A filepath|
-`type:` | `UNKNOWN`| Type of included artifacts: model | test | stats | metadata | resource|
-`default-catalog:` | `string?`| Defines a default catalog for unqualified names. If not set, defaults to the [Workspace] catalog.|
-`default-schema:` | `string?`| Defines a default schema for unqualified names. If not set, defaults to the [Workspace] schema.|
-`dialect:` | `Dialect?`| The dialect of the included files. If not set, defaults to the [Workspace] dialect.|
-`compute:` | `ComputeKind?`| The compute platform for building the included files. If not set, defaults to the [Workspace] compute platform.|
-`index:` | `UNKNOWN`| Index method for this include path: scan | table | schema-table | catalog-schema-table|
-`sync:` | `UNKNOWN`| Synchronization schema for this include path: always | on-pull | on-push | never|
+`type:` | [`IncludeType`](#enum-includetype)| Type of included artifacts: model | test | stats | metadata | resource|
+`index:` | [`IndexMethod`](#enum-indexmethod)| Index method for this include path: scan | table | schema-table | catalog-schema-table|
 `defaults:` | `Defaults?`| Defaults for files on this path|
-### Nested element: `Dialect`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `ComputeKind`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `IndexMethod`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `Defaults`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`profile:` | `string?`| The default profile (can only be set on the level of the workspace)|
-`environment:` | `string?`| The default environment (can only be set on the level of the workspace/profile)|
-`dialect:` | `Dialect?`| The dialect of this profile. If not set, defaults to presto|
-`compute:` | `ComputeKind?`| The compute platform for this profile. If not set, defaults to local|
-`preprocessor:` | `Preprocessor?`| The compute platform for this profile. If not set, defaults to local|
+`environment:` | `string?`| The default environment (can only be set on the level of the workspace)|
+`dialect:` | `Dialect?`| The dialect of this environment. If not set, defaults to presto|
+`compute:` | `ComputeKind?`| The compute platform for this environment. If not set, defaults to local|
+`preprocessor:` | `Preprocessor?`| The preprocessor for this environment. If not set, defaults to local|
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
 `materialization:` | `Materialization?`| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
@@ -202,66 +285,36 @@ Value | Description|
 `csv-has-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `csv-delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
 `csv-compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
-### Nested element: `Preprocessor`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `Materialization`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `Severity`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `ExcludePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| A filepath|
 `exclude-type:` | `ExcludeType?`| Type of excluded artifacts|
-### Nested element: `WorkspacePath`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`path:` | `string`| The relative path from this workspace to the referenced workspace, for a Git repo, from the root of the depot to the workspace|
-`profile:` | `string?`| The chosen workspace profile (none means default)|
-`target:` | `string?`| The Git repo The chosen workspace target (none means default)|
-`git:` | `string?`| The Git repo|
-`rev:` | `string?`| the Git revision (choose only one of the fields: rev, branch, tag)|
-`branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
-`tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
 ### Nested element: `Dependency`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| |
 `path:` | `string?`| The relative path from this workspace to the referenced workspace, for a Git repo, from the root of the depot to the workspace|
-`profile:` | `string?`| The chosen workspace profile (none means default)|
+`environment:` | `string?`| The chosen workspace environment (none means default)|
 `target:` | `string?`| The Git repo The chosen workspace target (none means default)|
 `git:` | `string?`| The Git repo|
 `rev:` | `string?`| the Git revision (choose only one of the fields: rev, branch, tag)|
 `branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
 `tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
-### Nested element: `TargetEnvironment`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string`| The name of the target|
-`description:` | `string`| A description of this target|
-`providers:` | `array`| The providers for this target|
-`defaults:` | `Defaults?`| Defaults for this target|
 ### Nested element: `TargetProvider`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`scopes:` | `array`| A list of scopes supported by this provider|
-`type:` | `UNKNOWN`| The type of the catalog [e.g.: hive]|
+`namespaces:` | `array`| A list of namespaces supported by this provider|
+`type:` | [`ProviderType`](#enum-providertype)| The type of the catalog [e.g.: hive]|
 `credential:` | `string?`| Credential identifier for this provider|
 `warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
 `cluster-identifier:` | `string?`| The cluster identifier for redshift server|
-`source-locations:` | `array`| |
 `batch-size:` | `integer?`| |
-### Nested element: `ProviderScope`
+### Nested element: `ProviderNamespace`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| Matches a three part table name using globs, e.g. *.*.* matches all tables|
-`as:` | `string`| Compose a new table, use * to back reference the matched name, e.g. *.&#123;&#123;env_var(&#39;USER&#39;&#125;)&#125;&#125;_*.* renames all tables to have the &#96;USER&#96; as a prefix of every schema|
-### Nested element: `CatalogType`
-|Field | Type | Description|
-| :---- | :--- | :------- |
+`target:` | `string`| Matches a three part table name using globs, e.g. *.*.* matches all tables|
+`rename-as:` | `string?`| Compose a new table, use * to back reference the matched name, e.g. *.&#123;&#123;env_var(&#39;USER&#39;&#125;)&#125;&#125;_*.* renames all tables to have the &#96;USER&#96; as a prefix of every schema|
 ### Nested element: `FilePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -274,33 +327,6 @@ Value | Description|
 ### Nested element: `Constant`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-### Nested element: `Profile`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
-`description:` | `string`| A description of this workspace|
-`repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
-`remote-location:` | `string`| The default output object store location, e.g. &#39;s3://bucket/key/&#39; where key is optional|
-`includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
-`excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
-`references:` | `array`| An array of paths to other workspaces, i.e. .sql and .yml files|
-`defaults:` | `Defaults?`| Defaults for this workspace|
-`dialect:` | `UNKNOWN`| The dialect of this profile. If not set, defaults to Presto dialect|
-`compute:` | `UNKNOWN`| The compute platform for this profile. If not set, defaults to Local|
-`default-catalog:` | `string`| Defines a default catalog (If not set, defaults to the workspace name)|
-`default-schema:` | `string`| Defines a default schema (If not set, defaults to &#39;pub&#39;)|
-`dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
-`environments:` | `array`| Targets define input and output locations for artifacts read and written by the profile|
-`default-target:` | `string?`| The default target for this profile|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
-`default-profile:` | `string`| Defines the default profile (if not set, defaults to &#39;dbg&#39;)|
-`source-locations:` | `array`| Workspace defined by these set of files|
-`preprocessor:` | `Preprocessor?`| Experimental: This project has jinja|
-`default-severity:` | `UNKNOWN`| Experimental: This is a dbt project.. The default severity for this tables tests and checks|
-`is-dbt-project:` | `boolean?`| |
-### Nested element: `TableLocation`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -311,7 +337,7 @@ Value | Description|
 `lineage:` | `Lineage?`| Lineage, a tagged array of column references|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `samples:` | `array`| An array of representative literals of this column [experimental!]|
-`default-severity:` | `UNKNOWN`| The default severity for this tables tests and checks|
+`default-severity:` | [`Severity`](#enum-severity)| The default severity for this tables tests and checks|
 `constraints:` | `array`| |
 ### Nested element: `Lineage`
 |Field | Type | Description|
@@ -336,23 +362,11 @@ Value | Description|
 `name:` | `string`| The name of the partition column|
 `description:` | `string?`| A description of the partition column|
 `format:` | `string?`| The format of the partition column [use strftime format for date/time] See (guide)[https://docs.sdf.com/guide/schedules]|
-### Nested element: `FileFormat`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `Label`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the label, use &quot;*&quot; to allow arbitrary strings as labels|
 `description:` | `string?`| A description of this classifier element|
-### Nested element: `Scope`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `Cardinality`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `FunctionKind`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 ### Nested element: `Parameter`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -381,39 +395,15 @@ Value | Description|
 | :---- | :--- | :------- |
 `input:` | `string`| The sql string corresponding to the input of this example|
 `output:` | `string`| The output corresponding to running the input string|
-### Nested element: `FunctionImplSpec`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `Plugin`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string`| The name of the plugin [e.g.: pyspark]|
-`image-uri:` | `string?`| Image URI of the plugin [e.g.: docker.io/sdf/pyspark:latest]|
-`dockerfile:` | `string?`| Path to the dockerfile of the plugin [e.g.: dockerfile]|
-`keep-alive:` | `boolean?`| Whether to keep the plugin container alive after execution|
-`includes:` | `array`| An array of directories and filenames containing files processed by this plugin|
-### Nested element: `PluginIncludePath`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`path:` | `string`| A filepath|
-`kind:` | `PluginIncludePathKind?`| Type of Plugin Path (Default: queries)|
-### Nested element: `PluginIncludePathKind`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `Provider`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string`| The name of the table provider|
-`sources:` | `array`| A list of sources, backed by the table provider, source can use globs, e.g. catalog.schema.*|
-`type:` | `UNKNOWN`| The type of the catalog [e.g.: hive]|
-`warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
-`cluster-identifier:` | `string?`| The cluster identifier for redshift server|
-`source-locations:` | `array`| |
-`batch-size:` | `integer?`| |
 ### Nested element: `Config`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the configuration section|
 `description:` | `string?`| A description of this configuration section|
 `properties:` | `object?`| |
+### Nested element: `HeadlessCredentials`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`access_key:` | `string`| |
+`secret_key:` | `string`| |
 

@@ -23,26 +23,3 @@ Once you've logged in, you'll be redirected to a page that looks like this:
 <img src="https://cdn.sdf.com/img/cli-auth-success.png" />
 
 Congratulations! You've successfully authenticated with the SDF Platform. You can now deploy, monitor, and interact with your assets on the platform.
-
-## AWS Access
-
-SDF currently uses AWS to store and manage your data. In order to deploy your assets to the platform, you'll need to provide SDF with AWS credentials. Support for GCP and Azure is coming in the near future.
-
-SDF can use a profile from your existing credentials in the ~/.aws/credentials file.
-Run the following command:
-
-```shell
-sdf auth aws --profile [PROFILE]
-```
-
-If you use a region other than `us-east-1`, you'll need to specify it with the `--default-region` flag.
-
-```shell
-sdf auth aws --profile [PROFILE] --default-region [AWS_REGION]
-```
-
-<Warning>
-	AWS SSO Session Names are not currently supported if using AWS SSO locally to authenticate with sdf. To accomplish this, make sure to not set a session name here -> `SSO session name (Recommended):` after running `aws configure sso --profile [PROFILE]`
-</Warning>
-
-For more on this, see the [CLI Reference](/reference/sdf-cli#sdf-auth-aws).

@@ -4,7 +4,7 @@ description:
   "SDF is a powerful tool on its own, but its utility is amplified when integrated into CI/CD workflows."
 ---
  
-SDF's static analyis can supercharge CI/CD workflows for data teams. By compiling your SQL on each pull request, SDF can statically ensure new updates to your models are valid SQL and do not break anything downstream. Additionally, SDF supports the use of code contracts in CI/CD. This feature allows users to define their own static tests, further enhancing the robustness and reliability of your data models. Unlike other CI/CD data tools, SDF checks everything statically, preventing you from having to incur compute costs to validate SQL and run impact analysis._createMdxContent
+SDF's static analyis can supercharge CI/CD workflows for data teams. By compiling your SQL on each pull request, SDF can statically ensure new updates to your models are valid SQL and do not break anything downstream. Additionally, SDF supports the use of [checks](/guide/checks) in CI/CD. This feature allows users to define their own static tests, further enhancing the robustness and reliability of your data models. Unlike other CI/CD data tools, SDF checks everything statically, preventing you from having to incur compute costs to validate SQL and run impact analysis.
 
 This guide will walk you through how to integrate SDF into an example CI/CD workflow. Specifically, we'll be using GitHub Actions to run `sdf compile` and `sdf test` on new pull requests and subsequent updates. This guide assumes you have a basic understanding of GitHub Actions and how to create a workflow file. If you're new to GitHub Actions, we recommend checking out the [official documentation](https://docs.github.com/en/actions).
 

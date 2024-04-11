@@ -17,6 +17,13 @@ function !=<$1> (<boolean, $1>) returns boolean
 ```
 
 
+```sql
+function !=<$1, $2> (<$1, $2>) returns boolean
+	where $1 in (varchar, object)
+	and $2 in (varchar, object)
+```
+
+
 ## `*`
 [🔗 Official Documentation](#)
 
@@ -142,6 +149,13 @@ function =<$1> (<$1, boolean>) returns boolean
 ```sql
 function =<$1> (<boolean, $1>) returns boolean
 	where $1 in (bigint, int, smallint, tinyint, varchar)
+```
+
+
+```sql
+function =<$1, $2> (<$1, $2>) returns boolean
+	where $1 in (varchar, object)
+	and $2 in (varchar, object)
 ```
 
 
@@ -9558,5 +9572,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.023 secs
+   Finished man in 0.022 secs
 

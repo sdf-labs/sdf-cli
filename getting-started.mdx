@@ -24,9 +24,10 @@ Commands:
   clean    Remove artifacts that sdf has generated in the past
   compile  Compile models
   run      Run models
-  test     Test contracts for models
-  report   Report stats for models
-  build    Runs models, tests contracts, reports stats
+  test     Test your models
+  stats    Statistics for your data
+  report   Report code quality
+  check    Check code quality
   ai       Infer metadata like classifiers and add them optionally to the workspace
   lineage  Display lineage for a given table and/or column
   push     Push a local workspace to the SDF Service
@@ -82,7 +83,7 @@ sdf compile --show all
 ```shell
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.122 secs
+   Finished 1 model [1 succeeded] in 0.117 secs
 
 Schema hello.pub.main
 +-------------+------------------+------------+

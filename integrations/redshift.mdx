@@ -92,46 +92,69 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
         ``` shell
         sdf auth login aws --profile redshift --default-region <REGION>
         ```
+
+        <Info>
+        This will create a new [credential](/reference/sdf-yml#block-credential) in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with AWS services. By default, the 
+        credential's name is default. As such, the credential does not need to be explicitly referenced in the provider configuration below.
+        </Info>
     </Step>
     <Step title="Add Redshift Provider in Workspace">
-        Once authenticated, add a table provider block in your `workspace.sdf.yml`. This tells SDF to use Redshift to hydrate missing table schemas.
+        Once authenticated, add a table provider block in your `workspace.sdf.yml` workspace block. This tells SDF to use Redshift to hydrate missing table schemas.
         
         ``` yml
         ---
-        provider:
-          name: my_first_redshift_provider
-          type: redshift
-          cluster-identifier: <CLUSTER_IDENTIFIER>
-          sources: 
-            - <DATABASE> 
+        workspace:
+            ...
+            providers:
+                - name: my_first_redshift_provider
+                  type: redshift
+                  cluster-identifier: <CLUSTER_IDENTIFIER>
+                  namespaces: 
+                    - target: <DATABASE>.*.*
         ```
 
         Replace `<DATABASE>` with the name of the database you want to hydrate. Note this is configurable and can be changed to any database you have access to. For example, if I wanted SDF to pull from two databases, called `db1` and `db2`, I would write:
         ``` yml
         ---
-        provider:
-          name: my_first_redshift_provider
-          type: redshift
-          cluster-identifier: <CLUSTER_IDENTIFIER>
-          sources: 
-            - db1
-            - db2
+        workspace:
+            ...
+            providers:
+                - name: my_first_redshift_provider
+                  type: redshift
+                  cluster-identifier: <CLUSTER_IDENTIFIER>
+                  namespaces: 
+                    - target: <DATABASE>.*.*
+                    - target: <DATABASE>.*.*
         ```
 
         Sources are even configurable at the schema and table level, for example if I only wanted to pull the schema for a table called `my_table` in schema `schema1`, but I wanted to pull the schema for all tables in `schema2`, I would write:
         ``` yml
-        ---
-        provider:
-          name: my_first_redshift_provider
-          type: redshift
-          cluster-identifier: <CLUSTER_IDENTIFIER>
-          sources: 
-            - db1.schema1.my_table
-            - db1.schema2.*
+        workspace:
+            ...
+            providers:
+                - name: my_first_redshift_provider
+                  type: redshift
+                  cluster-identifier: <CLUSTER_IDENTIFIER>
+                  namespaces: 
+                    - target: db1.schema1.my_table
+                    - target: db1.schema2.*
         ```
 
+        Lastly, providers can also be configured to use specific credentials by referencing the credential name in the provider block. For example, if you wanted to use a credential called `redshift-creds`, you would write:
+        ``` yml
+        workspace:
+            ...
+            providers:
+                - name: my_first_redshift_provider
+                  type: redshift
+                  credential: redshift-creds
+                  cluster-identifier: <CLUSTER_IDENTIFIER>
+                  namespaces: 
+                    - target: db1.schema1.my_table
+                    - target: db1.schema2.*
+        ```
         <Note>
-            The `*` character is a wildcard (glob pattern). Specifying a database alone is shorthand for writing, `db1.*.*`.
+            The `*` character is a wildcard (glob pattern). Specifying a database alone is shorthand for writing, `db1.*.*`. If you wanted to pull down any sources not found while compiling, you can just use `*.*.*`
         </Note>
     </Step>
     <Step title="Try it out!">

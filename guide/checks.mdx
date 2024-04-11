@@ -1,0 +1,140 @@
+---
+title: "Checks"
+---
+
+## Understanding Checks
+Checks are an example of [**Metaprogramming**](https://en.wikipedia.org/wiki/Metaprogramming). SDF takes your SQL workspace, classifiers, and lineage and creates a rich information schema whenever you run `sdf compile`.
+
+Checks are simply small SQL queries that run against this information schema and check for the existence of certain properties which you want to assure. Some examples of effective checks are:
+
+ - Ensure Data Privacy: Ensure all personally identifiable information (PII) is appropriately anonymized
+ - Ensure Data Ownership: Guarantee every table has an owner (a staple of GDPR)
+ - Ensure Data Quality: Prevent different currency types from combining in calculations (e.g. preventing £ + $ )
+
+## Writing Your First Check
+Let's write and modify a check, starting with one of the sdf samples.
+
+```shell
+sdf new --sample hello_with_pii
+```
+```shell
+    Created hello_with_pii/.gitignore
+    Created hello_with_pii/checks/code_check.sql
+    Created hello_with_pii/src/main.sql
+    Created hello_with_pii/workspace.sdf.yml
+   Finished new in 0.001 secs
+
+```
+This sample contains a check and a commented out classifier. Each check has a name, description, an assertion, and a path to the SQL statement that will be executed against the information schema.
+
+```yml
+  workspace:
+		name: hello
+		edition: 1.1
+    dialect: presto
+		includes:
+			- path: src
+        # ADD THE BELOW #
+        - path: checks
+          type: check
+```
+To run the check, simply execute `sdf check`. During compile, SDF runs all its static analysis on the workspace, creating lineage, metadata, and ultimately executing the checks.
+
+```shell
+Working set 1 model file, 1 .sdf file
+  Compiling hello.pub.main (./src/main.sql)
+Working set 1 test file, 1 .sdf file
+    Testing hello.pub.code_check (./checks/code_check.sql)
+   Finished 1 model [1 succeeded], 1 check [1 passed] in 0.693 secs
+[Pass] Check hello.pub.code_check
+
+```
+
+Hurray! The check passes.
+
+But, carefully read the check. 
+
+```sql
+SELECT
+    DISTINCT c.table_name as "table_name",
+    c.column_name as "column name",
+    c.classifiers
+FROM
+    sdf.information_schema.columns c
+WHERE
+    c.classifiers like '%PII.name%'
+```
+
+It queries for any column that contains PII.name and asserts that this query should be empty. But we never added the classifier in the first place!
+
+To add the classifier and change the behavior, uncomment the following classifier later in the workspace, run `sdf check` and the check will now fail.
+```yml
+table:
+  name: main
+  columns:
+    - name: column_2
+      # UNCOMMENT THE BELOW
+      classifiers:
+        - PII.name
+```
+Running `sdf check` again will result in a failed test. 
+
+```shell
+Working set 1 model file, 1 .sdf file
+  Compiling hello.pub.main (./src/main.sql)
+Working set 1 test file, 1 .sdf file
+    Testing hello.pub.code_check (./checks/code_check.sql)
+   Finished 1 model [1 succeeded], 1 check [1 failed] in 0.700 secs, for details see below.
+
+[Fail] Check hello.pub.code_check
++----------------+-------------+-------------+
+| table_name     | column name | classifiers |
++----------------+-------------+-------------+
+| hello.pub.main | column_2    | PII.name    |
++----------------+-------------+-------------+
+1 rows.
+
+-------
+Summary 1 model [1 succeeded], 1 check [1 failed] in 0.700 secs.
+-------
+
+```
+
+## Modifying Classifiers
+Let's fix this failing check! We can apply an `md5()` hash to column_2 (the name column) to obfuscate it. This is called a **reclassification** since we are transforming one classifier into another.
+
+Let's add a function block that attaches a reclassify statement to the built-in md5 function. In your `workspace.sdf.yml` create the following function block.
+
+```yml
+---
+function:
+  name: md5
+  reclassify:
+    - from: PII.name
+```
+Now, create a second table that uses the md5 function. 
+In the same directory as *main.sql*, create *sink.sql* with the line
+```sql
+select md5(column_2) from main;
+```
+Update the *code_check.sql* with the following line `and c.table_name like '%.sink'`. It should now look like the check below.
+Now, the Check specifically checks the *sink* table for the PII.name classifier.
+
+```sql
+SELECT
+    DISTINCT c.table_name as "table_name",
+    c.column_name as "column name",
+    c.classifiers
+FROM
+    columns c
+WHERE
+    c.classifiers like '%PII.name%'
+    and c.table_name like '%.sink'
+```
+
+Run `sdf check` again and voila! All checks pass. The source table has PII.name, the sink table does not. 
+
+## Advanced Checks
+
+ - To learn more about transforming classifiers across functions, see: [UDFs](/guide/udf)
+ - To learn more about the SDF internal information schema, see: [Information Schema](/reference/sdf-information-schema)

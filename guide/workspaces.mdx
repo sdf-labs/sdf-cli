@@ -24,7 +24,7 @@ for describing things like:
 
 - Where your queries are in the directory
 - The SQL dialect your query is written in
-- Which Code Contracts should run
+- Which Checks should run
 - The Schema and Catalog defaults
 - Which classifiers exist and the columns they should be attached to
 - And more...
@@ -107,13 +107,15 @@ workspace:
   includes:
     - path: src/
     - path: priv/
-      default-schema: priv
-      dialect: bigquery
+      defaults:
+        schema: priv
+        dialect: bigquery
 	excludes:
 		- path: test_data/
-  default-catalog: my_project
-  default-schema: public
-  dialect: sdf
+  defaults:
+    catalog: my_project
+    schema: public
+    dialect: sdf
 ```
 
 - `name` - The name of the workspace. This is used to create the default catalog
@@ -123,10 +125,7 @@ workspace:
 - `includes` - The includes block defines where to look for the code sources
   that will be used to build your project and transform your data. Each includes block can specify properties which overwrite the default specified for the workspace, but only for tables defined within files included in the specified path.
 - `excludes` - The excludes block defines where to explicitly ignore code sources or metadata.
-- `default-catalog` - The default catalog is the catalog that will be used when
-  no catalog is specified by a metadata block
-- `default-schema` - The default schema is the schema that will be used when no
-  schema is specified by a metadata block.
+- `defaults` - The defaults block contains all defaults for certain properties across the workspace. In this case, we're specifying the default catalog, schema, and dialect. 
 - `dialect` - The default SQL dialect that will be used to build your project.
   SDF supports multi-dialect projects, so you can have different SQL dialects in
   the same project by configuring the dialect in the

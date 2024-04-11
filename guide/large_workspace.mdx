@@ -46,7 +46,7 @@ This guide will take you through the process of onboarding a large data warehous
         For any DDLs where there are errors, please comment out the offending error or add that file's path to the excludes list. If it is a valid SQL DDL, please report it to the SDF team.
 		    </Note>
         <Note>
-        In this example, the names of the DDLs follow the directory structure. The directory is structured as `catalog/schema/table` and the sdf-compiled fully qualified names will follow the directory structure. So, a ddl in the path database/analytics/dau_fast.sql will be interpreted as `database.analytics.dau_fast`. You may overwrite this by setting the default-catalog in your workspace globally, or for each includes path individually.
+        In this example, the names of the DDLs follow the directory structure. The directory is structured as `catalog/schema/table` and the sdf-compiled fully qualified names will follow the directory structure. So, a ddl in the path database/analytics/dau_fast.sql will be interpreted as `database.analytics.dau_fast`. You may overwrite this by setting the `catalog` within `defaults` of your workspace globally, or for each includes path individually.
 		    </Note>
     </Step>
 	<Step title="Add DBT Seed Tables (optional)">
@@ -78,8 +78,9 @@ This guide will take you through the process of onboarding a large data warehous
             - path: ddls
             index: catalog-schema-table-name
             - path: <queries>/<target/<path1/<file>.sql 
-            default-schema: <default_schema_for_this_query>
-            default-catalog: <default_catalog_for_this_query>
+              defaults:
+                schema: <default_schema_for_this_query>
+                catalog: <default_catalog_for_this_query>
 		```   
 
         To verify your query has been loaded successfully, run `sdf compile` and to see lineage, run `sdf lineage catalog.schema.table`
@@ -92,10 +93,11 @@ This guide will take you through the process of onboarding a large data warehous
                 ``` 
 		includes:
             - path: ddls
-            index: catalog-schema-table-name
+              index: catalog-schema-table-name
             - path: <queries>/<target/<path1>
-            default-catalog: <default_catalog_for_this_directory>
-            index: schema-table-name
+              index: schema-table-name
+              defaults:
+                catalog: <default_catalog_for_this_directory>
         #excludes:
         #    - path: <Some file paths to exclude> 
 		```
@@ -110,11 +112,14 @@ This guide will take you through the process of onboarding a large data warehous
             - path: ddls
               index: catalog-schema-table-name
             - path: <queries>/<target/<path1>
-              default-catalog: <default_catalog_for_this_directory>
+              defaults:
+                catalog: <default_catalog_for_this_directory>
             - path: <queries>/<target/<path2>
-              default-catalog: <default_catalog_for_this_directory>
+              defaults:
+                catalog: <default_catalog_for_this_directory>
             - path: <queries>/<target/<path3>
-              default-catalog: <default_catalog_for_this_directory>
+              defaults:
+                catalog: <default_catalog_for_this_directory>
         #excludes:
         #    - path: <Some file paths to exclude> 
 		```

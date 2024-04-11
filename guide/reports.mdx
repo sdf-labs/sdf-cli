@@ -1,0 +1,228 @@
+---
+title: "Reports"
+---
+
+## Understanding Reports
+Reports are a useful way to track & analyze datatypes, metadata, and business logic throughout your data warehouse. Reports are expressed as SQL queries against the SDF Information Schema, similar to [Checks](/guide/checks). Since reports are generated with Static Analysis, executing them is fast.
+Reports are simply small SQL queries that run against the information schema and enable you to analyze your warehouse and metadata. Some examples of effective reports are:
+
+ - Analyze Privacy Compliance: Get a list of all tables and columns that contain PII
+ - Create a Data Deletion Report: Improve your data deletion capabilities by tracking retention and writing a report to find all tables that contain PII and are past their retention period.
+ - Run a Dead Column Analysis: Optimize your warehouse by computing a list of all columns that have no dependencies, then remove them to save on storage and compute costs.
+<Note>
+  A report is very similar to a check. A check is a specialized report where the expected result of the report is empty.
+  In this way, reports can be thought of as variables reflecting the state of your warehouse. These variables can then be used to power a check. 
+</Note>
+## Writing Your First Report
+Let's write and modify a report, starting with one of the sdf samples.
+
+<Steps>
+  <Step title="Create a new SDF Project">
+    ```shell
+    sdf new --sample pii_saas_platform
+    ```
+
+```shell
+    Created pii_saas_platform/.gitignore
+    Created pii_saas_platform/classification/taxonomy.sdf.yml
+    Created pii_saas_platform/classification/users.sdf.yml
+    Created pii_saas_platform/contracts/no_pii_in_external.sql
+    Created pii_saas_platform/ddls/payment/public/invoices.sql
+    Created pii_saas_platform/ddls/payment/public/organizations.sql
+    Created pii_saas_platform/ddls/payment/public/users.sql
+    Created pii_saas_platform/reports/tables_with_pii.sql
+    Created pii_saas_platform/src/external/invoice_stats.sql
+    Created pii_saas_platform/src/external/org_invoice_stats.sql
+    Created pii_saas_platform/src/internal/avg_invoice_amt.sql
+    Created pii_saas_platform/src/internal/invoice_payment_delay.sql
+    Created pii_saas_platform/src/internal/mau_per_org.sql
+    Created pii_saas_platform/src/internal/most_frequent_payer.sql
+    Created pii_saas_platform/src/internal/total_revenue_per_org.sql
+    Created pii_saas_platform/src/internal/users_per_domain.sql
+    Created pii_saas_platform/src/internal/users_per_org.sql
+    Created pii_saas_platform/workspace.sdf.yml
+   Finished new in 0.003 secs
+
+```
+    This sample contains a report and a workspace modeled after a simple SAAS platform.
+
+    Notice the report in the `reports` directory. This report simply lists all tables with PII. It's configured in the `workspace.sdf.yml` file with [includes type](/reference/sdf-yml#enum-includetype) `report` on line 16 like so:
+    ```yml
+    workspace:
+      name: hello
+      ...
+      includes:
+        ...
+        - path: reports
+          type: report
+    ```
+
+    The report itself lists all tables with PII by fetching all columns with classifiers that have `PII`. This is done with the following SQL:
+    ```sql
+    SELECT 
+      t.table_ref, 
+      t.description, 
+      t.dialect
+    FROM 
+      sdf.information_schema.tables t
+    JOIN 
+      sdf.information_schema.columns c ON t.table_ref = c.table_ref
+    WHERE c.classifiers LIKE '%PII%'
+    GROUP BY 1,2,3;
+    ```
+
+    <Info>
+      Both checks and reports must be written in the Presto SQL dialect.
+    </Info>
+
+    This report will show us tables that contain PII only because we defined a classifier like so:
+    ```yml
+        classifier:
+        name: PII
+        labels: 
+          - name: name
+          - name: email
+          - name: phone
+    ```
+
+    As such, this report will show tables that contain columns with any instance of the PII classifier (i.e. `PII.name`, `PII.email`, or `PII.phone`).
+
+    <Note>
+      SDF stores the `classifiers` on a column as a string. As such, we can use the SQL `LIKE` operator to search for a substring.
+    </Note>
+  </Step>
+  <Step title="Run & Modify a Report">
+    ```shell
+    sdf report --show all
+    ```
+
+```shell
+Working set 12 model files, 3 .sdf files
+  Compiling payment.public.users (./ddls/payment/public/users.sql)
+  Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
+  Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
+  Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
+  Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
+  Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
+  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
+  Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
+  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
+  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
+  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
+  Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
+Working set 1 report file, 1 .sdf file
+  Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
+   Finished 12 models [12 succeeded], 1 report [1 succeeded] in 1.141 secs
+
+Report sdf.reports.tables_with_pii
++----------------------------------------------+-------------------------+-----------+
+| table_ref                                    | description             | dialect   |
++----------------------------------------------+-------------------------+-----------+
+| transformations.external.invoice_stats       |                         | snowflake |
+| payment.public.users                         | DDL for the users table | snowflake |
+| transformations.internal.most_frequent_payer |                         | snowflake |
+| transformations.internal.users_per_domain    |                         | snowflake |
++----------------------------------------------+-------------------------+-----------+
+4 rows.
+
+```
+
+    As you can see from the output, it looks we have three tables containing columns with PII. Let's say we also wanted to show the names of the columns that contain PII. We can do this by modifying the SQL query to include the column name like so:
+    ```sql
+    SELECT 
+      t.table_ref, 
+      c.column_name,
+      t.description, 
+      t.dialect
+    FROM 
+      sdf.information_schema.tables t
+    JOIN 
+      sdf.information_schema.columns c ON t.table_ref = c.table_ref
+    WHERE c.classifiers LIKE '%PII%'
+    GROUP BY 2,1,3,4;
+    ```
+
+    Now, when we run the report, we can see the column names as well:
+    ```shell
+    sdf report --show all
+    ```
+```shell 
+Working set 12 model files, 3 .sdf files
+Working set 1 report file, 1 .sdf file
+  Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
+   Finished 12 models [12 reused], 1 report [1 succeeded] in 0.490 secs
+
+Report sdf.reports.tables_with_pii
++----------------------------------------------+--------------+-------------------------+-----------+
+| table_ref                                    | column_name  | description             | dialect   |
++----------------------------------------------+--------------+-------------------------+-----------+
+| transformations.external.invoice_stats       | email        |                         | snowflake |
+| payment.public.users                         | email        | DDL for the users table | snowflake |
+| payment.public.users                         | phone        | DDL for the users table | snowflake |
+| transformations.internal.users_per_domain    | email_domain |                         | snowflake |
+| transformations.external.invoice_stats       | name         |                         | snowflake |
+| payment.public.users                         | name         | DDL for the users table | snowflake |
+| transformations.internal.most_frequent_payer | email        |                         | snowflake |
++----------------------------------------------+--------------+-------------------------+-----------+
+7 rows.
+
+```
+  </Step>
+  <Step title="Add a New Report">
+    Let's say we'd like to extend our analysis a bit but still maintain the original report. We can do this by adding a new report to the `reports` directory. Let's add a new report to find the most frequently used datatypes in columns with PII. We can do this with the following SQL:
+    ```sql pii_datatypes.sql
+      SELECT c.data_type, COUNT(*) as frequency
+      FROM sdf.information_schema.columns c
+      WHERE c.classifiers LIKE '%PII%'
+      GROUP BY c.data_type 
+      ORDER BY frequency DESC;
+    ```
+    Now, when we run the report, we can see the most frequently used datatypes in columns with PII:
+    ```shell
+    sdf report --show all
+    ```
+```shell
+Working set 12 model files, 3 .sdf files
+Working set 2 report files, 1 .sdf file
+  Reporting sdf.reports.pii_datatypes (./reports/pii_datatypes.sql)
+   Finished 12 models [12 reused], 2 reports [1 succeeded, 1 reused] in 0.488 secs
+
+Report sdf.reports.tables_with_pii
++----------------------------------------------+--------------+-------------------------+-----------+
+| table_ref                                    | column_name  | description             | dialect   |
++----------------------------------------------+--------------+-------------------------+-----------+
+| transformations.external.invoice_stats       | email        |                         | snowflake |
+| payment.public.users                         | email        | DDL for the users table | snowflake |
+| payment.public.users                         | phone        | DDL for the users table | snowflake |
+| transformations.internal.users_per_domain    | email_domain |                         | snowflake |
+| payment.public.users                         | name         | DDL for the users table | snowflake |
+| transformations.internal.most_frequent_payer | email        |                         | snowflake |
+| transformations.external.invoice_stats       | name         |                         | snowflake |
++----------------------------------------------+--------------+-------------------------+-----------+
+7 rows.
+
+Report sdf.reports.pii_datatypes
++-----------+-----------+
+| data_type | frequency |
++-----------+-----------+
+|           | 7         |
++-----------+-----------+
+1 rows.
+
+```
+  </Step>
+  <Step title="Save the Output (Optional)">
+    We can save the output of a report to a file by using the `--format` flag. Let's save the output of our reports to a file called `sdf_reports.csv`:
+    ```shell
+    sdf report --format csv --show result > sdf_reports.csv
+    ```
+    <Note>
+      Note that we used `--show result` to only show the result of the report, not any output regarding the execution of the report. In a scenario where you'd want to programatically generate valid CSVs or JSONs of your reports, this is necessary to avoid any extraneous output. See [our input and output guide](/guide/io) for more on this.
+    </Note> 
+  </Step>
+</Steps>
+
+## Advanced Reports
+
+ - To learn more about transforming classifiers across functions, see: [UDFs](/guide/udf)
+ - To learn more about the SDF internal information schema, see: [Information Schema](/reference/sdf-information-schema)

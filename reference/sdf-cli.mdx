@@ -15,8 +15,9 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf compile`↴](#sdf-compile)
 * [`sdf run`↴](#sdf-run)
 * [`sdf test`↴](#sdf-test)
+* [`sdf stats`↴](#sdf-stats)
 * [`sdf report`↴](#sdf-report)
-* [`sdf build`↴](#sdf-build)
+* [`sdf check`↴](#sdf-check)
 * [`sdf ai`↴](#sdf-ai)
 * [`sdf ai classify`↴](#sdf-ai-classify)
 * [`sdf lineage`↴](#sdf-lineage)
@@ -55,9 +56,10 @@ SDF's modular SQL
 * `clean` — Remove artifacts that sdf has generated in the past
 * `compile` — Compile models
 * `run` — Run models
-* `test` — Test contracts for models
-* `report` — Report stats for models
-* `build` — Runs models, tests contracts, reports stats
+* `test` — Test your models
+* `stats` — Statistics for your data
+* `report` — Report code quality
+* `check` — Check code quality
 * `ai` — Infer metadata like classifiers and add them optionally to the workspace
 * `lineage` — Display lineage for a given table and/or column
 * `push` — Push a local workspace to the SDF Service
@@ -121,7 +123,7 @@ Remove artifacts that sdf has generated in the past
 
 ###### **Options:**
 
-* `-p`, `--profile  PROFILE `
+* `-e`, `--environment  ENVIRONMENT `
 * `--path  PATH ` — Remove artifacts at  path  that sdf has created in the past [default: current workspace directory]
 * `-s`, `--show  SHOW ` — Display progress messages
 
@@ -146,18 +148,6 @@ Compile models
 
 ###### **Options:**
 
-* `--no-code-contract` — Do NOT run code code contracts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--infer-functions` — Infer function signature
 
   Default value: `false`
@@ -170,8 +160,11 @@ Compile models
 
   Possible values: `true`, `false`
 
-* `-p`, `--profile  PROFILE ` — Use this profile
-* `-e`, `--environment  ENVIRONMENT ` — Use this target
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
@@ -226,19 +219,21 @@ Compile models
 
   Possible values: `true`, `false`
 
-* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
-
-  Possible values: `all`, `progress`, `result`, `none`
-
-* `--format  FORMAT ` — Show tables in this format [ony table, json and yml supported]
+* `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
 
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
-* `--limit  LIMIT ` — Limiting number of shown columns. Run with --limit 0 to remove limit
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -256,109 +251,11 @@ Run models
 
 ###### **Options:**
 
-* `-p`, `--profile  PROFILE ` — Use this profile
-* `-e`, `--environment  ENVIRONMENT ` — Use this target
-* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
-* `--stage  STAGE ` — Run the following stages [default: all stages]
-
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
-
-* `--cache  CACHE ` — Controls cache use
-
-  Default value: `read-write`
-
-  Possible values: `read-write`, `write-only`, `read-only`, `none`
-
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
-* `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
-* `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
-* `--dry-run` — Plan command but don't evaluate it
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
   Possible values: `all`, `progress`, `result`, `none`
 
-* `--format  FORMAT ` — Show tables in this format
-
-  Default value: `table`
-
-  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
-
-* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-
-  Default value: `10`
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
-
-
-
-## `sdf test`
-
-Test contracts for models
-
-**Usage:** `sdf test [OPTIONS] [TARGETS]...`
-
-###### **Arguments:**
-
-* ` TARGETS ` — Assess code (data) quality: use source dirs, files or tables to determine which code (data) contracts to run [default: all code (data) contracts]
-
-###### **Options:**
-
-* `--data` — Run data contracts (instead of code contracts)
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `-p`, `--profile  PROFILE ` — Use this profile
-* `-e`, `--environment  ENVIRONMENT ` — Use this target
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
@@ -412,10 +309,6 @@ Test contracts for models
   Default value: `false`
 
   Possible values: `true`, `false`
-
-* `-s`, `--show  SHOW ` — Display messages [default: all]
-
-  Possible values: `all`, `progress`, `result`, `none`
 
 * `--format  FORMAT ` — Show error tables in this format
 
@@ -426,166 +319,7 @@ Test contracts for models
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
-
-
-
-## `sdf report`
-
-Report stats for models
-
-**Usage:** `sdf report [OPTIONS] [TARGETS]...`
-
-###### **Arguments:**
-
-* ` TARGETS ` — Profile code (data) quality, use source dirs, files or tables to determine which code (data) reports to run [default: all code (data) reports]
-
-###### **Options:**
-
-* `--data` — Run data reports instead of code reports
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `-p`, `--profile  PROFILE ` — Use this profile
-* `-e`, `--environment  ENVIRONMENT ` — Use this target
-* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
-* `--stage  STAGE ` — Run the following stages [default: all stages]
-
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
-
-* `--cache  CACHE ` — Controls cache use
-
-  Default value: `read-write`
-
-  Possible values: `read-write`, `write-only`, `read-only`, `none`
-
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `-s`, `--show  SHOW ` — Display messages [default: all]
-
-  Possible values: `all`, `progress`, `result`, `none`
-
-* `--format  FORMAT ` — Show tables in this format
-
-  Default value: `table`
-
-  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
-
-* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-
-  Default value: `10`
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
-
-
-
-## `sdf build`
-
-Runs models, tests contracts, reports stats
-
-**Usage:** `sdf build [OPTIONS] [TARGETS]...`
-
-###### **Arguments:**
-
-* ` TARGETS ` — Build only the given source dirs, files or tables  [default: all tables]
-
-###### **Options:**
-
-* `-p`, `--profile  PROFILE ` — Use this profile
-* `-e`, `--environment  ENVIRONMENT ` — Use this target
-* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
-* `--stage  STAGE ` — Run the following stages [default: all stages]
-
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
-
-* `--cache  CACHE ` — Controls cache use
-
-  Default value: `read-write`
-
-  Possible values: `read-write`, `write-only`, `read-only`, `none`
-
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
 
   Default value: `false`
 
@@ -600,11 +334,83 @@ Runs models, tests contracts, reports stats
 
   Possible values: `true`, `false`
 
+* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+
+
+
+## `sdf test`
+
+Test your models
+
+**Usage:** `sdf test [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Assess code (data) quality: use source dirs, files or tables to determine which code (data) contracts to run [default: all code (data) contracts]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
   Possible values: `all`, `progress`, `result`, `none`
 
-* `--format  FORMAT ` — Show tables in this format
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--no-cache` — Shorthand for cache policy none
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
 
@@ -613,6 +419,285 @@ Runs models, tests contracts, reports stats
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+
+
+
+## `sdf stats`
+
+Statistics for your data
+
+**Usage:** `sdf stats [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Profile data quality: use source dirs, files or tables to determine which data statistics to run [default: all data stats]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--no-cache` — Shorthand for cache policy none
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+
+  Default value: `10`
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+
+
+
+## `sdf report`
+
+Report code quality
+
+**Usage:** `sdf report [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Profile code (data) quality, use source dirs, files or tables to determine which code (data) reports to run [default: all code (data) reports]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--no-cache` — Shorthand for cache policy none
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+
+  Default value: `10`
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+
+
+
+## `sdf check`
+
+Check code quality
+
+**Usage:** `sdf check [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Check code (data) quality: use source dirs, files or tables to determine which code (data) checks to run [default: all code (data) checks]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--no-cache` — Shorthand for cache policy none
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+
+  Default value: `10`
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -651,7 +736,7 @@ Auto classify columns
 
 ###### **Options:**
 
-* `-p`, `--profile  PROFILE ` — Scope inference to using this profile
+* `-e`, `--environment  ENVIRONMENT ` — Scope inference to using this environment
 * `--save-location  SAVE_LOCATION ` — Add inferred classifiers to this include path [default: ./src]
 * `--classifiers  CLASSIFIERS ` — Infer these classifiers [default: all classifiers]
 * `--no-use-of-samples` — Do NOT pass samples to inference engine
@@ -711,8 +796,11 @@ Display lineage for a given table and/or column
 * `--max-depth  MAX_DEPTH ` — Limiting the depth of shown lineage tree. Default value of 0 shows full lineage
 
   Default value: `0`
-* `-p`, `--profile  PROFILE ` — Use this profile
-* `-e`, `--environment  ENVIRONMENT ` — Use this target
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
@@ -767,11 +855,7 @@ Display lineage for a given table and/or column
 
   Possible values: `true`, `false`
 
-* `-s`, `--show  SHOW ` — Display messages [default: all]
-
-  Possible values: `all`, `progress`, `result`, `none`
-
-* `--format  FORMAT ` — Show tables in this format
+* `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
 
@@ -780,6 +864,12 @@ Display lineage for a given table and/or column
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
   Default value: `10`
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -796,12 +886,6 @@ Push a local workspace to the SDF Service
 * ` TARGETS ` — Target selection: push only the given source dirs, files or tables [default: current workspace directory]
 
 ###### **Options:**
-
-* `--downstream` — Push not only the given  targets  but also all its downstream artifacts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
 
 * `--delete` — Delete this workspace from the SDF Service
 
@@ -821,14 +905,82 @@ Push a local workspace to the SDF Service
 
   Possible values: `true`, `false`
 
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--no-cache` — Shorthand for cache policy none
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+
+  Default value: `10`
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
-* `-s`, `--show  SHOW ` — Display messages
-
-  Default value: `progress`
-
-  Possible values: `progress`, `none`
-
 
 
 
@@ -888,12 +1040,82 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
 ###### **Options:**
 
-* `-s`, `--show  SHOW ` — Display messages [default: progress]
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
-  Default value: `progress`
+  Possible values: `all`, `progress`, `result`, `none`
 
-  Possible values: `progress`, `none`
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
 
+  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--no-cache` — Shorthand for cache policy none
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+
+  Default value: `10`
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -909,6 +1131,7 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
 ###### **Options:**
 
+* `-n`, `--name  NAME ` — Name of the credential to use
 * `--id-token  ID_TOKEN ` — Path to a file containing an OIDC identity token (a JWT)
 * `--access-key  ACCESS_KEY ` — Access key for headless authentication
 * `--secret-key  SECRET_KEY ` — Secret key for headless authentication
@@ -924,6 +1147,7 @@ Configure how to authenticate with AWS
 
 ###### **Options:**
 
+* `-n`, `--name  NAME ` — Name of the credential to use
 * `--default-region  DEFAULT_REGION ` — AWS Region to use (default: us-east-1)
 
   Default value: `us-east-1`
@@ -951,6 +1175,7 @@ Configure how to authenticate with OpenAI
 
 ###### **Options:**
 
+* `-n`, `--name  NAME ` — Name of the credential to use
 * `--api-key  API_KEY ` — Mapping of bucket names to regions
 * `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
 
@@ -964,13 +1189,12 @@ Configure how to authenticate with Snowflake
 
 ###### **Options:**
 
+* `-n`, `--name  NAME ` — Name of the credential to use
 * `-a`, `--account-id  ACCOUNT_ID ` — Snowflake account id
 * `-U`, `--username  USERNAME ` — Snowflake username
 * `-P`, `--password  PASSWORD ` — Snowflake password
 * `-r`, `--role  ROLE ` — Snowflake role
 * `-W`, `--warehouse  WAREHOUSE ` — Snowflake warehouse
-* `-D`, `--database  DATABASE ` — Snowflake database
-* `-S`, `--schema  SCHEMA ` — Snowflake schema
 * `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
 
 
@@ -989,6 +1213,7 @@ Log out of SDF Service
 
 ###### **Options:**
 
+* `-n`, `--name  NAME ` — Name of the credential to use
 * `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials are be stored (default is platform specific)
 
 

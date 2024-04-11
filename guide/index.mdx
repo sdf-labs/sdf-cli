@@ -86,14 +86,15 @@ Three other options are the following:
 
 Let's test the speed improvement by changing the index and directories:
 
-Begin by specifying the index type to `catalog-schema-table-name` and defining the `default-catalog` and `default-schema`:
+Begin by specifying the index type to `catalog-schema-table-name` and defining defaults for the `catalog` and `schema`:
 ```yaml workspace.sdf.yml
 workspace:
    name: csv_123
    edition: "1.1"
    dialect: presto
-   default-catalog: example
-   default-schema: pub
+   defaults:
+    catalog: example
+    schema: pub
    includes:
       - path: src
         index: catalog-schema-table-name
@@ -126,7 +127,7 @@ csv_123
 
 <Note>
 SDF workspaces default the catalog name to the workspace name specified in `workspace.sdf.yml`. It is 
-important to add and update the `default-catalog` field within the `workspace.sdf.yml` file to reflect 
+important to add and update the `catalog` field within `defaults` of the `workspace.sdf.yml` file to reflect 
 the appropriate catalog SDF will use for indexing. 
 </Note>
 
@@ -148,23 +149,26 @@ Another option, if your directories are set up as `<schema>/<table-name>` then y
 are able to use the index type schema-table-name. 
 
 To test this example type, update the `workspace.sdf.yml` to reflect the new indexing types and update 
-the folder directories to reflect this change. It is important to set the `default-catalog` on each 
-of the includes paths. For example, add the `dafault-catalog` to each path, `src` and `local` below. 
-If the `default-catalog` is not set in each path, the catalog will default to the workspace name.
+the folder directories to reflect this change. It is important to set the `catalog` within `defaults` on each 
+of the includes paths. For example, add the `catalog` default to each path, `src` and `local` below. 
+If the default catalog is not set in the top-level workspace block, the catalog will default to the workspace name.
 
 ```yaml workspace.sdf.yml
 workspace:
    name: csv_123
    edition: "1.1"
    dialect: presto
-   default-schema: pub
+   defaults:
+    schema: pub
    includes:
       - path: src
         index: schema-table-name
-        default-catalog: example
+        defaults:
+          catalog: example
       - path: local
         index: schema-table-name
-        dafualt-catalog: example
+        defaults:
+          catalog: example
       - path: data
 ```
 
