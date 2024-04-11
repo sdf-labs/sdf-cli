@@ -154,7 +154,8 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
                     - target: db1.schema2.*
         ```
         <Note>
-            The `*` character is a wildcard (glob pattern). Specifying a database alone is shorthand for writing, `db1.*.*`. If you wanted to pull down any sources not found while compiling, you can just use `*.*.*`
+            The `*` character is a wildcard (glob pattern). Specifying a database alone is shorthand for writing, `db1.*.*`. If you wanted to pull down any sources not found while compiling, you can just use `*.*.*`. In this case, you will need to surround the `*.*.*` with double quotes like so `"*.*.*"` in order to prevent
+            the yaml from interpreting the `*` as a special character.
         </Note>
     </Step>
     <Step title="Try it out!">
