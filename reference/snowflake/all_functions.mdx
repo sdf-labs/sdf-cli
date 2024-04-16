@@ -36,12 +36,12 @@ Multiply two numbers
 [🔗 Official Documentation](#)
 
 ```sql
-function +(<$1, $1>) returns $1
+function +(<date, bigint>) returns date
 ```
 Add two numbers
 
 ```sql
-function +(<date, bigint>) returns date
+function +(<$1, $1>) returns $1
 ```
 Add two numbers
 
@@ -63,7 +63,7 @@ function +<$1, $2> (<$2, $1>) returns $2
 [🔗 Official Documentation](#)
 
 ```sql
-function -(<$1, $1>) returns $1
+function -(<date, bigint>) returns date
 ```
 Subtract two numbers
 
@@ -73,16 +73,16 @@ function -(<date, date>) returns bigint
 Subtract two numbers
 
 ```sql
-function -(<date, bigint>) returns date
-```
-Subtract two numbers
-
-```sql
 function -<$1, $2> (<$1, $2>) returns $1
 	where $1 in (date, time, timestamp, varchar)
 	and $2 in (interval)
 ```
 
+
+```sql
+function -(<$1, $1>) returns $1
+```
+Subtract two numbers
 
 ## `/`
 [🔗 Official Documentation](#)
@@ -1536,7 +1536,7 @@ function cleanup_database_role_grants(<string, string>) returns string
 [🔗 Official Documentation](#)
 
 ```sql
-function coalesce($1, $1, ...) returns $1
+function coalesce($1, ...) returns $1
 ```
 returns the first non-null expression among its arguments
 
@@ -2188,7 +2188,7 @@ function date_trunc<$1> (<string, $1>) returns $1
 
 ```sql
 function dateadd<$1> (<string, double, $1>) returns $1
-	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
 
@@ -5345,6 +5345,21 @@ returns TRUE if subject RLIKE pattern
 [🔗 Official Documentation](#)
 
 ```sql
+function round(<double>) returns double
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<double, double>) returns double
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<double, double, varchar>) returns double
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
 function round(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 round to the nearest integer, with .5 rounded away from 0
@@ -5366,31 +5381,6 @@ round to the nearest integer, with .5 rounded away from 0
 
 ```sql
 function round(<decimal(38, 0), decimal(38, 0), varchar>) returns decimal(38, 0)
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<double>) returns double
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<double, double>) returns double
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<double>) returns double
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<double, double>) returns double
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<double, double, varchar>) returns double
 ```
 round to the nearest integer, with .5 rounded away from 0
 
@@ -8400,12 +8390,22 @@ function to_decimal(<$1>) returns decimal(38, 0)
 
 
 ```sql
+function to_decimal(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
 function to_decimal(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
 function to_decimal(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, string, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -8588,7 +8588,60 @@ function to_number(<$1>) returns decimal(38, 0)
 
 
 ```sql
+function to_number(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
 function to_number(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `to_numeric`
+[🔗 Official Documentation](#)
+
+```sql
+function to_numeric(<$1>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -8953,12 +9006,22 @@ function try_to_decimal(<$1>) returns decimal(38, 0)
 
 
 ```sql
+function try_to_decimal(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
 function try_to_decimal(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
 function try_to_decimal(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, string, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -9122,17 +9185,32 @@ Tries to parse binary input in WKB format into a GEOMETRY object
 ```sql
 function try_to_number(<$1>) returns decimal(38, 0)
 ```
-Convert anything to a number
+
 
 ```sql
 function try_to_number(<$1, bigint>) returns decimal(38, 0)
 ```
-Convert anything to a number
+
 
 ```sql
 function try_to_number(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
-Convert anything to a number
+
+
+```sql
+function try_to_number(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
 
 ## `try_to_numeric`
 [🔗 Official Documentation](#)
@@ -9140,17 +9218,32 @@ Convert anything to a number
 ```sql
 function try_to_numeric(<$1>) returns decimal(38, 0)
 ```
-Convert anything to a number
+
 
 ```sql
 function try_to_numeric(<$1, bigint>) returns decimal(38, 0)
 ```
-Convert anything to a number
+
 
 ```sql
 function try_to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
-Convert anything to a number
+
+
+```sql
+function try_to_numeric(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
 
 ## `try_to_time`
 [🔗 Official Documentation](#)
@@ -9572,5 +9665,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.025 secs
+   Finished man in 0.026 secs
 

@@ -24,22 +24,7 @@ function -<$1> (<time, $1>) returns time
 [🔗 Official Documentation](#)
 
 ```sql
-function abs(<decimal(p, s)>) returns decimal(p, s)
-```
-
-
-```sql
-function abs(<double>) returns double
-```
-
-
-```sql
-function abs(<bigint>) returns bigint
-```
-
-
-```sql
-function abs(<real>) returns real
+function abs(<tinyint>) returns tinyint
 ```
 
 
@@ -49,7 +34,22 @@ function abs(<smallint>) returns smallint
 
 
 ```sql
-function abs(<tinyint>) returns tinyint
+function abs(<bigint>) returns bigint
+```
+
+
+```sql
+function abs(<double>) returns double
+```
+
+
+```sql
+function abs(<decimal(p, s)>) returns decimal(p, s)
+```
+
+
+```sql
+function abs(<real>) returns real
 ```
 
 
@@ -369,17 +369,12 @@ function atan2(<double, double>) returns double
 [🔗 Official Documentation](#)
 
 ```sql
-function avg(<decimal(p, s)>) returns decimal(p, s)
-```
-
-
-```sql
-function avg(<bigint>) returns double
-```
-
-
-```sql
 function avg(<double>) returns double
+```
+
+
+```sql
+function avg(<decimal(p, s)>) returns decimal(p, s)
 ```
 
 
@@ -626,6 +621,19 @@ function bool_or(<boolean>) returns boolean
 ```
 
 
+## `btrim`
+[🔗 Official Documentation](#)
+
+```sql
+function btrim(<varchar>) returns varchar
+```
+
+
+```sql
+function btrim(<varchar, varchar>) returns varchar
+```
+
+
 ## `cardinality`
 [🔗 Official Documentation](#)
 
@@ -770,6 +778,14 @@ function classify(<map<bigint, double>, classifier>) returns varchar
 ```
 
 
+## `coalesce`
+[🔗 Official Documentation](#)
+
+```sql
+function coalesce($1, ...) returns $1
+```
+
+
 ## `codepoint`
 [🔗 Official Documentation](#)
 
@@ -828,12 +844,12 @@ function concat(<varchar, varchar>) returns varchar
 
 
 ```sql
-function concat(<varbinary>) returns varbinary
+function concat(varchar, ...) returns varchar
 ```
 
 
 ```sql
-function concat(<varchar>) returns varchar
+function concat(varbinary, ...) returns varbinary
 ```
 
 
@@ -846,7 +862,7 @@ function concat_ws(<varchar, array<varchar>>) returns varchar
 
 
 ```sql
-function concat_ws(<varchar, varchar>) returns varchar
+function concat_ws(varchar, ...) returns varchar
 ```
 
 
@@ -1158,31 +1174,39 @@ function date_parse(<varchar, varchar>) returns timestamp
 ```
 
 
+## `date_part`
+[🔗 Official Documentation](#)
+
+```sql
+function date_part(<varchar, time(p)>) returns double
+```
+
+
+```sql
+function date_part(<varchar, timestamp(p)>) returns double
+```
+
+
+```sql
+function date_part(<varchar, date>) returns double
+```
+
+
 ## `date_trunc`
 [🔗 Official Documentation](#)
 
 ```sql
+function date_trunc(<varchar, time(p)>) returns time(p)
+```
+
+
+```sql
+function date_trunc(<varchar, timestamp(p)>) returns timestamp(p)
+```
+
+
+```sql
 function date_trunc(<varchar, date>) returns date
-```
-
-
-```sql
-function date_trunc(<varchar, time(p)>) returns time(p)
-```
-
-
-```sql
-function date_trunc(<varchar, time(p)>) returns time(p)
-```
-
-
-```sql
-function date_trunc(<varchar, timestamp(p)>) returns timestamp(p)
-```
-
-
-```sql
-function date_trunc(<varchar, timestamp(p)>) returns timestamp(p)
 ```
 
 
@@ -1810,6 +1834,14 @@ function greatest($3, ...) returns $3
 ```
 
 
+## `grouping`
+[🔗 Official Documentation](#)
+
+```sql
+function grouping(...) returns int
+```
+
+
 ## `hamming_distance`
 [🔗 Official Documentation](#)
 
@@ -2282,11 +2314,6 @@ function length(<varbinary>) returns bigint
 ```
 
 
-```sql
-function length(<varchar>) returns bigint
-```
-
-
 ## `levenshtein_distance`
 [🔗 Official Documentation](#)
 
@@ -2554,7 +2581,7 @@ function max(<$3, bigint>) returns array<$3>
 
 
 ```sql
-function max(<$1>) returns $1
+function max($1, ...) returns $1
 ```
 
 
@@ -2642,7 +2669,7 @@ function min(<$3, bigint>) returns array<$3>
 
 
 ```sql
-function min(<$1>) returns $1
+function min($1, ...) returns $1
 ```
 
 
@@ -3257,7 +3284,7 @@ function regexp_replace(<varchar, joniregexp>) returns varchar
 
 
 ```sql
-function regexp_replace(<varchar, joniregexp, varchar>) returns varchar
+function regexp_replace(<varchar, varchar, varchar>) returns varchar
 ```
 
 
@@ -3377,6 +3404,21 @@ function rgb(<bigint, bigint, bigint>) returns color
 [🔗 Official Documentation](#)
 
 ```sql
+function round(<double, bigint>) returns double
+```
+
+
+```sql
+function round(<real>) returns real
+```
+
+
+```sql
+function round(<real, bigint>) returns real
+```
+
+
+```sql
 function round(<bigint>) returns bigint
 ```
 
@@ -3402,27 +3444,12 @@ function round(<double>) returns double
 
 
 ```sql
-function round(<double, bigint>) returns double
-```
-
-
-```sql
 function round(<bigint>) returns bigint
 ```
 
 
 ```sql
 function round(<bigint, bigint>) returns bigint
-```
-
-
-```sql
-function round(<real>) returns real
-```
-
-
-```sql
-function round(<real, bigint>) returns real
 ```
 
 
@@ -4296,32 +4323,22 @@ function strpos(<varchar, varchar, bigint>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
+function substr(<varchar, bigint>) returns varchar
+```
+
+
+```sql
+function substr(<varchar, bigint, bigint>) returns varchar
+```
+
+
+```sql
 function substr(<varbinary, bigint>) returns varbinary
 ```
 
 
 ```sql
 function substr(<varbinary, bigint, bigint>) returns varbinary
-```
-
-
-```sql
-function substr(<varchar, bigint>) returns varchar
-```
-
-
-```sql
-function substr(<varchar, bigint, bigint>) returns varchar
-```
-
-
-```sql
-function substr(<varchar, bigint>) returns varchar
-```
-
-
-```sql
-function substr(<varchar, bigint, bigint>) returns varchar
 ```
 
 
@@ -4357,12 +4374,17 @@ function sum(<bigint>) returns bigint
 
 
 ```sql
+function sum(<double>) returns double
+```
+
+
+```sql
 function sum(<decimal(p, s)>) returns decimal(38, s)
 ```
 
 
 ```sql
-function sum(<double>) returns double
+function sum(<real>) returns real
 ```
 
 
@@ -4373,11 +4395,6 @@ function sum(<interval day to second>) returns interval day to second
 
 ```sql
 function sum(<interval year to month>) returns interval year to month
-```
-
-
-```sql
-function sum(<real>) returns real
 ```
 
 
@@ -4598,6 +4615,14 @@ function to_timestamp(<varchar, varchar>) returns timestamp
 ```
 
 
+## `to_timestamp_seconds`
+[🔗 Official Documentation](#)
+
+```sql
+function to_timestamp_seconds(...) returns timestamp
+```
+
+
 ## `to_unixtime`
 [🔗 Official Documentation](#)
 
@@ -4648,16 +4673,6 @@ function translate(<varchar, varchar, varchar>) returns varchar
 
 ## `trim`
 [🔗 Official Documentation](#)
-
-```sql
-function trim(<varchar>) returns varchar
-```
-
-
-```sql
-function trim(<varchar, codepoints>) returns varchar
-```
-
 
 ```sql
 function trim(<varchar>) returns varchar
