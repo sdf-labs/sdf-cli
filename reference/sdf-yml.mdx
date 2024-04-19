@@ -311,11 +311,22 @@ Values |
 `warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
 `cluster-identifier:` | `string?`| The cluster identifier for redshift server|
 `batch-size:` | `integer?`| |
+`sources:` | `array`| A list of (possibly remote) sources to read, matched in order, so write specific pattern before more general patterns|
+`targets:` | `array`| A list of (possibly remote) targets to build,  matched in order, so write specific pattern before more general patterns, source patterns are excluded|
 ### Nested element: `ProviderNamespace`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `target:` | `string`| Matches a three part table name using globs, e.g. *.*.* matches all tables|
 `rename-as:` | `string?`| Compose a new table, use * to back reference the matched name, e.g. *.&#123;&#123;env_var(&#39;USER&#39;&#125;)&#125;&#125;_*.* renames all tables to have the &#96;USER&#96; as a prefix of every schema|
+### Nested element: `SourcePattern`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`pattern:` | `string`| A source that can be read. Sources must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
+### Nested element: `TargetPattern`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`pattern:` | `string`| A target to build. Targets must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
+`rename-as:` | `string?`| Renames targets, the ith $&#123;i&#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &quot;_$&#123;1&#125;._$&#123;2&#125;._$&#123;3&#125;&quot;|
 ### Nested element: `FilePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
