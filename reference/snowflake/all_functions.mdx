@@ -2197,9 +2197,10 @@ function dateadd<$1> (<string, double, $1>) returns $1
 [🔗 Official Documentation](#)
 
 ```sql
-function datediff<$1> (<string, $1, $1>) returns bigint
+function datediff<$1, $2> (<string, $1, $2>) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
+	and $2 in (date, time, timestamp, varchar)
 ```
 
 
@@ -9665,5 +9666,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.026 secs
+   Finished man in 0.027 secs
 
