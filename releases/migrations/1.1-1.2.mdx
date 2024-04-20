@@ -84,8 +84,8 @@ workspace:
   ...
   providers:
     - type: snowflake
-      namespaces: 
-        - target: apress.*.*
+      sources: 
+        - pattern: apress.*.*
 ```
 
 If you gave the credential a name, let's say `snowflake-creds`, it should look like this:
@@ -95,8 +95,8 @@ workspace:
   providers:
     - type: snowflake
       credential: snowflake-creds
-      namespaces: 
-        - target: apress.*.*
+      sources: 
+        - pattern: apress.*.*
 ```
 
 <Warning>

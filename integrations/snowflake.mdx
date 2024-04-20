@@ -46,10 +46,9 @@ SDF will use remote Snowflake schema information to do type bindings and other s
         workspace:
             ...
             providers:
-                - name: my_first_snowflake_provider
-                  type: snowflake
-                  namespaces: 
-                    - target: <DATABASE>.*.*
+                - type: snowflake
+                  sources: 
+                    - pattern: <DATABASE>.*.*
         ```
 
         Replace `<DATABASE>` with the name of the database you want to hydrate. Note this is configurable and can be changed to any database you have access to. For example, if I wanted SDF to pull from two databases, called `db1` and `db2`, I would write:
@@ -57,11 +56,10 @@ SDF will use remote Snowflake schema information to do type bindings and other s
         workspace:
             ...
             providers:
-                - name: my_first_snowflake_provider
-                  type: snowflake
-                  namespaces: 
-                    - target: db1.*.*
-                    - target: db2.*.*
+                - type: snowflake
+                  sources: 
+                    - pattern: db1.*.*
+                    - pattern: db2.*.*
         ```
 
         Sources are even configurable at the schema and table level, for example if I only wanted to pull the schema for a table called `my_table` in schema `schema1`, but I wanted to pull the schema for all tables in `schema2`, I would write:
@@ -69,11 +67,10 @@ SDF will use remote Snowflake schema information to do type bindings and other s
         workspace:
             ...
             providers:
-                - name: my_first_snowflake_provider
-                  type: snowflake
-                  namespaces: 
-                    - target: db1.schema1.mytable
-                    - target: db2.schema2.*
+                - type: snowflake
+                  sources: 
+                    - pattern: db1.schema1.mytable
+                    - pattern: db2.schema2.*
         ```
 
         Lastly, providers can also be configured to use specific credentials by referencing the credential name in the provider block. For example, if you wanted to use a credential called `snowflake-creds`, you would write:
@@ -81,12 +78,11 @@ SDF will use remote Snowflake schema information to do type bindings and other s
         workspace:
             ...
             providers:
-                - name: my_first_snowflake_provider
-                  type: snowflake
+                - type: snowflake
                   credential: snowflake-creds
-                  namespaces: 
-                    - target: db1.schema1.mytable
-                    - target: db2.schema2.*
+                  sources: 
+                    - pattern: db1.schema1.mytable
+                    - pattern: db2.schema2.*
         ```
 
         <Note>
