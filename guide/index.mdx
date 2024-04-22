@@ -31,8 +31,9 @@ can edited and utilized where index is specified as none.
 ```yaml workspace.sdf.yml
 workspace:
    name: csv_123
-   edition: "1.1"
-   dialect: presto
+   edition: "1.2"
+   defaults:
+     dialect: presto
    includes:
       - path: src
         index: none
@@ -90,11 +91,11 @@ Begin by specifying the index type to `catalog-schema-table-name` and defining d
 ```yaml workspace.sdf.yml
 workspace:
    name: csv_123
-   edition: "1.1"
-   dialect: presto
+   edition: "1.2"
    defaults:
     catalog: example
     schema: pub
+    dialect: presto
    includes:
       - path: src
         index: catalog-schema-table-name
@@ -156,10 +157,10 @@ If the default catalog is not set in the top-level workspace block, the catalog 
 ```yaml workspace.sdf.yml
 workspace:
    name: csv_123
-   edition: "1.1"
-   dialect: presto
+   edition: "1.2"
    defaults:
     schema: pub
+    dialect: presto
    includes:
       - path: src
         index: schema-table-name
