@@ -22,7 +22,7 @@ sdf new --sample hello_with_pii
     Created hello_with_pii/checks/code_check.sql
     Created hello_with_pii/src/main.sql
     Created hello_with_pii/workspace.sdf.yml
-   Finished new in 0.002 secs
+   Finished new in 0.001 secs
 
 ```
 This sample contains a check and a commented out classifier. Each check has a name, description, an assertion, and a path to the SQL statement that will be executed against the information schema.
@@ -46,7 +46,7 @@ Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
 Working set 1 test file, 1 .sdf file
     Testing hello.pub.code_check (./checks/code_check.sql)
-   Finished 1 model [1 succeeded], 1 check [1 passed] in 0.724 secs
+   Finished 1 model [1 succeeded], 1 check [1 passed] in 0.729 secs
 [Pass] Check hello.pub.code_check
 
 ```
@@ -85,7 +85,7 @@ Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
 Working set 1 test file, 1 .sdf file
     Testing hello.pub.code_check (./checks/code_check.sql)
-   Finished 1 model [1 succeeded], 1 check [1 failed] in 0.722 secs, for details see below.
+   Finished 1 model [1 succeeded], 1 check [1 failed] in 0.732 secs, for details see below.
 
 [Fail] Check hello.pub.code_check
 +----------------+-------------+-------------+
@@ -96,7 +96,7 @@ Working set 1 test file, 1 .sdf file
 1 rows.
 
 -------
-Summary 1 model [1 succeeded], 1 check [1 failed] in 0.722 secs.
+Summary 1 model [1 succeeded], 1 check [1 failed] in 0.732 secs.
 -------
 
 ```
