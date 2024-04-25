@@ -1382,7 +1382,13 @@ Initialize a sdf workspace from a dbt project -- best effort
 * `--target  TARGET ` — Use this DBT target over the default target in profiles.yml
 * `--profiles-dir  PROFILES_DIR ` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
 * `--workspace-dir  WORKSPACE_DIR ` — Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
-* `-n`, `--no-save` — Skip saving and overwriting the workspace file
+* `-n`, `--no-save` — DEPRECATED: this option has no effect; see --save
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `-s`, `--save` — Save and overwrite the workspace file
 
   Default value: `false`
 
@@ -1403,7 +1409,13 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 * `--target  TARGET ` — Use this DBT target over the default target in profiles.yml
 * `--profiles-dir  PROFILES_DIR ` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
 * `--workspace-dir  WORKSPACE_DIR ` — Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
-* `-n`, `--no-save` — Skip saving and overwriting the workspace file
+* `-n`, `--no-save` — DEPRECATED: this option has no effect; see --save
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `-s`, `--save` — Save and overwrite the workspace file
 
   Default value: `false`
 
