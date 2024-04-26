@@ -95,7 +95,7 @@ Working set 4 model files, 1 .sdf file
   Compiling lineage.pub.middle (./src/middle.sql)
   Compiling lineage.pub.knis (./src/knis.sql)
   Compiling lineage.pub.sink (./src/sink.sql)
-   Finished 4 models [4 succeeded] in 0.148 secs
+   Finished 4 models [4 succeeded] in 0.146 secs
 
 ```
 
@@ -108,7 +108,6 @@ sdf compile --show all
     Reviewing this output, SDF provides progress and table information. SDF reuses model files that have already been compiled and have not been edited. 
 ```shell
 Working set 4 model files, 1 .sdf file
-   Finished 4 models [4 reused] in 0.112 secs
 
 Schema lineage.pub.source
 +-------------+-----------+------------+
@@ -147,6 +146,7 @@ Schema lineage.pub.sink
 | txn_date    | varchar   |            |
 | qty         | bigint    |            |
 +-------------+-----------+------------+
+   Finished 4 models [4 reused] in 0.108 secs
 
 ```
   </Step>

@@ -44,6 +44,7 @@ title: "SDF YML Schema"
 `compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
 `seeded:` | `boolean?`| Is this table backed by a DDL or a type provider|
 `source-locations:` | `array`| Table is defined by these .sql and/or .sdf files|
+`sealed:` | `boolean?`| This table is either backed by a create table ddl or by a table definition in yml that is the table&#39;s complete schema|
 ## Block: `Classifier`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -129,7 +130,6 @@ Values |
 | :--- |
 `local`
 `remote`
-`test-remote`
 ## Enum: `Preprocessor`
 Values |
 | :--- |
