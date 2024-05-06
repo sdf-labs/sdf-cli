@@ -251,6 +251,12 @@ Run models
 
 ###### **Options:**
 
+* `--exec-raw-query` — Hidden Option to Run Queries in Raw Mode
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
 * `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
@@ -420,6 +426,12 @@ Test your models
 
   Default value: `10`
 * `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `-u`, `--sql-logic-test-update` — Goldie update the sqllogictests files
 
   Default value: `false`
 

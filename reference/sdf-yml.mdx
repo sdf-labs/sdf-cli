@@ -25,8 +25,10 @@ title: "SDF YML Schema"
 `materialization:` | `Materialization?`| The table-type of this table (new version)|
 `purpose:` | `TablePurpose?`| Specify what kind of table or view this is|
 `origin:` | `TableOrigin?`| The origin of this table &lt;remote&gt; or &lt;local&gt;|
+`exists-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macto)|
 `table-location:` | `TableLocation?`| Specify table ,location, defaults to none if not set|
-`creation-flag:` | `CreationFlags?`| Defines teh table creation options, defaults to none if not set|
+`creation-flags:` | `TableCreationFlags?`| Defines the table creation options, defaults to none if not set|
+`incremental-options:` | `IncrementalOptions?`| Contains various options governing incremental table evaluation (only for incremental tables)|
 `dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `array`| The partitioning format of the table|
@@ -148,7 +150,7 @@ Values |
 `materialized-view`
 `incremental-table`
 `recursive-table`
-## Enum: `CreationFlags`
+## Enum: `TableCreationFlags`
 Value | Description|
 | :--- | :------- |
 `create-new` | Attempts to create a new table; fails if the table already exists.|
@@ -209,6 +211,11 @@ Values |
 `local`
 `remote`
 `intrinsic`
+## Enum: `IncrementalStrategy`
+Values |
+| :--- |
+`append`
+`merge`
 ## Enum: `FileFormat`
 Store table data in these formats.
 Values |
@@ -277,7 +284,7 @@ Values |
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
 `materialization:` | `Materialization?`| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
-`creation-flag:` | `CreationFlags?`| Defines table creation flags, defaults to  if not set|
+`creation-flag:` | `TableCreationFlags?`| Defines table creation flags, defaults to  if not set|
 `library:` | `string?`| The default library for test and code generation, std or custom|
 `index-method:` | `IndexMethod?`| The default index for this tables|
 `include-type:` | `IncludeType?`| The default index for this tables|
@@ -325,7 +332,9 @@ Values |
 ### Nested element: `TargetPattern`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`pattern:` | `string`| A target to build. Targets must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
+`pattern:` | `string?`| A pattern must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
+`patterns:` | `array`| A list of patterns. A pattern must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
+`preload:` | `boolean?`| Whether to preload the target|
 `rename-as:` | `string?`| Renames targets, the ith $&#123;i&#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &quot;_$&#123;1&#125;._$&#123;2&#125;._$&#123;3&#125;&quot;|
 ### Nested element: `FilePath`
 |Field | Type | Description|
@@ -339,6 +348,13 @@ Values |
 ### Nested element: `Constant`
 |Field | Type | Description|
 | :---- | :--- | :------- |
+### Nested element: `IncrementalOptions`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`strategy:` | [`IncrementalStrategy`](#enum-incrementalstrategy)| |
+`unique-key:` | `string?`| |
+`merge-update-columns:` | `array`| |
+`merge-exclude-columns:` | `array`| |
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
