@@ -312,7 +312,6 @@ Values |
 ### Nested element: `TargetProvider`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`namespaces:` | `array`| A list of namespaces supported by this provider|
 `type:` | [`ProviderType`](#enum-providertype)| The type of the catalog [e.g.: hive]|
 `credential:` | `string?`| Credential identifier for this provider|
 `warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
@@ -320,15 +319,11 @@ Values |
 `batch-size:` | `integer?`| |
 `sources:` | `array`| A list of (possibly remote) sources to read, matched in order, so write specific pattern before more general patterns|
 `targets:` | `array`| A list of (possibly remote) targets to build,  matched in order, so write specific pattern before more general patterns, source patterns are excluded|
-### Nested element: `ProviderNamespace`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`target:` | `string`| Matches a three part table name using globs, e.g. *.*.* matches all tables|
-`rename-as:` | `string?`| Compose a new table, use * to back reference the matched name, e.g. *.&#123;&#123;env_var(&#39;USER&#39;&#125;)&#125;&#125;_*.* renames all tables to have the &#96;USER&#96; as a prefix of every schema|
 ### Nested element: `SourcePattern`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `pattern:` | `string`| A source that can be read. Sources must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
+`preload:` | `boolean?`| Whether to preload the source|
 ### Nested element: `TargetPattern`
 |Field | Type | Description|
 | :---- | :--- | :------- |

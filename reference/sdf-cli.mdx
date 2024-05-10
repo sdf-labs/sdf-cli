@@ -43,6 +43,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf dbt`↴](#sdf-dbt)
 * [`sdf dbt init`↴](#sdf-dbt-init)
 * [`sdf dbt refresh`↴](#sdf-dbt-refresh)
+* [`sdf lsp`↴](#sdf-lsp)
 
 ## `sdf`
 
@@ -67,6 +68,7 @@ SDF's modular SQL
 * `auth` — Authenticate CLI to services like SDF, AWS, OpenAI, etc
 * `man` — Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
 * `dbt` — Initialize an sdf workspace from an existing dbt project
+* `lsp` — 
 
 ###### **Options:**
 
@@ -1234,7 +1236,12 @@ Log out of SDF Service
 
 Logout from AWS
 
-**Usage:** `sdf auth logout aws`
+**Usage:** `sdf auth logout aws [OPTIONS]`
+
+###### **Options:**
+
+* `-n`, `--name  NAME ` — Name of the credential to use
+* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials are be stored (default is platform specific)
 
 
 
@@ -1242,7 +1249,12 @@ Logout from AWS
 
 Logout from OpenAI
 
-**Usage:** `sdf auth logout openai`
+**Usage:** `sdf auth logout openai [OPTIONS]`
+
+###### **Options:**
+
+* `-n`, `--name  NAME ` — Name of the credential to use
+* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials are be stored (default is platform specific)
 
 
 
@@ -1250,7 +1262,12 @@ Logout from OpenAI
 
 Logout from Snowflake
 
-**Usage:** `sdf auth logout snowflake`
+**Usage:** `sdf auth logout snowflake [OPTIONS]`
+
+###### **Options:**
+
+* `-n`, `--name  NAME ` — Name of the credential to use
+* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials are be stored (default is platform specific)
 
 
 
@@ -1258,7 +1275,11 @@ Logout from Snowflake
 
 Show status of credentials / tokens
 
-**Usage:** `sdf auth status [OPTIONS]`
+**Usage:** `sdf auth status [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Compile only the given source dirs, files or tables [default: all models]
 
 ###### **Options:**
 
@@ -1434,6 +1455,12 @@ Re-initialize a sdf workspace from a dbt project -- best effort
   Possible values: `true`, `false`
 
 * `-c`, `--config  CONFIG ` — Supply a config yml file or provide config as yml string e.g. '(key: value)'
+
+
+
+## `sdf lsp`
+
+**Usage:** `sdf lsp`
 
 
 

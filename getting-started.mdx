@@ -35,6 +35,7 @@ Commands:
   auth     Authenticate CLI to services like SDF, AWS, OpenAI, etc
   man      Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
   dbt      Initialize an sdf workspace from an existing dbt project
+  lsp      
   help     Print this message or the help of the given subcommand(s)
 
 Options:
@@ -58,7 +59,7 @@ After running the command, you should see the following output:
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.001 secs
+   Finished new in 0.002 secs
 
 ```
 
@@ -91,7 +92,7 @@ Schema hello.pub.main
 | column_1    | varchar not null |            |
 | column_2    | varchar not null |            |
 +-------------+------------------+------------+
-   Finished 1 model [1 succeeded] in 0.769 secs
+   Finished 1 model [1 succeeded] in 0.414 secs
 
 ```
 
