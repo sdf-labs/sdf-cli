@@ -1,0 +1,47 @@
+---
+title: "SDF Database"
+description:
+  "Fast, dependency aware in memory query execution built into the same binary as SDF, with the same SQL syntax as Trino and AWS Athena. Powered by Apache DataFusion."
+---
+
+<Frame>
+    <video
+    controls
+    className="w-full aspect-video"
+    src="https://cdn.sdf.com/vid/final_final_incremental_run.mp4"
+    ></video>
+</Frame>
+
+# Overview
+SDF is both a transformation layer and *dependency aware* database. SDF understands time, code, and data dependencies 
+to optimize execution across the whole warehouse. SDF only executes parts of the DAG that have changed. All of this intelligence is managed by 
+a sophisticated cacheing layer that fingerprints data, code, metadata to optimally recompute nodes that are out of date after any given change. 
+
+Use SDF to run fast, in-memory, queries on data locally or in the cloud on all sorts of different data. The physical plan, optimizer and execution is based on [Apache Datafusion](https://datafusion.apache.org/) for which we have the greatest appreciation.
+
+<Tip>
+SDF DB is in alpha with breaking changes, new functinality, and more coming all the time. If you are interested in using the database product, please contact us.
+</Tip>
+
+# Using SDF Database
+It's simple, SDF allows you to set an execution context per query. In fact, all checks and reports are executed with SDF's builtin execution engine already!
+
+You can get started with the database in just a couple of commands.
+``` shell
+sdf new sample_db && cd sample_db
+sdf run --show all
+```
+
+To explicitly set the execution context and dialects, you can configure global, or even per-table settings via SDF's defaults paradigm. 
+
+If you wanted you could execute one query on Snowflake, another query on Redshift, then collect results from both locally on your laptop and then run an aggregation on the results locally on your laptop!
+(We're not sure why you would want to though...)
+You can also 
+```yml
+workspace:
+  ...
+  defaults: 
+    compute: local
+    dialect: trino
+```
+

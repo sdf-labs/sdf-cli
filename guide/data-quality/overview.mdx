@@ -1,0 +1,33 @@
+---
+title: "Data Quality Overview"
+description:
+  "SDF supports both static (compile time) and dynamic (run time) data quality tools out of the bex."
+---
+
+There are many great existing data quality tools out there, primarily focused on runtime validations. There are tools for observability, expectation testing, and more.
+
+SDF provides 4 concepts for data quality.
+1. **Checks** *(static)* - Are SQL queries run against SDF's information schema to validate absence of a condition. Since Checks are executed purely against compile-time metadata, they are typically fast and easy to integrate into CI/CD and provide a powerful new way to guarantee business logic among queries.
+2. **Reports** *(static)* - Are SQL queries run against SDF's information schema to understand the presence of a condition. Reports are also executed against compile-time metadata and are therefore also excellent for Audits, Governance, and metadata enriching.
+3. **Tests** *(dynamic)* -  Are SQL queries run against your data to validate a certain condition after the statement has been executed. This is helpful for ensuring that the shape of a particular column is as expected, that thresholding conditions are met, or that there are no null values.
+4. **Stats** *(dynamic)* -  Are SQL queries run against your dataset for at-a-glance understanding. Gain a birds eye view of a particular column including distributions, uniqueness, or other summary statistics configurable by you.
+
+
+See the diagram below for the order of operations of data quality steps. It is recommended to run static data quality validations like compiling, checking, and reporting as part of CI/CD.
+
+<img height="200" src="https://cdn.sdf.com/docs/report.svg" />
+
+<CardGroup cols={2}>
+  <Card title="Checks" icon="square-1" href="/guide/data-quality/checks">
+    Learn about Checks, a completely new tool for Static Analysis powered data quality.
+  </Card>
+  <Card title="Reports" icon="square-2" href="/guide/data-quality/reports">
+    Learn about Reports, a powerful way to understand your data warehouse, from ingestion to consumption.
+  </Card>
+  <Card title="Tests" icon="square-3" href="/guide/data-quality/tests">
+    Learn about Tests, a familiar expectations-like framework for data quality. With a powerful builtin library, it's easy to get started.
+  </Card>
+  <Card title="Stats" icon="square-4" href="/guide/data-quality/stats">
+    Learn about Stats, a fast & consistent way to get at-a-glance understanding of any specific dataset.
+  </Card>
+</CardGroup>

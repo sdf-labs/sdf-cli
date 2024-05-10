@@ -19,16 +19,40 @@
 		"name": "Get Started",
 		"url": "https://console.sdf.com/"
 	},
-	"anchors": [
+	"topbarLinks": [
 		{
-			"name": "Reference",
-			"icon": "rectangle-terminal",
-			"url": "reference"
+		  "name": "Support",
+		  "url": "https://www.sdf.com/support"
+		}
+	  ],
+	  "tabs": [
+		{
+			"name": "Database",
+    		"url": "database"
+		},
+		{
+			"name": "Cloud",
+    		"url": "cloud"
 		},
 		{
 			"name": "Releases",
-			"icon": "circle",
-			"url": "releases"
+    		"url": "releases"
+		},
+		{
+			"name": "Reference",
+    		"url": "reference"
+		}
+	],
+	"anchors": [
+		{
+			"name": "Website",
+			"icon": "rectangle-terminal",
+			"url": "https://sdf.com"
+		},
+		{
+			"name": "Github",
+			"icon": "github",
+			"url": "https://github.com/sdf-labs"
 		}
 	],
 	"navigation": [
@@ -40,18 +64,23 @@
 			]
 		},
 		{
+			"group": "Cloud",
+			"pages": [
+			"cloud/introduction",
+			"cloud/billing",
+			"cloud/authentication",
+			"cloud/deployment"
+			]
+		},
+		{
 			"group": "Guides",
 			"pages": [
 				"guide/io",
 				"guide/workspaces",
 				"guide/index",
 				"guide/classifiers",
-				"guide/checks",
-				"guide/reports",
 				"guide/lineage_metadata",
 				"guide/udf",
-				"guide/authentication",
-				"guide/deployment",
 				"guide/large_workspace",
 				{  
 					"group":"Macro Processing",
@@ -60,6 +89,16 @@
 						"guide/macro-processing/jinja",
 						"guide/macro-processing/jinja-variables",
 						"guide/macro-processing/sql-variables"
+					]
+				},
+				{  
+					"group":"Data Quality",
+					"pages":[
+						"guide/data-quality/overview",
+						"guide/data-quality/checks",
+						"guide/data-quality/reports",
+						"guide/data-quality/tests",
+						"guide/data-quality/stats"
 					]
 				}
 			]
@@ -85,7 +124,6 @@
 			"pages": [
 				"reference/sdf-cli",
 				"reference/sdf-yml",
-				"reference/file-formats",
 				"reference/sdf-information-schema"
 			]
 		},
@@ -156,15 +194,26 @@
 			]
 		},
 		{
-			"group": "Service",
+			"group": "SDF DB",
 			"pages": [
-				"service/billing",
-				"service/status"
+				"database/introduction",
+				"database/file-formats",
+				{
+					"group": "Functions",
+					"pages": [
+						"database/functions/aggregate_functions",
+						"database/functions/math_functions",
+						"database/functions/other_expressions",
+						"database/functions/string_functions",
+						"database/functions/temporal_functions"
+					]
+				}
 			]
 		},
 		{
 			"group": "Releases",
 			"pages": [
+				"releases/latest",
 				{
 					"group": "April 2024",
 					"pages": [

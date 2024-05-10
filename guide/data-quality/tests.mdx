@@ -1,0 +1,81 @@
+---
+title: "Tests"
+---
+
+## Understanding Tests
+Tests are a commonly used data quality feature allowing you to scan results of queries and set *expectations* of your data. 
+You can validate that a particular column is never null, or within a certain thresholding range, between a certain set of values, and more.
+
+SDF Provides a standard [testing library](https://github.com/sdf-labs/sdf-std). The functions provided in the library are included natively in SDF.
+
+<Note>All SDF Tests for all columns are compiled into table scans. This allows SDF to run multiple tests with a single scan. This dramatically reduces the cost of data tests.</Note>
+
+There are three types of tests builtin.
+- **Scalar Column Tests** - validate expectations of individual values in columns (eg. `x > 100` )
+- **Aggregate Column Tests** - validate expectations of all values in a columns (eg. `sum(x) > 100` )
+- **Table Tests** - validate expectations for all columns in table (eg. columns a and b are unique).
+
+### Severity
+Each test may be configured with a severity flag. By default all tests are have a severity of **error** meaning that a constraint violation will result in a non-zero exit code for sdf.
+
+Tests may have three results, with text highlighting providing an indication of the output.
+
+| Test Result | Meaning | 
+| ------------|---------|
+| 🟢          | Passing | 
+| 🟡          | Warning | 
+| 🔴          | Failing | 
+
+## Using a Test
+Tests are added to columns in table blocks. Each column has 'constraints' and test functions should be expressed as the expectation you have of the column.
+
+Test libraries are written as SDF workspaces that are imported by your workspace.
+
+Below, we add a simple aggregate uniqueness test, and a scalar null values test to a `cool_column`.
+
+``` yml
+table:
+  name: a_really_great_table
+  columns:
+    - name: cool_column
+      constraints:
+      - is: std.unique()
+      - is: std.not_null()
+        severity: warning
+``` 
+
+## SDF Standard Library Tests
+
+### Column Tests
+
+| Test Name                      | Type      | Description                              |
+| ------------------------------ | --------- |----------------------------------------- |
+| `not_null()`                   | Scalar    | Column elements must not be null |
+| `valid_scalar(condition)`      | Scalar    | Column elements all meet scalar condition |
+| `valid_aggregate(condition)`   | Aggregate | Column elements all meet aggregate condition |
+| `unique()`                     | Aggregate | Column elements must be unique |
+| `in_accepted_values([values])` | Aggregate | Column values are all elements of array |
+| `minimum(value)`               | Aggregate | Column can not have values less than value | 
+| `maxiumum(value)`              | Aggregate | Column can not have values greater than value |
+| `exclusive_minimum(value)`     | Aggregate | Column can not have values less or equal to value | 
+| `exclusive_maximum(value)`     | Aggregate | Column can not have values greater than or equal to value |
+| `between(lower, upper)`        | Aggregate | Column values must be between lower and upper |
+| `max_length(value)`            | Aggregate | Column can not have strings greater than value |
+| `min_length(value)`            | Aggregate | Column can not have strings less than value |
+| `like(string)`                 | Aggregate | Column elements must contain string |
+| `try_cast(type)`               | Aggregate | Column elements must include string |
+| `primary_key(column)`          | Aggregate | Column is primary key of column |
+
+### Table Tests
+| Test Name                      | Type      | Description                              |
+| ------------------------------ | --------- |----------------------------------------- |
+| `unique_columns([c1, c2])`| Table    | Table with columns `c1` and `c2` has unique values across these two columns |
+
+## Writing Your Own Test
+
+[TODO]
+
+## FAQ
+- How do I inspect the query that is created by a series of tests?
+- How do I write my own test library?
+- 
