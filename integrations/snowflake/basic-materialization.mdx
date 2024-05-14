@@ -40,7 +40,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
     Created cybersyn_tech_innovation/src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql
     Created cybersyn_tech_innovation/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
     Created cybersyn_tech_innovation/workspace.sdf.yml
-   Finished new in 0.245 secs
+   Finished new in 0.222 secs
 
         ```
     </Step>
@@ -61,7 +61,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 +-------------+-----------+------------+
 | domain_id   | varchar   |            |
 +-------------+-----------+------------+
-   Finished 2 models [1 succeeded, 1 downloaded] in 3.026 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.263 secs
 
         ```
 
@@ -178,7 +178,7 @@ Schema sdf_snowflake.staging.latest_repo_name
 | repo_name   | varchar        |            |
 | repo_id     | decimal(38, 0) |            |
 +-------------+----------------+------------+
-   Finished 2 models [1 succeeded, 1 downloaded] in 3.115 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.054 secs
 
         ```
 
@@ -212,22 +212,22 @@ Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
     Running sdf_snowflake.staging.latest_repo_name (aka sdf_snowflake.staging.latest_repo_name)
 
 Table sdf_snowflake.staging.latest_repo_name
-+---------------------------------------------------------------+-----------+
-| repo_name                                                     | repo_id   |
-+---------------------------------------------------------------+-----------+
-| Zoommod/character-face-builder                                | 799740530 |
-| yDanonin/factory-control                                      | 722592370 |
-| HarshanUI/M2stock                                             | 800055214 |
-| akryto/css-practice                                           | 799824873 |
-| Elalersiss/Trabajo_en_clase                                   | 800178112 |
-| AnnLvu/get_next_line_42                                       | 797706046 |
-| Dani-A-Dias/lab-javascript-vikings                            | 800069883 |
-| onetwosbeardedler6/animate-full-by-azi                        | 800000097 |
-| abdosalahh/weeding                                            | 800183452 |
-| devhub-blue-sea-us-east-1/org-public-empty-csc-repo-us-east-1 | 800167048 |
-+---------------------------------------------------------------+-----------+
++------------------------------------------------------------+-----------+
+| repo_name                                                  | repo_id   |
++------------------------------------------------------------+-----------+
+| AzaelLuxryA/Mat-328                                        | 767211529 |
+| itsjeanem/realization-contribution                         | 800171381 |
+| gangapurambhargav/cicd                                     | 800044631 |
+| linfei748/bishe                                            | 799846573 |
+| kaisunoo/SensEtryStatus                                    | 800006437 |
+| gantres2/OLxA-Linux-Armbian-builder                        | 800017070 |
+| dapdelivery/where-for-dinner-13-05-2024-16-16-59-183184236 | 800115838 |
+| Nayyarnj1/site                                             | 799796261 |
+| kersha0530/datafun-03-analytics                            | 800116331 |
+| DanishKodeMonkey/odin-login-process                        | 799895907 |
++------------------------------------------------------------+-----------+
 10 rows.
-   Finished 1 model [1 succeeded] in 9.641 secs
+   Finished 1 model [1 succeeded] in 9.165 secs
 
         ```
 
@@ -280,7 +280,7 @@ Schema sdf_snowflake.staging.push_events
 | id          | varchar        |            |
 | repo_id     | decimal(38, 0) |            |
 +-------------+----------------+------------+
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.932 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.155 secs
 
         ```
 
@@ -334,20 +334,20 @@ Schema sdf_snowflake.staging.push_events
 
 ``` shell
 Working set 6 model files, 2 .sdf files
-Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
-Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
-Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
-Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
-Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
-  Compiling sdf_snowflake.staging.latest_repo_name (aka sdf_snowflake.staging.latest_repo_name)
+Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
+Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
+Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
+Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (aka sdf_snowflake.cybersyn_tech_innovation.active_ai_domains)
   Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (aka sdf_snowflake.cybersyn_tech_innovation.most_starred_repos)
+  Compiling sdf_snowflake.staging.latest_repo_name (aka sdf_snowflake.staging.latest_repo_name)
   Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (aka sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents)
   Compiling sdf_snowflake.staging.push_events (aka sdf_snowflake.staging.push_events)
   Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (aka sdf_snowflake.cybersyn_tech_innovation.events_by_repo)
-   Finished 13 models [6 succeeded, 7 downloaded] in 3.465 secs
+   Finished 13 models [6 succeeded, 7 downloaded] in 3.431 secs
 
         ```
 

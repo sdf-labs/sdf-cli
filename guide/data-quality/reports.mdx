@@ -41,7 +41,7 @@ Let's write and modify a report, starting with one of the sdf samples.
     Created pii_saas_platform/src/internal/users_per_domain.sql
     Created pii_saas_platform/src/internal/users_per_org.sql
     Created pii_saas_platform/workspace.sdf.yml
-   Finished new in 0.225 secs
+   Finished new in 0.224 secs
 
 ```
     This sample contains a report and a workspace modeled after a simple SAAS platform.
@@ -101,15 +101,15 @@ Working set 12 model files, 3 .sdf files
   Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
   Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
   Compiling payment.public.users (./ddls/payment/public/users.sql)
-  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
-  Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
-  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
-  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
-  Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
-  Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
-  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
   Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
+  Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
+  Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
   Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
+  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
+  Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
+  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
+  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
+  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
 
@@ -117,13 +117,13 @@ Report sdf.reports.tables_with_pii
 +----------------------------------------------+-------------------------+-----------+
 | table_ref                                    | description             | dialect   |
 +----------------------------------------------+-------------------------+-----------+
-| transformations.external.invoice_stats       |                         | snowflake |
 | payment.public.users                         | DDL for the users table | snowflake |
 | transformations.internal.most_frequent_payer |                         | snowflake |
 | transformations.internal.users_per_domain    |                         | snowflake |
+| transformations.external.invoice_stats       |                         | snowflake |
 +----------------------------------------------+-------------------------+-----------+
 4 rows.
-   Finished 14 models [12 succeeded, 2 reused], 1 report [1 succeeded] in 2.081 secs
+   Finished 14 models [12 succeeded, 2 reused], 1 report [1 succeeded] in 2.156 secs
 
 ```
 
@@ -159,50 +159,59 @@ Report sdf.reports.tables_with_pii
 | payment.public.users                         | phone        | DDL for the users table | snowflake |
 | payment.public.users                         | name         | DDL for the users table | snowflake |
 | transformations.internal.users_per_domain    | email_domain |                         | snowflake |
-| transformations.external.invoice_stats       | name         |                         | snowflake |
-| transformations.internal.most_frequent_payer | email        |                         | snowflake |
 | payment.public.users                         | email        | DDL for the users table | snowflake |
+| transformations.internal.most_frequent_payer | email        |                         | snowflake |
+| transformations.external.invoice_stats       | name         |                         | snowflake |
 +----------------------------------------------+--------------+-------------------------+-----------+
 7 rows.
-   Finished 14 models [14 reused], 1 report [1 succeeded] in 1.288 secs
+   Finished 14 models [14 reused], 1 report [1 succeeded] in 1.309 secs
 
 ```
   </Step>
   <Step title="Add a New Report">
     Let's say we'd like to extend our analysis a bit but still maintain the original report. We can do this by adding a new report to the `reports` directory. Let's add a new report to find the most frequently used datatypes in columns with PII. We can do this with the following SQL:
     ```sql pii_datatypes.sql
-      SELECT c.data_type, COUNT(*) as frequency
+      SELECT c.datatype, COUNT(*) as frequency
       FROM sdf.information_schema.columns c
       WHERE c.classifiers LIKE '%PII%'
-      GROUP BY c.data_type 
+      GROUP BY c.datatype 
       ORDER BY frequency DESC;
     ```
     Now, when we run the report, we can see the most frequently used datatypes in columns with PII:
     ```shell
     sdf report --show all
     ```
+
+
 ``` shell
 Working set 12 model files, 3 .sdf files
 Working set 2 report files, 1 .sdf file
   Reporting sdf.reports.pii_datatypes (./reports/pii_datatypes.sql)
-     Failed sdf.reports.pii_datatypes
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+
 | table_ref                                    | column_name  | description             | dialect   |
 +----------------------------------------------+--------------+-------------------------+-----------+
-| payment.public.users                         | email        | DDL for the users table | snowflake |
-| payment.public.users                         | phone        | DDL for the users table | snowflake |
-| transformations.external.invoice_stats       | email        |                         | snowflake |
-| transformations.internal.users_per_domain    | email_domain |                         | snowflake |
-| transformations.external.invoice_stats       | name         |                         | snowflake |
 | transformations.internal.most_frequent_payer | email        |                         | snowflake |
+| transformations.external.invoice_stats       | name         |                         | snowflake |
 | payment.public.users                         | name         | DDL for the users table | snowflake |
+| payment.public.users                         | email        | DDL for the users table | snowflake |
+| transformations.external.invoice_stats       | email        |                         | snowflake |
+| payment.public.users                         | phone        | DDL for the users table | snowflake |
+| transformations.internal.users_per_domain    | email_domain |                         | snowflake |
 +----------------------------------------------+--------------+-------------------------+-----------+
 7 rows.
-   Finished 14 models [14 reused], 2 reports [1 reused, 1 errored] in 1.275 secs
 
-```
+Report sdf.reports.pii_datatypes
++----------+-----------+
+| datatype | frequency |
++----------+-----------+
+| varchar  | 7         |
++----------+-----------+
+1 rows.
+   Finished 14 models [14 reused], 2 reports [1 succeeded, 1 reused] in 1.428 secs
+
+    ```
   </Step>
   <Step title="Save the Output (Optional)">
     We can save the output of a report to a file by using the `--format` flag. Let's save the output of our reports to a file called `sdf_reports.csv`:
