@@ -2,13 +2,20 @@
 title: "Display and IO"
 ---
 
-One of the beloved parts of software engineering is how developers have managed to keep their development workflows contained to the terminal. So we thought - why not let the vim and emacs legends of the world develop data workflows in their natural habitat - the terminal. As such, SDF is designed to be a command line tool and can ideally keep the large majority of your data development contained to the terminal (and your IDE of choice). As a byproduct, we take output *seriously*. This guide will take you through how to configure your terminal environment to get the most out of SDF.
+One of the beloved parts of software engineering is how developers have managed to keep their development workflows contained to the terminal.
+Terminal workflows allow automation via **stdin**, **stdout**, and **stderr**, and cross-compatibility with virtually all operating systems. 
+
+As such, SDF is designed to be a command line tool and can ideally keep the large majority of your data development contained to the terminal (and your IDE of choice). 
+For you vim and emacs legends of the world: we want you to develop data workflows in your natural habitat - the terminal. Automate & integrate.
+
+As a byproduct, we take output *seriously*. This guide will take you through how to configure your terminal environment to get the most out of SDF.
 
 <Note>
-Simply put, SDF allows you to specify its 
-* *display formats*, as part of *CLI* options
-* *input file format and location*, as part of an *external table specification*
-* *output file format and location*, as part of the *data asset specification*, the latter also via the CLI
+Simply put, SDF allows you to specify 
+* **display formats**, as part of *CLI* options for command line output
+* **input files (format and location)**, as part of Data Providers
+* **output files (format and location)**, as part of Providers, Data Providers, and Materialization options
+* **table schemas** through inference, files, or Providers 
 </Note>
 
 ## Display Options
@@ -45,12 +52,11 @@ There are 4 commandline options to control the output.
   - `nd-json` is an ndJSON representation
   - `yml`, only available for `sdf compile`, is YAML representation
 
-- `--limit <number>` - Limits the number of shown rows. Run with `--limit 0` to
-  show all rows.
+- `--limit <number>` - Limits the number of shown rows. Run with `--limit 0` to show all rows.
 
 ### Example
 
-Let's try these options. Start by creating a new workspace with a sample project or change directories into an existing one.
+Let's try these options. Start by creating a new SDF workspace with a sample project or change directories into an existing one. The tutorial below uses the *lineage* sample.
 <Steps>
 
   <Step title="Install and setup your workspace">
@@ -59,16 +65,16 @@ Let's try these options. Start by creating a new workspace with a sample project
     ```shell	
 		sdf new --sample lineage
 		```
-    After running the command, you should see the folloing output:
+    After running the command, you will see the following output:
     
-```shell
+``` shell
     Created lineage/checks/check_sink_phone_is_pii.sql
     Created lineage/src/knis.sql
     Created lineage/src/middle.sql
     Created lineage/src/sink.sql
     Created lineage/src/source.sql
     Created lineage/workspace.sdf.yml
-   Finished new in 0.002 secs
+   Finished new in 0.221 secs
 
 ```
   </Step>
@@ -89,13 +95,13 @@ sdf compile
 ```
     Reviewing this output, multiple files have been compiled and SDF has statically analyzed the queries.
 
-```shell
+``` shell
 Working set 4 model files, 1 .sdf file
   Compiling lineage.pub.source (./src/source.sql)
   Compiling lineage.pub.middle (./src/middle.sql)
-  Compiling lineage.pub.sink (./src/sink.sql)
   Compiling lineage.pub.knis (./src/knis.sql)
-   Finished 4 models [4 succeeded] in 0.431 secs
+  Compiling lineage.pub.sink (./src/sink.sql)
+   Finished 4 models [4 succeeded] in 0.583 secs
 
 ```
 
@@ -105,52 +111,19 @@ Working set 4 model files, 1 .sdf file
 sdf compile --show all
 ```
 
-    Reviewing this output, SDF provides progress and table information. SDF reuses model files that have already been compiled and have not been edited. 
-```shell
-Working set 4 model files, 1 .sdf file
+  Reviewing this output, SDF provides progress and table information. SDF reuses model files that have already been compiled and have not been edited. 
+  Alternatively try compiling with various output options:
+  ```shell
+  sdf compile --show [all, none, progress, result]
+  ```
 
-Schema lineage.pub.source
-+-------------+-----------+------------+
-| column_name | data_type | classifier |
-+-------------+-----------+------------+
-| user_id     | integer   | DATA.uid   |
-| phone       | varchar   | DATA.pii   |
-| txn_date    | varchar   |            |
-| qty         | integer   |            |
-+-------------+-----------+------------+
+  For execution - you may also modulate table output formats. Let's take the `lineage.pub.middle` table.
+  ```shell
+  sdf run lineage.pub.middle --format [nd-json, csv, tsv, yml, table]
+  ```
 
-Schema lineage.pub.middle
-+-------------+-----------+------------+
-| column_name | data_type | classifier |
-+-------------+-----------+------------+
-| user_id     | integer   | DATA.uid   |
-| phone       | varchar   | DATA.pii   |
-| txn_date    | varchar   |            |
-| qty         | bigint    |            |
-+-------------+-----------+------------+
-
-Schema lineage.pub.knis
-+-------------+-----------+------------+
-| column_name | data_type | classifier |
-+-------------+-----------+------------+
-| txn_date    | varchar   |            |
-| qty         | bigint    |            |
-+-------------+-----------+------------+
-
-Schema lineage.pub.sink
-+-------------+-----------+------------+
-| column_name | data_type | classifier |
-+-------------+-----------+------------+
-| uid         | integer   | DATA.uid   |
-| phone       | varchar   | DATA.pii   |
-| txn_date    | varchar   |            |
-| qty         | bigint    |            |
-+-------------+-----------+------------+
-   Finished 4 models [4 reused] in 0.389 secs
-
-```
   </Step>
-  <Step title="Diplay a single sink table">
+  <Step title="Display for Individual Tables">
   To select the output of only one table, use the table name directly after the `compile` command.
 
   ```shell
@@ -167,7 +140,8 @@ Schema lineage.pub.sink
   </Note>
 
   </Step>
-</Steps>  
+</Steps>
+  
 ### Schema
 
 The `schema` of an external table must be given **explicitly**, following the [ANSI standard SQL syntax](https://blog.ansi.org/2018/10/sql-standard-iso-iec-9075-2016-ansi-x3-135/) or

@@ -53,14 +53,20 @@
 			"name": "Github",
 			"icon": "github",
 			"url": "https://github.com/sdf-labs"
+		},
+		{
+			"name": "Try SDF",
+			"icon": "rocket",
+			"url": "https://sdf.com/book-demo"
 		}
 	],
 	"navigation": [
 		{
 			"group": "Introduction",
 			"pages": [
-				"intro",
-				"getting-started"
+				"introduction/welcome",
+				"introduction/getting-started",
+				"introduction/features"
 			]
 		},
 		{
@@ -75,17 +81,29 @@
 		{
 			"group": "Guides",
 			"pages": [
-				"guide/telemetry",
-				"guide/io",
-				"guide/workspaces",
-				"guide/index",
-				"guide/classifiers",
-				"guide/lineage_metadata",
-				"guide/udf",
-				"guide/large_workspace",
-				{
-					"group": "Macro Processing",
-					"pages": [
+				{  
+					"group":"Basics",
+					"icon": "flag-checkered",
+					"pages":[
+						"guide/basics/io",
+						"guide/basics/workspaces",
+						"guide/basics/classifiers",
+						"guide/basics/lineage_metadata"
+					]
+				},
+				{  
+					"group":"Transformation",
+					"icon": "play",
+					"pages":[
+						"guide/transformation/providers",
+						"guide/transformation/materialization",
+						"guide/transformation/environments"
+					]
+				},
+				{  
+					"group":"Macro Processing",
+					"icon": "microchip",
+					"pages":[
 						"guide/macro-processing/overview",
 						"guide/macro-processing/jinja",
 						"guide/macro-processing/jinja-variables",
@@ -94,6 +112,7 @@
 				},
 				{  
 					"group":"Data Quality",
+					"icon": "helmet-safety",
 					"pages":[
 						"guide/data-quality/overview",
 						"guide/data-quality/checks",
@@ -101,23 +120,66 @@
 						"guide/data-quality/tests",
 						"guide/data-quality/stats"
 					]
+				},
+				{
+					"group": "Advanced",
+					"icon": "scale-balanced",
+					"pages": [
+						"guide/advanced/index",
+						"guide/advanced/udf"
+					]
 				}
 			]
 		},
 		{
 			"group": "Integrations",
 			"pages": [
-				"integrations/dbt",
-				"integrations/snowflake",
-				"integrations/redshift",
-				"integrations/databricks",
-				"integrations/ci_cd"
-			]
-		},
-		{
-			"group": "Use Cases",
-			"pages": [
-				"use-case/data_deletion"
+				{
+					"group": "Snowflake",
+					"icon" : "snowflake",
+					"pages": [
+						"integrations/snowflake/getting-started",
+						"integrations/snowflake/basic-materialization",
+						"integrations/snowflake/incremental-materialization"
+					]
+				},
+				{
+					"group": "Redshift",
+					"icon" : "aws",
+					"pages": [
+						"integrations/redshift/getting-started"
+					]
+				},
+				{
+					"group": "DBT",
+					"icon": "circle",
+					"pages": [
+						"integrations/dbt/integrating",
+						"integrations/dbt/migrating"
+					]
+				},
+				{
+					"group": "CI/CD",
+					"icon": "github",
+					"pages": [
+						"integrations/cicd/ci_cd"
+						
+					]
+				},
+				{
+					"group": "Databricks",
+					"icon": "block-brick",
+					"pages": [
+						"integrations/databricks/databricks"
+					]
+				},
+				{
+					"group": "OpenAI",
+					"icon": "wand",
+					"pages": [
+						"integrations/openai/ai-classification"
+					]
+				}
 			]
 		},
 		{

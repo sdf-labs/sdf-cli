@@ -1,7 +1,7 @@
 ---
-title: "AWS & Redshift"
+title: "Getting Started"
 description:
-  "SDF can hydrate table schemas and execute queries against a Redshift DB."
+  "Getting started with Redshift and SDF."
 ---
 
 ## Overview
@@ -9,7 +9,6 @@ description:
 This guide will walk you through the steps of creating a Redshift integration. By the end, you will be able to reference remote Redshift tables in SDF as if they were locally defined!
 
 SDF will use remote Redshift schema information to do type bindings, column level lineage, and other static analysis checks on your workspace.
-
 
 Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model.
 <img src="https://cdn.sdf.com/docs/redshift_warehouse_structure.png" alt="drawing" width="500"/>
@@ -125,18 +124,6 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
                     - pattern: <DATABASE>.*.*
         ```
 
-        Sources are even configurable at the schema and table level, for example if I only wanted to pull the schema for a table called `my_table` in schema `schema1`, but I wanted to pull the schema for all tables in `schema2`, I would write:
-        ``` yml
-        workspace:
-            ...
-            providers:
-                - type: redshift
-                  cluster-identifier: <CLUSTER_IDENTIFIER>
-                  sources: 
-                    - pattern: db1.schema1.my_table
-                    - pattern: db1.schema2.*
-        ```
-
         Lastly, providers can also be configured to use specific credentials by referencing the credential name in the provider block. For example, if you wanted to use a credential called `redshift-creds`, you would write:
         ``` yml
         workspace:
@@ -149,10 +136,8 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
                     - pattern: db1.schema1.my_table
                     - pattern: db1.schema2.*
         ```
-        <Note>
-            The `*` character is a wildcard (glob pattern). Specifying a database alone is shorthand for writing, `db1.*.*`. If you wanted to pull down any sources not found while compiling, you can just use `*.*.*`. In this case, you will need to surround the `*.*.*` with double quotes like so `"*.*.*"` in order to prevent
-            the yaml from interpreting the `*` as a special character.
-        </Note>
+
+        For more information on provider configuration, see the [provider documentation](/integrations/providers).
     </Step>
     <Step title="Try it out!">
         Now that you're connected, let's make sure SDF can pull the schema information it needs. 

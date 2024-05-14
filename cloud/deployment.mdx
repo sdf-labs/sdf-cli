@@ -2,56 +2,47 @@
 title: "Cloud Deployment"
 ---
 
-Along with running workflows locally with sdf build, you can use `sdf push` to deploy your assets to the SDF Platform.
+To deploy your data catalog to the SDF Cloud, you use the integrated `sdf push` command. The SDF cloud operates similar 
+to an infrastructure as code platform (like Terraform). An SDF workspace is packaged up so that code and metadata such as lineage information
+can be displayed remotely.
+
+`push` allows you to search, monitor your assets in a visual, interactive manner. 
 
 <Note>
-The SDF Platform is only available via inquiry with our team at this time. If you'd like to get access, please [inquire](https://sdf.com/inquiries)
+The SDF Cloud is only available via inquiry with our team at this time. If you'd like to get access, please [inquire](https://sdf.com/inquiries)
 </Note>
-
-Running push allows you to search, monitor and interact with your assets via SDF's cloud.
-
-<Frame>
-    <video
-    autoPlay
-    muted
-    className="w-full aspect-video"
-    src="https://cdn.sdf.com/vid/lineage-vid.mov"
-    ></video>
-</Frame>
-
-## What is Push?
-
-SDF Push is just like running `sdf compile`, but with the intention of deploying your assets to the SDF Cloud.
-
-<Info>
-Before you can deploy your assets to the SDF Cloud, you'll need to authenticate with the platform. Follow our guide on [authentication](/guide/authentication) to get started.
-</Info>
 
 ## Deploying Your Workspace
 
 Deploying your workspace is easy. All of the flags associated with the [sdf compile](/reference/sdf-cli#sdf-compile) also work with push, but push has a few extra functionalities and tweaks to watch out for. Let's take a look at the following example:
 
-> First, we'll [authenticate with the platform](/guide/authentication).
-```shell
-sdf auth login
-```
+<Steps>
+    <Step title="Authenticate Your CLI to SDF Cloud">
+    First, we'll authenticate to SDF Cloud.
+    ```shell
+    sdf auth login
+    ```
+    </Step>
+    <Step>
+    Let's create a sample project with the sample `deploy_sample`
+    ```shell
+    sdf new deploy_sample
+    ```
+    
+    SDF Cloud organizes workspaces by `name`. In the workspace.sdf.yml file, rename your workspace to somethng fun! (Note: must be a valid SQL identifirer).
+    ```yaml
+    workspace:
+      name: [YOUR_NAME_HERE]
+      ...
+    ```
+    </Step>
+    <Step>
+    Now, let's push our tables to the SDF Platform. 
+    ```shell
+    sdf push
+    ```
 
-> Next, let's create a sample project with the sample `deploy_sample`
-```shell
-sdf new deploy_sample
-```
+    After a successful deploy, the CLI will provide to you URL for your cloud workspace.
+    </Step>
 
-> Next, let's take a look at the workspace.sdf.yml file
-```yaml
-workspace:
-  name: hello
-  edition: "1.2"
-  includes:
-     - path: src/
-```
-> You'll notice that `name` is required. The `name` field is the name of your workspace.
-
-> Now, let's push our tables to the SDF Platform
-```shell
-sdf push
-```
+</Steps>

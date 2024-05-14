@@ -1,0 +1,41 @@
+---
+title: "Materialization"
+description: "SDF supports supports materializing tables in Snowflake and Redshift directly from the command line."
+---
+
+## Overview
+
+SDF's static analysis unlocks a whole suite of features and new data development paradigms alone, but its usefulness is amplified
+when used in tandem with runtime materialization. Runtime materialization works against remote warehouses and the local SDF database alike. High-level materializing with SDF helps you:
+
+- Materialize models as views, tables, incremental tables, transient tables, temporary views, recursive tables, and more. 
+- Debug faster when running your models, since static analysis will check errors before running them.
+- Run tables with Jinja, SQL Variables, or other relevant metadata without converting them to your compute's SQL.
+
+All materialization functionality is part of the [sdf run](/reference/sdf-cli#sdf-run) command since we are dealing with the output of SQL queries. 
+
+## Materialization Prerequisites
+
+### Prerequisites
+In order to materialize tables in your data warehouse, you will need to have the following:
+
+1. A machine with the latest SDF version running locally.
+2. A Snowflake or Redshift warehouse to materialize tables remotely.
+3. Valid credentials with write access to materialize tables in your warehouse.
+4. A configured [provider](/guide/transformation/providers) in your workspace.sdf.yml file.
+
+As such, we recommend starting with our [providers documentation](/integrations/providers) before proceeding with materialization.
+
+## Materialization Guides
+
+Below are a list of follow-along guides to help you get started with materialization in SDF. Since materialization differs between warehouses, each guide walks you through a specific materialization type in a specific warehouse.
+
+| Materialization Type | Snowflake                           | Redshift |
+| -------- | ------------------------------------- | -----------------|
+| View     | [Link](/integrations/snowflake)       | [Link](/integrations/redshift) |
+| Table      | [Link](/integrations/snowflake)     | [Link](/integrations/redshift) |
+| Incremental   | [Link](/integrations/snowflake)  | [Link](/integrations/redshift) |
+
+<Info>
+  SDF supports a wide variety of materialization options. See the [materialization config](/reference/sdf-yml#enum-materialization) to view them all.  
+</Info>

@@ -2,7 +2,13 @@
 title: "Databricks Spark Listener"
 description:
   "Install SDF's Spark Listener in your Databricks Cluster"
+icon: "headphones"
 ---
+
+<Warning>
+  SDF does not support transformation on Databricks. The SDF Spark Listener is only used to capture lineage from your Databricks Cluster. This is unlike Snowflake and Redshift integrations where you can run transformations against your cloud compute with `sdf run`. 
+  Support for `sdf run` on Databricks with SparkSQL is coming soon.
+</Warning>
 
 The SDF Console can be configured to listen for Spark events on your Databricks Cluster and automatically ingest and analyze the lineage of your Spark Warehouse.
 

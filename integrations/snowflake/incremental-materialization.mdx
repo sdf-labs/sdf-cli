@@ -1,0 +1,558 @@
+---
+title: "Incremental Materialization"
+description:
+  "Materialize incremental models in Snowflake to save time and compute."
+---
+
+## Overview
+This guide introduces the incremental materialization of models in Snowflake using SDF. We'll build on the basic concepts of materializing tables and views, focusing on incremental updates to optimize performance and resource usage. We continue to use datasets from Cybersyn available through Snowflake's marketplace.
+
+## Prerequisites
+
+<Info>
+This guide should be followed after completing the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide and the [Basic Materialization with Snowflake](/integrations/snowflake/basic-materialization) guide.
+</Info>
+
+You'll also need:
+
+- SDF installed on your Mac or Linux system.
+- A Snowflake account with [this](https://app.snowflake.com/marketplace/listing/GZTSZAS2KII/cybersyn-tech-innovation-essentials?search=cybersyn) Cybersyn dataset installed.
+- Valid Snowflake username / password credentials with write access to at least one database we can materialize tables to.
+- Instantiated credentials completed in the previous guide.
+
+<Note>
+When installing the Cybersyn dataset, make sure to grant the Snowflake role you'll use with SDF read access to `TECH__INNOVATION_ESSENTIALS` (i.e. the Cybersyn database).
+</Note>
+
+## Guide
+
+<Steps>
+    <Step title="Create a New SDF Project from the Cybersyn Tech Innovation Sample">
+        <Note>
+          If you just completed the [Basic Materialization with Snowflake](/integrations/snowflake/basic-materialization) guide, you can skip the next two steps and use the project you created there.
+        </Note>
+
+        Create a new SDF project using the Cybersyn Tech Innovation sample. This will create a new project in your current working directory with the sample project files.
+        ```shell
+        sdf new --sample cybersyn_tech_innovation cybersyn_tech_innovation_incremental
+        ```
+
+``` shell
+    Created cybersyn_tech_innovation_incremental/.gitignore
+    Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql
+    Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql
+    Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
+    Created cybersyn_tech_innovation_incremental/workspace.sdf.yml
+   Finished new in 0.220 secs
+
+        ```
+    </Step>
+    <Step title="Compile to Test Credentials">
+        To ensure your credentials are working and have read access to the new Cybersyn database, let's try compiling one of the models.
+        ```shell
+        sdf compile sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
+        ```
+
+``` shell
+Working set 3 model files, 2 .sdf files
+Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (aka sdf_snowflake.cybersyn_tech_innovation.active_ai_domains)
+
+Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| domain_id   | varchar   |            |
++-------------+-----------+------------+
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.094 secs
+
+        ```
+
+        <Warning>
+            If you do not see a successful compilation, please ensure you've:
+            1. Followed the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide to authenticate to your Snowflake.
+            2. Granted the correct role read access to the `TECH__INNOVATION_ESSENTIALS` database. 
+        </Warning>
+    </Step>
+    <Step title="Materialize an Increment Model">
+      Now that we've confirmed our credentials are working, let's materialize an incremental model. Cybersyn offers a table called `github_events` which gets updated frequently with new events across all repositories on GitHub. We'll use this table to demonstrate incremental materialization with the `append` merge strategy.
+
+      Let's say we want to track push events to the [Apache DataFusion](https://github.com/apache/datafusion) repo. We can create a new model that finds all push events to DataFusion. Since the `github_events` source data is updated frequently, we can use incremental materialization to only query new push events, thereby saving on compute and optimizing our pipeline.
+      Since we don't care about updates to existing rows, we can use the `append` merge strategy. This strategy appends new rows to the target table without updating existing rows.
+
+      Let's start creating a file called `datafusion_push_events.sql` and adding the following SQL to it:
+
+      ```sql datafusion_push_events.sql
+      SELECT
+        *
+      FROM
+        tech__innovation_essentials.cybersyn.github_events
+      WHERE
+      {% if builtin.is_incremental_mode %}
+        -- Only fetch rows that are newer than the newest row in the previous materialization of this table
+        created_at_timestamp >= (SELECT MAX(created_at_timestamp) FROM sdf_snowflake.staging.datafusion_push_events)
+      {% else %}
+        created_at_timestamp >= DATEADD(WEEK, -1, CURRENT_TIMESTAMP())
+      {% endif %}
+      AND 
+        type = 'PushEvent'
+      AND
+        repo_name = 'apache/datafusion';
+      ```
+
+
+      Let's unpack a few things here:
+      - This relatively simple query fetches events and filters by their `type`, `repository name`, and `created_at_timestamp`.
+      - The `{% if builtin.is_incremental_mode %}` block is a Jinja conditional that checks if the model is being materialized incrementally. If it is, we only fetch rows that are newer than the newest row in the previous materialization of this table. If not, we fetch rows from the last week.
+      
+      <Note>
+        In a production scenario, you would likely want to fetch events from all time for non-incremental mode run as this would be a full refresh of the data. We are adding the week filter to prevent any major compute costs in this guide.
+      </Note>
+
+      You might be wondering, how does SDF know when to set `builtin.is_incremental_mode` to `True`? SDF sets this variable to `True` when the model has already been materialized in the cloud. 
+
+      Before running this model, we'll need need to tell SDF to overwrite the default materialization for this table. We can do this by adding the following to the `workspace.sdf.yml` file:
+
+      ```yml workspace.sdf.yml
+      ---
+      table:
+        name: sdf_snowflake.staging.datafusion_push_events
+        materialization: incremental-table  
+      ```   
+
+
+      SDF defaults the incremental strategy to `append`, as such we don't need to specify it in this YML (we'll explore this later in the guide).
+      Now, let's first compile our workspace with this new model:
+
+      ```shell
+      sdf compile sdf_snowflake.staging.datafusion_push_events
+      ```
+
+``` shell
+Working set 4 model files, 2 .sdf files
+ Preloading sdf_snowflake.staging.datafusion_push_events (schema & last_altered)
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
+  Compiling sdf_snowflake.staging.datafusion_push_events (aka sdf_snowflake.staging.datafusion_push_events)
+
+Schema sdf_snowflake.staging.datafusion_push_events
++--------------------------------+----------------+------------+
+| column_name                    | data_type      | classifier |
++--------------------------------+----------------+------------+
+| id                             | varchar        |            |
+| created_at_timestamp           | timestamp      |            |
+| type                           | varchar        |            |
+| actor_avatar_url               | varchar        |            |
+| actor_display_login            | varchar        |            |
+| actor_gravatar_id              | varchar        |            |
+| actor_id                       | decimal(38, 0) |            |
+| actor_login                    | varchar        |            |
+| actor_url                      | varchar        |            |
+| repo_id                        | decimal(38, 0) |            |
+| repo_name                      | varchar        |            |
+| repo_url                       | varchar        |            |
+| org_avatar_url                 | varchar        |            |
+| org_gravatar_id                | varchar        |            |
+| org_id                         | decimal(38, 0) |            |
+| org_login                      | varchar        |            |
+| org_url                        | varchar        |            |
+| payload                        | variant        |            |
+| payload_action                 | varchar        |            |
+| payload_description            | varchar        |            |
+| payload_comment                | varchar        |            |
+| payload_master_branch          | varchar        |            |
+| payload_pull_request           | varchar        |            |
+| payload_pusher_type            | varchar        |            |
+| payload_push_id                | decimal(38, 0) |            |
+| payload_head                   | varchar        |            |
+| payload_ref                    | varchar        |            |
+| payload_ref_type               | varchar        |            |
+| payload_issue_id               | decimal(38, 0) |            |
+| payload_issue                  | variant        |            |
+| public                         | boolean        |            |
+| load_date                      | varchar        |            |
+| created_at                     | varchar        |            |
+| payload_body                   | varchar        |            |
+| payload_commit_id              | varchar        |            |
+| payload_created_at             | varchar        |            |
+| payload_user_id                | decimal(38, 0) |            |
+| payload_user_login             | varchar        |            |
+| issue                          | variant        |            |
+| issue_active_lock_reason       | varchar        |            |
+| issue_assignee                 | varchar        |            |
+| issue_assignees                | variant        |            |
+| issue_author_association       | varchar        |            |
+| issue_body                     | varchar        |            |
+| issue_closed_at                | varchar        |            |
+| issue_comments                 | decimal(38, 0) |            |
+| issue_comments_url             | varchar        |            |
+| issue_created_at               | varchar        |            |
+| issue_draft                    | boolean        |            |
+| issue_events_url               | varchar        |            |
+| issue_html_url                 | varchar        |            |
+| issue_id                       | decimal(38, 0) |            |
+| issue_labels                   | variant        |            |
+| issue_labels_url               | varchar        |            |
+| issue_locked                   | boolean        |            |
+| issue_milestone                | varchar        |            |
+| issue_node_id                  | varchar        |            |
+| issue_number                   | decimal(38, 0) |            |
+| issue_performed_via_github_app | varchar        |            |
+| issue_pull_request             | variant        |            |
+| issue_reactions                | variant        |            |
+| issue_repository_url           | varchar        |            |
+| issue_state                    | varchar        |            |
+| issue_timeline_url             | varchar        |            |
+| issue_title                    | varchar        |            |
+| issue_updated_at               | varchar        |            |
+| issue_url                      | varchar        |            |
+| issue_user_id                  | decimal(38, 0) |            |
+| issue_user_login               | varchar        |            |
+| issue_user_type                | varchar        |            |
+| language                       | varchar        |            |
++--------------------------------+----------------+------------+
+
+Schema sdf_snowflake.staging.datafusion_push_events
++--------------------------------+----------------+------------+
+| column_name                    | data_type      | classifier |
++--------------------------------+----------------+------------+
+| id                             | varchar        |            |
+| created_at_timestamp           | timestamp      |            |
+| type                           | varchar        |            |
+| actor_avatar_url               | varchar        |            |
+| actor_display_login            | varchar        |            |
+| actor_gravatar_id              | varchar        |            |
+| actor_id                       | decimal(38, 0) |            |
+| actor_login                    | varchar        |            |
+| actor_url                      | varchar        |            |
+| repo_id                        | decimal(38, 0) |            |
+| repo_name                      | varchar        |            |
+| repo_url                       | varchar        |            |
+| org_avatar_url                 | varchar        |            |
+| org_gravatar_id                | varchar        |            |
+| org_id                         | decimal(38, 0) |            |
+| org_login                      | varchar        |            |
+| org_url                        | varchar        |            |
+| payload                        | variant        |            |
+| payload_action                 | varchar        |            |
+| payload_description            | varchar        |            |
+| payload_comment                | varchar        |            |
+| payload_master_branch          | varchar        |            |
+| payload_pull_request           | varchar        |            |
+| payload_pusher_type            | varchar        |            |
+| payload_push_id                | decimal(38, 0) |            |
+| payload_head                   | varchar        |            |
+| payload_ref                    | varchar        |            |
+| payload_ref_type               | varchar        |            |
+| payload_issue_id               | decimal(38, 0) |            |
+| payload_issue                  | variant        |            |
+| public                         | boolean        |            |
+| load_date                      | varchar        |            |
+| created_at                     | varchar        |            |
+| payload_body                   | varchar        |            |
+| payload_commit_id              | varchar        |            |
+| payload_created_at             | varchar        |            |
+| payload_user_id                | decimal(38, 0) |            |
+| payload_user_login             | varchar        |            |
+| issue                          | variant        |            |
+| issue_active_lock_reason       | varchar        |            |
+| issue_assignee                 | varchar        |            |
+| issue_assignees                | variant        |            |
+| issue_author_association       | varchar        |            |
+| issue_body                     | varchar        |            |
+| issue_closed_at                | varchar        |            |
+| issue_comments                 | decimal(38, 0) |            |
+| issue_comments_url             | varchar        |            |
+| issue_created_at               | varchar        |            |
+| issue_draft                    | boolean        |            |
+| issue_events_url               | varchar        |            |
+| issue_html_url                 | varchar        |            |
+| issue_id                       | decimal(38, 0) |            |
+| issue_labels                   | variant        |            |
+| issue_labels_url               | varchar        |            |
+| issue_locked                   | boolean        |            |
+| issue_milestone                | varchar        |            |
+| issue_node_id                  | varchar        |            |
+| issue_number                   | decimal(38, 0) |            |
+| issue_performed_via_github_app | varchar        |            |
+| issue_pull_request             | variant        |            |
+| issue_reactions                | variant        |            |
+| issue_repository_url           | varchar        |            |
+| issue_state                    | varchar        |            |
+| issue_timeline_url             | varchar        |            |
+| issue_title                    | varchar        |            |
+| issue_updated_at               | varchar        |            |
+| issue_url                      | varchar        |            |
+| issue_user_id                  | decimal(38, 0) |            |
+| issue_user_login               | varchar        |            |
+| issue_user_type                | varchar        |            |
+| language                       | varchar        |            |
++--------------------------------+----------------+------------+
+   Finished 3 models [1 succeeded, 2 downloaded] in 5.251 secs
+
+      ```
+
+      Before running our new incremental model, let's inspect the compiled query output to see what exactly will be run against Snowflake. To do so, open up the file `.sdfcache/dbg/compiled-queries/sdf_snowflake/staging/datafusion_push_events.sql` and inspect the SQL query.
+
+      It should show this:
+
+      ```sql .sdfcache/dbg/compiled-queries/sdf_snowflake/staging/datafusion_push_events.sql
+      create or replace table sdf_snowflake.staging.datafusion_push_events as (
+        SELECT
+          *
+        FROM
+          tech__innovation_essentials.cybersyn.github_events
+        WHERE
+
+          created_at_timestamp >= DATEADD(WEEK, -1, CURRENT_TIMESTAMP())
+
+        AND 
+          type = 'PushEvent'
+        AND
+          repo_name = 'apache/datafusion'
+      );
+      ...
+      -- target: dbg
+      -- compute: remote
+      -- dialect: snowflake
+      -- schema: pub
+      -- table_name: sdf_snowflake.staging.datafusion_push_events
+      -- catalog: tech__innovation_essentials
+      -- purpose: model
+      -- materialization: incremental-table
+      -- creation_flag: create_or_replace
+      -- library: std
+      -- severity: error
+      -- csv_has_header: false
+      -- csv_delimiter: ,
+      -- csv_compression: none
+      -- is_incremental_mode: false
+      ```
+      
+      As you can see, the query was compiled with `builtin.is_incremental_mode` set to `False`. This is because we haven't materialized the table yet. 
+
+      <Tip>
+        SDF outputs all configurations and settings for the compiled query in comments at the bottom of the file. This is useful for debugging and understanding how SDF is compiling your models.
+      </Tip>
+
+      Let's run the model now to materialize the table in non-incremental mode.
+
+      ```shell
+      sdf run sdf_snowflake/staging/datafusion_push_events.sql
+      ```
+
+      Nice! The model should have successfully been materialized in Snowflake. Next, we'll try running the model in incremental mode.
+
+      All we need to do is run the model again and SDF will automatically detect that the model has already been materialized and set `builtin.is_incremental_mode` to `True`.
+
+      ```shell
+      sdf run sdf_snowflake/staging/datafusion_push_events.sql
+      ```
+
+      {/* ```run shell
+      cd tmp/cybersyn_tech_innovation_incremental/ && $sdf run src/sdf_snowflake/staging/datafusion_push_events.sql
+      ``` */}
+
+      Notice how the model ran much faster this time? That's because SDF only fetched new rows from the `github_events` table that were created after the last materialization.
+
+      Furthermore, you might notice something slightly different in the run output, specifically a line that says `Preloading` like so:
+      
+      ```shell
+      Preloading sdf_snowflake.staging.datafusion_push_events (schema & last_altered)
+      ```
+
+      This indicates SDF is preloading the schema and last altered time of the table before running the query. As was previously mentioned, this is to set the `is_incremental_mode` builtin variable.
+
+      Lastly, if you inspect the compiled query output again, you should see `builtin.is_incremental_mode` set to `True` and the query's SQL reflective of that.
+      
+      ```sql .sdfcache/dbg/compiled-queries/sdf_snowflake/staging/datafusion_push_events.sql
+      insert into sdf_snowflake.staging.datafusion_push_events
+      SELECT
+        *
+      FROM
+        tech__innovation_essentials.cybersyn.github_events
+      WHERE
+
+        -- Only fetch rows that are newer than the newest row in the previous materialization of this table
+        created_at_timestamp >= (SELECT MAX(created_at_timestamp) FROM sdf_snowflake.staging.datafusion_push_events)
+
+      AND 
+        type = 'PushEvent'
+      AND
+        repo_name = 'apache/datafusion'
+      ;
+      ```
+    </Step>
+    <Step title="Utilize the Merge Incremental Strategy">
+    Now that we've successfully materialized an incremental model with the `append` strategy, let's explore the `merge` strategy. The `merge` strategy is useful when you want to update existing rows in the target table with new data from the source table.
+
+    <Note>
+      For a full reference of all supported merge strategies, see the [SDF Reference](/reference/sdf-yml#nested-element-incrementaloptions) section.
+    </Note>
+
+    Let's say we now want to track a running count of the total push events per each unique contributor to the DataFusion repo. Since we want to update the row corresponding to the contributor, or create a new row if the contributor is new, the `merge` strategy is a perfect fit for this use case.
+
+    Let's start by adding a new SQL file to our workspace called `top_datafusion_contributors.sql` with the following SQL:
+
+    ```sql src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
+      SELECT 
+        actor_id,
+        actor_display_login,
+        COUNT(DISTINCT ID) as contribution_count
+      FROM sdf_snowflake.staging.datafusion_push_events
+      GROUP BY 1,2
+      ORDER BY contribution_count DESC;
+    ```
+      
+
+    Next, let's update the `workspace.sdf.yml` to set materialization to `incremental-table` for this model.
+
+    ```yml workspace.sdf.yml
+    ---
+    table:
+      name: sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
+      materialization: incremental-table
+      incremental-options: 
+        strategy: merge
+        unique-key: actor_id
+        merge-update-columns:
+          - contribution_count
+    ```
+
+
+    In this YML, we've set the `incremental-options` to use the `merge` strategy. We've also specified the `unique-key` as `actor_id` and the `merge-update-columns` as `contribution_count`. 
+    This tells SDF to update the `contribution_count` column in the target table with the new count from the source table when it finds two rows that match on their `actor_id`.
+
+    Let's compile the workspace with this new model:
+
+    ```shell
+    sdf compile src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
+    ```
+
+``` shell
+Working set 5 model files, 2 .sdf files
+ Preloading sdf_snowflake.staging.github_push_events (schema & last_altered)
+ Preloading sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (schema & last_altered)
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
+  Compiling sdf_snowflake.staging.datafusion_push_events (aka sdf_snowflake.staging.datafusion_push_events)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (aka sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors)
+
+Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
++---------------------+----------------+------------+
+| column_name         | data_type      | classifier |
++---------------------+----------------+------------+
+| actor_id            | decimal(38, 0) |            |
+| actor_display_login | varchar        |            |
+| contribution_count  | decimal(18, 0) |            |
++---------------------+----------------+------------+
+
+Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
++---------------------+----------------+------------+
+| column_name         | data_type      | classifier |
++---------------------+----------------+------------+
+| actor_id            | decimal(38, 0) |            |
+| actor_display_login | varchar        |            |
+| contribution_count  | decimal(38, 0) |            |
++---------------------+----------------+------------+
+   Finished 5 models [2 succeeded, 3 downloaded] in 6.898 secs
+
+    ```
+
+    Before running the model, let's inspect the compiled query output to see what exactly will be run against Snowflake. To do so, open up the file `.sdfcache/dbg/compiled-queries/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql` and inspect the SQL query.
+
+    It should show this:
+
+    ```sql .sdfcache/dbg/compiled-queries/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
+    create or replace table sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors as (
+      SELECT 
+        actor_id,
+        actor_display_login,
+        COUNT(DISTINCT ID) as contribution_count
+      from sdf_snowflake.staging.datafusion_push_events
+      GROUP BY 1,2
+      ORDER BY contribution_count DESC
+    );
+
+    -- target: dbg
+    -- compute: remote
+    -- dialect: snowflake
+    -- schema: pub
+    -- table_name: sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
+    -- catalog: tech__innovation_essentials
+    -- purpose: model
+    -- materialization: incremental-table
+    -- creation_flag: create_or_replace
+    -- library: std
+    -- severity: error
+    -- csv_has_header: false
+    -- csv_delimiter: ,
+    -- csv_compression: none
+    -- is_incremental_mode: false
+    ```
+
+    Since this table hasn't materialized yet, `builtin.is_incremental_mode` is set to `False` and the table is simply being created. Let's run the model now to materialize the table in non-incremental mode.
+
+    ```shell
+    sdf run src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
+    ```
+
+    {/* ```run shell
+    cd tmp/cybersyn_tech_innovation_incremental/ && $sdf run src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
+    ``` */}
+
+    The model should have successfully been materialized in Snowflake. Next, let's try running the model in incremental mode. Like before, we'll just run the model again and SDF will automatically detect that the model has already been materialized and set `builtin.is_incremental_mode` to `True`.
+
+    ```shell
+    sdf run src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
+    ```
+
+    {/* ```run shell
+    cd tmp/cybersyn_tech_innovation_incremental/ && $sdf run src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
+    ``` */}
+
+    Let's inspect the compiled query output again to see the SQL query that was run. You should see `builtin.is_incremental_mode` set to `True` and the query's SQL reflective of that.
+
+    ```sql .sdfcache/dbg/compiled-queries/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
+    merge into sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors as SDF_DEST
+        using (
+    SELECT 
+      actor_id,
+      actor_display_login,
+      COUNT(DISTINCT ID) as contribution_count
+    from sdf_snowflake.staging.datafusion_push_events
+    GROUP BY 1,2
+    ORDER BY contribution_count DESC
+    ) as SDF_SRC
+            on (
+                    SDF_SRC.actor_id = SDF_DEST.actor_id
+                )
+        when matched then update set SDF_DEST.contribution_count = SDF_SRC.contribution_count
+        when not matched then insert ("ACTOR_ID", "ACTOR_DISPLAY_LOGIN", "CONTRIBUTION_COUNT")
+        values ("ACTOR_ID", "ACTOR_DISPLAY_LOGIN", "CONTRIBUTION_COUNT");
+
+
+    -- target: dbg
+    -- compute: remote
+    -- dialect: snowflake
+    -- schema: pub
+    -- table_name: sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
+    -- catalog: tech__innovation_essentials
+    -- purpose: model
+    -- materialization: incremental-table
+    -- creation_flag: create_or_replace
+    -- library: std
+    -- severity: error
+    -- csv_has_header: false
+    -- csv_delimiter: ,
+    -- csv_compression: none
+    -- is_incremental_mode: true
+    ```
+
+    As you can see, the query was compiled with `builtin.is_incremental_mode` set to `True` and, as a byproduct, the SQL query is a `merge` statement that updates the `contribution_count` column in the target table with the new count from the source table.
+
+    <Tip>
+      The `merge` strategy is a powerful tool for updating existing rows in the target table with new data from the source table. It's especially useful when you want to keep a running count of events or other metrics.
+    </Tip>
+
+    For a full list of our supported incremental options and strategies, see the [SDF Reference](/reference/sdf-yml#nested-element-incrementaloptions) section.
+    </Step>
+</Steps>

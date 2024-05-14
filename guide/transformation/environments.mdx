@@ -1,0 +1,137 @@
+---
+title: "Environments"
+description: "SDF Environments were built for teams to help them collaborate, isolate, and maintain development, staging, and production environments."
+---
+
+## Overview
+
+Environments are a way to separate your workspace into different contexts, each with its own set of configurations, credentials, and dependencies. Imagine a local developer wants to materialize a table in their Snowflake warehouse, but they don't want to overwrite the production version of the table their updating. 
+They can use an environment to materialize the table to a sandbox environment locally, then materialize to the production environment after deployment without changes to the code.
+
+## Prerequisites
+
+Before beginning to understand the follow examples, you should have an understanding of the following concepts:
+
+- [Workspace](/guide/workspace)
+- [Materialization](/guide/materialization)
+- [Providers](/guide/transformation/providers)
+
+These are all foundational concepts that are used in the examples below.
+
+## Example
+
+Let's start with an example of a basic development environment. A common pattern is to prefix developer versions of remote databases with `sandbox_`.
+
+To accomplish this, we'll add the following environment to our workspace:
+
+```yml
+---
+environment:
+    name: dev
+    providers:
+      - type: snowflake
+        credentials: local_dev
+        sources:
+          - pattern: prod_db.*.*
+        targets:
+          - pattern: prod_db.*.*
+            rename-as: sandbox_prod_db.${1}.${2}
+```
+
+In this example, we're creating a new environment called `dev`. This environment will use the `snowflake` provider to hydrate tables from the `prod_db` database. We're also specifying that any tables materialized to the `prod_db` database should, if run with this environment, materialize to the `sandbox_prod_db`.
+Furthermore, we're using the `local_dev` credential to authenticate with Snowflake when `sdf compile` or `sdf run` is run with the `dev` environment.
+
+To compile a workspace with the `dev` environment, you can run:
+
+```shell
+sdf compile --environment dev
+```
+
+or 
+
+```shell
+sdf run -e dev
+```
+
+To run a workspace with the `dev` environment, you can run:
+
+```shell
+sdf run --environment dev
+```
+
+or 
+
+```shell
+sdf run -e dev
+```
+
+You'll notice in the above example that the schema and table names are being passed through as Jinja variables. This is because the `rename-as` field is a Jinja template when used with `*`. In this case, we're renaming the schema to `sandbox_prod_db` and keeping the schema and table names the same using `${1}` and `${2}` respectively.
+Let's explore more complex renaming scenarios.
+
+### Renaming
+
+In the above example, we used a simple renaming pattern to rename the database. However, you can use more complex renaming patterns to rename the schema and table names. For example, let's say we want prepend the developer name to all schemas when running in the `dev` environment. We can do this by using the following configuration:
+
+```yml
+---
+environment:
+    name: dev
+    providers:
+      - type: snowflake
+        credentials: local_dev
+        sources:
+          - pattern: prod_db.*.*
+        targets:
+          - pattern: "*.*.*"
+            rename-as: ${1}.sandbox_{{ env_var('developer_name') }}_${2}.${3}
+```
+         
+Cool! But there's a lot going on here. Let's break it down:
+
+- `*.*.*` is a wildcard pattern that matches any schema and table name.
+- `${1}` is the first match group from the source pattern. In this case, it's the database name. Note that in the previous example, our first `*` represented the schema name since it came after the database name like `<database-name>.*`.
+- `sandbox_{{ env_var('developer_name') }}_${2}.${3}` is the new schema and table name. We're prepending `sandbox_` to the schema name, then using the `env_var` function to get the developer's name from the environment variables. Finally, we're appending the table name to the end with `${3}` since that's the third match group from the source pattern.
+
+<Tip>
+  When using the `env_var` jinja function for environments and other SDF yml use cases, a common patter is to use a [`.env`](https://www.dotenv.org/) file to store environment variables. This way, you can keep sensitive information out of your codebase.
+</Tip>
+
+<Warning>
+  Renaming is only available when using SDF with a cloud data warehouse. Running SDF locally does not require a provider, and as a byproduct does not support renaming at the moment. Support for this is coming soon...
+</Warning>
+
+### Overwriting Defaults
+
+Environments also allow you to overwrite default configurations in your workspace. For example, let's say you want to use a different warehouse when running in the `dev` environment. You can do this by adding the following configuration:
+
+```yml
+---
+environment:
+    name: dev
+    defaults:
+      catalog: sandbox_catalog
+      schema: sandbox_{{ env_var('developer_name') }}
+      materialization: view
+    ...
+```
+
+In this example, we're overwriting the default `catalog`, `schema`, `materialization`, and `severity` configurations in the workspace. When running in the `dev` environment, SDF will use the `sandbox_catalog` catalog, the `sandbox_<developer_name>` schema, and materialize tables as `views`.
+
+### Default Environment
+
+You can also set a default environment in your workspace. This is useful when you want to run SDF with a specific environment without having to specify it each time. To set a default environment, you can add the following configuration:
+
+```yml
+workspace:
+  ...
+  defaults:
+    environment: dev
+  ...
+```
+
+## Next Steps
+
+For a more active example, follow along with the materialization guide specific to your data warehouse:
+
+- [Snowflake](/integrations/snowflake)
+- [Redshift](/integrations/redshift)

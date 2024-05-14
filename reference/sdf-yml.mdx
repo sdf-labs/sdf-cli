@@ -13,7 +13,7 @@ title: "SDF YML Schema"
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
 `providers:` | `array`| The providers for this environment|
-`defaults:` | `Defaults?`| Defaults for this workspace|
+`defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
 ## Block: `Table`
@@ -21,29 +21,29 @@ title: "SDF YML Schema"
 | :---- | :--- | :------- |
 `name:` | `string`| |
 `description:` | `string?`| |
-`dialect:` | `Dialect?`| The dialect of this table, defaults to &#96;presto&#96;|
-`materialization:` | `Materialization?`| The table-type of this table (new version)|
-`purpose:` | `TablePurpose?`| Specify what kind of table or view this is|
-`origin:` | `TableOrigin?`| The origin of this table &lt;remote&gt; or &lt;local&gt;|
+`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to &#96;presto&#96;|
+`materialization:` | [`Materialization?`](#enum-materialization)| The table-type of this table (new version)|
+`purpose:` | [`TablePurpose?`](#enum-tablepurpose)| Specify what kind of table or view this is|
+`origin:` | [`TableOrigin?`](#enum-tableorigin)| The origin of this table &lt;remote&gt; or &lt;local&gt;|
 `exists-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macto)|
-`table-location:` | `TableLocation?`| Specify table ,location, defaults to none if not set|
-`creation-flags:` | `TableCreationFlags?`| Defines the table creation options, defaults to none if not set|
-`incremental-options:` | `IncrementalOptions?`| Contains various options governing incremental table evaluation (only for incremental tables)|
+`table-location:` | [`TableLocation?`](#enum-tablelocation)| Specify table ,location, defaults to none if not set|
+`creation-flags:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines the table creation options, defaults to none if not set|
+`incremental-options:` | [`IncrementalOptions?`](#nested-element-incrementaloptions)| Contains various options governing incremental table evaluation (only for incremental tables)|
 `dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `array`| The partitioning format of the table|
-`severity:` | `Severity?`| The default severity for this tables tests and checks|
+`severity:` | [`Severity?`](#enum-severity)| The default severity for this tables tests and checks|
 `constraints:` | `array`| |
 `schedule:` | `string`| The schedule of the table [expressed as cron]|
 `starting:` | `string`| The first date of the table [expressed by prefixes of RFC 33]|
 `classifiers:` | `array`| An array of classifier references|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
-`lineage:` | `Lineage?`| Lineage, a tagged array of column references|
+`lineage:` | [`Lineage?`](#nested-element-lineage)| Lineage, a tagged array of column references|
 `location:` | `string?`| Data is at this location|
-`file-format:` | `FileFormat?`| Store table in this format [only for external tables]|
+`file-format:` | [`FileFormat?`](#enum-fileformat)| Store table in this format [only for external tables]|
 `with-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
-`compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
+`compression:` | [`CompressionType?`](#enum-compressiontype)| Json or CSV data is compressed with this method [only for external tables]|
 `seeded:` | `boolean?`| Is this table backed by a DDL or a type provider|
 `source-locations:` | `array`| Table is defined by these .sql and/or .sdf files|
 `sealed:` | `boolean?`| This table is either backed by a create table ddl or by a table definition in yml that is the table&#39;s complete schema|
@@ -62,20 +62,20 @@ title: "SDF YML Schema"
 | :---- | :--- | :------- |
 `name:` | `string`| The name of the function [syntax: [[catalog.]schema].function]|
 `section:` | `string`| The generic type bounds|
-`dialect:` | `Dialect?`| The dialect that provides this function|
+`dialect:` | [`Dialect?`](#enum-dialect)| The dialect that provides this function|
 `description:` | `string`| A description of this function|
 `variadic:` | [`Variadic`](#enum-variadic)| Arbitrary number of arguments of an common type out of a list of valid types|
 `kind:` | [`FunctionKind`](#enum-functionkind)| The function kind|
 `parameters:` | `[Parameter]?`| The arguments of this function|
 `optional-parameters:` | `[OptionalParameter]?`| The arguments of this function|
-`returns:` | `Parameter?`| The results of this function (can be a tuple)|
+`returns:` | [`Parameter?`](#nested-element-parameter)| The results of this function (can be a tuple)|
 `binds:` | `array`| The generic type bounds|
 `volatility:` | [`Volatility`](#enum-volatility)| volatility - The volatility of the function.|
 `examples:` | `array`| example - Example use of the function (tuple with input/output)|
 `cross-link:` | `string`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `source-locations:` | `array`| Function defined by these set of .sdf files|
-`implemented-by:` | `FunctionImplSpec?`| |
+`implemented-by:` | [`FunctionImplSpec?`](#enum-functionimplspec)| |
 `special:` | `boolean`| Function can be called without parentheses, e.g. as if it were a constant, e.g. current_date|
 ## Block: `Credential`
 |Field | Type | Description|
@@ -91,13 +91,13 @@ title: "SDF YML Schema"
 `repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
-`defaults:` | `Defaults?`| Defaults for this workspace|
+`defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `compute:` | [`ComputeKind`](#enum-computekind)| The compute platform for this environment. If not set, defaults to Local|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
 `providers:` | `array`| The providers for this environment|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
 `source-locations:` | `array`| Workspace defined by these set of files|
-`preprocessor:` | `Preprocessor?`| Experimental: This project has jinja|
+`preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| Experimental: This project has jinja|
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
@@ -273,31 +273,31 @@ Values |
 `path:` | `string`| A filepath|
 `type:` | [`IncludeType`](#enum-includetype)| Type of included artifacts: model | test | stats | metadata | resource|
 `index:` | [`IndexMethod`](#enum-indexmethod)| Index method for this include path: scan | table | schema-table | catalog-schema-table|
-`defaults:` | `Defaults?`| Defaults for files on this path|
+`defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for files on this path|
 ### Nested element: `Defaults`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `environment:` | `string?`| The default environment (can only be set on the level of the workspace)|
-`dialect:` | `Dialect?`| The dialect of this environment. If not set, defaults to presto|
-`compute:` | `ComputeKind?`| The compute platform for this environment. If not set, defaults to local|
-`preprocessor:` | `Preprocessor?`| The preprocessor for this environment. If not set, defaults to local|
+`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this environment. If not set, defaults to presto|
+`compute:` | [`ComputeKind?`](#enum-computekind)| The compute platform for this environment. If not set, defaults to local|
+`preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| The preprocessor for this environment. If not set, defaults to local|
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
-`materialization:` | `Materialization?`| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
-`creation-flag:` | `TableCreationFlags?`| Defines table creation flags, defaults to  if not set|
+`materialization:` | [`Materialization?`](#enum-materialization)| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
+`creation-flag:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines table creation flags, defaults to  if not set|
 `library:` | `string?`| The default library for test and code generation, std or custom|
-`index-method:` | `IndexMethod?`| The default index for this tables|
-`include-type:` | `IncludeType?`| The default index for this tables|
-`sync-method:` | `SyncType?`| The default index for this tables|
-`severity:` | `Severity?`| The default severity for this tables tests and checks|
+`index-method:` | [`IndexMethod?`](#enum-indexmethod)| The default index for this tables|
+`include-type:` | [`IncludeType?`](#enum-includetype)| The default index for this tables|
+`sync-method:` | [`SyncType?`](#enum-synctype)| The default index for this tables|
+`severity:` | [`Severity?`](#enum-severity)| The default severity for this tables tests and checks|
 `csv-has-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `csv-delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
-`csv-compression:` | `CompressionType?`| Json or CSV data is compressed with this method [only for external tables]|
+`csv-compression:` | [`CompressionType?`](#enum-compressiontype)| Json or CSV data is compressed with this method [only for external tables]|
 ### Nested element: `ExcludePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `path:` | `string`| A filepath|
-`exclude-type:` | `ExcludeType?`| Type of excluded artifacts|
+`exclude-type:` | [`ExcludeType?`](#enum-excludetype)| Type of excluded artifacts|
 ### Nested element: `Dependency`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -357,7 +357,7 @@ Values |
 `description:` | `string`| A description of this column|
 `datatype:` | `string?`| The type of this column|
 `classifiers:` | `array`| An array of classifier references|
-`lineage:` | `Lineage?`| Lineage, a tagged array of column references|
+`lineage:` | [`Lineage?`](#nested-element-lineage)| Lineage, a tagged array of column references|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `samples:` | `array`| An array of representative literals of this column [experimental!]|
 `default-severity:` | [`Severity`](#enum-severity)| The default severity for this tables tests and checks|
@@ -378,7 +378,7 @@ Values |
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `is:` | `string`| The constraint macro: must have the form lib.macro(args,..), where lib is any of the libs in scope, std is available by default|
-`severity:` | `Severity?`| The severity of this constraint|
+`severity:` | [`Severity?`](#enum-severity)| The severity of this constraint|
 ### Nested element: `Partition`
 |Field | Type | Description|
 | :---- | :--- | :------- |

@@ -1,0 +1,72 @@
+---
+title: "Features Matrix"
+description:
+  "SDF is a work in progress. The data ecosystem contains many tools, databases, and more to integrate with."
+---
+
+## Overview
+SDF has the ability to connect with many databases, and supports numerous SQL dialects.
+
+Are you looking for an integration that's not yet supported? Let us know by giving us feebdack [here](https://www.sdf.com/support)
+
+Use the below feature matrix to determine if SDF is right for you
+
+| Status | Meaning        | 
+|:------:|:---------------|
+| 🟢     | Supported      | 
+| 🟡     | Coming Soon    | 
+| 🔴     | Coming Later   | 
+
+
+## Feature Matrix
+
+### Database Support
+SDF is working to build parity with common data warehouse developemnt patterns including Jinja macro pre-processing, materialization strategies, multiple environment support, and more.
+
+| Feature        | SDF DB | Redshift | Snowflake | BigQuery | Presto | Trino | Spark |
+|----------------|:------:|:--------:|:---------:|:--------:|:------:|:-----:|:-----:|
+| SQL Dialect Support | 🟢|   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟡  |
+| Column-level Lineage |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟢  |
+| Impact Analysis |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟡  |
+| Macros & Jinja |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟢  |
+| Zero-Copy Environments |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟢  |
+| Table Provider |   🟡   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
+| Run & Execution|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
+| Materialization|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
+| Database Auth  |   🟢   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
+| Local Execution|   🟢   |   🔴      |   🔴      |   🔴     |   🟢    |   🟢  |   🔴  |
+
+<Note>
+  When we say "SQL Dialect Support", we mean support for SDF's rich static analysis toolset - including compilation, lineage, dependency analysis, and more.
+</Note>
+
+### Authentication Support
+SDF Supports authentication to one or more databases simultaneously through providers & credentials.
+
+To check the current status of all credentials held by SDF, run `sdf auth status`.
+
+| Authentication Method | Supported |
+|-----------------------|:---------:|
+| AWS Keypair           | 🟢        |
+| AWS SSO               | 🟢        |
+| AWS ARN               | 🟢        |
+| Snowflake User/Pass   | 🟢        |
+| Openai API Key        | 🟢        |
+| Snowflake SSO         | 🟡        |
+| BigQuery              | 🟡        |
+| Redshift JDBC         | 🔴        |
+| Presto JDBC           | 🔴        |
+| Trino JDBC            | 🔴        |
+| Spark JDBC            | 🔴        |
+
+
+### Orchestration Support
+SDF Supports simple orchestration. Commands like `compile` & `run` are executed in dependency order, allowing for simple orchestration via cron jobs, or github actions.
+
+For more advanced orchestration needs, SDF recommends [Dagster](https://dagster.com).
+
+| Orchestrator | Supported | Documentation |
+|--------------|:---------:|:--------------|
+| Github       | 🟢        | [here](https://github.com/sdf-labs/sdf-action) |
+| Dagster      | 🟡        | Coming Soon  |
+| Airflow      | 🟡        | Coming Soon  |

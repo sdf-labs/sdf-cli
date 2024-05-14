@@ -1,15 +1,22 @@
 ---
-title: "Snowflake"
+title: "Getting Started"
 description:
-  "SDF can hydrate table schemas and execute queries against a Snowflake DB."
+  "Getting started with Snowflake and SDF."
 ---
 
 ## Overview
 
-This guide will walk you through the steps of creating a Snowflake integration. By the end, you will be able to reference tables in your snowflake instance in SDF.
+SDF can hydrate table schemas and execute queries against a Snowflake DB. This guide will walk you through the steps of creating a Snowflake integration. By the end, you will be able to reference tables in your snowflake instance in SDF.
 
 SDF will use remote Snowflake schema information to do type bindings and other static analysis checks on your workspace.
 
+## Prerequisites
+
+In order to connect to Snowflake, you will need to have on hand the following:
+
+1. A Mac or Linux with a valid installation of the latest SDF version running locally.
+2. A Snowflake account to connect to.
+3. Valid credentials with read access to materialize tables in your Snowflake account.
 
 ## Guide
 
@@ -23,6 +30,8 @@ SDF will use remote Snowflake schema information to do type bindings and other s
         * Warehouse - The warehouse you are connecting to.
 
         Log in to your [Snowflake](https://app.snowflake.com/) account to find the relevant information.
+
+        <img src="https://cdn.sdf.com/img/snowflake-account-id.png" />
 
         <Note>
 	        Run `sdf auth login snowflake --help` to see all login options.
@@ -62,18 +71,7 @@ SDF will use remote Snowflake schema information to do type bindings and other s
                     - pattern: db2.*.*
         ```
 
-        Sources are even configurable at the schema and table level, for example if I only wanted to pull the schema for a table called `my_table` in schema `schema1`, but I wanted to pull the schema for all tables in `schema2`, I would write:
-        ``` yml
-        workspace:
-            ...
-            providers:
-                - type: snowflake
-                  sources: 
-                    - pattern: db1.schema1.mytable
-                    - pattern: db2.schema2.*
-        ```
-
-        Lastly, providers can also be configured to use specific credentials by referencing the credential name in the provider block. For example, if you wanted to use a credential called `snowflake-creds`, you would write:
+        Providers can also be configured to use specific credentials by referencing the credential name in the provider block. For example, if you wanted to use a credential called `snowflake-creds`, you would write:
         ``` yml
         workspace:
             ...
@@ -85,10 +83,7 @@ SDF will use remote Snowflake schema information to do type bindings and other s
                     - pattern: db2.schema2.*
         ```
 
-        <Note>
-            The `*` character is a wildcard (glob pattern). Specifying a database alone is shorthand for writing, `db1.*.*`. If you wanted to pull down any sources not found while compiling, you can just use `*.*.*`. In this case, you will need to surround the `*.*.*` with double quotes like so `"*.*.*"` in order to prevent
-            the yaml from interpreting the `*` as a special character.
-        </Note>
+        For more information on provider configuration, see the [provider documentation](/guide/transformation/providers).
     </Step>
     <Step title="Try it out!">
         Now that you're connected, let's make sure SDF can pull the schema information it needs. 
@@ -102,3 +97,7 @@ SDF will use remote Snowflake schema information to do type bindings and other s
 <Info>
 The term 'DATABASE' in Snowflake is interchangeable with the term 'CATALOG' in SDF.
 </Info>
+
+## Next Steps 
+
+Now that you have connected to Snowflake, you can start materializing tables in Snowflake. Check out the [Snowflake materialization](/integrations/snowflake/basic-materialization) guide to get started.

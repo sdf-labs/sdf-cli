@@ -1,0 +1,370 @@
+---
+title: "Basic Materialization"
+description:
+  "Materialize tables and views in Snowflake with SDF."
+---
+
+## Overview
+
+In this guide, we'll materialize our first tables and views in Snowflake with SDF. We'll be using some datasets from our partner, [Cybersyn](https://www.cybersyn.com/), to bootstrap some example data through Snowflake's data marketplace. 
+
+## Prerequisites
+
+<Info>
+This guide should be followed after completing the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide.
+</Info>
+
+Before beginning, we'll need to make sure we have the following:
+
+- A Mac or Linux with a valid installation of the latest SDF version running locally.
+- A Snowflake account with [this](https://app.snowflake.com/marketplace/listing/GZTSZAS2KII/cybersyn-tech-innovation-essentials?search=cybersyn) Cybersyn dataset installed.
+- Valid Snowflake username / password credentials with write access to at least one database we can materialize tables to.
+- Instantiated credentials completed in the previous guide.
+
+<Note>
+When installing the Cybersyn dataset, make sure to grant the Snowflake role you'll use with SDF read access to `TECH__INNOVATION_ESSENTIALS` (i.e. the Cybersyn database).
+</Note>
+
+## Guide
+
+<Steps>
+    <Step title="Create a New SDF Project from the Cybersyn Tech Innovation Sample">
+        Create a new SDF project using the Cybersyn Tech Innovation sample. This will create a new project in your current working directory with the sample project files.
+        ```shell
+        sdf new --sample cybersyn_tech_innovation 
+        ```
+
+``` shell
+    Created cybersyn_tech_innovation/.gitignore
+    Created cybersyn_tech_innovation/src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql
+    Created cybersyn_tech_innovation/src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql
+    Created cybersyn_tech_innovation/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
+    Created cybersyn_tech_innovation/workspace.sdf.yml
+   Finished new in 0.245 secs
+
+        ```
+    </Step>
+    <Step title="Compile to Test Credentials">
+        To ensure your credentials are working and have read access to the new Cybersyn database, let's try compiling one of the models.
+        ```shell
+        sdf compile sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
+        ```
+
+``` shell
+Working set 3 model files, 2 .sdf files
+Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (aka sdf_snowflake.cybersyn_tech_innovation.active_ai_domains)
+
+Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
++-------------+-----------+------------+
+| column_name | data_type | classifier |
++-------------+-----------+------------+
+| domain_id   | varchar   |            |
++-------------+-----------+------------+
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.026 secs
+
+        ```
+
+        <Warning>
+            If you do not see a successful compilation, please ensure you've:
+            1. Followed the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide to authenticate to your Snowflake.
+            2. Granted the correct role read access to the `TECH__INNOVATION_ESSENTIALS` database. 
+        </Warning>
+    </Step>
+    <Step title="Materialize Tables in Snowflake">
+        If you compiled successfully, great! That means SDF was able to read table schemas from the Cybersyn database. Now, let's materialize in a separate database called `sdf_snowflake`.
+
+        You'll notice in the `workspace.sdf.yml` file specifies the following defaults:
+
+        ```yaml
+        defaults:
+            dialect: snowflake
+            compute: remote
+            preprocessor: jinja
+            materialization: view
+        ```
+
+        Let's go through these one by one:
+        - `dialect: snowflake` specifies that the SQL we're working with uses Snowflake's syntax and functions.
+        - `compute: remote` specifies that we're running our models in a remote warehouse. This is what tells SDF to use the `snowflake` provider when materializing tables that match the targets pattern.
+        - `preprocessor: jinja` specifies that we're using Jinja templating in our SQL models (this will come in handy later).
+        - `materialization: view` specifies that we're materializing our models as views by default in Snowflake. Note this can be overwritten on a per-model, or per-includes-path basis.
+
+        Next, let's look at the provider block:
+            
+        ```yaml
+        providers:
+          - type: snowflake
+            sources: 
+               - pattern: tech__innovation_essentials.cybersyn.*
+            targets:
+               - pattern: sdf_snowflake.*.*
+        ```
+        This tells SDF to hydrate missing table schemas from the `tech__innovation_essentials.cybersyn` database and schema and materialize tables to the `sdf_snowflake` database. For more information on provider configuration, see the [provider documentation](/guide/transformation/providers).
+
+        Now, let's materialize the tables in the `sdf_snowflake` database.
+        ```shell
+        sdf run
+        ```
+
+        {/* ```run shell
+        cd tmp/cybersyn_tech_innovation && $sdf run
+        ``` */}
+
+        This is great, but what if we want to see the data our views produced?
+
+        Let's add small flag to `sdf run` that tells SDF to pull down a sample of the data from the views we just materialized.
+        ```shell
+        sdf run --show all
+        ```
+        {/* TODO (Elias): Add back once bug is fixed */}
+        {/* ```run shell
+        cd tmp/cybersyn_tech_innovation && $sdf run --show all
+        ``` */}
+
+        Congratulations! You've just materialized your first tables in Snowflake with SDF, and even got a sneak peek at the data they produced.
+    </Step>
+    <Step title="Materialize a New Table">
+        Let's say we want to materialize a new _table_ in the `sdf_snowflake` database, but in a different schema. You'll notice in the `workspace.sdf.yml` file, we have the following includes block:
+
+        ```yaml
+        - path: src 
+          index: catalog-schema-table-name
+        ```
+
+        The index here means we'll interpret the database and schema name from the file path like so - `src/<database>/<schema>/<table>.sql`.
+
+        Since we want to add a new table, let's create a new file in the `src` directory called `sdf_snowflake/staging/latest_repo_name.sql` with the following content:
+
+        ```sql
+        WITH partitioned_repo_names (
+            SELECT
+                repo_name,
+                repo_id,
+                ROW_NUMBER() OVER (
+                    PARTITION BY repo_id
+                    ORDER BY
+                    first_seen DESC
+                ) AS rn
+            FROM
+                tech__innovation_essentials.cybersyn.github_repos
+            WHERE
+                first_seen >= DATEADD(DAY, -1, CURRENT_TIMESTAMP())
+        )
+        SELECT
+            repo_name,
+            repo_id
+        FROM partitioned_repo_names
+        WHERE rn = 1;
+        ```
+
+        This table will select the latest `repo_name` and `repo_id` from `github_repos` created in the last 24 hours.
+
+        Now let's compile this new table to ensure the SQL is valid and selects columns that actually exist:
+        ```shell
+        sdf compile src/sdf_snowflake/staging/latest_repo_name.sql
+        ```
+
+
+``` shell
+Working set 4 model files, 2 .sdf files
+Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
+  Compiling sdf_snowflake.staging.latest_repo_name (aka sdf_snowflake.staging.latest_repo_name)
+
+Schema sdf_snowflake.staging.latest_repo_name
++-------------+----------------+------------+
+| column_name | data_type      | classifier |
++-------------+----------------+------------+
+| repo_name   | varchar        |            |
+| repo_id     | decimal(38, 0) |            |
++-------------+----------------+------------+
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.115 secs
+
+        ```
+
+        Great! Everything compiled. Now, let's make sure this table is materialized as a `table` instead of a `view` in the `sdf_snowflake` database. We're doing this now since later one we'll want to use this table as an upstream dependency in our DAG.
+
+        To accomplish this, we'll need to overwrite our `materialization` default in the `workspace.sdf.yml` file, and specify the `materialization` as `table` for this specific model.
+
+        Under our `workspace.sdf.yml` block, we can add:
+
+        ```yml
+        ---
+        table:
+            name: sdf_snowflake.staging.latest_repo_name
+            materialization: table
+        ```
+
+
+        <Tip>
+            SDF YML blocks are composable like legos. You can add as many blocks as you need to your `workspace.sdf.yml` file, or even split them out into separate files and include them with the `type: metadata` in your `includes` block.
+            Creating separate YML files for each purpose or model can help keep your configuration organized and easy to maintain. 
+        </Tip>
+
+        Now, let's run the model to materialize the table in the `sdf_snowflake` database.
+        ```shell
+        sdf run src/sdf_snowflake/staging/latest_repo_name.sql
+        ```
+
+``` shell
+Working set 4 model files, 2 .sdf files
+Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
+    Running sdf_snowflake.staging.latest_repo_name (aka sdf_snowflake.staging.latest_repo_name)
+
+Table sdf_snowflake.staging.latest_repo_name
++---------------------------------------------------------------+-----------+
+| repo_name                                                     | repo_id   |
++---------------------------------------------------------------+-----------+
+| Zoommod/character-face-builder                                | 799740530 |
+| yDanonin/factory-control                                      | 722592370 |
+| HarshanUI/M2stock                                             | 800055214 |
+| akryto/css-practice                                           | 799824873 |
+| Elalersiss/Trabajo_en_clase                                   | 800178112 |
+| AnnLvu/get_next_line_42                                       | 797706046 |
+| Dani-A-Dias/lab-javascript-vikings                            | 800069883 |
+| onetwosbeardedler6/animate-full-by-azi                        | 800000097 |
+| abdosalahh/weeding                                            | 800183452 |
+| devhub-blue-sea-us-east-1/org-public-empty-csc-repo-us-east-1 | 800167048 |
++---------------------------------------------------------------+-----------+
+10 rows.
+   Finished 1 model [1 succeeded] in 9.641 secs
+
+        ```
+
+        Congratulations! You've just materialized your first table in Snowflake with SDF. In the next step, we'll add one more table and a downstream view to create a DAG.
+    </Step>
+    <Step title="Create a DAG">
+        Now that we've materialized a new table, let's create a DAG by adding a downstream view that depends on the table we just created and one more table we'll materialize now. 
+
+        The DAG will look like this:
+
+        ```mermaid
+        graph LR
+            A[github_repos] --> B[latest_repo_name]
+            C[github_events] --> D[push_events]
+            B --> E[events_by_repo]
+            D --> E
+        ```
+
+        Let's first create a new file in the `src` directory called `sdf_snowflake/staging/push_events.sql` with the following content:
+
+        ```sql
+        SELECT
+            id,
+            repo_id
+        FROM
+            tech__innovation_essentials.cybersyn.github_events
+        WHERE
+            type like '%Push%'
+        AND 
+            created_at_timestamp >= DATEADD(DAY, -1, CURRENT_TIMESTAMP())
+        ```
+
+        This table will select all `push` events from `github_events` created in the last 24 hours.
+
+
+        Now let's compile this new table to ensure the SQL is valid and selects columns that actually exist and are properly typed:
+        ```shell
+        sdf compile src/sdf_snowflake/staging/push_events.sql
+        ```
+
+``` shell
+Working set 5 model files, 2 .sdf files
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
+  Compiling sdf_snowflake.staging.push_events (aka sdf_snowflake.staging.push_events)
+
+Schema sdf_snowflake.staging.push_events
++-------------+----------------+------------+
+| column_name | data_type      | classifier |
++-------------+----------------+------------+
+| id          | varchar        |            |
+| repo_id     | decimal(38, 0) |            |
++-------------+----------------+------------+
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.932 secs
+
+        ```
+
+        Great! Everything compiled. Now, let's make sure this table is materialized as a `table` instead of a `view` in the `sdf_snowflake` database. 
+
+        Let's add another `table` block to our `workspace.sdf.yml` file:
+
+        ```yaml
+        ---
+        table:
+            name: sdf_snowflake.staging.push_events
+            materialization: table
+        ```
+
+
+        Now, let's run the model to materialize the table in the `sdf_snowflake` database.
+        ```shell
+        sdf run src/sdf_snowflake/staging/push_events.sql
+        ```
+
+        {/* TODO (Elias): Bring this back once casting bug is fixed */}
+        {/* ```run shell
+        cd tmp/cybersyn_tech_innovation && $sdf run src/sdf_snowflake/staging/push_events.sql
+        ``` */}
+
+        Great! Now that we have our two tables, let's finish up our DAG by creating a downstream view that depends on these two tables.
+
+        Create a new file in the `src` directory called `sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql` with the following content:
+
+        ```sql
+        SELECT
+            r.repo_name,
+            COUNT(DISTINCT e.id) AS event_count
+        FROM
+            sdf_snowflake.staging.push_events AS e
+        JOIN sdf_snowflake.staging.latest_repo_name AS r ON e.repo_id = r.repo_id
+        GROUP BY
+            r.repo_name
+        ORDER BY
+            event_count DESC
+        LIMIT 10;
+        ```
+
+        Since our workspace's default `materialization` is view, we don't need to specify the materialization for this model.
+
+
+        Now, let's compile again to ensure our entire workspace is still in a good state:
+        ```shell
+            sdf compile
+        ```
+
+``` shell
+Working set 6 model files, 2 .sdf files
+Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
+Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
+Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
+Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
+  Compiling sdf_snowflake.staging.latest_repo_name (aka sdf_snowflake.staging.latest_repo_name)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (aka sdf_snowflake.cybersyn_tech_innovation.active_ai_domains)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (aka sdf_snowflake.cybersyn_tech_innovation.most_starred_repos)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (aka sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents)
+  Compiling sdf_snowflake.staging.push_events (aka sdf_snowflake.staging.push_events)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (aka sdf_snowflake.cybersyn_tech_innovation.events_by_repo)
+   Finished 13 models [6 succeeded, 7 downloaded] in 3.465 secs
+
+        ```
+
+        Woohoo! Another successful compile. Now, let's try one final run of everything in this workspace to materialize our new view and run the entire DAG.
+        ```shell
+        sdf run 
+        ```
+
+        {/* TODO (Elias): Bring this back once casting bug is fixed */}
+        {/* ```run shell
+        cd tmp/cybersyn_tech_innovation && $sdf run
+        ``` */}
+
+        Congratulations! You've just created your first DAG in Snowflake with SDF.
+    </Step>
+</Steps>
+
+## Next Steps
+
+Now that you've materialized your first tables and views in Snowflake with SDF, you can move on to more advanced topics like [incremental materialization](/integrations/snowflake/incremental-materialization).

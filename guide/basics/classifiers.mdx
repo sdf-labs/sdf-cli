@@ -1,17 +1,46 @@
 ---
-title: "Classifiers & Propagation"
+title: "Classifiers & SQL Types"
 description:
-  "This documents aims to layout how classifiers are defined and propagated through your data warehouse"
+  "SDF promotes reasoning on higher level types through a rich data classification & type system. "
 ---
 
-The standout feature of SDF is its ability to annotate your SQL sources with rich metadata and reason about them together. SDF classifiers can range from table visibility to privacy policies and more. When SDF performs its static analysis, it takes this metadata into account, propagates it throughout your SQL sources with [Information Flow Theory](https://www.microsoft.com/en-us/research/publication/bootstrapping-privacy-compliance-in-big-data-systems/), and enforces built-in and user-defined rules.
+SQL only supports primitive types like `varchar`, `int`, `timestamp`, `decimal`, etc. But, people reason over higher level data types. A varchar might be a name, or phone numbr. An integer might be a daily active user metric.
 
-Classifiers are the fundamental metadata unit of the SDF ecosystem. You can think of them like rich types in a language like Typescript. They can be defined, reused, transformed, and propagated programatically by SDF. Let's dive in.
+SDF has the ability to annotate columns and tables with **user defined types** and then **propagate** those types to downstream assets while respecting aggregations, or functional transformations of data. This
+unique capability fosters the creation of a *dynamic semantic layer* which adapts with you as build out your data warehouse. 
+
+Classifiers are first-class citizens of the SDF ecosystem. And, since they are metadata on top of SQL, they are completely compatible with all dialects and databases that SDF supports.
+
+You can think of them like rich types in a language like Typescript. They can be defined, reused, transformed, and propagated programatically by SDF. Let's dive in.
+
+<Note>
+SDF uses the term *Classifier* and *SQL Type* interchangeably. Any column or table may be 0 or more classifiers.
+</Note> 
+
+## Using SQL Types & classifiers
+
+**What are popular examples of SQL Types?**
+- Personally Identifiable Information like phone numbers, addresses, etc.
+- Metrics 
+- Financial Information
+- Unique Identifiers 
+- Retention Requiremenets
+- Time Grains
+
+**What Can You Do With SQL Types?**
+- Write Reports
+- Write Checks
+- Audit
+- Prevent Business Logic Mismatch
+- Ensure Consistency Across Metrics
+- Customer Segmentation
+
+Higher order types have many advantages.
 
 ## Basic Propagation
 
-Propagation is the mechanism of inferring the downstream column metadata from
-the upstream column metadata. The inference process is based on the semantics of
+Propagation is the mechanism of inferring the downstream column types from
+the upstream column types. The inference process is based on the semantics of
 the underlying transformation.
 
 <Note>
@@ -19,7 +48,7 @@ In the following example, the `lineage` sample workspace is used. If this worksp
 set up, it can be created with an `sdf new --sample lineage` command.
 </Note>
 
-### Defining Classifier Domains
+### Defining a Classifier Taxonomy
 
 To work with classifiers and propagation we must first define all the relevant
 classifier domains. Here is an example of a simple PII classifier domain,
@@ -40,14 +69,14 @@ classifier:
     - name: UID
 ```
 
-This configuration defines five distinct labels: `PII`, `PII.Phone`,
+This configuration defines five A top level type `PII` with 4 labels: `PII.Phone`,
 `PII.Address`, `PII.SSN`, and `PII.UID`, where the last four labels denote
 special classes of the first label. (I.e. if some data is labeled with
 `PII.Address`, it is also, implicitly, labeled with `PII`.)
 
 <Note>
 Classifier domains can also be defined in separate `sdf.yml` files as long as
-these files are included into the root `workspace.sdf.yml` file as one of the
+these files are included by the `workspace.sdf.yml` file as one of the
 paths specified in `includes`.
 </Note>
 
@@ -57,7 +86,7 @@ Once a classifier domain is defined, we can manually attach classifiers to
 tables. Once root tables are annotated with the relevant classifiers, SDF
 automatically propagates classifiers downstream.
 
-Here is an example:
+Let's start by labeling our `source`. We add a new file (`src/source.sdf.yml`) containing our type:
 
 ```yaml src/source.sdf.yml
 table:
@@ -71,13 +100,8 @@ table:
         - PII.Phone
 ```
 
-<Note>
-When attaching classifiers to tables, using the fully qualified name is required. For example, in an environment that uses catalog and schema names, the name must be listed as `<catalog-name>.<schema-name>.<table>`.
-</Note>
-
-Note how this file will be picked up because its in the path included in the
-root `workspace.sdf.yml`. Alternatively, the same information can be included
-directly into the root file as follows:
+This file will automatically be picked up by SDF because the workspace already includes the `/src` directory. Alternatively, the same configuratin can be included
+directly into the workspace.sdf.yml file as follows:
 
 ```yaml workspace.sdf.yml
 workspace:
@@ -104,10 +128,11 @@ table:
         - PII.Phone
 ```
 
+Notice - all .sdf.yml files are composable! You may include one or more configuration in any .sdf.yml file, as long as the schmea is respected.
+
 ### Inspecting Propagation Results
 
-Now we can run `sdf compile --show all` to see how classifiers are propagated into the
-tables downstream of `source`:
+To see the classifer, and how it was propagated to all tables downstream of our `source` table, run `sdf compile --show all`.
 
 ```bash
 sdf compile --show all
@@ -160,10 +185,12 @@ doesn’t have any columns derived from the `PII` columns upstream.
 ## Advanced Propagation
 
 By default classifiers propagate through functions unchanged. For example, if a
-substring is extracted from a piece of data labeled with `PII.phone`, the result
-will also be labeled with `PII.phone` by default. However, this is not reflective of the fact that Phone is no longer a phone number, and instead is now a substring of the phone number.
+substring is extracted from a column labeled as `PII.phone`, the result
+will also be labeled with `PII.phone` by default. 
 
-Let's imagine the substring function is taking out the area code, or the first three digits of a phone number formatted like this `555-555-5555`. We can use a [function block](/reference/sdf-yml#block-function) in our `sdf.yml` files to define the behavior of a classifier in response to this function being called.
+However, the result is no longer a phone number - maybe it's just the area code!
+
+Let's imagine the result of the substring expression is only area codes. We can use a [function block](/reference/sdf-yml#block-function) in our `sdf.yml` files to define the behavior of a classifier in response to the function being called.
 
 In our current example, we'd want to reclassify `PII.phone` to `PII.area_code`. Here's the function overload required to do so:
 ```yaml workspace.sdf.yml
@@ -190,7 +217,7 @@ function:
     - from: PII.UID
 ```
 
-By explicitly not setting a `to` value in the `reclassify` block, we prevent SDF from propagating the `PII.UID` classifier downstream and achieve our desired behavior.
+By explicitly not setting a `to` value in the `reclassify` block, we remove the `PII.UID` classifier downstream and achieve our desired behavior.
 
 <Note>
 Function reclassifications work across all queries by default. In this way, developers have full programmatic control over how their classifiers propagate and interact with functions across their entire data warehouse.
@@ -274,3 +301,4 @@ Once created, this location will need to be ammended to the `workspace.sdf.yml` 
 includes:
   - path: classifiers/
 ```
+

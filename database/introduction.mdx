@@ -6,7 +6,8 @@ description:
 
 <Frame>
     <video
-    controls
+    autoPlay
+    muted
     className="w-full aspect-video"
     src="https://cdn.sdf.com/vid/final_final_incremental_run.mp4"
     ></video>
@@ -45,3 +46,17 @@ workspace:
     dialect: trino
 ```
 
+### Data Provider Capabilities
+Data may come from many sources, either from a local file system, remote file system, or metadata storage layer.
+
+SDF DB supports the following data locations.
+
+| Feaure                 | SDF DB |
+|------------------------|:------:|
+| Local File System      |   🟢   |
+| AWS Glue               |   🟢   | 
+| Iceberg                |   🟢   | 
+| AWS S3                 |   🟢   | 
+| Delta Lake             |   🟡   | 
+| Google Cloud Storage   |   🔴   | 
+| Azure Bulk Storage     |   🔴   |
