@@ -75,6 +75,7 @@
 		{
 			"group": "Guides",
 			"pages": [
+				"guide/telemetry",
 				"guide/io",
 				"guide/workspaces",
 				"guide/index",
@@ -82,9 +83,9 @@
 				"guide/lineage_metadata",
 				"guide/udf",
 				"guide/large_workspace",
-				{  
-					"group":"Macro Processing",
-					"pages":[
+				{
+					"group": "Macro Processing",
+					"pages": [
 						"guide/macro-processing/overview",
 						"guide/macro-processing/jinja",
 						"guide/macro-processing/jinja-variables",
