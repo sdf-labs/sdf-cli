@@ -126,7 +126,8 @@
 					"icon": "scale-balanced",
 					"pages": [
 						"guide/advanced/index",
-						"guide/advanced/udf"
+						"guide/advanced/udf",
+						"guide/advanced/telemetry"
 					]
 				}
 			]

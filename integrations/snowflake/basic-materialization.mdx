@@ -61,7 +61,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 +-------------+-----------+------------+
 | domain_id   | varchar   |            |
 +-------------+-----------+------------+
-   Finished 2 models [1 succeeded, 1 downloaded] in 3.263 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.653 secs
 
         ```
 
@@ -178,7 +178,7 @@ Schema sdf_snowflake.staging.latest_repo_name
 | repo_name   | varchar        |            |
 | repo_id     | decimal(38, 0) |            |
 +-------------+----------------+------------+
-   Finished 2 models [1 succeeded, 1 downloaded] in 3.054 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.301 secs
 
         ```
 
@@ -212,22 +212,22 @@ Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
     Running sdf_snowflake.staging.latest_repo_name (aka sdf_snowflake.staging.latest_repo_name)
 
 Table sdf_snowflake.staging.latest_repo_name
-+------------------------------------------------------------+-----------+
-| repo_name                                                  | repo_id   |
-+------------------------------------------------------------+-----------+
-| AzaelLuxryA/Mat-328                                        | 767211529 |
-| itsjeanem/realization-contribution                         | 800171381 |
-| gangapurambhargav/cicd                                     | 800044631 |
-| linfei748/bishe                                            | 799846573 |
-| kaisunoo/SensEtryStatus                                    | 800006437 |
-| gantres2/OLxA-Linux-Armbian-builder                        | 800017070 |
-| dapdelivery/where-for-dinner-13-05-2024-16-16-59-183184236 | 800115838 |
-| Nayyarnj1/site                                             | 799796261 |
-| kersha0530/datafun-03-analytics                            | 800116331 |
-| DanishKodeMonkey/odin-login-process                        | 799895907 |
-+------------------------------------------------------------+-----------+
++-------------------------------------------------------------+-----------+
+| repo_name                                                   | repo_id   |
++-------------------------------------------------------------+-----------+
+| bryan-ilman-on-github/deployment-on-kubernetes              | 800088443 |
+| hadimohagheghi/AdvancedAPI                                  | 799978189 |
+| gabltz/bashscripts                                          | 799807113 |
+| slskopytko/mdfmfmdchb                                       | 800222600 |
+| MetadataGitTesting/S8I0JWEU                                 | 799889243 |
+| realzain/portfolio                                          | 799816982 |
+| sahil-gupta01/Custom-Auth-Service-Using-Springboot-Security | 799771006 |
+| hrish7kesh/Robotics                                         | 764795574 |
+| Sqfav/password_gen                                          | 800080477 |
+| Tr3s3/psychic-telegram                                      | 799738420 |
++-------------------------------------------------------------+-----------+
 10 rows.
-   Finished 1 model [1 succeeded] in 9.165 secs
+   Finished 1 model [1 succeeded] in 8.442 secs
 
         ```
 
@@ -280,7 +280,7 @@ Schema sdf_snowflake.staging.push_events
 | id          | varchar        |            |
 | repo_id     | decimal(38, 0) |            |
 +-------------+----------------+------------+
-   Finished 2 models [1 succeeded, 1 downloaded] in 3.155 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 5.462 secs
 
         ```
 
@@ -334,20 +334,20 @@ Schema sdf_snowflake.staging.push_events
 
 ``` shell
 Working set 6 model files, 2 .sdf files
+Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
-Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
 Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
-Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
-Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (aka sdf_snowflake.cybersyn_tech_innovation.active_ai_domains)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (aka sdf_snowflake.cybersyn_tech_innovation.most_starred_repos)
+Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.staging.latest_repo_name (aka sdf_snowflake.staging.latest_repo_name)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (aka sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (aka sdf_snowflake.cybersyn_tech_innovation.most_starred_repos)
   Compiling sdf_snowflake.staging.push_events (aka sdf_snowflake.staging.push_events)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (aka sdf_snowflake.cybersyn_tech_innovation.active_ai_domains)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (aka sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents)
   Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (aka sdf_snowflake.cybersyn_tech_innovation.events_by_repo)
-   Finished 13 models [6 succeeded, 7 downloaded] in 3.431 secs
+   Finished 13 models [6 succeeded, 7 downloaded] in 3.262 secs
 
         ```
 
