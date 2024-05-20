@@ -60,6 +60,16 @@ function date(<$1>) returns date
 ```
 
 
+## `date_add`
+[🔗 Official Documentation](#)
+
+```sql
+function date_add<$1> (<varchar, bigint, $1>) returns date
+	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
+	where $1 in (date, timestamp, time, varchar)
+```
+
+
 ## `date_cmp`
 [🔗 Official Documentation](#)
 
@@ -228,5 +238,5 @@ function to_timestamp(<varchar, varchar, boolean>) returns timestamp
 ```
 
 
-   Finished man in 0.211 secs
+   Finished man in 0.324 secs
 

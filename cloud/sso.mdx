@@ -1,0 +1,51 @@
+---
+title: "SSO Support"
+description: "SDF supports signing in with Single Sign-On (SSO) providers through the OAuth2 and OpenID Connect protocols."
+---
+
+## Single Sign-On (SSO) Support
+
+SDF supports the following single sign-on (SSO) providers:
+
+- Google
+- Okta
+
+<Warning>
+  Okta SSO is supported through a single tenant at the moment. This means SDF's Okta account manages all users and groups, and SDF must add and manage new users on behalf of the organization. 
+  Support for custom Okta SSO via SAML is coming soon.
+</Warning>
+
+<Note>
+  If the email used to sign in matches an email added to an existing organization, you will automatically be added to the organization. If not, a new organization will be created for you.
+</Note>
+
+## Authenticating with SSO
+
+### Google
+
+SDF supports basic "Continue with Google". To authenticate with Google, click the "Continue with Google" button on the login page.
+
+<img src="https://cdn.sdf.com/img/sdf-welcome-page.png" />
+
+This should take you to the Google authentication page, where you can sign in with your Google account.
+
+<img src="https://cdn.sdf.com/img/sign-in-with-google.png" />
+
+After signing in here, you should be redirected back to the SDF Cloud Console and be logged in.
+
+### Okta
+
+SDF supports Okta SSO through SDF-managed Okta accounts. As such, you'll need to contact SDF in order to have accounts added and managed to the Okta organization.
+
+**SAML configuration to bring your own Okta organization is not currently supported.**
+
+To authenticate with Okta, click the "Continue with Okta" button on the login page.
+
+<img src="https://cdn.sdf.com/img/sdf-welcome-page.png" />
+
+This should take you SDF's Okta authentication portal, where you can sign in with the Okta account SDF has provided to you.
+
+<img src="https://cdn.sdf.com/img/sign-in-with-okta.png" />
+
+SDF's Okta sign in portal is hosted at `dev-53333193.okta.com`. After signing in here, you should be redirected back to the SDF Cloud Console and be logged in.
+

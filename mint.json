@@ -72,10 +72,11 @@
 		{
 			"group": "Cloud",
 			"pages": [
-			"cloud/introduction",
-			"cloud/billing",
-			"cloud/authentication",
-			"cloud/deployment"
+				"cloud/introduction",
+				"cloud/billing",
+				"cloud/authentication",
+				"cloud/deployment",
+				"cloud/sso"
 			]
 		},
 		{

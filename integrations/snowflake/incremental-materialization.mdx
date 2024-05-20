@@ -43,7 +43,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
     Created cybersyn_tech_innovation_incremental/workspace.sdf.yml
-   Finished new in 0.219 secs
+   Finished new in 0.322 secs
 
         ```
     </Step>
@@ -56,7 +56,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 ``` shell
 Working set 3 model files, 2 .sdf files
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (aka sdf_snowflake.cybersyn_tech_innovation.active_ai_domains)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 +-------------+-----------+------------+
@@ -64,7 +64,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 +-------------+-----------+------------+
 | domain_id   | varchar   |            |
 +-------------+-----------+------------+
-   Finished 2 models [1 succeeded, 1 downloaded] in 3.411 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 4.116 secs
 
         ```
 
@@ -132,7 +132,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 Working set 4 model files, 2 .sdf files
  Preloading sdf_snowflake.staging.datafusion_push_events (schema & last_altered)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-  Compiling sdf_snowflake.staging.datafusion_push_events (aka sdf_snowflake.staging.datafusion_push_events)
+  Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
 
 Schema sdf_snowflake.staging.datafusion_push_events
 +--------------------------------+----------------+------------+
@@ -287,7 +287,7 @@ Schema sdf_snowflake.staging.datafusion_push_events
 | issue_user_type                | varchar        |            |
 | language                       | varchar        |            |
 +--------------------------------+----------------+------------+
-   Finished 3 models [1 succeeded, 2 downloaded] in 5.691 secs
+   Finished 3 models [1 succeeded, 2 downloaded] in 5.915 secs
 
       ```
 
@@ -433,8 +433,8 @@ Working set 5 model files, 2 .sdf files
  Preloading sdf_snowflake.staging.github_push_events (schema & last_altered)
  Preloading sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (schema & last_altered)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-  Compiling sdf_snowflake.staging.datafusion_push_events (aka sdf_snowflake.staging.datafusion_push_events)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (aka sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors)
+  Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (./src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql)
 
 Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
 +---------------------+----------------+------------+
@@ -453,7 +453,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
 | actor_display_login | varchar        |            |
 | contribution_count  | decimal(38, 0) |            |
 +---------------------+----------------+------------+
-   Finished 5 models [2 succeeded, 3 downloaded] in 7.171 secs
+   Finished 5 models [2 succeeded, 3 downloaded] in 8.692 secs
 
     ```
 
