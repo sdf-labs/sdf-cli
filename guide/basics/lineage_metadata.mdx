@@ -66,17 +66,6 @@ To use these SQL files locally and follow along, create a new SDF workspace from
 sdf new --sample lineage
 ```
 
-``` shell 
-    Created lineage2/checks/check_sink_phone_is_pii.sql
-    Created lineage2/src/knis.sql
-    Created lineage2/src/middle.sql
-    Created lineage2/src/sink.sql
-    Created lineage2/src/source.sql
-    Created lineage2/workspace.sdf.yml
-   Finished new in 0.095 secs
-
-```
-
 Note how tables can use other tables as sources in the FROM clause using either
 unqualified (middle) or qualified (chain.pub.middle) names.
 
