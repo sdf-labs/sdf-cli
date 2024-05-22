@@ -4,7 +4,7 @@ description:
   "SDF promotes reasoning on higher level types through a rich data classification & type system. "
 ---
 
-SQL only supports primitive types like `varchar`, `int`, `timestamp`, `decimal`, etc. But, people reason over higher level data types. A varchar might be a name, or phone numbr. An integer might be a daily active user metric.
+SQL only supports primitive types like `varchar`, `int`, `timestamp`, `decimal`, etc. But, people reason over higher level data types. A varchar might be a name, or phone number. An integer might be a daily active user metric.
 
 SDF has the ability to annotate columns and tables with **user defined types** and then **propagate** those types to downstream assets while respecting aggregations, or functional transformations of data. This
 unique capability fosters the creation of a *dynamic semantic layer* which adapts with you as build out your data warehouse. 
@@ -14,7 +14,7 @@ Classifiers are first-class citizens of the SDF ecosystem. And, since they are m
 You can think of them like rich types in a language like Typescript. They can be defined, reused, transformed, and propagated programatically by SDF. Let's dive in.
 
 <Note>
-SDF uses the term *Classifier* and *SQL Type* interchangeably. Any column or table may be 0 or more classifiers.
+SDF uses the term *Classifier* and *SQL Type* interchangeably. Any column or table may have 0 or more classifiers.
 </Note> 
 
 ## Using SQL Types & classifiers
@@ -116,6 +116,7 @@ classifier:
     - name: Address
     - name: SSN
     - name: UID
+    - name: AreaCode
 –--
 table:
   name: source
@@ -128,7 +129,7 @@ table:
         - PII.Phone
 ```
 
-Notice - all .sdf.yml files are composable! You may include one or more configuration in any .sdf.yml file, as long as the schmea is respected.
+Notice - all .sdf.yml files are composable! You may include one or more configuration in any .sdf.yml file, as long as the schema is respected.
 
 ### Inspecting Propagation Results
 
@@ -185,24 +186,24 @@ doesn’t have any columns derived from the `PII` columns upstream.
 ## Advanced Propagation
 
 By default classifiers propagate through functions unchanged. For example, if a
-substring is extracted from a column labeled as `PII.phone`, the result
-will also be labeled with `PII.phone` by default. 
+substring is extracted from a column labeled as `PII.Phone`, the result
+will also be labeled with `PII.Phone` by default. 
 
 However, the result is no longer a phone number - maybe it's just the area code!
 
 Let's imagine the result of the substring expression is only area codes. We can use a [function block](/reference/sdf-yml#block-function) in our `sdf.yml` files to define the behavior of a classifier in response to the function being called.
 
-In our current example, we'd want to reclassify `PII.phone` to `PII.area_code`. Here's the function overload required to do so:
+In our current example, we'd want to reclassify `PII.Phone` to `PII.AreaCode`. Here's the function overload required to do so:
 ```yaml workspace.sdf.yml
 ---
 function:
   name: substring
   reclassify:
-    - from: PII.phone 
-      to: PII.area_code
+    - from: PII.Phone 
+      to: PII.AreaCode
 ```
 
-Great! Now every time the substring function is called on a column with the classifier `PII.phone`, it will be reclassified to `PII.area_code`.
+Great! Now every time the substring function is called on a column with the classifier `PII.Phone`, it will be reclassified to `PII.AreaCode`.
 
 Another common case is to _prevent_ a classifier from propagating through an aggregation. For example, if a column `user_id` is labeled with the classifier `PII.UID` and we `SELECT COUNT(DISTINCT user_id)` from the table containing this column, we don't want `PII.UID` to propagate since the `COUNT DISTINCT` is not a `PII.UID`. It's a number representing the unique count of `PII.UID`s. We can use the same `reclassify` block to prevent this propagation. Here's an example:
 ```yaml workspace.sdf.yml
@@ -212,7 +213,7 @@ function:
   parameters:
     - datatype: T
   returns:
-    - datetype: bigint
+    - datatype: bigint
   reclassify:
     - from: PII.UID
 ```
@@ -231,11 +232,11 @@ table:
 	columns:
 		- name: phone_first_three_digits
 	reclassify:
-		- from: PII.phone
-			to: PII.area_code
+		- from: PII.Phone
+			to: PII.AreaCode
 ```
 
-In this example, the column `phone_first_three_digits` will be reclassified to `PII.area_code` if it is derived from a column with the classifier `PII.phone`.
+In this example, the column `phone_first_three_digits` will be reclassified to `PII.AreaCode` if it is derived from a column with the classifier `PII.Phone`.
 
 ### Classifier States
 

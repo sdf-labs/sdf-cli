@@ -5437,6 +5437,36 @@ function rtrimmed_length(<varchar>) returns varchar
 ```
 Returns the length of the input string without trailing blanks
 
+## `sdf::and`
+[🔗 Official Documentation](#)
+
+```sql
+function sdf::and<$1> (<$1, boolean>) returns boolean
+	where $1 in (int, double)
+```
+
+
+```sql
+function sdf::and<$1> (<boolean, $1>) returns boolean
+	where $1 in (int, double)
+```
+
+
+## `sdf::or`
+[🔗 Official Documentation](#)
+
+```sql
+function sdf::or<$1> (<$1, boolean>) returns boolean
+	where $1 in (int, double)
+```
+
+
+```sql
+function sdf::or<$1> (<boolean, $1>) returns boolean
+	where $1 in (int, double)
+```
+
+
 ## `search_optimization_history`
 [🔗 Official Documentation](#)
 
@@ -9676,5 +9706,5 @@ function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 
-   Finished man in 0.337 secs
+   Finished man in 0.123 secs
 

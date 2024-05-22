@@ -23,7 +23,8 @@ Let's explore some of the capabilities unlocked by using jinja in a minimal SDF 
         ```yml workspace.sdf.yml
             workspace:
               name: jinjex
-              preprocessor: jinja
+              defaults:
+                preprocessor: jinja
               ...
         ```
         Congratulations! Your workspace is now configured to run with Jinja.

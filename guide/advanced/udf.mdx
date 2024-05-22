@@ -14,13 +14,13 @@ SDF allows you to define almost any imagenable user-defined function. The follow
 
 SDF distinguishes scalar functions in various dimensions:
 - They can have fixed or varying arity, i.e number of parameters
-- They can have one defintion or be overloaded, i.e. have manay defintions.
-- They can be monmorphic, i.e., defined for one type only, or polymorphic, i.e. defined to operate on all types
+- They can have one defintion or be overloaded, i.e. have many defintions.
+- They can be monomorphic, i.e., defined for one type only, or polymorphic, i.e. defined to operate on all types
 - They can be first-order, i.e., take only data as parameters, or higher order, take also functions as parameter.
-We explain each of these concepts and the authoring of the correspsondng function signature in turn.  
+We explain each of these concepts and the authoring of the corresponding function signature in turn.  
 
 ### Fixed Arity
-The function `substr` ia a typical scalar function. It takes two arguments of the types `varchar` and `int`, respectively. 
+The function `substr` is a typical scalar function. It takes two arguments of the types `varchar` and `int`, respectively. 
 We say `substr` has **fixed arity** two. The expression `substr(text,start)` returns  a `varchar`.    
 
 In SDF we write `substr`'s function signature as follows:
@@ -129,7 +129,7 @@ function:
     datatype: array\<$1\>
 ```
 ### Bounded types
-Sometimes functions don;t work over all ttpes, but can only applied to a limited set of types. 
+Sometimes functions don't work over all types, but can only applied to a limited set of types. 
 We call this set **type parameter bounds**. The `abs` function for instance can only be applied to number types and to intervals.
 So we define `abs` as a type parameter bounded function.
 
@@ -222,10 +222,6 @@ function:
       datatypes:
        - number
 ```
-
-### Type signatures that depend on literals
-Other spark functions change its type based on a provided literal. For instance
-
 
 ## Outlook
 SDF function blocks allow to specify almost all of SQL's function signatures. Going forward we also want to enable you to write implementations, in SQL, Python and Rust. Stay tuned for the continuation of this story! 

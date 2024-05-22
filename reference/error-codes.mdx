@@ -1,0 +1,122 @@
+---
+title: "SDF Error Codes"
+---
+
+SDF Error codes are designed to simplify debugging. 
+Each error code is a 3-digit number in the range [100, 999], stored as a u16 value. 
+These codes are grouped into ranges. Error codes pertain **only** to SQL statements, not to networking, YML, or other configuration.
+
+- [101 -> 200] - Syntax errors
+- [201 -> 300] - Semantic errors
+- [301 -> 400] - Logical Plan Builder
+- [401 -> 400] - Coarse grained errors relating to an entire block or expression
+- [>900] - Internal, unexpected or unknown errors
+
+### Error Code Reference
+
+|Error Code | Error Name |
+|:----|:----|
+| 101 | SyntaxError |
+| 102 | SchemaError |
+| 103 | MalformedExpression |
+| 104 | DanglingComma |
+| 199 | PySparkError |
+| 201 | NameNotFound |
+| 202 | AmbiguousName |
+| 203 | InvalidUnnest |
+| 204 | InvalidLiteral |
+| 205 | InvalidEscape |
+| 206 | InvalidInterval |
+| 207 | InvalidProperty |
+| 208 | UnknownVariable |
+| 209 | FunctionResolutionFailed |
+| 210 | TableFunctionResolutionFailed |
+| 211 | SchemaMismatch |
+| 212 | DuplicateCteName |
+| 213 | UnaggregatedColumn |
+| 214 | TableNotFound |
+| 215 | TableWildcardNotFound |
+| 216 | InvalidGroupByOrdinal |
+| 217 | InvalidAlias |
+| 218 | InvalidHavingClause |
+| 219 | UnresolvedColumnOrdinal |
+| 220 | ColumnAliasMismatch |
+| 221 | InvalidTableName |
+| 222 | InvalidSetOperation |
+| 223 | InvalidPatternRecognition |
+| 224 | InvalidJoinCriteria |
+| 225 | TableMissingLocation |
+| 226 | NonUniformTypeArray |
+| 227 | UnresolvedIdentifier |
+| 228 | IncompatibleTypes |
+| 229 | DuplicateProperty |
+| 230 | IllegalType |
+| 231 | InvalidTimeUnit |
+| 232 | UnresolvedRegex |
+| 233 | UnresolvedGroupBy |
+| 234 | UnresolvedWindow |
+| 235 | InvalidStruct |
+| 236 | UnknownFunctionLanguage |
+| 237 | UnresolvedStage |
+| 238 | InvalidBooleanExpression |
+| 401 | BadQueryNoWith |
+| 402 | BadRowCount |
+| 403 | BadInlineTable |
+| 404 | BadQuery |
+| 405 | BadTableFunctionArgument |
+| 406 | InvalidPredicate |
+| 407 | InvalidComparison |
+| 408 | InvalidBetween |
+| 409 | InvalidInList |
+| 410 | InvalidInSubquery |
+| 411 | InvalidArithmetic |
+| 412 | InvalidConcatenation |
+| 413 | InvalidValueExpression |
+| 414 | InvalidListAgg |
+| 415 | InvalidCase |
+| 416 | InvalidCast |
+| 417 | InvalidFunctionCall |
+| 418 | InvalidSubscript |
+| 419 | InvalidDereference |
+| 420 | InvalidJsonExists |
+| 421 | InvalidJsonValue |
+| 422 | InvalidJsonQuery |
+| 423 | InvalidPrimaryExpression |
+| 424 | InvalidJsonObject |
+| 425 | InvalidQualifiedName |
+| 426 | InvalidJsonArray |
+| 427 | InvalidColumnReference |
+| 428 | InvalidSqlFunction |
+| 429 | InvalidDeclare |
+| 430 | InvalidNamedArgument |
+| 431 | InvalidInsertInto |
+| 432 | InvalidPivot |
+| 433 | InvalidExpression |
+| 434 | InvalidCollate |
+| 435 | InvalidRegexp |
+| 301 | ProjectionFailed |
+| 302 | JoinFailed |
+| 303 | AggregateFailed |
+| 304 | SetOperationFailed |
+| 305 | SortFailed |
+| 306 | LimitFailed |
+| 307 | CreateViewFailed |
+| 308 | CreateTableFailed |
+| 309 | CreateIndexFailed |
+| 310 | InsertIntoFailed |
+| 311 | DistinctFailed |
+| 312 | ValuesFailed |
+| 313 | HavingFailed |
+| 314 | WindowFailed |
+| 315 | TableAliasFailed |
+| 316 | ScanFailed |
+| 317 | FilterFailed |
+| 892 | LegacyBinder |
+| 893 | LegacyParser |
+| 894 | LegacyDatafusion |
+| 900 | NotSupported |
+| 901 | Unknown |
+| 902 | Unexpected |
+| 903 | NotImplemented |
+| 904 | AntlrError |
+

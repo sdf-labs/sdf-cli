@@ -5,12 +5,12 @@ description: "SDF Environments were built for teams to help them collaborate, is
 
 ## Overview
 
-Environments are a way to separate your workspace into different contexts, each with its own set of configurations, credentials, and dependencies. Imagine a local developer wants to materialize a table in their Snowflake warehouse, but they don't want to overwrite the production version of the table their updating. 
+Environments are a way to separate your workspace into different contexts, each with its own set of configurations, credentials, and dependencies. Imagine a local developer wants to materialize a table in their Snowflake warehouse, but they don't want to overwrite the production version of the table they are updating. 
 They can use an environment to materialize the table to a sandbox environment locally, then materialize to the production environment after deployment without changes to the code.
 
 ## Prerequisites
 
-Before beginning to understand the follow examples, you should have an understanding of the following concepts:
+Before beginning to understand the following examples, you should have an understanding of the following concepts:
 
 - [Workspace](/guide/workspace)
 - [Materialization](/guide/materialization)
@@ -70,7 +70,7 @@ Let's explore more complex renaming scenarios.
 
 ### Renaming
 
-In the above example, we used a simple renaming pattern to rename the database. However, you can use more complex renaming patterns to rename the schema and table names. For example, let's say we want prepend the developer name to all schemas when running in the `dev` environment. We can do this by using the following configuration:
+In the above example, we used a simple renaming pattern to rename the database. However, you can use more complex renaming patterns to rename the schema and table names. For example, let's say we want to prepend the developer name to all schemas when running in the `dev` environment. We can do this by using the following configuration:
 
 ```yml
 ---
@@ -115,7 +115,7 @@ environment:
     ...
 ```
 
-In this example, we're overwriting the default `catalog`, `schema`, `materialization`, and `severity` configurations in the workspace. When running in the `dev` environment, SDF will use the `sandbox_catalog` catalog, the `sandbox_<developer_name>` schema, and materialize tables as `views`.
+In this example, we're overwriting the default `catalog`, `schema`, and `materialization` configurations in the workspace. When running in the `dev` environment, SDF will use the `sandbox_catalog` catalog, the `sandbox_<developer_name>` schema, and materialize tables as `views`.
 
 ### Default Environment
 

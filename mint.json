@@ -189,7 +189,8 @@
 			"pages": [
 				"reference/sdf-cli",
 				"reference/sdf-yml",
-				"reference/sdf-information-schema"
+				"reference/sdf-information-schema",
+				"reference/error-codes"
 			]
 		},
 		{

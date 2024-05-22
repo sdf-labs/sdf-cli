@@ -60,10 +60,27 @@ workspace:
     - path: src/
 ```
 
+To use these SQL files locally and follow along, create a new SDF workspace from the `lineage` sample with the following command:
+
+```shell
+sdf new --sample lineage
+```
+
+``` shell 
+    Created lineage2/checks/check_sink_phone_is_pii.sql
+    Created lineage2/src/knis.sql
+    Created lineage2/src/middle.sql
+    Created lineage2/src/sink.sql
+    Created lineage2/src/source.sql
+    Created lineage2/workspace.sdf.yml
+   Finished new in 0.095 secs
+
+```
+
 Note how tables can use other tables as sources in the FROM clause using either
 unqualified (middle) or qualified (chain.pub.middle) names.
 
-The tables that do not use a FROM clause are said to be root tables. SDF
+Root tables are tables without a `FROM` clause or tables that select from an external source outside of the data warehouse. SDF
 supports two types of root tables – those that define their data inline using
 fixed values – and those that refer to a data file in an external store (e.g.
 collection of S3 blobs) The root table source is an example of the former.

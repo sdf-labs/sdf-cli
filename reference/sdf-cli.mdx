@@ -40,6 +40,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf man functions`↴](#sdf-man-functions)
 * [`sdf man definition-schema`↴](#sdf-man-definition-schema)
 * [`sdf man information-schema`↴](#sdf-man-information-schema)
+* [`sdf man error-codes`↴](#sdf-man-error-codes)
 * [`sdf dbt`↴](#sdf-dbt)
 * [`sdf dbt init`↴](#sdf-dbt-init)
 * [`sdf dbt refresh`↴](#sdf-dbt-refresh)
@@ -1300,6 +1301,7 @@ Display reference material, like the CLI, dialect specific functions, schemas fo
 * `functions` — Display SDF's functions definitions
 * `definition-schema` — Display SDF's yml blocks as a json schema doc [only: json]
 * `information-schema` — Display SDF's deploy structure as a json schema doc [only: json] Display SDF's information schemas [only: sql]
+* `error-codes` — 
 
 ###### **Options:**
 
@@ -1375,6 +1377,19 @@ Display SDF's deploy structure as a json schema doc [only: json] Display SDF's i
 ###### **Options:**
 
 * `--format  FORMAT ` — Format reference material in this  format  [only: sql]
+
+  Possible values: `sql`, `yml`, `markdown`, `json`
+
+
+
+
+## `sdf man error-codes`
+
+**Usage:** `sdf man error-codes [OPTIONS]`
+
+###### **Options:**
+
+* `--format  FORMAT ` — Format reference material in this  format  [only: markdown]
 
   Possible values: `sql`, `yml`, `markdown`, `json`
 
@@ -1465,5 +1480,5 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 
 
 
-   Finished man in 0.322 secs
+   Finished man in 0.110 secs
 

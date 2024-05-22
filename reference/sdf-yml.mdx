@@ -12,7 +12,7 @@ title: "SDF YML Schema"
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
-`providers:` | `array`| The providers for this environment|
+`providers:` | `array`| The providers for this environment (OLD_PROVIDERS)|
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
@@ -189,6 +189,7 @@ Values |
 `glue`
 `redshift`
 `snowflake`
+`s3`
 ## Enum: `TablePurpose`
 Value | Description|
 | :--- | :------- |
@@ -216,6 +217,7 @@ Values |
 | :--- |
 `append`
 `merge`
+`delete+insert`
 ## Enum: `FileFormat`
 Store table data in these formats.
 Values |
@@ -319,6 +321,7 @@ Values |
 `batch-size:` | `integer?`| |
 `sources:` | `array`| A list of (possibly remote) sources to read, matched in order, so write specific pattern before more general patterns|
 `targets:` | `array`| A list of (possibly remote) targets to build,  matched in order, so write specific pattern before more general patterns, source patterns are excluded|
+`buckets:` | `array`| A list o|
 ### Nested element: `SourcePattern`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -332,6 +335,11 @@ Values |
 `patterns:` | `array`| A list of patterns. A pattern must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
 `preload:` | `boolean?`| Whether to preload the target|
 `rename-as:` | `string?`| Renames targets, the ith $&#123;i&#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &quot;_$&#123;1&#125;._$&#123;2&#125;._$&#123;3&#125;&quot;|
+### Nested element: `DataBucket`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`uri:` | `string`| The uri of the bucket|
+`region:` | `string?`| The region of the bucket|
 ### Nested element: `FilePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -347,10 +355,10 @@ Values |
 ### Nested element: `IncrementalOptions`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`strategy:` | [`IncrementalStrategy`](#enum-incrementalstrategy)| |
-`unique-key:` | `string?`| |
-`merge-update-columns:` | `array`| |
-`merge-exclude-columns:` | `array`| |
+`strategy:` | [`IncrementalStrategy`](#enum-incrementalstrategy)| Incremental strategy; may be one of &#96;append&#96;, &#96;merge&#96;, or &#96;delete+insert&#96;|
+`unique-key:` | `string?`| Expression used for identifying records in Merge and Delete+Insert strategies; May be a column name or an expression combining multiple columns. If left unspecified, Merge and Delete+Insert strategies behave the same as Append|
+`merge-update-columns:` | `array`| List of column names to be updated as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
+`merge-exclude-columns:` | `array`| List of column names to exclude from updating as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |

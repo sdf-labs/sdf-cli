@@ -44,8 +44,6 @@ Options:
 
 ```
 
-For more on installing SDF, see [Install SDF](/guide/install). 
-
 ## Creating a Workspace
 
 To create a new SDF Workspace, run the following command:
@@ -59,22 +57,27 @@ After running the command, you will see the following output:
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.321 secs
+   Finished new in 0.105 secs
 
 ```
 
 This will create a new directory with the name of your workspac . In this case, that's `hello`. Feel free to change it to whatever you'd like, as long as the name is a valid SQL identifier.
 
-
 The directory will contain a `workspace.sdf.yml` file, which is the primary configuration file for your project. For more on this, see our [workspaces guide](/guide/workspaces).
 Your workspace directory will also contain a `src` directory with a single `main.sql` file containing a single statement. The workspace includes the src directory via an `include` path. 
-We will be compiling `main.sql`, and then executing the SQl statement.
+We will be compiling `main.sql`, and then executing the SQL statement.
 Next, let's take a deeper look at your project.
 
 <Note>
 SDF uses a cache to fingerprint outputs and accelerate recomputation. This cache is by default located in the `.sdfcache/` directory.
 The cache machine specific and should not be checked in to git. An appropriate `.gitignore` file is created as part of the `sdf new` command.
 </Note>
+
+<Info>
+    We refer to SQL statements in SDF as `models`. Models are SQL statements that will materialized in your data warehouse, or locally with the SDF DB. They differ from tables
+    as they can be materialized as tables, views, and more based on the configuration. Furthermore, they can be templatized with jinja and SDF SQL variables. SDF recommends specifying one model per file, as each model receives a fully qualified name (`database.schema.table`) that can correspond nicely to a directory structure.
+    See our [indexing documentation](/guide/advanced/index) for more.
+</Info>
 
 ## Exploring Your Project
 
@@ -83,14 +86,14 @@ Compiling our project will *statically* analyze the workspace, all queries, all 
 
 Then, we'll execute the query with SDF's integrated execution runtime, right on your machine.
 
-Finally, we'll create a new SQL file in the `/src` directory called main2.sql, referncing main, and calling SDF's built in lineage command.
+Finally, we'll create a new SQL file in the `/src` directory called main2.sql, referencing main, and calling SDF's built in lineage command.
 
 Let's give them a go.
 
 
 <Steps>
     <Step title="Static Analysis with `sdf compile`">
-        First we'll try `sdf compile --show all`. The `--show` flag allows you to modulate SDF's output and the `all` option indicates that we would like to see all schemas from all tables referenced in the workspace.
+        First we'll try `sdf compile --show all`. The `--show` flag allows you to modulate SDF's output and the `all` option indicates that we would like to see all schemas from all models referenced in the workspace.
         ```shell
         sdf compile --show all
         ```
@@ -107,9 +110,12 @@ Schema hello.pub.main
 | column_1    | varchar not null |            |
 | column_2    | varchar not null |            |
 +-------------+------------------+------------+
-   Finished 1 model [1 succeeded] in 0.409 secs
+   Finished 1 model [1 succeeded] in 0.221 secs
 
-```
+        ```
+
+        As you can see from the output, SDF has statically analyzed the query and determined there's a single non-nullable column named `column` and it's of type `varchar`. 
+        You'll also see an empty `classifier` block in the output. This is for metadata we'll attach to columns, but we'll get to that later.
     </Step>
     <Step title="Execution with `sdf run`">
         Next, let's execute the query, using SDF as the database.
@@ -128,9 +134,9 @@ Table hello.pub.main
 | hello    | Jeffrey Walters |
 +----------+-----------------+
 1 rows.
-   Finished 1 model [1 succeeded] in 0.395 secs
+   Finished 1 model [1 succeeded] in 0.190 secs
 
-```
+        ```
     </Step>
     <Step title="Add a Second SQL File">
         Add a new file in the source directory called `main2.sql` with the query:
@@ -144,6 +150,7 @@ Table hello.pub.main
         sdf lineage main2 --column column_1
         ```
 
+
 ``` shell
 Working set 2 model files, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
@@ -153,16 +160,11 @@ main2.column_1
 │ copy
 └──────┐
        main.column_1
-   Finished 2 models [2 succeeded] in 0.399 secs
+   Finished 2 models [2 succeeded] in 0.176 secs
 
-```
+        ```
     </Step>
 
 </Steps>
-
-
-
-As you can see from the output, SDF has statically analyzed the query and determined there's a single non-nullable column named `column` and it's of type `varchar`. 
-You'll also see an empty `classifier` block in the output. This is for metadata we'll attach to columns, but we'll get to that later.
 
 In this guide we showed you just how easy it is to install SDF and run your first query.
