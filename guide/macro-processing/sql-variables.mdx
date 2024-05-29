@@ -25,8 +25,9 @@ SELECT * FROM my_table WHERE my_column = @my_variable
 In order to enable variable substitution, we'll need to set the `preprocessor` option to `sql-vars` in the `workspace.sdf.yml` like so:
 ```yaml workspace.sdf.yml
      workspace:
+        defaults:
+          preprocessor: sql-vars
         ...
-        preprocessor: sql-vars
 ```
 
 Next, to set the value of `@my_variable`, you can use the `--vars` flag on the CLI. For example:

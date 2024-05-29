@@ -82,44 +82,44 @@
 		{
 			"group": "Guides",
 			"pages": [
-				{  
-					"group":"Basics",
+				{
+					"group": "Setup",
 					"icon": "flag-checkered",
-					"pages":[
-						"guide/basics/io",
-						"guide/basics/workspaces",
-						"guide/basics/classifiers",
-						"guide/basics/lineage_metadata"
+					"pages": [
+						"guide/setup/io",
+						"guide/setup/workspaces",
+						"guide/setup/providers",
+						"guide/setup/materialization",
+						"guide/setup/environments"
 					]
 				},
 				{  
-					"group":"Transformation",
+					"group":"Using SDF",
 					"icon": "play",
 					"pages":[
-						"guide/transformation/providers",
-						"guide/transformation/materialization",
-						"guide/transformation/environments"
-					]
-				},
-				{  
-					"group":"Macro Processing",
-					"icon": "microchip",
-					"pages":[
-						"guide/macro-processing/overview",
-						"guide/macro-processing/jinja",
-						"guide/macro-processing/jinja-variables",
-						"guide/macro-processing/sql-variables"
-					]
-				},
-				{  
-					"group":"Data Quality",
-					"icon": "helmet-safety",
-					"pages":[
-						"guide/data-quality/overview",
-						"guide/data-quality/checks",
-						"guide/data-quality/reports",
-						"guide/data-quality/tests",
-						"guide/data-quality/stats"
+						"guide/basics/lineage_metadata",
+						"guide/basics/classifiers",
+						{  
+							"group":"Macro Processing",
+							"icon": "microchip",
+							"pages":[
+								"guide/macro-processing/overview",
+								"guide/macro-processing/jinja",
+								"guide/macro-processing/jinja-variables",
+								"guide/macro-processing/sql-variables"
+							]
+						},
+						{  
+							"group":"Data Quality",
+							"icon": "helmet-safety",
+							"pages":[
+								"guide/data-quality/overview",
+								"guide/data-quality/checks",
+								"guide/data-quality/reports",
+								"guide/data-quality/tests",
+								"guide/data-quality/stats"
+							]
+						}
 					]
 				},
 				{

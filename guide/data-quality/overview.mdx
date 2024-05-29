@@ -4,12 +4,12 @@ description:
   "SDF supports both static (compile time) and dynamic (run time) data quality tools out of the bex."
 ---
 
-There are many great existing data quality tools out there, primarily focused on runtime validations. There are tools for observability, expectation testing, and more.
+There are many great existing data quality tools out there, primarily focused on runtime validations. There are tools for observability, expectation testing, and more. 
 
 SDF provides 4 concepts for data quality.
-1. **Checks** *(static)* - Are SQL queries run against SDF's information schema to validate absence of a condition. Since Checks are executed purely against compile-time metadata, they are typically fast and easy to integrate into CI/CD and provide a powerful new way to guarantee business logic among queries.
-2. **Reports** *(static)* - Are SQL queries run against SDF's information schema to understand the presence of a condition. Reports are also executed against compile-time metadata and are therefore also excellent for Audits, Governance, and metadata enriching.
-3. **Tests** *(dynamic)* -  Are SQL queries run against your data to validate a certain condition after the statement has been executed. This is helpful for ensuring that the shape of a particular column is as expected, that thresholding conditions are met, or that there are no null values.
+1. **Checks** *(static)* - Are SQL queries run against SDF's information schema to validate absence of a condition. Checks are executed against compile-time metadata so they provide immediate feedback when developing in the workspace and are typically fast and easy to integrate into CI/CD. They help you guarantee business logic among queries and increase development speed at the same time.
+2. **Reports** *(static)* - Are SQL queries run against SDF's information schema to understand the presence of a condition. Reports are also executed against compile-time metadata and are therefore excellent to gain immediate insights on the entire system, for example for internal or external audits, governance management, and system health tracking.
+3. **Tests** *(dynamic)* -  Are SQL queries run against your data to validate a certain condition in the data itself, meaning after the statement has been executed. This is helpful for ensuring that the shape of a particular column is as expected, that thresholding conditions are met, or that there are no null values.
 4. **Stats** *(dynamic)* -  Are SQL queries run against your dataset for at-a-glance understanding. Gain a birds eye view of a particular column including distributions, uniqueness, or other summary statistics configurable by you.
 
 

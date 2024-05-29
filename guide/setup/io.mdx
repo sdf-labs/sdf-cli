@@ -45,7 +45,7 @@ There are 4 commandline options to control the output.
 - `--format (table | csv | tsv | json | nd-json | yml)` - Specifies the table representation
   on stdout.
 
-  - `table` is the normal ascii table representation.
+  - `table` (default) is the normal ascii table representation.
   - `csv` is a CSV representation
   - `tsv` is a TSV representation
   - `json` is a JSON representation
@@ -74,7 +74,7 @@ Let's try these options. Start by creating a new SDF workspace with a sample pro
     Created lineage/src/sink.sql
     Created lineage/src/source.sql
     Created lineage/workspace.sdf.yml
-   Finished new in 0.103 secs
+   Finished new in 0.102 secs
 
 ```
   </Step>
@@ -101,7 +101,7 @@ Working set 4 model files, 1 .sdf file
   Compiling lineage.pub.middle (./src/middle.sql)
   Compiling lineage.pub.knis (./src/knis.sql)
   Compiling lineage.pub.sink (./src/sink.sql)
-   Finished 4 models [4 succeeded] in 0.183 secs
+   Finished 4 models [4 succeeded] in 0.188 secs
 
 ```
 
@@ -162,3 +162,4 @@ create external table events (
 
 Besides column names, types and nullability, SDF schema definitions have no
 other schema descriptions, no foreign keys, no constraints.
+

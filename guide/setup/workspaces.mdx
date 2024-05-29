@@ -4,17 +4,19 @@ description:
   "In this document, we're going to discuss a critical part of the SDF ecosystem
   - the workspace."
 ---
+An SDF workspace is a directory which defines the data transformation, quality, 
+and governance processes in your warehouse. It consists of SQL files representing [data 
+models](/guide/basics/lineage_metadata#source-sql-files) or [quality controls](/guide/data-quality/), 
+[configuration files](/reference/sdf-yml/), and additional file types supporting advanced data operations.
 
-If you've worked with Javascript, this might remind you of a `package.json`. In
-Rust, a `Cargo.toml`. This file will define the configuration for your project,
-and will be used by SDF to build and deploy your project. In SDF, this file is
-called `workspace.sdf.yml`. This file is required in your project and sdf will
-fail without it.
+A YAML file, `workspace.sdf.yml`, defines the configuration for the project,
+and will be used by SDF to build and deploy your project. This file is required in your 
+project and sdf will fail without it.
 
-<Note>
-  The `workspace.sdf.yml` is actually a special instance of the general
-  [sdf.yml](/reference/sdf-yml), which we'll discuss further below.
-</Note>
+<Tip>
+  Our engine supports multiple dialects in the same SDF project. That means even
+  column-level lineage will work across SQL dialects.
+</Tip>
 
 ## sdf.yml
 
@@ -28,6 +30,10 @@ for describing things like:
 - The Schema and Catalog defaults
 - Which classifiers exist and the columns they should be attached to
 - And more...
+
+<Note>
+  The `workspace.sdf.yml` is actually a special instance of the general [sdf.yml](/reference/sdf-yml).
+</Note>
 
 The `sdf.yml` is structured such that there are a set of specific YAML blocks
 titled by their purpose in your project. For example, you might have a `table`
@@ -43,10 +49,6 @@ could have a `tables.sdf.yml` file, a `classifiers.sdf.yml` file, and a
 your project. Maybe I have a table `six_hourly_ingest.sql` and a corresponding
 `six_hourly_ingest.sdf.yml`. The possibilites are truly endless.
 
-<Tip>
-  Our engine supports multiple dialects in the same SDF project. That means even
-  column-level lineage will work across SQL dialects
-</Tip>
 
 #### Shared Properties Among All Metadata Blocks
 
@@ -63,17 +65,15 @@ metadata block. This is useful for documentation purposes.
 
 ## Metadata Blocks
 
-Here we'll briefly review each of the metadata block types. Each serves their
-own purpose, and are used in different ways. For a full list of the options
+Here we'll briefly review each of the metadata block types. Each serves its
+own purpose, and is used in different ways. For a full list of the options
 available in the `sdf.yml`, see the [sdf.yml](/reference/sdf-yml) reference.
 
 ### Workspace Block
 
 The workspace block is a special metadata block that belongs in your
 `workspace.sdf.yml`. This defines your workspace configuration, and is used by
-the SDF engine to build and deploy your project. For more information on the
-workspace block, see the
-[Workspace Block](/reference/sdf-yml#root-element-workspace) reference.
+the SDF engine to build and deploy your project.
 
 #### Hello World Workspace
 
@@ -132,6 +132,46 @@ workspace:
   [table metadata block](#table-block). However, most projects will only use
   one.
 
+### Table Block
+
+The table block is used to define the metadata for a table. This includes the
+table name, the table description, the table's columns, and even the table's SQL dialect. 
+This will likely be your most widely used metadata block. For more detailed 
+information on the table block, see the [Table Block](/reference/sdf-yml#table) reference.
+
+#### Table-Level Classifiers
+
+SDF enables you to tag tables via table-level classifiers, which allows you to quickly identify all
+tables under a certain category. Some examples for table-level classifiers can be `customer_facing`, `debugging`,
+`sensitive_information`, and more.
+
+Here's an example of a table definition with a table-level classifier:
+
+```yaml
+table:
+  name: main
+  classifiers:
+    - purpose.third_party_sharing
+```
+
+#### Column-Level Classifiers
+
+One of the most important use cases for the table block is defining column-level
+classifiers. SDF will propagate these classifiers to downstream dependencies
+automatically. Here's an example of a basic table definition with a column-level
+classifier:
+
+```yaml
+table:
+  name: main
+  columns:
+    - name: phone
+      classifiers:
+        - pii.phone
+```
+
+This table definition attaches the `pii.phone` classifier to the `phone` column.
+
 ### Classifier Block
 
 The classifier block is used to define classifiers in your SDF projects. You can
@@ -173,44 +213,6 @@ example of how to apply this classifier to a column.
   easier to stay compliant with data privacy regulations like GDPR and CCPA.
 </Tip>
 
-### Table Block
-
-The table block is used to define the metadata for a table. This includes the
-table name, the table description, the table's columns, and even the table's SQL dialect. 
-This will likely be your most widely used metadata
-block. For more detailed information on the table block, see the
-[Table Block](/reference/sdf-yml#table) reference.
-
-#### Column-Level Classifiers
-
-One of the most important use cases for the table block is defining column-level
-classifiers. SDF will propagate these classifiers to downstream dependencies
-automatically. Here's an example of a basic table definition with a column-level
-classifier:
-
-```yaml
-table:
-  name: main
-  columns:
-    - name: phone
-      classifiers:
-        - pii.phone
-```
-
-This table definition attaches the `pii.phone` classifier to the `phone` column.
-
-#### Table-Level Classifiers
-
-This is great, but what if you want to label an entire tabel with a classifier? In that case we can apply the classifier at
-the table level. Here's an example of a table definition with a table-level
-classifier:
-
-```yaml
-table:
-  name: main
-  classifiers:
-    - purpose.third_party_sharing
-```
 
 ### Generated Metadata
 

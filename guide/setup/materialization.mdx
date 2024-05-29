@@ -5,14 +5,13 @@ description: "SDF supports materializing tables in Snowflake and Redshift direct
 
 ## Overview
 
-SDF's static analysis unlocks a whole suite of features and new data development paradigms alone, but its usefulness is amplified
-when used in tandem with runtime materialization. Runtime materialization works against remote warehouses and the local SDF database alike. High-level materializing with SDF helps you:
-
+Runtime materialization helps to bring your SDF model from a development environment to live tables in production. 
+It works against remote warehouses and the local SDF database alike:
 - Materialize models as views, tables, incremental tables, transient tables, temporary views, recursive tables, and more. 
-- Debug faster when running your models, since static analysis will check errors before running them.
-- Run tables with Jinja, SQL Variables, or other relevant metadata without converting them to your compute's SQL.
+- Debug your models faster and at no cost, since static analysis checks errors before running them.
+- Run tables with Jinja, SQL Variables, or other relevant metadata without manually converting them to plain SQL.
 
-All materialization functionality is part of the [sdf run](/reference/sdf-cli#sdf-run) command since we are dealing with the output of SQL queries. 
+Materialization is executed as part of [sdf run](/reference/sdf-cli#sdf-run).
 
 ## Materialization Prerequisites
 

@@ -1,8 +1,8 @@
 ---
 title: "Lineage"
 description:
-  "This documents aims to layout a very important part of SDF and how it can
-  benefit your data warehouse."
+  "This documents aims to layout how SDF's powerful lineage capabilities 
+  creates detailed and accessible visibility into your data warehouse."
 ---
 
 SDF's column-level lineage combined with its metadata and classifier propagation
@@ -16,6 +16,12 @@ and compliant with an evolving data privacy landscape.
 In SDF, SQL files contain SELECT queries defining each table. Here are a few SQL
 statements we'll be using to demonstrate the concepts in this document.
 
+<Note>
+In the following example, the `lineage` sample workspace is used. If this workspace is not already
+set up, it can be created with an `sdf new --sample lineage` command.
+</Note>
+
+<CodeGroup>
 ```sql src/source.sql
 select column1 as user_id,
        column2 as phone,
@@ -46,7 +52,7 @@ where qty > 180
 select txn_date, sum(qty) as qty
 from middle
 ```
-
+</CodeGroup>
 _Hint: knis = sink\[::-1\]_
 
 These are wrapped up into an SDF workspace with a simple `workspace.sdf.yml`
@@ -121,13 +127,15 @@ Schema chain.pub.sink
 +-------------+-----------+-------------+------------+
 ```
 
-### Integrating with an Existing Data Warehouse
+### Integration with an Existing Data Warehouse
 
 When SDF is used in the context of an existing warehouse, the YML files must
 provide URLs to table definitions in the underlying systems (Snowflake, Spark,
 BigQuery, etc.). SDF can then deliver the same functionality as for the tables
 defined natively. This includes being able to run `sdf compile` as shown above,
 and perform lineage analysis and label propagation described below.
+
+Visit our [integration guides](/integrations/snowflake/getting-started) to learn more.
 
 ## Basic Column-Level Lineage
 
@@ -235,9 +243,7 @@ sink.phone
 
 ## Lineage CLI Command
 
-SDF provides two interfaces for accessing lineage information. The text-based
-interface supports `Yaml` and `Json` formats and is friendly to programmatic
-access. This interface displays information per-table and it includes only one
+SDF provides two interfaces for accessing lineage information. This interface displays information per-table and it includes only one
 level of upstream dependencies. Here is an example:
 
 ```bash
@@ -272,7 +278,7 @@ table:
 Alternatively you can view a multi-level graphical representation of lineage:
 
 ```bash
-sdf lineage --table chain.pub.sink --column phone
+sdf lineage sink --column phone   
 ```
 
 <div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
@@ -304,8 +310,7 @@ sink.phone
 </pre>
 </div>
 
-In addition, `sdf lineage` supports the `--collapse` flag to show only
-(transitive) dependencies on root upstream tables, and the `--forward` flag to
+In addition, `sdf lineage` supports the `--forward` flag to
 display all the downstream dependencies of a given column.
 
 For a deeper dive on this command, check out the

@@ -179,15 +179,16 @@ Environment variables can be accessed via the built in jinja macro `env_var(VAR)
 Give it a try:
 <Steps>
     <Step title="Navigate to Your Workspace">
-        Navigate to your SDF workspace. To create a new one, see our getting started section [here](/getting-started).
+        Navigate to your SDF workspace. To create a new one, see our getting started section [here](/guide/macro-processing/jinja#getting-started-with-jinja).
     </Step>
     <Step title="Turn on the macro preprocessor">
         SDF will only use the macro-processor when instructed. In your `workspace.sdf.yml`, in the workspace, block,
         add the preprocessor configuration.
         ```yml
             workspace:
+              defaults:
+                preprocessor: jinja
               ...
-              preprocessor: jinja
         ```
     </Step>
     <Step title="Give it a Try!">

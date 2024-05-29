@@ -41,6 +41,13 @@ environment:
 In this example, we're creating a new environment called `dev`. This environment will use the `snowflake` provider to hydrate tables from the `prod_db` database. We're also specifying that any tables materialized to the `prod_db` database should, if run with this environment, materialize to the `sandbox_prod_db`.
 Furthermore, we're using the `local_dev` credential to authenticate with Snowflake when `sdf compile` or `sdf run` is run with the `dev` environment.
 
+<Note>
+You'll notice in the below example that the schema and table names are being passed through as Jinja variables. 
+This is because the `rename-as` field is a Jinja template when used with `*`. In this case, we're renaming the 
+schema to `sandbox_prod_db` and keeping the schema and table names the same using `${1}` and `${2}` respectively. 
+More about renaming in the next section.
+</Note>
+
 To compile a workspace with the `dev` environment, you can run:
 
 ```shell
@@ -64,9 +71,6 @@ or
 ```shell
 sdf run -e dev
 ```
-
-You'll notice in the above example that the schema and table names are being passed through as Jinja variables. This is because the `rename-as` field is a Jinja template when used with `*`. In this case, we're renaming the schema to `sandbox_prod_db` and keeping the schema and table names the same using `${1}` and `${2}` respectively.
-Let's explore more complex renaming scenarios.
 
 ### Renaming
 
@@ -102,7 +106,7 @@ Cool! But there's a lot going on here. Let's break it down:
 
 ### Overwriting Defaults
 
-Environments also allow you to overwrite default configurations in your workspace. For example, let's say you want to use a different warehouse when running in the `dev` environment. You can do this by adding the following configuration:
+Environments allow you to overwrite default configurations in your workspace. For example, let's say you want to use a different warehouse when running in the `dev` environment. You can do this by adding the following configuration:
 
 ```yml
 ---

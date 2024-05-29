@@ -1,17 +1,17 @@
 ---
-title: "Classifiers & SQL Types"
+title: "Data Classifiers"
 description:
   "SDF promotes reasoning on higher level types through a rich data classification & type system. "
 ---
 
 SQL only supports primitive types like `varchar`, `int`, `timestamp`, `decimal`, etc. But, people reason over higher level data types. A varchar might be a name, or phone number. An integer might be a daily active user metric.
 
-SDF has the ability to annotate columns and tables with **user defined types** and then **propagate** those types to downstream assets while respecting aggregations, or functional transformations of data. This
-unique capability fosters the creation of a *dynamic semantic layer* which adapts with you as build out your data warehouse. 
+SDF has the ability to annotate columns and tables with **user defined types** and then **automatically propagate** those types to downstream assets while respecting aggregations, or functional transformations of data. This
+unique capability fosters the creation of a *dynamic semantic layer* which adapts as you build out your data warehouse. 
 
-Classifiers are first-class citizens of the SDF ecosystem. And, since they are metadata on top of SQL, they are completely compatible with all dialects and databases that SDF supports.
+Classifiers are first-class citizens of the SDF ecosystem and are an added layer of metadata on top of SQL models. They are completely compatible with **all dialects** and databases that SDF supports.
 
-You can think of them like rich types in a language like Typescript. They can be defined, reused, transformed, and propagated programatically by SDF. Let's dive in.
+You can think of them like rich types in a language like Typescript. They can be defined, reused, transformed, and propagated programatically by SDF.
 
 <Note>
 SDF uses the term *Classifier* and *SQL Type* interchangeably. Any column or table may have 0 or more classifiers.
@@ -117,7 +117,7 @@ classifier:
     - name: SSN
     - name: UID
     - name: AreaCode
-–--
+---
 table:
   name: source
   columns:
@@ -213,7 +213,7 @@ function:
   parameters:
     - datatype: T
   returns:
-    - datatype: bigint
+    datatype: bigint
   reclassify:
     - from: PII.UID
 ```
@@ -257,7 +257,7 @@ classifier:
 ...
 ```
 
-`PII_STATE.clear_text` is meant to represent human-readable PII, and `anonymized` is meant to represent anonymized PII. We can then use these states to define the effect of functions (including [User Defined Functions (UDFs)](/guide/udf)) on classifiers like the examples above. For example, we can define the effect of an `md5` hash as follows:
+`PII_STATE.clear_text` is meant to represent human-readable PII, and `anonymized` is meant to represent anonymized PII. We can then use these states to define the effect of functions (including [User Defined Functions (UDFs)](/guide/advanced/udf)) on classifiers like the examples above. For example, we can define the effect of an `md5` hash as follows:
 
 
 ```yaml workspace.sdf.yml
@@ -288,7 +288,7 @@ function:
 Note the usage of `PII_STATE.*` in the `from` field of the `reclassify` block. This tells SDF to reclassify any `PII_STATE` classifier, no matter its current state, to `PII_STATE.anonymized`.
 
 <Info>
-  Wondering why we also defined the `parameters` and `returns` in this function block? This is because this function is a [`User Defined Function (UDF)`](/guide/udf). For more on function signatures, see the [UDF](/guide/udf) guide.
+  Wondering why we also defined the `parameters` and `returns` in this function block? This is because this function is a [`User Defined Function (UDF)`](/guide/advanced/udf). 
 </Info>
 
 ### Organizing Classifiers

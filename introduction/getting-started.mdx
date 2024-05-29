@@ -57,15 +57,15 @@ After running the command, you will see the following output:
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.102 secs
+   Finished new in 0.089 secs
 
 ```
 
-This will create a new directory with the name of your workspac . In this case, that's `hello`. Feel free to change it to whatever you'd like, as long as the name is a valid SQL identifier.
+This will create a new directory with the name of your workspace. In this case, that's `hello`. Feel free to change it to whatever you'd like, as long as the name is a valid SQL identifier.
 
-The directory will contain a `workspace.sdf.yml` file, which is the primary configuration file for your project. For more on this, see our [workspaces guide](/guide/workspaces).
-Your workspace directory will also contain a `src` directory with a single `main.sql` file containing a single statement. The workspace includes the src directory via an `include` path. 
-We will be compiling `main.sql`, and then executing the SQL statement.
+Your workspace directory will contain a `src` directory with a single `main.sql` file containing a single statement. The directory will also contain a `workspace.sdf.yml` file, which is the primary configuration file for your project. For more on this, see our [workspaces guide](/guide/workspaces).
+The workspace YAML file has a reference to the `src` directory via the `include` clause. 
+
 Next, let's take a deeper look at your project.
 
 <Note>
@@ -81,19 +81,13 @@ The cache machine specific and should not be checked in to git. An appropriate `
 
 ## Exploring Your Project
 
-Next we'll run the core command of SDF: [sdf compile](/reference/sdf-cli#sdf-compile). 
-Compiling our project will *statically* analyze the workspace, all queries, all schemas referenced by the queries, and all metadata (such as types). This static analysis can be used to explore table schemas and column-level lineage. 
-
-Then, we'll execute the query with SDF's integrated execution runtime, right on your machine.
-
-Finally, we'll create a new SQL file in the `/src` directory called main2.sql, referencing main, and calling SDF's built in lineage command.
-
-Let's give them a go.
-
+Let's see just how easy it is to set up SDF and run your first query.
 
 <Steps>
-    <Step title="Static Analysis with `sdf compile`">
-        First we'll try `sdf compile --show all`. The `--show` flag allows you to modulate SDF's output and the `all` option indicates that we would like to see all schemas from all models referenced in the workspace.
+    <Step title="Static Analysis with `sdf compile`">        
+        First, we'll run the core command of SDF: [sdf compile](/reference/sdf-cli#sdf-compile). 
+        
+        The `--show` flag allows you to modulate SDF's output and the `all` option indicates that we would like to see all schemas from all models referenced in the workspace.
         ```shell
         sdf compile --show all
         ```
@@ -110,7 +104,7 @@ Schema hello.pub.main
 | column_1    | varchar not null |            |
 | column_2    | varchar not null |            |
 +-------------+------------------+------------+
-   Finished 1 model [1 succeeded] in 0.177 secs
+   Finished 1 model [1 succeeded] in 0.179 secs
 
         ```
 
@@ -118,11 +112,13 @@ Schema hello.pub.main
         You'll also see an empty `classifier` block in the output. This is for metadata we'll attach to columns, but we'll get to that later.
     </Step>
     <Step title="Execution with `sdf run`">
-        Next, let's execute the query, using SDF as the database.
+        Next, let's execute the query, using SDF as the database. We'll execute the query with SDF's integrated execution runtime, right on your machine.
+        
         ```shell
         sdf run --show all
         ```
 
+        Your output should look like:
 ``` shell
 Working set 1 model file, 1 .sdf file
     Running hello.pub.main (./src/main.sql)
@@ -134,22 +130,23 @@ Table hello.pub.main
 | hello    | Jeffrey Walters |
 +----------+-----------------+
 1 rows.
-   Finished 1 model [1 succeeded] in 0.170 secs
+   Finished 1 model [1 succeeded] in 0.166 secs
 
         ```
     </Step>
-    <Step title="Add a Second SQL File">
-        Add a new file in the source directory called `main2.sql` with the query:
+    <Step title="Create a New Model">
+        Now, create a new file in the source directory called `main2.sql` with the query:
+
         ```sql main2.sql
         SELECT * FROM main;
         ```
     </Step>
     <Step title="Lineage with `sdf lineage`">
-        For any properly compiling SDF workspace, SDF guarantees rich column level lineage. The command below specifies a particular column, in a particular table that we would like to inspect.
+        SDF guarantees rich column level lineage. The command below specifies a particular column, in a particular table that we would like to inspect.
+        
         ```shell
         sdf lineage main2 --column column_1
         ```
-
 
 ``` shell
 Working set 2 model files, 1 .sdf file
@@ -160,7 +157,7 @@ main2.column_1
 │ copy
 └──────┐
        main.column_1
-   Finished 2 models [2 succeeded] in 0.177 secs
+   Finished 2 models [2 succeeded] in 0.172 secs
 
         ```
     </Step>
