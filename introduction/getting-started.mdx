@@ -57,7 +57,7 @@ After running the command, you will see the following output:
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.089 secs
+   Finished new in 0.095 secs
 
 ```
 
@@ -104,7 +104,7 @@ Schema hello.pub.main
 | column_1    | varchar not null |            |
 | column_2    | varchar not null |            |
 +-------------+------------------+------------+
-   Finished 1 model [1 succeeded] in 0.179 secs
+   Finished 1 model [1 succeeded] in 0.231 secs
 
         ```
 
@@ -130,7 +130,7 @@ Table hello.pub.main
 | hello    | Jeffrey Walters |
 +----------+-----------------+
 1 rows.
-   Finished 1 model [1 succeeded] in 0.166 secs
+   Finished 1 model [1 succeeded] in 0.176 secs
 
         ```
     </Step>
@@ -157,11 +157,17 @@ main2.column_1
 │ copy
 └──────┐
        main.column_1
-   Finished 2 models [2 succeeded] in 0.172 secs
+   Finished 2 models [2 succeeded] in 0.175 secs
 
         ```
     </Step>
-
 </Steps>
 
 In this guide we showed you just how easy it is to install SDF and run your first query.
+
+<Tip>
+    If using VSCode, SDF's YML schema is available for type and syntax checking via the [Red HAT YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). This will
+    add auto-fill, type checking, and YML validation directly inline while editing `sdf.yml` files.
+</Tip>
+
+

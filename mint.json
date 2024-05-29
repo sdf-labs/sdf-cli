@@ -76,7 +76,8 @@
 				"cloud/billing",
 				"cloud/authentication",
 				"cloud/deployment",
-				"cloud/sso"
+				"cloud/sso",
+				"cloud/troubleshooting"
 			]
 		},
 		{

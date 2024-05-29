@@ -1,0 +1,54 @@
+---
+title: "Troubleshooting"
+description: "Common issues and solutions for SDF Cloud compilation and authentication failures."
+---
+
+## Overview
+
+This guide will walk you through common issues and solutions for SDF Cloud compilation and authentication failures.
+
+## Authentication
+
+When running `sdf auth login`, sometimes the browser may not pop up automatically. If this happens, you can manually open the browser and navigate to the URL provided in the terminal.
+
+```shell
+sdf auth login 
+Info Continue logging in using your browser.
+      If your browser does not open automatically, please visit: 
+      http://127.0.0.1:3267/login/start?sid=nAhtQm73WtbwoMuQ-loyPA
+```
+
+The URL can be command + clicked in VSCode, or copied and pasted into your browser.
+
+<Warning>
+  If running SDF within an SSH'd machine, you may need to use a browser on your local machine to complete the authentication process with SSH port forwarding.
+  If this is not possible, you can use headless access tokens to authenticate. These can be created in the `Credentials` section of your organization settings.
+</Warning>
+
+## Compilation
+
+The SDF Cloud compiles your workspace in the same way you compile it locally. This is indicated by a red indicator next to your workspace name.
+
+<img src="https://cdn.sdf.com/img/failed-cloud-compilation.png" />
+
+If you see this indicator, it means the SDF Cloud was unable to compile your workspace. This could be due to a number of reasons:
+
+- Missing or incorrect environment variables required for compilation
+- Missing or incorrect credentials required for compilation
+- Firewalls or network restrictions preventing the SDF Cloud from accessing your data sources
+
+<Info>
+  Support for managing credentials and environment variables from the console UI is coming soon.
+</Info>
+
+### Cluster IP Whitelisting
+
+If you are using a cloud data warehouse alongside SDF, you may need to whitelist the SDF Cloud's IP address in your cloud data warehouse's security settings. This is because the SDF Cloud needs to access your data warehouse to compile your workspace.
+
+The SDF Cloud's cluster IP address can be found in your organization settings page.
+
+<img src="https://cdn.sdf.com/img/organization-settings-screen.png" />
+
+<Check>
+  This cluster IP is unique to your cluster if subscribed to a dedicated cluster with SDF.
+</Check>

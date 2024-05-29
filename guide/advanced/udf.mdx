@@ -223,6 +223,30 @@ function:
        - number
 ```
 
+### Three-Part Function Names
+
+SDF supports multi-part function names by specifying the catalog and schema these functions belong to in the name. The result is a fully qualified name for the function.
+
+```yaml
+function:
+  name: functions_db.functions_schema.my_custom_udf
+  parameters: 
+    - datatype: varchar
+    - datatype: int
+  returns: 
+    datatype: varchar
+```
+
+This function can then be invoked in SQL like so:
+  
+  ```sql
+  SELECT functions_db.functions_schema.my_custom_udf('hello', 1);
+  ```
+
+<Note>
+  This pattern is often seen in Snowflake as functions are materialized to a database and schema.
+</Note>
+
 ## Outlook
 SDF function blocks allow to specify almost all of SQL's function signatures. Going forward we also want to enable you to write implementations, in SQL, Python and Rust. Stay tuned for the continuation of this story! 
 
