@@ -57,7 +57,7 @@ After running the command, you will see the following output:
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.095 secs
+   Finished new in 0.110 secs
 
 ```
 
@@ -96,15 +96,15 @@ Let's see just how easy it is to set up SDF and run your first query.
 ``` shell
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
+   Finished 1 model [1 succeeded] in 0.232 secs
 
 Schema hello.pub.main
-+-------------+------------------+------------+
-| column_name | data_type        | classifier |
-+-------------+------------------+------------+
-| column_1    | varchar not null |            |
-| column_2    | varchar not null |            |
-+-------------+------------------+------------+
-   Finished 1 model [1 succeeded] in 0.231 secs
+┌─────────────┬──────────────────┬────────────┬─────────────┐
+│ column_name ┆ data_type        ┆ classifier ┆ description │
+╞═════════════╪══════════════════╪════════════╪═════════════╡
+│ column_1    ┆ varchar not null ┆            ┆             │
+│ column_2    ┆ varchar not null ┆            ┆             │
+└─────────────┴──────────────────┴────────────┴─────────────┘
 
         ```
 
@@ -122,6 +122,7 @@ Schema hello.pub.main
 ``` shell
 Working set 1 model file, 1 .sdf file
     Running hello.pub.main (./src/main.sql)
+   Finished 1 model [1 succeeded] in 0.190 secs
 
 Table hello.pub.main
 +----------+-----------------+
@@ -130,7 +131,6 @@ Table hello.pub.main
 | hello    | Jeffrey Walters |
 +----------+-----------------+
 1 rows.
-   Finished 1 model [1 succeeded] in 0.176 secs
 
         ```
     </Step>
@@ -152,12 +152,12 @@ Table hello.pub.main
 Working set 2 model files, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
   Compiling hello.pub.main2 (./src/main2.sql)
+   Finished 2 models [2 succeeded] in 0.190 secs
 main2.column_1
 │
 │ copy
 └──────┐
        main.column_1
-   Finished 2 models [2 succeeded] in 0.175 secs
 
         ```
     </Step>

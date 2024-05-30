@@ -43,7 +43,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
     Created cybersyn_tech_innovation_incremental/workspace.sdf.yml
-   Finished new in 0.093 secs
+   Finished new in 0.112 secs
 
         ```
     </Step>
@@ -57,14 +57,14 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working set 3 model files, 2 .sdf files
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
+   Finished 2 models [1 succeeded, 1 downloaded] in 1.971 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
-+-------------+-----------+------------+
-| column_name | data_type | classifier |
-+-------------+-----------+------------+
-| domain_id   | varchar   |            |
-+-------------+-----------+------------+
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.234 secs
+┌─────────────┬───────────┬────────────┬─────────────┐
+│ column_name ┆ data_type ┆ classifier ┆ description │
+╞═════════════╪═══════════╪════════════╪═════════════╡
+│ domain_id   ┆ varchar   ┆            ┆             │
+└─────────────┴───────────┴────────────┴─────────────┘
 
         ```
 
@@ -130,164 +130,87 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 
 ``` shell
 Working set 4 model files, 2 .sdf files
- Preloading sdf_snowflake.staging.datafusion_push_events (schema & last_altered)
+Downloading sdf_snowflake.staging.datafusion_push_events (exists_remotely)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.648 secs
 
 Schema sdf_snowflake.staging.datafusion_push_events
-+--------------------------------+----------------+------------+
-| column_name                    | data_type      | classifier |
-+--------------------------------+----------------+------------+
-| id                             | varchar        |            |
-| created_at_timestamp           | timestamp      |            |
-| type                           | varchar        |            |
-| actor_avatar_url               | varchar        |            |
-| actor_display_login            | varchar        |            |
-| actor_gravatar_id              | varchar        |            |
-| actor_id                       | decimal(38, 0) |            |
-| actor_login                    | varchar        |            |
-| actor_url                      | varchar        |            |
-| repo_id                        | decimal(38, 0) |            |
-| repo_name                      | varchar        |            |
-| repo_url                       | varchar        |            |
-| org_avatar_url                 | varchar        |            |
-| org_gravatar_id                | varchar        |            |
-| org_id                         | decimal(38, 0) |            |
-| org_login                      | varchar        |            |
-| org_url                        | varchar        |            |
-| payload                        | variant        |            |
-| payload_action                 | varchar        |            |
-| payload_description            | varchar        |            |
-| payload_comment                | varchar        |            |
-| payload_master_branch          | varchar        |            |
-| payload_pull_request           | varchar        |            |
-| payload_pusher_type            | varchar        |            |
-| payload_push_id                | decimal(38, 0) |            |
-| payload_head                   | varchar        |            |
-| payload_ref                    | varchar        |            |
-| payload_ref_type               | varchar        |            |
-| payload_issue_id               | decimal(38, 0) |            |
-| payload_issue                  | variant        |            |
-| public                         | boolean        |            |
-| load_date                      | varchar        |            |
-| created_at                     | varchar        |            |
-| payload_body                   | varchar        |            |
-| payload_commit_id              | varchar        |            |
-| payload_created_at             | varchar        |            |
-| payload_user_id                | decimal(38, 0) |            |
-| payload_user_login             | varchar        |            |
-| issue                          | variant        |            |
-| issue_active_lock_reason       | varchar        |            |
-| issue_assignee                 | varchar        |            |
-| issue_assignees                | variant        |            |
-| issue_author_association       | varchar        |            |
-| issue_body                     | varchar        |            |
-| issue_closed_at                | varchar        |            |
-| issue_comments                 | decimal(38, 0) |            |
-| issue_comments_url             | varchar        |            |
-| issue_created_at               | varchar        |            |
-| issue_draft                    | boolean        |            |
-| issue_events_url               | varchar        |            |
-| issue_html_url                 | varchar        |            |
-| issue_id                       | decimal(38, 0) |            |
-| issue_labels                   | variant        |            |
-| issue_labels_url               | varchar        |            |
-| issue_locked                   | boolean        |            |
-| issue_milestone                | varchar        |            |
-| issue_node_id                  | varchar        |            |
-| issue_number                   | decimal(38, 0) |            |
-| issue_performed_via_github_app | varchar        |            |
-| issue_pull_request             | variant        |            |
-| issue_reactions                | variant        |            |
-| issue_repository_url           | varchar        |            |
-| issue_state                    | varchar        |            |
-| issue_timeline_url             | varchar        |            |
-| issue_title                    | varchar        |            |
-| issue_updated_at               | varchar        |            |
-| issue_url                      | varchar        |            |
-| issue_user_id                  | decimal(38, 0) |            |
-| issue_user_login               | varchar        |            |
-| issue_user_type                | varchar        |            |
-| language                       | varchar        |            |
-+--------------------------------+----------------+------------+
-
-Schema sdf_snowflake.staging.datafusion_push_events
-+--------------------------------+----------------+------------+
-| column_name                    | data_type      | classifier |
-+--------------------------------+----------------+------------+
-| id                             | varchar        |            |
-| created_at_timestamp           | timestamp      |            |
-| type                           | varchar        |            |
-| actor_avatar_url               | varchar        |            |
-| actor_display_login            | varchar        |            |
-| actor_gravatar_id              | varchar        |            |
-| actor_id                       | decimal(38, 0) |            |
-| actor_login                    | varchar        |            |
-| actor_url                      | varchar        |            |
-| repo_id                        | decimal(38, 0) |            |
-| repo_name                      | varchar        |            |
-| repo_url                       | varchar        |            |
-| org_avatar_url                 | varchar        |            |
-| org_gravatar_id                | varchar        |            |
-| org_id                         | decimal(38, 0) |            |
-| org_login                      | varchar        |            |
-| org_url                        | varchar        |            |
-| payload                        | variant        |            |
-| payload_action                 | varchar        |            |
-| payload_description            | varchar        |            |
-| payload_comment                | varchar        |            |
-| payload_master_branch          | varchar        |            |
-| payload_pull_request           | varchar        |            |
-| payload_pusher_type            | varchar        |            |
-| payload_push_id                | decimal(38, 0) |            |
-| payload_head                   | varchar        |            |
-| payload_ref                    | varchar        |            |
-| payload_ref_type               | varchar        |            |
-| payload_issue_id               | decimal(38, 0) |            |
-| payload_issue                  | variant        |            |
-| public                         | boolean        |            |
-| load_date                      | varchar        |            |
-| created_at                     | varchar        |            |
-| payload_body                   | varchar        |            |
-| payload_commit_id              | varchar        |            |
-| payload_created_at             | varchar        |            |
-| payload_user_id                | decimal(38, 0) |            |
-| payload_user_login             | varchar        |            |
-| issue                          | variant        |            |
-| issue_active_lock_reason       | varchar        |            |
-| issue_assignee                 | varchar        |            |
-| issue_assignees                | variant        |            |
-| issue_author_association       | varchar        |            |
-| issue_body                     | varchar        |            |
-| issue_closed_at                | varchar        |            |
-| issue_comments                 | decimal(38, 0) |            |
-| issue_comments_url             | varchar        |            |
-| issue_created_at               | varchar        |            |
-| issue_draft                    | boolean        |            |
-| issue_events_url               | varchar        |            |
-| issue_html_url                 | varchar        |            |
-| issue_id                       | decimal(38, 0) |            |
-| issue_labels                   | variant        |            |
-| issue_labels_url               | varchar        |            |
-| issue_locked                   | boolean        |            |
-| issue_milestone                | varchar        |            |
-| issue_node_id                  | varchar        |            |
-| issue_number                   | decimal(38, 0) |            |
-| issue_performed_via_github_app | varchar        |            |
-| issue_pull_request             | variant        |            |
-| issue_reactions                | variant        |            |
-| issue_repository_url           | varchar        |            |
-| issue_state                    | varchar        |            |
-| issue_timeline_url             | varchar        |            |
-| issue_title                    | varchar        |            |
-| issue_updated_at               | varchar        |            |
-| issue_url                      | varchar        |            |
-| issue_user_id                  | decimal(38, 0) |            |
-| issue_user_login               | varchar        |            |
-| issue_user_type                | varchar        |            |
-| language                       | varchar        |            |
-+--------------------------------+----------------+------------+
-   Finished 3 models [1 succeeded, 2 downloaded] in 3.261 secs
+┌────────────────────────────────┬────────────────┬────────────┬─────────────┐
+│ column_name                    ┆ data_type      ┆ classifier ┆ description │
+╞════════════════════════════════╪════════════════╪════════════╪═════════════╡
+│ id                             ┆ varchar        ┆            ┆             │
+│ created_at_timestamp           ┆ timestamp      ┆            ┆             │
+│ type                           ┆ varchar        ┆            ┆             │
+│ actor_avatar_url               ┆ varchar        ┆            ┆             │
+│ actor_display_login            ┆ varchar        ┆            ┆             │
+│ actor_gravatar_id              ┆ varchar        ┆            ┆             │
+│ actor_id                       ┆ decimal(38, 0) ┆            ┆             │
+│ actor_login                    ┆ varchar        ┆            ┆             │
+│ actor_url                      ┆ varchar        ┆            ┆             │
+│ repo_id                        ┆ decimal(38, 0) ┆            ┆             │
+│ repo_name                      ┆ varchar        ┆            ┆             │
+│ repo_url                       ┆ varchar        ┆            ┆             │
+│ org_avatar_url                 ┆ varchar        ┆            ┆             │
+│ org_gravatar_id                ┆ varchar        ┆            ┆             │
+│ org_id                         ┆ decimal(38, 0) ┆            ┆             │
+│ org_login                      ┆ varchar        ┆            ┆             │
+│ org_url                        ┆ varchar        ┆            ┆             │
+│ payload                        ┆ variant        ┆            ┆             │
+│ payload_action                 ┆ varchar        ┆            ┆             │
+│ payload_description            ┆ varchar        ┆            ┆             │
+│ payload_comment                ┆ varchar        ┆            ┆             │
+│ payload_master_branch          ┆ varchar        ┆            ┆             │
+│ payload_pull_request           ┆ varchar        ┆            ┆             │
+│ payload_pusher_type            ┆ varchar        ┆            ┆             │
+│ payload_push_id                ┆ decimal(38, 0) ┆            ┆             │
+│ payload_head                   ┆ varchar        ┆            ┆             │
+│ payload_ref                    ┆ varchar        ┆            ┆             │
+│ payload_ref_type               ┆ varchar        ┆            ┆             │
+│ payload_issue_id               ┆ decimal(38, 0) ┆            ┆             │
+│ payload_issue                  ┆ variant        ┆            ┆             │
+│ public                         ┆ boolean        ┆            ┆             │
+│ load_date                      ┆ varchar        ┆            ┆             │
+│ created_at                     ┆ varchar        ┆            ┆             │
+│ payload_body                   ┆ varchar        ┆            ┆             │
+│ payload_commit_id              ┆ varchar        ┆            ┆             │
+│ payload_created_at             ┆ varchar        ┆            ┆             │
+│ payload_user_id                ┆ decimal(38, 0) ┆            ┆             │
+│ payload_user_login             ┆ varchar        ┆            ┆             │
+│ issue                          ┆ variant        ┆            ┆             │
+│ issue_active_lock_reason       ┆ varchar        ┆            ┆             │
+│ issue_assignee                 ┆ varchar        ┆            ┆             │
+│ issue_assignees                ┆ variant        ┆            ┆             │
+│ issue_author_association       ┆ varchar        ┆            ┆             │
+│ issue_body                     ┆ varchar        ┆            ┆             │
+│ issue_closed_at                ┆ varchar        ┆            ┆             │
+│ issue_comments                 ┆ decimal(38, 0) ┆            ┆             │
+│ issue_comments_url             ┆ varchar        ┆            ┆             │
+│ issue_created_at               ┆ varchar        ┆            ┆             │
+│ issue_draft                    ┆ boolean        ┆            ┆             │
+│ issue_events_url               ┆ varchar        ┆            ┆             │
+│ issue_html_url                 ┆ varchar        ┆            ┆             │
+│ issue_id                       ┆ decimal(38, 0) ┆            ┆             │
+│ issue_labels                   ┆ variant        ┆            ┆             │
+│ issue_labels_url               ┆ varchar        ┆            ┆             │
+│ issue_locked                   ┆ boolean        ┆            ┆             │
+│ issue_milestone                ┆ varchar        ┆            ┆             │
+│ issue_node_id                  ┆ varchar        ┆            ┆             │
+│ issue_number                   ┆ decimal(38, 0) ┆            ┆             │
+│ issue_performed_via_github_app ┆ varchar        ┆            ┆             │
+│ issue_pull_request             ┆ variant        ┆            ┆             │
+│ issue_reactions                ┆ variant        ┆            ┆             │
+│ issue_repository_url           ┆ varchar        ┆            ┆             │
+│ issue_state                    ┆ varchar        ┆            ┆             │
+│ issue_timeline_url             ┆ varchar        ┆            ┆             │
+│ issue_title                    ┆ varchar        ┆            ┆             │
+│ issue_updated_at               ┆ varchar        ┆            ┆             │
+│ issue_url                      ┆ varchar        ┆            ┆             │
+│ issue_user_id                  ┆ decimal(38, 0) ┆            ┆             │
+│ issue_user_login               ┆ varchar        ┆            ┆             │
+│ issue_user_type                ┆ varchar        ┆            ┆             │
+│ language                       ┆ varchar        ┆            ┆             │
+└────────────────────────────────┴────────────────┴────────────┴─────────────┘
 
       ```
 
@@ -430,30 +353,21 @@ Schema sdf_snowflake.staging.datafusion_push_events
 
 ``` shell
 Working set 5 model files, 2 .sdf files
- Preloading sdf_snowflake.staging.github_push_events (schema & last_altered)
- Preloading sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (schema & last_altered)
+Downloading sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (exists_remotely)
+Downloading sdf_snowflake.staging.github_push_events (exists_remotely)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (./src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql)
+   Finished 3 models [2 succeeded, 1 downloaded] in 2.875 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
-+---------------------+----------------+------------+
-| column_name         | data_type      | classifier |
-+---------------------+----------------+------------+
-| actor_id            | decimal(38, 0) |            |
-| actor_display_login | varchar        |            |
-| contribution_count  | decimal(18, 0) |            |
-+---------------------+----------------+------------+
-
-Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
-+---------------------+----------------+------------+
-| column_name         | data_type      | classifier |
-+---------------------+----------------+------------+
-| actor_id            | decimal(38, 0) |            |
-| actor_display_login | varchar        |            |
-| contribution_count  | decimal(38, 0) |            |
-+---------------------+----------------+------------+
-   Finished 5 models [2 succeeded, 3 downloaded] in 5.682 secs
+┌─────────────────────┬────────────────┬────────────┬─────────────┐
+│ column_name         ┆ data_type      ┆ classifier ┆ description │
+╞═════════════════════╪════════════════╪════════════╪═════════════╡
+│ actor_id            ┆ decimal(38, 0) ┆            ┆             │
+│ actor_display_login ┆ varchar        ┆            ┆             │
+│ contribution_count  ┆ decimal(38, 0) ┆            ┆             │
+└─────────────────────┴────────────────┴────────────┴─────────────┘
 
     ```
 
