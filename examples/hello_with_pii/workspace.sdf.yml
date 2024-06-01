@@ -1,0 +1,20 @@
+workspace:
+  name: hello
+  edition: "1.2"
+  defaults:
+    dialect: presto
+  includes:
+    - path: src
+---
+classifier:
+  name: PII
+  labels:
+    - name: name
+---
+table:
+  name: main
+  columns:
+    - name: column_2
+      # UNCOMMENT THE BELOW
+      # classifiers:
+      #   - PII.name

@@ -1,0 +1,1 @@
+create external table one stored as CSV location  'data/a.csv';

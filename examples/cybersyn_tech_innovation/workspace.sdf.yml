@@ -1,0 +1,28 @@
+workspace:
+  name: cybersyn_tech_innovation # The name of this workspace -- required
+  edition: "1.2" # The edition of this workspace -- required
+  description: >
+      This workspace uses a free dataset on Snowflake's marketplace called Tech & Innovation Essentials. 
+      Running and compiling this workspace requires a connection to a Snowflake account with the dataset above installed.
+      The provider in this workspace is using the `default` credentials. Run sdf auth login snowflake with no name provided to set these.
+
+      Follow this link to install:  https://app.snowflake.com/marketplace/listing/GZTSZAS2KII/cybersyn-tech-innovation-essentials?search=cybersyn
+      To follow along with SDF's official guide:  https://docs.sdf.com/integrations/snowflake/basic-materialization
+
+  defaults:
+    dialect: snowflake
+    compute: remote
+    preprocessor: jinja
+    materialization: view
+
+  includes:
+    - path: src # The path to sql sources for this workspace -- at least one path is required
+      index: catalog-schema-table-name # The index to use for sources, this grabs the catalog, schema, and table name from the directory structure.
+
+  providers:
+    - type: snowflake
+      sources: 
+        - pattern: tech__innovation_essentials.cybersyn.*
+      targets:
+        - pattern: sdf_snowflake.*.*
+
