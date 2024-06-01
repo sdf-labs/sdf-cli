@@ -40,7 +40,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
     Created cybersyn_tech_innovation/src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql
     Created cybersyn_tech_innovation/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
     Created cybersyn_tech_innovation/workspace.sdf.yml
-   Finished new in 0.094 secs
+   Finished new in 0.101 secs
 
         ```
     </Step>
@@ -54,7 +54,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working set 3 model files, 2 .sdf files
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 1.610 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 1.534 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -170,7 +170,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 Working set 4 model files, 2 .sdf files
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
   Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 1.626 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 1.520 secs
 
 Schema sdf_snowflake.staging.latest_repo_name
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -210,23 +210,23 @@ Schema sdf_snowflake.staging.latest_repo_name
 Working set 4 model files, 2 .sdf files
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
     Running sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 5.246 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 6.235 secs
 
 Table sdf_snowflake.staging.latest_repo_name
-+--------------------------------------------------+-----------+
-| repo_name                                        | repo_id   |
-+--------------------------------------------------+-----------+
-| C043/U2W1D5                                      | 808502265 |
-| Senko-heart/keisho                               | 808599977 |
-| freddysundowner/lowcoder-gantt                   | 808461687 |
-| charankuramana09/Gurukul-Home-Tuitions-Backend   | 808635807 |
-| MADDCIENCEMASTER10/SigmaSite                     | 808677742 |
-| fernanda1102/testeHTML                           | 808766599 |
-| SvRomanova/misha3                                | 808608737 |
-| monu-daffodilsw/monu-daffodilsw                  | 808567805 |
-| WoogaAndrew/nct.remote.test.2024053115-0457.4817 | 808623026 |
-| Moshe-f/tic-tac-toe                              | 808649611 |
-+--------------------------------------------------+-----------+
++-----------------------------------------------------------------+-----------+
+| repo_name                                                       | repo_id   |
++-----------------------------------------------------------------+-----------+
+| abdsarmai/IP-SRV-WEB                                            | 808530445 |
+| fenhrir93/kanban                                                | 808516148 |
+| floratech01/Employee-Retention-Prediction                       | 808599725 |
+| vanita6070/SA-Maven-Web-App-Vanita                              | 808564614 |
+| tejalmeshram27/CoursePortal                                     | 808551792 |
+| RaghibAbdien/titian_crew                                        | 808508115 |
+| static-web-apps-testing-org/swa3cea078b76224ba693a01d97702c02a1 | 808797056 |
+| Roman-179/https---github.com-Roman-179-agon                     | 808593638 |
+| hurriCase/faceid-2-exercism                                     | 808626480 |
+| NicoRozier/skills-introduction-to-github                        | 808540121 |
++-----------------------------------------------------------------+-----------+
 10 rows.
 
         ```
@@ -272,7 +272,7 @@ Table sdf_snowflake.staging.latest_repo_name
 Working set 5 model files, 2 .sdf files
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 1.574 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 1.496 secs
 
 Schema sdf_snowflake.staging.push_events
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -334,20 +334,20 @@ Schema sdf_snowflake.staging.push_events
 
 ``` shell
 Working set 6 model files, 2 .sdf files
-Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
-Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
-Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
+Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
+Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
+Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
   Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
   Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (./src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (./src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (./src/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-   Finished 13 models [6 succeeded, 7 downloaded] in 1.518 secs
+   Finished 13 models [6 succeeded, 7 downloaded] in 1.569 secs
 
         ```
 
