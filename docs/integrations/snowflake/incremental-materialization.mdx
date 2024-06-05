@@ -39,11 +39,25 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 
 ``` shell
     Created cybersyn_tech_innovation_incremental/.gitignore
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/compiled-files/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/compiled-queries/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/data/tech__innovation_essentials/cybersyn/github_repos/data_0.parquet
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/data/tech__innovation_essentials/cybersyn/github_stars/data_0.parquet
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/.gitignore
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/generate_date_values.jinja
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/generate_integer_values.jinja
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/materialize.jinja
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/star.jinja
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/surrogate_key.jinja
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/test.jinja
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/workspace.sdf.yml
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/table/tech__innovation_essentials/cybersyn/github_repos.sdf.yml
+    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/table/tech__innovation_essentials/cybersyn/github_stars.sdf.yml
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
     Created cybersyn_tech_innovation_incremental/workspace.sdf.yml
-   Finished new in 0.112 secs
+   Finished new in 0.027 secs
 
         ```
     </Step>
@@ -54,10 +68,10 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
         ```
 
 ``` shell
-Working set 3 model files, 2 .sdf files
+Working set 3 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 1.560 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.117 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -80,9 +94,9 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
       Let's say we want to track push events to the [Apache DataFusion](https://github.com/apache/datafusion) repo. We can create a new model that finds all push events to DataFusion. Since the `github_events` source data is updated frequently, we can use incremental materialization to only query new push events, thereby saving on compute and optimizing our pipeline.
       Since we don't care about updates to existing rows, we can use the `append` merge strategy. This strategy appends new rows to the target table without updating existing rows.
 
-      Let's start creating a file called `datafusion_push_events.sql` and adding the following SQL to it:
+      Let's start creating a file called `datafusion_push_events.sql` in the directory `src/sdf_snowflake/staging/` and adding the following SQL to it:
 
-      ```sql datafusion_push_events.sql
+      ```sql src/sdf_snowflake/staging/datafusion_push_events.sql
       SELECT
         *
       FROM
@@ -129,11 +143,11 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
       ```
 
 ``` shell
-Working set 4 model files, 2 .sdf files
+Working set 4 model files, 1 .sdf file
 Downloading sdf_snowflake.staging.datafusion_push_events (exists_remotely)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.597 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.093 secs
 
 Schema sdf_snowflake.staging.datafusion_push_events
 ┌────────────────────────────────┬────────────────┬────────────┬─────────────┐
@@ -260,7 +274,7 @@ Schema sdf_snowflake.staging.datafusion_push_events
       Let's run the model now to materialize the table in non-incremental mode.
 
       ```shell
-      sdf run sdf_snowflake/staging/datafusion_push_events.sql
+      sdf run src/sdf_snowflake/staging/datafusion_push_events.sql
       ```
 
       Nice! The model should have successfully been materialized in Snowflake. Next, we'll try running the model in incremental mode.
@@ -314,7 +328,7 @@ Schema sdf_snowflake.staging.datafusion_push_events
 
     Let's say we now want to track a running count of the total push events per each unique contributor to the DataFusion repo. Since we want to update the row corresponding to the contributor, or create a new row if the contributor is new, the `merge` strategy is a perfect fit for this use case.
 
-    Let's start by adding a new SQL file to our workspace called `top_datafusion_contributors.sql` with the following SQL:
+    Let's start by adding a new SQL file to our workspace called `top_datafusion_contributors.sql` in the directory `src/sdf_snowflake/cybersyn_tech_innovation/` with the following SQL:
 
     ```sql src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
       SELECT 
@@ -352,13 +366,13 @@ Schema sdf_snowflake.staging.datafusion_push_events
     ```
 
 ``` shell
-Working set 5 model files, 2 .sdf files
-Downloading sdf_snowflake.staging.github_push_events (exists_remotely)
+Working set 5 model files, 1 .sdf file
 Downloading sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (exists_remotely)
+Downloading sdf_snowflake.staging.github_push_events (exists_remotely)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (./src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql)
-   Finished 3 models [2 succeeded, 1 downloaded] in 2.498 secs
+   Finished 3 models [2 succeeded, 1 downloaded] in 2.986 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
 ┌─────────────────────┬────────────────┬────────────┬─────────────┐
@@ -460,6 +474,9 @@ Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
     -- csv_compression: none
     -- is_incremental_mode: true
     ```
+    <Note>
+    If the file isn't updated, try reopening it. Sometimes, because of VSCode's cache, the file appears to be unchanged.
+    </Note>
 
     As you can see, the query was compiled with `builtin.is_incremental_mode` set to `True` and, as a byproduct, the SQL query is a `merge` statement that updates the `contribution_count` column in the target table with the new count from the source table.
 

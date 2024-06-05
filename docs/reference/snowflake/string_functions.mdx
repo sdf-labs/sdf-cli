@@ -1,0 +1,155 @@
+---
+title: "String Functions"
+---
+
+
+## `regexp_count`
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_count(<varchar, varchar>) returns decimal(38, 0)
+```
+returns number of matches of regular expression pattern in subject
+
+```sql
+function regexp_count(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+```
+returns number of matches of regular expression pattern in subject
+
+```sql
+function regexp_count(<varchar, varchar, decimal(38, 0), varchar>) returns decimal(38, 0)
+```
+returns number of matches of regular expression pattern in subject
+
+## `regexp_instr`
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_instr(<varchar, varchar>) returns decimal(38, 0)
+```
+returns position at which the subject matches the regular expression pattern
+
+```sql
+function regexp_instr(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+```
+returns position at which the subject matches the regular expression pattern
+
+```sql
+function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+returns position at which the subject matches the regular expression pattern
+
+```sql
+function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+returns position at which the subject matches the regular expression pattern
+
+```sql
+function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar>) returns decimal(38, 0)
+```
+returns position at which the subject matches the regular expression pattern
+
+```sql
+function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)>) returns decimal(38, 0)
+```
+returns position at which the subject matches the regular expression pattern
+
+## `regexp_like`
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_like(<varchar, varchar>) returns boolean
+```
+returns TRUE if subject RLIKE pattern
+
+```sql
+function regexp_like(<varchar, varchar, varchar>) returns boolean
+```
+returns TRUE if subject RLIKE pattern
+
+## `regexp_replace`
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_replace(<varchar, varchar>) returns varchar
+```
+replaces substring in subject matching a regular expression pattern
+
+```sql
+function regexp_replace(<varchar, varchar, varchar>) returns varchar
+```
+replaces substring in subject matching a regular expression pattern
+
+```sql
+function regexp_replace(<varchar, varchar, varchar, decimal(38, 0)>) returns varchar
+```
+replaces substring in subject matching a regular expression pattern
+
+```sql
+function regexp_replace(<varchar, varchar, varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
+```
+replaces substring in subject matching a regular expression pattern
+
+```sql
+function regexp_replace(<varchar, varchar, varchar, decimal(38, 0), decimal(38, 0), varchar>) returns varchar
+```
+replaces substring in subject matching a regular expression pattern
+
+## `regexp_substr`
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_substr(<varchar, varchar>) returns varchar
+```
+returns substring in subject which matches the regular expression pattern
+
+```sql
+function regexp_substr(<varchar, varchar, decimal(38, 0)>) returns varchar
+```
+returns substring in subject which matches the regular expression pattern
+
+```sql
+function regexp_substr(<varchar, varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
+```
+returns substring in subject which matches the regular expression pattern
+
+```sql
+function regexp_substr(<varchar, varchar, decimal(38, 0), decimal(38, 0), varchar>) returns varchar
+```
+returns substring in subject which matches the regular expression pattern
+
+```sql
+function regexp_substr(<varchar, varchar, decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)>) returns varchar
+```
+returns substring in subject which matches the regular expression pattern
+
+## `regexp_substr_all`
+[🔗 Official Documentation](#)
+
+```sql
+function regexp_substr_all(<varchar, varchar>) returns array
+```
+returns all substring in subject which matches the regular expression pattern
+
+```sql
+function regexp_substr_all(<varchar, varchar, decimal(38, 0)>) returns array
+```
+returns all substring in subject which matches the regular expression pattern
+
+```sql
+function regexp_substr_all(<varchar, varchar, decimal(38, 0), decimal(38, 0)>) returns array
+```
+returns all substring in subject which matches the regular expression pattern
+
+```sql
+function regexp_substr_all(<varchar, varchar, decimal(38, 0), decimal(38, 0), varchar>) returns array
+```
+returns all substring in subject which matches the regular expression pattern
+
+```sql
+function regexp_substr_all(<varchar, varchar, decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)>) returns array
+```
+returns all substring in subject which matches the regular expression pattern
+
+   Finished man in 0.042 secs
+

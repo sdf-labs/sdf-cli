@@ -1,0 +1,159 @@
+---
+title: "Window Functions"
+---
+
+
+## `conditional_change_event`
+[🔗 Official Documentation](#)
+
+```sql
+function conditional_change_event(<$1>) returns decimal(38, 0)
+```
+Returns the event window number of this row in the window based on whether the argument expression on the current row differs from that on the previous row 
+
+## `conditional_true_event`
+[🔗 Official Documentation](#)
+
+```sql
+function conditional_true_event(<boolean>) returns decimal(38, 0)
+```
+Returns the event window number of this row in the window based on the result of the boolean argument expression 
+
+```sql
+function conditional_true_event(<decimal(38, 0)>) returns decimal(38, 0)
+```
+
+
+## `cume_dist`
+[🔗 Official Documentation](#)
+
+```sql
+function cume_dist(<>) returns double
+```
+Returns the cumulative distribution of a row in the window
+
+## `dense_rank`
+[🔗 Official Documentation](#)
+
+```sql
+function dense_rank(<>) returns decimal(38, 0)
+```
+Returns the dense rank of a row in the window
+
+## `first_value`
+[🔗 Official Documentation](#)
+
+```sql
+function first_value(<$1>) returns $1
+```
+Returns the first value of a column
+
+## `lag`
+[🔗 Official Documentation](#)
+
+```sql
+function lag(<$1>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+```sql
+function lag(<$1, decimal(38, 0)>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+```sql
+function lag(<$1, decimal(38, 0), $1>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+## `last_value`
+[🔗 Official Documentation](#)
+
+```sql
+function last_value(<$1>) returns $1
+```
+Returns the last value of a column
+
+## `lead`
+[🔗 Official Documentation](#)
+
+```sql
+function lead(<$1>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+```sql
+function lead(<$1, decimal(38, 0)>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+```sql
+function lead(<$1, decimal(38, 0), $1>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+## `nth_value`
+[🔗 Official Documentation](#)
+
+```sql
+function nth_value(<$1, decimal(38, 0)>) returns $1
+```
+Returns the first value of a column
+
+## `ntile`
+[🔗 Official Documentation](#)
+
+```sql
+function ntile(<decimal(38, 0)>) returns decimal(38, 0)
+```
+Number of groups (ntiles) per window
+
+## `percent_rank`
+[🔗 Official Documentation](#)
+
+```sql
+function percent_rank(<>) returns double
+```
+Returns the percent rank of a row in the window
+
+## `rank`
+[🔗 Official Documentation](#)
+
+```sql
+function rank(<>) returns decimal(38, 0)
+```
+Returns the rank of a row in the window
+
+## `ratio_to_report`
+[🔗 Official Documentation](#)
+
+```sql
+function ratio_to_report(<decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns a cumulative ratio_to_report of a column
+
+```sql
+function ratio_to_report(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns a cumulative ratio_to_report of a column
+
+```sql
+function ratio_to_report(<double>) returns double
+```
+Returns a cumulative ratio_to_report of a column
+
+```sql
+function ratio_to_report(<double, decimal(38, 0)>) returns double
+```
+Returns a cumulative ratio_to_report of a column
+
+## `row_number`
+[🔗 Official Documentation](#)
+
+```sql
+function row_number(<>) returns decimal(38, 0)
+```
+Returns the position of this row in the window
+
+   Finished man in 0.045 secs
+

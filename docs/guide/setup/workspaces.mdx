@@ -121,16 +121,17 @@ workspace:
 - `name` - The name of the workspace. This is used to create the default catalog
   for the workspace.
 - `edition` - The edition of the workspace. This is used to determine which
-  version of the workspace to expect when compiling your project.
-- `includes` - The includes block defines where to look for the code sources
-  that will be used to build your project and transform your data. Each includes block can specify properties which overwrite the default specified for the workspace, but only for tables defined within files included in the specified path.
-- `excludes` - The excludes block defines where to explicitly ignore code sources or metadata.
-- `defaults` - The defaults block contains all defaults for certain properties across the workspace. In this case, we're specifying the default catalog, schema, and dialect. 
+  version of the workspace to expect when compiling your project. By default this is `1.2`.
+- `includes` - The include block references all metadata, code, and that will be used to build your project and transform your data. Can be a file, folder, or glob pattern.
+Each includes element can specify additional properties like the [IncludeType](/reference/sdf-yml#enum-includetype). 
+- `excludes` - The excludes block defines where to explicitly ignore code sources or metadata. Can be a file, folder, or glob pattern.
+- `defaults` - The defaults block contains all defaults for the workspace. In this case, we're specifying the default catalog, schema, and dialect. 
 - `dialect` - The default SQL dialect that will be used to build your project.
   SDF supports multi-dialect projects, so you can have different SQL dialects in
   the same project by configuring the dialect in the
   [table metadata block](#table-block). However, most projects will only use
   one.
+
 
 ### Table Block
 

@@ -200,7 +200,27 @@
 				{
 					"group": "Snowflake Functions",
 					"pages": [
-						"reference/snowflake/all_functions"
+						"reference/snowflake/account_usage_table_functions",
+						"reference/snowflake/aggregate_functions",
+						"reference/snowflake/bitwise_expression_functions",
+						"reference/snowflake/conditional_expression_functions",
+						"reference/snowflake/context_functions",
+						"reference/snowflake/conversion_functions",
+						"reference/snowflake/data_generation_functions",
+						"reference/snowflake/date_and_time_functions",
+						"reference/snowflake/encryption_functions",
+						"reference/snowflake/geospatial_functions",
+						"reference/snowflake/hash_functions",
+						"reference/snowflake/information_schema",
+						"reference/snowflake/metadata_functions",
+						"reference/snowflake/numeric_functions",
+						"reference/snowflake/semi-structured_and_structured_data_functions",
+						"reference/snowflake/string_and_binary_functions",
+						"reference/snowflake/string_functions",
+						"reference/snowflake/system_functions",
+						"reference/snowflake/table_functions",
+						"reference/snowflake/vector_similarity_functions",
+						"reference/snowflake/window_functions"
 					]
 				},
 				{

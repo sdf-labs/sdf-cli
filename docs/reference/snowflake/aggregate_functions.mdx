@@ -1,0 +1,771 @@
+---
+title: "Aggregate Functions"
+---
+
+
+## `any_value`
+[🔗 Official Documentation](#)
+
+```sql
+function any_value(<$1>) returns $1
+```
+Returns the first non-null value of a column
+
+## `approx_count_distinct`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_count_distinct($1, ...) returns decimal(38, 0)
+```
+approximate distinct row count
+
+## `approx_percentile`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_percentile(<double, double>) returns double
+```
+percentile approximation of inputs
+
+## `approx_percentile_accumulate`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_percentile_accumulate(<double>) returns object
+```
+tdigest state in JSON format
+
+## `approx_percentile_combine`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_percentile_combine(<object>) returns object
+```
+A tdigest state in JSON format
+
+## `approx_percentile_estimate`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_percentile_estimate(<object, double>) returns double
+```
+ESTIMATED PERCENTILE VALUE
+
+## `approx_top_k`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_top_k(<$1>) returns array
+```
+Array containing top k items and their frequencies
+
+```sql
+function approx_top_k(<$1, decimal(38, 0)>) returns array
+```
+Array containing top k items and their frequencies
+
+```sql
+function approx_top_k(<$1, decimal(38, 0), decimal(38, 0)>) returns array
+```
+Array containing top k items and their frequencies
+
+## `approx_top_k_accumulate`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_top_k_accumulate(<$1, decimal(38, 0)>) returns object
+```
+An internal state
+
+## `approx_top_k_combine`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_top_k_combine(<object>) returns object
+```
+A state created by combining information from combining  all input
+
+```sql
+function approx_top_k_combine(<object, decimal(38, 0)>) returns object
+```
+A state created by combining information from combining  all input
+
+## `approx_top_k_estimate`
+[🔗 Official Documentation](#)
+
+```sql
+function approx_top_k_estimate(<object>) returns array
+```
+Array containing most common k items and their frequencies
+
+```sql
+function approx_top_k_estimate(<object, decimal(38, 0)>) returns array
+```
+Array containing most common k items and their frequencies
+
+## `approximate_jaccard_index`
+[🔗 Official Documentation](#)
+
+```sql
+function approximate_jaccard_index(<variant>) returns double
+```
+Similarity approximation of inputs
+
+## `approximate_similarity`
+[🔗 Official Documentation](#)
+
+```sql
+function approximate_similarity(<variant>) returns double
+```
+Similarity approximation of inputs
+
+## `array_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function array_agg(<$1>) returns array
+```
+output array
+
+## `array_union_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function array_union_agg(<array>) returns array
+```
+output array
+
+```sql
+function array_union_agg(<array>) returns array
+```
+output array
+
+## `array_unique_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function array_unique_agg(<$1>) returns array
+```
+output array
+
+## `avg`
+[🔗 Official Documentation](#)
+
+```sql
+function avg(<decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the average of the values in a group. Null values are ignored.
+
+```sql
+function avg(<double>) returns double
+```
+Returns the average of the values in a group. Null values are ignored.
+
+```sql
+function avg(<string>) returns string
+```
+
+
+## `bitand_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function bitand_agg(<decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the bitwise AND of a column. Null values are ignored.
+
+```sql
+function bitand_agg(<string>) returns string
+```
+
+
+## `bitmap_bit_position`
+[🔗 Official Documentation](#)
+
+```sql
+function bitmap_bit_position(<decimal(38, 0)>) returns decimal(38, 0)
+```
+relative position in bitmap
+
+## `bitmap_bucket_number`
+[🔗 Official Documentation](#)
+
+```sql
+function bitmap_bucket_number(<decimal(38, 0)>) returns decimal(38, 0)
+```
+bucket index of the destination bitmap
+
+## `bitmap_construct_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function bitmap_construct_agg(<decimal(38, 0)>) returns binary
+```
+bitmap
+
+## `bitmap_count`
+[🔗 Official Documentation](#)
+
+```sql
+function bitmap_count(<binary>) returns decimal(38, 0)
+```
+number of set bits in the bitmap
+
+## `bitmap_or_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function bitmap_or_agg(<binary>) returns binary
+```
+destination bitmap
+
+## `bitor_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function bitor_agg(<decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the bitwise OR of a column. Null values are ignored.
+
+```sql
+function bitor_agg(<string>) returns string
+```
+
+
+## `bitxor_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function bitxor_agg(<decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the bitwise XOR of a column. Null values are ignored.
+
+```sql
+function bitxor_agg(<string>) returns string
+```
+
+
+## `booland_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function booland_agg(<decimal(38, 0)>) returns boolean
+```
+Returns the logical (boolean) AND of a column. Null values are ignored.
+
+```sql
+function booland_agg(<boolean>) returns boolean
+```
+
+
+## `boolor_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function boolor_agg(<decimal(38, 0)>) returns boolean
+```
+Returns the logical (boolean) OR of a column. Null values are ignored.
+
+```sql
+function boolor_agg(<boolean>) returns boolean
+```
+
+
+## `boolxor_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function boolxor_agg(<decimal(38, 0)>) returns boolean
+```
+Returns the logical (boolean) XOR of a column. Null values are ignored.
+
+```sql
+function boolxor_agg(<boolean>) returns boolean
+```
+
+
+## `corr`
+[🔗 Official Documentation](#)
+
+```sql
+function corr(<double, double>) returns double
+```
+Returns the correlation coefficient for non-null pairs in a group.
+
+## `count`
+[🔗 Official Documentation](#)
+
+```sql
+function count($1, ...) returns decimal(38, 0)
+```
+Return number of non-null values of a given expression
+
+## `count_if`
+[🔗 Official Documentation](#)
+
+```sql
+function count_if(<boolean>) returns decimal(38, 0)
+```
+Returns a conditional count
+
+```sql
+function count_if(<boolean>) returns double
+```
+Returns a conditional count
+
+## `covar_pop`
+[🔗 Official Documentation](#)
+
+```sql
+function covar_pop(<double, double>) returns double
+```
+Returns the population covariance for non-null pairs in a group.
+
+## `covar_samp`
+[🔗 Official Documentation](#)
+
+```sql
+function covar_samp(<double, double>) returns double
+```
+Returns the sample covariance for non-null pairs in a group.
+
+## `grouping`
+[🔗 Official Documentation](#)
+
+```sql
+function grouping(...) returns int
+```
+
+
+## `grouping_id`
+[🔗 Official Documentation](#)
+
+```sql
+function grouping_id($1, ...) returns decimal(38, 0)
+```
+Returns grouping bit-vector
+
+## `hash_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function hash_agg($1, ...) returns decimal(38, 0)
+```
+aggregate hash value
+
+```sql
+function hash_agg(<$1>) returns decimal(38, 0)
+```
+aggregate hash value
+
+```sql
+function hash_agg(<$1, $2>) returns decimal(38, 0)
+```
+aggregate hash value
+
+```sql
+function hash_agg(<$1, $2, $3>) returns decimal(38, 0)
+```
+aggregate hash value
+
+```sql
+function hash_agg(<$1, $2, $3, $4>) returns decimal(38, 0)
+```
+aggregate hash value
+
+```sql
+function hash_agg(<$1, $2, $3, $4, $5>) returns decimal(38, 0)
+```
+aggregate hash value
+
+## `hll`
+[🔗 Official Documentation](#)
+
+```sql
+function hll($1, ...) returns decimal(38, 0)
+```
+approximate distinct row count
+
+## `hll_accumulate`
+[🔗 Official Documentation](#)
+
+```sql
+function hll_accumulate($1, ...) returns binary
+```
+HyperLogLog state
+
+## `hll_combine`
+[🔗 Official Documentation](#)
+
+```sql
+function hll_combine(<binary>) returns binary
+```
+combined HyperLogLog state
+
+## `hll_estimate`
+[🔗 Official Documentation](#)
+
+```sql
+function hll_estimate(<binary>) returns decimal(38, 0)
+```
+approximate distinct row count
+
+## `hll_export`
+[🔗 Official Documentation](#)
+
+```sql
+function hll_export(<binary>) returns object
+```
+HyperLogLog state as a compound OBJECT
+
+## `hll_import`
+[🔗 Official Documentation](#)
+
+```sql
+function hll_import(<object>) returns binary
+```
+HyperLogLog state in binary format
+
+## `kurtosis`
+[🔗 Official Documentation](#)
+
+```sql
+function kurtosis(<decimal(38, 0)>) returns double
+```
+Returns the sample kurtosis of the values in a group. Null values are ignored.
+
+```sql
+function kurtosis(<double>) returns double
+```
+Returns the sample kurtosis of the values in a group. Null values are ignored.
+
+## `listagg`
+[🔗 Official Documentation](#)
+
+```sql
+function listagg(<varchar>) returns varchar
+```
+output string
+
+```sql
+function listagg(<varchar, varchar>) returns varchar
+```
+output string
+
+## `max`
+[🔗 Official Documentation](#)
+
+```sql
+function max(<$1>) returns $1
+```
+Returns the maximum of a column
+
+## `max_by`
+[🔗 Official Documentation](#)
+
+```sql
+function max_by(<$1, $2>) returns $1
+```
+Returns value of first column with maximum second column val
+
+```sql
+function max_by(<$1, $2, decimal(38, 0)>) returns array
+```
+Returns value of first column with maximum second column val
+
+## `median`
+[🔗 Official Documentation](#)
+
+```sql
+function median(<>) returns decimal(38, 0)
+```
+value of sort key at specified percentile
+
+```sql
+function median(<decimal(38, 0)>) returns decimal(38, 0)
+```
+value of sort key at specified percentile
+
+## `min`
+[🔗 Official Documentation](#)
+
+```sql
+function min(<$1>) returns $1
+```
+Returns the minimum of a column
+
+## `min_by`
+[🔗 Official Documentation](#)
+
+```sql
+function min_by(<$1, $2>) returns $1
+```
+Returns value of first column with minimum second column val
+
+```sql
+function min_by(<$1, $2, decimal(38, 0)>) returns array
+```
+Returns value of first column with minimum second column val
+
+## `minhash`
+[🔗 Official Documentation](#)
+
+```sql
+function minhash(decimal(38, 0), $1, ...) returns variant
+```
+Minhash state including an array of k (first input arg) minimum hash values
+
+## `minhash_combine`
+[🔗 Official Documentation](#)
+
+```sql
+function minhash_combine(<variant>) returns variant
+```
+Combined result of two (or more) minhash states
+
+## `mode`
+[🔗 Official Documentation](#)
+
+```sql
+function mode(<$1>) returns $1
+```
+Returns the most frequent item of a column
+
+## `object_agg`
+[🔗 Official Documentation](#)
+
+```sql
+function object_agg(<varchar, variant>) returns object
+```
+output object
+
+## `percentile_cont`
+[🔗 Official Documentation](#)
+
+```sql
+function percentile_cont(<>) returns double
+```
+value of sort key at specified percentile
+
+```sql
+function percentile_cont(<decimal(38, 0)>) returns double
+```
+value of sort key at specified percentile
+
+## `percentile_disc`
+[🔗 Official Documentation](#)
+
+```sql
+function percentile_disc(<>) returns decimal(38, 0)
+```
+value of sort key at specified percentile
+
+```sql
+function percentile_disc(<decimal(38, 0)>) returns decimal(38, 0)
+```
+value of sort key at specified percentile
+
+## `regr_avgx`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_avgx(<double, double>) returns double
+```
+Returns the average of the independent variable (2nd parameter) for non-null pairs.
+
+## `regr_avgy`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_avgy(<double, double>) returns double
+```
+Returns the average of the dependent variable (1st parameter) for non-null pairs.
+
+## `regr_count`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_count(<double, double>) returns double
+```
+Returns the number of non-null number pairs.
+
+## `regr_intercept`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_intercept(<double, double>) returns double
+```
+Returns the intercept of the univariate linear regression line for non-null pairs.
+
+## `regr_r2`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_r2(<double, double>) returns double
+```
+Returns the coefficient of determination for non-null pairs.
+
+## `regr_slope`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_slope(<double, double>) returns double
+```
+Returns the slope of the linear regression line for non-null pairs.
+
+## `regr_sxx`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_sxx(<double, double>) returns double
+```
+Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr2) for non-null pairs.
+
+## `regr_sxy`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_sxy(<double, double>) returns double
+```
+Returns REGR_COUNT(expr1, expr2) * COVAR_POP(expr1, expr2) for non-null pairs.
+
+## `regr_syy`
+[🔗 Official Documentation](#)
+
+```sql
+function regr_syy(<double, double>) returns double
+```
+Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr1) for non-null pairs.
+
+## `skew`
+[🔗 Official Documentation](#)
+
+```sql
+function skew(<decimal(38, 0)>) returns double
+```
+Returns the sample skew of the values in a group. Null values are ignored.
+
+```sql
+function skew(<double>) returns double
+```
+Returns the sample skew of the values in a group. Null values are ignored.
+
+## `stddev`
+[🔗 Official Documentation](#)
+
+```sql
+function stddev(<decimal(38, 0)>) returns double
+```
+Returns the sample standard deviation of the values in a group. Null values are ignored.
+
+```sql
+function stddev(<double>) returns double
+```
+Returns the sample standard deviation of the values in a group. Null values are ignored.
+
+## `stddev_pop`
+[🔗 Official Documentation](#)
+
+```sql
+function stddev_pop(<decimal(38, 0)>) returns double
+```
+Returns the population standard deviation of the values in a group. Null values are ignored.
+
+```sql
+function stddev_pop(<double>) returns double
+```
+Returns the population standard deviation of the values in a group. Null values are ignored.
+
+## `stddev_samp`
+[🔗 Official Documentation](#)
+
+```sql
+function stddev_samp(<decimal(38, 0)>) returns double
+```
+Returns the sample standard deviation of the values in a group. Null values are ignored.
+
+```sql
+function stddev_samp(<double>) returns double
+```
+Returns the sample standard deviation of the values in a group. Null values are ignored.
+
+## `sum`
+[🔗 Official Documentation](#)
+
+```sql
+function sum(<decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns a sum of a column
+
+```sql
+function sum(<double>) returns double
+```
+Returns a sum of a column
+
+## `var_pop`
+[🔗 Official Documentation](#)
+
+```sql
+function var_pop(<decimal(38, 0)>) returns double
+```
+Returns the population variance of the values in a group. Null values are ignored.
+
+```sql
+function var_pop(<double>) returns double
+```
+Returns the population variance of the values in a group. Null values are ignored.
+
+## `var_samp`
+[🔗 Official Documentation](#)
+
+```sql
+function var_samp(<decimal(38, 0)>) returns double
+```
+Returns the sample variance of the values in a group. Null values are ignored.
+
+```sql
+function var_samp(<double>) returns double
+```
+Returns the sample variance of the values in a group. Null values are ignored.
+
+## `variance`
+[🔗 Official Documentation](#)
+
+```sql
+function variance(<decimal(38, 0)>) returns double
+```
+Returns the sample variance of the values in a group. Null values are ignored.
+
+```sql
+function variance(<double>) returns double
+```
+Returns the sample variance of the values in a group. Null values are ignored.
+
+## `variance_pop`
+[🔗 Official Documentation](#)
+
+```sql
+function variance_pop(<decimal(38, 0)>) returns double
+```
+Returns the population variance of the values in a group. Null values are ignored.
+
+```sql
+function variance_pop(<double>) returns double
+```
+Returns the population variance of the values in a group. Null values are ignored.
+
+## `variance_samp`
+[🔗 Official Documentation](#)
+
+```sql
+function variance_samp(<decimal(38, 0)>) returns double
+```
+Returns the sample variance of the values in a group. Null values are ignored.
+
+```sql
+function variance_samp(<double>) returns double
+```
+Returns the sample variance of the values in a group. Null values are ignored.
+
+   Finished man in 0.043 secs
+

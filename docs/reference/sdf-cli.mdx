@@ -44,7 +44,6 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf dbt`↴](#sdf-dbt)
 * [`sdf dbt init`↴](#sdf-dbt-init)
 * [`sdf dbt refresh`↴](#sdf-dbt-refresh)
-* [`sdf lsp`↴](#sdf-lsp)
 
 ## `sdf`
 
@@ -69,7 +68,6 @@ SDF's modular SQL
 * `auth` — Authenticate CLI to services like SDF, AWS, OpenAI, etc
 * `man` — Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
 * `dbt` — Initialize an sdf workspace from an existing dbt project
-* `lsp` — 
 
 ###### **Options:**
 
@@ -243,6 +241,12 @@ Compile models
 
   Possible values: `true`, `false`
 
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -345,6 +349,12 @@ Run models
   Default value: `false`
 
   Possible values: `true`, `false`
+
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
 
 * `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
@@ -452,6 +462,12 @@ Test your models
 
   Possible values: `true`, `false`
 
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
+
 * `-u`, `--sql-logic-test-update` — Goldie update the sqllogictests files
 
   Default value: `false`
@@ -555,6 +571,12 @@ Statistics for your data
 
   Possible values: `true`, `false`
 
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -652,6 +674,12 @@ Report code quality
 
   Possible values: `true`, `false`
 
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -748,6 +776,12 @@ Check code quality
   Default value: `false`
 
   Possible values: `true`, `false`
+
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
@@ -927,6 +961,12 @@ Display lineage for a given table and/or column
 
   Possible values: `true`, `false`
 
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
+
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -1041,6 +1081,12 @@ Push a local workspace to the SDF Service
   Default value: `false`
 
   Possible values: `true`, `false`
+
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
@@ -1182,6 +1228,12 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
   Default value: `false`
 
   Possible values: `true`, `false`
+
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
 
 * `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
@@ -1434,6 +1486,12 @@ Display SDF's deploy structure as a json schema doc [only: json] Display SDF's i
 
   Possible values: `sql`, `yml`, `markdown`, `json`
 
+* `-i`, `--information-schema-version  INFORMATION_SCHEMA_VERSION ` — Information Schema Version
+
+  Default value: `v1`
+
+  Possible values: `v1`, `v2`
+
 
 
 
@@ -1528,11 +1586,5 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 
 
 
-## `sdf lsp`
-
-**Usage:** `sdf lsp`
-
-
-
-   Finished man in 0.107 secs
+   Finished man in 0.025 secs
 

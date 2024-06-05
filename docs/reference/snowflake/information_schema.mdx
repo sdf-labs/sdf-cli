@@ -1,0 +1,992 @@
+---
+title: "Information Schema"
+---
+
+
+## `alert_history`
+[🔗 Official Documentation](#)
+
+```sql
+function alert_history(<>) returns struct<
+  name string,
+  database_name string,
+  schema_name string,
+  condition string,
+  condition_query_id string,
+  action string,
+  action_query_id string,
+  state string,
+  sql_error_code bigint,
+  sql_error_message string,
+  scheduled_time timestamp,
+  completed_time timestamp
+>
+
+```
+
+
+## `auto_refresh_registration_history`
+[🔗 Official Documentation](#)
+
+```sql
+function auto_refresh_registration_history(<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  object_name string,
+  object_type string,
+  credits_used bigint,
+  files_registered bigint
+>
+
+```
+
+
+## `automatic_clustering_history`
+[🔗 Official Documentation](#)
+
+```sql
+function automatic_clustering_history<$1, $2> (<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  table_name string,
+  credits_used bigint,
+  num_bytes_reclustered bigint,
+  num_rows_reclustered bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+## `complete_task_graphs`
+[🔗 Official Documentation](#)
+
+```sql
+function complete_task_graphs(<>) returns struct<
+  root_task_name string,
+  database_name string,
+  schema_name string,
+  state string,
+  scheduled_from string,
+  first_error_task_name string,
+  first_error_code bigint,
+  first_error_message string,
+  scheduled_time timestamp,
+  query_start_time timestamp,
+  next_scheduled_time timestamp,
+  completed_time timestamp,
+  root_task_id string,
+  graph_version bigint,
+  run_id bigint,
+  attempt_number bigint,
+  config string,
+  graph_run_group_id bigint
+>
+
+```
+
+
+## `copy_history`
+[🔗 Official Documentation](#)
+
+```sql
+function copy_history(<table_name string, start_time timestamp>) returns struct<
+  file_name string,
+  stage_location string,
+  last_load_time timestamp,
+  row_count bigint,
+  row_parsed bigint,
+  file_size bigint,
+  first_error_message string,
+  first_error_line_number bigint,
+  first_error_character_pos bigint,
+  first_error_column_name string,
+  error_count bigint,
+  error_limit bigint,
+  status string,
+  table_catalog_name string,
+  table_schema_name string,
+  table_name string,
+  pipe_catalog_name string,
+  pipe_schema_name string,
+  pipe_name string,
+  pipe_received_time timestamp
+>
+
+```
+
+
+## `current_task_graphs`
+[🔗 Official Documentation](#)
+
+```sql
+function current_task_graphs(<>) returns struct<
+  root_task_name string,
+  database_name string,
+  schema_name string,
+  state string,
+  scheduled_from string,
+  first_error_task_name string,
+  first_error_code bigint,
+  first_error_message string,
+  scheduled_time timestamp,
+  query_start_time timestamp,
+  next_scheduled_time timestamp,
+  completed_time timestamp,
+  root_task_id string,
+  graph_version bigint,
+  run_id bigint,
+  attempt_number bigint,
+  config string,
+  graph_run_group_id bigint
+>
+
+```
+
+
+## `data_transfer_history`
+[🔗 Official Documentation](#)
+
+```sql
+function data_transfer_history(<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  source_cloud string,
+  source_region string,
+  destination_cloud string,
+  destination_region string,
+  bytes_transferred bigint,
+  transfer_type string
+>
+
+```
+
+
+## `database_refresh_history`
+[🔗 Official Documentation](#)
+
+```sql
+function database_refresh_history(<string>) returns struct<
+  current_phase string,
+  start_time timestamp,
+  end_time timestamp,
+  job_uuid string,
+  copy_bytes bigint,
+  object_count bigint
+>
+
+```
+
+
+```sql
+function database_refresh_history(<>) returns struct<
+  current_phase string,
+  start_time timestamp,
+  end_time timestamp,
+  job_uuid string,
+  copy_bytes bigint,
+  object_count bigint
+>
+
+```
+
+
+## `database_refresh_progress`
+[🔗 Official Documentation](#)
+
+```sql
+function database_refresh_progress(<string>) returns struct<
+  phase_name string,
+  result string,
+  start_time timestamp,
+  end_time timestamp,
+  details variant
+>
+
+```
+
+
+```sql
+function database_refresh_progress(<>) returns struct<
+  phase_name string,
+  result string,
+  start_time timestamp,
+  end_time timestamp,
+  details variant
+>
+
+```
+
+
+## `database_refresh_progress_by_job`
+[🔗 Official Documentation](#)
+
+```sql
+function database_refresh_progress_by_job(<string>) returns struct<
+  phase_name string,
+  result string,
+  start_time timestamp,
+  end_time timestamp,
+  details variant
+>
+
+```
+
+
+## `database_replication_usage_history`
+[🔗 Official Documentation](#)
+
+```sql
+function database_replication_usage_history<$1, $2> (<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  database_name string,
+  credits_used string,
+  bytes_transferred bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+## `database_storage_usage_history`
+[🔗 Official Documentation](#)
+
+```sql
+function database_storage_usage_history<$1, $2> (<>) returns struct<usage_date date,
+  database_name string,
+  average_database_bytes bigint,
+  average_fail_safe_bytes bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+## `dynamic_table_graph_history`
+[🔗 Official Documentation](#)
+
+```sql
+function dynamic_table_graph_history(<>) returns struct<
+  name string,
+  schema_name string,
+  database_name string,
+  qualified_name string,
+  inputs array,
+  target_lag_type string,
+  target_lag_sec bigint,
+  query_text string,
+  valid_from timestamp,
+  valid_to timestamp,
+  scheduling_state object
+>
+
+```
+
+
+## `dynamic_table_refresh_history`
+[🔗 Official Documentation](#)
+
+```sql
+function dynamic_table_refresh_history(<>) returns struct<
+  name string,
+  schema_name string,
+  database_name string,
+  state string,
+  state_code string,
+  state_message string,
+  query_id string,
+  data_timestamp timestamp,
+  refresh_start_time timestamp,
+  refresh_end_time timestamp,
+  completion_target timestamp,
+  qualified_name string,
+  last_completed_dependency object,
+  statistics object,
+  refresh_action string,
+  refresh_trigger string
+>
+
+```
+
+
+## `external_functions_history`
+[🔗 Official Documentation](#)
+
+```sql
+function external_functions_history(<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  name string,
+  arguments string,
+  function_endpoint_url string,
+  source_cloud string,
+  source_region string,
+  target_cloud string,
+  target_region string,
+  invocations bigint,
+  sent_rows bigint,
+  received_rows bigint,
+  sent_bytes bigint,
+  received_bytes bigint
+>
+
+```
+
+
+## `external_table_file_registration_history`
+[🔗 Official Documentation](#)
+
+```sql
+function external_table_file_registration_history(<table_name string>) returns struct<
+  job_created_time timestamp,
+  file_name string,
+  operation_status string,
+  message string,
+  file_size bigint,
+  last_modified timestamp
+>
+
+```
+
+
+## `external_table_files`
+[🔗 Official Documentation](#)
+
+```sql
+function external_table_files(<table_name string>) returns struct<
+  file_name string,
+  registered_on timestamp,
+  file_size bigint,
+  last_modified timestamp,
+  etag string,
+  md5 string
+>
+
+```
+
+
+## `login_history`
+[🔗 Official Documentation](#)
+
+```sql
+function login_history<$1, $2> (<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+
+
+## `login_history_by_user`
+[🔗 Official Documentation](#)
+
+```sql
+function login_history_by_user<$1, $2> (<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+
+
+## `materialized_view_refresh_history`
+[🔗 Official Documentation](#)
+
+```sql
+function materialized_view_refresh_history<$1, $2> (<>) returns struct< start_time timestamp, end_time timestamp, credits_used string, materialized_view_name string >
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+## `notification_history`
+[🔗 Official Documentation](#)
+
+```sql
+function notification_history(<>) returns struct<
+  created timestamp,
+  processed timestamp,
+  message_source string,
+  integration_name string,
+  status string,
+  message string
+>
+
+```
+
+
+## `pipe_usage_history`
+[🔗 Official Documentation](#)
+
+```sql
+function pipe_usage_history(<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  pipe_name string,
+  credits_used string,
+  bytes_inserted bigint,
+  files_inserted bigint
+>
+
+```
+
+
+## `policy_references`
+[🔗 Official Documentation](#)
+
+```sql
+function policy_references(<>) returns struct<
+  policy_db string,
+  policy_schema string,
+  policy_name string,
+  policy_kind string,
+  ref_database_name string,
+  ref_schema_name string,
+  ref_entity_name string,
+  ref_entity_domain string,
+  ref_column_name string,
+  ref_arg_column_names array,
+  tag_database string,
+  tag_schema string,
+  tag_name string,
+  policy_status string
+>
+
+```
+
+
+## `query_acceleration_history`
+[🔗 Official Documentation](#)
+
+```sql
+function query_acceleration_history<$1, $2> (<>) returns struct<start_time timestamp,
+  end_time timestamp,
+  credits_used bigint,
+  warehouse_name string,
+  num_files_scanned bigint,
+  num_bytes_scanned bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+## `query_history`
+[🔗 Official Documentation](#)
+
+```sql
+function query_history<$1, $2> (<>) returns struct<query_id string,
+  query_text string,
+  database_name string,
+  schema_name string,
+  query_type string,
+  session_id bigint,
+  user_name string,
+  role_name string,
+  warehouse_name string,
+  warehouse_size string,
+  warehouse_type string,
+  cluster_number bigint,
+  query_tag string,
+  execution_status string,
+  error_code bigint,
+  error_message string,
+  start_time timestamp,
+  end_time timestamp,
+  total_elapsed_time bigint,
+  bytes_scanned bigint,
+  rows_produced bigint,
+  compilation_time bigint,
+  execution_time bigint,
+  queued_provisioning_time bigint,
+  queued_repair_time bigint,
+  queued_overload_time bigint,
+  transaction_blocked_time bigint,
+  outbound_data_transfer_cloud string,
+  outbound_data_transfer_region string,
+  outbound_data_transfer_bytes bigint,
+  inbound_data_transfer_cloud string,
+  inbound_data_transfer_region string,
+  inbound_data_transfer_bytes bigint,
+  list_external_file_time bigint,
+  credits_used_cloud_services bigint,
+  release_version string,
+  external_function_total_invocations bigint,
+  external_function_total_sent_rows bigint,
+  external_function_total_received_rows bigint,
+  external_function_total_sent_bytes bigint,
+  external_function_total_received_bytes bigint,
+  is_client_generated_statement	boolean,
+  query_hash string,
+  query_hash_version bigint,
+  query_parameterized_hash string,
+  query_parameterized_hash_version bigint>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+
+
+## `query_history_by_session`
+[🔗 Official Documentation](#)
+
+```sql
+function query_history_by_session<$1, $2> (<>) returns struct<query_id string,
+  query_text string,
+  database_name string,
+  schema_name string,
+  query_type string,
+  session_id bigint,
+  user_name string,
+  role_name string,
+  warehouse_name string,
+  warehouse_size string,
+  warehouse_type string,
+  cluster_number bigint,
+  query_tag string,
+  execution_status string,
+  error_code bigint,
+  error_message string,
+  start_time timestamp,
+  end_time timestamp,
+  total_elapsed_time bigint,
+  bytes_scanned bigint,
+  rows_produced bigint,
+  compilation_time bigint,
+  execution_time bigint,
+  queued_provisioning_time bigint,
+  queued_repair_time bigint,
+  queued_overload_time bigint,
+  transaction_blocked_time bigint,
+  outbound_data_transfer_cloud string,
+  outbound_data_transfer_region string,
+  outbound_data_transfer_bytes bigint,
+  inbound_data_transfer_cloud string,
+  inbound_data_transfer_region string,
+  inbound_data_transfer_bytes bigint,
+  list_external_file_time bigint,
+  credits_used_cloud_services bigint,
+  release_version string,
+  external_function_total_invocations bigint,
+  external_function_total_sent_rows bigint,
+  external_function_total_received_rows bigint,
+  external_function_total_sent_bytes bigint,
+  external_function_total_received_bytes bigint,
+  is_client_generated_statement	boolean,
+  query_hash string,
+  query_hash_version bigint,
+  query_parameterized_hash string,
+  query_parameterized_hash_version bigint>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+
+
+## `query_history_by_user`
+[🔗 Official Documentation](#)
+
+```sql
+function query_history_by_user<$1, $2> (<>) returns struct<query_id string,
+  query_text string,
+  database_name string,
+  schema_name string,
+  query_type string,
+  session_id bigint,
+  user_name string,
+  role_name string,
+  warehouse_name string,
+  warehouse_size string,
+  warehouse_type string,
+  cluster_number bigint,
+  query_tag string,
+  execution_status string,
+  error_code bigint,
+  error_message string,
+  start_time timestamp,
+  end_time timestamp,
+  total_elapsed_time bigint,
+  bytes_scanned bigint,
+  rows_produced bigint,
+  compilation_time bigint,
+  execution_time bigint,
+  queued_provisioning_time bigint,
+  queued_repair_time bigint,
+  queued_overload_time bigint,
+  transaction_blocked_time bigint,
+  outbound_data_transfer_cloud string,
+  outbound_data_transfer_region string,
+  outbound_data_transfer_bytes bigint,
+  inbound_data_transfer_cloud string,
+  inbound_data_transfer_region string,
+  inbound_data_transfer_bytes bigint,
+  list_external_file_time bigint,
+  credits_used_cloud_services bigint,
+  release_version string,
+  external_function_total_invocations bigint,
+  external_function_total_sent_rows bigint,
+  external_function_total_received_rows bigint,
+  external_function_total_sent_bytes bigint,
+  external_function_total_received_bytes bigint,
+  is_client_generated_statement	boolean,
+  query_hash string,
+  query_hash_version bigint,
+  query_parameterized_hash string,
+  query_parameterized_hash_version bigint>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+
+
+## `query_history_by_warehouse`
+[🔗 Official Documentation](#)
+
+```sql
+function query_history_by_warehouse<$1, $2> (<>) returns struct<query_id string,
+  query_text string,
+  database_name string,
+  schema_name string,
+  query_type string,
+  session_id bigint,
+  user_name string,
+  role_name string,
+  warehouse_name string,
+  warehouse_size string,
+  warehouse_type string,
+  cluster_number bigint,
+  query_tag string,
+  execution_status string,
+  error_code bigint,
+  error_message string,
+  start_time timestamp,
+  end_time timestamp,
+  total_elapsed_time bigint,
+  bytes_scanned bigint,
+  rows_produced bigint,
+  compilation_time bigint,
+  execution_time bigint,
+  queued_provisioning_time bigint,
+  queued_repair_time bigint,
+  queued_overload_time bigint,
+  transaction_blocked_time bigint,
+  outbound_data_transfer_cloud string,
+  outbound_data_transfer_region string,
+  outbound_data_transfer_bytes bigint,
+  inbound_data_transfer_cloud string,
+  inbound_data_transfer_region string,
+  inbound_data_transfer_bytes bigint,
+  list_external_file_time bigint,
+  credits_used_cloud_services bigint,
+  release_version string,
+  external_function_total_invocations bigint,
+  external_function_total_sent_rows bigint,
+  external_function_total_received_rows bigint,
+  external_function_total_sent_bytes bigint,
+  external_function_total_received_bytes bigint,
+  is_client_generated_statement	boolean,
+  query_hash string,
+  query_hash_version bigint,
+  query_parameterized_hash string,
+  query_parameterized_hash_version bigint>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+
+
+## `replication_group_refresh_history`
+[🔗 Official Documentation](#)
+
+```sql
+function replication_group_refresh_history(<string>) returns struct<
+  phase_name string,
+  start_time timestamp,
+  end_time timestamp,
+  job_uuid string,
+  total_bytes variant,
+  object_count variant,
+  primary_snapshot_timestamp timestamp,
+  error variant
+>
+
+```
+
+
+## `replication_group_refresh_progress`
+[🔗 Official Documentation](#)
+
+```sql
+function replication_group_refresh_progress(<string>) returns struct<
+  phase_name string,
+  start_time timestamp,
+  end_time timestamp,
+  progress string,
+  details variant
+>
+
+```
+
+
+## `replication_group_refresh_progress_by_job`
+[🔗 Official Documentation](#)
+
+```sql
+function replication_group_refresh_progress_by_job(<string>) returns struct<
+  phase_name string,
+  start_time timestamp,
+  end_time timestamp,
+  progress string,
+  details variant
+>
+
+```
+
+
+## `replication_group_usage_history`
+[🔗 Official Documentation](#)
+
+```sql
+function replication_group_usage_history(<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  replication_group_name string,
+  credits_used string,
+  bytes_transferred bigint
+>
+
+```
+
+
+## `replication_usage_history`
+[🔗 Official Documentation](#)
+
+```sql
+function replication_usage_history<$1, $2> (<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  database_name string,
+  credits_used string,
+  bytes_transferred bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+## `search_optimization_history`
+[🔗 Official Documentation](#)
+
+```sql
+function search_optimization_history<$1, $2> (<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  credits_used string,
+  table_name string
+>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+
+
+## `serverless_task_history`
+[🔗 Official Documentation](#)
+
+```sql
+function serverless_task_history<$1, $2> (<>) returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  task_name string,
+  credits_used string
+>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+
+
+## `stage_directory_file_registration_history`
+[🔗 Official Documentation](#)
+
+```sql
+function stage_directory_file_registration_history<$1> (<stage_name string>) returns struct<
+  job_created_time timestamp,
+  file_name string,
+  operation_status string,
+  message string,
+  file_size bigint,
+  last_modified timestamp
+>
+
+	where $1 in (timestamp, string)
+```
+
+
+## `stage_storage_usage_history`
+[🔗 Official Documentation](#)
+
+```sql
+function stage_storage_usage_history<$1, $2> (<>) returns struct<usage_date date, average_stage_bytes bigint>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+## `tag_references`
+[🔗 Official Documentation](#)
+
+```sql
+function tag_references(<string, string>) returns struct<
+  tag_database string,
+  tag_schema string,
+  tag_name string,
+  tag_value string,
+  level string,
+  object_database string,
+  object_schema string,
+  object_name string,
+  domain string,
+  column_name string
+>
+
+```
+
+
+## `tag_references_all_columns`
+[🔗 Official Documentation](#)
+
+```sql
+function tag_references_all_columns(<string, string>) returns struct<
+  tag_database string,
+  tag_schema string,
+  tag_name string,
+  tag_value string,
+  level string,
+  object_database string,
+  object_schema string,
+  object_name string,
+  domain string,
+  column_name string
+>
+
+```
+
+
+## `task_dependents`
+[🔗 Official Documentation](#)
+
+```sql
+function task_dependents(<task_name string>) returns struct<
+  created_on timestamp,
+  name string,
+  database_name string,
+  schema_name string,
+  owner string,
+  comment string,
+  warehouse string,
+  schedule string,
+  predecessors array,
+  state string,
+  definition string,
+  condition string
+>
+
+```
+
+
+## `task_history`
+[🔗 Official Documentation](#)
+
+```sql
+function task_history(<>) returns struct<
+  query_id string,
+  name string,
+  database_name string,
+  schema_name string,
+  query_text string,
+  condition_text string,
+  state string,
+  error_code bigint,
+  error_message string,
+  scheduled_time timestamp,
+  query_start_time timestamp,
+  next_scheduled_time timestamp,
+  completed_time timestamp,
+  root_task_id string,
+  graph_version bigint,
+  run_id bigint,
+  attempt_number bigint,
+  config string,
+  query_hash string,
+  query_hash_version bigint,
+  query_parameterized_hash string,
+  query_parameterized_hash_version bigint,
+  graph_run_group_id bigint
+>
+
+```
+
+
+## `validate_pipe_load`
+[🔗 Official Documentation](#)
+
+```sql
+function validate_pipe_load(<pipe_name string, start_time timestamp>) returns struct<
+  error string,
+  file string,
+  line bigint,
+  character bigint,
+  byte_offset bigint,
+  category string,
+  code bigint,
+  sql_state bigint,
+  column_name string,
+  row_number bigint,
+  row_start_line bigint,
+  rejected_record string
+>
+
+```
+
+
+## `warehouse_load_history`
+[🔗 Official Documentation](#)
+
+```sql
+function warehouse_load_history<$1, $2> (<>) returns struct<start_time timestamp,
+  end_time timestamp,
+  warehouse_name string,
+  avg_running decimal(38,2),
+  avg_queued_load decimal(38,2),
+  avg_queued_provisioning decimal(38,2),
+  avg_blocked decimal(38,2)
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+## `warehouse_metering_history`
+[🔗 Official Documentation](#)
+
+```sql
+function warehouse_metering_history<$1, $2> (<>) returns struct<start_time timestamp,
+  end_time timestamp,
+  warehouse_name string,
+  credits_used bigint,
+  credits_used_compute bigint,
+  credits_used_cloud_services bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+
+
+   Finished man in 0.042 secs
+

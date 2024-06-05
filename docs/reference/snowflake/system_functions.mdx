@@ -1,0 +1,485 @@
+---
+title: "System Functions"
+---
+
+
+## `get_query_operator_stats`
+[🔗 Official Documentation](#)
+
+```sql
+function get_query_operator_stats(<string>) returns struct<query_id string, step_id bigint, operator_id bigint, parent_operators array, operator_type string, operator_statistics variant, execution_time_breakdown variant, operator_attributes variant>
+
+```
+
+
+## `system$abort_session`
+[🔗 Official Documentation](#)
+
+```sql
+function system$abort_session(<decimal(38, 0)>) returns varchar
+```
+Abort the specified open session
+
+## `system$abort_transaction`
+[🔗 Official Documentation](#)
+
+```sql
+function system$abort_transaction(<decimal(38, 0)>) returns varchar
+```
+Abort the specified transaction if it is running. If the transaction is already is committed/rolled back then the state of the transaction is not altered.
+
+## `system$behavior_change_bundle_status`
+[🔗 Official Documentation](#)
+
+```sql
+function system$behavior_change_bundle_status(<varchar>) returns varchar
+```
+returned value
+
+## `system$cancel_all_queries`
+[🔗 Official Documentation](#)
+
+```sql
+function system$cancel_all_queries(<>) returns varchar
+```
+cancel all the queries running in the specified session
+
+```sql
+function system$cancel_all_queries(<decimal(38, 0)>) returns varchar
+```
+cancel all the queries running in the specified session
+
+## `system$cancel_query`
+[🔗 Official Documentation](#)
+
+```sql
+function system$cancel_query(<varchar>) returns varchar
+```
+cancel the specified running query
+
+## `system$clustering_depth`
+[🔗 Official Documentation](#)
+
+```sql
+function system$clustering_depth(varchar, ...) returns double
+```
+Average depth of the table
+
+```sql
+function system$clustering_depth(varchar, varchar, ...) returns double
+```
+Average depth of the table
+
+```sql
+function system$clustering_depth(varchar, varchar, varchar, ...) returns double
+```
+Average depth of the table
+
+## `system$clustering_information`
+[🔗 Official Documentation](#)
+
+```sql
+function system$clustering_information(varchar, ...) returns varchar
+```
+returns clustering information as json
+
+```sql
+function system$clustering_information(varchar, varchar, ...) returns varchar
+```
+returns clustering information as json
+
+```sql
+function system$clustering_information(varchar, varchar, varchar, ...) returns varchar
+```
+returns clustering information as json
+
+```sql
+function system$clustering_information(varchar, ...) returns varchar
+```
+returns clustering information as json
+
+```sql
+function system$clustering_information(varchar, decimal(38, 0), ...) returns varchar
+```
+returns clustering information as json
+
+## `system$convert_pipes_sqs_to_sns`
+[🔗 Official Documentation](#)
+
+```sql
+function system$convert_pipes_sqs_to_sns(<varchar, varchar>) returns varchar
+```
+returns true if all SQS pipes' metadata based on this bucket are successfully converted to new SNS topic-based pipes.
+
+## `system$disable_database_replication`
+[🔗 Official Documentation](#)
+
+```sql
+function system$disable_database_replication(<varchar>) returns varchar
+```
+Returns success/fail message of the operation
+
+## `system$estimate_query_acceleration`
+[🔗 Official Documentation](#)
+
+```sql
+function system$estimate_query_acceleration(<varchar>) returns varchar
+```
+estimate query acceleration result
+
+## `system$estimate_search_optimization_costs`
+[🔗 Official Documentation](#)
+
+```sql
+function system$estimate_search_optimization_costs(<varchar>) returns varchar
+```
+result: the cost report result for search optimization on the given table
+
+```sql
+function system$estimate_search_optimization_costs(<varchar, varchar>) returns varchar
+```
+result: the cost report result for search optimization on the given table
+
+## `system$explain_json_to_text`
+[🔗 Official Documentation](#)
+
+```sql
+function system$explain_json_to_text(<varchar>) returns varchar
+```
+text format explain plan from json
+
+## `system$explain_plan_json`
+[🔗 Official Documentation](#)
+
+```sql
+function system$explain_plan_json(<varchar>) returns varchar
+```
+json of the explain plan result
+
+## `system$external_table_pipe_status`
+[🔗 Official Documentation](#)
+
+```sql
+function system$external_table_pipe_status(<varchar>) returns varchar
+```
+returns pipe status as json
+
+## `system$generate_saml_csr`
+[🔗 Official Documentation](#)
+
+```sql
+function system$generate_saml_csr(<>) returns varchar
+```
+returns the result of the operation.
+
+## `system$get_aws_sns_iam_policy`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_aws_sns_iam_policy(<varchar>) returns varchar
+```
+returns IAM policy for the SNS topic
+
+## `system$get_directory_table_status`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_directory_table_status(<>) returns varchar
+```
+returns the associated directory table status
+
+```sql
+function system$get_directory_table_status(<varchar>) returns varchar
+```
+returns the associated directory table status
+
+## `system$get_iceberg_table_information`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_iceberg_table_information(<varchar>) returns varchar
+```
+returns the latest Iceberg metadata information
+
+```sql
+function system$get_iceberg_table_information(<varchar, decimal(38, 0)>) returns varchar
+```
+returns the latest Iceberg metadata information
+
+```sql
+function system$get_iceberg_table_information(<decimal(38, 0)>) returns varchar
+```
+returns the latest Iceberg metadata information
+
+```sql
+function system$get_iceberg_table_information(<decimal(38, 0), decimal(38, 0)>) returns varchar
+```
+returns the latest Iceberg metadata information
+
+## `system$get_predecessor_return_value`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_predecessor_return_value(<>) returns varchar
+```
+Return data
+
+```sql
+function system$get_predecessor_return_value(<varchar>) returns varchar
+```
+Return data
+
+## `system$get_service_logs`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_service_logs(<varchar, decimal(38, 0), varchar>) returns varchar
+```
+return status of operation
+
+```sql
+function system$get_service_logs(<varchar, decimal(38, 0), varchar, decimal(38, 0)>) returns varchar
+```
+return status of operation
+
+## `system$get_service_status`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_service_status(<$1>) returns varchar
+```
+return service resource set status
+
+```sql
+function system$get_service_status(<$1, decimal(38, 0)>) returns varchar
+```
+return service resource set status
+
+## `system$get_tag`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_tag(<>) returns varchar
+```
+Returns the associated tag value
+
+## `system$get_tag_allowed_values`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_tag_allowed_values(<>) returns varchar
+```
+Returns the allowed values for a tag
+
+## `system$get_tag_on_current_column`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_tag_on_current_column(<>) returns varchar
+```
+Returns the associated tag value
+
+## `system$get_tag_on_current_table`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_tag_on_current_table(<>) returns varchar
+```
+Returns the associated tag value on the current table
+
+## `system$get_task_graph_config`
+[🔗 Official Documentation](#)
+
+```sql
+function system$get_task_graph_config(<>) returns varchar
+```
+Result
+
+```sql
+function system$get_task_graph_config(<varchar>) returns varchar
+```
+Result
+
+## `system$global_account_set_parameter`
+[🔗 Official Documentation](#)
+
+```sql
+function system$global_account_set_parameter(<varchar, varchar, varchar>) returns varchar
+```
+param set result from the account
+
+## `system$last_change_commit_time`
+[🔗 Official Documentation](#)
+
+```sql
+function system$last_change_commit_time(<varchar>) returns decimal(38, 0)
+```
+returns the largest commit time as a long.
+
+## `system$migrate_saml_idp_registration`
+[🔗 Official Documentation](#)
+
+```sql
+function system$migrate_saml_idp_registration(<varchar>) returns varchar
+```
+Returns the result of the operation.
+
+```sql
+function system$migrate_saml_idp_registration(<varchar, varchar>) returns varchar
+```
+Returns the result of the operation.
+
+## `system$pipe_force_resume`
+[🔗 Official Documentation](#)
+
+```sql
+function system$pipe_force_resume(<varchar>) returns varchar
+```
+returns result of operation
+
+```sql
+function system$pipe_force_resume(<varchar, varchar>) returns varchar
+```
+returns result of operation
+
+## `system$pipe_rebinding_with_notification_channel`
+[🔗 Official Documentation](#)
+
+```sql
+function system$pipe_rebinding_with_notification_channel(<varchar>) returns varchar
+```
+returns true if the pipe successfully rebinds with its assigned notification channel
+
+## `system$pipe_status`
+[🔗 Official Documentation](#)
+
+```sql
+function system$pipe_status(<varchar>) returns varchar
+```
+returns pipe status as json
+
+## `system$query_reference`
+[🔗 Official Documentation](#)
+
+```sql
+function system$query_reference(<varchar>) returns varchar
+```
+Returns the query reference identifier
+
+```sql
+function system$query_reference(<varchar, boolean>) returns varchar
+```
+Returns the query reference identifier
+
+## `system$reference`
+[🔗 Official Documentation](#)
+
+```sql
+function system$reference(varchar, varchar, ...) returns varchar
+```
+Returns the reference identifier
+
+```sql
+function system$reference(varchar, varchar, boolean, ...) returns varchar
+```
+Returns the reference identifier
+
+```sql
+function system$reference(varchar, varchar, boolean, varchar, ...) returns varchar
+```
+Returns the reference identifier
+
+```sql
+function system$reference(varchar, varchar, ...) returns varchar
+```
+Returns the reference identifier
+
+```sql
+function system$reference(varchar, varchar, varchar, ...) returns varchar
+```
+Returns the reference identifier
+
+```sql
+function system$reference(varchar, varchar, varchar, varchar, ...) returns varchar
+```
+Returns the reference identifier
+
+## `system$set_return_value`
+[🔗 Official Documentation](#)
+
+```sql
+function system$set_return_value(<varchar>) returns varchar
+```
+Returns "OK" if succeeded
+
+## `system$show_active_behavior_change_bundles`
+[🔗 Official Documentation](#)
+
+```sql
+function system$show_active_behavior_change_bundles(<>) returns varchar
+```
+returned value
+
+## `system$snowpipe_streaming_update_channel_offset_token`
+[🔗 Official Documentation](#)
+
+```sql
+function system$snowpipe_streaming_update_channel_offset_token(<varchar, varchar, varchar>) returns varchar
+```
+returns status of update
+
+## `system$task_dependents_enable`
+[🔗 Official Documentation](#)
+
+```sql
+function system$task_dependents_enable(<varchar>) returns varchar
+```
+Returns "OK" if succeeded
+
+## `system$task_runtime_info`
+[🔗 Official Documentation](#)
+
+```sql
+function system$task_runtime_info(<varchar>) returns varchar
+```
+result
+
+## `system$typeof`
+[🔗 Official Documentation](#)
+
+```sql
+function system$typeof(<$1>) returns varchar
+```
+
+
+## `system$user_task_cancel_ongoing_executions`
+[🔗 Official Documentation](#)
+
+```sql
+function system$user_task_cancel_ongoing_executions(<varchar>) returns varchar
+```
+Returns "OK" if succeeded
+
+## `system$verify_external_oauth_token`
+[🔗 Official Documentation](#)
+
+```sql
+function system$verify_external_oauth_token(<>) returns varchar
+```
+The OAuth Access Token.
+
+## `system$wait`
+[🔗 Official Documentation](#)
+
+```sql
+function system$wait(<decimal(38, 0)>) returns varchar
+```
+Wait for a finite amount of time
+
+```sql
+function system$wait(<decimal(38, 0), varchar>) returns varchar
+```
+Wait for a finite amount of time
+
+   Finished man in 0.042 secs
+

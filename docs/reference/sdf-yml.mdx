@@ -29,11 +29,12 @@ title: "SDF YML Schema"
 `table-location:` | [`TableLocation?`](#enum-tablelocation)| Specify table ,location, defaults to none if not set|
 `creation-flags:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines the table creation options, defaults to none if not set|
 `incremental-options:` | [`IncrementalOptions?`](#nested-element-incrementaloptions)| Contains various options governing incremental table evaluation (only for incremental tables)|
-`dependencies:` | `array`| ALl table dependencies (syntax: catalog.schema.table)|
+`dependencies:` | `array`| All tables that this table depends on (syntax: catalog.schema.table)|
+`depended-on-by:` | `array`| All tables that depend on this table (syntax: catalog.schema.table)|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
 `partitioned-by:` | `array`| The partitioning format of the table|
 `severity:` | [`Severity?`](#enum-severity)| The default severity for this tables tests and checks|
-`constraints:` | `array`| |
+`tests:` | `array`| |
 `schedule:` | `string`| The schedule of the table [expressed as cron]|
 `starting:` | `string`| The first date of the table [expressed by prefixes of RFC 33]|
 `classifiers:` | `array`| An array of classifier references|
@@ -83,6 +84,39 @@ title: "SDF YML Schema"
 `name:` | `string`| The name of the credential (default = &#39;default&#39;)|
 `description:` | `string?`| A description of this credential|
 `source-locations:` | `array`| Credential defined by these set of .sdf files|
+### Options
+#### sdf
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`type:` | `string`| |
+`variant:` | [`SdfAuthVariant`](#enum-sdfauthvariant)| Variant of the credential|
+`headless-creds:` | [`HeadlessCredentials?`](#nested-element-headlesscredentials)| Headless Credentials|
+#### snowflake
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`type:` | `string`| |
+`account-id:` | `string`| The account id of your snowflake account (e.g. &lt;orgname&gt;.&lt;accountname&gt; or &lt;locator&gt;)|
+`username:` | `string`| The user name to connect to snowflake|
+`password:` | `string`| The password to connect to snowflake|
+`role:` | `string?`| The role to use for the connection|
+`warehouse:` | `string?`| The warehouse to use for the connection|
+#### aws
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`type:` | `string`| |
+`profile:` | `string?`| The name of th profile to use in the AWS credentials file|
+`default-region:` | `string?`| The default region to use for this profile|
+`role-arn:` | `string?`| The arn of the role to assume|
+`external-id:` | `string?`| The external id to use for the role|
+`use-web-identity:` | `boolean?`| Whether to use a web identity for authentication|
+`access-key-id:` | `string?`| The access key id to use for the connection|
+`secret-access-key:` | `string?`| The secret access key to use for the connection|
+`session-token:` | `string?`| The session token to use for the connection|
+#### openai
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`type:` | `string`| |
+`api-key:` | `string`| The api key to use for the connection|
 ## Block: `Environment`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -101,14 +135,14 @@ title: "SDF YML Schema"
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
-`model` | Contains models, i.e ddls or queries, used for data transformation|
-`test` | Contains queries against the data of the models, the check holds if the data returns zero rows|
-`check` | Contains queries against the information schema of the models, the check holds if the data returns zero rows|
-`report` | Contains queries for the information schema of the model|
-`stat` | Contains queries against the data of the models|
-`resource` | Contains resources like csv files that are shipped to the service, etc|
-`metadata` | Contains meta data like classifiers, etc|
-`seed` | Contains seeds, e.g csv files etc|
+`model` | Models are .sql files (ddls or queries) used for data transformation. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`test` | Tests are expectations against the data of models. Uses the sdf-test library by default. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`check` | Checks are logical expectations expresses as queries against the information schema of the SDF workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`report` | Reports are informational  queries against the information schema of the SDF workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`stat` | Statistics are informational queries against the data of the models. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`resource` | Resources are local data files (like parquet, csv, or json) used by models in the workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`metadata` | Metadata are .sdf.yml files to add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`seed` | Seeds are data files used both locally and in remote data warehouses. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
 ## Enum: `IndexMethod`
 Values |
 | :--- |
@@ -190,6 +224,7 @@ Values |
 `redshift`
 `snowflake`
 `s3`
+`sdf`
 ## Enum: `TablePurpose`
 Value | Description|
 | :--- | :------- |
@@ -218,6 +253,12 @@ Values |
 `append`
 `merge`
 `delete+insert`
+## Enum: `OnSchemaChange`
+Value | Description|
+| :--- | :------- |
+`fail` | Fail when the new schema of an incremental table does not match the old one|
+`append` | Keep all the columns of the old incremental table schema while appending the new columns from the new schema. Initialize all the columns that were deleted in the new schema with NULL|
+`sync` | Delete all the deleted columns from the incremental table; Append all the new columns|
 ## Enum: `FileFormat`
 Store table data in these formats.
 Values |
@@ -257,11 +298,12 @@ Value | Description|
 `stable` | Stable - A stable function may return different values given the same input across different queries but must return the same value for a given input within a query.|
 `volatile` | Volatile - A volatile function may change the return value from evaluation to evaluation. Multiple invocations of a volatile function may return different results when used in the same query.|
 ## Enum: `FunctionImplSpec`
-Values |
-| :--- |
-`builtin`
-`sql`
-`native`
+Value | Description|
+| :--- | :------- |
+`builtin` | By a built-in primitive in Datafusion. (Being phased out in favor of UDFs.)|
+`rust` | By a UDF in the sdf-functions crate.|
+`datafusion` | By a UDF in the datafusion crate.|
+`sql` | By a CREATE FUNCTION. (Not yet supported for evaluation.)|
 ## Enum: `SdfAuthVariant`
 Values |
 | :--- |
@@ -280,14 +322,16 @@ Values |
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `environment:` | `string?`| The default environment (can only be set on the level of the workspace)|
-`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this environment. If not set, defaults to presto|
+`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this environment. If not set, defaults to trino|
 `compute:` | [`ComputeKind?`](#enum-computekind)| The compute platform for this environment. If not set, defaults to local|
 `preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| The preprocessor for this environment. If not set, defaults to local|
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
 `materialization:` | [`Materialization?`](#enum-materialization)| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
 `creation-flag:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines table creation flags, defaults to  if not set|
-`library:` | `string?`| The default library for test and code generation, std or custom|
+`utils-lib:` | `string?`| The default utils library, if set overrides sdf_utils|
+`test-lib:` | `string?`| The default test library, if set overrides sdf_test|
+`materialization-lib:` | `string?`| The default materialization library, if set overrides sdf_materialization|
 `index-method:` | [`IndexMethod?`](#enum-indexmethod)| The default index for this tables|
 `include-type:` | [`IncludeType?`](#enum-includetype)| The default index for this tables|
 `sync-method:` | [`SyncType?`](#enum-synctype)| The default index for this tables|
@@ -306,11 +350,12 @@ Values |
 `name:` | `string`| |
 `path:` | `string?`| The relative path from this workspace to the referenced workspace, for a Git repo, from the root of the depot to the workspace|
 `environment:` | `string?`| The chosen workspace environment (none means default)|
-`target:` | `string?`| The Git repo The chosen workspace target (none means default)|
+`target:` | `string?`| The chosen workspace target (none means default)|
 `git:` | `string?`| The Git repo|
 `rev:` | `string?`| the Git revision (choose only one of the fields: rev, branch, tag)|
 `branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
 `tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
+`imports:` | `array`| Which models, reports, tests, checks etc. to include from the dependency|
 ### Nested element: `TargetProvider`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -359,6 +404,7 @@ Values |
 `unique-key:` | `string?`| Expression used for identifying records in Merge and Delete+Insert strategies; May be a column name or an expression combining multiple columns. If left unspecified, Merge and Delete+Insert strategies behave the same as Append|
 `merge-update-columns:` | `array`| List of column names to be updated as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
 `merge-exclude-columns:` | `array`| List of column names to exclude from updating as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
+`on-schema-change:` | [`OnSchemaChange?`](#enum-onschemachange)| Method for reacting to changing schema in the source of the incremental table Possible values are &#96;fail&#96;, &#96;append&#96;, and &#96;sync&#96;. If left unspecified, the default behavior is to ignore the change and possibly error out if the schema change is incompatible. &#96;fail&#96; causes a failure whenever any deviation in the schema of the source is detected; &#96;append&#96; adds new columns but does not delete the columns removed from the source; &#96;sync&#96; adds new columns and deletess the columns removed from the source;|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -367,10 +413,11 @@ Values |
 `datatype:` | `string?`| The type of this column|
 `classifiers:` | `array`| An array of classifier references|
 `lineage:` | [`Lineage?`](#nested-element-lineage)| Lineage, a tagged array of column references|
+`forward-lineage:` | [`Lineage?`](#nested-element-lineage)| Forward Lineage, the columns that this column is used to compute|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `samples:` | `array`| An array of representative literals of this column [experimental!]|
 `default-severity:` | [`Severity`](#enum-severity)| The default severity for this tables tests and checks|
-`constraints:` | `array`| |
+`tests:` | `array`| |
 ### Nested element: `Lineage`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -386,7 +433,7 @@ Values |
 ### Nested element: `Constraint`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`is:` | `string`| The constraint macro: must have the form lib.macro(args,..), where lib is any of the libs in scope, std is available by default|
+`expect:` | `string`| The constraint macro: must have the form lib.macro(args,..), where lib is any of the libs in scope, std is available by default|
 `severity:` | [`Severity?`](#enum-severity)| The severity of this constraint|
 ### Nested element: `Partition`
 |Field | Type | Description|
@@ -427,6 +474,10 @@ Values |
 | :---- | :--- | :------- |
 `input:` | `string`| The sql string corresponding to the input of this example|
 `output:` | `string`| The output corresponding to running the input string|
+### Nested element: `DataFusionSpec`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`udf:` | `string?`| The name attribute of the implementing UDF. None indicates the UDF is named the same as the function.|
 ### Nested element: `Config`
 |Field | Type | Description|
 | :---- | :--- | :------- |

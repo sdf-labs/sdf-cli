@@ -1,0 +1,412 @@
+---
+title: "Numeric Functions"
+---
+
+
+## `acos`
+[🔗 Official Documentation](#)
+
+```sql
+function acos(<double>) returns double
+```
+Compute the arccosine of the input expression (returned as radians).
+
+## `acosh`
+[🔗 Official Documentation](#)
+
+```sql
+function acosh(<double>) returns double
+```
+Compute the inverse hyperbolic cosine of the input expression.
+
+## `asin`
+[🔗 Official Documentation](#)
+
+```sql
+function asin(<double>) returns double
+```
+Compute the arcsine of the input expression (returned as radians).
+
+## `asinh`
+[🔗 Official Documentation](#)
+
+```sql
+function asinh(<double>) returns double
+```
+Compute the inverse hyperbolic sine of the input expression.
+
+## `atan`
+[🔗 Official Documentation](#)
+
+```sql
+function atan(<double>) returns double
+```
+Compute the arctangent of the input expression (returned as radians).
+
+## `atan2`
+[🔗 Official Documentation](#)
+
+```sql
+function atan2(<double, double>) returns double
+```
+Compute the angle (in radians) between the x-axis and point (x, y).
+
+## `atanh`
+[🔗 Official Documentation](#)
+
+```sql
+function atanh(<double>) returns double
+```
+Compute the inverse hyperbolic tangent of the input expression (as radians).
+
+## `cbrt`
+[🔗 Official Documentation](#)
+
+```sql
+function cbrt(<double>) returns double
+```
+Compute the cubic root of the input expression.
+
+## `ceil`
+[🔗 Official Documentation](#)
+
+```sql
+function ceil(<decimal(38, 0)>) returns decimal(38, 0)
+```
+round to the nearest integer not smaller than input
+
+```sql
+function ceil(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+round to the nearest integer not smaller than input
+
+```sql
+function ceil(<double>) returns double
+```
+round to the nearest integer not smaller than input
+
+```sql
+function ceil(<double, double>) returns double
+```
+round to the nearest integer not smaller than input
+
+## `cos`
+[🔗 Official Documentation](#)
+
+```sql
+function cos(<double>) returns double
+```
+Compute the cosine of the input expression (as radians).
+
+## `cosh`
+[🔗 Official Documentation](#)
+
+```sql
+function cosh(<double>) returns double
+```
+Compute the hyperbolic cosine of the input expression.
+
+## `cot`
+[🔗 Official Documentation](#)
+
+```sql
+function cot(<double>) returns double
+```
+Compute the cotangent of the input expression (as radians).
+
+## `degrees`
+[🔗 Official Documentation](#)
+
+```sql
+function degrees(<double>) returns double
+```
+convert r (radians) to degrees.
+
+## `div0`
+[🔗 Official Documentation](#)
+
+```sql
+function div0(decimal(38, 0), decimal(38, 0), ...) returns decimal(38, 0)
+```
+Divides two numbers; returns 0 if divisor is 0
+
+```sql
+function div0(double, double, ...) returns double
+```
+Divides two numbers; returns 0 if divisor is 0
+
+## `div0null`
+[🔗 Official Documentation](#)
+
+```sql
+function div0null(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+Divides two numbers; returns 0 if divisor is 0 or null
+
+```sql
+function div0null(<double, double>) returns double
+```
+Divides two numbers; returns 0 if divisor is 0 or null
+
+## `exp`
+[🔗 Official Documentation](#)
+
+```sql
+function exp(<double>) returns double
+```
+returns e raised to the x'th power
+
+## `factorial`
+[🔗 Official Documentation](#)
+
+```sql
+function factorial(<decimal(38, 0)>) returns decimal(38, 0)
+```
+Factorial of f
+
+## `floor`
+[🔗 Official Documentation](#)
+
+```sql
+function floor(<decimal(38, 0)>) returns decimal(38, 0)
+```
+round to the nearest integer not greater than input
+
+```sql
+function floor(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+round to the nearest integer not greater than input
+
+```sql
+function floor(<double>) returns double
+```
+round to the nearest integer not greater than input
+
+```sql
+function floor(<double, double>) returns double
+```
+round to the nearest integer not greater than input
+
+## `ln`
+[🔗 Official Documentation](#)
+
+```sql
+function ln(<double>) returns double
+```
+returns the natural logarithm of a
+
+## `log`
+[🔗 Official Documentation](#)
+
+```sql
+function log(<double, double>) returns double
+```
+returns the logarithm base b of a
+
+## `mod`
+[🔗 Official Documentation](#)
+
+```sql
+function mod(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+Computes modulo of two numbers
+
+```sql
+function mod(<double, double>) returns double
+```
+Computes modulo of two numbers
+
+## `pi`
+[🔗 Official Documentation](#)
+
+```sql
+function pi(<>) returns double
+```
+Returns the constant pi.
+
+## `pow`
+[🔗 Official Documentation](#)
+
+```sql
+function pow(<double, double>) returns double
+```
+returns x raised to the y'th power
+
+## `power`
+[🔗 Official Documentation](#)
+
+```sql
+function power(<double, double>) returns double
+```
+returns x raised to the y'th power
+
+## `radians`
+[🔗 Official Documentation](#)
+
+```sql
+function radians(<double>) returns double
+```
+convert d (degrees) to radians.
+
+## `round`
+[🔗 Official Documentation](#)
+
+```sql
+function round(<double>) returns double
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<double, double>) returns double
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<double, double, varchar>) returns double
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<decimal(38, 0)>) returns decimal(38, 0)
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<decimal(38, 0)>) returns decimal(38, 0)
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<decimal(38, 0), decimal(38, 0), varchar>) returns decimal(38, 0)
+```
+round to the nearest integer, with .5 rounded away from 0
+
+```sql
+function round(<>) returns bigint
+```
+
+
+## `sign`
+[🔗 Official Documentation](#)
+
+```sql
+function sign(<decimal(38, 0)>) returns decimal(38, 0)
+```
+returns sign of x
+
+```sql
+function sign(<double>) returns double
+```
+returns sign of x
+
+## `sin`
+[🔗 Official Documentation](#)
+
+```sql
+function sin(<double>) returns double
+```
+Compute the sine of the input expression (as radians).
+
+## `sinh`
+[🔗 Official Documentation](#)
+
+```sql
+function sinh(<double>) returns double
+```
+Compute the hyperbolic sine of the input expression.
+
+## `sqrt`
+[🔗 Official Documentation](#)
+
+```sql
+function sqrt(<double>) returns double
+```
+Compute the square root of the input expression.
+
+## `square`
+[🔗 Official Documentation](#)
+
+```sql
+function square(<double>) returns double
+```
+Compute the square of the input expression.
+
+## `tan`
+[🔗 Official Documentation](#)
+
+```sql
+function tan(<double>) returns double
+```
+Compute the tangent of the input expression (as radians).
+
+## `tanh`
+[🔗 Official Documentation](#)
+
+```sql
+function tanh(<double>) returns double
+```
+Compute the hyperbolic tangent of the input expression (as radians).
+
+## `truncate`
+[🔗 Official Documentation](#)
+
+```sql
+function truncate(<decimal(38, 0)>) returns decimal(38, 0)
+```
+truncate the fractional or date part
+
+```sql
+function truncate(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+truncate the fractional or date part
+
+```sql
+function truncate(<double>) returns double
+```
+truncate the fractional or date part
+
+```sql
+function truncate(<double, double>) returns double
+```
+truncate the fractional or date part
+
+```sql
+function truncate(<date, varchar>) returns date
+```
+truncate the fractional or date part
+
+```sql
+function truncate(<time, varchar>) returns time
+```
+truncate the fractional or date part
+
+```sql
+function truncate(<timestamp, varchar>) returns timestamp
+```
+truncate the fractional or date part
+
+## `width_bucket`
+[🔗 Official Documentation](#)
+
+```sql
+function width_bucket(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+returns the bucket a value falls into in an equiwidth histogram
+
+```sql
+function width_bucket(<double, double, double, decimal(38, 0)>) returns decimal(38, 0)
+```
+returns the bucket a value falls into in an equiwidth histogram
+
+   Finished man in 0.041 secs
+

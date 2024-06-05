@@ -1,0 +1,412 @@
+---
+title: "Date & Time Functions"
+---
+
+
+## `add_months`
+[🔗 Official Documentation](#)
+
+```sql
+function add_months(<string, bigint>) returns timestamp
+```
+
+
+## `convert_timezone`
+[🔗 Official Documentation](#)
+
+```sql
+function convert_timezone<$1> (<varchar, varchar, $1>) returns timestamp
+	where $1 in (timestamp, string)
+```
+Returns the input timestamp converted from source timezone to a destination timezone
+
+```sql
+function convert_timezone<$1> (<varchar, $1>) returns timestamp
+	where $1 in (timestamp, string)
+```
+Returns the input timestamp converted from source timezone to a destination timezone
+
+## `date_from_parts`
+[🔗 Official Documentation](#)
+
+```sql
+function date_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns date
+```
+Construct a date from individual components
+
+## `date_part`
+[🔗 Official Documentation](#)
+
+```sql
+function date_part<$1> (<string, $1>) returns double
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `date_trunc`
+[🔗 Official Documentation](#)
+
+```sql
+function date_trunc<$1> (<string, $1>) returns $1
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `dateadd`
+[🔗 Official Documentation](#)
+
+```sql
+function dateadd<$1> (<string, double, $1>) returns $1
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `datediff`
+[🔗 Official Documentation](#)
+
+```sql
+function datediff<$1, $2> (<string, $1, $2>) returns bigint
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
+	and $2 in (date, time, timestamp, varchar)
+```
+
+
+## `day`
+[🔗 Official Documentation](#)
+
+```sql
+function day(<$1>) returns bigint
+```
+
+
+## `dayname`
+[🔗 Official Documentation](#)
+
+```sql
+function dayname<$1> (<$1>) returns varchar
+	where $1 in (date, string)
+```
+
+
+## `dayofmonth`
+[🔗 Official Documentation](#)
+
+```sql
+function dayofmonth(<$1>) returns bigint
+```
+
+
+## `dayofweek`
+[🔗 Official Documentation](#)
+
+```sql
+function dayofweek(<$1>) returns bigint
+```
+
+
+## `dayofweekiso`
+[🔗 Official Documentation](#)
+
+```sql
+function dayofweekiso(<$1>) returns bigint
+```
+
+
+## `dayofyear`
+[🔗 Official Documentation](#)
+
+```sql
+function dayofyear(<$1>) returns bigint
+```
+
+
+## `extract`
+[🔗 Official Documentation](#)
+
+```sql
+function extract<$1> (<string, $1>) returns double
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, dayofweek_iso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `hour`
+[🔗 Official Documentation](#)
+
+```sql
+function hour(<$1>) returns bigint
+```
+
+
+## `last_day`
+[🔗 Official Documentation](#)
+
+```sql
+function last_day<$1> (<$1>) returns date
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+```sql
+function last_day<$1> (<$1, string>) returns date
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `minute`
+[🔗 Official Documentation](#)
+
+```sql
+function minute(<$1>) returns bigint
+```
+
+
+## `month`
+[🔗 Official Documentation](#)
+
+```sql
+function month(<$1>) returns bigint
+```
+
+
+## `monthname`
+[🔗 Official Documentation](#)
+
+```sql
+function monthname<$1> (<$1>) returns varchar
+	where $1 in (date, string)
+```
+
+
+## `months_between`
+[🔗 Official Documentation](#)
+
+```sql
+function months_between<$1> (<$1, $1>) returns bigint
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `next_day`
+[🔗 Official Documentation](#)
+
+```sql
+function next_day<$1> (<$1, varchar>) returns date
+	where $1 in (date, string)
+```
+
+
+## `previous_day`
+[🔗 Official Documentation](#)
+
+```sql
+function previous_day<$1> (<$1, varchar>) returns date
+	where $1 in (date, string)
+```
+
+
+## `quarter`
+[🔗 Official Documentation](#)
+
+```sql
+function quarter(<$1>) returns bigint
+```
+
+
+## `second`
+[🔗 Official Documentation](#)
+
+```sql
+function second(<$1>) returns bigint
+```
+
+
+## `time_from_parts`
+[🔗 Official Documentation](#)
+
+```sql
+function time_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns time
+```
+Construct a time from individual components
+
+```sql
+function time_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns time
+```
+Construct a time from individual components
+
+## `time_slice`
+[🔗 Official Documentation](#)
+
+```sql
+function time_slice<$1> (<$1, bigint, string>) returns $1
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+```sql
+function time_slice<$1> (<$1, bigint, string, string>) returns $1
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `timeadd`
+[🔗 Official Documentation](#)
+
+```sql
+function timeadd<$1> (<string, double, $1>) returns $1
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `timediff`
+[🔗 Official Documentation](#)
+
+```sql
+function timediff<$1> (<string, $1, $1>) returns bigint
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `timestamp_from_parts`
+[🔗 Official Documentation](#)
+
+```sql
+function timestamp_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns timestamp
+```
+Construct a timestamp from individual components
+
+```sql
+function timestamp_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns timestamp
+```
+Construct a timestamp from individual components
+
+```sql
+function timestamp_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar>) returns timestamp
+```
+Construct a timestamp from individual components
+
+```sql
+function timestamp_from_parts(<date, time>) returns timestamp
+```
+Construct a timestamp from individual components
+
+## `timestampadd`
+[🔗 Official Documentation](#)
+
+```sql
+function timestampadd<$1> (<string, double, $1>) returns $1
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `timestampdiff`
+[🔗 Official Documentation](#)
+
+```sql
+function timestampdiff<$1> (<string, $1, $1>) returns bigint
+	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
+	where $1 in (date, time, timestamp, varchar)
+```
+
+
+## `trunc`
+[🔗 Official Documentation](#)
+
+```sql
+function trunc(<decimal(38, 0)>) returns decimal(38, 0)
+```
+truncate the fractional or date part
+
+```sql
+function trunc(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+truncate the fractional or date part
+
+```sql
+function trunc(<double>) returns double
+```
+truncate the fractional or date part
+
+```sql
+function trunc(<double, double>) returns double
+```
+truncate the fractional or date part
+
+```sql
+function trunc(<date, varchar>) returns date
+```
+truncate the fractional or date part
+
+```sql
+function trunc(<time, varchar>) returns time
+```
+truncate the fractional or date part
+
+```sql
+function trunc(<timestamp, varchar>) returns timestamp
+```
+truncate the fractional or date part
+
+## `week`
+[🔗 Official Documentation](#)
+
+```sql
+function week(<$1>) returns bigint
+```
+
+
+## `weekiso`
+[🔗 Official Documentation](#)
+
+```sql
+function weekiso(<$1>) returns bigint
+```
+
+
+## `weekofyear`
+[🔗 Official Documentation](#)
+
+```sql
+function weekofyear(<$1>) returns bigint
+```
+
+
+## `year`
+[🔗 Official Documentation](#)
+
+```sql
+function year(<$1>) returns bigint
+```
+
+
+## `yearofweek`
+[🔗 Official Documentation](#)
+
+```sql
+function yearofweek(<$1>) returns bigint
+```
+
+
+## `yearofweekiso`
+[🔗 Official Documentation](#)
+
+```sql
+function yearofweekiso(<$1>) returns bigint
+```
+
+
+```sql
+function yearofweekiso(<$1>) returns bigint
+```
+
+
+   Finished man in 0.042 secs
+

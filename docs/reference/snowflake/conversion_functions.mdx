@@ -1,0 +1,528 @@
+---
+title: "Conversion Functions"
+---
+
+
+## `date`
+[🔗 Official Documentation](#)
+
+```sql
+function date(<timestamp>) returns date
+```
+Converts the timestamp argument to a date
+
+```sql
+function date(<timestamp>) returns date
+```
+Converts the timestamp argument to a date
+
+```sql
+function date(<timestamp>) returns date
+```
+Converts the timestamp argument to a date
+
+```sql
+function date(<varchar>) returns date
+```
+Converts the string argument to a date
+
+```sql
+function date(<varchar, varchar>) returns date
+```
+Converts the string argument to a date according to a format argument
+
+## `time`
+[🔗 Official Documentation](#)
+
+```sql
+function time(<timestamp>) returns time
+```
+Converts the timestamp argument to a time
+
+```sql
+function time(<timestamp>) returns time
+```
+Converts the timestamp argument to a time
+
+```sql
+function time(<timestamp>) returns time
+```
+Converts the timestamp argument to a time
+
+```sql
+function time(<varchar>) returns time
+```
+Converts the timestamp argument to a time
+
+```sql
+function time(<variant>) returns time
+```
+Converts the timestamp argument to a time
+
+## `to_array`
+[🔗 Official Documentation](#)
+
+```sql
+function to_array(<$1>) returns array
+```
+
+
+## `to_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function to_binary(<$1>) returns binary
+```
+
+
+```sql
+function to_binary(<$1, string>) returns binary
+```
+
+
+## `to_boolean`
+[🔗 Official Documentation](#)
+
+```sql
+function to_boolean(<$1>) returns boolean
+```
+
+
+## `to_char`
+[🔗 Official Documentation](#)
+
+```sql
+function to_char(<$1, string>) returns string
+```
+
+
+```sql
+function to_char(<$1>) returns string
+```
+
+
+## `to_date`
+[🔗 Official Documentation](#)
+
+```sql
+function to_date(<$1>) returns datetime
+```
+
+
+```sql
+function to_date(<$1, string>) returns datetime
+```
+
+
+## `to_decimal`
+[🔗 Official Documentation](#)
+
+```sql
+function to_decimal(<$1>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `to_double`
+[🔗 Official Documentation](#)
+
+```sql
+function to_double(<$1>) returns double
+```
+
+
+## `to_json`
+[🔗 Official Documentation](#)
+
+```sql
+function to_json(<variant>) returns varchar
+```
+Convert variant data to string as JSON
+
+## `to_number`
+[🔗 Official Documentation](#)
+
+```sql
+function to_number(<$1>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `to_numeric`
+[🔗 Official Documentation](#)
+
+```sql
+function to_numeric(<$1>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `to_object`
+[🔗 Official Documentation](#)
+
+```sql
+function to_object(<$1>) returns object
+```
+
+
+## `to_time`
+[🔗 Official Documentation](#)
+
+```sql
+function to_time(<$1>) returns time
+```
+
+
+```sql
+function to_time(<$1, string>) returns time
+```
+
+
+## `to_timestamp`
+[🔗 Official Documentation](#)
+
+```sql
+function to_timestamp(<$1>) returns timestamp
+```
+
+
+```sql
+function to_timestamp(<$1, string>) returns timestamp
+```
+
+
+## `to_timestamp_ltz`
+[🔗 Official Documentation](#)
+
+```sql
+function to_timestamp_ltz(<$1>) returns timestamp
+```
+
+
+```sql
+function to_timestamp_ltz(<$1, string>) returns timestamp
+```
+
+
+## `to_timestamp_ntz`
+[🔗 Official Documentation](#)
+
+```sql
+function to_timestamp_ntz(<$1>) returns timestamp
+```
+
+
+```sql
+function to_timestamp_ntz(<$1, string>) returns timestamp
+```
+
+
+## `to_timestamp_tz`
+[🔗 Official Documentation](#)
+
+```sql
+function to_timestamp_tz(<$1>) returns timestamp
+```
+
+
+```sql
+function to_timestamp_tz(<$1, string>) returns timestamp
+```
+
+
+## `to_varchar`
+[🔗 Official Documentation](#)
+
+```sql
+function to_varchar(<$1>) returns string
+```
+
+
+```sql
+function to_varchar(<$1, string>) returns string
+```
+
+
+## `to_variant`
+[🔗 Official Documentation](#)
+
+```sql
+function to_variant(<$1>) returns variant
+```
+
+
+## `to_xml`
+[🔗 Official Documentation](#)
+
+```sql
+function to_xml(<variant>) returns varchar
+```
+Convert variant data to string as XML
+
+## `try_to_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_binary(<$1>) returns binary
+```
+
+
+```sql
+function try_to_binary(<string, string>) returns binary
+```
+
+
+## `try_to_boolean`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_boolean(<$1>) returns boolean
+```
+
+
+## `try_to_date`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_date(<$1>) returns datetime
+```
+
+
+```sql
+function try_to_date(<$1, string>) returns datetime
+```
+
+
+## `try_to_decimal`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_decimal(<$1>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `try_to_double`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_double(<$1>) returns double
+```
+
+
+## `try_to_number`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_number(<$1>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `try_to_numeric`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_numeric(<$1>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `try_to_time`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_time(<$1>) returns time
+```
+
+
+```sql
+function try_to_time(<$1, string>) returns time
+```
+
+
+## `try_to_timestamp`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_timestamp(<$1>) returns timestamp
+```
+
+
+```sql
+function try_to_timestamp(<$1, string>) returns timestamp
+```
+
+
+## `try_to_timestamp_ntz`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_timestamp_ntz(<$1>) returns timestamp
+```
+
+
+```sql
+function try_to_timestamp_ntz(<$1, string>) returns timestamp
+```
+
+
+## `try_to_timestamp_tz`
+[🔗 Official Documentation](#)
+
+```sql
+function try_to_timestamp_tz(<$1>) returns timestamp
+```
+
+
+```sql
+function try_to_timestamp_tz(<$1, string>) returns timestamp
+```
+
+
+   Finished man in 0.044 secs
+

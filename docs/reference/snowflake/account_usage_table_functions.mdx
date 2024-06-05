@@ -1,0 +1,31 @@
+---
+title: "Account Usage Table Functions"
+---
+
+
+## `tag_references_with_lineage`
+[🔗 Official Documentation](#)
+
+```sql
+function tag_references_with_lineage(<string>) returns struct<
+  tag_database string,
+  tag_schema string,
+  tag_id bigint,
+  tag_name string,
+  tag_value string,
+  level string,
+  object_database string,
+  object_schema string,
+  object_id bigint,
+  object_name string,
+  object_deleted timestamp,
+  domain string,
+  column_id bigint,
+  column_name string
+>
+
+```
+
+
+   Finished man in 0.042 secs
+

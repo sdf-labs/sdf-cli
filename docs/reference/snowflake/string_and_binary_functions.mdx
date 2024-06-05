@@ -1,0 +1,921 @@
+---
+title: "String & Binary Functions"
+---
+
+
+## `ascii`
+[🔗 Official Documentation](#)
+
+```sql
+function ascii(<varchar>) returns decimal(38, 0)
+```
+Returns the ascii code of the first character of the string
+
+## `base64_decode_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function base64_decode_binary(<varchar>) returns binary
+```
+return decoded binary
+
+```sql
+function base64_decode_binary(<varchar, varchar>) returns binary
+```
+return decoded binary
+
+## `base64_decode_string`
+[🔗 Official Documentation](#)
+
+```sql
+function base64_decode_string(<varchar>) returns varchar
+```
+return decoded string
+
+```sql
+function base64_decode_string(<varchar, varchar>) returns varchar
+```
+return decoded string
+
+## `base64_encode`
+[🔗 Official Documentation](#)
+
+```sql
+function base64_encode(<varchar>) returns varchar
+```
+return encoded string
+
+```sql
+function base64_encode(<varchar, decimal(38, 0)>) returns varchar
+```
+return encoded string
+
+```sql
+function base64_encode(<varchar, decimal(38, 0), varchar>) returns varchar
+```
+return encoded string
+
+```sql
+function base64_encode(<binary>) returns varchar
+```
+return encoded string
+
+```sql
+function base64_encode(<binary, decimal(38, 0)>) returns varchar
+```
+return encoded string
+
+```sql
+function base64_encode(<binary, decimal(38, 0), varchar>) returns varchar
+```
+return encoded string
+
+## `bit_length`
+[🔗 Official Documentation](#)
+
+```sql
+function bit_length(<varchar>) returns decimal(38, 0)
+```
+Returns the length of the object in bits
+
+```sql
+function bit_length(<binary>) returns decimal(38, 0)
+```
+Returns the length of the object in bits
+
+## `char`
+[🔗 Official Documentation](#)
+
+```sql
+function char(<decimal(38, 0)>) returns varchar
+```
+Convert an ASCII or Unicode code into a single character
+
+## `charindex`
+[🔗 Official Documentation](#)
+
+```sql
+function charindex(<varchar, varchar>) returns decimal(38, 0)
+```
+Returns the position of the needle in the haystack, optionally from a given index
+
+```sql
+function charindex(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the position of the needle in the haystack, optionally from a given index
+
+```sql
+function charindex(<binary, binary>) returns decimal(38, 0)
+```
+Returns the position of the needle in the haystack, optionally from a given index
+
+```sql
+function charindex(<binary, binary, decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the position of the needle in the haystack, optionally from a given index
+
+## `chr`
+[🔗 Official Documentation](#)
+
+```sql
+function chr(<decimal(38, 0)>) returns varchar
+```
+Convert an ASCII or Unicode code into a single character
+
+## `collate`
+[🔗 Official Documentation](#)
+
+```sql
+function collate(<$1, string>) returns $1
+```
+
+
+## `collation`
+[🔗 Official Documentation](#)
+
+```sql
+function collation(<$1>) returns string
+```
+
+
+## `compress`
+[🔗 Official Documentation](#)
+
+```sql
+function compress(<varchar, varchar>) returns binary
+```
+compressed data (return)
+
+```sql
+function compress(<binary, varchar>) returns binary
+```
+compressed data (return)
+
+## `concat`
+[🔗 Official Documentation](#)
+
+```sql
+function concat(varchar, ...) returns varchar
+```
+Returns concatenation of the input strings, or null if any one of them is null.
+
+```sql
+function concat(binary, ...) returns binary
+```
+Returns concatenation of the input strings, or null if any one of them is null.
+
+## `concat_ws`
+[🔗 Official Documentation](#)
+
+```sql
+function concat_ws(varchar, varchar, ...) returns varchar
+```
+Returns concatenation of the input strings with separator, or null if any one of them is null.
+
+```sql
+function concat_ws(binary, binary, ...) returns binary
+```
+Returns concatenation of the input strings with separator, or null if any one of them is null.
+
+## `contains`
+[🔗 Official Documentation](#)
+
+```sql
+function contains(<varchar, varchar>) returns boolean
+```
+returns TRUE if arg1 constains arg2
+
+```sql
+function contains(<binary, binary>) returns boolean
+```
+returns TRUE if arg1 constains arg2
+
+## `decompress_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function decompress_binary(<binary, varchar>) returns binary
+```
+decompressed binary (return)
+
+## `decompress_string`
+[🔗 Official Documentation](#)
+
+```sql
+function decompress_string(<binary, varchar>) returns varchar
+```
+decompressed string (return)
+
+## `editdistance`
+[🔗 Official Documentation](#)
+
+```sql
+function editdistance(<varchar, varchar>) returns decimal(38, 0)
+```
+Returns the Levenshtein edit distance between two strings.
+
+```sql
+function editdistance(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the Levenshtein edit distance between two strings.
+
+## `endswith`
+[🔗 Official Documentation](#)
+
+```sql
+function endswith(<varchar, varchar>) returns boolean
+```
+returns TRUE if arg1 ends with arg2
+
+```sql
+function endswith(<binary, binary>) returns boolean
+```
+returns TRUE if arg1 ends with arg2
+
+## `hex_decode_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function hex_decode_binary(<varchar>) returns binary
+```
+return decoded binary
+
+## `hex_decode_string`
+[🔗 Official Documentation](#)
+
+```sql
+function hex_decode_string(<varchar>) returns varchar
+```
+return decoded string
+
+## `hex_encode`
+[🔗 Official Documentation](#)
+
+```sql
+function hex_encode(<varchar>) returns varchar
+```
+return encoded string
+
+```sql
+function hex_encode(<varchar, decimal(38, 0)>) returns varchar
+```
+return encoded string
+
+```sql
+function hex_encode(<binary>) returns varchar
+```
+return encoded string
+
+```sql
+function hex_encode(<binary, decimal(38, 0)>) returns varchar
+```
+return encoded string
+
+## `initcap`
+[🔗 Official Documentation](#)
+
+```sql
+function initcap(<varchar>) returns varchar
+```
+return string with all the initial letter of each word is LOWERcase.
+
+```sql
+function initcap(<varchar, varchar>) returns varchar
+```
+return string with all the initial letter of each word is LOWERcase.
+
+## `insert`
+[🔗 Official Documentation](#)
+
+```sql
+function insert(<varchar, decimal(38, 0), decimal(38, 0), varchar>) returns varchar
+```
+Returns the first string with a substring at the given position and length replaced with the second string
+
+## `jarowinkler_similarity`
+[🔗 Official Documentation](#)
+
+```sql
+function jarowinkler_similarity(<varchar, varchar>) returns decimal(38, 0)
+```
+Returns the Jaro-Winkler similarity metric between two strings.
+
+## `left`
+[🔗 Official Documentation](#)
+
+```sql
+function left(<varchar, decimal(38, 0)>) returns varchar
+```
+Returns leftmost N characters of the input string
+
+## `len`
+[🔗 Official Documentation](#)
+
+```sql
+function len(<varchar>) returns decimal(38, 0)
+```
+Returns length of string
+
+```sql
+function len(<binary>) returns decimal(38, 0)
+```
+Returns length of binary input
+
+## `length`
+[🔗 Official Documentation](#)
+
+```sql
+function length(<varchar>) returns decimal(38, 0)
+```
+Returns the length of the string
+
+```sql
+function length(<binary>) returns decimal(38, 0)
+```
+Returns the length of the string
+
+## `lower`
+[🔗 Official Documentation](#)
+
+```sql
+function lower(<varchar>) returns varchar
+```
+return string with all characters in lowercase
+
+## `lpad`
+[🔗 Official Documentation](#)
+
+```sql
+function lpad(<varchar, decimal(38, 0)>) returns varchar
+```
+padded result string
+
+```sql
+function lpad(<varchar, decimal(38, 0), varchar>) returns varchar
+```
+padded result string
+
+```sql
+function lpad(<binary, decimal(38, 0), binary>) returns binary
+```
+padded result string
+
+## `ltrim`
+[🔗 Official Documentation](#)
+
+```sql
+function ltrim(<varchar>) returns varchar
+```
+return string trimmed from left
+
+```sql
+function ltrim(<varchar, varchar>) returns varchar
+```
+return string trimmed from left
+
+## `md5`
+[🔗 Official Documentation](#)
+
+```sql
+function md5(<varchar>) returns varchar
+```
+Hex-encoded MD5 digest
+
+```sql
+function md5(<binary>) returns varchar
+```
+Hex-encoded MD5 digest
+
+## `md5_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function md5_binary(<varchar>) returns binary
+```
+Binary MD5 digest
+
+```sql
+function md5_binary(<binary>) returns binary
+```
+Binary MD5 digest
+
+## `md5_hex`
+[🔗 Official Documentation](#)
+
+```sql
+function md5_hex(<varchar>) returns varchar
+```
+Hex-encoded MD5 digest
+
+```sql
+function md5_hex(<binary>) returns varchar
+```
+Hex-encoded MD5 digest
+
+## `md5_number_lower64`
+[🔗 Official Documentation](#)
+
+```sql
+function md5_number_lower64(<string>) returns binary
+```
+
+
+## `md5_number_upper64`
+[🔗 Official Documentation](#)
+
+```sql
+function md5_number_upper64(<string>) returns binary
+```
+
+
+## `octet_length`
+[🔗 Official Documentation](#)
+
+```sql
+function octet_length(<varchar>) returns decimal(38, 0)
+```
+Returns the length of the string in bytes
+
+```sql
+function octet_length(<binary>) returns decimal(38, 0)
+```
+Returns the length of the string in bytes
+
+## `parse_ip`
+[🔗 Official Documentation](#)
+
+```sql
+function parse_ip(<varchar, varchar>) returns object
+```
+Returns an object with all the components of the IP
+
+```sql
+function parse_ip(<varchar, varchar, decimal(38, 0)>) returns object
+```
+Returns an object with all the components of the IP
+
+## `parse_url`
+[🔗 Official Documentation](#)
+
+```sql
+function parse_url(<varchar>) returns object
+```
+Returns an object with all the components of the URL
+
+```sql
+function parse_url(<varchar, decimal(38, 0)>) returns object
+```
+Returns an object with all the components of the URL
+
+## `position`
+[🔗 Official Documentation](#)
+
+```sql
+function position(<varchar, varchar>) returns decimal(38, 0)
+```
+Returns the position of the needle in the haystack, optionally from a given index
+
+```sql
+function position(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the position of the needle in the haystack, optionally from a given index
+
+```sql
+function position(<binary, binary>) returns decimal(38, 0)
+```
+Returns the position of the needle in the haystack, optionally from a given index
+
+```sql
+function position(<binary, binary, decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns the position of the needle in the haystack, optionally from a given index
+
+## `repeat`
+[🔗 Official Documentation](#)
+
+```sql
+function repeat(<varchar, decimal(38, 0)>) returns varchar
+```
+Returns the input string repeated N times
+
+## `replace`
+[🔗 Official Documentation](#)
+
+```sql
+function replace(<varchar, varchar>) returns varchar
+```
+replaces all occurrences of searched substring in subject with a replacement
+
+```sql
+function replace(<varchar, varchar, varchar>) returns varchar
+```
+replaces all occurrences of searched substring in subject with a replacement
+
+## `reverse`
+[🔗 Official Documentation](#)
+
+```sql
+function reverse(<varchar>) returns varchar
+```
+return string with character order reversed
+
+```sql
+function reverse(<binary>) returns binary
+```
+return string with character order reversed
+
+## `right`
+[🔗 Official Documentation](#)
+
+```sql
+function right(<varchar, decimal(38, 0)>) returns varchar
+```
+Returns rightmost N characters of the input string
+
+## `rpad`
+[🔗 Official Documentation](#)
+
+```sql
+function rpad(<varchar, decimal(38, 0)>) returns varchar
+```
+padded result string
+
+```sql
+function rpad(<varchar, decimal(38, 0), varchar>) returns varchar
+```
+padded result string
+
+```sql
+function rpad(<binary, decimal(38, 0), binary>) returns binary
+```
+padded result string
+
+## `rtrim`
+[🔗 Official Documentation](#)
+
+```sql
+function rtrim(<varchar>) returns varchar
+```
+return string trimmed from right
+
+```sql
+function rtrim(<varchar, varchar>) returns varchar
+```
+return string trimmed from right
+
+## `rtrimmed_length`
+[🔗 Official Documentation](#)
+
+```sql
+function rtrimmed_length(<varchar>) returns varchar
+```
+Returns the length of the input string without trailing blanks
+
+## `sha1`
+[🔗 Official Documentation](#)
+
+```sql
+function sha1(<varchar>) returns varchar
+```
+Hex-encoded SHA1 digest
+
+```sql
+function sha1(<binary>) returns varchar
+```
+Hex-encoded SHA1 digest
+
+## `sha1_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function sha1_binary(<varchar>) returns binary
+```
+Binary SHA1 digest
+
+```sql
+function sha1_binary(<binary>) returns binary
+```
+Binary SHA1 digest
+
+## `sha1_hex`
+[🔗 Official Documentation](#)
+
+```sql
+function sha1_hex(<varchar>) returns varchar
+```
+Hex-encoded SHA1 digest
+
+```sql
+function sha1_hex(<binary>) returns varchar
+```
+Hex-encoded SHA1 digest
+
+## `sha2`
+[🔗 Official Documentation](#)
+
+```sql
+function sha2(<varchar>) returns varchar
+```
+Hex-encoded SHA2 digest
+
+```sql
+function sha2(<varchar, decimal(38, 0)>) returns varchar
+```
+Hex-encoded SHA2 digest
+
+```sql
+function sha2(<binary>) returns varchar
+```
+Hex-encoded SHA2 digest
+
+```sql
+function sha2(<binary, decimal(38, 0)>) returns varchar
+```
+Hex-encoded SHA2 digest
+
+## `sha2_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function sha2_binary(<varchar>) returns binary
+```
+Binary SHA2 digest
+
+```sql
+function sha2_binary(<varchar, decimal(38, 0)>) returns binary
+```
+Binary SHA2 digest
+
+```sql
+function sha2_binary(<binary>) returns binary
+```
+Binary SHA2 digest
+
+```sql
+function sha2_binary(<binary, decimal(38, 0)>) returns binary
+```
+Binary SHA2 digest
+
+## `sha2_hex`
+[🔗 Official Documentation](#)
+
+```sql
+function sha2_hex(<varchar>) returns varchar
+```
+Hex-encoded SHA2 digest
+
+```sql
+function sha2_hex(<varchar, decimal(38, 0)>) returns varchar
+```
+Hex-encoded SHA2 digest
+
+```sql
+function sha2_hex(<binary>) returns varchar
+```
+Hex-encoded SHA2 digest
+
+```sql
+function sha2_hex(<binary, decimal(38, 0)>) returns varchar
+```
+Hex-encoded SHA2 digest
+
+## `soundex`
+[🔗 Official Documentation](#)
+
+```sql
+function soundex(<varchar>) returns varchar
+```
+soundex encoding of string
+
+## `soundex_p123`
+[🔗 Official Documentation](#)
+
+```sql
+function soundex_p123(<varchar>) returns varchar
+```
+soundex_p123 encoding of string
+
+## `space`
+[🔗 Official Documentation](#)
+
+```sql
+function space(<decimal(38, 0)>) returns varchar
+```
+N spaces
+
+## `split`
+[🔗 Official Documentation](#)
+
+```sql
+function split(<varchar, varchar>) returns array
+```
+return split string as array
+
+## `split_part`
+[🔗 Official Documentation](#)
+
+```sql
+function split_part(<varchar, varchar, decimal(38, 0)>) returns varchar
+```
+Splits a string with a delimiter and returns the requested part
+
+## `split_to_table`
+[🔗 Official Documentation](#)
+
+```sql
+function split_to_table(<string, string>) returns struct<seq int, index int, value string>
+```
+
+
+## `startswith`
+[🔗 Official Documentation](#)
+
+```sql
+function startswith(<varchar, varchar>) returns boolean
+```
+returns TRUE if arg1 starts with arg2
+
+```sql
+function startswith(<binary, binary>) returns boolean
+```
+returns TRUE if arg1 starts with arg2
+
+## `strtok`
+[🔗 Official Documentation](#)
+
+```sql
+function strtok(<varchar>) returns varchar
+```
+Tokenizes a string with a delimiter and returns the requested part
+
+```sql
+function strtok(<varchar, varchar>) returns varchar
+```
+Tokenizes a string with a delimiter and returns the requested part
+
+```sql
+function strtok(<varchar, varchar, decimal(38, 0)>) returns varchar
+```
+Tokenizes a string with a delimiter and returns the requested part
+
+## `strtok_split_to_table`
+[🔗 Official Documentation](#)
+
+```sql
+function strtok_split_to_table(string, ...) returns struct<seq int, index int, value string>
+```
+
+
+## `strtok_to_array`
+[🔗 Official Documentation](#)
+
+```sql
+function strtok_to_array(<varchar>) returns array
+```
+Return tokenized string as array
+
+```sql
+function strtok_to_array(<varchar, varchar>) returns array
+```
+Return tokenized string as array
+
+## `substr`
+[🔗 Official Documentation](#)
+
+```sql
+function substr(<varchar, decimal(38, 0)>) returns varchar
+```
+Returns string fragment of the input string
+
+```sql
+function substr(<varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
+```
+Returns string fragment of the input string
+
+```sql
+function substr(<binary, decimal(38, 0)>) returns binary
+```
+Returns string fragment of the input string
+
+```sql
+function substr(<binary, decimal(38, 0), decimal(38, 0)>) returns binary
+```
+Returns string fragment of the input string
+
+## `substring`
+[🔗 Official Documentation](#)
+
+```sql
+function substring(<varchar, decimal(38, 0)>) returns varchar
+```
+Returns string fragment of the input string
+
+```sql
+function substring(<varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
+```
+Returns string fragment of the input string
+
+```sql
+function substring(<binary, decimal(38, 0)>) returns binary
+```
+Returns string fragment of the input string
+
+```sql
+function substring(<binary, decimal(38, 0), decimal(38, 0)>) returns binary
+```
+Returns string fragment of the input string
+
+## `translate`
+[🔗 Official Documentation](#)
+
+```sql
+function translate(<varchar, varchar, varchar>) returns varchar
+```
+replaces all occurences of each character of the source alphabet in the subject with the corresponding character in the target alphabet
+
+## `trim`
+[🔗 Official Documentation](#)
+
+```sql
+function trim(<varchar>) returns varchar
+```
+return string trimmed from both sides
+
+```sql
+function trim(<varchar, varchar>) returns varchar
+```
+return string trimmed from both sides
+
+## `try_base64_decode_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function try_base64_decode_binary(<varchar>) returns binary
+```
+return decoded binary
+
+```sql
+function try_base64_decode_binary(<varchar, varchar>) returns binary
+```
+return decoded binary
+
+## `try_base64_decode_string`
+[🔗 Official Documentation](#)
+
+```sql
+function try_base64_decode_string(<varchar>) returns varchar
+```
+return decoded string
+
+```sql
+function try_base64_decode_string(<varchar, varchar>) returns varchar
+```
+return decoded string
+
+## `try_hex_decode_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function try_hex_decode_binary(<varchar>) returns binary
+```
+return decoded binary
+
+## `try_hex_decode_string`
+[🔗 Official Documentation](#)
+
+```sql
+function try_hex_decode_string(<varchar>) returns varchar
+```
+return decoded string
+
+## `unicode`
+[🔗 Official Documentation](#)
+
+```sql
+function unicode(<varchar>) returns decimal(38, 0)
+```
+Returns the Unicode code point of the first character of the string
+
+## `upper`
+[🔗 Official Documentation](#)
+
+```sql
+function upper(<varchar>) returns varchar
+```
+return string with all characters in uppercase
+
+## `uuid_string`
+[🔗 Official Documentation](#)
+
+```sql
+function uuid_string(<>) returns varchar
+```
+Returns a pseudo-randomly generated (version 4) UUID.
+
+```sql
+function uuid_string(<varchar, varchar>) returns varchar
+```
+Returns a pseudo-randomly generated (version 4) UUID.
+
+   Finished man in 0.044 secs
+

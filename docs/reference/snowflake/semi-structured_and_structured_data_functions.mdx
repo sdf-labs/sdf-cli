@@ -1,0 +1,1020 @@
+---
+title: "Semi-Structured and Structured Data Functions"
+---
+
+
+## `array_append`
+[🔗 Official Documentation](#)
+
+```sql
+function array_append(<array, $1>) returns array
+```
+the resulting array
+
+```sql
+function array_append(<array, $1>) returns array
+```
+the resulting array
+
+## `array_cat`
+[🔗 Official Documentation](#)
+
+```sql
+function array_cat(<array, array>) returns array
+```
+Concatenate two arrays
+
+```sql
+function array_cat(<variant, variant>) returns array
+```
+Concatenate two arrays
+
+```sql
+function array_cat(<array, variant>) returns array
+```
+Concatenate two arrays
+
+```sql
+function array_cat(<variant, array>) returns array
+```
+Concatenate two arrays
+
+```sql
+function array_cat(<array, array>) returns array
+```
+Concatenate two arrays
+
+## `array_compact`
+[🔗 Official Documentation](#)
+
+```sql
+function array_compact(<array>) returns array
+```
+Compact array by removing nulls
+
+```sql
+function array_compact(<variant>) returns array
+```
+Compact array by removing nulls
+
+```sql
+function array_compact(<array>) returns array
+```
+Compact array by removing nulls
+
+## `array_construct`
+[🔗 Official Documentation](#)
+
+```sql
+function array_construct($1, ...) returns array
+```
+the resulting array
+
+```sql
+function array_construct(<$1, $2>) returns array
+```
+the resulting array
+
+```sql
+function array_construct(<$1, $2, $3>) returns array
+```
+the resulting array
+
+```sql
+function array_construct(<$1, $2, $3, $4>) returns array
+```
+the resulting array
+
+```sql
+function array_construct(<$1, $2, $3, $4, $5>) returns array
+```
+the resulting array
+
+## `array_construct_compact`
+[🔗 Official Documentation](#)
+
+```sql
+function array_construct_compact($1, ...) returns array
+```
+the resulting array
+
+## `array_contains`
+[🔗 Official Documentation](#)
+
+```sql
+function array_contains(<variant, array>) returns boolean
+```
+Returns true if array contains value
+
+```sql
+function array_contains(<$1, array>) returns boolean
+```
+Returns true if array contains value
+
+## `array_distinct`
+[🔗 Official Documentation](#)
+
+```sql
+function array_distinct(<array>) returns array
+```
+the resulting array
+
+```sql
+function array_distinct(<array>) returns array
+```
+the resulting array
+
+## `array_except`
+[🔗 Official Documentation](#)
+
+```sql
+function array_except(<array, array>) returns array
+```
+the resulting array
+
+```sql
+function array_except(<array, array>) returns array
+```
+the resulting array
+
+## `array_flatten`
+[🔗 Official Documentation](#)
+
+```sql
+function array_flatten(<array>) returns array
+```
+the resulting array
+
+## `array_generate_range`
+[🔗 Official Documentation](#)
+
+```sql
+function array_generate_range(<decimal(38, 0), decimal(38, 0)>) returns array
+```
+the resulting array
+
+```sql
+function array_generate_range(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns array
+```
+the resulting array
+
+## `array_insert`
+[🔗 Official Documentation](#)
+
+```sql
+function array_insert(<array, decimal(38, 0), $1>) returns array
+```
+the resulting array
+
+```sql
+function array_insert(<array, decimal(38, 0), $1>) returns array
+```
+the resulting array
+
+## `array_intersection`
+[🔗 Official Documentation](#)
+
+```sql
+function array_intersection(<array, array>) returns array
+```
+the resulting array
+
+```sql
+function array_intersection(<array, array>) returns array
+```
+the resulting array
+
+## `array_max`
+[🔗 Official Documentation](#)
+
+```sql
+function array_max(<array>) returns variant
+```
+the maximum defined element in the array, or NULL
+
+```sql
+function array_max(<array>) returns $1
+```
+the maximum defined element in the array, or NULL
+
+## `array_min`
+[🔗 Official Documentation](#)
+
+```sql
+function array_min(<array>) returns variant
+```
+the minimum defined element in the array, or NULL
+
+```sql
+function array_min(<array>) returns $1
+```
+the minimum defined element in the array, or NULL
+
+## `array_position`
+[🔗 Official Documentation](#)
+
+```sql
+function array_position(<variant, array>) returns decimal(38, 0)
+```
+Returns the first index position of the element in the array
+
+```sql
+function array_position(<$1, array>) returns decimal(38, 0)
+```
+Returns the first index position of the element in the array
+
+## `array_prepend`
+[🔗 Official Documentation](#)
+
+```sql
+function array_prepend(<array, $1>) returns array
+```
+the resulting array
+
+```sql
+function array_prepend(<array, $1>) returns array
+```
+the resulting array
+
+## `array_remove`
+[🔗 Official Documentation](#)
+
+```sql
+function array_remove(<array, variant>) returns array
+```
+the resulting array
+
+```sql
+function array_remove(<array, $1>) returns array
+```
+the resulting array
+
+## `array_remove_at`
+[🔗 Official Documentation](#)
+
+```sql
+function array_remove_at(<array, decimal(38, 0)>) returns array
+```
+the resulting array
+
+```sql
+function array_remove_at(<array, decimal(38, 0)>) returns array
+```
+the resulting array
+
+## `array_size`
+[🔗 Official Documentation](#)
+
+```sql
+function array_size(<array>) returns decimal(38, 0)
+```
+Returns array size
+
+```sql
+function array_size(<array>) returns decimal(38, 0)
+```
+Returns array size
+
+```sql
+function array_size(<variant>) returns decimal(38, 0)
+```
+Returns array size
+
+## `array_slice`
+[🔗 Official Documentation](#)
+
+```sql
+function array_slice(<array, decimal(38, 0), decimal(38, 0)>) returns array
+```
+the resulting array
+
+```sql
+function array_slice(<array, decimal(38, 0), decimal(38, 0)>) returns array
+```
+the resulting array
+
+## `array_sort`
+[🔗 Official Documentation](#)
+
+```sql
+function array_sort(<array>) returns array
+```
+the sorted array
+
+```sql
+function array_sort(<array, boolean>) returns array
+```
+the sorted array
+
+```sql
+function array_sort(<array, boolean, boolean>) returns array
+```
+the sorted array
+
+## `array_to_string`
+[🔗 Official Documentation](#)
+
+```sql
+function array_to_string(<array, varchar>) returns varchar
+```
+Convert array to a string
+
+```sql
+function array_to_string(<variant, varchar>) returns varchar
+```
+Convert array to a string
+
+## `arrays_overlap`
+[🔗 Official Documentation](#)
+
+```sql
+function arrays_overlap(<array, array>) returns boolean
+```
+Returns true if two arrays have elements in common
+
+```sql
+function arrays_overlap(<array, array>) returns boolean
+```
+Returns true if two arrays have elements in common
+
+## `arrays_to_object`
+[🔗 Official Documentation](#)
+
+```sql
+function arrays_to_object(<array, array>) returns object
+```
+the resulting object
+
+## `as_array`
+[🔗 Official Documentation](#)
+
+```sql
+function as_array(<variant>) returns array
+```
+Use VARIANT value as ARRAY
+
+## `as_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function as_binary(<variant>) returns binary
+```
+Use VARIANT value as binary string
+
+## `as_boolean`
+[🔗 Official Documentation](#)
+
+```sql
+function as_boolean(<variant>) returns boolean
+```
+Use VARIANT value as Boolean
+
+## `as_char`
+[🔗 Official Documentation](#)
+
+```sql
+function as_char(<variant>) returns varchar
+```
+Use VARIANT value as text string
+
+## `as_date`
+[🔗 Official Documentation](#)
+
+```sql
+function as_date(<variant>) returns date
+```
+Use VARIANT value as DATE
+
+## `as_decimal`
+[🔗 Official Documentation](#)
+
+```sql
+function as_decimal(<variant>) returns decimal(38, 0)
+```
+Use VARIANT value as decimal fixed-point
+
+```sql
+function as_decimal(<variant, decimal(38, 0)>) returns decimal(38, 0)
+```
+Use VARIANT value as decimal fixed-point
+
+```sql
+function as_decimal(<variant, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+Use VARIANT value as decimal fixed-point
+
+## `as_double`
+[🔗 Official Documentation](#)
+
+```sql
+function as_double(<variant>) returns double
+```
+Use VARIANT value as real
+
+## `as_integer`
+[🔗 Official Documentation](#)
+
+```sql
+function as_integer(<variant>) returns decimal(38, 0)
+```
+Use VARIANT value as integer
+
+```sql
+function as_integer(<variant, decimal(38, 0)>) returns decimal(38, 0)
+```
+Use VARIANT value as integer
+
+## `as_number`
+[🔗 Official Documentation](#)
+
+```sql
+function as_number(<variant>) returns decimal(38, 0)
+```
+Use VARIANT value as as decimal fixed-point
+
+```sql
+function as_number(<variant, decimal(38, 0)>) returns decimal(38, 0)
+```
+Use VARIANT value as as decimal fixed-point
+
+```sql
+function as_number(<variant, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+Use VARIANT value as as decimal fixed-point
+
+## `as_object`
+[🔗 Official Documentation](#)
+
+```sql
+function as_object(<variant>) returns object
+```
+Use VARIANT value as OBJECT
+
+## `as_real`
+[🔗 Official Documentation](#)
+
+```sql
+function as_real(<variant>) returns double
+```
+Use VARIANT value as real
+
+## `as_time`
+[🔗 Official Documentation](#)
+
+```sql
+function as_time(<variant>) returns time
+```
+Use VARIANT value as TIME
+
+## `as_timestamp_ltz`
+[🔗 Official Documentation](#)
+
+```sql
+function as_timestamp_ltz(<variant>) returns timestamp
+```
+Use VARIANT value as TIMESTAMP_LTZ
+
+```sql
+function as_timestamp_ltz(<variant, decimal(38, 0)>) returns timestamp
+```
+Use VARIANT value as TIMESTAMP_LTZ
+
+## `as_timestamp_ntz`
+[🔗 Official Documentation](#)
+
+```sql
+function as_timestamp_ntz(<variant>) returns timestamp
+```
+Use VARIANT value as TIMESTAMP_NTZ
+
+```sql
+function as_timestamp_ntz(<variant, decimal(38, 0)>) returns timestamp
+```
+Use VARIANT value as TIMESTAMP_NTZ
+
+## `as_timestamp_tz`
+[🔗 Official Documentation](#)
+
+```sql
+function as_timestamp_tz(<variant>) returns timestamp
+```
+Use VARIANT value as TIMESTAMP_TZ
+
+```sql
+function as_timestamp_tz(<variant, decimal(38, 0)>) returns timestamp
+```
+Use VARIANT value as TIMESTAMP_TZ
+
+## `as_varchar`
+[🔗 Official Documentation](#)
+
+```sql
+function as_varchar(<variant>) returns varchar
+```
+Use VARIANT value as text sting
+
+## `check_json`
+[🔗 Official Documentation](#)
+
+```sql
+function check_json(<varchar>) returns varchar
+```
+Checks JSON for errors
+
+## `check_xml`
+[🔗 Official Documentation](#)
+
+```sql
+function check_xml(<varchar>) returns varchar
+```
+Checks XML for errors
+
+```sql
+function check_xml(<varchar, boolean>) returns varchar
+```
+Checks XML for errors
+
+## `get`
+[🔗 Official Documentation](#)
+
+```sql
+function get(<variant, varchar>) returns variant
+```
+Get VARIANT element value from an array or object
+
+```sql
+function get(<variant, decimal(38, 0)>) returns variant
+```
+Get VARIANT element value from an array or object
+
+```sql
+function get(<object, varchar>) returns variant
+```
+Get VARIANT element value from an array or object
+
+```sql
+function get(<array, decimal(38, 0)>) returns variant
+```
+Get VARIANT element value from an array or object
+
+```sql
+function get(<object, $1>) returns variant
+```
+Get VARIANT element value from an array or object
+
+## `get_ignore_case`
+[🔗 Official Documentation](#)
+
+```sql
+function get_ignore_case(<variant, varchar>) returns variant
+```
+Get VARIANT element value from an array or object with path name
+
+```sql
+function get_ignore_case(<variant, varchar>) returns object
+```
+Get VARIANT element value from an array or object with path name
+
+```sql
+function get_ignore_case(<object, varchar>) returns $1
+```
+Get VARIANT element value from an array or object with path name
+
+```sql
+function get_ignore_case(<object, $1>) returns $1
+```
+Get VARIANT element value from an array or object with path name
+
+## `get_path`
+[🔗 Official Documentation](#)
+
+```sql
+function get_path(<variant, varchar>) returns variant
+```
+Get VARIANT element value from an array or object with path name
+
+```sql
+function get_path(<object, varchar>) returns variant
+```
+Get VARIANT element value from an array or object with path name
+
+```sql
+function get_path(<array, varchar>) returns variant
+```
+Get VARIANT element value from an array or object with path name
+
+```sql
+function get_path(<array, varchar>) returns $1
+```
+Get VARIANT element value from an array or object with path name
+
+```sql
+function get_path(<object, varchar>) returns $1
+```
+Get VARIANT element value from an array or object with path name
+
+```sql
+function get_path(<object, varchar>) returns $1
+```
+Get VARIANT element value from an array or object with path name
+
+## `is_array`
+[🔗 Official Documentation](#)
+
+```sql
+function is_array(<variant>) returns boolean
+```
+Returns true if VARIANT value is an array
+
+## `is_binary`
+[🔗 Official Documentation](#)
+
+```sql
+function is_binary(<variant>) returns boolean
+```
+Returns true if VARIANT value is a binary string
+
+## `is_boolean`
+[🔗 Official Documentation](#)
+
+```sql
+function is_boolean(<variant>) returns boolean
+```
+Returns true if VARIANT value is Boolean
+
+## `is_char`
+[🔗 Official Documentation](#)
+
+```sql
+function is_char(<variant>) returns boolean
+```
+Returns true if VARIANT value is a text string
+
+## `is_date`
+[🔗 Official Documentation](#)
+
+```sql
+function is_date(<variant>) returns boolean
+```
+Returns true if VARIANT value is a DATE
+
+## `is_date_value`
+[🔗 Official Documentation](#)
+
+```sql
+function is_date_value(<variant>) returns boolean
+```
+Returns true if VARIANT value is a DATE
+
+## `is_decimal`
+[🔗 Official Documentation](#)
+
+```sql
+function is_decimal(<variant>) returns boolean
+```
+Returns true if VARIANT value is a decimal fixed-point number
+
+## `is_double`
+[🔗 Official Documentation](#)
+
+```sql
+function is_double(<variant>) returns boolean
+```
+Returns true if VARIANT value is a real number
+
+## `is_integer`
+[🔗 Official Documentation](#)
+
+```sql
+function is_integer(<variant>) returns boolean
+```
+Returns true if VARIANT value is integer
+
+## `is_object`
+[🔗 Official Documentation](#)
+
+```sql
+function is_object(<variant>) returns boolean
+```
+Returns true if VARIANT value is an object
+
+## `is_real`
+[🔗 Official Documentation](#)
+
+```sql
+function is_real(<variant>) returns boolean
+```
+Returns true if VARIANT value is a real number
+
+## `is_time`
+[🔗 Official Documentation](#)
+
+```sql
+function is_time(<variant>) returns boolean
+```
+Returns true if VARIANT value is a TIME
+
+## `is_timestamp_ltz`
+[🔗 Official Documentation](#)
+
+```sql
+function is_timestamp_ltz(<variant>) returns boolean
+```
+Returns true if VARIANT value is a TIMESTAMP_LTZ
+
+## `is_timestamp_ntz`
+[🔗 Official Documentation](#)
+
+```sql
+function is_timestamp_ntz(<variant>) returns boolean
+```
+Returns true if VARIANT value is a TIMESTAMP_NTZ
+
+## `is_timestamp_tz`
+[🔗 Official Documentation](#)
+
+```sql
+function is_timestamp_tz(<variant>) returns boolean
+```
+Returns true if VARIANT value is a TIMESTAMP_TZ
+
+## `is_varchar`
+[🔗 Official Documentation](#)
+
+```sql
+function is_varchar(<variant>) returns boolean
+```
+Returns true if VARIANT value is a text string
+
+## `json_extract_path_text`
+[🔗 Official Documentation](#)
+
+```sql
+function json_extract_path_text(<varchar, varchar>) returns varchar
+```
+Parses the first argument as a JSON and returns the value of the element pointed to by the second argument
+
+## `map_cat`
+[🔗 Official Documentation](#)
+
+```sql
+function map_cat(<object, object>) returns object
+```
+
+
+## `map_contains_key`
+[🔗 Official Documentation](#)
+
+```sql
+function map_contains_key(<varchar, object>) returns boolean
+```
+
+
+## `map_delete`
+[🔗 Official Documentation](#)
+
+```sql
+function map_delete(<object, varchar>) returns object
+```
+
+
+```sql
+function map_delete(<object, varchar, varchar>) returns object
+```
+
+
+```sql
+function map_delete(<object, varchar, varchar, varchar>) returns object
+```
+
+
+```sql
+function map_delete(<object, varchar, varchar, varchar, varchar>) returns object
+```
+
+
+```sql
+function map_delete(<object, varchar, varchar, varchar, varchar, varchar>) returns object
+```
+
+
+## `map_insert`
+[🔗 Official Documentation](#)
+
+```sql
+function map_insert(<object, $1, $2>) returns object
+```
+
+
+```sql
+function map_insert(<object, $1, $2, boolean>) returns object
+```
+
+
+## `map_keys`
+[🔗 Official Documentation](#)
+
+```sql
+function map_keys(<object>) returns array
+```
+
+
+## `map_pick`
+[🔗 Official Documentation](#)
+
+```sql
+function map_pick(<object, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, string, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, string, string, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, string, string, string, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, string, string, string, string, string>) returns object
+```
+
+
+```sql
+function map_pick(<object, array>) returns object
+```
+
+
+## `map_size`
+[🔗 Official Documentation](#)
+
+```sql
+function map_size(<object>) returns bigint
+```
+
+
+## `object_construct`
+[🔗 Official Documentation](#)
+
+```sql
+function object_construct(...) returns object
+```
+
+
+## `object_construct_keep_null`
+[🔗 Official Documentation](#)
+
+```sql
+function object_construct_keep_null($1, ...) returns object
+```
+the resulting object with null value
+
+## `object_delete`
+[🔗 Official Documentation](#)
+
+```sql
+function object_delete(object, varchar, ...) returns object
+```
+the resulting OBJECT
+
+```sql
+function object_delete(object, varchar, ...) returns object
+```
+the resulting OBJECT
+
+## `object_insert`
+[🔗 Official Documentation](#)
+
+```sql
+function object_insert(<object, varchar, $1>) returns object
+```
+the resulting OBJECT
+
+```sql
+function object_insert(<object, varchar, $1, boolean>) returns object
+```
+the resulting OBJECT
+
+```sql
+function object_insert(<object, varchar, $1>) returns object
+```
+the resulting OBJECT
+
+```sql
+function object_insert(<object, varchar, $1, boolean>) returns object
+```
+the resulting OBJECT
+
+## `object_keys`
+[🔗 Official Documentation](#)
+
+```sql
+function object_keys(<object>) returns array
+```
+the resulting ARRAY
+
+```sql
+function object_keys(<object>) returns array
+```
+the resulting ARRAY
+
+## `object_pick`
+[🔗 Official Documentation](#)
+
+```sql
+function object_pick(object, varchar, ...) returns object
+```
+the resulting OBJECT
+
+```sql
+function object_pick(object, array, ...) returns object
+```
+the resulting OBJECT
+
+```sql
+function object_pick(object, varchar, ...) returns object
+```
+the resulting OBJECT
+
+## `parse_json`
+[🔗 Official Documentation](#)
+
+```sql
+function parse_json(<varchar>) returns variant
+```
+Parses string as a JSON document
+
+## `parse_xml`
+[🔗 Official Documentation](#)
+
+```sql
+function parse_xml(<varchar>) returns object
+```
+Parses string as an XML document
+
+```sql
+function parse_xml(<varchar, boolean>) returns object
+```
+Parses string as an XML document
+
+```sql
+function parse_xml(<>) returns variant
+```
+
+
+## `strip_null_value`
+[🔗 Official Documentation](#)
+
+```sql
+function strip_null_value(<variant>) returns variant
+```
+Converts null values to SQL NULLs
+
+## `try_parse_json`
+[🔗 Official Documentation](#)
+
+```sql
+function try_parse_json(<varchar>) returns variant
+```
+Parses string as a JSON document
+
+## `typeof`
+[🔗 Official Documentation](#)
+
+```sql
+function typeof(<variant>) returns varchar
+```
+Returns SQL type word of a variant value
+
+## `xmlget`
+[🔗 Official Documentation](#)
+
+```sql
+function xmlget(<variant, varchar, decimal(38, 0)>) returns object
+```
+Get XML element object by XML tag name
+
+```sql
+function xmlget(<object, varchar, decimal(38, 0)>) returns object
+```
+Get XML element object by XML tag name
+
+```sql
+function xmlget(<variant, varchar>) returns object
+```
+Get XML element object by XML tag name
+
+```sql
+function xmlget(<object, varchar>) returns object
+```
+Get XML element object by XML tag name
+
+   Finished man in 0.043 secs
+

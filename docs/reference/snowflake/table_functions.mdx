@@ -1,0 +1,112 @@
+---
+title: "Table Functions"
+---
+
+
+## `flatten`
+[🔗 Official Documentation](#)
+
+```sql
+function flatten<$1> (<input $1>) returns struct<seq bigint, key string, path string, index bigint, value variant, this $1>
+	where $1 in (variant, object, array)
+```
+
+
+## `generator`
+[🔗 Official Documentation](#)
+
+```sql
+function generator(<>) returns struct<dummy bigint>
+```
+
+
+## `get_object_references`
+[🔗 Official Documentation](#)
+
+```sql
+function get_object_references(<>) returns struct<database_name string, schema_name string, object_name string, referenced_database_name string, referenced_schema_name string, referenced_object_name string, referenced_object_type string>
+```
+
+
+## `infer_schema`
+[🔗 Official Documentation](#)
+
+```sql
+function infer_schema(<>) returns struct<
+  column_name string,
+  type string,
+  nullable boolean,
+  expression string,
+  filenames string,
+  order_id bigint
+>
+
+```
+
+
+## `rest_event_history`
+[🔗 Official Documentation](#)
+
+```sql
+function rest_event_history(<rest_service_type string>) returns struct<
+  event_timestamp timestamp,
+  event_id bigint,
+  event_type string,
+  endpoint string,
+  method string,
+  status string,
+  error_code bigint,
+  details string,
+  client_ip string,
+  actor_name string,
+  actor_domain string,
+  resource_name string,
+  resource_domain string
+>
+
+```
+
+
+## `validate`
+[🔗 Official Documentation](#)
+
+```sql
+function validate(<string, job_id string>) returns struct<
+  error string,
+  file string,
+  line bigint,
+  character bigint,
+  byte_offset bigint,
+  category string,
+  code bigint,
+  sql_state bigint,
+  column_name string,
+  row_number bigint,
+  row_start_line bigint,
+  rejected_record string
+>
+
+```
+
+
+```sql
+function validate(<job_id string>) returns struct<
+  error string,
+  file string,
+  line bigint,
+  character bigint,
+  byte_offset bigint,
+  category string,
+  code bigint,
+  sql_state bigint,
+  column_name string,
+  row_number bigint,
+  row_start_line bigint,
+  rejected_record string
+>
+
+```
+
+
+   Finished man in 0.042 secs
+
