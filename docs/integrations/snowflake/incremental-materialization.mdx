@@ -37,27 +37,13 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
         sdf new --sample cybersyn_tech_innovation cybersyn_tech_innovation_incremental
         ```
 
-``` shell
+```shell shell
     Created cybersyn_tech_innovation_incremental/.gitignore
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/compiled-files/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/compiled-queries/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/data/tech__innovation_essentials/cybersyn/github_repos/data_0.parquet
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/data/tech__innovation_essentials/cybersyn/github_stars/data_0.parquet
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/.gitignore
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/generate_date_values.jinja
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/generate_integer_values.jinja
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/materialize.jinja
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/star.jinja
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/surrogate_key.jinja
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/macros/test.jinja
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/std/workspace.sdf.yml
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/table/tech__innovation_essentials/cybersyn/github_repos.sdf.yml
-    Created cybersyn_tech_innovation_incremental/.sdfcache/dbg/table/tech__innovation_essentials/cybersyn/github_stars.sdf.yml
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql
     Created cybersyn_tech_innovation_incremental/src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql
     Created cybersyn_tech_innovation_incremental/workspace.sdf.yml
-   Finished new in 0.027 secs
+   Finished new in 0.289 secs
 
         ```
     </Step>
@@ -67,11 +53,11 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
         sdf compile sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
         ```
 
-``` shell
+```shell shell
 Working set 3 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.117 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.611 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -142,12 +128,12 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
       sdf compile sdf_snowflake.staging.datafusion_push_events
       ```
 
-``` shell
+```shell shell
 Working set 4 model files, 1 .sdf file
 Downloading sdf_snowflake.staging.datafusion_push_events (exists_remotely)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 3.093 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 4.988 secs
 
 Schema sdf_snowflake.staging.datafusion_push_events
 ┌────────────────────────────────┬────────────────┬────────────┬─────────────┐
@@ -365,14 +351,14 @@ Schema sdf_snowflake.staging.datafusion_push_events
     sdf compile src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
     ```
 
-``` shell
+```shell shell
 Working set 5 model files, 1 .sdf file
-Downloading sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (exists_remotely)
 Downloading sdf_snowflake.staging.github_push_events (exists_remotely)
+Downloading sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (exists_remotely)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (./src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql)
-   Finished 3 models [2 succeeded, 1 downloaded] in 2.986 secs
+   Finished 3 models [2 succeeded, 1 downloaded] in 3.687 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
 ┌─────────────────────┬────────────────┬────────────┬─────────────┐

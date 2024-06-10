@@ -129,10 +129,17 @@
           }
         },
         "providers": {
-          "description": "The providers for this environment (OLD_PROVIDERS)",
+          "description": "The providers for this environment",
           "type": "array",
           "items": {
             "$ref": "#/definitions/TargetProvider"
+          }
+        },
+        "integrations": {
+          "description": "The integrations for this environment",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Integration"
           }
         },
         "defaults": {
@@ -207,56 +214,56 @@
     "IncludeType": {
       "oneOf": [
         {
-          "description": "Contains models, i.e ddls or queries, used for data transformation",
+          "description": "Models are .sql files (ddls or queries) used for data transformation. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "model"
           ]
         },
         {
-          "description": "Contains queries against the data of the models, the check holds if the data returns zero rows",
+          "description": "Tests are expectations against the data of models. Uses the sdf-test library by default. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "test"
           ]
         },
         {
-          "description": "Contains queries against the information schema of the models, the check holds if the data returns zero rows",
+          "description": "Checks are logical expectations expresses as queries against the information schema of the SDF workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "check"
           ]
         },
         {
-          "description": "Contains queries for the information schema of the model",
+          "description": "Reports are informational  queries against the information schema of the SDF workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "report"
           ]
         },
         {
-          "description": "Contains queries against the data of the models",
+          "description": "Statistics are informational queries against the data of the models. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "stat"
           ]
         },
         {
-          "description": "Contains resources like csv files that are shipped to the service, etc",
+          "description": "Resources are local data files (like parquet, csv, or json) used by models in the workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "resource"
           ]
         },
         {
-          "description": "Contains meta data like classifiers, etc",
+          "description": "Metadata are .sdf.yml files to add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "metadata"
           ]
         },
         {
-          "description": "Contains seeds, e.g csv files etc",
+          "description": "Seeds are data files used both locally and in remote data warehouses. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "seed"
@@ -285,7 +292,7 @@
           ]
         },
         "dialect": {
-          "description": "The dialect of this environment. If not set, defaults to presto",
+          "description": "The dialect of this environment. If not set, defaults to trino",
           "anyOf": [
             {
               "$ref": "#/definitions/Dialect"
@@ -296,7 +303,7 @@
           ]
         },
         "compute": {
-          "description": "The compute platform for this environment. If not set, defaults to local",
+          "description": "DEPRECATED; subsumed by providers/integrations information",
           "anyOf": [
             {
               "$ref": "#/definitions/ComputeKind"
@@ -353,8 +360,22 @@
             }
           ]
         },
-        "library": {
-          "description": "The default library for test and code generation, std or custom",
+        "utils-lib": {
+          "description": "The default utils library, if set overrides sdf_utils",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "test-lib": {
+          "description": "The default test library, if set overrides sdf_test",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "materialization-lib": {
+          "description": "The default materialization library, if set overrides sdf_materialization",
           "type": [
             "string",
             "null"
@@ -650,7 +671,7 @@
           ]
         },
         "target": {
-          "description": "The Git repo The chosen workspace target (none means default)",
+          "description": "The chosen workspace target (none means default)",
           "type": [
             "string",
             "null"
@@ -683,6 +704,13 @@
             "string",
             "null"
           ]
+        },
+        "imports": {
+          "description": "Which models, reports, tests, checks etc. to include from the dependency",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
@@ -762,7 +790,8 @@
         "glue",
         "redshift",
         "snowflake",
-        "s3"
+        "s3",
+        "sdf"
       ]
     },
     "SourcePattern": {
@@ -847,6 +876,86 @@
         }
       },
       "additionalProperties": false
+    },
+    "Integration": {
+      "description": "Table providers manage tables in in catalogs (OLD_PROVIDERS)",
+      "type": "object",
+      "required": [
+        "provider"
+      ],
+      "properties": {
+        "type": {
+          "description": "The type of the integration [e.g.: database, metadata, data]",
+          "default": "database",
+          "allOf": [
+            {
+              "$ref": "#/definitions/IntegrationType"
+            }
+          ]
+        },
+        "provider": {
+          "description": "The type of the provider [e.g.: snowflake, redshift, s3]",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ProviderType"
+            }
+          ]
+        },
+        "credential": {
+          "description": "Credential identifier for this provider",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cluster-identifier": {
+          "description": "The cluster identifier for redshift server",
+          "writeOnly": true,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "batch-size": {
+          "description": "The size of the batch when querying the provider",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint",
+          "minimum": 0.0
+        },
+        "sources": {
+          "description": "A list of (possibly remote) sources to read, matched in order, so write specific pattern before more general patterns",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SourcePattern"
+          }
+        },
+        "targets": {
+          "description": "A list of (possibly remote) targets to build,  matched in order, so write specific pattern before more general patterns, source patterns are excluded",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TargetPattern"
+          }
+        },
+        "buckets": {
+          "description": "A list o",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataBucket"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "IntegrationType": {
+      "type": "string",
+      "enum": [
+        "data",
+        "metadata",
+        "database"
+      ]
     },
     "FilePath": {
       "description": "All file path should either be relative to the workspace, or absolute for an object store like AWS s3://",
@@ -980,6 +1089,13 @@
             "$ref": "#/definitions/TargetProvider"
           }
         },
+        "integrations": {
+          "description": "The integrations for this environment",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Integration"
+          }
+        },
         "vars": {
           "description": "A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \\{\\{ dt \\}\\}",
           "type": "object",
@@ -1109,7 +1225,14 @@
           ]
         },
         "dependencies": {
-          "description": "ALl table dependencies (syntax: catalog.schema.table)",
+          "description": "All tables that this table depends on (syntax: catalog.schema.table)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "depended-on-by": {
+          "description": "All tables that depend on this table (syntax: catalog.schema.table)",
           "type": "array",
           "items": {
             "type": "string"
@@ -1140,7 +1263,7 @@
             }
           ]
         },
-        "constraints": {
+        "tests": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Constraint"
@@ -1348,6 +1471,17 @@
           "items": {
             "type": "string"
           }
+        },
+        "on-schema-change": {
+          "description": "Method for reacting to changing schema in the source of the incremental table Possible values are `fail`, `append`, and `sync`. If left unspecified, the default behavior is to ignore the change and possibly error out if the schema change is incompatible. `fail` causes a failure whenever any deviation in the schema of the source is detected; `append` adds new columns but does not delete the columns removed from the source; `sync` adds new columns and deletess the columns removed from the source;",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OnSchemaChange"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "additionalProperties": false
@@ -1358,6 +1492,31 @@
         "append",
         "merge",
         "delete+insert"
+      ]
+    },
+    "OnSchemaChange": {
+      "oneOf": [
+        {
+          "description": "Fail when the new schema of an incremental table does not match the old one",
+          "type": "string",
+          "enum": [
+            "fail"
+          ]
+        },
+        {
+          "description": "Keep all the columns of the old incremental table schema while appending the new columns from the new schema. Initialize all the columns that were deleted in the new schema with NULL",
+          "type": "string",
+          "enum": [
+            "append"
+          ]
+        },
+        {
+          "description": "Delete all the deleted columns from the incremental table; Append all the new columns",
+          "type": "string",
+          "enum": [
+            "sync"
+          ]
+        }
       ]
     },
     "Column": {
@@ -1399,6 +1558,17 @@
             }
           ]
         },
+        "forward-lineage": {
+          "description": "Forward Lineage, the columns that this column is used to compute",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Lineage"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "reclassify": {
           "description": "Array of reclassify instructions for changing the attached classifier labels",
           "type": "array",
@@ -1421,7 +1591,7 @@
             }
           ]
         },
-        "constraints": {
+        "tests": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Constraint"
@@ -1487,10 +1657,10 @@
     "Constraint": {
       "type": "object",
       "required": [
-        "is"
+        "expect"
       ],
       "properties": {
-        "is": {
+        "expect": {
           "description": "The constraint macro: must have the form lib.macro(args,..), where lib is any of the libs in scope, std is available by default",
           "type": "string"
         },
@@ -1980,12 +2150,75 @@
       "additionalProperties": false
     },
     "FunctionImplSpec": {
-      "type": "string",
-      "enum": [
-        "builtin",
-        "sql",
-        "native"
+      "description": "Indicates how a function's evaluation is implemented.",
+      "oneOf": [
+        {
+          "description": "By a built-in primitive in Datafusion. (Being phased out in favor of UDFs.)",
+          "type": "string",
+          "enum": [
+            "builtin"
+          ]
+        },
+        {
+          "description": "By a UDF in the sdf-functions crate.",
+          "type": "object",
+          "required": [
+            "rust"
+          ],
+          "properties": {
+            "rust": {
+              "$ref": "#/definitions/RustFunctionSpec"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "description": "By a UDF in the datafusion crate.",
+          "type": "object",
+          "required": [
+            "datafusion"
+          ],
+          "properties": {
+            "datafusion": {
+              "$ref": "#/definitions/DataFusionSpec"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "description": "By a CREATE FUNCTION. (Not yet supported for evaluation.)",
+          "type": "string",
+          "enum": [
+            "sql"
+          ]
+        }
       ]
+    },
+    "RustFunctionSpec": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name attribute of the implementing UDF. None indicates the UDF is named the same as the function.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "DataFusionSpec": {
+      "type": "object",
+      "properties": {
+        "udf": {
+          "description": "The name attribute of the implementing UDF. None indicates the UDF is named the same as the function.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
     },
     "Config": {
       "description": "A configuration with section name and properties",
@@ -2183,6 +2416,20 @@
             "api-key": {
               "description": "The api key to use for the connection",
               "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "empty"
+              ]
             }
           }
         }

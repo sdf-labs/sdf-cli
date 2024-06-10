@@ -1,0 +1,225 @@
+---
+title: "Deprecating a Model"
+---
+
+## Overview
+In the previous tutorial, we discovered `app_installs` was replaced by `app_installs_v2`.
+
+This tutorial will walk through the deprecation of `app_installs` and demonstrate 
+how SDF can help overcome the two big hurdles in deprecating a model:
+1. Preventing prod from breaking by tracking and resolving downstream dependencies 
+2. Setting up guardrails to prevent future mistakes
+
+## Prerequisites
+Completion of the [previous tutorial](/tutorials/debugging).
+
+{/*
+Init for run commands:
+*/}
+
+
+## Setup
+### Reference to Metadata Files
+SDF's semantic understanding is based on metadata files, defining your custom business 
+logic, and smart propagation of values. To get started, we need to reference the metadata 
+directory by simply including the relevant paths in our workspace configuration file, `workspace.sdf.yml`. 
+
+Open the file `workspace.sdf.yml` and uncomment the following:
+
+``` yml workspace.sdf.yml
+...
+# Uncomment here to complete the "Deprecating a Model" tutorial >>>>>>
+- path: classifications  # Classifiers
+- path: checks  # Checks against SDF's information schema
+    type: check
+# <<<<<<<
+```
+
+<Note>
+Note
+* The classifications folder contains one YAML file for table classifiers, and one for column classifiers. 
+* The metadata folder is structured based on our models folder.
+* The checks folder is currently empty. 
+
+We will talk about all of these a bit later.
+</Note>
+
+Now, the paths are included in our project. 
+
+## Guide
+
+<Steps>
+    <Step title="Before Deprecation">
+        Before deprecating a model, we can run impact analysis on the its
+        downsltream dependencies using SDF's lineage command. We simply run:
+
+        ``` shell
+        sdf lineage app_installs --forward --show result
+        ```
+
+```shell shell
+Table: app_installs
+
+app_installs.campaign_id
+
+app_installs.campaign_name
+│
+│ copy
+└──────┐
+       agg_installs_and_campaigns.campaign_name
+
+app_installs.campaign_type
+
+app_installs.customer_id
+│
+│ mod
+└──────┐
+       agg_installs_and_campaigns.distinct_installs
+
+app_installs.event_id
+
+app_installs.install_time
+│
+│ copy
+└──────┐
+       agg_installs_and_campaigns.install_time
+
+app_installs.platform
+│
+│ copy
+└──────┐
+       agg_installs_and_campaigns.platform
+
+
+        ```
+        <Tip>
+            **Wow!** The model `agg_installs_and_campaigns` is also using the 
+            old version table!
+        </Tip>
+    </Step>
+    <Step title="Classify the Model as Deprecated">
+        The file `classifications/table_classifiers.sdf.yml` holds definitions of
+        a table level classifier called `TABLE_STATUS`. You can see that one of the
+        table status options is `deprecated`.
+        
+        To add the classifier to our table, navigate to the table's metadata file 
+        `metadata/staging/app_installs.sdf.yml`. Remove the commented 
+        section assigning the `TABLE_STATUS.deprecated` classifier to the table:
+
+        ```yml metadata/staging/app_installs.sdf.yml
+        # Uncomment here to add a "deprecated" classifier to the table
+        classifiers:
+          - TABLE_STATUS.deprecated
+        ```
+
+        Let's compile and see how it looks:
+        ```shell
+        sdf compile app_installs --show result
+        ```
+
+
+```shell shell
+
+Schema moms_flower_shop.pub.app_installs
+       This table is a staging table which adds campaign information to app install events
+
+       [TABLE_STATUS.deprecated]
+┌───────────────┬──────────────┬────────────┬─────────────┐
+│ column_name   ┆ data_type    ┆ classifier ┆ description │
+╞═══════════════╪══════════════╪════════════╪═════════════╡
+│ event_id      ┆ bigint       ┆            ┆             │
+│ customer_id   ┆ bigint       ┆            ┆             │
+│ install_time  ┆ timestamp(0) ┆            ┆             │
+│ platform      ┆ varchar      ┆            ┆             │
+│ campaign_id   ┆ bigint       ┆            ┆             │
+│ campaign_name ┆ varchar      ┆            ┆             │
+│ campaign_type ┆ varchar      ┆            ┆             │
+└───────────────┴──────────────┴────────────┴─────────────┘
+
+        ```
+        
+        <Tip>
+            Read more about classifiers in the [Classifiers Guide](/guide/basics/classifiers).
+        </Tip>
+    </Step>
+    <Step title="Prevent Using Deprecated Tables">
+        To prevent this issue from repeating itself, we can create an [SDF check](/guide/data-quality/checks)
+        that will fail every time a deprecated table is referenced.
+
+        Create a new SQL file called `deprecated_table_reference.sql` in the 
+        `checks/` directory. Copy the following query to your new file:
+
+        ``` sql checks/deprecated_table_reference.sql
+        SELECT
+            table_name,
+            classifiers
+        FROM sdf.information_schema.tables 
+        WHERE classifiers LIKE '%TABLE_STATUS.deprecated%'
+        ```
+
+        Thanks to SDF's lineage, we already knew that `agg_installs_and_campaigns` 
+        is referencing the old table. Therefore, it's a good test to our check - 
+        we expect it to fail.
+        
+        Let's check it out (pun intended):
+
+        ``` shell
+        sdf check deprecated_table_reference
+        ```
+
+
+```shell shell
+
+        ```
+
+        It works! Now, we should fix `agg_installs_and_campaigns`.
+        <Tip>
+            To get a health check of our warehouse, we can create reports that
+            will aggregate our checks for us. For more details, look at our 
+            [Reports Guide](/guide/data-quality/reports).
+        </Tip>
+    </Step>
+    <Step title="Resolve Downstream Dependencies">
+        To make sure we won't break prod if we delete our table, we
+        can choose to resolve the dependency by either: 
+        
+        * Deleting the file `models/analytics/agg_installs_and_campaigns.sql` 
+        representing the model
+        * Updating the `FROM` statement like we did for our previous model:
+        
+        ``` sql models/analytics/agg_installs_and_campaigns.sql
+        ...
+        FROM app_installs_v2  -- Change from app_installs to app_installs_v2
+        ...
+        ```
+
+        Let's run our check again:
+        ```
+        sdf check deprecated_table_reference
+        ```
+
+        All clear!
+
+```shell shell
+
+        ```
+    </Step>
+</Steps>
+
+That was really cool, ha? Let's explore what other cool things we can 
+do with SDF's information scehma and semantic undersstanding in our 
+next tutorial - [enriching your warehouse](/tutorials/enriching-your-warehouse)
+
+
+## Related Topics
+<CardGroup cols={3}>
+  <Card title="Workspace Configuration" href="/guide/setup/workspaces">
+    Learn all you need to know about workspaces
+  </Card>
+  <Card title="Classifiers" href="/guide/basics/classifiers">
+    Learn all the ways classifiers can help enhance your workspace
+  </Card>
+  <Card title="Checks" href="/guide/data-quality/checks">
+    Learn more about setting up checks for static analysis
+  </Card>
+</CardGroup>

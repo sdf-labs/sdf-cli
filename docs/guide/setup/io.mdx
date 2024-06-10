@@ -67,14 +67,14 @@ Let's try these options. Start by creating a new SDF workspace with a sample pro
 		```
     After running the command, you will see the following output:
     
-``` shell
+```shell shell
     Created lineage/checks/check_sink_phone_is_pii.sql
     Created lineage/src/knis.sql
     Created lineage/src/middle.sql
     Created lineage/src/sink.sql
     Created lineage/src/source.sql
     Created lineage/workspace.sdf.yml
-   Finished new in 0.028 secs
+   Finished new in 0.293 secs
 
 ```
   </Step>
@@ -95,13 +95,13 @@ sdf compile
 ```
     Reviewing this output, multiple files have been compiled and SDF has statically analyzed the queries.
 
-``` shell
+```shell shell
 Working set 4 model files, 1 .sdf file
   Compiling lineage.pub.source (./src/source.sql)
   Compiling lineage.pub.middle (./src/middle.sql)
   Compiling lineage.pub.knis (./src/knis.sql)
   Compiling lineage.pub.sink (./src/sink.sql)
-   Finished 4 models [4 succeeded] in 0.395 secs
+   Finished 4 models [4 succeeded] in 0.774 secs
 
 ```
 

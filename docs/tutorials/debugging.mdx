@@ -1,0 +1,323 @@
+---
+title: "Debugging"
+description: "The part we like the least, yet spend the most time on. SDF is here to help!"
+---
+
+## Overview
+In the previous tutorial we learned how to [create a new model with SDF](/tutorials/creating-a-model).
+As we were working on `dim_marketing_campaigns`, the result of the query just didn't make sense.
+
+In this tutorial we will see how SDF can simplify complicated debugging scenarios and accelerate 
+their resolution. It can also provide real time feedback as you author your queries with unprecedented 
+speed and accuracy.
+
+More specifically, we will use SDF to:
+1. Identify the issue upstream with our built-in column-level lineage.
+2. Run impact analysis after fixing the issue.
+3. Test some syntax static analysis examples
+
+## Prerequisites
+Completion of the [previous tutorial](/tutorials/creating-a-model).
+
+{/*
+Init for run commands:
+*/}
+
+## Guide
+<Steps>
+    <Step title="Understand Column Lineage">
+        SDF provides column-level lineage out of the box, all the way up to source.
+
+        To understand the lineage of the column `total_num_installs` in our new model, all
+        we need to do is run: 
+
+        ```shell 
+        sdf lineage dim_marketing_campaigns --column total_num_installs
+        ```
+
+```shell shell
+dim_marketing_campaigns.total_num_installs
+│
+│ copy
+└──────┐
+       stg_installs_per_campaign.total_num_installs
+       │
+       │ mod
+       └──────┐
+              app_installs.event_id
+              │
+              │ copy
+              └──────┐
+                     inapp_events.event_id
+                     │
+                     │ copy
+                     └──────┐
+                            raw_inapp_events.event_id
+                     raw_marketing_campaign_events.event_id
+
+        ```
+ 
+        Now we can pinpoint exactly which models we need to check. Out of the entire warehouse, we only need to check 3 models!
+ 
+        <Tip>
+        To learn more about SDF lineage, visit our [lineage guide](/guide/basics/lineage_metadata)
+        </Tip>
+ 
+    </Step> 
+    <Step title="Identify the Issue Upstream">
+        Let's check the first upstream model -- `stg_installs_per_campaign.sql`
+        located under the directory `models/staging/`.
+
+        ``` sql models/staging/stg_installs_per_campaign
+        SELECT 
+            campaign_id,
+            COUNT(event_id) AS total_num_installs
+        FROM app_installs
+        GROUP BY 1
+        ```
+
+        There is not much going on here. We need to keep moving up.
+
+        In the upstream model `app_installs` defined in `models/staging/app_installs.sql`,
+        let's zoom in on the `FROM` statement:
+        ``` sql models/staging/app_installs.sql
+        ...
+        FROM inapp_events i 
+            LEFT OUTER JOIN raw_marketing_campaign_events m
+                ON (i.event_id = m.event_id) 
+        ...
+        ```
+
+        <Tip>
+        **Aha!** Who said that inapp_events and marketing events are the same?
+        </Tip>
+    </Step>
+    <Step title="Compare to Other Models">
+        You remember another model, `customers`, has correct marketing campaign data. 
+        Let's check out the lineage for the customers model:
+
+        ```shell
+        sdf lineage customers --column campaign_id
+        ```
+
+```shell shell
+customers.campaign_id
+│
+│ copy
+└──────┐
+       app_installs_v2.campaign_id
+       │
+       │ copy
+       └──────┐
+              raw_marketing_campaign_events.campaign_id
+
+        ```
+
+        <Tip>
+        **Aha #2!** There's a V2 version of `app_installs` -- `app_installs_v2`
+        </Tip>
+
+    </Step>
+    <Step title="Update the Model">
+        Once we identify the issue, it's an easy fix. 
+        Update the `FROM` statement `stg_installs_per_campaign`, to the use `app_installs_v2`:
+
+        ``` sql
+        ...
+        FROM app_installs_v2  -- Change from app_installs to app_installs_v2
+        ...
+        ```
+
+    </Step>
+    <Step title="Analyze">
+        Let's analyze the impact.
+
+        First, we should make sure our fix compiles:
+        ```shell
+        sdf compile
+        ```
+
+        We expect to see a successful run:
+
+```shell shell
+Working set 12 model files, 8 .sdf files
+  Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
+  Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
+  Compiling moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
+   Finished 12 models [3 succeeded, 9 reused] in 0.770 secs
+
+        ```
+
+        Next, we can look at all the tables and columns this change will impact. If we add the 
+        flag `--forward` to the lineage command, we will see the lineage of each column of 
+        `stg_installs_per_campaign` and how it is used by other models.
+
+        To do that, add a `forward` tag to your lineage command:
+        ```shell
+        sdf lineage stg_installs_per_campaign --forward
+        ```
+
+        It should look like this:
+```shell shell
+Table: stg_installs_per_campaign
+
+stg_installs_per_campaign.campaign_id
+
+stg_installs_per_campaign.total_num_installs
+│
+│ copy
+├──────┐
+│      dim_marketing_campaigns.total_num_installs
+│ mod
+└──────┐
+       dim_marketing_campaigns.avg_customer_acquisition_cost
+       dim_marketing_campaigns.install_duration_ratio
+
+
+        ```
+
+        Only our new model will be impacted.
+    </Step>
+    <Step title="Fix it!">
+        To materialize the fix, all we need to do it run the queries:
+        
+        ```shell
+        sdf run dim_marketing_campaigns
+        ```
+
+        Perfect! We are all set!
+    </Step>
+</Steps>
+
+## Bonus
+Lineage is not all we can do.
+
+SDF provides out of the box static analysis to support the development
+process as you author your transformations. This capability has two benefits:
+1. Quicker development thanks to the instant feedback on your syntax and semantics
+2. Compute cost savings since analysis happens on compile, before we send the query to run
+
+Let's try a few things that **will fail**. In this case, getting an error early is a good thing.
+Notice how quickly you get the response!
+
+<Steps>
+    <Step title="Open the File">
+        To keep it simple, we sill use `models/staging/stg_installs_per_campaign.sql`
+        throughout the following steps.
+        
+        As a reminder, the query looks like this:
+
+        ``` sql models/staging/stg_installs_per_campaign.sql
+        SELECT 
+            campaign_id,
+            COUNT(event_id) AS total_num_installs
+        FROM app_installs_v2
+        GROUP BY 1
+        ```
+    </Step>
+    <Step title="Error: No Column Found">
+        Let's try to change the column campaign_id to a non-existing column. 
+        
+        For example, we can change the column name from `campaign_id` to `non_existing_column`. 
+        This column definitely doesn't exist in `app_installs_v2` (or `app_installs`)
+
+        ```sql models/staging/stg_installs_per_campaign.sql
+        SELECT 
+            -- We changed campaign_id to non_existing_column below
+            non_existing_column, 
+            COUNT(event_id) AS total_num_installs
+        FROM app_installs_v2
+        GROUP BY 1
+        ```
+        If we try to compile:
+        ```shell 
+        sdf compile stg_installs_per_campaign
+        ``` 
+
+        The run will fail and the error message will look like this:
+
+```shell shell
+error: SDF227: No column 'non_existing_column' found, available are 'app_installs.install_time', 'app_installs.campaign_name', 'app_installs.campaign_type', 'app_installs.campaign_id', 'app_installs.customer_id', ...
+  --> models/staging/stg_installs_per_campaign.sql:2:5
+
+        ```
+
+        <Tip>
+            If you are using Visual Studio Code, you can easily click into the error location
+            by CMD-Clicking on the bottom of the error:
+            
+            `--> models/staging/stg_installs_per_campaign.sql:2:5`
+        </Tip>
+    </Step>
+    <Step title="Error: Function Arguments Do Not Match">
+        Similarly, we can write a function incorrectly. 
+
+        For example, the function `ABS` takes one numeric argument. What if we try to give it 
+        a string like `campaign_name`? In the file `models/staging/stg_installs_per_campaign.sql`, 
+        change the `campaign_id` selection with the following:
+        
+        ```sql models/staging/stg_installs_per_campaign.sql
+        SELECT 
+            -- We changed campaign_id to ABS(campaign_name) 
+            ABS(campaign_name), 
+            COUNT(event_id) AS total_num_installs
+        FROM app_installs_v2
+        GROUP BY 1
+        ```
+
+        If we try to compile:
+        ```shell
+        sdf compile stg_installs_per_campaign
+        ```
+
+        The run will fail and the error message will look like this:
+
+```shell shell
+error: SDF209: Function ABS arguments do not match, actual varchar, candidates tinyint; smallint; bigint; double; decimal(p, s); real
+  --> models/staging/stg_installs_per_campaign.sql:2:5
+
+        ```
+    </Step>
+    <Step title="Error: Un-aggregated columns in aggregation context">
+        We can even try some more complicated logic. 
+        
+        For example, we can add another column to the `SELECT` without updating the `GROUP BY`. 
+        ``` sql
+        SELECT 
+            campaign_id,
+            campaign_name,  -- We added an extra column
+            COUNT(event_id) AS total_num_installs
+        FROM app_installs_v2
+        GROUP BY 1  -- We didn't the new column here
+        ```
+
+        Watch what happens when you try to compile:
+        ```shell
+        sdf compile stg_installs_per_campaign
+        ```
+        
+        The run will fail and the error message will look like this:
+```shell shell
+error: SDF209: Function ABS arguments do not match, actual varchar, candidates tinyint; smallint; bigint; double; decimal(p, s); real
+  --> models/staging/stg_installs_per_campaign.sql:2:5
+
+        ```
+    </Step>
+    <Step title="Try it Yourself">
+        What is that one syntax mistake you always forget about until you see that 
+        run error? Try it out! See if SDF can save you the wait next time :)
+    </Step>
+</Steps>
+
+
+## Next Steps
+Now that we fixed the issue, we want to prevent anything similar from happening again. 
+In our next tutorial, "[Deprecating a Model](/tutorials/deprecating-a-model)" we will
+deprecate `app_installs`, the old version of `app_installs_v2` that we initially used.
+
+## Related Topics
+<CardGroup cols={1}>
+  <Card title="Lineage" href="/guide/basics/lineage_metadata">
+    Learn more about SDF's advanced column-level lineage capabilities
+  </Card>
+</CardGroup>

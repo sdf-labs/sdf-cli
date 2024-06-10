@@ -22,7 +22,7 @@ Let's write and modify a report, starting with one of the sdf samples.
     sdf new --sample pii_saas_platform
     ```
 
-``` shell
+```shell shell
     Created pii_saas_platform/.gitignore
     Created pii_saas_platform/checks/no_pii_in_external.sql
     Created pii_saas_platform/classification/taxonomy.sdf.yml
@@ -41,7 +41,7 @@ Let's write and modify a report, starting with one of the sdf samples.
     Created pii_saas_platform/src/internal/users_per_domain.sql
     Created pii_saas_platform/src/internal/users_per_org.sql
     Created pii_saas_platform/workspace.sdf.yml
-   Finished new in 0.027 secs
+   Finished new in 0.291 secs
 
 ```
     This sample contains a report and a workspace modeled after a simple SAAS platform.
@@ -60,14 +60,14 @@ Let's write and modify a report, starting with one of the sdf samples.
     The report itself lists all tables with PII by fetching all columns with classifiers that have `PII`. This is done with the following SQL:
     ```sql
     SELECT 
-      t.table_ref, 
+      t.table_id, 
       t.description, 
       t.dialect
     FROM 
       sdf.information_schema.tables t
     JOIN 
-      sdf.information_schema.columns c ON t.table_ref = c.table_ref
-    WHERE c.classifiers LIKE '%PII%'
+      sdf.information_schema.columns c ON t.table_id = c.table_id
+    WHERE CONTAINS_ARRAY_VARCHAR(c.classifiers, 'PII')
     GROUP BY 1,2,3;
     ```
 
@@ -96,31 +96,31 @@ Let's write and modify a report, starting with one of the sdf samples.
     sdf report --show all
     ```
 
-``` shell
+```shell shell
 Working set 12 model files, 3 .sdf files
   Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
   Compiling payment.public.users (./ddls/payment/public/users.sql)
   Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
   Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
-  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
   Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
+  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
+  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
   Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
   Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
-  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
-  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
   Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
+  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
   Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 succeeded], 1 report [1 succeeded] in 1.360 secs
+   Finished 12 models [12 succeeded], 1 report [1 succeeded] in 1.676 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+-------------------------+-----------+
-| table_ref                                    | description             | dialect   |
+| table_id                                     | description             | dialect   |
 +----------------------------------------------+-------------------------+-----------+
-| transformations.internal.most_frequent_payer |                         | snowflake |
 | transformations.external.invoice_stats       |                         | snowflake |
 | payment.public.users                         | DDL for the users table | snowflake |
+| transformations.internal.most_frequent_payer |                         | snowflake |
 | transformations.internal.users_per_domain    |                         | snowflake |
 +----------------------------------------------+-------------------------+-----------+
 4 rows.
@@ -130,15 +130,15 @@ Report sdf.reports.tables_with_pii
     As you can see from the output, it looks we have three tables containing columns with PII. Let's say we also wanted to show the names of the columns that contain PII. We can do this by modifying the SQL query to include the column name like so:
     ```sql
     SELECT 
-      t.table_ref, 
+      t.table_id, 
       c.column_name,
       t.description, 
       t.dialect
     FROM 
       sdf.information_schema.tables t
     JOIN 
-      sdf.information_schema.columns c ON t.table_ref = c.table_ref
-    WHERE c.classifiers LIKE '%PII%'
+      sdf.information_schema.columns c ON t.table_id = c.table_id
+    WHERE CONTAINS_ARRAY_VARCHAR(c.classifiers, 'PII')
     GROUP BY 2,1,3,4;
     ```
 
@@ -146,23 +146,23 @@ Report sdf.reports.tables_with_pii
     ```shell
     sdf report --show all
     ```
-``` shell 
+```shell shell
 Working set 12 model files, 3 .sdf files
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 reused], 1 report [1 succeeded] in 1.078 secs
+   Finished 12 models [12 reused], 1 report [1 succeeded] in 1.459 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+
-| table_ref                                    | column_name  | description             | dialect   |
+| table_id                                     | column_name  | description             | dialect   |
 +----------------------------------------------+--------------+-------------------------+-----------+
 | transformations.external.invoice_stats       | email        |                         | snowflake |
+| payment.public.users                         | email        | DDL for the users table | snowflake |
 | payment.public.users                         | phone        | DDL for the users table | snowflake |
-| payment.public.users                         | name         | DDL for the users table | snowflake |
 | transformations.internal.users_per_domain    | email_domain |                         | snowflake |
+| payment.public.users                         | name         | DDL for the users table | snowflake |
 | transformations.internal.most_frequent_payer | email        |                         | snowflake |
 | transformations.external.invoice_stats       | name         |                         | snowflake |
-| payment.public.users                         | email        | DDL for the users table | snowflake |
 +----------------------------------------------+--------------+-------------------------+-----------+
 7 rows.
 
@@ -173,7 +173,7 @@ Report sdf.reports.tables_with_pii
     ```sql pii_datatypes.sql
       SELECT c.datatype, COUNT(*) as frequency
       FROM sdf.information_schema.columns c
-      WHERE c.classifiers LIKE '%PII%'
+      WHERE CONTAINS_ARRAY_VARCHAR(c.classifiers, 'PII')
       GROUP BY c.datatype 
       ORDER BY frequency DESC;
     ```
@@ -183,23 +183,23 @@ Report sdf.reports.tables_with_pii
     ```
 
 
-``` shell
+```shell shell
 Working set 12 model files, 3 .sdf files
 Working set 2 report files, 1 .sdf file
   Reporting sdf.reports.pii_datatypes (./reports/pii_datatypes.sql)
-   Finished 12 models [12 reused], 2 reports [1 succeeded, 1 reused] in 1.190 secs
+   Finished 12 models [12 reused], 2 reports [1 succeeded, 1 reused] in 1.442 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+
-| table_ref                                    | column_name  | description             | dialect   |
+| table_id                                     | column_name  | description             | dialect   |
 +----------------------------------------------+--------------+-------------------------+-----------+
-| payment.public.users                         | name         | DDL for the users table | snowflake |
-| payment.public.users                         | phone        | DDL for the users table | snowflake |
 | transformations.external.invoice_stats       | email        |                         | snowflake |
-| transformations.internal.most_frequent_payer | email        |                         | snowflake |
-| transformations.external.invoice_stats       | name         |                         | snowflake |
-| transformations.internal.users_per_domain    | email_domain |                         | snowflake |
 | payment.public.users                         | email        | DDL for the users table | snowflake |
+| payment.public.users                         | phone        | DDL for the users table | snowflake |
+| transformations.internal.users_per_domain    | email_domain |                         | snowflake |
+| transformations.external.invoice_stats       | name         |                         | snowflake |
+| payment.public.users                         | name         | DDL for the users table | snowflake |
+| transformations.internal.most_frequent_payer | email        |                         | snowflake |
 +----------------------------------------------+--------------+-------------------------+-----------+
 7 rows.
 

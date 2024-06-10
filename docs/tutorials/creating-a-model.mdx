@@ -1,0 +1,175 @@
+---
+title: "Creating a Model"
+description:
+  "Our first model in SDF, that's exciting!"
+---
+
+## Overview
+Imagine your mom is trying to optimize marketing campaigns for mobile app 
+installations, because she's proudly running a tech-forward boutique flower shop.
+She wants to get some metrics per campaign to examine their performance. 
+
+
+To help your mom, you plan to create a new table in the analytics layer called `dim_marketing_campaigns`.
+
+In short, creating a new model using SDF is as simple as two basic steps:
+1. Create a SQL file with the query of the model
+2. Run `sdf run`
+
+Let's check it out!
+
+<Note>
+    In this series of tutorials, we will execute our queries locally using SDF's built-in infrastructure. 
+    To learn more about using other providers see our [providers guides](/integrations/snowflake/getting-started).
+</Note>
+
+## Prerequisites
+1. A Mac or Linux with a valid installation of the latest SDF version running locally.
+2. Completion of the [previous tutorial](/tutorials/getting-started).
+
+{/*
+Init for run commands:
+*/}
+
+<Tip>
+  A complete version of the workspace (after the tutorials) is available in [this GitHub project]() for you 
+  to follow along these guides if you wish.
+</Tip>
+
+## Guide
+<Steps>
+    <Step title="Create a New Analytics Layer Model">
+        To create a new model in SDF, all you need to do is to create a new SQL file.
+        To follow best practices, we will create the model in the `models/analytics` directory.
+
+        Create a file called `dim_marketing_campaigns.sql` under `models/analytics` and copy the SQL below.
+        
+        <Tip>
+            Note that SDF can infer dependencies and other information from SQL natively 
+            with no special adjustments needed from you. We do not require Jinja refs, sources
+            definitions or additional configurations.
+            
+            Just write your SQL as you would run it.
+        </Tip>
+        
+
+        ```sql models/analytics/dim_marketing_campaigns.sql
+        SELECT 
+            -- marketing campaigns dimensions
+            m.campaign_id,
+            m.campaign_name,
+            -- metrics
+            i.total_num_installs,
+            total_campaign_spent / 
+                NULLIF(i.total_num_installs, 0) AS avg_customer_acquisition_cost,
+            campaign_duration / 
+                NULLIF(i.total_num_installs, 0) AS install_duration_ratio
+        FROM marketing_campaigns m
+            LEFT OUTER JOIN stg_installs_per_campaign i
+            ON (m.campaign_id = i.campaign_id)
+        ```
+    </Step>
+    <Step title="Validate the Model Through Static Analysis">
+        In just one command, SDF will analyze our entire data warehouse and provide immediate
+        feedback. Through this static analysis we can fix our query or DAG before sending it to 
+        run, saving time and compute.
+        
+        <Note>
+        To run SDF commands your terminal should execute from the workspace's root folder - `moms_flower_shop`.
+        
+        If not already there, run `cd moms_flower_shop` in your terminal.
+        </Note>
+        
+        Let's compile the workspace:
+
+        ``` shell
+        sdf compile
+        ```
+
+        A successful run will show all our models in their order of execution. 
+        
+        SDF intelligently caches previous compiles. Since we compiled the source models 
+        under `models/raw` in the [previous tutorial](/tutorials/getting-started#), 
+        those will not be re-compiled in this run. If you'd like to re-compile all files, 
+        you can clear SDF's cache by running `sdf clean`. 
+        
+        It will look like this:
+       
+```shell shell
+Working set 11 model files, 8 .sdf files
+  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+  Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
+  Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
+  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
+  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+  Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+  Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
+  Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
+  Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
+  Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
+  Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
+   Finished 11 models [11 succeeded] in 0.844 secs
+
+        ```
+
+        We will see how it looks like when this command fails in later tutorials. 
+        <Note>
+            `sdf compile` will always be executed before `sdf run` so this step is not mendatory 
+            to enjoy the benefits of SDF's static analysis. However, we think it provides additional 
+            insights into our workspace that are worth noting.
+        </Note>
+    </Step>
+    <Step title="Run the Query">
+        Now that we validated our query, let's see its results.
+        
+        All we need to do is execute `sdf run` in our terminal. To only run our table, 
+        we will indicate its name in our command.
+
+        ```shell 
+        sdf run dim_marketing_campaigns
+        ```
+
+        Notice that to execute our query, SDF ran all the models it is dependent on.
+
+```shell shell
+Working set 12 model files, 8 .sdf files
+    Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
+    Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+    Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+    Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+    Running moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
+    Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
+    Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
+   Finished 7 models [7 succeeded] in 0.900 secs
+
+Table moms_flower_shop.pub.dim_marketing_campaigns
++-------------+---------------------------------+--------------------+-------------------------------+------------------------+
+| campaign_id | campaign_name                   | total_num_installs | avg_customer_acquisition_cost | install_duration_ratio |
++-------------+---------------------------------+--------------------+-------------------------------+------------------------+
+| 0           | instagram_ads_0_8c1fdf7cb0      | 3                  | 136.8974896684042             | 1                      |
+| 15          | facebook_ads_15_442d2b459c      | 1                  | 882.3536753287628             | 6                      |
+| 4           | friends_referrals_4_c554b77114  | 7                  | 397.55425986196843            | 2                      |
+| 11          | google_search_11_56e2a09ed5     | 2                  | 554.6412598092293             | 4                      |
+| 9           | instagram_ads_9_2490ca8150      | 1                  | 277.62555970729034            | 2                      |
+| 45          | facebook_ads_45_738dd86962      | 3                  | 400.2270208762939             | 3                      |
+| 13          | friends_referrals_13_c6e177ff0a | 6                  | 274.98824354840355            | 2                      |
+| 17          | google_search_17_a400715565     | 4                  | 551.7313287834124             | 3                      |
+| 27          | instagram_ads_27_51742fd406     | 8                  | 337.24899695415485            | 2                      |
+| 33          | instagram_ads_33_d94e3b0183     | 7                  | 413.2623114737301             | 3                      |
++-------------+---------------------------------+--------------------+-------------------------------+------------------------+
+114 rows, showing only 10 rows. Run with --limit 0 to show all rows.
+
+        ```
+    </Step>
+</Steps>
+
+Congratulations! You just created the your first model using SDF!
+
+## Next Steps
+**Our work here isn't done!**
+
+As you look at the results of the query you realize that the `total_num_installs` 
+column just doesn't make sense. 
+
+Of course, your query is perfect! So what could've possible gone wrong?
+Let's debug together using SDF in our [debugging tutorial](/tutorials/debugging).

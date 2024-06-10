@@ -12,7 +12,8 @@ title: "SDF YML Schema"
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
-`providers:` | `array`| The providers for this environment (OLD_PROVIDERS)|
+`providers:` | `array`| The providers for this environment|
+`integrations:` | `array`| The integrations for this environment|
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
@@ -117,6 +118,10 @@ title: "SDF YML Schema"
 | :---- | :--- | :------- |
 `type:` | `string`| |
 `api-key:` | `string`| The api key to use for the connection|
+#### empty
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`type:` | `string`| |
 ## Block: `Environment`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -129,6 +134,7 @@ title: "SDF YML Schema"
 `compute:` | [`ComputeKind`](#enum-computekind)| The compute platform for this environment. If not set, defaults to Local|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
 `providers:` | `array`| The providers for this environment|
+`integrations:` | `array`| The integrations for this environment|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| Experimental: This project has jinja|
@@ -225,6 +231,12 @@ Values |
 `snowflake`
 `s3`
 `sdf`
+## Enum: `IntegrationType`
+Values |
+| :--- |
+`data`
+`metadata`
+`database`
 ## Enum: `TablePurpose`
 Value | Description|
 | :--- | :------- |
@@ -323,7 +335,7 @@ Values |
 | :---- | :--- | :------- |
 `environment:` | `string?`| The default environment (can only be set on the level of the workspace)|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this environment. If not set, defaults to trino|
-`compute:` | [`ComputeKind?`](#enum-computekind)| The compute platform for this environment. If not set, defaults to local|
+`compute:` | [`ComputeKind?`](#enum-computekind)| DEPRECATED; subsumed by providers/integrations information|
 `preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| The preprocessor for this environment. If not set, defaults to local|
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
@@ -385,6 +397,17 @@ Values |
 | :---- | :--- | :------- |
 `uri:` | `string`| The uri of the bucket|
 `region:` | `string?`| The region of the bucket|
+### Nested element: `Integration`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`type:` | [`IntegrationType`](#enum-integrationtype)| The type of the integration [e.g.: database, metadata, data]|
+`provider:` | [`ProviderType`](#enum-providertype)| The type of the provider [e.g.: snowflake, redshift, s3]|
+`credential:` | `string?`| Credential identifier for this provider|
+`cluster-identifier:` | `string?`| The cluster identifier for redshift server|
+`batch-size:` | `integer?`| The size of the batch when querying the provider|
+`sources:` | `array`| A list of (possibly remote) sources to read, matched in order, so write specific pattern before more general patterns|
+`targets:` | `array`| A list of (possibly remote) targets to build,  matched in order, so write specific pattern before more general patterns, source patterns are excluded|
+`buckets:` | `array`| A list o|
 ### Nested element: `FilePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -474,6 +497,10 @@ Values |
 | :---- | :--- | :------- |
 `input:` | `string`| The sql string corresponding to the input of this example|
 `output:` | `string`| The output corresponding to running the input string|
+### Nested element: `RustFunctionSpec`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string?`| The name attribute of the implementing UDF. None indicates the UDF is named the same as the function.|
 ### Nested element: `DataFusionSpec`
 |Field | Type | Description|
 | :---- | :--- | :------- |

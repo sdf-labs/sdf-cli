@@ -14,7 +14,7 @@ To verify that SDF is installed correctly, run the following command:
 sdf --help
 ```
 
-``` shell
+```shell shell
 SDF's modular SQL
 
 Usage: sdf <COMMAND>
@@ -52,11 +52,11 @@ sdf new --sample hello && cd hello
 ```
 After running the command, you will see the following output: 
  
-``` shell
+```shell shell
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.025 secs
+   Finished new in 0.308 secs
 
 ```
 
@@ -96,10 +96,10 @@ Let's see just how easy it is to set up SDF and run your first query.
         ```
          
         Your output should look like:
-``` shell
+```shell shell
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.454 secs
+   Finished 1 model [1 succeeded] in 0.758 secs
 
 Schema hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -122,10 +122,10 @@ Schema hello.pub.main
         ```
 
         Your output should look like:
-``` shell
+```shell shell
 Working set 1 model file, 1 .sdf file
     Running hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.275 secs
+   Finished 1 model [1 succeeded] in 0.723 secs
 
 Table hello.pub.main
 +----------+-----------------+
@@ -152,11 +152,11 @@ Table hello.pub.main
         ```
 
 
-``` shell
+```shell shell
 Working set 2 model files, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
   Compiling hello.pub.main2 (./src/main2.sql)
-   Finished 2 models [2 succeeded] in 0.258 secs
+   Finished 2 models [2 succeeded] in 0.758 secs
 main2.column_1
 │
 │ copy

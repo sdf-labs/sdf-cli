@@ -1,0 +1,1 @@
+CREATE EXTERNAL TABLE raw_inapp_events stored AS PARQUET LOCATION  'seeds/parquet/inapp_events.parquet';

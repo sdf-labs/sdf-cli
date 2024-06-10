@@ -1,0 +1,266 @@
+---
+title: "Overview"
+description:
+  "Explore SDF's series of tutorials and get to know our tool a little better. "
+---
+
+## Overview
+The goal of this tutorials series is to provide a guided way for you to explore SDF and 
+understand how it can be integrated into your data workflows. We built SDF to be an intuitive
+and easy to use and we hope you'll have fun exploring it.
+
+In our series of tutorial we will be working on a single SDF workspace - "Mom's Flower Shop". 
+In this page, we will provide a setup guide as well as an overview of this workspace. We 
+will even use SDF to conduct some initial exploration.
+
+This project was inspired by [Fleurette Studio](https://www.instagram.com/fleurette_studio/), 
+one of our co-founders [Elias'](https://www.linkedin.com/in/eliasdefaria/) mom's 
+boutique floral design studio located in Los Angeles, CA. 
+
+Let's get started!
+
+## Prerequisits
+* A Mac or Linux with a [valid installation](/guide/install) of the latest SDF version running locally.
+* (Recommended) Having gone through our [Getting Started Guide](/introduction/getting-started).
+
+For the sake of the tutorials, there is no need to connect to a database or to leverage any 
+  compute engine other than your own laptop. 
+
+<Tip>
+  If using VSCode, SDF's YML schema is available for type and syntax checking via the [Red HAT YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). This will
+  add auto-fill, type checking, and YML validation directly inline while editing `sdf.yml` files.
+</Tip>
+
+
+## Getting Started with Mom's Flower Shop
+
+<Steps>
+  <Step title="Create the Sample Workspace">
+    To create a new SDF Workspace containing Mom's Flower Shop data, run the following command:
+
+    ```shell
+    sdf new --sample moms_flower_shop
+    ```
+
+    After running the command, you will see the following output: 
+```shell shell
+
+                   _
+                 _(_)_                          wWWWw   _
+     @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_
+    @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)
+     @@@@  (___)     `|/    Y    (_)@(_)  @@@@   \|/   (_)\
+      /      Y       \|    \|/    /(_)    \|      |/      |
+   \ |     \ |/       | / \ | /  \|/       |/    \|      \|/
+    \\|//   \\|///  \\\|//\\\|/// \|///  \\\|//  \\|//  \\\|// 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    
+    Created moms_flower_shop/.gitignore
+    Created moms_flower_shop/checks/README.txt
+    Created moms_flower_shop/classifications/column_classifiers.sdf.yml
+    Created moms_flower_shop/classifications/table_classifiers.sdf.yml
+    Created moms_flower_shop/metadata/analytics/agg_installs_and_campaigns.sdf.yml
+    Created moms_flower_shop/metadata/analytics/dim_marketing_campaigns.sdf.yml
+    Created moms_flower_shop/metadata/raw/raw_addresses.sdf.yml
+    Created moms_flower_shop/metadata/raw/raw_customers.sdf.yml
+    Created moms_flower_shop/metadata/raw/raw_inapp_events.sdf.yml
+    Created moms_flower_shop/metadata/raw/raw_marketing_campaign_events.sdf.yml
+    Created moms_flower_shop/metadata/staging/app_installs.sdf.yml
+    Created moms_flower_shop/models/analytics/agg_installs_and_campaigns.sql
+    Created moms_flower_shop/models/raw/raw_addresses.sql
+    Created moms_flower_shop/models/raw/raw_customers.sql
+    Created moms_flower_shop/models/raw/raw_inapp_events.sql
+    Created moms_flower_shop/models/raw/raw_marketing_campaign_events.sql
+    Created moms_flower_shop/models/staging/app_installs.sql
+    Created moms_flower_shop/models/staging/app_installs_v2.sql
+    Created moms_flower_shop/models/staging/customers.sql
+    Created moms_flower_shop/models/staging/inapp_events.sql
+    Created moms_flower_shop/models/staging/marketing_campaigns.sql
+    Created moms_flower_shop/models/staging/stg_installs_per_campaign.sql
+    Created moms_flower_shop/seeds/csv/README.txt
+    Created moms_flower_shop/seeds/parquet/addresses.parquet
+    Created moms_flower_shop/seeds/parquet/customers.parquet
+    Created moms_flower_shop/seeds/parquet/inapp_events.parquet
+    Created moms_flower_shop/seeds/parquet/marketing_campaign_events.parquet
+    Created moms_flower_shop/workspace.sdf.yml
+   Finished new in 0.319 secs
+
+    ```
+
+    That's it!
+  </Step>
+  <Step title="Workspace Overview">
+    This workspace is powering the data warehouse of Mom's Flower Shop. 
+
+    First, let's open our terminal and change the directory. Run:
+    ```shell
+    cd moms_flower_shop
+    ```
+
+    Now, we can list all the folders in our workspace:
+    ```shell
+    ls
+    ```
+
+```shell shell
+checks
+classifications
+metadata
+models
+seeds
+workspace.sdf.yml
+
+    ```
+
+    * Raw data seeds are available in the `seeds` folder. 
+    * Models (SQL files) are available in the `models` folder.
+    * The workspace is defined in the `workspace.sdf.yml` configuration file.
+
+    Let's ignore the rest of the directory for now. We will get back to those in later tutorials.
+  </Step>
+  <Step title="Source Tables"> 
+    Let's explore the tables. In your terminal, run:
+    ```shell
+    sdf compile models/raw
+    ```
+
+    <Tip>
+    When we run SDF compile, our engine validates SQL syntax and dependencies correctness.
+    In the example above, SDF is set to compile models under `models/raw`, but but if we 
+    run `sdf compile` alone we will instantly guarantee a successful execution of all models 
+    in the warehouse with a single command, running locally with lightning speed.
+    </Tip>
+
+    SDF will print out the full description of the raw tables (seeds) that exist in our workspace:
+      1. Customers
+      2. Marketing campaigns
+      3. Mobile in-app events
+      4. Street addresses
+
+    For example, the results for `raw_customers` look like this:
+
+```shell shell
+
+Schema moms_flower_shop.pub.raw_customers
+       All relevant information related to customers known to mom s flower shop.  This information comes from the user input into the mobile app.
+
+┌─────────────┬───────────┬────────────┬────────────────────────────────────────────────────────────┐
+│ column_name ┆ data_type ┆ classifier ┆ description                                                │
+╞═════════════╪═══════════╪════════════╪════════════════════════════════════════════════════════════╡
+│ id          ┆ bigint    ┆            ┆ A unique identifier of a mom s floewr shop customer        │
+│ first_name  ┆ varchar   ┆            ┆ The first name of the customer                             │
+│ last_name   ┆ varchar   ┆            ┆ The last name of the customer                              │
+│ email       ┆ varchar   ┆            ┆ The emial of the customer                                  │
+│ gender      ┆ varchar   ┆            ┆ The gender of the customer                                 │
+│ address_id  ┆ bigint    ┆            ┆ The address_id of the address associated with the customer │
+└─────────────┴───────────┴────────────┴────────────────────────────────────────────────────────────┘
+
+    ```
+
+    We can also get a sample of each table if we run the command:
+    ```shell
+    sdf run models/raw
+    ```
+    
+    For example, the results for `raw_customers` look like this:
+
+```shell shell
+
+Table moms_flower_shop.pub.raw_customers
++----+------------+-------------+-----------------------------+-------------+------------+
+| id | first_name | last_name   | email                       | gender      | address_id |
++----+------------+-------------+-----------------------------+-------------+------------+
+| 1  | Willi      | Vannuchi    | wvannuchi0@engadget.com     | Male        | 73         |
+| 2  | Opalina    | Christophle | ochristophle1@sina.com.cn   | Female      | 17         |
+| 3  | Parke      | Tackley     | ptackley2@deliciousdays.com | Male        | 89         |
+| 4  | Berton     | Klamp       | bklamp3@desdev.cn           | Male        | 99         |
+| 5  | Taryn      | Brook       | tbrook4@flavors.me          | Female      | 86         |
+| 6  | Moina      | Crake       | mcrake5@uol.com.br          | Female      | 38         |
+| 7  | Robbyn     | Chezelle    | rchezelle6@themeforest.net  | Female      | 92         |
+| 8  | Carce      | Clendening  | cclendening7@chron.com      | Male        | 64         |
+| 9  | Pennie     | Shilton     | pshilton8@mapy.cz           | Genderqueer | 13         |
+| 10 | Brig       | Graal       | bgraal9@microsoft.com       | Male        | 38         |
++----+------------+-------------+-----------------------------+-------------+------------+
+1000 rows, showing only 10 rows. Run with --limit 0 to show all rows.
+
+    ```
+    ** Note that these files are randomly generated and do not contain any real data
+
+    <Tip>
+      In this workspace we are using sample data stored locally for ease of use. 
+      
+      When setting up your own workspace, you can connect existing data providers to SDF.
+      Follow the relevant [provider's guide](/integrations/snowflake) to get started.
+    </Tip>
+  </Step>
+  <Step title="Other Models">
+    We can also explore the other models that are found under the `models` directory.
+
+    To see the full list of models displayed in the order of execution, we can run:
+    ```shell
+    sdf compile
+    ```
+    
+    The output should look like this:
+```shell shell
+Working set 11 model files, 8 .sdf files
+  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+  Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+  Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
+  Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
+  Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
+  Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
+  Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
+   Finished 11 models [7 succeeded, 4 reused] in 0.848 secs
+
+    ```
+
+    <Tip>
+    SDF intelligently caches previous compilations. Since we compiled the source models 
+    under `models/raw` in previous steps, those will not be re-compiled in this run. 
+    </Tip>
+
+    Let's see how it could've looked like without SDF's optimization. First we need 
+    to clean cache. Run:
+    ```shell 
+    sdf clean
+    ``` 
+    Now, compile again by running: 
+    ```shell
+    sdf compile
+    ```
+    
+    Notice the difference? Imagine running unoptimized compilations on a warehouse of your magnitude.
+```shell shell
+Working set 11 model files, 8 .sdf files
+  Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
+  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
+  Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
+  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+  Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+  Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
+  Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
+  Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
+  Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
+  Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
+   Finished 11 models [11 succeeded] in 0.837 secs
+
+    ```
+    
+    To see the schema of each table, similarly to the source tables in the previous step, 
+    simply add the flag `--show all` to the command:
+    ```shell
+    sdf compile --show all
+    ```
+  </Step>
+</Steps>
+  
+
+## Next Steps
+Let's continue in our journey to explore SDF:
+1. [Creating a model](/tutorials/creating-a-model)
+2. [Debugging](/tutorials/debugging)
+3. [Deprecating a model](/tutorials/deprecating-a-model)
+4. [Enriching your warehouse](/tutorials/enriching-your-warehouse)
+

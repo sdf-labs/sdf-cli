@@ -70,6 +70,17 @@
 			]
 		},
 		{
+			"group": "Tutorials",
+			"pages": [
+				"tutorials/tutorials-intro",
+				"tutorials/creating-a-model",
+				"tutorials/debugging",
+				"tutorials/deprecating-a-model",
+				"tutorials/enriching-your-warehouse",
+				"tutorials/learn-more"
+			]
+		},
+		{
 			"group": "Cloud",
 			"pages": [
 				"cloud/introduction",

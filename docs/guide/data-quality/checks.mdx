@@ -22,6 +22,15 @@ Let's write and modify a check, starting with one of the sdf samples.
   sdf new --sample hello_with_pii && cd hello_with_pii
   ```
 
+```shell shell
+    Created hello_with_pii/.gitignore
+    Created hello_with_pii/checks/code_check.sql
+    Created hello_with_pii/src/main.sql
+    Created hello_with_pii/workspace.sdf.yml
+   Finished new in 0.292 secs
+
+    ```
+
     This sample workspace contains a model, and a classifier, and a check. 
 
   </Step>
@@ -50,17 +59,13 @@ Let's write and modify a check, starting with one of the sdf samples.
 
     Hurray! The check passes.
 
-``` shell
-    Created hello_with_pii/.gitignore
-    Created hello_with_pii/checks/code_check.sql
-    Created hello_with_pii/src/main.sql
-    Created hello_with_pii/workspace.sdf.yml
-   Finished new in 0.025 secs
+
+```shell shell
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
 Working set 1 test file, 1 .sdf file
     Testing hello.pub.code_check (./checks/code_check.sql)
-   Finished 1 model [1 succeeded], 1 check [1 passed] in 0.439 secs
+   Finished 1 model [1 succeeded], 1 check [1 passed] in 1.156 secs
 [Pass] Check hello.pub.code_check
 
     ```
@@ -70,13 +75,13 @@ Working set 1 test file, 1 .sdf file
 
     ```sql
     SELECT
-        DISTINCT c.table_name as "table_name",
+        DISTINCT c.table_name as "table name",
         c.column_name as "column name",
         c.classifiers
     FROM
         sdf.information_schema.columns c
     WHERE
-        c.classifiers like '%PII.name%'
+        CONTAINS_ARRAY_VARCHAR(c.classifiers, 'PII.name')
     ```
 
     It queries for any column that contains PII.name and asserts that this query should be empty. But we never added the classifier in the first place!
@@ -94,23 +99,24 @@ Working set 1 test file, 1 .sdf file
     ```
     Running `sdf check` again will **result in a failed test**. The output will look like this:
 
-``` shell
+
+```shell shell
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
 Working set 1 test file, 1 .sdf file
     Testing hello.pub.code_check (./checks/code_check.sql)
-   Finished 1 model [1 succeeded], 1 check [1 failed] in 0.425 secs, for details see below.
+   Finished 1 model [1 succeeded], 1 check [1 failed] in 1.164 secs, for details see below.
 
 [Fail] Check hello.pub.code_check
-+----------------+-------------+-------------+
-| table_name     | column name | classifiers |
-+----------------+-------------+-------------+
-| hello.pub.main | column_2    | PII.name    |
-+----------------+-------------+-------------+
++------------+-------------+-------------+
+| table_name | column name | classifiers |
++------------+-------------+-------------+
+| main       | column_2    | [PII.name]  |
++------------+-------------+-------------+
 1 rows.
 
 -------
-Summary 1 model [1 succeeded], 1 check [1 failed] in 0.425 secs.
+Summary 1 model [1 succeeded], 1 check [1 failed] in 1.164 secs.
 -------
 
     ```
@@ -151,13 +157,28 @@ Let's fix this failing check! We can apply an `md5()` hash to column_2 (the name
         c.column_name as "column name",
         c.classifiers
     FROM
-        columns c
+        sdf.information_schema.columns c
     WHERE
-        c.classifiers like '%PII.name%'
-        and c.table_name like '%.sink'
+        CONTAINS_ARRAY_VARCHAR(c.classifiers, 'PII.name')
+        AND c.table_name like '%.sink'
     ```
 
     Run `sdf check` again and voila! All checks pass. The source table has PII.name, the sink table does not. 
+
+
+
+
+```shell shell
+Working set 2 model files, 1 .sdf file
+  Compiling hello.pub.main (./src/main.sql)
+  Compiling hello.pub.sink (./src/sink.sql)
+Working set 1 test file, 1 .sdf file
+    Testing hello.pub.code_check (./checks/code_check.sql)
+   Finished 2 models [2 succeeded], 1 check [1 passed] in 1.147 secs
+[Pass] Check hello.pub.code_check
+
+    ``` 
+
   </Step>
 </Steps>
 

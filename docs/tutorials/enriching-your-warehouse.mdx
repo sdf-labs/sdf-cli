@@ -1,0 +1,359 @@
+---
+title: "Enriching Your Warehouse"
+---
+
+## Overview
+In the previous tutorial, we set up guardrails based on checks. 
+In this tutorial, we will see how SDF's semantic understanding 
+can help transform your data warehouse from strings and numbers 
+to real world business logic:
+* Maintain business logic consistency
+* Control development environment and minimize mistakes from propagating
+* Comply with privacy and GDPR requirements
+
+
+Let's see how we could've prevented the V1 version of app_installs in the first place.
+
+## Prerequisites
+Completion of the [previous tutorial](/tutorials/deprecating-a-model).
+
+{/*
+Init for run commands:
+*/}
+
+## Guide
+
+<Steps>
+    <Step title="Setup">
+        If you haven't completed the [previous tutorial](/tutorials/deprecating-a-model), 
+        uncomment the relevant section to reference the metadata files:
+
+        ``` yml workspace.sdf.yml
+        ...
+        # Uncomment here to complete the "Deprecating a Model" tutorial >>>>>>
+        - path: classifications  # Classifiers
+        - path: checks  # Checks against SDF's information schema
+            type: check
+        # <<<<<<<
+        ```        
+    </Step>
+    <Step title="Creating New Classifiers">
+        If you recall, V1 of `app_installs` had an incorrect `JOIN` between 
+        mobile app in-app events in the `inapp_events` table, and marketing
+        campaign events in the `raw_marketing_campaign_events` table:
+        ``` sql
+        ...
+        FROM inapp_events i 
+            LEFT OUTER JOIN raw_marketing_campaign_events m
+                ON (i.event_id = m.event_id) 
+        ...
+        ```
+
+        Let's classify each column.
+
+        The column classifiers file `classifications/column_classifiers.sdf.yml` already contains 
+        the event classifiers. Take a look yourself:
+
+        ```yml classifications/column_classifiers.sdf.yml
+        classifier:
+            name: EVENT
+            labels:
+                - name: inapp
+                - name: marketing
+        ```
+    </Step>
+    <Step title="Assign Classifiers to Source Tables">
+        To assign the classifiers, uncomment the relevant section in each of the 
+        files:
+
+        ```yml metadata/raw/raw_inapp_events.sdf.yml
+        ...
+        - name: event_id
+            description: A unique identifier of an in-app event within mom's flower shop's mobile app
+            # Uncomment to complete the "Enriching your Warehouse" tutorial >>>>>
+            classifiers:
+                - EVENT.inapp
+            # <<<<<
+        ...
+        ```
+        ``` yml metadata/raw/raw_marketing_campaign_events.sdf.yml
+        - name: event_id
+            description: A unique identifier of the marketing campaign event
+            # Uncomment to complete the "Enriching your Warehouse" tutorial >>>>>
+            classifiers:
+                - EVENT.marketing
+            # <<<<<
+        ```
+
+        Notice that we only assigned the classifiers to the source `raw` tables.
+    </Step>
+    <Step title="Propagate Classifiers">
+        <Tip>
+            SDF actually propagates the classifiers automatically, so no extra steps
+            are required.
+        </Tip>
+        
+        Let's compile to view our tables metadata:
+        ```shell
+        sdf compile --show result
+        ```
+
+        Although we didn't assign the classifiers to `dim_marketing_campaigns`,
+        we can see some of its columns inherited the classifier `EVENT.inapp`.
+        ```shell
+        sdf compile dim_marketing_campaigns --show result
+        ```
+
+```shell shell
+
+Schema moms_flower_shop.pub.dim_marketing_campaigns
+┌───────────────────────────────┬───────────┬─────────────┬─────────────┐
+│ column_name                   ┆ data_type ┆ classifier  ┆ description │
+╞═══════════════════════════════╪═══════════╪═════════════╪═════════════╡
+│ campaign_id                   ┆ bigint    ┆             ┆             │
+│ campaign_name                 ┆ varchar   ┆             ┆             │
+│ total_num_installs            ┆ bigint    ┆ EVENT.inapp ┆             │
+│ avg_customer_acquisition_cost ┆ double    ┆ EVENT.inapp ┆             │
+│ install_duration_ratio        ┆ bigint    ┆ EVENT.inapp ┆             │
+└───────────────────────────────┴───────────┴─────────────┴─────────────┘
+
+        ```
+
+        Further more, we can see that `app_installs` inherited both `EVENT.inapp`
+        and `EVENT.marketing`. This is due to the incorrect `JOIN` we found.
+
+        ```shell 
+        sdf compile app_installs --show result
+        ```
+```shell shell
+
+Schema moms_flower_shop.pub.app_installs
+       This table is a staging table which adds campaign information to app install events
+
+       [TABLE_STATUS.deprecated]
+┌───────────────┬──────────────┬─────────────────────────────┬─────────────┐
+│ column_name   ┆ data_type    ┆ classifier                  ┆ description │
+╞═══════════════╪══════════════╪═════════════════════════════╪═════════════╡
+│ event_id      ┆ bigint       ┆ EVENT.inapp EVENT.marketing ┆             │
+│ customer_id   ┆ bigint       ┆                             ┆             │
+│ install_time  ┆ timestamp(0) ┆                             ┆             │
+│ platform      ┆ varchar      ┆                             ┆             │
+│ campaign_id   ┆ bigint       ┆                             ┆             │
+│ campaign_name ┆ varchar      ┆                             ┆             │
+│ campaign_type ┆ varchar      ┆                             ┆             │
+└───────────────┴──────────────┴─────────────────────────────┴─────────────┘
+
+        ```
+
+        </Step>
+        <Step title="Set Up Guardrails">
+            We can create custom checks by querying SDF's information schema.
+            To prevent this mistake from repeating, we can set up a check.
+
+            First, create a file called `mixed_event_ids.sql` under the folder
+            `checks`. Add the following SQL to the new file:
+
+            ```sql checks/mixed_event_ids.sql
+            SELECT
+                DISTINCT c.table_name as "table_name",
+                c.column_name as "column name",
+                c.classifiers
+            FROM
+                sdf.information_schema.columns c
+            WHERE
+                -- more than one EVENT classifier is assigned
+                c.classifiers LIKE '%EVENT%EVENT%'
+            ``` 
+
+            Let's run it:
+            ```shell
+            sdf check mixed_event_ids --show result
+            ```
+            This check will fail because `app_installs` still has an 
+            incorrect `JOIN`. 
+```shell shell
+
+            ```
+        </Step>
+</Steps>
+
+## Bonus 
+Classifiers can enrich your your data warehouse in many ways.
+The following are just a few examples of added information layers
+to your static tables. 
+
+With each example, you can create checks and reports 
+to monitor your warehouse's health and and compliance.
+
+<Steps>
+    <Step title="Privacy">
+        Privacy is critical when storing sensitive information. 
+        With SDF's smart classifiers propagation, it is easier than 
+        ever to track PII and other privacy related concerns. 
+
+        Open `metadata/raw/raw_customers.sdf.yml` and uncomment 
+        all classifier sections in the file. They should look like this:
+
+        ``` yml metadata/raw/raw_customers.sdf.yml
+        ...
+        # Uncomment to complete the "Enriching your Warehouse" tutorial >>>>>
+        classifiers:  <-- uncomment this part
+            - name: PII.[name/address/gender/email]  <-- uncomment this part
+        # <<<<<
+        ...
+        ```
+
+        Now, when we compile, we can see the PII across our data warehouse.
+        ```shell
+        sdf compile --show all
+        ```
+
+        For example, the `customers` table compile output should look like this:
+        ```shell
+        sdf compile customers --show result
+        ```
+```shell shell
+
+Schema moms_flower_shop.pub.customers
+┌───────────────┬───────────┬────────────┬─────────────┐
+│ column_name   ┆ data_type ┆ classifier ┆ description │
+╞═══════════════╪═══════════╪════════════╪═════════════╡
+│ customer_id   ┆ bigint    ┆            ┆             │
+│ first_name    ┆ varchar   ┆            ┆             │
+│ last_name     ┆ varchar   ┆            ┆             │
+│ full_name     ┆ varchar   ┆            ┆             │
+│ email         ┆ varchar   ┆            ┆             │
+│ gender        ┆ varchar   ┆            ┆             │
+│ campaign_id   ┆ bigint    ┆            ┆             │
+│ campaign_name ┆ varchar   ┆            ┆             │
+│ campaign_type ┆ varchar   ┆            ┆             │
+│ address_id    ┆ bigint    ┆            ┆             │
+│ full_address  ┆ varchar   ┆            ┆             │
+│ state         ┆ varchar   ┆            ┆             │
+└───────────────┴───────────┴────────────┴─────────────┘
+
+        ```
+    </Step>
+    <Step title="Retention">
+        We can set up table level and column level retention classifiers.
+        Let's look at a table level example. 
+
+        In the `table_classifiers.sdf.yml` file you will find a retention classifier:
+
+        ```yml classifications/table_classifiers.sdf.yml
+        classifier: 
+            name: RETENTION
+            labels:
+                - name: d7
+                - name: d30
+                - name: d90
+                - name: d180
+                - name: infinity
+        ```
+
+        We can assign short term retention to our raw tables, while keeping infinite
+        retention for any analytics tables. 
+
+        To each raw table metadata found in `metadata/raw/*`, add:
+        ``` yml
+        ...
+        classifiers:
+            - name: RETENTION.d7
+        ...
+        ```
+
+        To each analytics table metadata found in `metadata/analytics/*`, add:
+        ``` yml
+        ...
+        classifiers:
+            - name: RETENTION.infinity
+        ...
+        ```
+        
+        
+        Notice that these classifiers are defined not to propagate downstream 
+        using the flag `propagate: false`:
+        ```yml 
+        classifier:
+            ...
+            propagate: false
+        ...
+        ```
+
+        Compile to see the results:
+        <CodeGroup>
+        ```shell raw
+        sdf compile models/raw/ --show result
+        ```
+        ```shell analytics
+        sdf compile models/analytics/ --show result
+        ```
+        </CodeGroup>
+        
+        For example, we can look at the `raw_addresses` output 
+        from the first command:
+```shell shell
+
+Schema moms_flower_shop.pub.raw_addresses
+       All relevant information related to street addresses known to mom's flower shop.  This information comes from the user input into the mobile app.
+
+       [RETENTION.d7]
+┌───────────────┬───────────┬────────────┬──────────────────────────────────────────────────────────┐
+│ column_name   ┆ data_type ┆ classifier ┆ description                                              │
+╞═══════════════╪═══════════╪════════════╪══════════════════════════════════════════════════════════╡
+│ index         ┆ bigint    ┆            ┆ Row number                                               │
+│ address_id    ┆ bigint    ┆            ┆ A unique identifier of an address                        │
+│ full_address  ┆ varchar   ┆            ┆ The full address associated with the address_id          │
+│ street_number ┆ bigint    ┆            ┆ The address street number associated with the address_id │
+│ street_name   ┆ varchar   ┆            ┆ The address street name associated with the address_id   │
+│ state         ┆ varchar   ┆            ┆ The address US state associated with the address_id      │
+│ city          ┆ varchar   ┆            ┆ The address US city associated with the address_id       │
+└───────────────┴───────────┴────────────┴──────────────────────────────────────────────────────────┘
+
+        ```
+        Or `dim_marketing_campaigns` from the second:
+```shell shell
+
+Schema moms_flower_shop.pub.dim_marketing_campaigns
+       [RETENTION.infinity]
+┌───────────────────────────────┬───────────┬─────────────┬─────────────┐
+│ column_name                   ┆ data_type ┆ classifier  ┆ description │
+╞═══════════════════════════════╪═══════════╪═════════════╪═════════════╡
+│ campaign_id                   ┆ bigint    ┆             ┆             │
+│ campaign_name                 ┆ varchar   ┆             ┆             │
+│ total_num_installs            ┆ bigint    ┆ EVENT.inapp ┆             │
+│ avg_customer_acquisition_cost ┆ double    ┆ EVENT.inapp ┆             │
+│ install_duration_ratio        ┆ bigint    ┆ EVENT.inapp ┆             │
+└───────────────────────────────┴───────────┴─────────────┴─────────────┘
+
+        ```
+    </Step>
+    <Step title="Reports">
+        To learn more on how to generate reports of warehouse health, see
+        our extended [reports guide](/guide/data-quality/reports).
+    </Step>
+</Steps>
+
+## Summary
+This tutorial only shows the tip of the iceberg of what you can do with our
+semantic understanding. Anything that's possible with SQL is possible as a check or 
+report against the information schema. 
+
+<Tip>
+    We created the information schema to support custom checks and reports.
+    You can find the full description of SDF's information schema [here](/reference/sdf-information-schema).
+</Tip>
+
+
+## Related Topics
+<CardGroup cols={3}>
+  <Card title="Classifiers" href="/guide/basics/classifiers">
+    Learn all the ways classifiers can help enhance your workspace
+  </Card>
+  <Card title="Checks" href="/guide/data-quality/checks">
+    Learn more about setting up checks for static analysis
+  </Card>
+  <Card title="Reports" href="/guide/data-quality/reports">
+    Learn more about reports to get immediate insights about your data warehouse
+  </Card>
+</CardGroup>

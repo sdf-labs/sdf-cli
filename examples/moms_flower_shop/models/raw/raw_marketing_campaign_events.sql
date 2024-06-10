@@ -1,0 +1,1 @@
+CREATE EXTERNAL TABLE raw_marketing_campaign_events stored AS PARQUET LOCATION  'seeds/parquet/marketing_campaign_events.parquet';

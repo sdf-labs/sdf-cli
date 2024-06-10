@@ -513,7 +513,7 @@ function bitwise_left_shift(<bigint, bigint>) returns bigint
 
 
 ```sql
-function bitwise_left_shift(<bigint, bigint>) returns bigint
+function bitwise_left_shift(<integer, bigint>) returns integer
 ```
 
 
@@ -560,7 +560,7 @@ function bitwise_right_shift(<bigint, bigint>) returns bigint
 
 
 ```sql
-function bitwise_right_shift(<bigint, bigint>) returns bigint
+function bitwise_right_shift(<integer, bigint>) returns integer
 ```
 
 
@@ -583,7 +583,7 @@ function bitwise_right_shift_arithmetic(<bigint, bigint>) returns bigint
 
 
 ```sql
-function bitwise_right_shift_arithmetic(<bigint, bigint>) returns bigint
+function bitwise_right_shift_arithmetic(<integer, bigint>) returns integer
 ```
 
 
@@ -684,7 +684,7 @@ function ceil(<double>) returns double
 
 
 ```sql
-function ceil(<bigint>) returns bigint
+function ceil(<integer>) returns integer
 ```
 
 
@@ -722,7 +722,7 @@ function ceiling(<double>) returns double
 
 
 ```sql
-function ceiling(<bigint>) returns bigint
+function ceiling(<integer>) returns integer
 ```
 
 
@@ -770,11 +770,6 @@ function chr(<bigint>) returns varchar
 
 ```sql
 function classify(<map<bigint, double>, classifier>) returns bigint
-```
-
-
-```sql
-function classify(<map<bigint, double>, classifier>) returns varchar
 ```
 
 
@@ -876,6 +871,14 @@ function contains(<array<$1>, $1>) returns boolean
 
 ```sql
 function contains(<varchar, ipaddress>) returns boolean
+```
+
+
+## `contains_array_varchar`
+[🔗 Official Documentation](#)
+
+```sql
+function contains_array_varchar(<array<varchar>, varchar>) returns boolean
 ```
 
 
@@ -1009,6 +1012,9 @@ function current_catalog(<>) returns varchar
 ```sql
 function current_date(<>) returns date
 ```
+*Note: current_date() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ## `current_groups`
@@ -1017,6 +1023,9 @@ function current_date(<>) returns date
 ```sql
 function current_groups(<>) returns array<varchar>
 ```
+*Note: current_groups() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ## `current_schema`
@@ -1033,6 +1042,9 @@ function current_schema(<>) returns varchar
 ```sql
 function current_time(<>) returns time
 ```
+*Note: current_time() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ## `current_timestamp`
@@ -1041,26 +1053,41 @@ function current_time(<>) returns time
 ```sql
 function current_timestamp(<>) returns timestamp
 ```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ```sql
 function current_timestamp(<0>) returns timestamp(0)
 ```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ```sql
 function current_timestamp(<3>) returns timestamp(3)
 ```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ```sql
 function current_timestamp(<6>) returns timestamp(6)
 ```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ```sql
 function current_timestamp(<9>) returns timestamp(9)
 ```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ## `current_timezone`
@@ -1069,6 +1096,9 @@ function current_timestamp(<9>) returns timestamp(9)
 ```sql
 function current_timezone(<>) returns varchar
 ```
+*Note: current_timezone() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ## `current_user`
@@ -1081,11 +1111,6 @@ function current_user(<>) returns varchar
 
 ## `date`
 [🔗 Official Documentation](#)
-
-```sql
-function date(<timestamp(p)>) returns date
-```
-
 
 ```sql
 function date(<timestamp(p)>) returns date
@@ -1111,16 +1136,6 @@ function date_add(<varchar, bigint, time(p)>) returns time(p)
 
 
 ```sql
-function date_add(<varchar, bigint, time(p)>) returns time(p)
-```
-
-
-```sql
-function date_add(<varchar, bigint, timestamp(p)>) returns timestamp(p)
-```
-
-
-```sql
 function date_add(<varchar, bigint, timestamp(p)>) returns timestamp(p)
 ```
 
@@ -1139,27 +1154,12 @@ function date_diff(<varchar, time(p), time(p)>) returns bigint
 
 
 ```sql
-function date_diff(<varchar, time(p), time(p)>) returns bigint
-```
-
-
-```sql
-function date_diff(<varchar, timestamp(p), timestamp(p)>) returns bigint
-```
-
-
-```sql
 function date_diff(<varchar, timestamp(p), timestamp(p)>) returns bigint
 ```
 
 
 ## `date_format`
 [🔗 Official Documentation](#)
-
-```sql
-function date_format(<timestamp(p), varchar>) returns varchar
-```
-
 
 ```sql
 function date_format(<timestamp(p), varchar>) returns varchar
@@ -1228,11 +1228,6 @@ function day(<timestamp(p)>) returns bigint
 ```
 
 
-```sql
-function day(<timestamp(p)>) returns bigint
-```
-
-
 ## `day_of_month`
 [🔗 Official Documentation](#)
 
@@ -1243,11 +1238,6 @@ function day_of_month([date]) returns bigint
 
 ```sql
 function day_of_month(<interval day to second>) returns bigint
-```
-
-
-```sql
-function day_of_month(<timestamp(p)>) returns bigint
 ```
 
 
@@ -1269,21 +1259,11 @@ function day_of_week(<timestamp(p)>) returns bigint
 ```
 
 
-```sql
-function day_of_week(<timestamp(p)>) returns bigint
-```
-
-
 ## `day_of_year`
 [🔗 Official Documentation](#)
 
 ```sql
 function day_of_year([date]) returns bigint
-```
-
-
-```sql
-function day_of_year(<timestamp(p)>) returns bigint
 ```
 
 
@@ -1321,21 +1301,11 @@ function dow(<timestamp(p)>) returns bigint
 ```
 
 
-```sql
-function dow(<timestamp(p)>) returns bigint
-```
-
-
 ## `doy`
 [🔗 Official Documentation](#)
 
 ```sql
 function doy([date]) returns bigint
-```
-
-
-```sql
-function doy(<timestamp(p)>) returns bigint
 ```
 
 
@@ -1498,7 +1468,7 @@ function floor(<double>) returns double
 
 
 ```sql
-function floor(<bigint>) returns bigint
+function floor(<integer>) returns integer
 ```
 
 
@@ -1547,11 +1517,6 @@ function format(<varchar, $1, $2, $3, $4, $5>) returns varchar
 
 ## `format_datetime`
 [🔗 Official Documentation](#)
-
-```sql
-function format_datetime(<timestamp(p), varchar>) returns varchar
-```
-
 
 ```sql
 function format_datetime(<timestamp(p), varchar>) returns varchar
@@ -1912,16 +1877,6 @@ function hour(<time(p)>) returns bigint
 
 
 ```sql
-function hour(<time(p)>) returns bigint
-```
-
-
-```sql
-function hour(<timestamp(p)>) returns bigint
-```
-
-
-```sql
 function hour(<timestamp(p)>) returns bigint
 ```
 
@@ -2200,11 +2155,6 @@ function last_day_of_month(<timestamp(p)>) returns date
 ```
 
 
-```sql
-function last_day_of_month(<timestamp(p)>) returns date
-```
-
-
 ## `last_value`
 [🔗 Official Documentation](#)
 
@@ -2381,6 +2331,9 @@ function ln(<double>) returns double
 ```sql
 function localtime(<>) returns time
 ```
+*Note: localtime() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ## `localtimestamp`
@@ -2389,26 +2342,41 @@ function localtime(<>) returns time
 ```sql
 function localtimestamp(<>) returns timestamp
 ```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ```sql
 function localtimestamp(<0>) returns timestamp(0)
 ```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ```sql
 function localtimestamp(<3>) returns timestamp(3)
 ```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ```sql
 function localtimestamp(<6>) returns timestamp(6)
 ```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ```sql
 function localtimestamp(<9>) returns timestamp(9)
 ```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ## `log`
@@ -2443,11 +2411,6 @@ function lower(<varchar>) returns varchar
 ```
 
 
-```sql
-function lower(<varchar>) returns varchar
-```
-
-
 ## `lpad`
 [🔗 Official Documentation](#)
 
@@ -2463,16 +2426,6 @@ function lpad(<varchar, bigint, varchar>) returns varchar
 
 ## `ltrim`
 [🔗 Official Documentation](#)
-
-```sql
-function ltrim(<varchar>) returns varchar
-```
-
-
-```sql
-function ltrim(<varchar, codepoints>) returns varchar
-```
-
 
 ```sql
 function ltrim(<varchar>) returns varchar
@@ -2667,16 +2620,6 @@ function millisecond(<time(p)>) returns bigint
 
 
 ```sql
-function millisecond(<time(p)>) returns bigint
-```
-
-
-```sql
-function millisecond(<timestamp(p)>) returns bigint
-```
-
-
-```sql
 function millisecond(<timestamp(p)>) returns bigint
 ```
 
@@ -2721,16 +2664,6 @@ function minute(<time(p)>) returns bigint
 
 
 ```sql
-function minute(<time(p)>) returns bigint
-```
-
-
-```sql
-function minute(<timestamp(p)>) returns bigint
-```
-
-
-```sql
 function minute(<timestamp(p)>) returns bigint
 ```
 
@@ -2754,7 +2687,7 @@ function mod(<double, double>) returns double
 
 
 ```sql
-function mod(<bigint, bigint>) returns bigint
+function mod(<integer, integer>) returns integer
 ```
 
 
@@ -2783,11 +2716,6 @@ function month([date]) returns bigint
 
 ```sql
 function month(<interval year to month>) returns bigint
-```
-
-
-```sql
-function month(<timestamp(p)>) returns bigint
 ```
 
 
@@ -2866,6 +2794,9 @@ function normalize(<varchar, varchar>) returns varchar
 ```sql
 function now(<>) returns timestamp
 ```
+*Note: now() is stable,  i.e. might return a
+                different value for a different query execution.*
+
 
 
 ## `nth_value`
@@ -3079,11 +3010,6 @@ function quarter(<timestamp(p)>) returns bigint
 ```
 
 
-```sql
-function quarter(<timestamp(p)>) returns bigint
-```
-
-
 ## `radians`
 [🔗 Official Documentation](#)
 
@@ -3098,46 +3024,73 @@ function radians(<double>) returns double
 ```sql
 function rand(<bigint>) returns bigint
 ```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function rand(<bigint, bigint>) returns bigint
 ```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function rand(<>) returns double
 ```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
 
-
-```sql
-function rand(<bigint>) returns bigint
-```
 
 
 ```sql
-function rand(<bigint, bigint>) returns bigint
+function rand(<integer>) returns integer
 ```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function rand(<integer, integer>) returns integer
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function rand(<smallint>) returns smallint
 ```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function rand(<smallint, smallint>) returns smallint
 ```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function rand(<tinyint>) returns tinyint
 ```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function rand(<tinyint, tinyint>) returns tinyint
 ```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ## `random`
@@ -3146,46 +3099,73 @@ function rand(<tinyint, tinyint>) returns tinyint
 ```sql
 function random(<bigint>) returns bigint
 ```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function random(<bigint, bigint>) returns bigint
 ```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function random(<>) returns double
 ```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
 
-
-```sql
-function random(<bigint>) returns bigint
-```
 
 
 ```sql
-function random(<bigint, bigint>) returns bigint
+function random(<integer>) returns integer
 ```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function random(<integer, integer>) returns integer
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function random(<smallint>) returns smallint
 ```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function random(<smallint, smallint>) returns smallint
 ```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function random(<tinyint>) returns tinyint
 ```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ```sql
 function random(<tinyint, tinyint>) returns tinyint
 ```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ## `rank`
@@ -3305,7 +3285,7 @@ function regexp_replace(<varchar, joniregexp>) returns varchar
 
 
 ```sql
-function regexp_replace(<varchar, varchar, varchar>) returns varchar
+function regexp_replace(<varchar, joniregexp, varchar>) returns varchar
 ```
 
 
@@ -3425,6 +3405,11 @@ function rgb(<bigint, bigint, bigint>) returns color
 [🔗 Official Documentation](#)
 
 ```sql
+function round(<double>) returns double
+```
+
+
+```sql
 function round(<double, bigint>) returns double
 ```
 
@@ -3440,12 +3425,12 @@ function round(<real, bigint>) returns real
 
 
 ```sql
-function round(<bigint>) returns bigint
+function round(<integer>) returns integer
 ```
 
 
 ```sql
-function round(<bigint, bigint>) returns bigint
+function round(<integer, integer>) returns integer
 ```
 
 
@@ -3456,11 +3441,6 @@ function round(<decimal(p, s)>) returns decimal(rp, rs)
 
 ```sql
 function round(<decimal(p, s), bigint>) returns decimal(rp, s)
-```
-
-
-```sql
-function round(<double>) returns double
 ```
 
 
@@ -3528,16 +3508,6 @@ function rtrim(<varchar, codepoints>) returns varchar
 ```
 
 
-```sql
-function rtrim(<varchar>) returns varchar
-```
-
-
-```sql
-function rtrim(<varchar, codepoints>) returns varchar
-```
-
-
 ## `second`
 [🔗 Official Documentation](#)
 
@@ -3548,16 +3518,6 @@ function second(<interval day to second>) returns bigint
 
 ```sql
 function second(<time(p)>) returns bigint
-```
-
-
-```sql
-function second(<time(p)>) returns bigint
-```
-
-
-```sql
-function second(<timestamp(p)>) returns bigint
 ```
 
 
@@ -3599,11 +3559,6 @@ function sequence(<timestamp(p), timestamp(p), interval day to second>) returns 
 ```
 
 
-```sql
-function sequence(<timestamp(p), timestamp(p), interval year to month>) returns array<timestamp(p)>
-```
-
-
 ## `sha1`
 [🔗 Official Documentation](#)
 
@@ -3634,6 +3589,9 @@ function sha512(<varbinary>) returns varbinary
 ```sql
 function shuffle(<array<$3>>) returns array<$3>
 ```
+*Note: shuffle() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ## `sign`
@@ -3655,7 +3613,7 @@ function sign(<double>) returns double
 
 
 ```sql
-function sign(<bigint>) returns bigint
+function sign(<integer>) returns integer
 ```
 
 
@@ -4376,16 +4334,6 @@ function substring(<varchar, bigint, bigint>) returns varchar
 ```
 
 
-```sql
-function substring(<varchar, bigint>) returns varchar
-```
-
-
-```sql
-function substring(<varchar, bigint, bigint>) returns varchar
-```
-
-
 ## `sum`
 [🔗 Official Documentation](#)
 
@@ -4607,11 +4555,6 @@ function to_iso8601(<timestamp(p)>) returns varchar
 ```
 
 
-```sql
-function to_iso8601(<timestamp(p)>) returns varchar
-```
-
-
 ## `to_milliseconds`
 [🔗 Official Documentation](#)
 
@@ -4640,7 +4583,7 @@ function to_timestamp(<varchar, varchar>) returns timestamp
 [🔗 Official Documentation](#)
 
 ```sql
-function to_timestamp_seconds(...) returns timestamp
+function to_timestamp_seconds(<$1>) returns timestamp
 ```
 
 
@@ -4760,11 +4703,6 @@ function upper(<varchar>) returns varchar
 ```
 
 
-```sql
-function upper(<varchar>) returns varchar
-```
-
-
 ## `url_decode`
 [🔗 Official Documentation](#)
 
@@ -4843,6 +4781,9 @@ function url_extract_query(<varchar>) returns varchar
 ```sql
 function uuid(<>) returns uuid
 ```
+*Note: uuid() is volatile, i.e. might return a
+                different value for the same input.*
+
 
 
 ## `value_at_quantile`
@@ -4854,17 +4795,7 @@ function value_at_quantile(<qdigest, double>) returns bigint
 
 
 ```sql
-function value_at_quantile(<qdigest, double>) returns double
-```
-
-
-```sql
 function value_at_quantile(<tdigest, double>) returns double
-```
-
-
-```sql
-function value_at_quantile(<qdigest, double>) returns real
 ```
 
 
@@ -4877,17 +4808,7 @@ function values_at_quantiles(<qdigest, array<double>>) returns array<bigint>
 
 
 ```sql
-function values_at_quantiles(<qdigest, array<double>>) returns array<double>
-```
-
-
-```sql
 function values_at_quantiles(<tdigest, array<double>>) returns array<double>
-```
-
-
-```sql
-function values_at_quantiles(<qdigest, array<double>>) returns array<real>
 ```
 
 
@@ -4943,21 +4864,11 @@ function week(<timestamp(p)>) returns bigint
 ```
 
 
-```sql
-function week(<timestamp(p)>) returns bigint
-```
-
-
 ## `week_of_year`
 [🔗 Official Documentation](#)
 
 ```sql
 function week_of_year([date]) returns bigint
-```
-
-
-```sql
-function week_of_year(<timestamp(p)>) returns bigint
 ```
 
 
@@ -5042,11 +4953,6 @@ function year(<timestamp(p)>) returns bigint
 ```
 
 
-```sql
-function year(<timestamp(p)>) returns bigint
-```
-
-
 ## `year_of_week`
 [🔗 Official Documentation](#)
 
@@ -5060,21 +4966,11 @@ function year_of_week(<timestamp(p)>) returns bigint
 ```
 
 
-```sql
-function year_of_week(<timestamp(p)>) returns bigint
-```
-
-
 ## `yow`
 [🔗 Official Documentation](#)
 
 ```sql
 function yow([date]) returns bigint
-```
-
-
-```sql
-function yow(<timestamp(p)>) returns bigint
 ```
 
 
@@ -5114,5 +5010,5 @@ function zip_with(<array<$1>, array<$11>, function($1, $11, $9)>) returns array<
 ```
 
 
-   Finished man in 0.037 secs
+   Finished man in 0.308 secs
 

@@ -1,0 +1,1 @@
+CREATE EXTERNAL TABLE raw_addresses stored AS PARQUET LOCATION  'seeds/parquet/addresses.parquet';
