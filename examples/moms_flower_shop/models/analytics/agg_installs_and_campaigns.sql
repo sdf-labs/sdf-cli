@@ -1,6 +1,6 @@
 SELECT 
     -- install events data
-    install_time, -- TODO: have install date
+    DATE_FORMAT(install_time, '%Y-%m-%d') AS install_date,
     campaign_name,
     platform,
     COUNT(DISTINCT customer_id) AS distinct_installs
