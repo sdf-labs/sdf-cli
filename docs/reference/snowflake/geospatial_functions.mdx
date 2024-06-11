@@ -7,12 +7,12 @@ title: "Geospatial Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_cell_to_boundary(<decimal(38, 0)>) returns geography
+function h3_cell_to_boundary(&lt;decimal(38, 0)&gt;) returns geography
 ```
 Returns a polygon containing the h3 integer cell boundaries
 
 ```sql
-function h3_cell_to_boundary(<varchar>) returns geography
+function h3_cell_to_boundary(&lt;varchar&gt;) returns geography
 ```
 Returns a polygon containing the h3 string cell boundaries
 
@@ -20,7 +20,7 @@ Returns a polygon containing the h3 string cell boundaries
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_cell_to_children(<decimal(38, 0), decimal(38, 0)>) returns array
+function h3_cell_to_children(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns array
 ```
 Returns the H3 children cells as integers for a given H3 index
 
@@ -28,7 +28,7 @@ Returns the H3 children cells as integers for a given H3 index
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_cell_to_children_string(<varchar, decimal(38, 0)>) returns array
+function h3_cell_to_children_string(&lt;varchar, decimal(38, 0)&gt;) returns array
 ```
 Returns the H3 children cells as strings for a given H3 index
 
@@ -36,12 +36,12 @@ Returns the H3 children cells as strings for a given H3 index
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_cell_to_parent(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function h3_cell_to_parent(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the H3 parent cell as an integer for a given H3 index
 
 ```sql
-function h3_cell_to_parent(<varchar, decimal(38, 0)>) returns varchar
+function h3_cell_to_parent(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Returns the H3 parent cell as a string for a given H3 index
 
@@ -49,12 +49,12 @@ Returns the H3 parent cell as a string for a given H3 index
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_cell_to_point(<decimal(38, 0)>) returns geography
+function h3_cell_to_point(&lt;decimal(38, 0)&gt;) returns geography
 ```
 Returns a point (geography) corresponding to the center of the h3 integer cell passed
 
 ```sql
-function h3_cell_to_point(<varchar>) returns geography
+function h3_cell_to_point(&lt;varchar&gt;) returns geography
 ```
 Returns a point (geography) corresponding to the center of the h3 string cell passed
 
@@ -62,7 +62,7 @@ Returns a point (geography) corresponding to the center of the h3 string cell pa
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_coverage(<geography, decimal(38, 0)>) returns array
+function h3_coverage(&lt;geography, decimal(38, 0)&gt;) returns array
 ```
 Returns the full spherical based covering of H3 cells as integers for any geography type
 
@@ -70,7 +70,7 @@ Returns the full spherical based covering of H3 cells as integers for any geogra
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_coverage_strings(<geography, decimal(38, 0)>) returns array
+function h3_coverage_strings(&lt;geography, decimal(38, 0)&gt;) returns array
 ```
 Returns the full spherical based covering of H3 cells as strings for any geography type
 
@@ -78,12 +78,12 @@ Returns the full spherical based covering of H3 cells as strings for any geograp
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_get_resolution(<decimal(38, 0)>) returns decimal(38, 0)
+function h3_get_resolution(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the cell resolution for a given H3 integer cell
 
 ```sql
-function h3_get_resolution(<varchar>) returns decimal(38, 0)
+function h3_get_resolution(&lt;varchar&gt;) returns decimal(38, 0)
 ```
 Returns the cell resolution for a given H3 string cell
 
@@ -91,12 +91,12 @@ Returns the cell resolution for a given H3 string cell
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_grid_disk(<decimal(38, 0), decimal(38, 0)>) returns array
+function h3_grid_disk(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns array
 ```
 Returns all H3 cells that are at most k steps away from the input cell
 
 ```sql
-function h3_grid_disk(<varchar, decimal(38, 0)>) returns array
+function h3_grid_disk(&lt;varchar, decimal(38, 0)&gt;) returns array
 ```
 Returns all H3 cells that are at most k steps away from the input cell
 
@@ -104,12 +104,12 @@ Returns all H3 cells that are at most k steps away from the input cell
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_grid_distance(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function h3_grid_distance(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the number of H3 cells that are betweem two input cells
 
 ```sql
-function h3_grid_distance(<varchar, varchar>) returns decimal(38, 0)
+function h3_grid_distance(&lt;varchar, varchar&gt;) returns decimal(38, 0)
 ```
 Returns the number of H3 cells that are betweem two input cells
 
@@ -117,12 +117,12 @@ Returns the number of H3 cells that are betweem two input cells
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_grid_path(<decimal(38, 0), decimal(38, 0)>) returns array
+function h3_grid_path(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns array
 ```
 Returns all H3 cells that are along the straight line connecting both cells
 
 ```sql
-function h3_grid_path(<varchar, varchar>) returns array
+function h3_grid_path(&lt;varchar, varchar&gt;) returns array
 ```
 Returns all H3 cells that are along the straight line connecting both cells
 
@@ -130,7 +130,7 @@ Returns all H3 cells that are along the straight line connecting both cells
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_int_to_string(<decimal(38, 0)>) returns varchar
+function h3_int_to_string(&lt;decimal(38, 0)&gt;) returns varchar
 ```
 Returns the H3 cell formatted as a string given its integer representation
 
@@ -138,7 +138,7 @@ Returns the H3 cell formatted as a string given its integer representation
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_latlng_to_cell(<double, double, decimal(38, 0)>) returns decimal(38, 0)
+function h3_latlng_to_cell(&lt;double, double, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns an H3 index as an integer that corresponds to a given point (lat/lng) and resolution
 
@@ -146,7 +146,7 @@ Returns an H3 index as an integer that corresponds to a given point (lat/lng) an
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_latlng_to_cell_string(<double, double, decimal(38, 0)>) returns varchar
+function h3_latlng_to_cell_string(&lt;double, double, decimal(38, 0)&gt;) returns varchar
 ```
 Returns an H3 index as a string that corresponds to a given point (lat/lng) and resolution
 
@@ -154,7 +154,7 @@ Returns an H3 index as a string that corresponds to a given point (lat/lng) and 
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_point_to_cell(<geography, decimal(38, 0)>) returns decimal(38, 0)
+function h3_point_to_cell(&lt;geography, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns an H3 integer cell that corresponds to a given point (geography) and resolution
 
@@ -162,7 +162,7 @@ Returns an H3 integer cell that corresponds to a given point (geography) and res
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_point_to_cell_string(<geography, decimal(38, 0)>) returns varchar
+function h3_point_to_cell_string(&lt;geography, decimal(38, 0)&gt;) returns varchar
 ```
 Returns an H3 string cell that corresponds to a given point (geography) and resolution
 
@@ -170,7 +170,7 @@ Returns an H3 string cell that corresponds to a given point (geography) and reso
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_polygon_to_cells(<geography, decimal(38, 0)>) returns array
+function h3_polygon_to_cells(&lt;geography, decimal(38, 0)&gt;) returns array
 ```
 Returns the planar centroid based covering of H3 cells as integers for a polygon/multipolygon
 
@@ -178,7 +178,7 @@ Returns the planar centroid based covering of H3 cells as integers for a polygon
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_polygon_to_cells_strings(<geography, decimal(38, 0)>) returns array
+function h3_polygon_to_cells_strings(&lt;geography, decimal(38, 0)&gt;) returns array
 ```
 Returns the planar centroid based covering of H3 cells as strings for a polygon/multipolygon
 
@@ -186,7 +186,7 @@ Returns the planar centroid based covering of H3 cells as strings for a polygon/
 [🔗 Official Documentation](#)
 
 ```sql
-function h3_string_to_int(<varchar>) returns decimal(38, 0)
+function h3_string_to_int(&lt;varchar&gt;) returns decimal(38, 0)
 ```
 Returns the H3 cell formatted as an integer given its string representation
 
@@ -194,7 +194,7 @@ Returns the H3 cell formatted as an integer given its string representation
 [🔗 Official Documentation](#)
 
 ```sql
-function haversine(<double, double, double, double>) returns double
+function haversine(&lt;double, double, double, double&gt;) returns double
 ```
 Calculate great circle distance (in km) from two (lat, lon) locations (degrees).
 
@@ -202,12 +202,12 @@ Calculate great circle distance (in km) from two (lat, lon) locations (degrees).
 [🔗 Official Documentation](#)
 
 ```sql
-function st_area(<geography>) returns double
+function st_area(&lt;geography&gt;) returns double
 ```
 Area of the object in square meters
 
 ```sql
-function st_area(<geometry>) returns double
+function st_area(&lt;geometry&gt;) returns double
 ```
 Area of the object in the same units as the input coordinates
 
@@ -215,12 +215,12 @@ Area of the object in the same units as the input coordinates
 [🔗 Official Documentation](#)
 
 ```sql
-function st_asbinary(<geography>) returns binary
+function st_asbinary(&lt;geography&gt;) returns binary
 ```
 Return the WKB representation of the GEOGRAPHY object
 
 ```sql
-function st_asbinary(<geometry>) returns binary
+function st_asbinary(&lt;geometry&gt;) returns binary
 ```
 Return the WKB representation of the GEOMETRY object
 
@@ -228,12 +228,12 @@ Return the WKB representation of the GEOMETRY object
 [🔗 Official Documentation](#)
 
 ```sql
-function st_asewkb(<geography>) returns binary
+function st_asewkb(&lt;geography&gt;) returns binary
 ```
 Return the EWKB representation of the GEOGRAPHY object
 
 ```sql
-function st_asewkb(<geometry>) returns binary
+function st_asewkb(&lt;geometry&gt;) returns binary
 ```
 Return the EWKB representation of the GEOMETRY object
 
@@ -241,12 +241,12 @@ Return the EWKB representation of the GEOMETRY object
 [🔗 Official Documentation](#)
 
 ```sql
-function st_asewkt(<geography>) returns varchar
+function st_asewkt(&lt;geography&gt;) returns varchar
 ```
 Return the WKB representation of the GEOGRAPHY object
 
 ```sql
-function st_asewkt(<geometry>) returns varchar
+function st_asewkt(&lt;geometry&gt;) returns varchar
 ```
 Return the WKB representation of the GEOMETRY object
 
@@ -254,12 +254,12 @@ Return the WKB representation of the GEOMETRY object
 [🔗 Official Documentation](#)
 
 ```sql
-function st_asgeojson(<geography>) returns object
+function st_asgeojson(&lt;geography&gt;) returns object
 ```
 Return the GeoJSON representation of the GEOGRAPHY object
 
 ```sql
-function st_asgeojson(<geometry>) returns object
+function st_asgeojson(&lt;geometry&gt;) returns object
 ```
 Return the GeoJSON representation of the GEOMETRY object
 
@@ -267,12 +267,12 @@ Return the GeoJSON representation of the GEOMETRY object
 [🔗 Official Documentation](#)
 
 ```sql
-function st_astext(<geography>) returns varchar
+function st_astext(&lt;geography&gt;) returns varchar
 ```
 Return the WKT representation of the GEOGRAPHY object
 
 ```sql
-function st_astext(<geometry>) returns varchar
+function st_astext(&lt;geometry&gt;) returns varchar
 ```
 Return the WKT representation of the GEOMETRY object
 
@@ -280,12 +280,12 @@ Return the WKT representation of the GEOMETRY object
 [🔗 Official Documentation](#)
 
 ```sql
-function st_aswkb(<geography>) returns binary
+function st_aswkb(&lt;geography&gt;) returns binary
 ```
 Return the WKB representation of the GEOGRAPHY object
 
 ```sql
-function st_aswkb(<geometry>) returns binary
+function st_aswkb(&lt;geometry&gt;) returns binary
 ```
 Return the WKB representation of the GEOMETRY object
 
@@ -293,12 +293,12 @@ Return the WKB representation of the GEOMETRY object
 [🔗 Official Documentation](#)
 
 ```sql
-function st_aswkt(<geography>) returns varchar
+function st_aswkt(&lt;geography&gt;) returns varchar
 ```
 Return the WKB representation of the GEOGRAPHY object
 
 ```sql
-function st_aswkt(<geometry>) returns varchar
+function st_aswkt(&lt;geometry&gt;) returns varchar
 ```
 Return the WKB representation of the GEOMETRY object
 
@@ -306,12 +306,12 @@ Return the WKB representation of the GEOMETRY object
 [🔗 Official Documentation](#)
 
 ```sql
-function st_azimuth(<geography, geography>) returns double
+function st_azimuth(&lt;geography, geography&gt;) returns double
 ```
 Returns the azimuth in radians of the segment defined by the given point
 
 ```sql
-function st_azimuth(<geometry, geometry>) returns double
+function st_azimuth(&lt;geometry, geometry&gt;) returns double
 ```
 Returns the azimuth in radians of the segment defined by the given point
 
@@ -319,7 +319,7 @@ Returns the azimuth in radians of the segment defined by the given point
 [🔗 Official Documentation](#)
 
 ```sql
-function st_buffer(<geometry, double>) returns geometry
+function st_buffer(&lt;geometry, double&gt;) returns geometry
 ```
 Returns the geometry generated by the buffer operation upon the given input geometry using the diven distance
 
@@ -327,12 +327,12 @@ Returns the geometry generated by the buffer operation upon the given input geom
 [🔗 Official Documentation](#)
 
 ```sql
-function st_centroid(<geography>) returns geography
+function st_centroid(&lt;geography&gt;) returns geography
 ```
 The centroid of geography
 
 ```sql
-function st_centroid(<geometry>) returns geometry
+function st_centroid(&lt;geometry&gt;) returns geometry
 ```
 The centroid of geometry
 
@@ -340,12 +340,12 @@ The centroid of geometry
 [🔗 Official Documentation](#)
 
 ```sql
-function st_collect(<geography>) returns geography
+function st_collect(&lt;geography&gt;) returns geography
 ```
 Aggregates all geographies into a GeometryCollection or Multi* geography if they are all of the same single element type (e.g. Point)
 
 ```sql
-function st_collect(<geography, geography>) returns geography
+function st_collect(&lt;geography, geography&gt;) returns geography
 ```
 Version of ST_COLLECT that merges the two input geographies into one
 
@@ -353,12 +353,12 @@ Version of ST_COLLECT that merges the two input geographies into one
 [🔗 Official Documentation](#)
 
 ```sql
-function st_contains(<geography, geography>) returns boolean
+function st_contains(&lt;geography, geography&gt;) returns boolean
 ```
 True if the first object fully contains the second
 
 ```sql
-function st_contains(<geometry, geometry>) returns boolean
+function st_contains(&lt;geometry, geometry&gt;) returns boolean
 ```
 True if the first object fully contains the second
 
@@ -366,12 +366,12 @@ True if the first object fully contains the second
 [🔗 Official Documentation](#)
 
 ```sql
-function st_coveredby(<geography, geography>) returns boolean
+function st_coveredby(&lt;geography, geography&gt;) returns boolean
 ```
 True if the second object covers the first
 
 ```sql
-function st_coveredby(<geometry, geometry>) returns boolean
+function st_coveredby(&lt;geometry, geometry&gt;) returns boolean
 ```
 True if the second object covers the first
 
@@ -379,12 +379,12 @@ True if the second object covers the first
 [🔗 Official Documentation](#)
 
 ```sql
-function st_covers(<geography, geography>) returns boolean
+function st_covers(&lt;geography, geography&gt;) returns boolean
 ```
 True if the first object covers the second
 
 ```sql
-function st_covers(<geometry, geometry>) returns boolean
+function st_covers(&lt;geometry, geometry&gt;) returns boolean
 ```
 True if the first object covers the second
 
@@ -392,7 +392,7 @@ True if the first object covers the second
 [🔗 Official Documentation](#)
 
 ```sql
-function st_difference(<geography, geography>) returns geography
+function st_difference(&lt;geography, geography&gt;) returns geography
 ```
 Geometry representing the set difference a minus b
 
@@ -400,12 +400,12 @@ Geometry representing the set difference a minus b
 [🔗 Official Documentation](#)
 
 ```sql
-function st_dimension(<geography>) returns decimal(38, 0)
+function st_dimension(&lt;geography&gt;) returns decimal(38, 0)
 ```
 The dimension of the input geography
 
 ```sql
-function st_dimension(<geometry>) returns decimal(38, 0)
+function st_dimension(&lt;geometry&gt;) returns decimal(38, 0)
 ```
 The dimension of the input geometry
 
@@ -413,12 +413,12 @@ The dimension of the input geometry
 [🔗 Official Documentation](#)
 
 ```sql
-function st_disjoint(<geography, geography>) returns boolean
+function st_disjoint(&lt;geography, geography&gt;) returns boolean
 ```
 True if the two objects not intersect
 
 ```sql
-function st_disjoint(<geometry, geometry>) returns boolean
+function st_disjoint(&lt;geometry, geometry&gt;) returns boolean
 ```
 True if the two objects not intersect
 
@@ -426,12 +426,12 @@ True if the two objects not intersect
 [🔗 Official Documentation](#)
 
 ```sql
-function st_distance(<geography, geography>) returns double
+function st_distance(&lt;geography, geography&gt;) returns double
 ```
 Distance between two geography objects in meters
 
 ```sql
-function st_distance(<geometry, geometry>) returns double
+function st_distance(&lt;geometry, geometry&gt;) returns double
 ```
 Distance between two geometries in the same units as the input coordinates
 
@@ -439,7 +439,7 @@ Distance between two geometries in the same units as the input coordinates
 [🔗 Official Documentation](#)
 
 ```sql
-function st_dwithin(<geography, geography, double>) returns boolean
+function st_dwithin(&lt;geography, geography, double&gt;) returns boolean
 ```
 True if the minimum distance between two objects is smaller than or equal to the specified distance in meters
 
@@ -447,12 +447,12 @@ True if the minimum distance between two objects is smaller than or equal to the
 [🔗 Official Documentation](#)
 
 ```sql
-function st_endpoint(<geography>) returns geography
+function st_endpoint(&lt;geography&gt;) returns geography
 ```
 The last point in the geography, only supports LineStrings
 
 ```sql
-function st_endpoint(<geometry>) returns geometry
+function st_endpoint(&lt;geometry&gt;) returns geometry
 ```
 The last point in the geometry, only supports LineStrings
 
@@ -460,12 +460,12 @@ The last point in the geometry, only supports LineStrings
 [🔗 Official Documentation](#)
 
 ```sql
-function st_envelope(<geography>) returns geography
+function st_envelope(&lt;geography&gt;) returns geography
 ```
 the double-precision (float8) minimum bounding box for the supplied geometry
 
 ```sql
-function st_envelope(<geometry>) returns geometry
+function st_envelope(&lt;geometry&gt;) returns geometry
 ```
 the shape of the minimum bounding box of the supplied geometry
 
@@ -473,12 +473,12 @@ the shape of the minimum bounding box of the supplied geometry
 [🔗 Official Documentation](#)
 
 ```sql
-function st_geogfromgeohash(<varchar, decimal(38, 0)>) returns geography
+function st_geogfromgeohash(&lt;varchar, decimal(38, 0)&gt;) returns geography
 ```
 The geography represented by the geohash
 
 ```sql
-function st_geogfromgeohash(<varchar>) returns geography
+function st_geogfromgeohash(&lt;varchar&gt;) returns geography
 ```
 The geography represented by the geohash
 
@@ -486,7 +486,7 @@ The geography represented by the geohash
 [🔗 Official Documentation](#)
 
 ```sql
-function st_geogpointfromgeohash(<varchar>) returns geography
+function st_geogpointfromgeohash(&lt;varchar&gt;) returns geography
 ```
 The point represented by the geohash
 
@@ -494,22 +494,22 @@ The point represented by the geohash
 [🔗 Official Documentation](#)
 
 ```sql
-function st_geographyfromwkb(<varchar>) returns geography
+function st_geographyfromwkb(&lt;varchar&gt;) returns geography
 ```
 Parse WKB or EWKB
 
 ```sql
-function st_geographyfromwkb(<varchar, boolean>) returns geography
+function st_geographyfromwkb(&lt;varchar, boolean&gt;) returns geography
 ```
 Parse WKB or EWKB
 
 ```sql
-function st_geographyfromwkb(<binary>) returns geography
+function st_geographyfromwkb(&lt;binary&gt;) returns geography
 ```
 Parse WKB or EWKB
 
 ```sql
-function st_geographyfromwkb(<binary, boolean>) returns geography
+function st_geographyfromwkb(&lt;binary, boolean&gt;) returns geography
 ```
 Parse WKB or EWKB
 
@@ -517,12 +517,12 @@ Parse WKB or EWKB
 [🔗 Official Documentation](#)
 
 ```sql
-function st_geographyfromwkt(<varchar>) returns geography
+function st_geographyfromwkt(&lt;varchar&gt;) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMTEXT
 
 ```sql
-function st_geographyfromwkt(<varchar, boolean>) returns geography
+function st_geographyfromwkt(&lt;varchar, boolean&gt;) returns geography
 ```
 Alias of ST_GEOGRAPHYFROMTEXT
 
@@ -530,12 +530,12 @@ Alias of ST_GEOGRAPHYFROMTEXT
 [🔗 Official Documentation](#)
 
 ```sql
-function st_geohash(<geography, decimal(38, 0)>) returns varchar
+function st_geohash(&lt;geography, decimal(38, 0)&gt;) returns varchar
 ```
 The geohash of a geography
 
 ```sql
-function st_geohash(<geography>) returns varchar
+function st_geohash(&lt;geography&gt;) returns varchar
 ```
 The geohash of a geography
 
@@ -543,62 +543,62 @@ The geohash of a geography
 [🔗 Official Documentation](#)
 
 ```sql
-function st_geometryfromwkb(<binary, decimal(38, 0)>) returns geometry
+function st_geometryfromwkb(&lt;binary, decimal(38, 0)&gt;) returns geometry
 ```
 Parse WKB or EWKB from binary
 
 ```sql
-function st_geometryfromwkb(<binary>) returns geometry
+function st_geometryfromwkb(&lt;binary&gt;) returns geometry
 ```
 Parse WKB or EWKB from binary
 
 ```sql
-function st_geometryfromwkb(<varchar, decimal(38, 0)>) returns geometry
+function st_geometryfromwkb(&lt;varchar, decimal(38, 0)&gt;) returns geometry
 ```
 Parse WKB or EWKB
 
 ```sql
-function st_geometryfromwkb(<varchar>) returns geometry
+function st_geometryfromwkb(&lt;varchar&gt;) returns geometry
 ```
 Parse WKB or EWKB
 
 ```sql
-function st_geometryfromwkb(<binary, decimal(38, 0), boolean, boolean>) returns geometry
+function st_geometryfromwkb(&lt;binary, decimal(38, 0), boolean, boolean&gt;) returns geometry
 ```
 Parse WKB or EWKB from binary
 
 ```sql
-function st_geometryfromwkb(<binary, boolean, boolean>) returns geometry
+function st_geometryfromwkb(&lt;binary, boolean, boolean&gt;) returns geometry
 ```
 Parse WKB or EWKB from binary
 
 ```sql
-function st_geometryfromwkb(<varchar, decimal(38, 0), boolean, boolean>) returns geometry
+function st_geometryfromwkb(&lt;varchar, decimal(38, 0), boolean, boolean&gt;) returns geometry
 ```
 Parse WKB or EWKB
 
 ```sql
-function st_geometryfromwkb(<varchar, boolean, boolean>) returns geometry
+function st_geometryfromwkb(&lt;varchar, boolean, boolean&gt;) returns geometry
 ```
 Parse WKB or EWKB
 
 ```sql
-function st_geometryfromwkb(<varchar, decimal(38, 0), boolean>) returns geometry
+function st_geometryfromwkb(&lt;varchar, decimal(38, 0), boolean&gt;) returns geometry
 ```
 Alias of ST_GEOMETRYFROMWKB
 
 ```sql
-function st_geometryfromwkb(<varchar, boolean>) returns geometry
+function st_geometryfromwkb(&lt;varchar, boolean&gt;) returns geometry
 ```
 Alias of ST_GEOMETRYFROMWKB
 
 ```sql
-function st_geometryfromwkb(<binary, decimal(38, 0), boolean>) returns geometry
+function st_geometryfromwkb(&lt;binary, decimal(38, 0), boolean&gt;) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
 ```sql
-function st_geometryfromwkb(<binary, boolean>) returns geometry
+function st_geometryfromwkb(&lt;binary, boolean&gt;) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
@@ -606,22 +606,22 @@ Alias of ST_GEOMETRYFROMTEXT
 [🔗 Official Documentation](#)
 
 ```sql
-function st_geometryfromwkt(<varchar>) returns geometry
+function st_geometryfromwkt(&lt;varchar&gt;) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
 ```sql
-function st_geometryfromwkt(<varchar, decimal(38, 0)>) returns geometry
+function st_geometryfromwkt(&lt;varchar, decimal(38, 0)&gt;) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
 ```sql
-function st_geometryfromwkt(<varchar, decimal(38, 0), boolean>) returns geometry
+function st_geometryfromwkt(&lt;varchar, decimal(38, 0), boolean&gt;) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
 ```sql
-function st_geometryfromwkt(<varchar, boolean>) returns geometry
+function st_geometryfromwkt(&lt;varchar, boolean&gt;) returns geometry
 ```
 Alias of ST_GEOMETRYFROMTEXT
 
@@ -629,7 +629,7 @@ Alias of ST_GEOMETRYFROMTEXT
 [🔗 Official Documentation](#)
 
 ```sql
-function st_hausdorffdistance(<geography, geography>) returns double
+function st_hausdorffdistance(&lt;geography, geography&gt;) returns double
 ```
 the Hausdorff distance between two geometries
 
@@ -637,7 +637,7 @@ the Hausdorff distance between two geometries
 [🔗 Official Documentation](#)
 
 ```sql
-function st_intersection(<geography, geography>) returns geography
+function st_intersection(&lt;geography, geography&gt;) returns geography
 ```
 Geometry representing the intersection of a and b
 
@@ -645,12 +645,12 @@ Geometry representing the intersection of a and b
 [🔗 Official Documentation](#)
 
 ```sql
-function st_intersects(<geography, geography>) returns boolean
+function st_intersects(&lt;geography, geography&gt;) returns boolean
 ```
 True if the two objects intersect
 
 ```sql
-function st_intersects(<geometry, geometry>) returns boolean
+function st_intersects(&lt;geometry, geometry&gt;) returns boolean
 ```
 True if the two objects intersect
 
@@ -658,12 +658,12 @@ True if the two objects intersect
 [🔗 Official Documentation](#)
 
 ```sql
-function st_isvalid(<geography>) returns boolean
+function st_isvalid(&lt;geography&gt;) returns boolean
 ```
 True if g has an internal representation
 
 ```sql
-function st_isvalid(<geometry>) returns boolean
+function st_isvalid(&lt;geometry&gt;) returns boolean
 ```
 Return true if geometry is valid
 
@@ -671,12 +671,12 @@ Return true if geometry is valid
 [🔗 Official Documentation](#)
 
 ```sql
-function st_length(<geography>) returns double
+function st_length(&lt;geography&gt;) returns double
 ```
 Length or perimeter of the object in meters
 
 ```sql
-function st_length(<geometry>) returns double
+function st_length(&lt;geometry&gt;) returns double
 ```
 Length of the geometry in the same units as the input coordinates
 
@@ -684,7 +684,7 @@ Length of the geometry in the same units as the input coordinates
 [🔗 Official Documentation](#)
 
 ```sql
-function st_makegeompoint(<double, double>) returns geometry
+function st_makegeompoint(&lt;double, double&gt;) returns geometry
 ```
 Creates a point with the given x and y
 
@@ -692,12 +692,12 @@ Creates a point with the given x and y
 [🔗 Official Documentation](#)
 
 ```sql
-function st_makeline(<geography, geography>) returns geography
+function st_makeline(&lt;geography, geography&gt;) returns geography
 ```
 Create a Line out of the points in the input geographies
 
 ```sql
-function st_makeline(<geometry, geometry>) returns geometry
+function st_makeline(&lt;geometry, geometry&gt;) returns geometry
 ```
 Create a LineString out of the points in the input geographies
 
@@ -705,7 +705,7 @@ Create a LineString out of the points in the input geographies
 [🔗 Official Documentation](#)
 
 ```sql
-function st_makepoint(<double, double>) returns geography
+function st_makepoint(&lt;double, double&gt;) returns geography
 ```
 Creates a point with the given longitude and latitude
 
@@ -713,12 +713,12 @@ Creates a point with the given longitude and latitude
 [🔗 Official Documentation](#)
 
 ```sql
-function st_makepolygon(<geography>) returns geography
+function st_makepolygon(&lt;geography&gt;) returns geography
 ```
 The Polygon consisting of the LineString as outer shell
 
 ```sql
-function st_makepolygon(<geometry>) returns geometry
+function st_makepolygon(&lt;geometry&gt;) returns geometry
 ```
 The Polygon consisting of the LineString as outer shell
 
@@ -726,7 +726,7 @@ The Polygon consisting of the LineString as outer shell
 [🔗 Official Documentation](#)
 
 ```sql
-function st_makepolygonoriented(<geography>) returns geography
+function st_makepolygonoriented(&lt;geography&gt;) returns geography
 ```
 The Polygon consisting of the LineString as outer shell, with unmodified orientation
 
@@ -734,12 +734,12 @@ The Polygon consisting of the LineString as outer shell, with unmodified orienta
 [🔗 Official Documentation](#)
 
 ```sql
-function st_npoints(<geography>) returns decimal(38, 0)
+function st_npoints(&lt;geography&gt;) returns decimal(38, 0)
 ```
-The number of points in the object's definition
+The number of points in the object&#39;s definition
 
 ```sql
-function st_npoints(<geometry>) returns decimal(38, 0)
+function st_npoints(&lt;geometry&gt;) returns decimal(38, 0)
 ```
 The number of points in the geometry
 
@@ -747,12 +747,12 @@ The number of points in the geometry
 [🔗 Official Documentation](#)
 
 ```sql
-function st_numpoints(<geography>) returns decimal(38, 0)
+function st_numpoints(&lt;geography&gt;) returns decimal(38, 0)
 ```
 Alias for ST_NPOINTS
 
 ```sql
-function st_numpoints(<geometry>) returns decimal(38, 0)
+function st_numpoints(&lt;geometry&gt;) returns decimal(38, 0)
 ```
 Alias for ST_NPOINTS
 
@@ -760,12 +760,12 @@ Alias for ST_NPOINTS
 [🔗 Official Documentation](#)
 
 ```sql
-function st_perimeter(<geography>) returns double
+function st_perimeter(&lt;geography&gt;) returns double
 ```
 Perimeter of the object in meters
 
 ```sql
-function st_perimeter(<geometry>) returns double
+function st_perimeter(&lt;geometry&gt;) returns double
 ```
 Perimeter of the geometry in the same units as the input coordinates
 
@@ -773,7 +773,7 @@ Perimeter of the geometry in the same units as the input coordinates
 [🔗 Official Documentation](#)
 
 ```sql
-function st_point(<double, double>) returns geography
+function st_point(&lt;double, double&gt;) returns geography
 ```
 Creates a point with the given longitude and latitude
 
@@ -781,12 +781,12 @@ Creates a point with the given longitude and latitude
 [🔗 Official Documentation](#)
 
 ```sql
-function st_pointn(<geography, decimal(38, 0)>) returns geography
+function st_pointn(&lt;geography, decimal(38, 0)&gt;) returns geography
 ```
 The nth point in the geography, only supports LineStrings
 
 ```sql
-function st_pointn(<geometry, decimal(38, 0)>) returns geometry
+function st_pointn(&lt;geometry, decimal(38, 0)&gt;) returns geometry
 ```
 The nth point in the geometry, only supports LineStrings
 
@@ -794,12 +794,12 @@ The nth point in the geometry, only supports LineStrings
 [🔗 Official Documentation](#)
 
 ```sql
-function st_polygon(<geography>) returns geography
+function st_polygon(&lt;geography&gt;) returns geography
 ```
 Alias for ST_MAKEPOLYGON
 
 ```sql
-function st_polygon(<geometry>) returns geometry
+function st_polygon(&lt;geometry&gt;) returns geometry
 ```
 Alias for ST_MAKEPOLYGON
 
@@ -807,7 +807,7 @@ Alias for ST_MAKEPOLYGON
 [🔗 Official Documentation](#)
 
 ```sql
-function st_setsrid(<geometry, decimal(38, 0)>) returns geometry
+function st_setsrid(&lt;geometry, decimal(38, 0)&gt;) returns geometry
 ```
 Returns a geometry same as input geometry but with SRID set to the given value
 
@@ -815,17 +815,17 @@ Returns a geometry same as input geometry but with SRID set to the given value
 [🔗 Official Documentation](#)
 
 ```sql
-function st_simplify(<geography, double, boolean>) returns geography
+function st_simplify(&lt;geography, double, boolean&gt;) returns geography
 ```
 Simplified version of the given geometry
 
 ```sql
-function st_simplify(<geography, double>) returns geography
+function st_simplify(&lt;geography, double&gt;) returns geography
 ```
 Simplified version of the given geometry
 
 ```sql
-function st_simplify(<geometry, double>) returns geometry
+function st_simplify(&lt;geometry, double&gt;) returns geometry
 ```
 Returns the geometry generated by the simplify operation upon the given input geometry using the given distance, or NULL if the resulting geometry is invalid
 
@@ -833,12 +833,12 @@ Returns the geometry generated by the simplify operation upon the given input ge
 [🔗 Official Documentation](#)
 
 ```sql
-function st_srid(<geography>) returns decimal(38, 0)
+function st_srid(&lt;geography&gt;) returns decimal(38, 0)
 ```
 Returns the SRID of a geography if present. Otherwise 4326
 
 ```sql
-function st_srid(<geometry>) returns decimal(38, 0)
+function st_srid(&lt;geometry&gt;) returns decimal(38, 0)
 ```
 Returns the SRID of a geometry if present. Otherwise 0
 
@@ -846,12 +846,12 @@ Returns the SRID of a geometry if present. Otherwise 0
 [🔗 Official Documentation](#)
 
 ```sql
-function st_startpoint(<geography>) returns geography
+function st_startpoint(&lt;geography&gt;) returns geography
 ```
 The first point in the geography, only supports LineStrings
 
 ```sql
-function st_startpoint(<geometry>) returns geometry
+function st_startpoint(&lt;geometry&gt;) returns geometry
 ```
 The first point in the geometry, only supports LineStrings
 
@@ -859,7 +859,7 @@ The first point in the geometry, only supports LineStrings
 [🔗 Official Documentation](#)
 
 ```sql
-function st_symdifference(<geography, geography>) returns geography
+function st_symdifference(&lt;geography, geography&gt;) returns geography
 ```
 Geometry representing the set symmetric difference a minus b
 
@@ -867,12 +867,12 @@ Geometry representing the set symmetric difference a minus b
 [🔗 Official Documentation](#)
 
 ```sql
-function st_transform(<geometry, decimal(38, 0), decimal(38, 0)>) returns geometry
+function st_transform(&lt;geometry, decimal(38, 0), decimal(38, 0)&gt;) returns geometry
 ```
 Returns the geometry transformed from one SRID to another SRID.
 
 ```sql
-function st_transform(<geometry, decimal(38, 0)>) returns geometry
+function st_transform(&lt;geometry, decimal(38, 0)&gt;) returns geometry
 ```
 Returns the geometry transformed to another SRID.
 
@@ -880,7 +880,7 @@ Returns the geometry transformed to another SRID.
 [🔗 Official Documentation](#)
 
 ```sql
-function st_union(<geography, geography>) returns geography
+function st_union(&lt;geography, geography&gt;) returns geography
 ```
 Geometry representing the union of a and b
 
@@ -888,12 +888,12 @@ Geometry representing the union of a and b
 [🔗 Official Documentation](#)
 
 ```sql
-function st_within(<geography, geography>) returns boolean
+function st_within(&lt;geography, geography&gt;) returns boolean
 ```
 True if the second object fully contains the first
 
 ```sql
-function st_within(<geometry, geometry>) returns boolean
+function st_within(&lt;geometry, geometry&gt;) returns boolean
 ```
 True if the second object fully contains the first
 
@@ -901,12 +901,12 @@ True if the second object fully contains the first
 [🔗 Official Documentation](#)
 
 ```sql
-function st_x(<geography>) returns double
+function st_x(&lt;geography&gt;) returns double
 ```
 The longitude of a point
 
 ```sql
-function st_x(<geometry>) returns double
+function st_x(&lt;geometry&gt;) returns double
 ```
 The X coordinate of a point
 
@@ -914,12 +914,12 @@ The X coordinate of a point
 [🔗 Official Documentation](#)
 
 ```sql
-function st_xmax(<geography>) returns double
+function st_xmax(&lt;geography&gt;) returns double
 ```
 The maximum longitude
 
 ```sql
-function st_xmax(<geometry>) returns double
+function st_xmax(&lt;geometry&gt;) returns double
 ```
 The maximum X coordinate
 
@@ -927,12 +927,12 @@ The maximum X coordinate
 [🔗 Official Documentation](#)
 
 ```sql
-function st_xmin(<geography>) returns double
+function st_xmin(&lt;geography&gt;) returns double
 ```
 The minimum longitude
 
 ```sql
-function st_xmin(<geometry>) returns double
+function st_xmin(&lt;geometry&gt;) returns double
 ```
 The minimum X coordinate
 
@@ -940,12 +940,12 @@ The minimum X coordinate
 [🔗 Official Documentation](#)
 
 ```sql
-function st_y(<geography>) returns double
+function st_y(&lt;geography&gt;) returns double
 ```
 The latitude of a point
 
 ```sql
-function st_y(<geometry>) returns double
+function st_y(&lt;geometry&gt;) returns double
 ```
 The Y coordinate of a point
 
@@ -953,12 +953,12 @@ The Y coordinate of a point
 [🔗 Official Documentation](#)
 
 ```sql
-function st_ymax(<geography>) returns double
+function st_ymax(&lt;geography&gt;) returns double
 ```
 The maximum latitude
 
 ```sql
-function st_ymax(<geometry>) returns double
+function st_ymax(&lt;geometry&gt;) returns double
 ```
 The maximum Y coordinate
 
@@ -966,12 +966,12 @@ The maximum Y coordinate
 [🔗 Official Documentation](#)
 
 ```sql
-function st_ymin(<geography>) returns double
+function st_ymin(&lt;geography&gt;) returns double
 ```
 The minimum latitude
 
 ```sql
-function st_ymin(<geometry>) returns double
+function st_ymin(&lt;geometry&gt;) returns double
 ```
 The minimum Y coordinate
 
@@ -979,47 +979,47 @@ The minimum Y coordinate
 [🔗 Official Documentation](#)
 
 ```sql
-function to_geography(<geography>) returns geography
+function to_geography(&lt;geography&gt;) returns geography
 ```
 No-op; prevents us from re-packaging GEOGRAPHY during input
 
 ```sql
-function to_geography(<geography, boolean>) returns geography
+function to_geography(&lt;geography, boolean&gt;) returns geography
 ```
 No-op; prevents us from re-packaging GEOGRAPHY during input
 
 ```sql
-function to_geography(<variant>) returns geography
+function to_geography(&lt;variant&gt;) returns geography
 ```
 Parses a variant as a GEOGRAPHY object; supported format is GeoJSON
 
 ```sql
-function to_geography(<variant, boolean>) returns geography
+function to_geography(&lt;variant, boolean&gt;) returns geography
 ```
 Parses a variant as a GEOGRAPHY object; supported format is GeoJSON
 
 ```sql
-function to_geography(<varchar>) returns geography
+function to_geography(&lt;varchar&gt;) returns geography
 ```
 Parses a string as a GEOGRAPHY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function to_geography(<varchar, boolean>) returns geography
+function to_geography(&lt;varchar, boolean&gt;) returns geography
 ```
 Parses a string as a GEOGRAPHY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function to_geography(<binary>) returns geography
+function to_geography(&lt;binary&gt;) returns geography
 ```
 Parses binary input in WKB format into a GEOGRAPHY object
 
 ```sql
-function to_geography(<binary, boolean>) returns geography
+function to_geography(&lt;binary, boolean&gt;) returns geography
 ```
 Parses binary input in WKB format into a GEOGRAPHY object
 
 ```sql
-function to_geography(<$1>) returns geography
+function to_geography(&lt;$1&gt;) returns geography
 ```
 
 
@@ -1027,97 +1027,97 @@ function to_geography(<$1>) returns geography
 [🔗 Official Documentation](#)
 
 ```sql
-function to_geometry(<geometry>) returns geometry
+function to_geometry(&lt;geometry&gt;) returns geometry
 ```
 No-op; prevents us from re-packaging GEOMETRY during input
 
 ```sql
-function to_geometry(<variant, decimal(38, 0)>) returns geometry
+function to_geometry(&lt;variant, decimal(38, 0)&gt;) returns geometry
 ```
 Parses a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function to_geometry(<variant>) returns geometry
+function to_geometry(&lt;variant&gt;) returns geometry
 ```
 Parses a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function to_geometry(<varchar, decimal(38, 0)>) returns geometry
+function to_geometry(&lt;varchar, decimal(38, 0)&gt;) returns geometry
 ```
 Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function to_geometry(<varchar>) returns geometry
+function to_geometry(&lt;varchar&gt;) returns geometry
 ```
 Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function to_geometry(<binary, decimal(38, 0)>) returns geometry
+function to_geometry(&lt;binary, decimal(38, 0)&gt;) returns geometry
 ```
 Parses binary input in WKB format into a GEOMETRY object
 
 ```sql
-function to_geometry(<binary>) returns geometry
+function to_geometry(&lt;binary&gt;) returns geometry
 ```
 Parses binary input in WKB format into a GEOMETRY object
 
 ```sql
-function to_geometry(<variant, decimal(38, 0), boolean, boolean>) returns geometry
+function to_geometry(&lt;variant, decimal(38, 0), boolean, boolean&gt;) returns geometry
 ```
 Parses a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function to_geometry(<variant, boolean, boolean>) returns geometry
+function to_geometry(&lt;variant, boolean, boolean&gt;) returns geometry
 ```
 Parses a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function to_geometry(<variant, decimal(38, 0), boolean>) returns geometry
+function to_geometry(&lt;variant, decimal(38, 0), boolean&gt;) returns geometry
 ```
 
 
 ```sql
-function to_geometry(<variant, boolean>) returns geometry
+function to_geometry(&lt;variant, boolean&gt;) returns geometry
 ```
 
 
 ```sql
-function to_geometry(<varchar, decimal(38, 0), boolean, boolean>) returns geometry
-```
-Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
-
-```sql
-function to_geometry(<varchar, boolean, boolean>) returns geometry
+function to_geometry(&lt;varchar, decimal(38, 0), boolean, boolean&gt;) returns geometry
 ```
 Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function to_geometry(<varchar, decimal(38, 0), boolean>) returns geometry
+function to_geometry(&lt;varchar, boolean, boolean&gt;) returns geometry
 ```
 Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function to_geometry(<varchar, boolean>) returns geometry
+function to_geometry(&lt;varchar, decimal(38, 0), boolean&gt;) returns geometry
 ```
 Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function to_geometry(<binary, decimal(38, 0), boolean, boolean>) returns geometry
+function to_geometry(&lt;varchar, boolean&gt;) returns geometry
+```
+Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geometry(&lt;binary, decimal(38, 0), boolean, boolean&gt;) returns geometry
 ```
 Parses binary input in WKB format into a GEOMETRY object
 
 ```sql
-function to_geometry(<binary, boolean, boolean>) returns geometry
+function to_geometry(&lt;binary, boolean, boolean&gt;) returns geometry
 ```
 Parses binary input in WKB format into a GEOMETRY object
 
 ```sql
-function to_geometry(<binary, decimal(38, 0), boolean>) returns geometry
+function to_geometry(&lt;binary, decimal(38, 0), boolean&gt;) returns geometry
 ```
 Parses binary input in WKB format into a GEOMETRY object
 
 ```sql
-function to_geometry(<binary, boolean>) returns geometry
+function to_geometry(&lt;binary, boolean&gt;) returns geometry
 ```
 Parses binary input in WKB format into a GEOMETRY object
 
@@ -1125,42 +1125,42 @@ Parses binary input in WKB format into a GEOMETRY object
 [🔗 Official Documentation](#)
 
 ```sql
-function try_to_geography(<geography>) returns geography
+function try_to_geography(&lt;geography&gt;) returns geography
 ```
 No-op; prevents us from re-packaging GEOGRAPHY during input
 
 ```sql
-function try_to_geography(<geography, boolean>) returns geography
+function try_to_geography(&lt;geography, boolean&gt;) returns geography
 ```
 No-op; prevents us from re-packaging GEOGRAPHY during input
 
 ```sql
-function try_to_geography(<variant>) returns geography
+function try_to_geography(&lt;variant&gt;) returns geography
 ```
 Tries to parse a variant as a GEOGRAPHY object; supported format is GeoJSON
 
 ```sql
-function try_to_geography(<variant, boolean>) returns geography
+function try_to_geography(&lt;variant, boolean&gt;) returns geography
 ```
 Tries to parse a variant as a GEOGRAPHY object; supported format is GeoJSON
 
 ```sql
-function try_to_geography(<varchar>) returns geography
+function try_to_geography(&lt;varchar&gt;) returns geography
 ```
 Tries to parse a string as a GEOGRAPHY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function try_to_geography(<varchar, boolean>) returns geography
+function try_to_geography(&lt;varchar, boolean&gt;) returns geography
 ```
 Tries to parse a string as a GEOGRAPHY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function try_to_geography(<binary>) returns geography
+function try_to_geography(&lt;binary&gt;) returns geography
 ```
 Tries to parse binary input in WKB format into a GEOGRAPHY object
 
 ```sql
-function try_to_geography(<binary, boolean>) returns geography
+function try_to_geography(&lt;binary, boolean&gt;) returns geography
 ```
 Tries to parse binary input in WKB format into a GEOGRAPHY object
 
@@ -1168,99 +1168,99 @@ Tries to parse binary input in WKB format into a GEOGRAPHY object
 [🔗 Official Documentation](#)
 
 ```sql
-function try_to_geometry(<geometry>) returns geometry
+function try_to_geometry(&lt;geometry&gt;) returns geometry
 ```
 No-op; prevents us from re-packaging GEOMETRY during input
 
 ```sql
-function try_to_geometry(<variant, decimal(38, 0)>) returns geometry
+function try_to_geometry(&lt;variant, decimal(38, 0)&gt;) returns geometry
 ```
 Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function try_to_geometry(<variant>) returns geometry
+function try_to_geometry(&lt;variant&gt;) returns geometry
 ```
 Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function try_to_geometry(<varchar, decimal(38, 0)>) returns geometry
+function try_to_geometry(&lt;varchar, decimal(38, 0)&gt;) returns geometry
 ```
 Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function try_to_geometry(<varchar>) returns geometry
+function try_to_geometry(&lt;varchar&gt;) returns geometry
 ```
 Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function try_to_geometry(<binary, decimal(38, 0)>) returns geometry
+function try_to_geometry(&lt;binary, decimal(38, 0)&gt;) returns geometry
 ```
 Tries to parse binary input in WKB format into a GEOMETRY object
 
 ```sql
-function try_to_geometry(<binary>) returns geometry
+function try_to_geometry(&lt;binary&gt;) returns geometry
 ```
 Tries to parse binary input in WKB format into a GEOMETRY object
 
 ```sql
-function try_to_geometry(<variant, decimal(38, 0), boolean, boolean>) returns geometry
+function try_to_geometry(&lt;variant, decimal(38, 0), boolean, boolean&gt;) returns geometry
 ```
 Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function try_to_geometry(<variant, boolean, boolean>) returns geometry
+function try_to_geometry(&lt;variant, boolean, boolean&gt;) returns geometry
 ```
 Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function try_to_geometry(<variant, decimal(38, 0), boolean>) returns geometry
+function try_to_geometry(&lt;variant, decimal(38, 0), boolean&gt;) returns geometry
 ```
 Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function try_to_geometry(<variant, boolean>) returns geometry
+function try_to_geometry(&lt;variant, boolean&gt;) returns geometry
 ```
 Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
 
 ```sql
-function try_to_geometry(<varchar, decimal(38, 0), boolean, boolean>) returns geometry
+function try_to_geometry(&lt;varchar, decimal(38, 0), boolean, boolean&gt;) returns geometry
 ```
 Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function try_to_geometry(<varchar, boolean, boolean>) returns geometry
+function try_to_geometry(&lt;varchar, boolean, boolean&gt;) returns geometry
 ```
 Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function try_to_geometry(<varchar, decimal(38, 0), boolean>) returns geometry
+function try_to_geometry(&lt;varchar, decimal(38, 0), boolean&gt;) returns geometry
 ```
 Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function try_to_geometry(<varchar, boolean>) returns geometry
+function try_to_geometry(&lt;varchar, boolean&gt;) returns geometry
 ```
 Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
 
 ```sql
-function try_to_geometry(<binary, decimal(38, 0), boolean, boolean>) returns geometry
+function try_to_geometry(&lt;binary, decimal(38, 0), boolean, boolean&gt;) returns geometry
 ```
 Tries to parse binary input in WKB format into a GEOMETRY object
 
 ```sql
-function try_to_geometry(<binary, boolean, boolean>) returns geometry
+function try_to_geometry(&lt;binary, boolean, boolean&gt;) returns geometry
 ```
 Tries to parse binary input in WKB format into a GEOMETRY object
 
 ```sql
-function try_to_geometry(<binary, decimal(38, 0), boolean>) returns geometry
+function try_to_geometry(&lt;binary, decimal(38, 0), boolean&gt;) returns geometry
 ```
 Tries to parse binary input in WKB format into a GEOMETRY object
 
 ```sql
-function try_to_geometry(<binary, boolean>) returns geometry
+function try_to_geometry(&lt;binary, boolean&gt;) returns geometry
 ```
 Tries to parse binary input in WKB format into a GEOMETRY object
 
-   Finished man in 0.216 secs
+   Finished man in 0.273 secs
 

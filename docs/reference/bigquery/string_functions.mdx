@@ -6,7 +6,7 @@ title: "String Functions"
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ascii)
 
 ```sql
-function ascii(<string>) returns int64
+function ascii(&lt;string&gt;) returns int64
 ```
 
 
@@ -14,7 +14,7 @@ function ascii(<string>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#byte_length)
 
 ```sql
-function byte_length<$1> (<$1>) returns int64
+function byte_length&lt;$1&gt; (&lt;$1&gt;) returns int64
 	where $1 in (string, bytes)
 ```
 
@@ -23,7 +23,7 @@ function byte_length<$1> (<$1>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#char_length)
 
 ```sql
-function char_length(<string>) returns int64
+function char_length(&lt;string&gt;) returns int64
 ```
 
 
@@ -31,7 +31,7 @@ function char_length(<string>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#character_length)
 
 ```sql
-function character_length(<string>) returns int64
+function character_length(&lt;string&gt;) returns int64
 ```
 
 
@@ -39,7 +39,7 @@ function character_length(<string>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#chr)
 
 ```sql
-function chr(<int64>) returns string
+function chr(&lt;int64&gt;) returns string
 ```
 
 
@@ -47,7 +47,7 @@ function chr(<int64>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#code_points_to_bytes)
 
 ```sql
-function code_points_to_bytes(<array<int64>>) returns bytes
+function code_points_to_bytes(&lt;array&lt;int64&gt;&gt;) returns bytes
 ```
 
 
@@ -55,7 +55,7 @@ function code_points_to_bytes(<array<int64>>) returns bytes
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#code_points_to_string)
 
 ```sql
-function code_points_to_string(<array<int64>>) returns string
+function code_points_to_string(&lt;array&lt;int64&gt;&gt;) returns string
 ```
 
 
@@ -63,7 +63,7 @@ function code_points_to_string(<array<int64>>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#collate)
 
 ```sql
-function collate(<string, string>) returns string
+function collate(&lt;string, string&gt;) returns string
 ```
 
 
@@ -71,7 +71,7 @@ function collate(<string, string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#concat)
 
 ```sql
-function concat<$1> ($1, ...) returns $1
+function concat&lt;$1&gt; ($1, ...) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -80,13 +80,13 @@ function concat<$1> ($1, ...) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#contains_substr)
 
 ```sql
-function contains_substr<$1> (<$1, string>) returns bool
+function contains_substr&lt;$1&gt; (&lt;$1, string&gt;) returns bool
 	where $1 in (string, bigint, bool, timestamp, time, date, datetime)
 ```
 
 
 ```sql
-function contains_substr<$1> (<array<$1>, string>) returns bool
+function contains_substr&lt;$1&gt; (&lt;array&lt;$1&gt;, string&gt;) returns bool
 	where $1 in (string, bigint, bool, timestamp, time, date, datetime)
 ```
 
@@ -95,7 +95,7 @@ function contains_substr<$1> (<array<$1>, string>) returns bool
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ends_with)
 
 ```sql
-function ends_with<$1> (<$1, string>) returns bool
+function ends_with&lt;$1&gt; (&lt;$1, string&gt;) returns bool
 	where $1 in (string, bytes)
 ```
 
@@ -104,32 +104,32 @@ function ends_with<$1> (<$1, string>) returns bool
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#format)
 
 ```sql
-function format(<string>) returns string
+function format(&lt;string&gt;) returns string
 ```
 
 
 ```sql
-function format(<string, $1>) returns string
+function format(&lt;string, $1&gt;) returns string
 ```
 
 
 ```sql
-function format(<string, $1, $2>) returns string
+function format(&lt;string, $1, $2&gt;) returns string
 ```
 
 
 ```sql
-function format(<string, $1, $2, $3>) returns string
+function format(&lt;string, $1, $2, $3&gt;) returns string
 ```
 
 
 ```sql
-function format(<string, $1, $2, $3, $4>) returns string
+function format(&lt;string, $1, $2, $3, $4&gt;) returns string
 ```
 
 
 ```sql
-function format(<string, $1, $2, $3, $4, $5>) returns string
+function format(&lt;string, $1, $2, $3, $4, $5&gt;) returns string
 ```
 
 
@@ -137,7 +137,7 @@ function format(<string, $1, $2, $3, $4, $5>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_base32)
 
 ```sql
-function from_base32(<string>) returns bytes
+function from_base32(&lt;string&gt;) returns bytes
 ```
 
 
@@ -145,7 +145,7 @@ function from_base32(<string>) returns bytes
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_base64)
 
 ```sql
-function from_base64(<string>) returns bytes
+function from_base64(&lt;string&gt;) returns bytes
 ```
 
 
@@ -153,7 +153,7 @@ function from_base64(<string>) returns bytes
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_hex)
 
 ```sql
-function from_hex(<string>) returns bytes
+function from_hex(&lt;string&gt;) returns bytes
 ```
 
 
@@ -161,12 +161,12 @@ function from_hex(<string>) returns bytes
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#initcap)
 
 ```sql
-function initcap(<string>) returns string
+function initcap(&lt;string&gt;) returns string
 ```
 
 
 ```sql
-function initcap(<string, string>) returns string
+function initcap(&lt;string, string&gt;) returns string
 ```
 
 
@@ -174,17 +174,17 @@ function initcap(<string, string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#instr)
 
 ```sql
-function instr(<string, string>) returns int64
+function instr(&lt;string, string&gt;) returns int64
 ```
 
 
 ```sql
-function instr(<string, string, int64>) returns int64
+function instr(&lt;string, string, int64&gt;) returns int64
 ```
 
 
 ```sql
-function instr(<string, string, int64, int64>) returns int64
+function instr(&lt;string, string, int64, int64&gt;) returns int64
 ```
 
 
@@ -192,7 +192,7 @@ function instr(<string, string, int64, int64>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#left)
 
 ```sql
-function left<$1> (<$1, int64>) returns $1
+function left&lt;$1&gt; (&lt;$1, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -201,7 +201,7 @@ function left<$1> (<$1, int64>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#length)
 
 ```sql
-function length<$1> (<$1>) returns int64
+function length&lt;$1&gt; (&lt;$1&gt;) returns int64
 	where $1 in (string, bytes)
 ```
 
@@ -210,7 +210,7 @@ function length<$1> (<$1>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lower)
 
 ```sql
-function lower(<string>) returns string
+function lower(&lt;string&gt;) returns string
 ```
 
 
@@ -218,12 +218,12 @@ function lower(<string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lpad)
 
 ```sql
-function lpad(<string, int64, string>) returns string
+function lpad(&lt;string, int64, string&gt;) returns string
 ```
 
 
 ```sql
-function lpad(<string, int64>) returns string
+function lpad(&lt;string, int64&gt;) returns string
 ```
 
 
@@ -231,12 +231,12 @@ function lpad(<string, int64>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ltrim)
 
 ```sql
-function ltrim(<string>) returns string
+function ltrim(&lt;string&gt;) returns string
 ```
 
 
 ```sql
-function ltrim(<string, string>) returns string
+function ltrim(&lt;string, string&gt;) returns string
 ```
 
 
@@ -244,12 +244,12 @@ function ltrim(<string, string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#normalize_and_casefold)
 
 ```sql
-function normalize_and_casefold(<string>) returns string
+function normalize_and_casefold(&lt;string&gt;) returns string
 ```
 
 
 ```sql
-function normalize_and_casefold(<string, normalization_mode string>) returns string
+function normalize_and_casefold(&lt;string, normalization_mode string&gt;) returns string
 	where normalization_mode in (nfc, nfd, nfkc, nfkd)
 ```
 
@@ -258,7 +258,7 @@ function normalize_and_casefold(<string, normalization_mode string>) returns str
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#octet_length)
 
 ```sql
-function octet_length<$1> (<$1>) returns int64
+function octet_length&lt;$1&gt; (&lt;$1&gt;) returns int64
 	where $1 in (string, bytes)
 ```
 
@@ -267,7 +267,7 @@ function octet_length<$1> (<$1>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_contains)
 
 ```sql
-function regexp_contains<$1> (<$1, string>) returns bool
+function regexp_contains&lt;$1&gt; (&lt;$1, string&gt;) returns bool
 	where $1 in (string, bytes)
 ```
 
@@ -276,19 +276,19 @@ function regexp_contains<$1> (<$1, string>) returns bool
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_extract)
 
 ```sql
-function regexp_extract<$1> (<$1, string>) returns $1
+function regexp_extract&lt;$1&gt; (&lt;$1, string&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
 
 ```sql
-function regexp_extract<$1> (<$1, string, int64>) returns $1
+function regexp_extract&lt;$1&gt; (&lt;$1, string, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
 
 ```sql
-function regexp_extract<$1> (<$1, string, int64, int64>) returns $1
+function regexp_extract&lt;$1&gt; (&lt;$1, string, int64, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -297,7 +297,7 @@ function regexp_extract<$1> (<$1, string, int64, int64>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_extract_all)
 
 ```sql
-function regexp_extract_all<$1> (<$1, string>) returns array<$1>
+function regexp_extract_all&lt;$1&gt; (&lt;$1, string&gt;) returns array&lt;$1&gt;
 	where $1 in (string, bytes)
 ```
 
@@ -306,19 +306,19 @@ function regexp_extract_all<$1> (<$1, string>) returns array<$1>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_instr)
 
 ```sql
-function regexp_instr<$1> (<$1, $1>) returns int64
+function regexp_instr&lt;$1&gt; (&lt;$1, $1&gt;) returns int64
 	where $1 in (string, bytes)
 ```
 
 
 ```sql
-function regexp_instr<$1> (<$1, $1, int64>) returns int64
+function regexp_instr&lt;$1&gt; (&lt;$1, $1, int64&gt;) returns int64
 	where $1 in (string, bytes)
 ```
 
 
 ```sql
-function regexp_instr<$1> (<$1, $1, int64, int64, int64>) returns int64
+function regexp_instr&lt;$1&gt; (&lt;$1, $1, int64, int64, int64&gt;) returns int64
 	where $1 in (string, bytes)
 ```
 
@@ -327,7 +327,7 @@ function regexp_instr<$1> (<$1, $1, int64, int64, int64>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_replace)
 
 ```sql
-function regexp_replace<$1> (<$1, string, string>) returns $1
+function regexp_replace&lt;$1&gt; (&lt;$1, string, string&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -336,19 +336,19 @@ function regexp_replace<$1> (<$1, string, string>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_substr)
 
 ```sql
-function regexp_substr<$1> (<$1, string>) returns $1
+function regexp_substr&lt;$1&gt; (&lt;$1, string&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
 
 ```sql
-function regexp_substr<$1> (<$1, string, int64>) returns $1
+function regexp_substr&lt;$1&gt; (&lt;$1, string, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
 
 ```sql
-function regexp_substr<$1> (<$1, string, int64, int64>) returns $1
+function regexp_substr&lt;$1&gt; (&lt;$1, string, int64, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -357,7 +357,7 @@ function regexp_substr<$1> (<$1, string, int64, int64>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#repeat)
 
 ```sql
-function repeat<$1> (<$1, int64>) returns $1
+function repeat&lt;$1&gt; (&lt;$1, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -366,7 +366,7 @@ function repeat<$1> (<$1, int64>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#replace)
 
 ```sql
-function replace<$1> (<$1, string, string>) returns $1
+function replace&lt;$1&gt; (&lt;$1, string, string&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -375,7 +375,7 @@ function replace<$1> (<$1, string, string>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#reverse)
 
 ```sql
-function reverse<$1> (<$1>) returns $1
+function reverse&lt;$1&gt; (&lt;$1&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -384,7 +384,7 @@ function reverse<$1> (<$1>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#right)
 
 ```sql
-function right<$1> (<$1, int64>) returns $1
+function right&lt;$1&gt; (&lt;$1, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -393,12 +393,12 @@ function right<$1> (<$1, int64>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rpad)
 
 ```sql
-function rpad(<string, int64, string>) returns string
+function rpad(&lt;string, int64, string&gt;) returns string
 ```
 
 
 ```sql
-function rpad(<string, int64>) returns string
+function rpad(&lt;string, int64&gt;) returns string
 ```
 
 
@@ -406,12 +406,12 @@ function rpad(<string, int64>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rtrim)
 
 ```sql
-function rtrim(<string>) returns string
+function rtrim(&lt;string&gt;) returns string
 ```
 
 
 ```sql
-function rtrim(<string, string>) returns string
+function rtrim(&lt;string, string&gt;) returns string
 ```
 
 
@@ -419,7 +419,7 @@ function rtrim(<string, string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#safe_convert_bytes_to_string)
 
 ```sql
-function safe_convert_bytes_to_string(<bytes>) returns string
+function safe_convert_bytes_to_string(&lt;bytes&gt;) returns string
 ```
 
 
@@ -427,7 +427,7 @@ function safe_convert_bytes_to_string(<bytes>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#soundex)
 
 ```sql
-function soundex(<string>) returns string
+function soundex(&lt;string&gt;) returns string
 ```
 
 
@@ -435,13 +435,13 @@ function soundex(<string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#split)
 
 ```sql
-function split<$1> (<$1>) returns array<$1>
+function split&lt;$1&gt; (&lt;$1&gt;) returns array&lt;$1&gt;
 	where $1 in (string, bytes)
 ```
 
 
 ```sql
-function split<$1> (<$1, $1>) returns array<$1>
+function split&lt;$1&gt; (&lt;$1, $1&gt;) returns array&lt;$1&gt;
 	where $1 in (string, bytes)
 ```
 
@@ -450,7 +450,7 @@ function split<$1> (<$1, $1>) returns array<$1>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#starts_with)
 
 ```sql
-function starts_with(<string, string>) returns bool
+function starts_with(&lt;string, string&gt;) returns bool
 ```
 
 
@@ -458,12 +458,12 @@ function starts_with(<string, string>) returns bool
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#substr)
 
 ```sql
-function substr(<string, int64>) returns string
+function substr(&lt;string, int64&gt;) returns string
 ```
 
 
 ```sql
-function substr(<string, int64, int64>) returns string
+function substr(&lt;string, int64, int64&gt;) returns string
 ```
 
 
@@ -471,13 +471,13 @@ function substr(<string, int64, int64>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#substring)
 
 ```sql
-function substring<$1> (<$1, int64>) returns $1
+function substring&lt;$1&gt; (&lt;$1, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
 
 ```sql
-function substring<$1> (<$1, int64, int64>) returns $1
+function substring&lt;$1&gt; (&lt;$1, int64, int64&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -486,7 +486,7 @@ function substring<$1> (<$1, int64, int64>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_base32)
 
 ```sql
-function to_base32(<bytes>) returns string
+function to_base32(&lt;bytes&gt;) returns string
 ```
 
 
@@ -494,7 +494,7 @@ function to_base32(<bytes>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_base64)
 
 ```sql
-function to_base64(<bytes>) returns string
+function to_base64(&lt;bytes&gt;) returns string
 ```
 
 
@@ -502,7 +502,7 @@ function to_base64(<bytes>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_code_points)
 
 ```sql
-function to_code_points<$1> (<$1>) returns array<int64>
+function to_code_points&lt;$1&gt; (&lt;$1&gt;) returns array&lt;int64&gt;
 	where $1 in (string, bytes)
 ```
 
@@ -511,7 +511,7 @@ function to_code_points<$1> (<$1>) returns array<int64>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_hex)
 
 ```sql
-function to_hex(<bytes>) returns string
+function to_hex(&lt;bytes&gt;) returns string
 ```
 
 
@@ -519,7 +519,7 @@ function to_hex(<bytes>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#translate)
 
 ```sql
-function translate<$1> (<$1, $1, $1>) returns $1
+function translate&lt;$1&gt; (&lt;$1, $1, $1&gt;) returns $1
 	where $1 in (string, bytes)
 ```
 
@@ -528,12 +528,12 @@ function translate<$1> (<$1, $1, $1>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#trim)
 
 ```sql
-function trim(<string>) returns string
+function trim(&lt;string&gt;) returns string
 ```
 
 
 ```sql
-function trim(<string, string>) returns string
+function trim(&lt;string, string&gt;) returns string
 ```
 
 
@@ -541,7 +541,7 @@ function trim(<string, string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#unicode)
 
 ```sql
-function unicode(<string>) returns int64
+function unicode(&lt;string&gt;) returns int64
 ```
 
 
@@ -549,9 +549,9 @@ function unicode(<string>) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#upper)
 
 ```sql
-function upper(<string>) returns string
+function upper(&lt;string&gt;) returns string
 ```
 
 
-   Finished man in 0.203 secs
+   Finished man in 0.188 secs
 

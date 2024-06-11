@@ -6,7 +6,7 @@ title: "Other Expressions"
 [🔗 Official Documentation](#)
 
 ```sql
-function add_months(<varchar, bigint>) returns timestamp
+function add_months(&lt;varchar, bigint&gt;) returns timestamp
 ```
 
 
@@ -14,7 +14,7 @@ function add_months(<varchar, bigint>) returns timestamp
 [🔗 Official Documentation](#)
 
 ```sql
-function any_value(<$1>) returns $1
+function any_value(&lt;$1&gt;) returns $1
 ```
 
 
@@ -30,7 +30,7 @@ function array($1, ...) returns super
 [🔗 Official Documentation](#)
 
 ```sql
-function array_flatten(<super>) returns super
+function array_flatten(&lt;super&gt;) returns super
 ```
 
 
@@ -38,7 +38,7 @@ function array_flatten(<super>) returns super
 [🔗 Official Documentation](#)
 
 ```sql
-function bpcharcmp(<varchar, varchar>) returns bigint
+function bpcharcmp(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -46,7 +46,7 @@ function bpcharcmp(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function bttext_pattern_cmp(<varchar, varchar>) returns bigint
+function bttext_pattern_cmp(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -54,7 +54,7 @@ function bttext_pattern_cmp(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function can_json_parse(<varchar>) returns boolean
+function can_json_parse(&lt;varchar&gt;) returns boolean
 ```
 
 
@@ -62,7 +62,7 @@ function can_json_parse(<varchar>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function cbrt(<float>) returns float
+function cbrt(&lt;float&gt;) returns float
 ```
 
 
@@ -70,7 +70,7 @@ function cbrt(<float>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function ceiling(<float>) returns float
+function ceiling(&lt;float&gt;) returns float
 ```
 
 
@@ -78,7 +78,7 @@ function ceiling(<float>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function charindex(<varchar, varchar>) returns bigint
+function charindex(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -86,7 +86,7 @@ function charindex(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function collate(<varchar, varchar>) returns varchar
+function collate(&lt;varchar, varchar&gt;) returns varchar
 ```
 
 
@@ -94,7 +94,7 @@ function collate(<varchar, varchar>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function cot(<float>) returns float
+function cot(&lt;float&gt;) returns float
 ```
 
 
@@ -102,7 +102,7 @@ function cot(<float>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function crc32(<varchar>) returns varchar
+function crc32(&lt;varchar&gt;) returns varchar
 ```
 
 
@@ -110,7 +110,7 @@ function crc32(<varchar>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function decimal_precision(<super>) returns bigint
+function decimal_precision(&lt;super&gt;) returns bigint
 ```
 
 
@@ -118,7 +118,7 @@ function decimal_precision(<super>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function decimal_scale(<super>) returns bigint
+function decimal_scale(&lt;super&gt;) returns bigint
 ```
 
 
@@ -126,7 +126,7 @@ function decimal_scale(<super>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function degrees(<float>) returns float
+function degrees(&lt;float&gt;) returns float
 ```
 
 
@@ -134,7 +134,7 @@ function degrees(<float>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function dexp(<float>) returns float
+function dexp(&lt;float&gt;) returns float
 ```
 
 
@@ -142,7 +142,7 @@ function dexp(<float>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function difference(<varchar, varchar>) returns bigint
+function difference(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -150,7 +150,7 @@ function difference(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function dlog1(<float>) returns float
+function dlog1(&lt;float&gt;) returns float
 ```
 
 
@@ -158,7 +158,7 @@ function dlog1(<float>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function dlog10(<float>) returns float
+function dlog10(&lt;float&gt;) returns float
 ```
 
 
@@ -166,7 +166,7 @@ function dlog10(<float>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function farmfingerprint64(<varchar>) returns bigint
+function farmfingerprint64(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -174,7 +174,7 @@ function farmfingerprint64(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function fnv_hash(<varchar>) returns bigint
+function fnv_hash(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -182,7 +182,7 @@ function fnv_hash(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function from_hex(<varchar>) returns varbyte
+function from_hex(&lt;varchar&gt;) returns varbyte
 ```
 
 
@@ -190,7 +190,7 @@ function from_hex(<varchar>) returns varbyte
 [🔗 Official Documentation](#)
 
 ```sql
-function from_varbyte(<varbyte, varchar>) returns varbyte
+function from_varbyte(&lt;varbyte, varchar&gt;) returns varbyte
 ```
 
 
@@ -198,7 +198,7 @@ function from_varbyte(<varbyte, varchar>) returns varbyte
 [🔗 Official Documentation](#)
 
 ```sql
-function func_sha1(<varchar>) returns bigint
+function func_sha1(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -206,7 +206,7 @@ function func_sha1(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function getbit(<varbyte, bigint>) returns bigint
+function getbit(&lt;varbyte, bigint&gt;) returns bigint
 ```
 
 
@@ -222,7 +222,7 @@ function greatest($1, ...) returns $1
 [🔗 Official Documentation](#)
 
 ```sql
-function interval_cmp(<varchar, varchar>) returns bigint
+function interval_cmp(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -230,7 +230,7 @@ function interval_cmp(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function is_array(<super>) returns boolean
+function is_array(&lt;super&gt;) returns boolean
 ```
 
 
@@ -238,7 +238,7 @@ function is_array(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_bigint(<super>) returns boolean
+function is_bigint(&lt;super&gt;) returns boolean
 ```
 
 
@@ -246,7 +246,7 @@ function is_bigint(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_boolean(<super>) returns boolean
+function is_boolean(&lt;super&gt;) returns boolean
 ```
 
 
@@ -254,7 +254,7 @@ function is_boolean(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_char(<super>) returns boolean
+function is_char(&lt;super&gt;) returns boolean
 ```
 
 
@@ -262,7 +262,7 @@ function is_char(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_decimal(<super>) returns boolean
+function is_decimal(&lt;super&gt;) returns boolean
 ```
 
 
@@ -270,7 +270,7 @@ function is_decimal(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_float(<super>) returns boolean
+function is_float(&lt;super&gt;) returns boolean
 ```
 
 
@@ -278,7 +278,7 @@ function is_float(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_object(<super>) returns boolean
+function is_object(&lt;super&gt;) returns boolean
 ```
 
 
@@ -286,7 +286,7 @@ function is_object(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_scalar(<super>) returns boolean
+function is_scalar(&lt;super&gt;) returns boolean
 ```
 
 
@@ -294,7 +294,7 @@ function is_scalar(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_smallint(<super>) returns boolean
+function is_smallint(&lt;super&gt;) returns boolean
 ```
 
 
@@ -302,7 +302,7 @@ function is_smallint(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_valid_json(<varchar>) returns boolean
+function is_valid_json(&lt;varchar&gt;) returns boolean
 ```
 
 
@@ -310,7 +310,7 @@ function is_valid_json(<varchar>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_valid_json_array(<varchar>) returns boolean
+function is_valid_json_array(&lt;varchar&gt;) returns boolean
 ```
 
 
@@ -318,7 +318,7 @@ function is_valid_json_array(<varchar>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function is_varchar(<super>) returns boolean
+function is_varchar(&lt;super&gt;) returns boolean
 ```
 
 
@@ -326,12 +326,12 @@ function is_varchar(<super>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function json_extract_array_element_text(<varchar, bigint>) returns varchar
+function json_extract_array_element_text(&lt;varchar, bigint&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_array_element_text(<varchar, bigint, boolean>) returns varchar
+function json_extract_array_element_text(&lt;varchar, bigint, boolean&gt;) returns varchar
 ```
 
 
@@ -339,52 +339,52 @@ function json_extract_array_element_text(<varchar, bigint, boolean>) returns var
 [🔗 Official Documentation](#)
 
 ```sql
-function json_extract_path_text(<varchar, varchar>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, varchar>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, varchar&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, varchar, varchar&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, varchar, varchar, varchar&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, varchar>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, varchar, varchar, varchar, varchar&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, boolean>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, boolean&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, varchar, boolean>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, varchar, boolean&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, boolean>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, varchar, varchar, boolean&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, boolean>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, varchar, varchar, varchar, boolean&gt;) returns varchar
 ```
 
 
 ```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, varchar, boolean>) returns varchar
+function json_extract_path_text(&lt;varchar, varchar, varchar, varchar, varchar, varchar, boolean&gt;) returns varchar
 ```
 
 
@@ -392,7 +392,7 @@ function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, va
 [🔗 Official Documentation](#)
 
 ```sql
-function json_parse(<varchar>) returns super
+function json_parse(&lt;varchar&gt;) returns super
 ```
 
 
@@ -400,7 +400,7 @@ function json_parse(<varchar>) returns super
 [🔗 Official Documentation](#)
 
 ```sql
-function json_serialize(<$1>) returns varchar
+function json_serialize(&lt;$1&gt;) returns varchar
 ```
 
 
@@ -408,7 +408,7 @@ function json_serialize(<$1>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function json_serialize_to_varbyte(<$1>) returns varbyte
+function json_serialize_to_varbyte(&lt;$1&gt;) returns varbyte
 ```
 
 
@@ -416,7 +416,7 @@ function json_serialize_to_varbyte(<$1>) returns varbyte
 [🔗 Official Documentation](#)
 
 ```sql
-function json_size(<super>) returns bigint
+function json_size(&lt;super&gt;) returns bigint
 ```
 
 
@@ -424,7 +424,7 @@ function json_size(<super>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function json_typeof(<super>) returns varchar
+function json_typeof(&lt;super&gt;) returns varchar
 ```
 
 
@@ -432,7 +432,7 @@ function json_typeof(<super>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function last_day(<varchar>) returns date
+function last_day(&lt;varchar&gt;) returns date
 ```
 
 
@@ -448,7 +448,7 @@ function least($1, ...) returns $1
 [🔗 Official Documentation](#)
 
 ```sql
-function len(<varchar>) returns bigint
+function len(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -456,7 +456,7 @@ function len(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function md5(<varchar>) returns bigint
+function md5(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -464,7 +464,7 @@ function md5(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function mod(<bigint, bigint>) returns bigint
+function mod(&lt;bigint, bigint&gt;) returns bigint
 ```
 
 
@@ -472,7 +472,7 @@ function mod(<bigint, bigint>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function months_between(<varchar, varchar>) returns float
+function months_between(&lt;varchar, varchar&gt;) returns float
 ```
 
 
@@ -480,12 +480,12 @@ function months_between(<varchar, varchar>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function murmur3_32_hash(<varchar>) returns bigint
+function murmur3_32_hash(&lt;varchar&gt;) returns bigint
 ```
 
 
 ```sql
-function murmur3_32_hash(<varchar, bigint>) returns bigint
+function murmur3_32_hash(&lt;varchar, bigint&gt;) returns bigint
 ```
 
 
@@ -493,7 +493,7 @@ function murmur3_32_hash(<varchar, bigint>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function next_day(<varchar, varchar>) returns date
+function next_day(&lt;varchar, varchar&gt;) returns date
 ```
 
 
@@ -509,7 +509,7 @@ function nvl($1, ...) returns $1
 [🔗 Official Documentation](#)
 
 ```sql
-function nvl2(<$1, $2, $2>) returns $2
+function nvl2(&lt;$1, $2, $2&gt;) returns $2
 ```
 
 
@@ -517,7 +517,7 @@ function nvl2(<$1, $2, $2>) returns $2
 [🔗 Official Documentation](#)
 
 ```sql
-function octetindex(<varchar, varchar>) returns bigint
+function octetindex(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -525,7 +525,7 @@ function octetindex(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function pi(<>) returns float
+function pi(&lt;&gt;) returns float
 ```
 
 
@@ -533,7 +533,7 @@ function pi(<>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function quote_ident(<varchar>) returns varchar
+function quote_ident(&lt;varchar&gt;) returns varchar
 ```
 
 
@@ -541,7 +541,7 @@ function quote_ident(<varchar>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function quote_literal(<varchar>) returns varchar
+function quote_literal(&lt;varchar&gt;) returns varchar
 ```
 
 
@@ -549,7 +549,7 @@ function quote_literal(<varchar>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function radians(<float>) returns float
+function radians(&lt;float&gt;) returns float
 ```
 
 
@@ -557,38 +557,38 @@ function radians(<float>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function reclassify(<$1, varchar, varchar>) returns $1
+function reclassify(&lt;$1, varchar, varchar&gt;) returns $1
 ```
 Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
 
 ```sql example.sql
-select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345' 
+select reclassify(12345, &#39;pii.clear_text&#39;, &#39;pii.masked&#39;) as value; -- value &#39;12345&#39; 
 ```
 ## `regexp_instr`
 [🔗 Official Documentation](#)
 
 ```sql
-function regexp_instr(<varchar, varchar>) returns bigint
+function regexp_instr(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
 ```sql
-function regexp_instr(<varchar, varchar, bigint>) returns bigint
+function regexp_instr(&lt;varchar, varchar, bigint&gt;) returns bigint
 ```
 
 
 ```sql
-function regexp_instr(<varchar, varchar, bigint, bigint>) returns bigint
+function regexp_instr(&lt;varchar, varchar, bigint, bigint&gt;) returns bigint
 ```
 
 
 ```sql
-function regexp_instr(<varchar, varchar, bigint, bigint, bigint>) returns bigint
+function regexp_instr(&lt;varchar, varchar, bigint, bigint, bigint&gt;) returns bigint
 ```
 
 
 ```sql
-function regexp_instr(<varchar, varchar, bigint, bigint, bigint, varchar>) returns bigint
+function regexp_instr(&lt;varchar, varchar, bigint, bigint, bigint, varchar&gt;) returns bigint
 ```
 
 
@@ -596,22 +596,22 @@ function regexp_instr(<varchar, varchar, bigint, bigint, bigint, varchar>) retur
 [🔗 Official Documentation](#)
 
 ```sql
-function regexp_substr(<varchar, varchar>) returns varchar
+function regexp_substr(&lt;varchar, varchar&gt;) returns varchar
 ```
 
 
 ```sql
-function regexp_substr(<varchar, varchar, varchar>) returns varchar
+function regexp_substr(&lt;varchar, varchar, varchar&gt;) returns varchar
 ```
 
 
 ```sql
-function regexp_substr(<varchar, varchar, varchar, bigint>) returns varchar
+function regexp_substr(&lt;varchar, varchar, varchar, bigint&gt;) returns varchar
 ```
 
 
 ```sql
-function regexp_substr(<varchar, varchar, varchar, bigint, varchar>) returns varchar
+function regexp_substr(&lt;varchar, varchar, varchar, bigint, varchar&gt;) returns varchar
 ```
 
 
@@ -619,7 +619,7 @@ function regexp_substr(<varchar, varchar, varchar, bigint, varchar>) returns var
 [🔗 Official Documentation](#)
 
 ```sql
-function replicate(<varchar, bigint>) returns varchar
+function replicate(&lt;varchar, bigint&gt;) returns varchar
 ```
 
 
@@ -627,7 +627,7 @@ function replicate(<varchar, bigint>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function sha(<varchar>) returns bigint
+function sha(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -635,7 +635,7 @@ function sha(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function sha1(<varchar>) returns bigint
+function sha1(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -643,7 +643,7 @@ function sha1(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function sha2(<varchar, bigint>) returns bigint
+function sha2(&lt;varchar, bigint&gt;) returns bigint
 ```
 
 
@@ -651,7 +651,7 @@ function sha2(<varchar, bigint>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function sign(<float>) returns bigint
+function sign(&lt;float&gt;) returns bigint
 ```
 
 
@@ -659,7 +659,7 @@ function sign(<float>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function size(<$1>) returns bigint
+function size(&lt;$1&gt;) returns bigint
 ```
 
 
@@ -667,7 +667,7 @@ function size(<$1>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function soundex(<varchar>) returns varchar
+function soundex(&lt;varchar&gt;) returns varchar
 ```
 
 
@@ -675,7 +675,7 @@ function soundex(<varchar>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function split_to_array(<varchar, varchar>) returns super
+function split_to_array(&lt;varchar, varchar&gt;) returns super
 ```
 
 
@@ -683,7 +683,7 @@ function split_to_array(<varchar, varchar>) returns super
 [🔗 Official Documentation](#)
 
 ```sql
-function strtol(<varchar, bigint>) returns bigint
+function strtol(&lt;varchar, bigint&gt;) returns bigint
 ```
 
 
@@ -691,7 +691,7 @@ function strtol(<varchar, bigint>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function subarray(<super, bigint, bigint>) returns super
+function subarray(&lt;super, bigint, bigint&gt;) returns super
 ```
 
 
@@ -699,12 +699,12 @@ function subarray(<super, bigint, bigint>) returns super
 [🔗 Official Documentation](#)
 
 ```sql
-function text_to_int_alt(<varchar>) returns bigint
+function text_to_int_alt(&lt;varchar&gt;) returns bigint
 ```
 
 
 ```sql
-function text_to_int_alt(<varchar, varchar>) returns bigint
+function text_to_int_alt(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -712,22 +712,22 @@ function text_to_int_alt(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function text_to_numeric_alt(<varchar>) returns float
+function text_to_numeric_alt(&lt;varchar&gt;) returns float
 ```
 
 
 ```sql
-function text_to_numeric_alt(<varchar, varchar>) returns float
+function text_to_numeric_alt(&lt;varchar, varchar&gt;) returns float
 ```
 
 
 ```sql
-function text_to_numeric_alt(<varchar, bigint, bigint>) returns float
+function text_to_numeric_alt(&lt;varchar, bigint, bigint&gt;) returns float
 ```
 
 
 ```sql
-function text_to_numeric_alt(<varchar, varchar, bigint, bigint>) returns float
+function text_to_numeric_alt(&lt;varchar, varchar, bigint, bigint&gt;) returns float
 ```
 
 
@@ -735,7 +735,7 @@ function text_to_numeric_alt(<varchar, varchar, bigint, bigint>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function textlen(<varchar>) returns bigint
+function textlen(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -743,7 +743,7 @@ function textlen(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function to_char(<$1, varchar>) returns varchar
+function to_char(&lt;$1, varchar&gt;) returns varchar
 ```
 
 
@@ -751,12 +751,12 @@ function to_char(<$1, varchar>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function to_hex(<varbyte>) returns varchar
+function to_hex(&lt;varbyte&gt;) returns varchar
 ```
 
 
 ```sql
-function to_hex(<bigint>) returns varchar
+function to_hex(&lt;bigint&gt;) returns varchar
 ```
 
 
@@ -764,7 +764,7 @@ function to_hex(<bigint>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function to_number(<varchar, varchar>) returns float
+function to_number(&lt;varchar, varchar&gt;) returns float
 ```
 
 
@@ -772,7 +772,7 @@ function to_number(<varchar, varchar>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function to_varbyte(<varchar, varchar>) returns varbyte
+function to_varbyte(&lt;varchar, varchar&gt;) returns varbyte
 ```
 
 
@@ -780,9 +780,9 @@ function to_varbyte(<varchar, varchar>) returns varbyte
 [🔗 Official Documentation](#)
 
 ```sql
-function trunc(<varchar>) returns date
+function trunc(&lt;varchar&gt;) returns date
 ```
 
 
-   Finished man in 0.205 secs
+   Finished man in 0.183 secs
 

@@ -6,7 +6,7 @@ title: "Approximate Aggregate Functions"
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions#approx_count_distinct)
 
 ```sql
-function approx_count_distinct(<$1>) returns bigint
+function approx_count_distinct(&lt;$1&gt;) returns bigint
 ```
 
 
@@ -14,7 +14,7 @@ function approx_count_distinct(<$1>) returns bigint
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions#approx_quantiles)
 
 ```sql
-function approx_quantiles(<$1, bigint>) returns array<$1>
+function approx_quantiles(&lt;$1, bigint&gt;) returns array&lt;$1&gt;
 ```
 
 
@@ -22,7 +22,7 @@ function approx_quantiles(<$1, bigint>) returns array<$1>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions#approx_top_count)
 
 ```sql
-function approx_top_count(<$1, bigint>) returns array<struct<value $1, count bigint>>
+function approx_top_count(&lt;$1, bigint&gt;) returns array&lt;struct&lt;value $1, count bigint&gt;&gt;
 ```
 
 
@@ -30,9 +30,9 @@ function approx_top_count(<$1, bigint>) returns array<struct<value $1, count big
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions#approx_top_sum)
 
 ```sql
-function approx_top_sum(<$1, bigint, bigint>) returns array<struct<value $1, sum $1>>
+function approx_top_sum(&lt;$1, bigint, bigint&gt;) returns array&lt;struct&lt;value $1, sum $1&gt;&gt;
 ```
 
 
-   Finished man in 0.202 secs
+   Finished man in 0.188 secs
 

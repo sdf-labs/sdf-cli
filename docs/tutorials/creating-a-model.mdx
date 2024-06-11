@@ -95,12 +95,12 @@ Init for run commands:
         
         It will look like this:
        
-```shell shell
+``` shell
 Working set 11 model files, 8 .sdf files
-  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
-  Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
-  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
   Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
+  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+  Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
+  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
   Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
   Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
   Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
@@ -108,7 +108,7 @@ Working set 11 model files, 8 .sdf files
   Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
   Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-   Finished 11 models [11 succeeded] in 0.743 secs
+   Finished 11 models [11 succeeded] in 0.723 secs
 
         ```
 
@@ -131,16 +131,16 @@ Working set 11 model files, 8 .sdf files
 
         Notice that to execute our query, SDF ran all the models it is dependent on.
 
-```shell shell
+``` shell
 Working set 12 model files, 8 .sdf files
-    Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
     Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+    Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
     Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
     Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
     Running moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
     Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
     Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 7 models [7 succeeded] in 0.798 secs
+   Finished 7 models [7 succeeded] in 0.782 secs
 
 Table moms_flower_shop.pub.dim_marketing_campaigns
 +-------------+---------------------------------+--------------------+-------------------------------+------------------------+

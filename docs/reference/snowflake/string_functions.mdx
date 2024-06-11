@@ -7,17 +7,17 @@ title: "String Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function regexp_count(<varchar, varchar>) returns decimal(38, 0)
+function regexp_count(&lt;varchar, varchar&gt;) returns decimal(38, 0)
 ```
 returns number of matches of regular expression pattern in subject
 
 ```sql
-function regexp_count(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+function regexp_count(&lt;varchar, varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 returns number of matches of regular expression pattern in subject
 
 ```sql
-function regexp_count(<varchar, varchar, decimal(38, 0), varchar>) returns decimal(38, 0)
+function regexp_count(&lt;varchar, varchar, decimal(38, 0), varchar&gt;) returns decimal(38, 0)
 ```
 returns number of matches of regular expression pattern in subject
 
@@ -25,32 +25,32 @@ returns number of matches of regular expression pattern in subject
 [🔗 Official Documentation](#)
 
 ```sql
-function regexp_instr(<varchar, varchar>) returns decimal(38, 0)
+function regexp_instr(&lt;varchar, varchar&gt;) returns decimal(38, 0)
 ```
 returns position at which the subject matches the regular expression pattern
 
 ```sql
-function regexp_instr(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+function regexp_instr(&lt;varchar, varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 returns position at which the subject matches the regular expression pattern
 
 ```sql
-function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function regexp_instr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 returns position at which the subject matches the regular expression pattern
 
 ```sql
-function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function regexp_instr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 returns position at which the subject matches the regular expression pattern
 
 ```sql
-function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar>) returns decimal(38, 0)
+function regexp_instr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar&gt;) returns decimal(38, 0)
 ```
 returns position at which the subject matches the regular expression pattern
 
 ```sql
-function regexp_instr(<varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)>) returns decimal(38, 0)
+function regexp_instr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 returns position at which the subject matches the regular expression pattern
 
@@ -58,12 +58,12 @@ returns position at which the subject matches the regular expression pattern
 [🔗 Official Documentation](#)
 
 ```sql
-function regexp_like(<varchar, varchar>) returns boolean
+function regexp_like(&lt;varchar, varchar&gt;) returns boolean
 ```
 returns TRUE if subject RLIKE pattern
 
 ```sql
-function regexp_like(<varchar, varchar, varchar>) returns boolean
+function regexp_like(&lt;varchar, varchar, varchar&gt;) returns boolean
 ```
 returns TRUE if subject RLIKE pattern
 
@@ -71,27 +71,27 @@ returns TRUE if subject RLIKE pattern
 [🔗 Official Documentation](#)
 
 ```sql
-function regexp_replace(<varchar, varchar>) returns varchar
+function regexp_replace(&lt;varchar, varchar&gt;) returns varchar
 ```
 replaces substring in subject matching a regular expression pattern
 
 ```sql
-function regexp_replace(<varchar, varchar, varchar>) returns varchar
+function regexp_replace(&lt;varchar, varchar, varchar&gt;) returns varchar
 ```
 replaces substring in subject matching a regular expression pattern
 
 ```sql
-function regexp_replace(<varchar, varchar, varchar, decimal(38, 0)>) returns varchar
+function regexp_replace(&lt;varchar, varchar, varchar, decimal(38, 0)&gt;) returns varchar
 ```
 replaces substring in subject matching a regular expression pattern
 
 ```sql
-function regexp_replace(<varchar, varchar, varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
+function regexp_replace(&lt;varchar, varchar, varchar, decimal(38, 0), decimal(38, 0)&gt;) returns varchar
 ```
 replaces substring in subject matching a regular expression pattern
 
 ```sql
-function regexp_replace(<varchar, varchar, varchar, decimal(38, 0), decimal(38, 0), varchar>) returns varchar
+function regexp_replace(&lt;varchar, varchar, varchar, decimal(38, 0), decimal(38, 0), varchar&gt;) returns varchar
 ```
 replaces substring in subject matching a regular expression pattern
 
@@ -99,27 +99,27 @@ replaces substring in subject matching a regular expression pattern
 [🔗 Official Documentation](#)
 
 ```sql
-function regexp_substr(<varchar, varchar>) returns varchar
+function regexp_substr(&lt;varchar, varchar&gt;) returns varchar
 ```
 returns substring in subject which matches the regular expression pattern
 
 ```sql
-function regexp_substr(<varchar, varchar, decimal(38, 0)>) returns varchar
+function regexp_substr(&lt;varchar, varchar, decimal(38, 0)&gt;) returns varchar
 ```
 returns substring in subject which matches the regular expression pattern
 
 ```sql
-function regexp_substr(<varchar, varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
+function regexp_substr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0)&gt;) returns varchar
 ```
 returns substring in subject which matches the regular expression pattern
 
 ```sql
-function regexp_substr(<varchar, varchar, decimal(38, 0), decimal(38, 0), varchar>) returns varchar
+function regexp_substr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), varchar&gt;) returns varchar
 ```
 returns substring in subject which matches the regular expression pattern
 
 ```sql
-function regexp_substr(<varchar, varchar, decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)>) returns varchar
+function regexp_substr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)&gt;) returns varchar
 ```
 returns substring in subject which matches the regular expression pattern
 
@@ -127,29 +127,29 @@ returns substring in subject which matches the regular expression pattern
 [🔗 Official Documentation](#)
 
 ```sql
-function regexp_substr_all(<varchar, varchar>) returns array
+function regexp_substr_all(&lt;varchar, varchar&gt;) returns array
 ```
 returns all substring in subject which matches the regular expression pattern
 
 ```sql
-function regexp_substr_all(<varchar, varchar, decimal(38, 0)>) returns array
+function regexp_substr_all(&lt;varchar, varchar, decimal(38, 0)&gt;) returns array
 ```
 returns all substring in subject which matches the regular expression pattern
 
 ```sql
-function regexp_substr_all(<varchar, varchar, decimal(38, 0), decimal(38, 0)>) returns array
+function regexp_substr_all(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0)&gt;) returns array
 ```
 returns all substring in subject which matches the regular expression pattern
 
 ```sql
-function regexp_substr_all(<varchar, varchar, decimal(38, 0), decimal(38, 0), varchar>) returns array
+function regexp_substr_all(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), varchar&gt;) returns array
 ```
 returns all substring in subject which matches the regular expression pattern
 
 ```sql
-function regexp_substr_all(<varchar, varchar, decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)>) returns array
+function regexp_substr_all(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), varchar, decimal(38, 0)&gt;) returns array
 ```
 returns all substring in subject which matches the regular expression pattern
 
-   Finished man in 0.269 secs
+   Finished man in 0.200 secs
 

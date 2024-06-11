@@ -6,7 +6,7 @@ title: "JSON Functions"
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#bool_for_json)
 
 ```sql
-function bool(<json>) returns bool
+function bool(&lt;json&gt;) returns bool
 ```
 
 
@@ -14,7 +14,7 @@ function bool(<json>) returns bool
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#float64_for_json)
 
 ```sql
-function float64(<json>) returns double
+function float64(&lt;json&gt;) returns double
 ```
 
 
@@ -22,7 +22,7 @@ function float64(<json>) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#int64_for_json)
 
 ```sql
-function int64(<json>) returns bigint
+function int64(&lt;json&gt;) returns bigint
 ```
 
 
@@ -30,7 +30,7 @@ function int64(<json>) returns bigint
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_extract)
 
 ```sql
-function json_extract(<string, string>) returns json
+function json_extract(&lt;string, string&gt;) returns json
 ```
 
 
@@ -38,12 +38,12 @@ function json_extract(<string, string>) returns json
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_extract_array)
 
 ```sql
-function json_extract_array(<json>) returns array<json>
+function json_extract_array(&lt;json&gt;) returns array&lt;json&gt;
 ```
 
 
 ```sql
-function json_extract_array(<json, string>) returns array<json>
+function json_extract_array(&lt;json, string&gt;) returns array&lt;json&gt;
 ```
 
 
@@ -51,12 +51,12 @@ function json_extract_array(<json, string>) returns array<json>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_extract_scalar)
 
 ```sql
-function json_extract_scalar(<json>) returns string
+function json_extract_scalar(&lt;json&gt;) returns string
 ```
 
 
 ```sql
-function json_extract_scalar(<json, string>) returns string
+function json_extract_scalar(&lt;json, string&gt;) returns string
 ```
 
 
@@ -64,12 +64,12 @@ function json_extract_scalar(<json, string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_extract_string_array)
 
 ```sql
-function json_extract_string_array(<json>) returns array<string>
+function json_extract_string_array(&lt;json&gt;) returns array&lt;string&gt;
 ```
 
 
 ```sql
-function json_extract_string_array(<json, string>) returns array<string>
+function json_extract_string_array(&lt;json, string&gt;) returns array&lt;string&gt;
 ```
 
 
@@ -77,7 +77,7 @@ function json_extract_string_array(<json, string>) returns array<string>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_query)
 
 ```sql
-function json_query(<json, string>) returns json
+function json_query(&lt;json, string&gt;) returns json
 ```
 
 
@@ -85,12 +85,12 @@ function json_query(<json, string>) returns json
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_query_array)
 
 ```sql
-function json_query_array(<json, string>) returns array<json>
+function json_query_array(&lt;json, string&gt;) returns array&lt;json&gt;
 ```
 
 
 ```sql
-function json_query_array(<json>) returns array<json>
+function json_query_array(&lt;json&gt;) returns array&lt;json&gt;
 ```
 
 
@@ -98,7 +98,7 @@ function json_query_array(<json>) returns array<json>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_type)
 
 ```sql
-function json_type(<json>) returns string
+function json_type(&lt;json&gt;) returns string
 ```
 
 
@@ -106,12 +106,12 @@ function json_type(<json>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_value)
 
 ```sql
-function json_value(<json, string>) returns string
+function json_value(&lt;json, string&gt;) returns string
 ```
 
 
 ```sql
-function json_value(<json>) returns string
+function json_value(&lt;json&gt;) returns string
 ```
 
 
@@ -119,12 +119,12 @@ function json_value(<json>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#json_value_array)
 
 ```sql
-function json_value_array(<json, string>) returns array<string>
+function json_value_array(&lt;json, string&gt;) returns array&lt;string&gt;
 ```
 
 
 ```sql
-function json_value_array(<json>) returns array<string>
+function json_value_array(&lt;json&gt;) returns array&lt;string&gt;
 ```
 
 
@@ -132,7 +132,7 @@ function json_value_array(<json>) returns array<string>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#parse_json)
 
 ```sql
-function parse_json(<string>) returns json
+function parse_json(&lt;string&gt;) returns json
 ```
 
 
@@ -140,13 +140,13 @@ function parse_json(<string>) returns json
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#string_for_json)
 
 ```sql
-function string<$1> (<$1>) returns string
+function string&lt;$1&gt; (&lt;$1&gt;) returns string
 	where $1 in (timestamp, json)
 ```
 
 
 ```sql
-function string<$1> (<$1, time_zone string>) returns string
+function string&lt;$1&gt; (&lt;$1, time_zone string&gt;) returns string
 	where $1 in (timestamp, json)
 ```
 
@@ -155,14 +155,14 @@ function string<$1> (<$1, time_zone string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/json_functions#to_json_string)
 
 ```sql
-function to_json_string(<$1>) returns string
+function to_json_string(&lt;$1&gt;) returns string
 ```
 
 
 ```sql
-function to_json_string(<$1, pretty_print bool>) returns string
+function to_json_string(&lt;$1, pretty_print bool&gt;) returns string
 ```
 
 
-   Finished man in 0.202 secs
+   Finished man in 0.193 secs
 

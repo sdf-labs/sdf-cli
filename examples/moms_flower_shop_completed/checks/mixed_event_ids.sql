@@ -6,4 +6,4 @@ FROM
     sdf.information_schema.columns c
 WHERE
     -- more than one EVENT classifier is assigned
-    c.classifiers LIKE '%EVENT%EVENT%'
+    CAST(c.classifiers AS VARCHAR) LIKE '%EVENT%EVENT%'

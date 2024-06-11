@@ -6,12 +6,12 @@ title: "Time Functions"
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#current_time)
 
 ```sql
-function current_time(<>) returns time
+function current_time(&lt;&gt;) returns time
 ```
 
 
 ```sql
-function current_time(<time_zone string>) returns time
+function current_time(&lt;time_zone string&gt;) returns time
 ```
 
 
@@ -19,7 +19,7 @@ function current_time(<time_zone string>) returns time
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#format_time)
 
 ```sql
-function format_time(<string, time>) returns string
+function format_time(&lt;string, time&gt;) returns string
 ```
 
 
@@ -27,7 +27,7 @@ function format_time(<string, time>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#parse_time)
 
 ```sql
-function parse_time(<string, string>) returns time
+function parse_time(&lt;string, string&gt;) returns time
 ```
 
 
@@ -35,22 +35,22 @@ function parse_time(<string, string>) returns time
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time)
 
 ```sql
-function time(<int64, int64, int64>) returns time
+function time(&lt;int64, int64, int64&gt;) returns time
 ```
 
 
 ```sql
-function time(<timestamp>) returns time
+function time(&lt;timestamp&gt;) returns time
 ```
 
 
 ```sql
-function time(<timestamp, time_zone string>) returns time
+function time(&lt;timestamp, time_zone string&gt;) returns time
 ```
 
 
 ```sql
-function time(<datetime>) returns time
+function time(&lt;datetime&gt;) returns time
 ```
 
 
@@ -58,7 +58,7 @@ function time(<datetime>) returns time
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_add)
 
 ```sql
-function time_add(<time, interval microsecond to hour>) returns time
+function time_add(&lt;time, interval microsecond to hour&gt;) returns time
 ```
 
 
@@ -66,7 +66,7 @@ function time_add(<time, interval microsecond to hour>) returns time
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_diff)
 
 ```sql
-function time_diff(<time, time, date_time_part string>) returns bigint
+function time_diff(&lt;time, time, date_time_part string&gt;) returns bigint
 	where date_time_part in (microsecond, millisecond, second, minute, hour)
 ```
 
@@ -75,7 +75,7 @@ function time_diff(<time, time, date_time_part string>) returns bigint
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_sub)
 
 ```sql
-function time_sub(<time, interval microsecond to hour>) returns time
+function time_sub(&lt;time, interval microsecond to hour&gt;) returns time
 ```
 
 
@@ -83,10 +83,10 @@ function time_sub(<time, interval microsecond to hour>) returns time
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/time_functions#time_trunc)
 
 ```sql
-function time_trunc(<time, time_part string>) returns time
+function time_trunc(&lt;time, time_part string&gt;) returns time
 	where time_part in (microsecond, millisecond, second, minute, hour)
 ```
 
 
-   Finished man in 0.205 secs
+   Finished man in 0.195 secs
 

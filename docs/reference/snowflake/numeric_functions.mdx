@@ -7,7 +7,7 @@ title: "Numeric Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function acos(<double>) returns double
+function acos(&lt;double&gt;) returns double
 ```
 Compute the arccosine of the input expression (returned as radians).
 
@@ -15,7 +15,7 @@ Compute the arccosine of the input expression (returned as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function acosh(<double>) returns double
+function acosh(&lt;double&gt;) returns double
 ```
 Compute the inverse hyperbolic cosine of the input expression.
 
@@ -23,7 +23,7 @@ Compute the inverse hyperbolic cosine of the input expression.
 [🔗 Official Documentation](#)
 
 ```sql
-function asin(<double>) returns double
+function asin(&lt;double&gt;) returns double
 ```
 Compute the arcsine of the input expression (returned as radians).
 
@@ -31,7 +31,7 @@ Compute the arcsine of the input expression (returned as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function asinh(<double>) returns double
+function asinh(&lt;double&gt;) returns double
 ```
 Compute the inverse hyperbolic sine of the input expression.
 
@@ -39,7 +39,7 @@ Compute the inverse hyperbolic sine of the input expression.
 [🔗 Official Documentation](#)
 
 ```sql
-function atan(<double>) returns double
+function atan(&lt;double&gt;) returns double
 ```
 Compute the arctangent of the input expression (returned as radians).
 
@@ -47,7 +47,7 @@ Compute the arctangent of the input expression (returned as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function atan2(<double, double>) returns double
+function atan2(&lt;double, double&gt;) returns double
 ```
 Compute the angle (in radians) between the x-axis and point (x, y).
 
@@ -55,7 +55,7 @@ Compute the angle (in radians) between the x-axis and point (x, y).
 [🔗 Official Documentation](#)
 
 ```sql
-function atanh(<double>) returns double
+function atanh(&lt;double&gt;) returns double
 ```
 Compute the inverse hyperbolic tangent of the input expression (as radians).
 
@@ -63,7 +63,7 @@ Compute the inverse hyperbolic tangent of the input expression (as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function cbrt(<double>) returns double
+function cbrt(&lt;double&gt;) returns double
 ```
 Compute the cubic root of the input expression.
 
@@ -71,22 +71,22 @@ Compute the cubic root of the input expression.
 [🔗 Official Documentation](#)
 
 ```sql
-function ceil(<decimal(38, 0)>) returns decimal(38, 0)
+function ceil(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer not smaller than input
 
 ```sql
-function ceil(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function ceil(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer not smaller than input
 
 ```sql
-function ceil(<double>) returns double
+function ceil(&lt;double&gt;) returns double
 ```
 round to the nearest integer not smaller than input
 
 ```sql
-function ceil(<double, double>) returns double
+function ceil(&lt;double, double&gt;) returns double
 ```
 round to the nearest integer not smaller than input
 
@@ -94,7 +94,7 @@ round to the nearest integer not smaller than input
 [🔗 Official Documentation](#)
 
 ```sql
-function cos(<double>) returns double
+function cos(&lt;double&gt;) returns double
 ```
 Compute the cosine of the input expression (as radians).
 
@@ -102,7 +102,7 @@ Compute the cosine of the input expression (as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function cosh(<double>) returns double
+function cosh(&lt;double&gt;) returns double
 ```
 Compute the hyperbolic cosine of the input expression.
 
@@ -110,7 +110,7 @@ Compute the hyperbolic cosine of the input expression.
 [🔗 Official Documentation](#)
 
 ```sql
-function cot(<double>) returns double
+function cot(&lt;double&gt;) returns double
 ```
 Compute the cotangent of the input expression (as radians).
 
@@ -118,7 +118,7 @@ Compute the cotangent of the input expression (as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function degrees(<double>) returns double
+function degrees(&lt;double&gt;) returns double
 ```
 convert r (radians) to degrees.
 
@@ -139,12 +139,12 @@ Divides two numbers; returns 0 if divisor is 0
 [🔗 Official Documentation](#)
 
 ```sql
-function div0null(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function div0null(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Divides two numbers; returns 0 if divisor is 0 or null
 
 ```sql
-function div0null(<double, double>) returns double
+function div0null(&lt;double, double&gt;) returns double
 ```
 Divides two numbers; returns 0 if divisor is 0 or null
 
@@ -152,15 +152,15 @@ Divides two numbers; returns 0 if divisor is 0 or null
 [🔗 Official Documentation](#)
 
 ```sql
-function exp(<double>) returns double
+function exp(&lt;double&gt;) returns double
 ```
-returns e raised to the x'th power
+returns e raised to the x&#39;th power
 
 ## `factorial`
 [🔗 Official Documentation](#)
 
 ```sql
-function factorial(<decimal(38, 0)>) returns decimal(38, 0)
+function factorial(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Factorial of f
 
@@ -168,22 +168,22 @@ Factorial of f
 [🔗 Official Documentation](#)
 
 ```sql
-function floor(<decimal(38, 0)>) returns decimal(38, 0)
+function floor(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer not greater than input
 
 ```sql
-function floor(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function floor(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer not greater than input
 
 ```sql
-function floor(<double>) returns double
+function floor(&lt;double&gt;) returns double
 ```
 round to the nearest integer not greater than input
 
 ```sql
-function floor(<double, double>) returns double
+function floor(&lt;double, double&gt;) returns double
 ```
 round to the nearest integer not greater than input
 
@@ -191,7 +191,7 @@ round to the nearest integer not greater than input
 [🔗 Official Documentation](#)
 
 ```sql
-function ln(<double>) returns double
+function ln(&lt;double&gt;) returns double
 ```
 returns the natural logarithm of a
 
@@ -199,7 +199,7 @@ returns the natural logarithm of a
 [🔗 Official Documentation](#)
 
 ```sql
-function log(<double, double>) returns double
+function log(&lt;double, double&gt;) returns double
 ```
 returns the logarithm base b of a
 
@@ -207,12 +207,12 @@ returns the logarithm base b of a
 [🔗 Official Documentation](#)
 
 ```sql
-function mod(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function mod(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Computes modulo of two numbers
 
 ```sql
-function mod(<double, double>) returns double
+function mod(&lt;double, double&gt;) returns double
 ```
 Computes modulo of two numbers
 
@@ -220,7 +220,7 @@ Computes modulo of two numbers
 [🔗 Official Documentation](#)
 
 ```sql
-function pi(<>) returns double
+function pi(&lt;&gt;) returns double
 ```
 Returns the constant pi.
 
@@ -228,23 +228,23 @@ Returns the constant pi.
 [🔗 Official Documentation](#)
 
 ```sql
-function pow(<double, double>) returns double
+function pow(&lt;double, double&gt;) returns double
 ```
-returns x raised to the y'th power
+returns x raised to the y&#39;th power
 
 ## `power`
 [🔗 Official Documentation](#)
 
 ```sql
-function power(<double, double>) returns double
+function power(&lt;double, double&gt;) returns double
 ```
-returns x raised to the y'th power
+returns x raised to the y&#39;th power
 
 ## `radians`
 [🔗 Official Documentation](#)
 
 ```sql
-function radians(<double>) returns double
+function radians(&lt;double&gt;) returns double
 ```
 convert d (degrees) to radians.
 
@@ -252,47 +252,47 @@ convert d (degrees) to radians.
 [🔗 Official Documentation](#)
 
 ```sql
-function round(<double>) returns double
+function round(&lt;double&gt;) returns double
 ```
 round to the nearest integer, with .5 rounded away from 0
 
 ```sql
-function round(<double, double>) returns double
+function round(&lt;double, double&gt;) returns double
 ```
 round to the nearest integer, with .5 rounded away from 0
 
 ```sql
-function round(<double, double, varchar>) returns double
+function round(&lt;double, double, varchar&gt;) returns double
 ```
 round to the nearest integer, with .5 rounded away from 0
 
 ```sql
-function round(<decimal(38, 0)>) returns decimal(38, 0)
+function round(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer, with .5 rounded away from 0
 
 ```sql
-function round(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function round(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer, with .5 rounded away from 0
 
 ```sql
-function round(<decimal(38, 0)>) returns decimal(38, 0)
+function round(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer, with .5 rounded away from 0
 
 ```sql
-function round(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function round(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer, with .5 rounded away from 0
 
 ```sql
-function round(<decimal(38, 0), decimal(38, 0), varchar>) returns decimal(38, 0)
+function round(&lt;decimal(38, 0), decimal(38, 0), varchar&gt;) returns decimal(38, 0)
 ```
 round to the nearest integer, with .5 rounded away from 0
 
 ```sql
-function round(<>) returns bigint
+function round(&lt;&gt;) returns bigint
 ```
 
 
@@ -300,12 +300,12 @@ function round(<>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function sign(<decimal(38, 0)>) returns decimal(38, 0)
+function sign(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 returns sign of x
 
 ```sql
-function sign(<double>) returns double
+function sign(&lt;double&gt;) returns double
 ```
 returns sign of x
 
@@ -313,7 +313,7 @@ returns sign of x
 [🔗 Official Documentation](#)
 
 ```sql
-function sin(<double>) returns double
+function sin(&lt;double&gt;) returns double
 ```
 Compute the sine of the input expression (as radians).
 
@@ -321,7 +321,7 @@ Compute the sine of the input expression (as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function sinh(<double>) returns double
+function sinh(&lt;double&gt;) returns double
 ```
 Compute the hyperbolic sine of the input expression.
 
@@ -329,7 +329,7 @@ Compute the hyperbolic sine of the input expression.
 [🔗 Official Documentation](#)
 
 ```sql
-function sqrt(<double>) returns double
+function sqrt(&lt;double&gt;) returns double
 ```
 Compute the square root of the input expression.
 
@@ -337,7 +337,7 @@ Compute the square root of the input expression.
 [🔗 Official Documentation](#)
 
 ```sql
-function square(<double>) returns double
+function square(&lt;double&gt;) returns double
 ```
 Compute the square of the input expression.
 
@@ -345,7 +345,7 @@ Compute the square of the input expression.
 [🔗 Official Documentation](#)
 
 ```sql
-function tan(<double>) returns double
+function tan(&lt;double&gt;) returns double
 ```
 Compute the tangent of the input expression (as radians).
 
@@ -353,7 +353,7 @@ Compute the tangent of the input expression (as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function tanh(<double>) returns double
+function tanh(&lt;double&gt;) returns double
 ```
 Compute the hyperbolic tangent of the input expression (as radians).
 
@@ -361,37 +361,37 @@ Compute the hyperbolic tangent of the input expression (as radians).
 [🔗 Official Documentation](#)
 
 ```sql
-function truncate(<decimal(38, 0)>) returns decimal(38, 0)
+function truncate(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 truncate the fractional or date part
 
 ```sql
-function truncate(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function truncate(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 truncate the fractional or date part
 
 ```sql
-function truncate(<double>) returns double
+function truncate(&lt;double&gt;) returns double
 ```
 truncate the fractional or date part
 
 ```sql
-function truncate(<double, double>) returns double
+function truncate(&lt;double, double&gt;) returns double
 ```
 truncate the fractional or date part
 
 ```sql
-function truncate(<date, varchar>) returns date
+function truncate(&lt;date, varchar&gt;) returns date
 ```
 truncate the fractional or date part
 
 ```sql
-function truncate(<time, varchar>) returns time
+function truncate(&lt;time, varchar&gt;) returns time
 ```
 truncate the fractional or date part
 
 ```sql
-function truncate(<timestamp, varchar>) returns timestamp
+function truncate(&lt;timestamp, varchar&gt;) returns timestamp
 ```
 truncate the fractional or date part
 
@@ -399,14 +399,14 @@ truncate the fractional or date part
 [🔗 Official Documentation](#)
 
 ```sql
-function width_bucket(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+function width_bucket(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 returns the bucket a value falls into in an equiwidth histogram
 
 ```sql
-function width_bucket(<double, double, double, decimal(38, 0)>) returns decimal(38, 0)
+function width_bucket(&lt;double, double, double, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 returns the bucket a value falls into in an equiwidth histogram
 
-   Finished man in 0.225 secs
+   Finished man in 0.193 secs
 

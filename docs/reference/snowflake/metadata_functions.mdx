@@ -7,7 +7,7 @@ title: "Metadata Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function generate_column_description(<array, varchar>) returns varchar
+function generate_column_description(&lt;array, varchar&gt;) returns varchar
 ```
 parse the result from INFER_SCHEMA and generate a copy-able column description
 
@@ -15,24 +15,24 @@ parse the result from INFER_SCHEMA and generate a copy-able column description
 [🔗 Official Documentation](#)
 
 ```sql
-function get_ddl(<varchar, varchar>) returns varchar
+function get_ddl(&lt;varchar, varchar&gt;) returns varchar
 ```
 DDL used to create the object
 
 ```sql
-function get_ddl(<varchar, varchar, boolean>) returns varchar
+function get_ddl(&lt;varchar, varchar, boolean&gt;) returns varchar
 ```
 DDL used to create the object
 
 ```sql
-function get_ddl(<varchar, decimal(38, 0)>) returns varchar
+function get_ddl(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 DDL used to create the object
 
 ```sql
-function get_ddl(<varchar, decimal(38, 0), boolean>) returns varchar
+function get_ddl(&lt;varchar, decimal(38, 0), boolean&gt;) returns varchar
 ```
 DDL used to create the object
 
-   Finished man in 0.210 secs
+   Finished man in 0.205 secs
 

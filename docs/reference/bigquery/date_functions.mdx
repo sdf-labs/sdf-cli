@@ -6,12 +6,12 @@ title: "Date Functions"
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#current_date)
 
 ```sql
-function current_date(<>) returns date
+function current_date(&lt;&gt;) returns date
 ```
 
 
 ```sql
-function current_date(<string>) returns date
+function current_date(&lt;string&gt;) returns date
 ```
 
 
@@ -19,22 +19,22 @@ function current_date(<string>) returns date
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date)
 
 ```sql
-function date(<bigint, bigint, bigint>) returns date
+function date(&lt;bigint, bigint, bigint&gt;) returns date
 ```
 
 
 ```sql
-function date(<timestamp>) returns date
+function date(&lt;timestamp&gt;) returns date
 ```
 
 
 ```sql
-function date(<timestamp, string>) returns date
+function date(&lt;timestamp, string&gt;) returns date
 ```
 
 
 ```sql
-function date(<datetime>) returns date
+function date(&lt;datetime&gt;) returns date
 ```
 
 
@@ -42,7 +42,7 @@ function date(<datetime>) returns date
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_add)
 
 ```sql
-function date_add<$1> (<$1, interval>) returns $1
+function date_add&lt;$1&gt; (&lt;$1, interval&gt;) returns $1
 	where $1 in (date, datetime, timestamp)
 ```
 
@@ -51,7 +51,7 @@ function date_add<$1> (<$1, interval>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_diff)
 
 ```sql
-function date_diff<$1> (<$1, $1, date_part string>) returns bigint
+function date_diff&lt;$1&gt; (&lt;$1, $1, date_part string&gt;) returns bigint
 	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
 	where $1 in (date, datetime, timestamp)
 ```
@@ -61,7 +61,7 @@ function date_diff<$1> (<$1, $1, date_part string>) returns bigint
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_from_unix_date)
 
 ```sql
-function date_from_unix_date(<bigint>) returns date
+function date_from_unix_date(&lt;bigint&gt;) returns date
 ```
 
 
@@ -69,7 +69,7 @@ function date_from_unix_date(<bigint>) returns date
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_trunc)
 
 ```sql
-function date_trunc<$1> (<$1, date_part string>) returns $1
+function date_trunc&lt;$1&gt; (&lt;$1, date_part string&gt;) returns $1
 	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
 	where $1 in (date, datetime, timestamp)
 ```
@@ -79,7 +79,7 @@ function date_trunc<$1> (<$1, date_part string>) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#format_date)
 
 ```sql
-function format_date<$1> (<string, $1>) returns string
+function format_date&lt;$1&gt; (&lt;string, $1&gt;) returns string
 	where $1 in (date, datetime, timestamp)
 ```
 
@@ -88,13 +88,13 @@ function format_date<$1> (<string, $1>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#last_day)
 
 ```sql
-function last_day<$1> (<$1>) returns date
+function last_day&lt;$1&gt; (&lt;$1&gt;) returns date
 	where $1 in (date, datetime)
 ```
 
 
 ```sql
-function last_day<$1> (<$1, date_part string>) returns date
+function last_day&lt;$1&gt; (&lt;$1, date_part string&gt;) returns date
 	where date_part in (week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
 	where $1 in (date, datetime)
 ```
@@ -104,7 +104,7 @@ function last_day<$1> (<$1, date_part string>) returns date
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#parse_date)
 
 ```sql
-function parse_date(<string, string>) returns date
+function parse_date(&lt;string, string&gt;) returns date
 ```
 
 
@@ -112,9 +112,9 @@ function parse_date(<string, string>) returns date
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#unix_date)
 
 ```sql
-function unix_date([date]) returns bigint
+function unix_date(&lt;date&gt;) returns bigint
 ```
 
 
-   Finished man in 0.205 secs
+   Finished man in 0.185 secs
 

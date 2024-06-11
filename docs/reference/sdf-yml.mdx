@@ -8,7 +8,7 @@ title: "SDF YML Schema"
 `edition:` | `string`| The SDF edition, should always be 1.2 (1.1 is deprecated)|
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string`| A description of this workspace|
-`repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
+`repository:` | `string`| The URL of the workspace source repository (defaults to &amp;#39;none&amp;#39; if no repository is given)|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
@@ -16,16 +16,16 @@ title: "SDF YML Schema"
 `integrations:` | `array`| The integrations for this environment|
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `source-locations:` | `array`| Workspace defined by these set of files|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&amp;#123;\&amp;#123; dt \&amp;#125;\&amp;#125;|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| |
 `description:` | `string?`| |
-`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to &#96;presto&#96;|
+`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to &amp;#96;presto&amp;#96;|
 `materialization:` | [`Materialization?`](#enum-materialization)| The table-type of this table (new version)|
 `purpose:` | [`TablePurpose?`](#enum-tablepurpose)| Specify what kind of table or view this is|
-`origin:` | [`TableOrigin?`](#enum-tableorigin)| The origin of this table &lt;remote&gt; or &lt;local&gt;|
+`origin:` | [`TableOrigin?`](#enum-tableorigin)| The origin of this table &amp;lt;remote&amp;gt; or &amp;lt;local&amp;gt;|
 `exists-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macto)|
 `table-location:` | [`TableLocation?`](#enum-tablelocation)| Specify table ,location, defaults to none if not set|
 `creation-flags:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines the table creation options, defaults to none if not set|
@@ -48,7 +48,7 @@ title: "SDF YML Schema"
 `compression:` | [`CompressionType?`](#enum-compressiontype)| Json or CSV data is compressed with this method [only for external tables]|
 `seeded:` | `boolean?`| Is this table backed by a DDL or a type provider|
 `source-locations:` | `array`| Table is defined by these .sql and/or .sdf files|
-`sealed:` | `boolean?`| This table is either backed by a create table ddl or by a table definition in yml that is the table&#39;s complete schema|
+`sealed:` | `boolean?`| This table is either backed by a create table ddl or by a table definition in yml that is the table&amp;#39;s complete schema|
 ## Block: `Classifier`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -82,7 +82,7 @@ title: "SDF YML Schema"
 ## Block: `Credential`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the credential (default = &#39;default&#39;)|
+`name:` | `string`| The name of the credential (default = &amp;#39;default&amp;#39;)|
 `description:` | `string?`| A description of this credential|
 `source-locations:` | `array`| Credential defined by these set of .sdf files|
 ### Options
@@ -96,7 +96,7 @@ title: "SDF YML Schema"
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `type:` | `string`| |
-`account-id:` | `string`| The account id of your snowflake account (e.g. &lt;orgname&gt;.&lt;accountname&gt; or &lt;locator&gt;)|
+`account-id:` | `string`| The account id of your snowflake account (e.g. &amp;lt;orgname&amp;gt;.&amp;lt;accountname&amp;gt; or &amp;lt;locator&amp;gt;)|
 `username:` | `string`| The user name to connect to snowflake|
 `password:` | `string`| The password to connect to snowflake|
 `role:` | `string?`| The role to use for the connection|
@@ -127,7 +127,7 @@ title: "SDF YML Schema"
 | :---- | :--- | :------- |
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string`| A description of this workspace|
-`repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
+`repository:` | `string`| The URL of the workspace source repository (defaults to &amp;#39;none&amp;#39; if no repository is given)|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
@@ -135,7 +135,7 @@ title: "SDF YML Schema"
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
 `providers:` | `array`| The providers for this environment|
 `integrations:` | `array`| The integrations for this environment|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&amp;#123;\&amp;#123; dt \&amp;#125;\&amp;#125;|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| Experimental: This project has jinja|
 ## Enum: `IncludeType`
@@ -197,7 +197,7 @@ Value | Description|
 `drop-if-exists` | Drops the existing table and creates a new one.|
 `skip-if-exists` | Skips table creation if the table already exists.|
 `create-or-replace` | Replaces the existing table with a new one. Implementation may vary by DBMS.|
-`create-if-not-exists` | Creates the table only if it doesn't already exist.|
+`create-if-not-exists` | Creates the table only if it doesn&#39;t already exist.|
 ## Enum: `SyncType`
 Value | Description|
 | :--- | :------- |
@@ -338,7 +338,7 @@ Values |
 `compute:` | [`ComputeKind?`](#enum-computekind)| DEPRECATED; subsumed by providers/integrations information|
 `preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| The preprocessor for this environment. If not set, defaults to local|
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
-`schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
+`schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &amp;#39;pub&amp;#39;|
 `materialization:` | [`Materialization?`](#enum-materialization)| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
 `creation-flag:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines table creation flags, defaults to  if not set|
 `utils-lib:` | `string?`| The default utils library, if set overrides sdf_utils|
@@ -384,14 +384,14 @@ Values |
 | :---- | :--- | :------- |
 `pattern:` | `string`| A source that can be read. Sources must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
 `preload:` | `boolean?`| Whether to preload the source|
-`rename-from:` | `string?`| Renames sources when searching in the remote, the ith $&#123;i&#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &quot;_$&#123;1&#125;._$&#123;2&#125;._$&#123;3&#125;&quot;|
+`rename-from:` | `string?`| Renames sources when searching in the remote, the ith $&amp;#123;i&amp;#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &amp;quot;_$&amp;#123;1&amp;#125;._$&amp;#123;2&amp;#125;._$&amp;#123;3&amp;#125;&amp;quot;|
 ### Nested element: `TargetPattern`
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `pattern:` | `string?`| A pattern must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
 `patterns:` | `array`| A list of patterns. A pattern must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
 `preload:` | `boolean?`| Whether to preload the target|
-`rename-as:` | `string?`| Renames targets, the ith $&#123;i&#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &quot;_$&#123;1&#125;._$&#123;2&#125;._$&#123;3&#125;&quot;|
+`rename-as:` | `string?`| Renames targets, the ith $&amp;#123;i&amp;#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &amp;quot;_$&amp;#123;1&amp;#125;._$&amp;#123;2&amp;#125;._$&amp;#123;3&amp;#125;&amp;quot;|
 ### Nested element: `DataBucket`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -423,11 +423,11 @@ Values |
 ### Nested element: `IncrementalOptions`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`strategy:` | [`IncrementalStrategy`](#enum-incrementalstrategy)| Incremental strategy; may be one of &#96;append&#96;, &#96;merge&#96;, or &#96;delete+insert&#96;|
+`strategy:` | [`IncrementalStrategy`](#enum-incrementalstrategy)| Incremental strategy; may be one of &amp;#96;append&amp;#96;, &amp;#96;merge&amp;#96;, or &amp;#96;delete+insert&amp;#96;|
 `unique-key:` | `string?`| Expression used for identifying records in Merge and Delete+Insert strategies; May be a column name or an expression combining multiple columns. If left unspecified, Merge and Delete+Insert strategies behave the same as Append|
 `merge-update-columns:` | `array`| List of column names to be updated as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
 `merge-exclude-columns:` | `array`| List of column names to exclude from updating as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
-`on-schema-change:` | [`OnSchemaChange?`](#enum-onschemachange)| Method for reacting to changing schema in the source of the incremental table Possible values are &#96;fail&#96;, &#96;append&#96;, and &#96;sync&#96;. If left unspecified, the default behavior is to ignore the change and possibly error out if the schema change is incompatible. &#96;fail&#96; causes a failure whenever any deviation in the schema of the source is detected; &#96;append&#96; adds new columns but does not delete the columns removed from the source; &#96;sync&#96; adds new columns and deletess the columns removed from the source;|
+`on-schema-change:` | [`OnSchemaChange?`](#enum-onschemachange)| Method for reacting to changing schema in the source of the incremental table Possible values are &amp;#96;fail&amp;#96;, &amp;#96;append&amp;#96;, and &amp;#96;sync&amp;#96;. If left unspecified, the default behavior is to ignore the change and possibly error out if the schema change is incompatible. &amp;#96;fail&amp;#96; causes a failure whenever any deviation in the schema of the source is detected; &amp;#96;append&amp;#96; adds new columns but does not delete the columns removed from the source; &amp;#96;sync&amp;#96; adds new columns and deletess the columns removed from the source;|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -467,7 +467,7 @@ Values |
 ### Nested element: `Label`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the label, use &quot;*&quot; to allow arbitrary strings as labels|
+`name:` | `string`| The name of the label, use &amp;quot;*&amp;quot; to allow arbitrary strings as labels|
 `description:` | `string?`| A description of this classifier element|
 ### Nested element: `Parameter`
 |Field | Type | Description|

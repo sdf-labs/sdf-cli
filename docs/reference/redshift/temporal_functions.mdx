@@ -6,12 +6,12 @@ title: "Temporal Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function add_months(<date, bigint>) returns timestamp
+function add_months(&lt;date, bigint&gt;) returns timestamp
 ```
 
 
 ```sql
-function add_months(<timestamp, bigint>) returns timestamp
+function add_months(&lt;timestamp, bigint&gt;) returns timestamp
 ```
 
 
@@ -19,12 +19,12 @@ function add_months(<timestamp, bigint>) returns timestamp
 [🔗 Official Documentation](#)
 
 ```sql
-function convert_timezone(<varchar, varchar>) returns timestamp
+function convert_timezone(&lt;varchar, varchar&gt;) returns timestamp
 ```
 
 
 ```sql
-function convert_timezone(<varchar, varchar, varchar>) returns timestamp
+function convert_timezone(&lt;varchar, varchar, varchar&gt;) returns timestamp
 ```
 
 
@@ -32,7 +32,7 @@ function convert_timezone(<varchar, varchar, varchar>) returns timestamp
 [🔗 Official Documentation](#)
 
 ```sql
-function current_date(<>) returns date
+function current_date(&lt;&gt;) returns date
 ```
 
 
@@ -40,7 +40,7 @@ function current_date(<>) returns date
 [🔗 Official Documentation](#)
 
 ```sql
-function current_datetime(<>) returns timestamp
+function current_datetime(&lt;&gt;) returns timestamp
 ```
 
 
@@ -48,7 +48,7 @@ function current_datetime(<>) returns timestamp
 [🔗 Official Documentation](#)
 
 ```sql
-function current_time(<>) returns time
+function current_time(&lt;&gt;) returns time
 ```
 
 
@@ -56,7 +56,7 @@ function current_time(<>) returns time
 [🔗 Official Documentation](#)
 
 ```sql
-function date(<$1>) returns date
+function date(&lt;$1&gt;) returns date
 ```
 
 
@@ -64,7 +64,7 @@ function date(<$1>) returns date
 [🔗 Official Documentation](#)
 
 ```sql
-function date_add<$1> (<varchar, bigint, $1>) returns date
+function date_add&lt;$1&gt; (&lt;varchar, bigint, $1&gt;) returns date
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
 	where $1 in (date, timestamp, time, varchar)
 ```
@@ -74,7 +74,7 @@ function date_add<$1> (<varchar, bigint, $1>) returns date
 [🔗 Official Documentation](#)
 
 ```sql
-function date_cmp(<varchar, varchar>) returns bigint
+function date_cmp(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -82,7 +82,7 @@ function date_cmp(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function date_cmp_timestamp(<varchar, varchar>) returns bigint
+function date_cmp_timestamp(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -90,7 +90,7 @@ function date_cmp_timestamp(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function date_cmp_timestampz(<varchar, varchar>) returns bigint
+function date_cmp_timestampz(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -98,7 +98,7 @@ function date_cmp_timestampz(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function date_part(<varchar, varchar>) returns float
+function date_part(&lt;varchar, varchar&gt;) returns float
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, dayofweek, dow, dw, weekday, dayofyear, doy, dy, yearday, days, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
 ```
 
@@ -107,7 +107,7 @@ function date_part(<varchar, varchar>) returns float
 [🔗 Official Documentation](#)
 
 ```sql
-function date_part_year(<varchar>) returns bigint
+function date_part_year(&lt;varchar&gt;) returns bigint
 ```
 
 
@@ -115,7 +115,7 @@ function date_part_year(<varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function dateadd<$1> (<varchar, bigint, $1>) returns date
+function dateadd&lt;$1&gt; (&lt;varchar, bigint, $1&gt;) returns date
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
 	where $1 in (date, timestamp, time, varchar)
 ```
@@ -125,7 +125,7 @@ function dateadd<$1> (<varchar, bigint, $1>) returns date
 [🔗 Official Documentation](#)
 
 ```sql
-function datediff<$1, $2> (<varchar, $1, $2>) returns bigint
+function datediff&lt;$1, $2&gt; (&lt;varchar, $1, $2&gt;) returns bigint
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
 	where $1 in (date, timestamp, time with time zone, time, varchar)
 	and $2 in (date, timestamp, time with time zone, time, varchar)
@@ -136,7 +136,7 @@ function datediff<$1, $2> (<varchar, $1, $2>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function getdate(<>) returns timestamp
+function getdate(&lt;&gt;) returns timestamp
 ```
 
 
@@ -144,7 +144,7 @@ function getdate(<>) returns timestamp
 [🔗 Official Documentation](#)
 
 ```sql
-function sysdate(<>) returns date
+function sysdate(&lt;&gt;) returns date
 ```
 
 
@@ -152,7 +152,7 @@ function sysdate(<>) returns date
 [🔗 Official Documentation](#)
 
 ```sql
-function timeofday(<>) returns varchar
+function timeofday(&lt;&gt;) returns varchar
 ```
 
 
@@ -160,7 +160,7 @@ function timeofday(<>) returns varchar
 [🔗 Official Documentation](#)
 
 ```sql
-function timestamp_cmp(<varchar, varchar>) returns bigint
+function timestamp_cmp(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -168,7 +168,7 @@ function timestamp_cmp(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function timestamp_cmp_date(<varchar, varchar>) returns bigint
+function timestamp_cmp_date(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -176,7 +176,7 @@ function timestamp_cmp_date(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function timestamp_cmp_timestampz(<varchar, varchar>) returns bigint
+function timestamp_cmp_timestampz(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -184,7 +184,7 @@ function timestamp_cmp_timestampz(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function timestampz_cmp(<varchar, varchar>) returns bigint
+function timestampz_cmp(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -192,7 +192,7 @@ function timestampz_cmp(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function timestampz_cmp_date(<varchar, varchar>) returns bigint
+function timestampz_cmp_date(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -200,7 +200,7 @@ function timestampz_cmp_date(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function timestampz_cmp_timestamp(<varchar, varchar>) returns bigint
+function timestampz_cmp_timestamp(&lt;varchar, varchar&gt;) returns bigint
 ```
 
 
@@ -208,7 +208,7 @@ function timestampz_cmp_timestamp(<varchar, varchar>) returns bigint
 [🔗 Official Documentation](#)
 
 ```sql
-function timezone(<varchar, varchar>) returns timestamp
+function timezone(&lt;varchar, varchar&gt;) returns timestamp
 ```
 
 
@@ -216,12 +216,12 @@ function timezone(<varchar, varchar>) returns timestamp
 [🔗 Official Documentation](#)
 
 ```sql
-function to_date(<varchar, varchar>) returns date
+function to_date(&lt;varchar, varchar&gt;) returns date
 ```
 
 
 ```sql
-function to_date(<varchar, varchar, boolean>) returns date
+function to_date(&lt;varchar, varchar, boolean&gt;) returns date
 ```
 
 
@@ -229,14 +229,14 @@ function to_date(<varchar, varchar, boolean>) returns date
 [🔗 Official Documentation](#)
 
 ```sql
-function to_timestamp(<varchar, varchar>) returns timestamp
+function to_timestamp(&lt;varchar, varchar&gt;) returns timestamp
 ```
 
 
 ```sql
-function to_timestamp(<varchar, varchar, boolean>) returns timestamp
+function to_timestamp(&lt;varchar, varchar, boolean&gt;) returns timestamp
 ```
 
 
-   Finished man in 0.202 secs
+   Finished man in 0.185 secs
 

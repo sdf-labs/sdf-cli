@@ -7,7 +7,7 @@ title: "Aggregate Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function any_value(<$1>) returns $1
+function any_value(&lt;$1&gt;) returns $1
 ```
 Returns the first non-null value of a column
 
@@ -23,7 +23,7 @@ approximate distinct row count
 [🔗 Official Documentation](#)
 
 ```sql
-function approx_percentile(<double, double>) returns double
+function approx_percentile(&lt;double, double&gt;) returns double
 ```
 percentile approximation of inputs
 
@@ -31,7 +31,7 @@ percentile approximation of inputs
 [🔗 Official Documentation](#)
 
 ```sql
-function approx_percentile_accumulate(<double>) returns object
+function approx_percentile_accumulate(&lt;double&gt;) returns object
 ```
 tdigest state in JSON format
 
@@ -39,7 +39,7 @@ tdigest state in JSON format
 [🔗 Official Documentation](#)
 
 ```sql
-function approx_percentile_combine(<object>) returns object
+function approx_percentile_combine(&lt;object&gt;) returns object
 ```
 A tdigest state in JSON format
 
@@ -47,7 +47,7 @@ A tdigest state in JSON format
 [🔗 Official Documentation](#)
 
 ```sql
-function approx_percentile_estimate(<object, double>) returns double
+function approx_percentile_estimate(&lt;object, double&gt;) returns double
 ```
 ESTIMATED PERCENTILE VALUE
 
@@ -55,17 +55,17 @@ ESTIMATED PERCENTILE VALUE
 [🔗 Official Documentation](#)
 
 ```sql
-function approx_top_k(<$1>) returns array
+function approx_top_k(&lt;$1&gt;) returns array
 ```
 Array containing top k items and their frequencies
 
 ```sql
-function approx_top_k(<$1, decimal(38, 0)>) returns array
+function approx_top_k(&lt;$1, decimal(38, 0)&gt;) returns array
 ```
 Array containing top k items and their frequencies
 
 ```sql
-function approx_top_k(<$1, decimal(38, 0), decimal(38, 0)>) returns array
+function approx_top_k(&lt;$1, decimal(38, 0), decimal(38, 0)&gt;) returns array
 ```
 Array containing top k items and their frequencies
 
@@ -73,7 +73,7 @@ Array containing top k items and their frequencies
 [🔗 Official Documentation](#)
 
 ```sql
-function approx_top_k_accumulate(<$1, decimal(38, 0)>) returns object
+function approx_top_k_accumulate(&lt;$1, decimal(38, 0)&gt;) returns object
 ```
 An internal state
 
@@ -81,12 +81,12 @@ An internal state
 [🔗 Official Documentation](#)
 
 ```sql
-function approx_top_k_combine(<object>) returns object
+function approx_top_k_combine(&lt;object&gt;) returns object
 ```
 A state created by combining information from combining  all input
 
 ```sql
-function approx_top_k_combine(<object, decimal(38, 0)>) returns object
+function approx_top_k_combine(&lt;object, decimal(38, 0)&gt;) returns object
 ```
 A state created by combining information from combining  all input
 
@@ -94,12 +94,12 @@ A state created by combining information from combining  all input
 [🔗 Official Documentation](#)
 
 ```sql
-function approx_top_k_estimate(<object>) returns array
+function approx_top_k_estimate(&lt;object&gt;) returns array
 ```
 Array containing most common k items and their frequencies
 
 ```sql
-function approx_top_k_estimate(<object, decimal(38, 0)>) returns array
+function approx_top_k_estimate(&lt;object, decimal(38, 0)&gt;) returns array
 ```
 Array containing most common k items and their frequencies
 
@@ -107,7 +107,7 @@ Array containing most common k items and their frequencies
 [🔗 Official Documentation](#)
 
 ```sql
-function approximate_jaccard_index(<variant>) returns double
+function approximate_jaccard_index(&lt;variant&gt;) returns double
 ```
 Similarity approximation of inputs
 
@@ -115,7 +115,7 @@ Similarity approximation of inputs
 [🔗 Official Documentation](#)
 
 ```sql
-function approximate_similarity(<variant>) returns double
+function approximate_similarity(&lt;variant&gt;) returns double
 ```
 Similarity approximation of inputs
 
@@ -123,7 +123,7 @@ Similarity approximation of inputs
 [🔗 Official Documentation](#)
 
 ```sql
-function array_agg(<$1>) returns array
+function array_agg(&lt;$1&gt;) returns array
 ```
 output array
 
@@ -131,12 +131,12 @@ output array
 [🔗 Official Documentation](#)
 
 ```sql
-function array_union_agg(<array>) returns array
+function array_union_agg(&lt;array&gt;) returns array
 ```
 output array
 
 ```sql
-function array_union_agg(<array>) returns array
+function array_union_agg(&lt;array&gt;) returns array
 ```
 output array
 
@@ -144,7 +144,7 @@ output array
 [🔗 Official Documentation](#)
 
 ```sql
-function array_unique_agg(<$1>) returns array
+function array_unique_agg(&lt;$1&gt;) returns array
 ```
 output array
 
@@ -152,17 +152,17 @@ output array
 [🔗 Official Documentation](#)
 
 ```sql
-function avg(<decimal(38, 0)>) returns decimal(38, 0)
+function avg(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the average of the values in a group. Null values are ignored.
 
 ```sql
-function avg(<double>) returns double
+function avg(&lt;double&gt;) returns double
 ```
 Returns the average of the values in a group. Null values are ignored.
 
 ```sql
-function avg(<string>) returns string
+function avg(&lt;string&gt;) returns string
 ```
 
 
@@ -170,12 +170,12 @@ function avg(<string>) returns string
 [🔗 Official Documentation](#)
 
 ```sql
-function bitand_agg(<decimal(38, 0)>) returns decimal(38, 0)
+function bitand_agg(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the bitwise AND of a column. Null values are ignored.
 
 ```sql
-function bitand_agg(<string>) returns string
+function bitand_agg(&lt;string&gt;) returns string
 ```
 
 
@@ -183,7 +183,7 @@ function bitand_agg(<string>) returns string
 [🔗 Official Documentation](#)
 
 ```sql
-function bitmap_bit_position(<decimal(38, 0)>) returns decimal(38, 0)
+function bitmap_bit_position(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 relative position in bitmap
 
@@ -191,7 +191,7 @@ relative position in bitmap
 [🔗 Official Documentation](#)
 
 ```sql
-function bitmap_bucket_number(<decimal(38, 0)>) returns decimal(38, 0)
+function bitmap_bucket_number(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 bucket index of the destination bitmap
 
@@ -199,7 +199,7 @@ bucket index of the destination bitmap
 [🔗 Official Documentation](#)
 
 ```sql
-function bitmap_construct_agg(<decimal(38, 0)>) returns binary
+function bitmap_construct_agg(&lt;decimal(38, 0)&gt;) returns binary
 ```
 bitmap
 
@@ -207,7 +207,7 @@ bitmap
 [🔗 Official Documentation](#)
 
 ```sql
-function bitmap_count(<binary>) returns decimal(38, 0)
+function bitmap_count(&lt;binary&gt;) returns decimal(38, 0)
 ```
 number of set bits in the bitmap
 
@@ -215,7 +215,7 @@ number of set bits in the bitmap
 [🔗 Official Documentation](#)
 
 ```sql
-function bitmap_or_agg(<binary>) returns binary
+function bitmap_or_agg(&lt;binary&gt;) returns binary
 ```
 destination bitmap
 
@@ -223,12 +223,12 @@ destination bitmap
 [🔗 Official Documentation](#)
 
 ```sql
-function bitor_agg(<decimal(38, 0)>) returns decimal(38, 0)
+function bitor_agg(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the bitwise OR of a column. Null values are ignored.
 
 ```sql
-function bitor_agg(<string>) returns string
+function bitor_agg(&lt;string&gt;) returns string
 ```
 
 
@@ -236,12 +236,12 @@ function bitor_agg(<string>) returns string
 [🔗 Official Documentation](#)
 
 ```sql
-function bitxor_agg(<decimal(38, 0)>) returns decimal(38, 0)
+function bitxor_agg(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the bitwise XOR of a column. Null values are ignored.
 
 ```sql
-function bitxor_agg(<string>) returns string
+function bitxor_agg(&lt;string&gt;) returns string
 ```
 
 
@@ -249,12 +249,12 @@ function bitxor_agg(<string>) returns string
 [🔗 Official Documentation](#)
 
 ```sql
-function booland_agg(<decimal(38, 0)>) returns boolean
+function booland_agg(&lt;decimal(38, 0)&gt;) returns boolean
 ```
 Returns the logical (boolean) AND of a column. Null values are ignored.
 
 ```sql
-function booland_agg(<boolean>) returns boolean
+function booland_agg(&lt;boolean&gt;) returns boolean
 ```
 
 
@@ -262,12 +262,12 @@ function booland_agg(<boolean>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function boolor_agg(<decimal(38, 0)>) returns boolean
+function boolor_agg(&lt;decimal(38, 0)&gt;) returns boolean
 ```
 Returns the logical (boolean) OR of a column. Null values are ignored.
 
 ```sql
-function boolor_agg(<boolean>) returns boolean
+function boolor_agg(&lt;boolean&gt;) returns boolean
 ```
 
 
@@ -275,12 +275,12 @@ function boolor_agg(<boolean>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function boolxor_agg(<decimal(38, 0)>) returns boolean
+function boolxor_agg(&lt;decimal(38, 0)&gt;) returns boolean
 ```
 Returns the logical (boolean) XOR of a column. Null values are ignored.
 
 ```sql
-function boolxor_agg(<boolean>) returns boolean
+function boolxor_agg(&lt;boolean&gt;) returns boolean
 ```
 
 
@@ -288,7 +288,7 @@ function boolxor_agg(<boolean>) returns boolean
 [🔗 Official Documentation](#)
 
 ```sql
-function corr(<double, double>) returns double
+function corr(&lt;double, double&gt;) returns double
 ```
 Returns the correlation coefficient for non-null pairs in a group.
 
@@ -304,12 +304,12 @@ Return number of non-null values of a given expression
 [🔗 Official Documentation](#)
 
 ```sql
-function count_if(<boolean>) returns decimal(38, 0)
+function count_if(&lt;boolean&gt;) returns decimal(38, 0)
 ```
 Returns a conditional count
 
 ```sql
-function count_if(<boolean>) returns double
+function count_if(&lt;boolean&gt;) returns double
 ```
 Returns a conditional count
 
@@ -317,7 +317,7 @@ Returns a conditional count
 [🔗 Official Documentation](#)
 
 ```sql
-function covar_pop(<double, double>) returns double
+function covar_pop(&lt;double, double&gt;) returns double
 ```
 Returns the population covariance for non-null pairs in a group.
 
@@ -325,7 +325,7 @@ Returns the population covariance for non-null pairs in a group.
 [🔗 Official Documentation](#)
 
 ```sql
-function covar_samp(<double, double>) returns double
+function covar_samp(&lt;double, double&gt;) returns double
 ```
 Returns the sample covariance for non-null pairs in a group.
 
@@ -354,27 +354,27 @@ function hash_agg($1, ...) returns decimal(38, 0)
 aggregate hash value
 
 ```sql
-function hash_agg(<$1>) returns decimal(38, 0)
+function hash_agg(&lt;$1&gt;) returns decimal(38, 0)
 ```
 aggregate hash value
 
 ```sql
-function hash_agg(<$1, $2>) returns decimal(38, 0)
+function hash_agg(&lt;$1, $2&gt;) returns decimal(38, 0)
 ```
 aggregate hash value
 
 ```sql
-function hash_agg(<$1, $2, $3>) returns decimal(38, 0)
+function hash_agg(&lt;$1, $2, $3&gt;) returns decimal(38, 0)
 ```
 aggregate hash value
 
 ```sql
-function hash_agg(<$1, $2, $3, $4>) returns decimal(38, 0)
+function hash_agg(&lt;$1, $2, $3, $4&gt;) returns decimal(38, 0)
 ```
 aggregate hash value
 
 ```sql
-function hash_agg(<$1, $2, $3, $4, $5>) returns decimal(38, 0)
+function hash_agg(&lt;$1, $2, $3, $4, $5&gt;) returns decimal(38, 0)
 ```
 aggregate hash value
 
@@ -398,7 +398,7 @@ HyperLogLog state
 [🔗 Official Documentation](#)
 
 ```sql
-function hll_combine(<binary>) returns binary
+function hll_combine(&lt;binary&gt;) returns binary
 ```
 combined HyperLogLog state
 
@@ -406,7 +406,7 @@ combined HyperLogLog state
 [🔗 Official Documentation](#)
 
 ```sql
-function hll_estimate(<binary>) returns decimal(38, 0)
+function hll_estimate(&lt;binary&gt;) returns decimal(38, 0)
 ```
 approximate distinct row count
 
@@ -414,7 +414,7 @@ approximate distinct row count
 [🔗 Official Documentation](#)
 
 ```sql
-function hll_export(<binary>) returns object
+function hll_export(&lt;binary&gt;) returns object
 ```
 HyperLogLog state as a compound OBJECT
 
@@ -422,7 +422,7 @@ HyperLogLog state as a compound OBJECT
 [🔗 Official Documentation](#)
 
 ```sql
-function hll_import(<object>) returns binary
+function hll_import(&lt;object&gt;) returns binary
 ```
 HyperLogLog state in binary format
 
@@ -430,12 +430,12 @@ HyperLogLog state in binary format
 [🔗 Official Documentation](#)
 
 ```sql
-function kurtosis(<decimal(38, 0)>) returns double
+function kurtosis(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the sample kurtosis of the values in a group. Null values are ignored.
 
 ```sql
-function kurtosis(<double>) returns double
+function kurtosis(&lt;double&gt;) returns double
 ```
 Returns the sample kurtosis of the values in a group. Null values are ignored.
 
@@ -443,12 +443,12 @@ Returns the sample kurtosis of the values in a group. Null values are ignored.
 [🔗 Official Documentation](#)
 
 ```sql
-function listagg(<varchar>) returns varchar
+function listagg(&lt;varchar&gt;) returns varchar
 ```
 output string
 
 ```sql
-function listagg(<varchar, varchar>) returns varchar
+function listagg(&lt;varchar, varchar&gt;) returns varchar
 ```
 output string
 
@@ -456,7 +456,7 @@ output string
 [🔗 Official Documentation](#)
 
 ```sql
-function max(<$1>) returns $1
+function max(&lt;$1&gt;) returns $1
 ```
 Returns the maximum of a column
 
@@ -464,12 +464,12 @@ Returns the maximum of a column
 [🔗 Official Documentation](#)
 
 ```sql
-function max_by(<$1, $2>) returns $1
+function max_by(&lt;$1, $2&gt;) returns $1
 ```
 Returns value of first column with maximum second column val
 
 ```sql
-function max_by(<$1, $2, decimal(38, 0)>) returns array
+function max_by(&lt;$1, $2, decimal(38, 0)&gt;) returns array
 ```
 Returns value of first column with maximum second column val
 
@@ -477,12 +477,12 @@ Returns value of first column with maximum second column val
 [🔗 Official Documentation](#)
 
 ```sql
-function median(<>) returns decimal(38, 0)
+function median(&lt;&gt;) returns decimal(38, 0)
 ```
 value of sort key at specified percentile
 
 ```sql
-function median(<decimal(38, 0)>) returns decimal(38, 0)
+function median(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 value of sort key at specified percentile
 
@@ -490,7 +490,7 @@ value of sort key at specified percentile
 [🔗 Official Documentation](#)
 
 ```sql
-function min(<$1>) returns $1
+function min(&lt;$1&gt;) returns $1
 ```
 Returns the minimum of a column
 
@@ -498,12 +498,12 @@ Returns the minimum of a column
 [🔗 Official Documentation](#)
 
 ```sql
-function min_by(<$1, $2>) returns $1
+function min_by(&lt;$1, $2&gt;) returns $1
 ```
 Returns value of first column with minimum second column val
 
 ```sql
-function min_by(<$1, $2, decimal(38, 0)>) returns array
+function min_by(&lt;$1, $2, decimal(38, 0)&gt;) returns array
 ```
 Returns value of first column with minimum second column val
 
@@ -519,7 +519,7 @@ Minhash state including an array of k (first input arg) minimum hash values
 [🔗 Official Documentation](#)
 
 ```sql
-function minhash_combine(<variant>) returns variant
+function minhash_combine(&lt;variant&gt;) returns variant
 ```
 Combined result of two (or more) minhash states
 
@@ -527,7 +527,7 @@ Combined result of two (or more) minhash states
 [🔗 Official Documentation](#)
 
 ```sql
-function mode(<$1>) returns $1
+function mode(&lt;$1&gt;) returns $1
 ```
 Returns the most frequent item of a column
 
@@ -535,7 +535,7 @@ Returns the most frequent item of a column
 [🔗 Official Documentation](#)
 
 ```sql
-function object_agg(<varchar, variant>) returns object
+function object_agg(&lt;varchar, variant&gt;) returns object
 ```
 output object
 
@@ -543,12 +543,12 @@ output object
 [🔗 Official Documentation](#)
 
 ```sql
-function percentile_cont(<>) returns double
+function percentile_cont(&lt;&gt;) returns double
 ```
 value of sort key at specified percentile
 
 ```sql
-function percentile_cont(<decimal(38, 0)>) returns double
+function percentile_cont(&lt;decimal(38, 0)&gt;) returns double
 ```
 value of sort key at specified percentile
 
@@ -556,12 +556,12 @@ value of sort key at specified percentile
 [🔗 Official Documentation](#)
 
 ```sql
-function percentile_disc(<>) returns decimal(38, 0)
+function percentile_disc(&lt;&gt;) returns decimal(38, 0)
 ```
 value of sort key at specified percentile
 
 ```sql
-function percentile_disc(<decimal(38, 0)>) returns decimal(38, 0)
+function percentile_disc(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 value of sort key at specified percentile
 
@@ -569,7 +569,7 @@ value of sort key at specified percentile
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_avgx(<double, double>) returns double
+function regr_avgx(&lt;double, double&gt;) returns double
 ```
 Returns the average of the independent variable (2nd parameter) for non-null pairs.
 
@@ -577,7 +577,7 @@ Returns the average of the independent variable (2nd parameter) for non-null pai
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_avgy(<double, double>) returns double
+function regr_avgy(&lt;double, double&gt;) returns double
 ```
 Returns the average of the dependent variable (1st parameter) for non-null pairs.
 
@@ -585,7 +585,7 @@ Returns the average of the dependent variable (1st parameter) for non-null pairs
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_count(<double, double>) returns double
+function regr_count(&lt;double, double&gt;) returns double
 ```
 Returns the number of non-null number pairs.
 
@@ -593,7 +593,7 @@ Returns the number of non-null number pairs.
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_intercept(<double, double>) returns double
+function regr_intercept(&lt;double, double&gt;) returns double
 ```
 Returns the intercept of the univariate linear regression line for non-null pairs.
 
@@ -601,7 +601,7 @@ Returns the intercept of the univariate linear regression line for non-null pair
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_r2(<double, double>) returns double
+function regr_r2(&lt;double, double&gt;) returns double
 ```
 Returns the coefficient of determination for non-null pairs.
 
@@ -609,7 +609,7 @@ Returns the coefficient of determination for non-null pairs.
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_slope(<double, double>) returns double
+function regr_slope(&lt;double, double&gt;) returns double
 ```
 Returns the slope of the linear regression line for non-null pairs.
 
@@ -617,7 +617,7 @@ Returns the slope of the linear regression line for non-null pairs.
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_sxx(<double, double>) returns double
+function regr_sxx(&lt;double, double&gt;) returns double
 ```
 Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr2) for non-null pairs.
 
@@ -625,7 +625,7 @@ Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr2) for non-null pairs.
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_sxy(<double, double>) returns double
+function regr_sxy(&lt;double, double&gt;) returns double
 ```
 Returns REGR_COUNT(expr1, expr2) * COVAR_POP(expr1, expr2) for non-null pairs.
 
@@ -633,7 +633,7 @@ Returns REGR_COUNT(expr1, expr2) * COVAR_POP(expr1, expr2) for non-null pairs.
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_syy(<double, double>) returns double
+function regr_syy(&lt;double, double&gt;) returns double
 ```
 Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr1) for non-null pairs.
 
@@ -641,12 +641,12 @@ Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr1) for non-null pairs.
 [🔗 Official Documentation](#)
 
 ```sql
-function skew(<decimal(38, 0)>) returns double
+function skew(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the sample skew of the values in a group. Null values are ignored.
 
 ```sql
-function skew(<double>) returns double
+function skew(&lt;double&gt;) returns double
 ```
 Returns the sample skew of the values in a group. Null values are ignored.
 
@@ -654,12 +654,12 @@ Returns the sample skew of the values in a group. Null values are ignored.
 [🔗 Official Documentation](#)
 
 ```sql
-function stddev(<decimal(38, 0)>) returns double
+function stddev(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the sample standard deviation of the values in a group. Null values are ignored.
 
 ```sql
-function stddev(<double>) returns double
+function stddev(&lt;double&gt;) returns double
 ```
 Returns the sample standard deviation of the values in a group. Null values are ignored.
 
@@ -667,12 +667,12 @@ Returns the sample standard deviation of the values in a group. Null values are 
 [🔗 Official Documentation](#)
 
 ```sql
-function stddev_pop(<decimal(38, 0)>) returns double
+function stddev_pop(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the population standard deviation of the values in a group. Null values are ignored.
 
 ```sql
-function stddev_pop(<double>) returns double
+function stddev_pop(&lt;double&gt;) returns double
 ```
 Returns the population standard deviation of the values in a group. Null values are ignored.
 
@@ -680,12 +680,12 @@ Returns the population standard deviation of the values in a group. Null values 
 [🔗 Official Documentation](#)
 
 ```sql
-function stddev_samp(<decimal(38, 0)>) returns double
+function stddev_samp(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the sample standard deviation of the values in a group. Null values are ignored.
 
 ```sql
-function stddev_samp(<double>) returns double
+function stddev_samp(&lt;double&gt;) returns double
 ```
 Returns the sample standard deviation of the values in a group. Null values are ignored.
 
@@ -693,12 +693,12 @@ Returns the sample standard deviation of the values in a group. Null values are 
 [🔗 Official Documentation](#)
 
 ```sql
-function sum(<decimal(38, 0)>) returns decimal(38, 0)
+function sum(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns a sum of a column
 
 ```sql
-function sum(<double>) returns double
+function sum(&lt;double&gt;) returns double
 ```
 Returns a sum of a column
 
@@ -706,12 +706,12 @@ Returns a sum of a column
 [🔗 Official Documentation](#)
 
 ```sql
-function var_pop(<decimal(38, 0)>) returns double
+function var_pop(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the population variance of the values in a group. Null values are ignored.
 
 ```sql
-function var_pop(<double>) returns double
+function var_pop(&lt;double&gt;) returns double
 ```
 Returns the population variance of the values in a group. Null values are ignored.
 
@@ -719,12 +719,12 @@ Returns the population variance of the values in a group. Null values are ignore
 [🔗 Official Documentation](#)
 
 ```sql
-function var_samp(<decimal(38, 0)>) returns double
+function var_samp(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
 ```sql
-function var_samp(<double>) returns double
+function var_samp(&lt;double&gt;) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
@@ -732,12 +732,12 @@ Returns the sample variance of the values in a group. Null values are ignored.
 [🔗 Official Documentation](#)
 
 ```sql
-function variance(<decimal(38, 0)>) returns double
+function variance(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
 ```sql
-function variance(<double>) returns double
+function variance(&lt;double&gt;) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
@@ -745,12 +745,12 @@ Returns the sample variance of the values in a group. Null values are ignored.
 [🔗 Official Documentation](#)
 
 ```sql
-function variance_pop(<decimal(38, 0)>) returns double
+function variance_pop(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the population variance of the values in a group. Null values are ignored.
 
 ```sql
-function variance_pop(<double>) returns double
+function variance_pop(&lt;double&gt;) returns double
 ```
 Returns the population variance of the values in a group. Null values are ignored.
 
@@ -758,14 +758,14 @@ Returns the population variance of the values in a group. Null values are ignore
 [🔗 Official Documentation](#)
 
 ```sql
-function variance_samp(<decimal(38, 0)>) returns double
+function variance_samp(&lt;decimal(38, 0)&gt;) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
 ```sql
-function variance_samp(<double>) returns double
+function variance_samp(&lt;double&gt;) returns double
 ```
 Returns the sample variance of the values in a group. Null values are ignored.
 
-   Finished man in 0.215 secs
+   Finished man in 0.198 secs
 

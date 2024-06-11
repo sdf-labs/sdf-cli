@@ -7,7 +7,7 @@ title: "Conditional Expression Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function booland(<decimal(38, 0), decimal(38, 0)>) returns boolean
+function booland(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
 ```
 returns result of logical (Boolean) AND of x and y
 
@@ -15,7 +15,7 @@ returns result of logical (Boolean) AND of x and y
 [🔗 Official Documentation](#)
 
 ```sql
-function boolnot(<decimal(38, 0)>) returns boolean
+function boolnot(&lt;decimal(38, 0)&gt;) returns boolean
 ```
 returns result of logical (Boolean) NOT of x
 
@@ -23,7 +23,7 @@ returns result of logical (Boolean) NOT of x
 [🔗 Official Documentation](#)
 
 ```sql
-function boolor(<decimal(38, 0), decimal(38, 0)>) returns boolean
+function boolor(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
 ```
 returns result of logical (Boolean) OR of x and y
 
@@ -31,7 +31,7 @@ returns result of logical (Boolean) OR of x and y
 [🔗 Official Documentation](#)
 
 ```sql
-function boolxor(<decimal(38, 0), decimal(38, 0)>) returns boolean
+function boolxor(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
 ```
 returns result of logical (Boolean) XOR of x and y
 
@@ -55,12 +55,12 @@ compare an expression to search values and returns the matching one
 [🔗 Official Documentation](#)
 
 ```sql
-function equal_null(<$1, $1>) returns boolean
+function equal_null(&lt;$1, $1&gt;) returns boolean
 ```
 Checks if two values are equal, with NULL=NULL semantic
 
 ```sql
-function equal_null(<array, array>) returns boolean
+function equal_null(&lt;array, array&gt;) returns boolean
 ```
 Checks if two values are equal, with NULL=NULL semantic
 
@@ -84,7 +84,7 @@ returns the largest value from a list of expressions
 [🔗 Official Documentation](#)
 
 ```sql
-function iff(<boolean, $1, $1>) returns $1
+function iff(&lt;boolean, $1, $1&gt;) returns $1
 ```
 Returns arg2 if arg1 is true, arg3 otherwise.
 
@@ -92,7 +92,7 @@ Returns arg2 if arg1 is true, arg3 otherwise.
 [🔗 Official Documentation](#)
 
 ```sql
-function ifnull(<$1, $1>) returns $1
+function ifnull(&lt;$1, $1&gt;) returns $1
 ```
 Returns second expression if the first expression is NULL, the first expression otherwise.
 
@@ -116,7 +116,7 @@ returns the smallest value from a list of expressions
 [🔗 Official Documentation](#)
 
 ```sql
-function nullif(<$1, $1>) returns $1
+function nullif(&lt;$1, $1&gt;) returns $1
 ```
 
 
@@ -124,12 +124,12 @@ function nullif(<$1, $1>) returns $1
 [🔗 Official Documentation](#)
 
 ```sql
-function nullifzero(<decimal(38, 0)>) returns decimal(38, 0)
+function nullifzero(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the 1st input, with values equal to 0 replaced with NULL
 
 ```sql
-function nullifzero(<double>) returns double
+function nullifzero(&lt;double&gt;) returns double
 ```
 Returns the 1st input, with values equal to 0 replaced with NULL
 
@@ -137,7 +137,7 @@ Returns the 1st input, with values equal to 0 replaced with NULL
 [🔗 Official Documentation](#)
 
 ```sql
-function nvl(<$1, $1>) returns $1
+function nvl(&lt;$1, $1&gt;) returns $1
 ```
 Returns second expression if the first expression is NULL, the first expression otherwise.
 
@@ -145,7 +145,7 @@ Returns second expression if the first expression is NULL, the first expression 
 [🔗 Official Documentation](#)
 
 ```sql
-function nvl2(<$1, $1, $1>) returns $1
+function nvl2(&lt;$1, $1, $1&gt;) returns $1
 ```
 Returns second expression if the first expression is NOT NULL. Returns the third expression otherwise.
 
@@ -153,7 +153,7 @@ Returns second expression if the first expression is NOT NULL. Returns the third
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_valx(<double, double>) returns double
+function regr_valx(&lt;double, double&gt;) returns double
 ```
 Returns the value of the dependent variable (2nd param) if both values are not-null.
 
@@ -161,7 +161,7 @@ Returns the value of the dependent variable (2nd param) if both values are not-n
 [🔗 Official Documentation](#)
 
 ```sql
-function regr_valy(<double, double>) returns double
+function regr_valy(&lt;double, double&gt;) returns double
 ```
 Returns the value of the independent variable (1st param) if both values are not-null.
 
@@ -169,14 +169,14 @@ Returns the value of the independent variable (1st param) if both values are not
 [🔗 Official Documentation](#)
 
 ```sql
-function zeroifnull(<decimal(38, 0)>) returns decimal(38, 0)
+function zeroifnull(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Converts to zero if the input is NULL
 
 ```sql
-function zeroifnull(<double>) returns double
+function zeroifnull(&lt;double&gt;) returns double
 ```
 Converts to zero if the input is NULL
 
-   Finished man in 0.212 secs
+   Finished man in 0.276 secs
 

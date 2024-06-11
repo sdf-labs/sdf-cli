@@ -7,7 +7,7 @@ title: "String & Binary Functions"
 [🔗 Official Documentation](#)
 
 ```sql
-function ascii(<varchar>) returns decimal(38, 0)
+function ascii(&lt;varchar&gt;) returns decimal(38, 0)
 ```
 Returns the ascii code of the first character of the string
 
@@ -15,12 +15,12 @@ Returns the ascii code of the first character of the string
 [🔗 Official Documentation](#)
 
 ```sql
-function base64_decode_binary(<varchar>) returns binary
+function base64_decode_binary(&lt;varchar&gt;) returns binary
 ```
 return decoded binary
 
 ```sql
-function base64_decode_binary(<varchar, varchar>) returns binary
+function base64_decode_binary(&lt;varchar, varchar&gt;) returns binary
 ```
 return decoded binary
 
@@ -28,12 +28,12 @@ return decoded binary
 [🔗 Official Documentation](#)
 
 ```sql
-function base64_decode_string(<varchar>) returns varchar
+function base64_decode_string(&lt;varchar&gt;) returns varchar
 ```
 return decoded string
 
 ```sql
-function base64_decode_string(<varchar, varchar>) returns varchar
+function base64_decode_string(&lt;varchar, varchar&gt;) returns varchar
 ```
 return decoded string
 
@@ -41,32 +41,32 @@ return decoded string
 [🔗 Official Documentation](#)
 
 ```sql
-function base64_encode(<varchar>) returns varchar
+function base64_encode(&lt;varchar&gt;) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(<varchar, decimal(38, 0)>) returns varchar
+function base64_encode(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(<varchar, decimal(38, 0), varchar>) returns varchar
+function base64_encode(&lt;varchar, decimal(38, 0), varchar&gt;) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(<binary>) returns varchar
+function base64_encode(&lt;binary&gt;) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(<binary, decimal(38, 0)>) returns varchar
+function base64_encode(&lt;binary, decimal(38, 0)&gt;) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(<binary, decimal(38, 0), varchar>) returns varchar
+function base64_encode(&lt;binary, decimal(38, 0), varchar&gt;) returns varchar
 ```
 return encoded string
 
@@ -74,12 +74,12 @@ return encoded string
 [🔗 Official Documentation](#)
 
 ```sql
-function bit_length(<varchar>) returns decimal(38, 0)
+function bit_length(&lt;varchar&gt;) returns decimal(38, 0)
 ```
 Returns the length of the object in bits
 
 ```sql
-function bit_length(<binary>) returns decimal(38, 0)
+function bit_length(&lt;binary&gt;) returns decimal(38, 0)
 ```
 Returns the length of the object in bits
 
@@ -87,7 +87,7 @@ Returns the length of the object in bits
 [🔗 Official Documentation](#)
 
 ```sql
-function char(<decimal(38, 0)>) returns varchar
+function char(&lt;decimal(38, 0)&gt;) returns varchar
 ```
 Convert an ASCII or Unicode code into a single character
 
@@ -95,22 +95,22 @@ Convert an ASCII or Unicode code into a single character
 [🔗 Official Documentation](#)
 
 ```sql
-function charindex(<varchar, varchar>) returns decimal(38, 0)
+function charindex(&lt;varchar, varchar&gt;) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function charindex(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+function charindex(&lt;varchar, varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function charindex(<binary, binary>) returns decimal(38, 0)
+function charindex(&lt;binary, binary&gt;) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function charindex(<binary, binary, decimal(38, 0)>) returns decimal(38, 0)
+function charindex(&lt;binary, binary, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
@@ -118,7 +118,7 @@ Returns the position of the needle in the haystack, optionally from a given inde
 [🔗 Official Documentation](#)
 
 ```sql
-function chr(<decimal(38, 0)>) returns varchar
+function chr(&lt;decimal(38, 0)&gt;) returns varchar
 ```
 Convert an ASCII or Unicode code into a single character
 
@@ -126,7 +126,7 @@ Convert an ASCII or Unicode code into a single character
 [🔗 Official Documentation](#)
 
 ```sql
-function collate(<$1, string>) returns $1
+function collate(&lt;$1, string&gt;) returns $1
 ```
 
 
@@ -134,7 +134,7 @@ function collate(<$1, string>) returns $1
 [🔗 Official Documentation](#)
 
 ```sql
-function collation(<$1>) returns string
+function collation(&lt;$1&gt;) returns string
 ```
 
 
@@ -142,12 +142,12 @@ function collation(<$1>) returns string
 [🔗 Official Documentation](#)
 
 ```sql
-function compress(<varchar, varchar>) returns binary
+function compress(&lt;varchar, varchar&gt;) returns binary
 ```
 compressed data (return)
 
 ```sql
-function compress(<binary, varchar>) returns binary
+function compress(&lt;binary, varchar&gt;) returns binary
 ```
 compressed data (return)
 
@@ -181,12 +181,12 @@ Returns concatenation of the input strings with separator, or null if any one of
 [🔗 Official Documentation](#)
 
 ```sql
-function contains(<varchar, varchar>) returns boolean
+function contains(&lt;varchar, varchar&gt;) returns boolean
 ```
 returns TRUE if arg1 constains arg2
 
 ```sql
-function contains(<binary, binary>) returns boolean
+function contains(&lt;binary, binary&gt;) returns boolean
 ```
 returns TRUE if arg1 constains arg2
 
@@ -194,7 +194,7 @@ returns TRUE if arg1 constains arg2
 [🔗 Official Documentation](#)
 
 ```sql
-function decompress_binary(<binary, varchar>) returns binary
+function decompress_binary(&lt;binary, varchar&gt;) returns binary
 ```
 decompressed binary (return)
 
@@ -202,7 +202,7 @@ decompressed binary (return)
 [🔗 Official Documentation](#)
 
 ```sql
-function decompress_string(<binary, varchar>) returns varchar
+function decompress_string(&lt;binary, varchar&gt;) returns varchar
 ```
 decompressed string (return)
 
@@ -210,12 +210,12 @@ decompressed string (return)
 [🔗 Official Documentation](#)
 
 ```sql
-function editdistance(<varchar, varchar>) returns decimal(38, 0)
+function editdistance(&lt;varchar, varchar&gt;) returns decimal(38, 0)
 ```
 Returns the Levenshtein edit distance between two strings.
 
 ```sql
-function editdistance(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+function editdistance(&lt;varchar, varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the Levenshtein edit distance between two strings.
 
@@ -223,12 +223,12 @@ Returns the Levenshtein edit distance between two strings.
 [🔗 Official Documentation](#)
 
 ```sql
-function endswith(<varchar, varchar>) returns boolean
+function endswith(&lt;varchar, varchar&gt;) returns boolean
 ```
 returns TRUE if arg1 ends with arg2
 
 ```sql
-function endswith(<binary, binary>) returns boolean
+function endswith(&lt;binary, binary&gt;) returns boolean
 ```
 returns TRUE if arg1 ends with arg2
 
@@ -236,7 +236,7 @@ returns TRUE if arg1 ends with arg2
 [🔗 Official Documentation](#)
 
 ```sql
-function hex_decode_binary(<varchar>) returns binary
+function hex_decode_binary(&lt;varchar&gt;) returns binary
 ```
 return decoded binary
 
@@ -244,7 +244,7 @@ return decoded binary
 [🔗 Official Documentation](#)
 
 ```sql
-function hex_decode_string(<varchar>) returns varchar
+function hex_decode_string(&lt;varchar&gt;) returns varchar
 ```
 return decoded string
 
@@ -252,22 +252,22 @@ return decoded string
 [🔗 Official Documentation](#)
 
 ```sql
-function hex_encode(<varchar>) returns varchar
+function hex_encode(&lt;varchar&gt;) returns varchar
 ```
 return encoded string
 
 ```sql
-function hex_encode(<varchar, decimal(38, 0)>) returns varchar
+function hex_encode(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 return encoded string
 
 ```sql
-function hex_encode(<binary>) returns varchar
+function hex_encode(&lt;binary&gt;) returns varchar
 ```
 return encoded string
 
 ```sql
-function hex_encode(<binary, decimal(38, 0)>) returns varchar
+function hex_encode(&lt;binary, decimal(38, 0)&gt;) returns varchar
 ```
 return encoded string
 
@@ -275,12 +275,12 @@ return encoded string
 [🔗 Official Documentation](#)
 
 ```sql
-function initcap(<varchar>) returns varchar
+function initcap(&lt;varchar&gt;) returns varchar
 ```
 return string with all the initial letter of each word is LOWERcase.
 
 ```sql
-function initcap(<varchar, varchar>) returns varchar
+function initcap(&lt;varchar, varchar&gt;) returns varchar
 ```
 return string with all the initial letter of each word is LOWERcase.
 
@@ -288,7 +288,7 @@ return string with all the initial letter of each word is LOWERcase.
 [🔗 Official Documentation](#)
 
 ```sql
-function insert(<varchar, decimal(38, 0), decimal(38, 0), varchar>) returns varchar
+function insert(&lt;varchar, decimal(38, 0), decimal(38, 0), varchar&gt;) returns varchar
 ```
 Returns the first string with a substring at the given position and length replaced with the second string
 
@@ -296,7 +296,7 @@ Returns the first string with a substring at the given position and length repla
 [🔗 Official Documentation](#)
 
 ```sql
-function jarowinkler_similarity(<varchar, varchar>) returns decimal(38, 0)
+function jarowinkler_similarity(&lt;varchar, varchar&gt;) returns decimal(38, 0)
 ```
 Returns the Jaro-Winkler similarity metric between two strings.
 
@@ -304,7 +304,7 @@ Returns the Jaro-Winkler similarity metric between two strings.
 [🔗 Official Documentation](#)
 
 ```sql
-function left(<varchar, decimal(38, 0)>) returns varchar
+function left(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Returns leftmost N characters of the input string
 
@@ -312,12 +312,12 @@ Returns leftmost N characters of the input string
 [🔗 Official Documentation](#)
 
 ```sql
-function len(<varchar>) returns decimal(38, 0)
+function len(&lt;varchar&gt;) returns decimal(38, 0)
 ```
 Returns length of string
 
 ```sql
-function len(<binary>) returns decimal(38, 0)
+function len(&lt;binary&gt;) returns decimal(38, 0)
 ```
 Returns length of binary input
 
@@ -325,12 +325,12 @@ Returns length of binary input
 [🔗 Official Documentation](#)
 
 ```sql
-function length(<varchar>) returns decimal(38, 0)
+function length(&lt;varchar&gt;) returns decimal(38, 0)
 ```
 Returns the length of the string
 
 ```sql
-function length(<binary>) returns decimal(38, 0)
+function length(&lt;binary&gt;) returns decimal(38, 0)
 ```
 Returns the length of the string
 
@@ -338,7 +338,7 @@ Returns the length of the string
 [🔗 Official Documentation](#)
 
 ```sql
-function lower(<varchar>) returns varchar
+function lower(&lt;varchar&gt;) returns varchar
 ```
 return string with all characters in lowercase
 
@@ -346,17 +346,17 @@ return string with all characters in lowercase
 [🔗 Official Documentation](#)
 
 ```sql
-function lpad(<varchar, decimal(38, 0)>) returns varchar
+function lpad(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 padded result string
 
 ```sql
-function lpad(<varchar, decimal(38, 0), varchar>) returns varchar
+function lpad(&lt;varchar, decimal(38, 0), varchar&gt;) returns varchar
 ```
 padded result string
 
 ```sql
-function lpad(<binary, decimal(38, 0), binary>) returns binary
+function lpad(&lt;binary, decimal(38, 0), binary&gt;) returns binary
 ```
 padded result string
 
@@ -364,12 +364,12 @@ padded result string
 [🔗 Official Documentation](#)
 
 ```sql
-function ltrim(<varchar>) returns varchar
+function ltrim(&lt;varchar&gt;) returns varchar
 ```
 return string trimmed from left
 
 ```sql
-function ltrim(<varchar, varchar>) returns varchar
+function ltrim(&lt;varchar, varchar&gt;) returns varchar
 ```
 return string trimmed from left
 
@@ -377,12 +377,12 @@ return string trimmed from left
 [🔗 Official Documentation](#)
 
 ```sql
-function md5(<varchar>) returns varchar
+function md5(&lt;varchar&gt;) returns varchar
 ```
 Hex-encoded MD5 digest
 
 ```sql
-function md5(<binary>) returns varchar
+function md5(&lt;binary&gt;) returns varchar
 ```
 Hex-encoded MD5 digest
 
@@ -390,12 +390,12 @@ Hex-encoded MD5 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function md5_binary(<varchar>) returns binary
+function md5_binary(&lt;varchar&gt;) returns binary
 ```
 Binary MD5 digest
 
 ```sql
-function md5_binary(<binary>) returns binary
+function md5_binary(&lt;binary&gt;) returns binary
 ```
 Binary MD5 digest
 
@@ -403,12 +403,12 @@ Binary MD5 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function md5_hex(<varchar>) returns varchar
+function md5_hex(&lt;varchar&gt;) returns varchar
 ```
 Hex-encoded MD5 digest
 
 ```sql
-function md5_hex(<binary>) returns varchar
+function md5_hex(&lt;binary&gt;) returns varchar
 ```
 Hex-encoded MD5 digest
 
@@ -416,7 +416,7 @@ Hex-encoded MD5 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function md5_number_lower64(<string>) returns binary
+function md5_number_lower64(&lt;string&gt;) returns binary
 ```
 
 
@@ -424,7 +424,7 @@ function md5_number_lower64(<string>) returns binary
 [🔗 Official Documentation](#)
 
 ```sql
-function md5_number_upper64(<string>) returns binary
+function md5_number_upper64(&lt;string&gt;) returns binary
 ```
 
 
@@ -432,12 +432,12 @@ function md5_number_upper64(<string>) returns binary
 [🔗 Official Documentation](#)
 
 ```sql
-function octet_length(<varchar>) returns decimal(38, 0)
+function octet_length(&lt;varchar&gt;) returns decimal(38, 0)
 ```
 Returns the length of the string in bytes
 
 ```sql
-function octet_length(<binary>) returns decimal(38, 0)
+function octet_length(&lt;binary&gt;) returns decimal(38, 0)
 ```
 Returns the length of the string in bytes
 
@@ -445,12 +445,12 @@ Returns the length of the string in bytes
 [🔗 Official Documentation](#)
 
 ```sql
-function parse_ip(<varchar, varchar>) returns object
+function parse_ip(&lt;varchar, varchar&gt;) returns object
 ```
 Returns an object with all the components of the IP
 
 ```sql
-function parse_ip(<varchar, varchar, decimal(38, 0)>) returns object
+function parse_ip(&lt;varchar, varchar, decimal(38, 0)&gt;) returns object
 ```
 Returns an object with all the components of the IP
 
@@ -458,12 +458,12 @@ Returns an object with all the components of the IP
 [🔗 Official Documentation](#)
 
 ```sql
-function parse_url(<varchar>) returns object
+function parse_url(&lt;varchar&gt;) returns object
 ```
 Returns an object with all the components of the URL
 
 ```sql
-function parse_url(<varchar, decimal(38, 0)>) returns object
+function parse_url(&lt;varchar, decimal(38, 0)&gt;) returns object
 ```
 Returns an object with all the components of the URL
 
@@ -471,22 +471,22 @@ Returns an object with all the components of the URL
 [🔗 Official Documentation](#)
 
 ```sql
-function position(<varchar, varchar>) returns decimal(38, 0)
+function position(&lt;varchar, varchar&gt;) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function position(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
+function position(&lt;varchar, varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function position(<binary, binary>) returns decimal(38, 0)
+function position(&lt;binary, binary&gt;) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function position(<binary, binary, decimal(38, 0)>) returns decimal(38, 0)
+function position(&lt;binary, binary, decimal(38, 0)&gt;) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
@@ -494,7 +494,7 @@ Returns the position of the needle in the haystack, optionally from a given inde
 [🔗 Official Documentation](#)
 
 ```sql
-function repeat(<varchar, decimal(38, 0)>) returns varchar
+function repeat(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Returns the input string repeated N times
 
@@ -502,12 +502,12 @@ Returns the input string repeated N times
 [🔗 Official Documentation](#)
 
 ```sql
-function replace(<varchar, varchar>) returns varchar
+function replace(&lt;varchar, varchar&gt;) returns varchar
 ```
 replaces all occurrences of searched substring in subject with a replacement
 
 ```sql
-function replace(<varchar, varchar, varchar>) returns varchar
+function replace(&lt;varchar, varchar, varchar&gt;) returns varchar
 ```
 replaces all occurrences of searched substring in subject with a replacement
 
@@ -515,12 +515,12 @@ replaces all occurrences of searched substring in subject with a replacement
 [🔗 Official Documentation](#)
 
 ```sql
-function reverse(<varchar>) returns varchar
+function reverse(&lt;varchar&gt;) returns varchar
 ```
 return string with character order reversed
 
 ```sql
-function reverse(<binary>) returns binary
+function reverse(&lt;binary&gt;) returns binary
 ```
 return string with character order reversed
 
@@ -528,7 +528,7 @@ return string with character order reversed
 [🔗 Official Documentation](#)
 
 ```sql
-function right(<varchar, decimal(38, 0)>) returns varchar
+function right(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Returns rightmost N characters of the input string
 
@@ -536,17 +536,17 @@ Returns rightmost N characters of the input string
 [🔗 Official Documentation](#)
 
 ```sql
-function rpad(<varchar, decimal(38, 0)>) returns varchar
+function rpad(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 padded result string
 
 ```sql
-function rpad(<varchar, decimal(38, 0), varchar>) returns varchar
+function rpad(&lt;varchar, decimal(38, 0), varchar&gt;) returns varchar
 ```
 padded result string
 
 ```sql
-function rpad(<binary, decimal(38, 0), binary>) returns binary
+function rpad(&lt;binary, decimal(38, 0), binary&gt;) returns binary
 ```
 padded result string
 
@@ -554,12 +554,12 @@ padded result string
 [🔗 Official Documentation](#)
 
 ```sql
-function rtrim(<varchar>) returns varchar
+function rtrim(&lt;varchar&gt;) returns varchar
 ```
 return string trimmed from right
 
 ```sql
-function rtrim(<varchar, varchar>) returns varchar
+function rtrim(&lt;varchar, varchar&gt;) returns varchar
 ```
 return string trimmed from right
 
@@ -567,7 +567,7 @@ return string trimmed from right
 [🔗 Official Documentation](#)
 
 ```sql
-function rtrimmed_length(<varchar>) returns varchar
+function rtrimmed_length(&lt;varchar&gt;) returns varchar
 ```
 Returns the length of the input string without trailing blanks
 
@@ -575,12 +575,12 @@ Returns the length of the input string without trailing blanks
 [🔗 Official Documentation](#)
 
 ```sql
-function sha1(<varchar>) returns varchar
+function sha1(&lt;varchar&gt;) returns varchar
 ```
 Hex-encoded SHA1 digest
 
 ```sql
-function sha1(<binary>) returns varchar
+function sha1(&lt;binary&gt;) returns varchar
 ```
 Hex-encoded SHA1 digest
 
@@ -588,12 +588,12 @@ Hex-encoded SHA1 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function sha1_binary(<varchar>) returns binary
+function sha1_binary(&lt;varchar&gt;) returns binary
 ```
 Binary SHA1 digest
 
 ```sql
-function sha1_binary(<binary>) returns binary
+function sha1_binary(&lt;binary&gt;) returns binary
 ```
 Binary SHA1 digest
 
@@ -601,12 +601,12 @@ Binary SHA1 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function sha1_hex(<varchar>) returns varchar
+function sha1_hex(&lt;varchar&gt;) returns varchar
 ```
 Hex-encoded SHA1 digest
 
 ```sql
-function sha1_hex(<binary>) returns varchar
+function sha1_hex(&lt;binary&gt;) returns varchar
 ```
 Hex-encoded SHA1 digest
 
@@ -614,22 +614,22 @@ Hex-encoded SHA1 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function sha2(<varchar>) returns varchar
+function sha2(&lt;varchar&gt;) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2(<varchar, decimal(38, 0)>) returns varchar
+function sha2(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2(<binary>) returns varchar
+function sha2(&lt;binary&gt;) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2(<binary, decimal(38, 0)>) returns varchar
+function sha2(&lt;binary, decimal(38, 0)&gt;) returns varchar
 ```
 Hex-encoded SHA2 digest
 
@@ -637,22 +637,22 @@ Hex-encoded SHA2 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function sha2_binary(<varchar>) returns binary
+function sha2_binary(&lt;varchar&gt;) returns binary
 ```
 Binary SHA2 digest
 
 ```sql
-function sha2_binary(<varchar, decimal(38, 0)>) returns binary
+function sha2_binary(&lt;varchar, decimal(38, 0)&gt;) returns binary
 ```
 Binary SHA2 digest
 
 ```sql
-function sha2_binary(<binary>) returns binary
+function sha2_binary(&lt;binary&gt;) returns binary
 ```
 Binary SHA2 digest
 
 ```sql
-function sha2_binary(<binary, decimal(38, 0)>) returns binary
+function sha2_binary(&lt;binary, decimal(38, 0)&gt;) returns binary
 ```
 Binary SHA2 digest
 
@@ -660,22 +660,22 @@ Binary SHA2 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function sha2_hex(<varchar>) returns varchar
+function sha2_hex(&lt;varchar&gt;) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2_hex(<varchar, decimal(38, 0)>) returns varchar
+function sha2_hex(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2_hex(<binary>) returns varchar
+function sha2_hex(&lt;binary&gt;) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2_hex(<binary, decimal(38, 0)>) returns varchar
+function sha2_hex(&lt;binary, decimal(38, 0)&gt;) returns varchar
 ```
 Hex-encoded SHA2 digest
 
@@ -683,7 +683,7 @@ Hex-encoded SHA2 digest
 [🔗 Official Documentation](#)
 
 ```sql
-function soundex(<varchar>) returns varchar
+function soundex(&lt;varchar&gt;) returns varchar
 ```
 soundex encoding of string
 
@@ -691,7 +691,7 @@ soundex encoding of string
 [🔗 Official Documentation](#)
 
 ```sql
-function soundex_p123(<varchar>) returns varchar
+function soundex_p123(&lt;varchar&gt;) returns varchar
 ```
 soundex_p123 encoding of string
 
@@ -699,7 +699,7 @@ soundex_p123 encoding of string
 [🔗 Official Documentation](#)
 
 ```sql
-function space(<decimal(38, 0)>) returns varchar
+function space(&lt;decimal(38, 0)&gt;) returns varchar
 ```
 N spaces
 
@@ -707,7 +707,7 @@ N spaces
 [🔗 Official Documentation](#)
 
 ```sql
-function split(<varchar, varchar>) returns array
+function split(&lt;varchar, varchar&gt;) returns array
 ```
 return split string as array
 
@@ -715,7 +715,7 @@ return split string as array
 [🔗 Official Documentation](#)
 
 ```sql
-function split_part(<varchar, varchar, decimal(38, 0)>) returns varchar
+function split_part(&lt;varchar, varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Splits a string with a delimiter and returns the requested part
 
@@ -723,7 +723,7 @@ Splits a string with a delimiter and returns the requested part
 [🔗 Official Documentation](#)
 
 ```sql
-function split_to_table(<string, string>) returns struct<seq int, index int, value string>
+function split_to_table(&lt;string, string&gt;) returns struct&lt;seq int, index int, value string&gt;
 ```
 
 
@@ -731,12 +731,12 @@ function split_to_table(<string, string>) returns struct<seq int, index int, val
 [🔗 Official Documentation](#)
 
 ```sql
-function startswith(<varchar, varchar>) returns boolean
+function startswith(&lt;varchar, varchar&gt;) returns boolean
 ```
 returns TRUE if arg1 starts with arg2
 
 ```sql
-function startswith(<binary, binary>) returns boolean
+function startswith(&lt;binary, binary&gt;) returns boolean
 ```
 returns TRUE if arg1 starts with arg2
 
@@ -744,17 +744,17 @@ returns TRUE if arg1 starts with arg2
 [🔗 Official Documentation](#)
 
 ```sql
-function strtok(<varchar>) returns varchar
+function strtok(&lt;varchar&gt;) returns varchar
 ```
 Tokenizes a string with a delimiter and returns the requested part
 
 ```sql
-function strtok(<varchar, varchar>) returns varchar
+function strtok(&lt;varchar, varchar&gt;) returns varchar
 ```
 Tokenizes a string with a delimiter and returns the requested part
 
 ```sql
-function strtok(<varchar, varchar, decimal(38, 0)>) returns varchar
+function strtok(&lt;varchar, varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Tokenizes a string with a delimiter and returns the requested part
 
@@ -762,7 +762,7 @@ Tokenizes a string with a delimiter and returns the requested part
 [🔗 Official Documentation](#)
 
 ```sql
-function strtok_split_to_table(string, ...) returns struct<seq int, index int, value string>
+function strtok_split_to_table(string, ...) returns struct&lt;seq int, index int, value string&gt;
 ```
 
 
@@ -770,12 +770,12 @@ function strtok_split_to_table(string, ...) returns struct<seq int, index int, v
 [🔗 Official Documentation](#)
 
 ```sql
-function strtok_to_array(<varchar>) returns array
+function strtok_to_array(&lt;varchar&gt;) returns array
 ```
 Return tokenized string as array
 
 ```sql
-function strtok_to_array(<varchar, varchar>) returns array
+function strtok_to_array(&lt;varchar, varchar&gt;) returns array
 ```
 Return tokenized string as array
 
@@ -783,22 +783,22 @@ Return tokenized string as array
 [🔗 Official Documentation](#)
 
 ```sql
-function substr(<varchar, decimal(38, 0)>) returns varchar
+function substr(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Returns string fragment of the input string
 
 ```sql
-function substr(<varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
+function substr(&lt;varchar, decimal(38, 0), decimal(38, 0)&gt;) returns varchar
 ```
 Returns string fragment of the input string
 
 ```sql
-function substr(<binary, decimal(38, 0)>) returns binary
+function substr(&lt;binary, decimal(38, 0)&gt;) returns binary
 ```
 Returns string fragment of the input string
 
 ```sql
-function substr(<binary, decimal(38, 0), decimal(38, 0)>) returns binary
+function substr(&lt;binary, decimal(38, 0), decimal(38, 0)&gt;) returns binary
 ```
 Returns string fragment of the input string
 
@@ -806,22 +806,22 @@ Returns string fragment of the input string
 [🔗 Official Documentation](#)
 
 ```sql
-function substring(<varchar, decimal(38, 0)>) returns varchar
+function substring(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 ```
 Returns string fragment of the input string
 
 ```sql
-function substring(<varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
+function substring(&lt;varchar, decimal(38, 0), decimal(38, 0)&gt;) returns varchar
 ```
 Returns string fragment of the input string
 
 ```sql
-function substring(<binary, decimal(38, 0)>) returns binary
+function substring(&lt;binary, decimal(38, 0)&gt;) returns binary
 ```
 Returns string fragment of the input string
 
 ```sql
-function substring(<binary, decimal(38, 0), decimal(38, 0)>) returns binary
+function substring(&lt;binary, decimal(38, 0), decimal(38, 0)&gt;) returns binary
 ```
 Returns string fragment of the input string
 
@@ -829,7 +829,7 @@ Returns string fragment of the input string
 [🔗 Official Documentation](#)
 
 ```sql
-function translate(<varchar, varchar, varchar>) returns varchar
+function translate(&lt;varchar, varchar, varchar&gt;) returns varchar
 ```
 replaces all occurences of each character of the source alphabet in the subject with the corresponding character in the target alphabet
 
@@ -837,12 +837,12 @@ replaces all occurences of each character of the source alphabet in the subject 
 [🔗 Official Documentation](#)
 
 ```sql
-function trim(<varchar>) returns varchar
+function trim(&lt;varchar&gt;) returns varchar
 ```
 return string trimmed from both sides
 
 ```sql
-function trim(<varchar, varchar>) returns varchar
+function trim(&lt;varchar, varchar&gt;) returns varchar
 ```
 return string trimmed from both sides
 
@@ -850,12 +850,12 @@ return string trimmed from both sides
 [🔗 Official Documentation](#)
 
 ```sql
-function try_base64_decode_binary(<varchar>) returns binary
+function try_base64_decode_binary(&lt;varchar&gt;) returns binary
 ```
 return decoded binary
 
 ```sql
-function try_base64_decode_binary(<varchar, varchar>) returns binary
+function try_base64_decode_binary(&lt;varchar, varchar&gt;) returns binary
 ```
 return decoded binary
 
@@ -863,12 +863,12 @@ return decoded binary
 [🔗 Official Documentation](#)
 
 ```sql
-function try_base64_decode_string(<varchar>) returns varchar
+function try_base64_decode_string(&lt;varchar&gt;) returns varchar
 ```
 return decoded string
 
 ```sql
-function try_base64_decode_string(<varchar, varchar>) returns varchar
+function try_base64_decode_string(&lt;varchar, varchar&gt;) returns varchar
 ```
 return decoded string
 
@@ -876,7 +876,7 @@ return decoded string
 [🔗 Official Documentation](#)
 
 ```sql
-function try_hex_decode_binary(<varchar>) returns binary
+function try_hex_decode_binary(&lt;varchar&gt;) returns binary
 ```
 return decoded binary
 
@@ -884,7 +884,7 @@ return decoded binary
 [🔗 Official Documentation](#)
 
 ```sql
-function try_hex_decode_string(<varchar>) returns varchar
+function try_hex_decode_string(&lt;varchar&gt;) returns varchar
 ```
 return decoded string
 
@@ -892,7 +892,7 @@ return decoded string
 [🔗 Official Documentation](#)
 
 ```sql
-function unicode(<varchar>) returns decimal(38, 0)
+function unicode(&lt;varchar&gt;) returns decimal(38, 0)
 ```
 Returns the Unicode code point of the first character of the string
 
@@ -900,7 +900,7 @@ Returns the Unicode code point of the first character of the string
 [🔗 Official Documentation](#)
 
 ```sql
-function upper(<varchar>) returns varchar
+function upper(&lt;varchar&gt;) returns varchar
 ```
 return string with all characters in uppercase
 
@@ -908,14 +908,14 @@ return string with all characters in uppercase
 [🔗 Official Documentation](#)
 
 ```sql
-function uuid_string(<>) returns varchar
+function uuid_string(&lt;&gt;) returns varchar
 ```
 Returns a pseudo-randomly generated (version 4) UUID.
 
 ```sql
-function uuid_string(<varchar, varchar>) returns varchar
+function uuid_string(&lt;varchar, varchar&gt;) returns varchar
 ```
 Returns a pseudo-randomly generated (version 4) UUID.
 
-   Finished man in 0.271 secs
+   Finished man in 0.207 secs
 

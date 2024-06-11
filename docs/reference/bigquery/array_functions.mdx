@@ -6,18 +6,18 @@ title: "Array Functions"
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_concat)
 
 ```sql
-function array_concat(array<$1>, ...) returns array<$1>
+function array_concat(array&lt;$1&gt;, ...) returns array&lt;$1&gt;
 ```
 
 
 ```sql example.sql
-SELECT ARRAY_CONCAT([1, 2], [3, 4], [5, 6]) as count_to_six; -- value '[1,2,3,4,5,6]' 
+SELECT ARRAY_CONCAT([1, 2], [3, 4], [5, 6]) as count_to_six; -- value &#39;[1,2,3,4,5,6]&#39; 
 ```
 ## `array_length`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_length)
 
 ```sql
-function array_length(<array<$1>>) returns bigint
+function array_length(&lt;array&lt;$1&gt;&gt;) returns bigint
 ```
 
 
@@ -25,7 +25,7 @@ function array_length(<array<$1>>) returns bigint
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_reverse)
 
 ```sql
-function array_reverse(<array<$1>>) returns array<$1>
+function array_reverse(&lt;array&lt;$1&gt;&gt;) returns array&lt;$1&gt;
 ```
 
 
@@ -33,12 +33,12 @@ function array_reverse(<array<$1>>) returns array<$1>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_to_string)
 
 ```sql
-function array_to_string(<array<$1>, string>) returns string
+function array_to_string(&lt;array&lt;$1&gt;, string&gt;) returns string
 ```
 
 
 ```sql
-function array_to_string(<array<$1>, string, string>) returns string
+function array_to_string(&lt;array&lt;$1&gt;, string, string&gt;) returns string
 ```
 
 
@@ -46,13 +46,13 @@ function array_to_string(<array<$1>, string, string>) returns string
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_array)
 
 ```sql
-function generate_array<$1> (<$1, $1>) returns array<int>
+function generate_array&lt;$1&gt; (&lt;$1, $1&gt;) returns array&lt;int&gt;
 	where $1 in (bigint, double)
 ```
 
 
 ```sql
-function generate_array<$1> (<$1, $1, $1>) returns array<int>
+function generate_array&lt;$1&gt; (&lt;$1, $1, $1&gt;) returns array&lt;int&gt;
 	where $1 in (bigint, double)
 ```
 
@@ -61,12 +61,12 @@ function generate_array<$1> (<$1, $1, $1>) returns array<int>
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_date_array)
 
 ```sql
-function generate_date_array(<date, date>) returns array[date]
+function generate_date_array(&lt;date, date&gt;) returns array&lt;date&gt;
 ```
 
 
 ```sql
-function generate_date_array(<date, date, interval>) returns array[date]
+function generate_date_array(&lt;date, date, interval&gt;) returns array&lt;date&gt;
 ```
 
 
@@ -74,11 +74,11 @@ function generate_date_array(<date, date, interval>) returns array[date]
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_timestamp_array)
 
 ```sql
-function generate_timestamp_array<$1, $2> (<$1, $2, interval>) returns array<timestamp>
+function generate_timestamp_array&lt;$1, $2&gt; (&lt;$1, $2, interval&gt;) returns array&lt;timestamp&gt;
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
 
 
-   Finished man in 0.203 secs
+   Finished man in 0.182 secs
 
