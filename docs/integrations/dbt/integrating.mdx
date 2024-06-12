@@ -195,20 +195,22 @@ This command will initialize the SDF workspace for your DBT project. It will cre
 ```shell
 sdf dbt init
 ```
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Initialize a sdf workspace from a dbt project -- best effort
 
 Usage: sdf dbt init [OPTIONS]
 
 Options:
-      --target <TARGET>                Use this DBT target over the default target in profiles.yml
-      --profiles-dir <PROFILES_DIR>    Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
-      --workspace-dir <WORKSPACE_DIR>  Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
+      --target &lt;TARGET&gt;                Use this DBT target over the default target in profiles.yml
+      --profiles-dir &lt;PROFILES_DIR&gt;    Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+      --workspace-dir &lt;WORKSPACE_DIR&gt;  Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
   -s, --save                           Save and overwrite the workspace file
-  -c, --config <CONFIG>                Supply a config yml file or provide config as yml string e.g. '{key: value}'
+  -c, --config &lt;CONFIG&gt;                Supply a config yml file or provide config as yml string e.g. &#39;&#123;key: value&#125;&#39;
   -h, --help                           Print help
 
-```
+</code>
+</pre>
 
 <Warning>
 	`dbt compile` must be run before running `sdf dbt init`
@@ -220,20 +222,22 @@ This command will refresh the SDF workspace for your DBT project. This is useful
 ```shell
 sdf dbt refresh
 ```
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Re-initialize a sdf workspace from a dbt project -- best effort
 
 Usage: sdf dbt refresh [OPTIONS]
 
 Options:
-      --target <TARGET>                Use this DBT target over the default target in profiles.yml
-      --profiles-dir <PROFILES_DIR>    Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
-      --workspace-dir <WORKSPACE_DIR>  Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
+      --target &lt;TARGET&gt;                Use this DBT target over the default target in profiles.yml
+      --profiles-dir &lt;PROFILES_DIR&gt;    Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
+      --workspace-dir &lt;WORKSPACE_DIR&gt;  Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
   -s, --save                           Save and overwrite the workspace file
-  -c, --config <CONFIG>                Supply a config yml file or provide config as yml string e.g. '{key: value}'
+  -c, --config &lt;CONFIG&gt;                Supply a config yml file or provide config as yml string e.g. &#39;&#123;key: value&#125;&#39;
   -h, --help                           Print help
 
-```
+</code>
+</pre>
 
 By default, `sdf dbt refresh` will make changes to your `workspace.sdf.yml` in order to reflect any updates to your DBT project. However, in certain cases when you want to preserve things like comments in your `workspace.sdf.yml` file, for this you can use the `--no-save` flag.
 This will output the changes to the `workspace.sdf.yml` file to the console, but not save them to the file.

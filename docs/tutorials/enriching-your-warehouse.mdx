@@ -104,7 +104,8 @@ Init for run commands:
         sdf compile dim_marketing_campaigns --show result
         ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 
 Schema moms_flower_shop.pub.dim_marketing_campaigns
 ┌───────────────────────────────┬───────────┬─────────────┬─────────────┐
@@ -117,7 +118,8 @@ Schema moms_flower_shop.pub.dim_marketing_campaigns
 │ install_duration_ratio        ┆ bigint    ┆ EVENT.inapp ┆             │
 └───────────────────────────────┴───────────┴─────────────┴─────────────┘
 
-        ```
+</code>
+</pre>
 
         Further more, we can see that `app_installs` inherited both `EVENT.inapp`
         and `EVENT.marketing`. This is due to the incorrect `JOIN` we found.
@@ -125,7 +127,8 @@ Schema moms_flower_shop.pub.dim_marketing_campaigns
         ```shell 
         sdf compile app_installs --show result
         ```
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 
 Schema moms_flower_shop.pub.app_installs
        This table is a staging table which adds campaign information to app install events
@@ -143,7 +146,8 @@ Schema moms_flower_shop.pub.app_installs
 │ campaign_type ┆ varchar      ┆                             ┆             │
 └───────────────┴──────────────┴─────────────────────────────┴─────────────┘
 
-        ```
+</code>
+</pre>
 
         </Step>
         <Step title="Set Up Guardrails">
@@ -171,7 +175,8 @@ Schema moms_flower_shop.pub.app_installs
             ```
             This check will fail because `app_installs` still has an 
             incorrect `JOIN`. 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
 [Fail] Check moms_flower_shop.pub.mixed_event_ids
 +--------------+-------------+--------------------------------+
 | table_name   | column name | classifiers                    |
@@ -180,7 +185,8 @@ Schema moms_flower_shop.pub.app_installs
 +--------------+-------------+--------------------------------+
 1 rows.
 
-            ```
+</code>
+</pre>
         </Step>
 </Steps>
 
@@ -219,7 +225,8 @@ to monitor your warehouse's health and and compliance.
         ```shell
         sdf compile customers --show result
         ```
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 
 Schema moms_flower_shop.pub.customers
 ┌───────────────┬───────────┬────────────┬─────────────┐
@@ -239,7 +246,8 @@ Schema moms_flower_shop.pub.customers
 │ state         ┆ varchar   ┆            ┆             │
 └───────────────┴───────────┴────────────┴─────────────┘
 
-        ```
+</code>
+</pre>
     </Step>
     <Step title="Retention">
         We can set up table level and column level retention classifiers.
@@ -299,10 +307,11 @@ Schema moms_flower_shop.pub.customers
         
         For example, we can look at the `raw_addresses` output 
         from the first command:
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
 
 Schema moms_flower_shop.pub.raw_addresses
-       All relevant information related to street addresses known to mom's flower shop.  This information comes from the user input into the mobile app.
+       All relevant information related to street addresses known to mom&#39;s flower shop.  This information comes from the user input into the mobile app.
 
        [RETENTION.d7]
 ┌───────────────┬───────────┬────────────┬──────────────────────────────────────────────────────────┐
@@ -317,9 +326,11 @@ Schema moms_flower_shop.pub.raw_addresses
 │ city          ┆ varchar   ┆            ┆ The address US city associated with the address_id       │
 └───────────────┴───────────┴────────────┴──────────────────────────────────────────────────────────┘
 
-        ```
+</code>
+</pre>
         Or `dim_marketing_campaigns` from the second:
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
 
 Schema moms_flower_shop.pub.dim_marketing_campaigns
        [RETENTION.infinity]
@@ -333,7 +344,8 @@ Schema moms_flower_shop.pub.dim_marketing_campaigns
 │ install_duration_ratio        ┆ bigint    ┆ EVENT.inapp ┆             │
 └───────────────────────────────┴───────────┴─────────────┴─────────────┘
 
-        ```
+</code>
+</pre>
     </Step>
     <Step title="Reports">
         To learn more on how to generate reports of warehouse health, see

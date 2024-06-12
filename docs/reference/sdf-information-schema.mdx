@@ -89,52 +89,54 @@ The information schema tables have the following schemas.
 ### Information Schema DDLs
 Below are the DDLs representing these tables in SQL.
 
-``` sql
+<pre style={{ fontFamily: 'monospace' }} className='language-sql'>
+<code className='language-sql'>
 --information_schemas.sql
 
 CREATE TABLE sdf.information_schema.tables(
-    "table_id" varchar not null,
-    "catalog_name" varchar not null,
-    "schema_name" varchar not null,
-    "table_name" varchar not null,
-    "depends_on" array<varchar>,
-    "depended_on_by" array<varchar>,
-    "description" varchar,
-    "dialect" varchar not null,
-    "materialization" varchar,
-    "purpose" varchar,
-    "classifiers" array<varchar>,
-    "source_locations" array<varchar>
+    &quot;table_id&quot; varchar not null,
+    &quot;catalog_name&quot; varchar not null,
+    &quot;schema_name&quot; varchar not null,
+    &quot;table_name&quot; varchar not null,
+    &quot;depends_on&quot; array&lt;varchar&gt;,
+    &quot;depended_on_by&quot; array&lt;varchar&gt;,
+    &quot;description&quot; varchar,
+    &quot;dialect&quot; varchar not null,
+    &quot;materialization&quot; varchar,
+    &quot;purpose&quot; varchar,
+    &quot;classifiers&quot; array&lt;varchar&gt;,
+    &quot;source_locations&quot; array&lt;varchar&gt;
 );
 
 CREATE TABLE sdf.information_schema.columns(
-    "table_id" varchar not null,
-    "catalog_name" varchar not null,
-    "schema_name" varchar not null,
-    "table_name" varchar not null,
-    "depends_on" array<varchar>,
-    "depended_on_by" array<varchar>,
-    "description" varchar,
-    "dialect" varchar not null,
-    "materialization" varchar,
-    "purpose" varchar,
-    "classifiers" array<varchar>,
-    "source_locations" array<varchar>
+    &quot;table_id&quot; varchar not null,
+    &quot;catalog_name&quot; varchar not null,
+    &quot;schema_name&quot; varchar not null,
+    &quot;table_name&quot; varchar not null,
+    &quot;depends_on&quot; array&lt;varchar&gt;,
+    &quot;depended_on_by&quot; array&lt;varchar&gt;,
+    &quot;description&quot; varchar,
+    &quot;dialect&quot; varchar not null,
+    &quot;materialization&quot; varchar,
+    &quot;purpose&quot; varchar,
+    &quot;classifiers&quot; array&lt;varchar&gt;,
+    &quot;source_locations&quot; array&lt;varchar&gt;
 );
 
 CREATE TABLE sdf.information_schema.table_lineage(
-    "from_table_id" varchar,
-    "to_table_id" varchar,
-    "lineage_kind" varchar
+    &quot;from_table_id&quot; varchar,
+    &quot;to_table_id&quot; varchar,
+    &quot;lineage_kind&quot; varchar
 );
 
 CREATE TABLE sdf.information_schema.column_lineage(
-    "from_table_id" varchar,
-    "from_column_id" varchar,
-    "to_table_id" varchar,
-    "to_column_id" varchar,
-    "lineage_kind" varchar
+    &quot;from_table_id&quot; varchar,
+    &quot;from_column_id&quot; varchar,
+    &quot;to_table_id&quot; varchar,
+    &quot;to_column_id&quot; varchar,
+    &quot;lineage_kind&quot; varchar
 );
 
 
-```
+</code>
+</pre>

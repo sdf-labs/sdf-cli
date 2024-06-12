@@ -35,7 +35,8 @@ Init for run commands:
         sdf lineage dim_marketing_campaigns --column total_num_installs
         ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 dim_marketing_campaigns.total_num_installs
 │
 │ copy
@@ -55,7 +56,8 @@ dim_marketing_campaigns.total_num_installs
                             raw_inapp_events.event_id
                      raw_marketing_campaign_events.event_id
 
-        ```
+</code>
+</pre>
  
         Now we can pinpoint exactly which models we need to check. Out of the entire warehouse, we only need to check 3 models!
  
@@ -100,7 +102,8 @@ dim_marketing_campaigns.total_num_installs
         sdf lineage customers --column campaign_id
         ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
 customers.campaign_id
 │
 │ copy
@@ -111,7 +114,8 @@ customers.campaign_id
        └──────┐
               raw_marketing_campaign_events.campaign_id
 
-        ```
+</code>
+</pre>
 
         <Tip>
         **Aha #2!** There's a V2 version of `app_installs` -- `app_installs_v2`
@@ -139,14 +143,16 @@ customers.campaign_id
 
         We expect to see a successful run:
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 12 model files, 8 .sdf files
   Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
   Compiling moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 12 models [3 succeeded, 9 reused] in 0.817 secs
+   Finished 12 models [3 succeeded, 9 reused] in 0.635 secs
 
-        ```
+</code>
+</pre>
 
         Next, we can look at all the tables and columns this change will impact. If we add the 
         flag `--forward` to the lineage command, we will see the lineage of each column of 
@@ -158,7 +164,8 @@ Working set 12 model files, 8 .sdf files
         ```
 
         It should look like this:
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Table: stg_installs_per_campaign
 
 stg_installs_per_campaign.campaign_id
@@ -174,7 +181,8 @@ stg_installs_per_campaign.total_num_installs
        dim_marketing_campaigns.install_duration_ratio
 
 
-        ```
+</code>
+</pre>
 
         Only our new model will be impacted.
     </Step>
@@ -236,11 +244,13 @@ Notice how quickly you get the response!
 
         The run will fail and the error message will look like this:
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
 error: SDF227: No column 'non_existing_column' found, available are 'app_installs.install_time', 'app_installs.campaign_name', 'app_installs.campaign_type', 'app_installs.campaign_id', 'app_installs.customer_id', ...
   --> models/staging/stg_installs_per_campaign.sql:2:5
 
-        ```
+</code>
+</pre>
 
         <Tip>
             If you are using Visual Studio Code, you can easily click into the error location
@@ -272,11 +282,13 @@ error: SDF227: No column 'non_existing_column' found, available are 'app_install
 
         The run will fail and the error message will look like this:
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
 error: SDF209: Function ABS arguments do not match, actual varchar, candidates tinyint; smallint; bigint; double; decimal(p, s); real
   --> models/staging/stg_installs_per_campaign.sql:2:5
 
-        ```
+</code>
+</pre>
     </Step>
     <Step title="Error: Un-aggregated columns in aggregation context">
         We can even try some more complicated logic. 
@@ -297,11 +309,13 @@ error: SDF209: Function ABS arguments do not match, actual varchar, candidates t
         ```
         
         The run will fail and the error message will look like this:
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
 error: SDF209: Function ABS arguments do not match, actual varchar, candidates tinyint; smallint; bigint; double; decimal(p, s); real
   --> models/staging/stg_installs_per_campaign.sql:2:5
 
-        ```
+</code>
+</pre>
     </Step>
     <Step title="Try it Yourself">
         What is that one syntax mistake you always forget about until you see that 

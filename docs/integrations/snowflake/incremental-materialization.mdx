@@ -45,11 +45,12 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
         ```
 
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 3 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.856 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.076 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -58,7 +59,8 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 │ domain_id   ┆ varchar   ┆            ┆             │
 └─────────────┴───────────┴────────────┴─────────────┘
 
-        ```
+</code>
+</pre>
 
         <Warning>
             If you do not see a successful compilation, please ensure you've:
@@ -120,12 +122,13 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
       sdf compile sdf_snowflake.staging.datafusion_push_events
       ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 4 model files, 1 .sdf file
 Downloading sdf_snowflake.staging.datafusion_push_events (exists_remotely)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 3.822 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 3.035 secs
 
 Schema sdf_snowflake.staging.datafusion_push_events
 ┌────────────────────────────────┬────────────────┬────────────┬─────────────┐
@@ -204,7 +207,8 @@ Schema sdf_snowflake.staging.datafusion_push_events
 │ language                       ┆ varchar        ┆            ┆             │
 └────────────────────────────────┴────────────────┴────────────┴─────────────┘
 
-      ```
+</code>
+</pre>
 
       Before running our new incremental model, let's inspect the compiled query output to see what exactly will be run against Snowflake. To do so, open up the file `.sdfcache/dbg/compiled-queries/sdf_snowflake/staging/datafusion_push_events.sql` and inspect the SQL query.
 
@@ -343,14 +347,15 @@ Schema sdf_snowflake.staging.datafusion_push_events
     sdf compile src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql
     ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 5 model files, 1 .sdf file
-Downloading sdf_snowflake.staging.github_push_events (exists_remotely)
 Downloading sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (exists_remotely)
+Downloading sdf_snowflake.staging.github_push_events (exists_remotely)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.datafusion_push_events (./src/sdf_snowflake/staging/datafusion_push_events.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors (./src/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql)
-   Finished 3 models [2 succeeded, 1 downloaded] in 3.753 secs
+   Finished 3 models [2 succeeded, 1 downloaded] in 3.173 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
 ┌─────────────────────┬────────────────┬────────────┬─────────────┐
@@ -361,7 +366,8 @@ Schema sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors
 │ contribution_count  ┆ decimal(38, 0) ┆            ┆             │
 └─────────────────────┴────────────────┴────────────┴─────────────┘
 
-    ```
+</code>
+</pre>
 
     Before running the model, let's inspect the compiled query output to see what exactly will be run against Snowflake. To do so, open up the file `.sdfcache/dbg/compiled-queries/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql` and inspect the SQL query.
 

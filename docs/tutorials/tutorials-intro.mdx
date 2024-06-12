@@ -43,7 +43,8 @@ For the sake of the tutorials, there is no need to connect to a database or to l
     ```
 
     After running the command, you will see the following output: 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 
                    _
                  _(_)_                          wWWWw   _
@@ -83,9 +84,10 @@ For the sake of the tutorials, there is no need to connect to a database or to l
     Created moms_flower_shop/seeds/parquet/inapp_events.parquet
     Created moms_flower_shop/seeds/parquet/marketing_campaign_events.parquet
     Created moms_flower_shop/workspace.sdf.yml
-   Finished new in 0.321 secs
+   Finished new in 0.213 secs
 
-    ```
+</code>
+</pre>
 
     That's it!
   </Step>
@@ -102,7 +104,8 @@ For the sake of the tutorials, there is no need to connect to a database or to l
     ls
     ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 checks
 classifications
 metadata
@@ -110,7 +113,8 @@ models
 seeds
 workspace.sdf.yml
 
-    ```
+</code>
+</pre>
 
     * Raw data seeds are available in the `seeds` folder. 
     * Models (SQL files) are available in the `models` folder.
@@ -139,7 +143,8 @@ workspace.sdf.yml
 
     For example, the results for `raw_customers` look like this:
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 
 Schema moms_flower_shop.pub.raw_customers
        All relevant information related to customers known to mom s flower shop.  This information comes from the user input into the mobile app.
@@ -155,7 +160,8 @@ Schema moms_flower_shop.pub.raw_customers
 │ address_id  ┆ bigint    ┆            ┆ The address_id of the address associated with the customer │
 └─────────────┴───────────┴────────────┴────────────────────────────────────────────────────────────┘
 
-    ```
+</code>
+</pre>
 
     We can also get a sample of each table if we run the command:
     ```shell
@@ -164,7 +170,8 @@ Schema moms_flower_shop.pub.raw_customers
     
     For example, the results for `raw_customers` look like this:
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 
 Table moms_flower_shop.pub.raw_customers
 +----+------------+-------------+-----------------------------+-------------+------------+
@@ -183,7 +190,8 @@ Table moms_flower_shop.pub.raw_customers
 +----+------------+-------------+-----------------------------+-------------+------------+
 1000 rows, showing only 10 rows. Run with --limit 0 to show all rows.
 
-    ```
+</code>
+</pre>
     ** Note that these files are randomly generated and do not contain any real data
 
     <Tip>
@@ -202,18 +210,20 @@ Table moms_flower_shop.pub.raw_customers
     ```
     
     The output should look like this:
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 11 model files, 8 .sdf files
-  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
   Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
   Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
   Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
-  Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
   Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
+  Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-   Finished 11 models [7 succeeded, 4 reused] in 0.858 secs
+   Finished 11 models [7 succeeded, 4 reused] in 0.643 secs
 
-    ```
+</code>
+</pre>
 
     <Tip>
     SDF intelligently caches previous compilations. Since we compiled the source models 
@@ -231,12 +241,13 @@ Working set 11 model files, 8 .sdf files
     ```
     
     Notice the difference? Imagine running unoptimized compilations on a warehouse of your magnitude.
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 11 model files, 8 .sdf files
+  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
   Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
   Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
   Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
-  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
   Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
   Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
   Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
@@ -244,9 +255,10 @@ Working set 11 model files, 8 .sdf files
   Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
   Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-   Finished 11 models [11 succeeded] in 0.805 secs
+   Finished 11 models [11 succeeded] in 0.636 secs
 
-    ```
+</code>
+</pre>
     
     To see the schema of each table, similarly to the source tables in the previous step, 
     simply add the flag `--show all` to the command:

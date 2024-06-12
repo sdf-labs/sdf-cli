@@ -22,14 +22,16 @@ Let's write and modify a check, starting with one of the sdf samples.
   sdf new --sample hello_with_pii && cd hello_with_pii
   ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
     Created hello_with_pii/.gitignore
     Created hello_with_pii/checks/code_check.sql
     Created hello_with_pii/src/main.sql
     Created hello_with_pii/workspace.sdf.yml
-   Finished new in 0.300 secs
+   Finished new in 0.111 secs
 
-    ```
+</code>
+</pre>
 
     This sample workspace contains a model, and a classifier, and a check. 
 
@@ -60,15 +62,17 @@ Let's write and modify a check, starting with one of the sdf samples.
     Hurray! The check passes.
 
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
 Working set 1 test file, 1 .sdf file
     Testing hello.pub.code_check (./checks/code_check.sql)
-   Finished 1 model [1 succeeded], 1 check [1 passed] in 1.164 secs
+   Finished 1 model [1 succeeded], 1 check [1 passed] in 0.987 secs
 [Pass] Check hello.pub.code_check
 
-    ```
+</code>
+</pre>
 
     But, carefully read the check.
 
@@ -100,12 +104,13 @@ Working set 1 test file, 1 .sdf file
     Running `sdf check` again will **result in a failed test**. The output will look like this:
 
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
 Working set 1 test file, 1 .sdf file
     Testing hello.pub.code_check (./checks/code_check.sql)
-   Finished 1 model [1 succeeded], 1 check [1 failed] in 1.153 secs, for details see below.
+   Finished 1 model [1 succeeded], 1 check [1 failed] in 0.979 secs, for details see below.
 
 [Fail] Check hello.pub.code_check
 +------------+-------------+-------------+
@@ -116,10 +121,11 @@ Working set 1 test file, 1 .sdf file
 1 rows.
 
 -------
-Summary 1 model [1 succeeded], 1 check [1 failed] in 1.153 secs.
+Summary 1 model [1 succeeded], 1 check [1 failed] in 0.979 secs.
 -------
 
-    ```
+</code>
+</pre>
 
   </Step>
 </Steps>
@@ -168,16 +174,18 @@ Let's fix this failing check! We can apply an `md5()` hash to column_2 (the name
 
 
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 2 model files, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
   Compiling hello.pub.sink (./src/sink.sql)
 Working set 1 test file, 1 .sdf file
     Testing hello.pub.code_check (./checks/code_check.sql)
-   Finished 2 models [2 succeeded], 1 check [1 passed] in 1.160 secs
+   Finished 2 models [2 succeeded], 1 check [1 passed] in 0.985 secs
 [Pass] Check hello.pub.code_check
 
-    ``` 
+</code>
+</pre>
 
   </Step>
 </Steps>

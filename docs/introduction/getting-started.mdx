@@ -14,10 +14,11 @@ To verify that SDF is installed correctly, run the following command:
 sdf --help
 ```
 
-``` shell
-SDF's modular SQL
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
+SDF&#39;s modular SQL
 
-Usage: sdf <COMMAND>
+Usage: sdf &lt;COMMAND&gt;
 
 Commands:
   new      Create a new sdf workspace
@@ -41,7 +42,8 @@ Options:
   -h, --help     Print help
   -V, --version  Print version
 
-```
+</code>
+</pre>
 
 ## Creating a Workspace
 
@@ -52,13 +54,15 @@ sdf new --sample hello && cd hello
 ```
 After running the command, you will see the following output: 
  
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.283 secs
+   Finished new in 0.104 secs
 
-```
+</code>
+</pre>
 
 <Tip>
     You can view and modify the source code for all our examples directly in our [GitHub repository](https://github.com/sdf-labs/sdf-docs/tree/main/examples).
@@ -96,10 +100,11 @@ Let's see just how easy it is to set up SDF and run your first query.
         ```
          
         Your output should look like:
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.764 secs
+   Finished 1 model [1 succeeded] in 0.569 secs
 
 Schema hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -109,7 +114,8 @@ Schema hello.pub.main
 │ column_2    ┆ varchar not null ┆            ┆             │
 └─────────────┴──────────────────┴────────────┴─────────────┘
 
-        ```
+</code>
+</pre>
 
         As you can see from the output, SDF has statically analyzed the query and determined there's a single non-nullable column named `column` and it's of type `varchar`. 
         You'll also see an empty `classifier` block in the output. This is for metadata we'll attach to columns, but we'll get to that later.
@@ -122,10 +128,11 @@ Schema hello.pub.main
         ```
 
         Your output should look like:
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 1 model file, 1 .sdf file
     Running hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.731 secs
+   Finished 1 model [1 succeeded] in 0.539 secs
 
 Table hello.pub.main
 +----------+-----------------+
@@ -135,7 +142,8 @@ Table hello.pub.main
 +----------+-----------------+
 1 rows.
 
-        ```
+</code>
+</pre>
     </Step>
     <Step title="Create a New Model">
         Now, create a new file in the source directory called `main2.sql` with the query:
@@ -152,18 +160,20 @@ Table hello.pub.main
         ```
 
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 2 model files, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
   Compiling hello.pub.main2 (./src/main2.sql)
-   Finished 2 models [2 succeeded] in 0.759 secs
+   Finished 2 models [2 succeeded] in 0.567 secs
 main2.column_1
 │
 │ copy
 └──────┐
        main.column_1
 
-        ```
+</code>
+</pre>
     </Step>
 </Steps>
 

@@ -22,7 +22,8 @@ Let's write and modify a report, starting with one of the sdf samples.
     sdf new --sample pii_saas_platform
     ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
     Created pii_saas_platform/.gitignore
     Created pii_saas_platform/checks/no_pii_in_external.sql
     Created pii_saas_platform/classification/taxonomy.sdf.yml
@@ -41,9 +42,10 @@ Let's write and modify a report, starting with one of the sdf samples.
     Created pii_saas_platform/src/internal/users_per_domain.sql
     Created pii_saas_platform/src/internal/users_per_org.sql
     Created pii_saas_platform/workspace.sdf.yml
-   Finished new in 0.299 secs
+   Finished new in 0.111 secs
 
-```
+</code>
+</pre>
     This sample contains a report and a workspace modeled after a simple SAAS platform.
 
     Notice the report in the `reports` directory. This report simply lists all tables with PII. It's configured in the `workspace.sdf.yml` file with [includes type](/reference/sdf-yml#enum-includetype) `report` like so:
@@ -96,11 +98,12 @@ Let's write and modify a report, starting with one of the sdf samples.
     sdf report --show all
     ```
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 12 model files, 3 .sdf files
-  Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
   Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
   Compiling payment.public.users (./ddls/payment/public/users.sql)
+  Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
   Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
   Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
   Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
@@ -112,7 +115,7 @@ Working set 12 model files, 3 .sdf files
   Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 succeeded], 1 report [1 succeeded] in 1.686 secs
+   Finished 12 models [12 succeeded], 1 report [1 succeeded] in 1.526 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+-------------------------+-----------+
@@ -125,7 +128,8 @@ Report sdf.reports.tables_with_pii
 +----------------------------------------------+-------------------------+-----------+
 4 rows.
 
-```
+</code>
+</pre>
 
     As you can see from the output, it looks we have three tables containing columns with PII. Let's say we also wanted to show the names of the columns that contain PII. We can do this by modifying the SQL query to include the column name like so:
     ```sql
@@ -146,27 +150,29 @@ Report sdf.reports.tables_with_pii
     ```shell
     sdf report --show all
     ```
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 12 model files, 3 .sdf files
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 reused], 1 report [1 succeeded] in 1.480 secs
+   Finished 12 models [12 reused], 1 report [1 succeeded] in 1.282 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+
 | table_id                                     | column_name  | description             | dialect   |
 +----------------------------------------------+--------------+-------------------------+-----------+
+| transformations.external.invoice_stats       | email        |                         | snowflake |
 | payment.public.users                         | email        | DDL for the users table | snowflake |
 | payment.public.users                         | phone        | DDL for the users table | snowflake |
 | transformations.internal.users_per_domain    | email_domain |                         | snowflake |
-| transformations.external.invoice_stats       | email        |                         | snowflake |
-| transformations.external.invoice_stats       | name         |                         | snowflake |
 | payment.public.users                         | name         | DDL for the users table | snowflake |
 | transformations.internal.most_frequent_payer | email        |                         | snowflake |
+| transformations.external.invoice_stats       | name         |                         | snowflake |
 +----------------------------------------------+--------------+-------------------------+-----------+
 7 rows.
 
-```
+</code>
+</pre>
   </Step>
   <Step title="Add a New Report">
     Let's say we'd like to extend our analysis a bit but still maintain the original report. We can do this by adding a new report to the `reports` directory. Let's add a new report to find the most frequently used datatypes in columns with PII. We can do this with the following SQL:
@@ -183,19 +189,20 @@ Report sdf.reports.tables_with_pii
     ```
 
 
-``` shell
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
 Working set 12 model files, 3 .sdf files
 Working set 2 report files, 1 .sdf file
   Reporting sdf.reports.pii_datatypes (./reports/pii_datatypes.sql)
-   Finished 12 models [12 reused], 2 reports [1 succeeded, 1 reused] in 1.482 secs
+   Finished 12 models [12 reused], 2 reports [1 succeeded, 1 reused] in 1.289 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+
 | table_id                                     | column_name  | description             | dialect   |
 +----------------------------------------------+--------------+-------------------------+-----------+
+| transformations.external.invoice_stats       | name         |                         | snowflake |
 | payment.public.users                         | name         | DDL for the users table | snowflake |
 | transformations.internal.most_frequent_payer | email        |                         | snowflake |
-| transformations.external.invoice_stats       | name         |                         | snowflake |
 | transformations.external.invoice_stats       | email        |                         | snowflake |
 | payment.public.users                         | email        | DDL for the users table | snowflake |
 | payment.public.users                         | phone        | DDL for the users table | snowflake |
@@ -211,7 +218,8 @@ Report sdf.reports.pii_datatypes
 +----------+-----------+
 1 rows.
 
-    ```
+</code>
+</pre>
   </Step>
   <Step title="Save the Output (Optional)">
     We can save the output of a report to a file by using the `--format` flag. Let's save the output of our reports to a file called `sdf_reports.csv`:
