@@ -97,18 +97,18 @@ Init for run commands:
        
 ``` shell
 Working set 11 model files, 8 .sdf files
-  Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
-  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
   Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
+  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
   Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
-  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+  Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
   Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
-  Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
+  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
   Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
+  Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
   Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
   Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-   Finished 11 models [11 succeeded] in 0.723 secs
+   Finished 11 models [11 succeeded] in 0.838 secs
 
         ```
 
@@ -133,29 +133,29 @@ Working set 11 model files, 8 .sdf files
 
 ``` shell
 Working set 12 model files, 8 .sdf files
-    Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
     Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
-    Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+    Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
     Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+    Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
     Running moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
     Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
     Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 7 models [7 succeeded] in 0.782 secs
+   Finished 7 models [7 succeeded] in 0.889 secs
 
 Table moms_flower_shop.pub.dim_marketing_campaigns
 +-------------+---------------------------------+--------------------+-------------------------------+------------------------+
 | campaign_id | campaign_name                   | total_num_installs | avg_customer_acquisition_cost | install_duration_ratio |
 +-------------+---------------------------------+--------------------+-------------------------------+------------------------+
-| 1           | friends_referrals_1_9b24ce4c65  | 4                  | 415.6705553235069             | 3                      |
-| 2           | google_search_2_1f8ef42073      | 3                  | 262.5668650569566             | 2                      |
-| 75          | facebook_ads_75_bea6eb4c3b      | 3                  | 371.60088106160225            | 3                      |
-| 20          | google_search_20_8905096a23     | 9                  | 235.48052663048566            | 1                      |
-| 22          | friends_referrals_22_69b6886d4a | 6                  | 291.20440851463724            | 2                      |
-| 23          | google_search_23_a1500edff0     | 12                 | 220.80896032244655            | 1                      |
-| 25          | friends_referrals_25_f1a9344085 | 3                  | 699.613728300676              | 5                      |
-| 26          | google_search_26_bb6932ae6d     | 6                  | 452.0241191684092             | 3                      |
-| 29          | google_search_29_11c9b19036     | 1                  | 154.53976255178992            | 1                      |
-| 36          | instagram_ads_36_a3f63248bb     | 5                  | 311.6106039265774             | 2                      |
+| 0           | instagram_ads_0_8c1fdf7cb0      | 3                  | 136.8974896684042             | 1                      |
+| 15          | facebook_ads_15_442d2b459c      | 1                  | 882.3536753287628             | 6                      |
+| 4           | friends_referrals_4_c554b77114  | 7                  | 397.55425986196843            | 2                      |
+| 11          | google_search_11_56e2a09ed5     | 2                  | 554.6412598092293             | 4                      |
+| 9           | instagram_ads_9_2490ca8150      | 1                  | 277.62555970729034            | 2                      |
+| 45          | facebook_ads_45_738dd86962      | 3                  | 400.2270208762939             | 3                      |
+| 13          | friends_referrals_13_c6e177ff0a | 6                  | 274.98824354840355            | 2                      |
+| 17          | google_search_17_a400715565     | 4                  | 551.7313287834124             | 3                      |
+| 27          | instagram_ads_27_51742fd406     | 8                  | 337.24899695415485            | 2                      |
+| 33          | instagram_ads_33_d94e3b0183     | 7                  | 413.2623114737301             | 3                      |
 +-------------+---------------------------------+--------------------+-------------------------------+------------------------+
 114 rows, showing only 10 rows. Run with --limit 0 to show all rows.
 
