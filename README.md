@@ -1,3 +1,5 @@
+<img src="https://cdn.sdf.com/img/data-development-simplified.png">
+
 # SDF
 
 This repo contains documentation, examples, benchmarks, and schemas for [SDF](https://sdf.com). 
