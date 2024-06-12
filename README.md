@@ -48,6 +48,11 @@ This repo is organized as follows:
   - Examples - Contains example SDF projects that demonstrate how to use SDF in practice. These examples are open source and are packaged into the SDF binary. Run `sdf new --sample <sample-name>` to create a workspace locally from one of these examples.
   - Schemas - Contains the JSON schemas for the SDF configuration YML files. These schemas are auto-generated every time the binary is released. They are used to validate the configuration files in the SDF CLI and can be used to power integrations that leverage lineage or metatadata from the SDF compiler artifacts.
 
+## Releases
+
+All SDF releases are reflected in this repo as official releases. You can find the latest release [here](https://github.com/sdf-labs/sdf-docs/releases). And yes, those release notes are begrudgingly reflective of the release notes in our internal repo.
+
+For in-depth release notes, check out the [SDF changelog](https://docs.sdf.com/releases/latest).
 
 ## Contributing
 
