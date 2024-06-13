@@ -4,7 +4,7 @@ title: "System Functions"
 
 
 ## `get_query_operator_stats`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function get_query_operator_stats(&lt;string&gt;) returns struct&lt;query_id string, step_id bigint, operator_id bigint, parent_operators array, operator_type string, operator_statistics variant, execution_time_breakdown variant, operator_attributes variant&gt;
@@ -13,7 +13,7 @@ function get_query_operator_stats(&lt;string&gt;) returns struct&lt;query_id str
 
 
 ## `system$abort_session`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$abort_session(&lt;decimal(38, 0)&gt;) returns varchar
@@ -21,7 +21,7 @@ function system$abort_session(&lt;decimal(38, 0)&gt;) returns varchar
 Abort the specified open session
 
 ## `system$abort_transaction`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$abort_transaction(&lt;decimal(38, 0)&gt;) returns varchar
@@ -29,7 +29,7 @@ function system$abort_transaction(&lt;decimal(38, 0)&gt;) returns varchar
 Abort the specified transaction if it is running. If the transaction is already is committed/rolled back then the state of the transaction is not altered.
 
 ## `system$behavior_change_bundle_status`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$behavior_change_bundle_status(&lt;varchar&gt;) returns varchar
@@ -37,7 +37,7 @@ function system$behavior_change_bundle_status(&lt;varchar&gt;) returns varchar
 returned value
 
 ## `system$cancel_all_queries`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$cancel_all_queries(&lt;&gt;) returns varchar
@@ -50,7 +50,7 @@ function system$cancel_all_queries(&lt;decimal(38, 0)&gt;) returns varchar
 cancel all the queries running in the specified session
 
 ## `system$cancel_query`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$cancel_query(&lt;varchar&gt;) returns varchar
@@ -58,7 +58,7 @@ function system$cancel_query(&lt;varchar&gt;) returns varchar
 cancel the specified running query
 
 ## `system$clustering_depth`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$clustering_depth(varchar, ...) returns double
@@ -76,7 +76,7 @@ function system$clustering_depth(varchar, varchar, varchar, ...) returns double
 Average depth of the table
 
 ## `system$clustering_information`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$clustering_information(varchar, ...) returns varchar
@@ -104,7 +104,7 @@ function system$clustering_information(varchar, decimal(38, 0), ...) returns var
 returns clustering information as json
 
 ## `system$convert_pipes_sqs_to_sns`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$convert_pipes_sqs_to_sns(&lt;varchar, varchar&gt;) returns varchar
@@ -112,7 +112,7 @@ function system$convert_pipes_sqs_to_sns(&lt;varchar, varchar&gt;) returns varch
 returns true if all SQS pipes&#39; metadata based on this bucket are successfully converted to new SNS topic-based pipes.
 
 ## `system$disable_database_replication`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$disable_database_replication(&lt;varchar&gt;) returns varchar
@@ -120,7 +120,7 @@ function system$disable_database_replication(&lt;varchar&gt;) returns varchar
 Returns success/fail message of the operation
 
 ## `system$estimate_query_acceleration`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$estimate_query_acceleration(&lt;varchar&gt;) returns varchar
@@ -128,7 +128,7 @@ function system$estimate_query_acceleration(&lt;varchar&gt;) returns varchar
 estimate query acceleration result
 
 ## `system$estimate_search_optimization_costs`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$estimate_search_optimization_costs(&lt;varchar&gt;) returns varchar
@@ -141,7 +141,7 @@ function system$estimate_search_optimization_costs(&lt;varchar, varchar&gt;) ret
 result: the cost report result for search optimization on the given table
 
 ## `system$explain_json_to_text`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$explain_json_to_text(&lt;varchar&gt;) returns varchar
@@ -149,7 +149,7 @@ function system$explain_json_to_text(&lt;varchar&gt;) returns varchar
 text format explain plan from json
 
 ## `system$explain_plan_json`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$explain_plan_json(&lt;varchar&gt;) returns varchar
@@ -157,7 +157,7 @@ function system$explain_plan_json(&lt;varchar&gt;) returns varchar
 json of the explain plan result
 
 ## `system$external_table_pipe_status`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$external_table_pipe_status(&lt;varchar&gt;) returns varchar
@@ -165,7 +165,7 @@ function system$external_table_pipe_status(&lt;varchar&gt;) returns varchar
 returns pipe status as json
 
 ## `system$generate_saml_csr`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$generate_saml_csr(&lt;&gt;) returns varchar
@@ -173,7 +173,7 @@ function system$generate_saml_csr(&lt;&gt;) returns varchar
 returns the result of the operation.
 
 ## `system$get_aws_sns_iam_policy`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_aws_sns_iam_policy(&lt;varchar&gt;) returns varchar
@@ -181,7 +181,7 @@ function system$get_aws_sns_iam_policy(&lt;varchar&gt;) returns varchar
 returns IAM policy for the SNS topic
 
 ## `system$get_directory_table_status`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_directory_table_status(&lt;&gt;) returns varchar
@@ -194,7 +194,7 @@ function system$get_directory_table_status(&lt;varchar&gt;) returns varchar
 returns the associated directory table status
 
 ## `system$get_iceberg_table_information`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_iceberg_table_information(&lt;varchar&gt;) returns varchar
@@ -217,7 +217,7 @@ function system$get_iceberg_table_information(&lt;decimal(38, 0), decimal(38, 0)
 returns the latest Iceberg metadata information
 
 ## `system$get_predecessor_return_value`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_predecessor_return_value(&lt;&gt;) returns varchar
@@ -230,7 +230,7 @@ function system$get_predecessor_return_value(&lt;varchar&gt;) returns varchar
 Return data
 
 ## `system$get_service_logs`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_service_logs(&lt;varchar, decimal(38, 0), varchar&gt;) returns varchar
@@ -243,7 +243,7 @@ function system$get_service_logs(&lt;varchar, decimal(38, 0), varchar, decimal(3
 return status of operation
 
 ## `system$get_service_status`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_service_status(&lt;$1&gt;) returns varchar
@@ -256,7 +256,7 @@ function system$get_service_status(&lt;$1, decimal(38, 0)&gt;) returns varchar
 return service resource set status
 
 ## `system$get_tag`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_tag(&lt;&gt;) returns varchar
@@ -264,7 +264,7 @@ function system$get_tag(&lt;&gt;) returns varchar
 Returns the associated tag value
 
 ## `system$get_tag_allowed_values`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_tag_allowed_values(&lt;&gt;) returns varchar
@@ -272,7 +272,7 @@ function system$get_tag_allowed_values(&lt;&gt;) returns varchar
 Returns the allowed values for a tag
 
 ## `system$get_tag_on_current_column`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_tag_on_current_column(&lt;&gt;) returns varchar
@@ -280,7 +280,7 @@ function system$get_tag_on_current_column(&lt;&gt;) returns varchar
 Returns the associated tag value
 
 ## `system$get_tag_on_current_table`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_tag_on_current_table(&lt;&gt;) returns varchar
@@ -288,7 +288,7 @@ function system$get_tag_on_current_table(&lt;&gt;) returns varchar
 Returns the associated tag value on the current table
 
 ## `system$get_task_graph_config`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$get_task_graph_config(&lt;&gt;) returns varchar
@@ -301,7 +301,7 @@ function system$get_task_graph_config(&lt;varchar&gt;) returns varchar
 Result
 
 ## `system$global_account_set_parameter`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$global_account_set_parameter(&lt;varchar, varchar, varchar&gt;) returns varchar
@@ -309,7 +309,7 @@ function system$global_account_set_parameter(&lt;varchar, varchar, varchar&gt;) 
 param set result from the account
 
 ## `system$last_change_commit_time`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$last_change_commit_time(&lt;varchar&gt;) returns decimal(38, 0)
@@ -317,7 +317,7 @@ function system$last_change_commit_time(&lt;varchar&gt;) returns decimal(38, 0)
 returns the largest commit time as a long.
 
 ## `system$migrate_saml_idp_registration`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$migrate_saml_idp_registration(&lt;varchar&gt;) returns varchar
@@ -330,7 +330,7 @@ function system$migrate_saml_idp_registration(&lt;varchar, varchar&gt;) returns 
 Returns the result of the operation.
 
 ## `system$pipe_force_resume`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$pipe_force_resume(&lt;varchar&gt;) returns varchar
@@ -343,7 +343,7 @@ function system$pipe_force_resume(&lt;varchar, varchar&gt;) returns varchar
 returns result of operation
 
 ## `system$pipe_rebinding_with_notification_channel`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$pipe_rebinding_with_notification_channel(&lt;varchar&gt;) returns varchar
@@ -351,7 +351,7 @@ function system$pipe_rebinding_with_notification_channel(&lt;varchar&gt;) return
 returns true if the pipe successfully rebinds with its assigned notification channel
 
 ## `system$pipe_status`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$pipe_status(&lt;varchar&gt;) returns varchar
@@ -359,7 +359,7 @@ function system$pipe_status(&lt;varchar&gt;) returns varchar
 returns pipe status as json
 
 ## `system$query_reference`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$query_reference(&lt;varchar&gt;) returns varchar
@@ -372,7 +372,7 @@ function system$query_reference(&lt;varchar, boolean&gt;) returns varchar
 Returns the query reference identifier
 
 ## `system$reference`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$reference(varchar, varchar, ...) returns varchar
@@ -405,7 +405,7 @@ function system$reference(varchar, varchar, varchar, varchar, ...) returns varch
 Returns the reference identifier
 
 ## `system$set_return_value`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$set_return_value(&lt;varchar&gt;) returns varchar
@@ -413,7 +413,7 @@ function system$set_return_value(&lt;varchar&gt;) returns varchar
 Returns &quot;OK&quot; if succeeded
 
 ## `system$show_active_behavior_change_bundles`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$show_active_behavior_change_bundles(&lt;&gt;) returns varchar
@@ -421,7 +421,7 @@ function system$show_active_behavior_change_bundles(&lt;&gt;) returns varchar
 returned value
 
 ## `system$snowpipe_streaming_update_channel_offset_token`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$snowpipe_streaming_update_channel_offset_token(&lt;varchar, varchar, varchar&gt;) returns varchar
@@ -429,7 +429,7 @@ function system$snowpipe_streaming_update_channel_offset_token(&lt;varchar, varc
 returns status of update
 
 ## `system$task_dependents_enable`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$task_dependents_enable(&lt;varchar&gt;) returns varchar
@@ -437,7 +437,7 @@ function system$task_dependents_enable(&lt;varchar&gt;) returns varchar
 Returns &quot;OK&quot; if succeeded
 
 ## `system$task_runtime_info`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$task_runtime_info(&lt;varchar&gt;) returns varchar
@@ -445,7 +445,7 @@ function system$task_runtime_info(&lt;varchar&gt;) returns varchar
 result
 
 ## `system$typeof`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$typeof(&lt;$1&gt;) returns varchar
@@ -453,7 +453,7 @@ function system$typeof(&lt;$1&gt;) returns varchar
 
 
 ## `system$user_task_cancel_ongoing_executions`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$user_task_cancel_ongoing_executions(&lt;varchar&gt;) returns varchar
@@ -461,7 +461,7 @@ function system$user_task_cancel_ongoing_executions(&lt;varchar&gt;) returns var
 Returns &quot;OK&quot; if succeeded
 
 ## `system$verify_external_oauth_token`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$verify_external_oauth_token(&lt;&gt;) returns varchar
@@ -469,7 +469,7 @@ function system$verify_external_oauth_token(&lt;&gt;) returns varchar
 The OAuth Access Token.
 
 ## `system$wait`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function system$wait(&lt;decimal(38, 0)&gt;) returns varchar

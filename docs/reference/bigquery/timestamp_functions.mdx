@@ -3,7 +3,7 @@ title: "Timestamp Functions"
 ---
 
 ## `current_timestamp`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#current_timestamp)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#current_timestamp)
 
 ```sql
 function current_timestamp(&lt;&gt;) returns timestamp
@@ -11,7 +11,7 @@ function current_timestamp(&lt;&gt;) returns timestamp
 
 
 ## `format_timestamp`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#format_timestamp)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#format_timestamp)
 
 ```sql
 function format_timestamp&lt;$1&gt; (&lt;string, $1&gt;) returns string
@@ -25,7 +25,7 @@ function format_timestamp(&lt;string, timestamp, time_zone string&gt;) returns s
 
 
 ## `parse_timestamp`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#parse_timestamp)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#parse_timestamp)
 
 ```sql
 function parse_timestamp(&lt;string, string&gt;) returns timestamp
@@ -38,7 +38,7 @@ function parse_timestamp(&lt;string, string, time_zone string&gt;) returns times
 
 
 ## `timestamp`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp)
 
 ```sql
 function timestamp(&lt;string&gt;) returns timestamp
@@ -71,7 +71,7 @@ function timestamp(&lt;datetime, time_zone string&gt;) returns timestamp
 
 
 ## `timestamp_add`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_add)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_add)
 
 ```sql
 function timestamp_add&lt;$1&gt; (&lt;$1, interval&gt;) returns $1
@@ -80,7 +80,7 @@ function timestamp_add&lt;$1&gt; (&lt;$1, interval&gt;) returns $1
 
 
 ## `timestamp_diff`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_diff)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_diff)
 
 ```sql
 function timestamp_diff&lt;$1&gt; (&lt;$1, $1, date_part string&gt;) returns bigint
@@ -90,7 +90,7 @@ function timestamp_diff&lt;$1&gt; (&lt;$1, $1, date_part string&gt;) returns big
 
 
 ## `timestamp_micros`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_micros)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_micros)
 
 ```sql
 function timestamp_micros(&lt;int64&gt;) returns timestamp
@@ -98,7 +98,7 @@ function timestamp_micros(&lt;int64&gt;) returns timestamp
 
 
 ## `timestamp_millis`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_millis)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_millis)
 
 ```sql
 function timestamp_millis(&lt;int64&gt;) returns timestamp
@@ -106,7 +106,7 @@ function timestamp_millis(&lt;int64&gt;) returns timestamp
 
 
 ## `timestamp_seconds`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_seconds)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_seconds)
 
 ```sql
 function timestamp_seconds(&lt;int64&gt;) returns timestamp
@@ -114,7 +114,7 @@ function timestamp_seconds(&lt;int64&gt;) returns timestamp
 
 
 ## `timestamp_sub`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_sub)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_sub)
 
 ```sql
 function timestamp_sub&lt;$1&gt; (&lt;$1, interval&gt;) returns $1
@@ -123,7 +123,7 @@ function timestamp_sub&lt;$1&gt; (&lt;$1, interval&gt;) returns $1
 
 
 ## `timestamp_trunc`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc)
 
 ```sql
 function timestamp_trunc&lt;$1&gt; (&lt;$1, date_time_part string&gt;) returns $1
@@ -139,7 +139,7 @@ function timestamp_trunc(&lt;timestamp, date_time_part string, time_zone string&
 
 
 ## `unix_micros`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_micros)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_micros)
 
 ```sql
 function unix_micros(&lt;timestamp&gt;) returns int64
@@ -147,7 +147,7 @@ function unix_micros(&lt;timestamp&gt;) returns int64
 
 
 ## `unix_millis`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_millis)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_millis)
 
 ```sql
 function unix_millis(&lt;timestamp&gt;) returns int64
@@ -155,7 +155,7 @@ function unix_millis(&lt;timestamp&gt;) returns int64
 
 
 ## `unix_seconds`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_seconds)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#unix_seconds)
 
 ```sql
 function unix_seconds(&lt;timestamp&gt;) returns int64

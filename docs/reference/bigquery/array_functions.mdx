@@ -3,7 +3,7 @@ title: "Array Functions"
 ---
 
 ## `array_concat`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_concat)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_concat)
 
 ```sql
 function array_concat(array&lt;$1&gt;, ...) returns array&lt;$1&gt;
@@ -14,7 +14,7 @@ function array_concat(array&lt;$1&gt;, ...) returns array&lt;$1&gt;
 SELECT ARRAY_CONCAT([1, 2], [3, 4], [5, 6]) as count_to_six; -- value &#39;[1,2,3,4,5,6]&#39; 
 ```
 ## `array_length`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_length)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_length)
 
 ```sql
 function array_length(&lt;array&lt;$1&gt;&gt;) returns bigint
@@ -22,7 +22,7 @@ function array_length(&lt;array&lt;$1&gt;&gt;) returns bigint
 
 
 ## `array_reverse`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_reverse)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_reverse)
 
 ```sql
 function array_reverse(&lt;array&lt;$1&gt;&gt;) returns array&lt;$1&gt;
@@ -30,7 +30,7 @@ function array_reverse(&lt;array&lt;$1&gt;&gt;) returns array&lt;$1&gt;
 
 
 ## `array_to_string`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_to_string)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#array_to_string)
 
 ```sql
 function array_to_string(&lt;array&lt;$1&gt;, string&gt;) returns string
@@ -43,7 +43,7 @@ function array_to_string(&lt;array&lt;$1&gt;, string, string&gt;) returns string
 
 
 ## `generate_array`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_array)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_array)
 
 ```sql
 function generate_array&lt;$1&gt; (&lt;$1, $1&gt;) returns array&lt;int&gt;
@@ -58,7 +58,7 @@ function generate_array&lt;$1&gt; (&lt;$1, $1, $1&gt;) returns array&lt;int&gt;
 
 
 ## `generate_date_array`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_date_array)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_date_array)
 
 ```sql
 function generate_date_array(&lt;date, date&gt;) returns array&lt;date&gt;
@@ -71,7 +71,7 @@ function generate_date_array(&lt;date, date, interval&gt;) returns array&lt;date
 
 
 ## `generate_timestamp_array`
-[🔗 Official Documentation](#https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_timestamp_array)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_timestamp_array)
 
 ```sql
 function generate_timestamp_array&lt;$1, $2&gt; (&lt;$1, $2, interval&gt;) returns array&lt;timestamp&gt;

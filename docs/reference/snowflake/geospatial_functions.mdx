@@ -4,7 +4,7 @@ title: "Geospatial Functions"
 
 
 ## `h3_cell_to_boundary`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_cell_to_boundary(&lt;decimal(38, 0)&gt;) returns geography
@@ -17,7 +17,7 @@ function h3_cell_to_boundary(&lt;varchar&gt;) returns geography
 Returns a polygon containing the h3 string cell boundaries
 
 ## `h3_cell_to_children`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_cell_to_children(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns array
@@ -25,7 +25,7 @@ function h3_cell_to_children(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns arr
 Returns the H3 children cells as integers for a given H3 index
 
 ## `h3_cell_to_children_string`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_cell_to_children_string(&lt;varchar, decimal(38, 0)&gt;) returns array
@@ -33,7 +33,7 @@ function h3_cell_to_children_string(&lt;varchar, decimal(38, 0)&gt;) returns arr
 Returns the H3 children cells as strings for a given H3 index
 
 ## `h3_cell_to_parent`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_cell_to_parent(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -46,7 +46,7 @@ function h3_cell_to_parent(&lt;varchar, decimal(38, 0)&gt;) returns varchar
 Returns the H3 parent cell as a string for a given H3 index
 
 ## `h3_cell_to_point`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_cell_to_point(&lt;decimal(38, 0)&gt;) returns geography
@@ -59,7 +59,7 @@ function h3_cell_to_point(&lt;varchar&gt;) returns geography
 Returns a point (geography) corresponding to the center of the h3 string cell passed
 
 ## `h3_coverage`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_coverage(&lt;geography, decimal(38, 0)&gt;) returns array
@@ -67,7 +67,7 @@ function h3_coverage(&lt;geography, decimal(38, 0)&gt;) returns array
 Returns the full spherical based covering of H3 cells as integers for any geography type
 
 ## `h3_coverage_strings`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_coverage_strings(&lt;geography, decimal(38, 0)&gt;) returns array
@@ -75,7 +75,7 @@ function h3_coverage_strings(&lt;geography, decimal(38, 0)&gt;) returns array
 Returns the full spherical based covering of H3 cells as strings for any geography type
 
 ## `h3_get_resolution`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_get_resolution(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -88,7 +88,7 @@ function h3_get_resolution(&lt;varchar&gt;) returns decimal(38, 0)
 Returns the cell resolution for a given H3 string cell
 
 ## `h3_grid_disk`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_grid_disk(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns array
@@ -101,7 +101,7 @@ function h3_grid_disk(&lt;varchar, decimal(38, 0)&gt;) returns array
 Returns all H3 cells that are at most k steps away from the input cell
 
 ## `h3_grid_distance`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_grid_distance(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -114,7 +114,7 @@ function h3_grid_distance(&lt;varchar, varchar&gt;) returns decimal(38, 0)
 Returns the number of H3 cells that are betweem two input cells
 
 ## `h3_grid_path`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_grid_path(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns array
@@ -127,7 +127,7 @@ function h3_grid_path(&lt;varchar, varchar&gt;) returns array
 Returns all H3 cells that are along the straight line connecting both cells
 
 ## `h3_int_to_string`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_int_to_string(&lt;decimal(38, 0)&gt;) returns varchar
@@ -135,7 +135,7 @@ function h3_int_to_string(&lt;decimal(38, 0)&gt;) returns varchar
 Returns the H3 cell formatted as a string given its integer representation
 
 ## `h3_latlng_to_cell`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_latlng_to_cell(&lt;double, double, decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -143,7 +143,7 @@ function h3_latlng_to_cell(&lt;double, double, decimal(38, 0)&gt;) returns decim
 Returns an H3 index as an integer that corresponds to a given point (lat/lng) and resolution
 
 ## `h3_latlng_to_cell_string`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_latlng_to_cell_string(&lt;double, double, decimal(38, 0)&gt;) returns varchar
@@ -151,7 +151,7 @@ function h3_latlng_to_cell_string(&lt;double, double, decimal(38, 0)&gt;) return
 Returns an H3 index as a string that corresponds to a given point (lat/lng) and resolution
 
 ## `h3_point_to_cell`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_point_to_cell(&lt;geography, decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -159,7 +159,7 @@ function h3_point_to_cell(&lt;geography, decimal(38, 0)&gt;) returns decimal(38,
 Returns an H3 integer cell that corresponds to a given point (geography) and resolution
 
 ## `h3_point_to_cell_string`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_point_to_cell_string(&lt;geography, decimal(38, 0)&gt;) returns varchar
@@ -167,7 +167,7 @@ function h3_point_to_cell_string(&lt;geography, decimal(38, 0)&gt;) returns varc
 Returns an H3 string cell that corresponds to a given point (geography) and resolution
 
 ## `h3_polygon_to_cells`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_polygon_to_cells(&lt;geography, decimal(38, 0)&gt;) returns array
@@ -175,7 +175,7 @@ function h3_polygon_to_cells(&lt;geography, decimal(38, 0)&gt;) returns array
 Returns the planar centroid based covering of H3 cells as integers for a polygon/multipolygon
 
 ## `h3_polygon_to_cells_strings`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_polygon_to_cells_strings(&lt;geography, decimal(38, 0)&gt;) returns array
@@ -183,7 +183,7 @@ function h3_polygon_to_cells_strings(&lt;geography, decimal(38, 0)&gt;) returns 
 Returns the planar centroid based covering of H3 cells as strings for a polygon/multipolygon
 
 ## `h3_string_to_int`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function h3_string_to_int(&lt;varchar&gt;) returns decimal(38, 0)
@@ -191,7 +191,7 @@ function h3_string_to_int(&lt;varchar&gt;) returns decimal(38, 0)
 Returns the H3 cell formatted as an integer given its string representation
 
 ## `haversine`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function haversine(&lt;double, double, double, double&gt;) returns double
@@ -199,7 +199,7 @@ function haversine(&lt;double, double, double, double&gt;) returns double
 Calculate great circle distance (in km) from two (lat, lon) locations (degrees).
 
 ## `st_area`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_area(&lt;geography&gt;) returns double
@@ -212,7 +212,7 @@ function st_area(&lt;geometry&gt;) returns double
 Area of the object in the same units as the input coordinates
 
 ## `st_asbinary`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_asbinary(&lt;geography&gt;) returns binary
@@ -225,7 +225,7 @@ function st_asbinary(&lt;geometry&gt;) returns binary
 Return the WKB representation of the GEOMETRY object
 
 ## `st_asewkb`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_asewkb(&lt;geography&gt;) returns binary
@@ -238,7 +238,7 @@ function st_asewkb(&lt;geometry&gt;) returns binary
 Return the EWKB representation of the GEOMETRY object
 
 ## `st_asewkt`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_asewkt(&lt;geography&gt;) returns varchar
@@ -251,7 +251,7 @@ function st_asewkt(&lt;geometry&gt;) returns varchar
 Return the WKB representation of the GEOMETRY object
 
 ## `st_asgeojson`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_asgeojson(&lt;geography&gt;) returns object
@@ -264,7 +264,7 @@ function st_asgeojson(&lt;geometry&gt;) returns object
 Return the GeoJSON representation of the GEOMETRY object
 
 ## `st_astext`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_astext(&lt;geography&gt;) returns varchar
@@ -277,7 +277,7 @@ function st_astext(&lt;geometry&gt;) returns varchar
 Return the WKT representation of the GEOMETRY object
 
 ## `st_aswkb`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_aswkb(&lt;geography&gt;) returns binary
@@ -290,7 +290,7 @@ function st_aswkb(&lt;geometry&gt;) returns binary
 Return the WKB representation of the GEOMETRY object
 
 ## `st_aswkt`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_aswkt(&lt;geography&gt;) returns varchar
@@ -303,7 +303,7 @@ function st_aswkt(&lt;geometry&gt;) returns varchar
 Return the WKB representation of the GEOMETRY object
 
 ## `st_azimuth`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_azimuth(&lt;geography, geography&gt;) returns double
@@ -316,7 +316,7 @@ function st_azimuth(&lt;geometry, geometry&gt;) returns double
 Returns the azimuth in radians of the segment defined by the given point
 
 ## `st_buffer`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_buffer(&lt;geometry, double&gt;) returns geometry
@@ -324,7 +324,7 @@ function st_buffer(&lt;geometry, double&gt;) returns geometry
 Returns the geometry generated by the buffer operation upon the given input geometry using the diven distance
 
 ## `st_centroid`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_centroid(&lt;geography&gt;) returns geography
@@ -337,7 +337,7 @@ function st_centroid(&lt;geometry&gt;) returns geometry
 The centroid of geometry
 
 ## `st_collect`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_collect(&lt;geography&gt;) returns geography
@@ -350,7 +350,7 @@ function st_collect(&lt;geography, geography&gt;) returns geography
 Version of ST_COLLECT that merges the two input geographies into one
 
 ## `st_contains`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_contains(&lt;geography, geography&gt;) returns boolean
@@ -363,7 +363,7 @@ function st_contains(&lt;geometry, geometry&gt;) returns boolean
 True if the first object fully contains the second
 
 ## `st_coveredby`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_coveredby(&lt;geography, geography&gt;) returns boolean
@@ -376,7 +376,7 @@ function st_coveredby(&lt;geometry, geometry&gt;) returns boolean
 True if the second object covers the first
 
 ## `st_covers`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_covers(&lt;geography, geography&gt;) returns boolean
@@ -389,7 +389,7 @@ function st_covers(&lt;geometry, geometry&gt;) returns boolean
 True if the first object covers the second
 
 ## `st_difference`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_difference(&lt;geography, geography&gt;) returns geography
@@ -397,7 +397,7 @@ function st_difference(&lt;geography, geography&gt;) returns geography
 Geometry representing the set difference a minus b
 
 ## `st_dimension`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_dimension(&lt;geography&gt;) returns decimal(38, 0)
@@ -410,7 +410,7 @@ function st_dimension(&lt;geometry&gt;) returns decimal(38, 0)
 The dimension of the input geometry
 
 ## `st_disjoint`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_disjoint(&lt;geography, geography&gt;) returns boolean
@@ -423,7 +423,7 @@ function st_disjoint(&lt;geometry, geometry&gt;) returns boolean
 True if the two objects not intersect
 
 ## `st_distance`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_distance(&lt;geography, geography&gt;) returns double
@@ -436,7 +436,7 @@ function st_distance(&lt;geometry, geometry&gt;) returns double
 Distance between two geometries in the same units as the input coordinates
 
 ## `st_dwithin`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_dwithin(&lt;geography, geography, double&gt;) returns boolean
@@ -444,7 +444,7 @@ function st_dwithin(&lt;geography, geography, double&gt;) returns boolean
 True if the minimum distance between two objects is smaller than or equal to the specified distance in meters
 
 ## `st_endpoint`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_endpoint(&lt;geography&gt;) returns geography
@@ -457,7 +457,7 @@ function st_endpoint(&lt;geometry&gt;) returns geometry
 The last point in the geometry, only supports LineStrings
 
 ## `st_envelope`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_envelope(&lt;geography&gt;) returns geography
@@ -470,7 +470,7 @@ function st_envelope(&lt;geometry&gt;) returns geometry
 the shape of the minimum bounding box of the supplied geometry
 
 ## `st_geogfromgeohash`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_geogfromgeohash(&lt;varchar, decimal(38, 0)&gt;) returns geography
@@ -483,7 +483,7 @@ function st_geogfromgeohash(&lt;varchar&gt;) returns geography
 The geography represented by the geohash
 
 ## `st_geogpointfromgeohash`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_geogpointfromgeohash(&lt;varchar&gt;) returns geography
@@ -491,7 +491,7 @@ function st_geogpointfromgeohash(&lt;varchar&gt;) returns geography
 The point represented by the geohash
 
 ## `st_geographyfromwkb`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_geographyfromwkb(&lt;varchar&gt;) returns geography
@@ -514,7 +514,7 @@ function st_geographyfromwkb(&lt;binary, boolean&gt;) returns geography
 Parse WKB or EWKB
 
 ## `st_geographyfromwkt`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_geographyfromwkt(&lt;varchar&gt;) returns geography
@@ -527,7 +527,7 @@ function st_geographyfromwkt(&lt;varchar, boolean&gt;) returns geography
 Alias of ST_GEOGRAPHYFROMTEXT
 
 ## `st_geohash`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_geohash(&lt;geography, decimal(38, 0)&gt;) returns varchar
@@ -540,7 +540,7 @@ function st_geohash(&lt;geography&gt;) returns varchar
 The geohash of a geography
 
 ## `st_geometryfromwkb`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_geometryfromwkb(&lt;binary, decimal(38, 0)&gt;) returns geometry
@@ -603,7 +603,7 @@ function st_geometryfromwkb(&lt;binary, boolean&gt;) returns geometry
 Alias of ST_GEOMETRYFROMTEXT
 
 ## `st_geometryfromwkt`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_geometryfromwkt(&lt;varchar&gt;) returns geometry
@@ -626,7 +626,7 @@ function st_geometryfromwkt(&lt;varchar, boolean&gt;) returns geometry
 Alias of ST_GEOMETRYFROMTEXT
 
 ## `st_hausdorffdistance`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_hausdorffdistance(&lt;geography, geography&gt;) returns double
@@ -634,7 +634,7 @@ function st_hausdorffdistance(&lt;geography, geography&gt;) returns double
 the Hausdorff distance between two geometries
 
 ## `st_intersection`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_intersection(&lt;geography, geography&gt;) returns geography
@@ -642,7 +642,7 @@ function st_intersection(&lt;geography, geography&gt;) returns geography
 Geometry representing the intersection of a and b
 
 ## `st_intersects`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_intersects(&lt;geography, geography&gt;) returns boolean
@@ -655,7 +655,7 @@ function st_intersects(&lt;geometry, geometry&gt;) returns boolean
 True if the two objects intersect
 
 ## `st_isvalid`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_isvalid(&lt;geography&gt;) returns boolean
@@ -668,7 +668,7 @@ function st_isvalid(&lt;geometry&gt;) returns boolean
 Return true if geometry is valid
 
 ## `st_length`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_length(&lt;geography&gt;) returns double
@@ -681,7 +681,7 @@ function st_length(&lt;geometry&gt;) returns double
 Length of the geometry in the same units as the input coordinates
 
 ## `st_makegeompoint`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_makegeompoint(&lt;double, double&gt;) returns geometry
@@ -689,7 +689,7 @@ function st_makegeompoint(&lt;double, double&gt;) returns geometry
 Creates a point with the given x and y
 
 ## `st_makeline`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_makeline(&lt;geography, geography&gt;) returns geography
@@ -702,7 +702,7 @@ function st_makeline(&lt;geometry, geometry&gt;) returns geometry
 Create a LineString out of the points in the input geographies
 
 ## `st_makepoint`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_makepoint(&lt;double, double&gt;) returns geography
@@ -710,7 +710,7 @@ function st_makepoint(&lt;double, double&gt;) returns geography
 Creates a point with the given longitude and latitude
 
 ## `st_makepolygon`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_makepolygon(&lt;geography&gt;) returns geography
@@ -723,7 +723,7 @@ function st_makepolygon(&lt;geometry&gt;) returns geometry
 The Polygon consisting of the LineString as outer shell
 
 ## `st_makepolygonoriented`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_makepolygonoriented(&lt;geography&gt;) returns geography
@@ -731,7 +731,7 @@ function st_makepolygonoriented(&lt;geography&gt;) returns geography
 The Polygon consisting of the LineString as outer shell, with unmodified orientation
 
 ## `st_npoints`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_npoints(&lt;geography&gt;) returns decimal(38, 0)
@@ -744,7 +744,7 @@ function st_npoints(&lt;geometry&gt;) returns decimal(38, 0)
 The number of points in the geometry
 
 ## `st_numpoints`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_numpoints(&lt;geography&gt;) returns decimal(38, 0)
@@ -757,7 +757,7 @@ function st_numpoints(&lt;geometry&gt;) returns decimal(38, 0)
 Alias for ST_NPOINTS
 
 ## `st_perimeter`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_perimeter(&lt;geography&gt;) returns double
@@ -770,7 +770,7 @@ function st_perimeter(&lt;geometry&gt;) returns double
 Perimeter of the geometry in the same units as the input coordinates
 
 ## `st_point`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_point(&lt;double, double&gt;) returns geography
@@ -778,7 +778,7 @@ function st_point(&lt;double, double&gt;) returns geography
 Creates a point with the given longitude and latitude
 
 ## `st_pointn`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_pointn(&lt;geography, decimal(38, 0)&gt;) returns geography
@@ -791,7 +791,7 @@ function st_pointn(&lt;geometry, decimal(38, 0)&gt;) returns geometry
 The nth point in the geometry, only supports LineStrings
 
 ## `st_polygon`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_polygon(&lt;geography&gt;) returns geography
@@ -804,7 +804,7 @@ function st_polygon(&lt;geometry&gt;) returns geometry
 Alias for ST_MAKEPOLYGON
 
 ## `st_setsrid`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_setsrid(&lt;geometry, decimal(38, 0)&gt;) returns geometry
@@ -812,7 +812,7 @@ function st_setsrid(&lt;geometry, decimal(38, 0)&gt;) returns geometry
 Returns a geometry same as input geometry but with SRID set to the given value
 
 ## `st_simplify`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_simplify(&lt;geography, double, boolean&gt;) returns geography
@@ -830,7 +830,7 @@ function st_simplify(&lt;geometry, double&gt;) returns geometry
 Returns the geometry generated by the simplify operation upon the given input geometry using the given distance, or NULL if the resulting geometry is invalid
 
 ## `st_srid`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_srid(&lt;geography&gt;) returns decimal(38, 0)
@@ -843,7 +843,7 @@ function st_srid(&lt;geometry&gt;) returns decimal(38, 0)
 Returns the SRID of a geometry if present. Otherwise 0
 
 ## `st_startpoint`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_startpoint(&lt;geography&gt;) returns geography
@@ -856,7 +856,7 @@ function st_startpoint(&lt;geometry&gt;) returns geometry
 The first point in the geometry, only supports LineStrings
 
 ## `st_symdifference`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_symdifference(&lt;geography, geography&gt;) returns geography
@@ -864,7 +864,7 @@ function st_symdifference(&lt;geography, geography&gt;) returns geography
 Geometry representing the set symmetric difference a minus b
 
 ## `st_transform`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_transform(&lt;geometry, decimal(38, 0), decimal(38, 0)&gt;) returns geometry
@@ -877,7 +877,7 @@ function st_transform(&lt;geometry, decimal(38, 0)&gt;) returns geometry
 Returns the geometry transformed to another SRID.
 
 ## `st_union`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_union(&lt;geography, geography&gt;) returns geography
@@ -885,7 +885,7 @@ function st_union(&lt;geography, geography&gt;) returns geography
 Geometry representing the union of a and b
 
 ## `st_within`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_within(&lt;geography, geography&gt;) returns boolean
@@ -898,7 +898,7 @@ function st_within(&lt;geometry, geometry&gt;) returns boolean
 True if the second object fully contains the first
 
 ## `st_x`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_x(&lt;geography&gt;) returns double
@@ -911,7 +911,7 @@ function st_x(&lt;geometry&gt;) returns double
 The X coordinate of a point
 
 ## `st_xmax`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_xmax(&lt;geography&gt;) returns double
@@ -924,7 +924,7 @@ function st_xmax(&lt;geometry&gt;) returns double
 The maximum X coordinate
 
 ## `st_xmin`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_xmin(&lt;geography&gt;) returns double
@@ -937,7 +937,7 @@ function st_xmin(&lt;geometry&gt;) returns double
 The minimum X coordinate
 
 ## `st_y`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_y(&lt;geography&gt;) returns double
@@ -950,7 +950,7 @@ function st_y(&lt;geometry&gt;) returns double
 The Y coordinate of a point
 
 ## `st_ymax`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_ymax(&lt;geography&gt;) returns double
@@ -963,7 +963,7 @@ function st_ymax(&lt;geometry&gt;) returns double
 The maximum Y coordinate
 
 ## `st_ymin`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function st_ymin(&lt;geography&gt;) returns double
@@ -976,7 +976,7 @@ function st_ymin(&lt;geometry&gt;) returns double
 The minimum Y coordinate
 
 ## `to_geography`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function to_geography(&lt;geography&gt;) returns geography
@@ -1024,7 +1024,7 @@ function to_geography(&lt;$1&gt;) returns geography
 
 
 ## `to_geometry`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function to_geometry(&lt;geometry&gt;) returns geometry
@@ -1122,7 +1122,7 @@ function to_geometry(&lt;binary, boolean&gt;) returns geometry
 Parses binary input in WKB format into a GEOMETRY object
 
 ## `try_to_geography`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function try_to_geography(&lt;geography&gt;) returns geography
@@ -1165,7 +1165,7 @@ function try_to_geography(&lt;binary, boolean&gt;) returns geography
 Tries to parse binary input in WKB format into a GEOGRAPHY object
 
 ## `try_to_geometry`
-[🔗 Official Documentation](#)
+[🔗 Official Documentation]()
 
 ```sql
 function try_to_geometry(&lt;geometry&gt;) returns geometry
