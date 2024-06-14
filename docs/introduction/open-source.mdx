@@ -1,0 +1,84 @@
+---
+title: "Open Source"
+description: "SDF offers a rich open source library ecosystem, as well as open source components that power the SDF CLI and platform."
+---
+
+## Overview
+
+SDF is open core powered by [Apache DataFusion](https://datafusion.apache.org/). This means that while certain parts of SDF may be closed source, the core of SDF's SQL execution, function typing, and logical plan representation are all open source.
+
+SDF workspaces can also depend on one another, allowing you to build and share your own open source libraries. This is especially useful for sharing common functions, macros, and models across your organization.
+
+## Open Source Libraries
+
+SDF offers a rich open source library ecosystem that you can use to extend the functionality of your SDF workspace. These libraries are maintained by the SDF community and are available for you to use in your own SDF projects.
+
+The SDF binary includes three open source libraries by default. Contributions are welcome, and the source code can be found in the GitHub repos linked below as well as in the `.sdfcache` directory of your workspace.
+
+#### [**SDF Materialization**](https://github.com/sdf-labs/materialization)
+
+This library contains the macros used to materialize SDF models in cloud data warehouses. This is a great place to start for anyone looking to author their own custom materializations.
+During preprocessing, queries first have their macros expanded and then fit into the materialization templates. This library is responsible for the latter part of that process.
+
+<Note>
+  Materializations from these macros happen before the query is compiled.
+</Note>
+
+#### [**SDF Tests**](https://github.com/sdf-labs/tests)
+
+This library contains the macros used to author simple data tests with SDF (i.e. `unique()`, `not_null()`). It also supports writing your own custom data tests through simple wrapper macros. 
+
+#### [**SDF Utils**](https://github.com/sdf-labs/utils)
+
+This library contains a collection of Jinja utilities for working with SDF models. This library is a good example for how to author your own SDF libraries.
+
+### Using Open Source Libraries
+
+To use an open source library in your SDF workspace, you can add it as a dependency in your `workspace.sdf.yml` file. 
+
+```yml
+workspace:
+  ...
+  dependencies:
+    - name: evaluator
+      git: https://github.com/sdf-labs/workspace-evaluator/workspace-evaluator.git
+```
+
+### Recommended Libraries
+
+SDF's library ecosystem is still growing, but here's a library we recommend checking out:
+
+| Library | Description |
+| --- | --- |
+| [**SDF Workspace Evaluator**](https://github.com/sdf-labs/workspace-evaluator/tree/main) | This library contains some of the most used [reports](/guide/data-quality/reports) and can be used as a model for authoring your own reports. Some of the most popular are `dead_column` analysis (find columns that are never used and are wasting compute / storage) and and `column_description_coverage` (find columns that are missing descriptions).
+
+<Info>
+  We'll continue to add our top picks here as the library ecosystem grows.
+</Info>
+
+## Open Source Components
+
+SDF is built on a number of open source components. These components are used to power the SDF CLI and platform.
+
+Most notably, local execution and more is powered by [Apache DataFusion](https://datafusion.apache.org/). Our official fork used internally is open sourced and available for contributions [here](https://github.com/sdf-labs/arrow-datafusion).
+
+One of SDF's more significant efforts is to power local compilation and execution of dialect-specific functions and queries. Imagine being able to run a Snowflake-native query locally on your machine against sampled data, then run the same query against your Snowflake warehouse in production.
+Our ongoing efforts to do this are powered by our open source [SQL Functions Crate](https://github.com/sdf-labs/sql-functions). 
+
+<Tip>
+  If you run a query locally and find that a function hasn't been implemented or is misproperly typed, you can contribute to the SQL Functions Crate to help improve the local execution experience.
+</Tip>
+
+## Open Source Utilities
+
+SDF also offers open source utilities that you can use to extend or easily integrate your SDF workspace with other tools. These utilities are maintained by the SDF community and are available for you to use in your own SDF projects.
+
+The most used utility at the moment is our [Open Source GitHub Action](https://github.com/sdf-labs/sdf-action) which can be used to easily run SDF commands in CI/CD workflows. See our [CI/CD guide](/integrations/cicd) for more information. 
+
+Furthermore, **these very docs you're reading are open source**! You can find the source code for these docs, rich examples, release notes and release binaries, and the SDF JSON Schema in the [SDF CLI GitHub repo](https://github.com/sdf-labs/sdf-cli).
+
+## Contributing
+
+Contributions are welcome! We currently require an initial fork of the repository and a pull request to contribute, however we're open to adding contributors to the main repository if the contribution is significant.
+If you're ever missing support for a function, finding that a function is mistyped, or dealing with an execution error - feel free to contribute to DataFusion or our SQL Functions Crate. 
+If you have a feature request or bug report with the compiler, please open an issue on the [SDF CLI repo](https://github.com/sdf-labs/sdf-cli). We'll track it and prioritize it ASAP.

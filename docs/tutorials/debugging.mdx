@@ -8,7 +8,7 @@ In the previous tutorial we learned how to [create a new model with SDF](/tutori
 As we were working on `dim_marketing_campaigns`, the result of the query just didn't make sense.
 
 In this tutorial we will see how SDF can simplify complicated debugging scenarios and accelerate 
-their resolution. It can also provide real time feedback as you author your queries with unprecedented 
+their resolution. It can also provide real-time feedback as you author your queries with unprecedented 
 speed and accuracy.
 
 More specifically, we will use SDF to:
@@ -70,7 +70,7 @@ dim_marketing_campaigns.total_num_installs
         Let's check the first upstream model -- `stg_installs_per_campaign.sql`
         located under the directory `models/staging/`.
 
-        ``` sql models/staging/stg_installs_per_campaign
+        ``` sql models/staging/stg_installs_per_campaign.sql
         SELECT 
             campaign_id,
             COUNT(event_id) AS total_num_installs
@@ -124,9 +124,9 @@ customers.campaign_id
     </Step>
     <Step title="Update the Model">
         Once we identify the issue, it's an easy fix. 
-        Update the `FROM` statement `stg_installs_per_campaign`, to the use `app_installs_v2`:
+        Update the `FROM` statement of `models/staging/stg_installs_per_campaign.sql`, to the use `app_installs_v2`:
 
-        ``` sql
+        ``` sql models/staging/stg_installs_per_campaign.sql
         ...
         FROM app_installs_v2  -- Change from app_installs to app_installs_v2
         ...
@@ -138,7 +138,7 @@ customers.campaign_id
 
         First, we should make sure our fix compiles:
         ```shell
-        sdf compile
+        sdf compile 
         ```
 
         We expect to see a successful run:
@@ -147,9 +147,8 @@ customers.campaign_id
 <code className='language-shell'>
 Working set 12 model files, 8 .sdf files
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-  Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
   Compiling moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 12 models [3 succeeded, 9 reused] in 1.204 secs
+   Finished 11 models [2 succeeded, 9 reused] in 0.603 secs
 
 </code>
 </pre>
@@ -187,12 +186,43 @@ stg_installs_per_campaign.total_num_installs
         Only our new model will be impacted.
     </Step>
     <Step title="Fix it!">
-        To materialize the fix, all we need to do it run the queries:
+        To materialize the fix, all we need to do is run the queries:
         
         ```shell
         sdf run dim_marketing_campaigns
         ```
 
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
+Working set 12 model files, 8 .sdf files
+    Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+    Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
+    Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+    Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+    Running moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
+    Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
+    Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
+   Finished 7 models [7 succeeded] in 0.738 secs
+
+Table moms_flower_shop.pub.dim_marketing_campaigns
++-------------+---------------------------------+--------------------+-------------------------------+------------------------+
+| campaign_id | campaign_name                   | total_num_installs | avg_customer_acquisition_cost | install_duration_ratio |
++-------------+---------------------------------+--------------------+-------------------------------+------------------------+
+| 3           | instagram_ads_3_3e31b541d8      | 192                | 7.958249909930306             | 0                      |
+| 1           | friends_referrals_1_9b24ce4c65  | 160                | 10.391763883087673            | 0                      |
+| 0           | instagram_ads_0_8c1fdf7cb0      | 91                 | 4.513104055002336             | 0                      |
+| 13          | friends_referrals_13_c6e177ff0a | 72                 | 22.915686962366962            | 0                      |
+| 14          | google_search_14_3775b59a56     | 48                 | 54.12730118839374             | 0                      |
+| 19          | friends_referrals_19_3f4a9d9fc3 | 26                 | 59.38710281622366             | 0                      |
+| 11          | google_search_11_56e2a09ed5     | 19                 | 58.38329050623466             | 0                      |
+| 4           | friends_referrals_4_c554b77114  | 17                 | 163.69881288433993            | 1                      |
+| 22          | friends_referrals_22_69b6886d4a | 15                 | 116.4817634058549             | 0                      |
+| 17          | google_search_17_a400715565     | 15                 | 147.1283543422433             | 1                      |
++-------------+---------------------------------+--------------------+-------------------------------+------------------------+
+114 rows, showing only 10 rows. Run with --limit 0 to show all rows.
+
+</code>
+</pre>
         Perfect! We are all set!
     </Step>
 </Steps>
@@ -210,7 +240,7 @@ Notice how quickly you get the response!
 
 <Steps>
     <Step title="Open the File">
-        To keep it simple, we sill use `models/staging/stg_installs_per_campaign.sql`
+        To keep it simple, we will use `models/staging/stg_installs_per_campaign.sql`
         throughout the following steps.
         
         As a reminder, the query looks like this:
@@ -300,7 +330,7 @@ error: SDF209: Function ABS arguments do not match, actual varchar, candidates t
             campaign_name,  -- We added an extra column
             COUNT(event_id) AS total_num_installs
         FROM app_installs_v2
-        GROUP BY 1  -- We didn't the new column here
+        GROUP BY 1  -- We didn't add the new column here
         ```
 
         Watch what happens when you try to compile:
@@ -320,6 +350,20 @@ error: SDF209: Function ABS arguments do not match, actual varchar, candidates t
     <Step title="Try it Yourself">
         What is that one syntax mistake you always forget about until you see that 
         run error? Try it out! See if SDF can save you the wait next time :)
+    </Step>
+    <Step title="Don't Forget to Revert!">
+        While experimenting, we introduced some breaking logic to our data warehouse.
+        Let's revert the model to the original SQL code.
+
+        Update the file `models/staging/stg_installs_per_campaign.sql` with the original SQL:
+
+        ```sql models/staging/stg_installs_per_campaign.sql
+        SELECT 
+            campaign_id, 
+            COUNT(event_id) AS total_num_installs
+        FROM app_installs_v2
+        GROUP BY 1
+        ```
     </Step>
 </Steps>
 

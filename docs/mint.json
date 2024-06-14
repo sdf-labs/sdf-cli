@@ -1,6 +1,9 @@
 {
 	"name": "SDF",
 	"sidebarDescription": "Docs for the Semantic Data Fabric",
+	"feedback.thumbsRating": true, 
+	"feedback.suggestEdit": true, 
+	"feedback.raiseIssue": true, 
 	"logo": {
 		"dark": "/assets/logo/dark.svg",
 		"light": "/assets/logo/light.svg"
@@ -66,7 +69,8 @@
 			"pages": [
 				"introduction/welcome",
 				"introduction/getting-started",
-				"introduction/features"
+				"introduction/features",
+				"introduction/open-source"
 			]
 		},
 		{
@@ -128,8 +132,7 @@
 								"guide/data-quality/overview",
 								"guide/data-quality/checks",
 								"guide/data-quality/reports",
-								"guide/data-quality/tests",
-								"guide/data-quality/stats"
+								"guide/data-quality/tests"
 							]
 						}
 					]
@@ -148,6 +151,7 @@
 		{
 			"group": "Integrations",
 			"pages": [
+				"integrations/overview",
 				{
 					"group": "Snowflake",
 					"icon" : "snowflake",

@@ -1,0 +1,1 @@
+CREATE EXTERNAL TABLE raw_inapp_events stored AS CSV WITH HEADER ROW LOCATION  'seeds/inapp_events.csv';

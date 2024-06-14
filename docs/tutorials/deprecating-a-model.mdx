@@ -28,7 +28,7 @@ Open the file `workspace.sdf.yml` and uncomment the following:
 
 ``` yml workspace.sdf.yml
 ...
-# Uncomment here to complete the "Deprecating a Model" tutorial >>>>>>
+# Uncomment here to begin the "Deprecating a Model" tutorial >>>>>>
 - path: classifications  # Classifiers
 - path: checks  # Checks against SDF's information schema
     type: check
@@ -50,8 +50,8 @@ Now, the paths are included in our project.
 
 <Steps>
     <Step title="Before Deprecation">
-        Before deprecating a model, we can run impact analysis on the its
-        downsltream dependencies using SDF's lineage command. We simply run:
+        Before deprecating a model, we can run an impact analysis on the its
+        downstream dependencies using SDF's lineage command. We simply run:
 
         ``` shell
         sdf lineage app_installs --forward --show result
@@ -157,25 +157,27 @@ Schema moms_flower_shop.pub.app_installs
         WITH
         deprecated_tables AS (
             SELECT
-                table_id,
-                table_name
+                table_id
             FROM sdf.information_schema.tables 
             WHERE 
                 CONTAINS(classifiers, 'TABLE_STATUS.deprecated')
         )
 
         SELECT 
-            t.table_name AS table_name, 
-            d.table_name AS upstram_deprecated_table_name,
+            t.to_table_id AS table_name, 
+            d.from_table_id AS upstream_deprecated_table_name,
         FROM sdf.information_schema.table_lineage tl
-            JOIN deprecated_tables d 
-                ON (d.table_id = tl.from_table_id)
-            JOIN sdf.information_schema.tables t
-                ON (t.table_id = tl.to_table_id)
+        WHERE tl.from_table_id IN (SELECT table_id FROM deprecated_tables)
         ```
 
+        <Tip>
+            To learn more about SDF's rich information schema and how you can 
+            leverage it to write your custom own checks, read our [information schema
+            reference page](/reference/sdf-information-schema).
+        </Tip>
+
         Thanks to SDF's lineage, we already knew that `agg_installs_and_campaigns` 
-        is referencing the old table. Therefore, it's a good test to our check - 
+        is referencing the old table. It's a good test to our check - 
         we expect it to fail.
         
         Let's check it out (pun intended):
@@ -187,13 +189,6 @@ Schema moms_flower_shop.pub.app_installs
 
 <pre style={{ fontFamily: 'monospace' }} className='language-error'>
 <code className='language-error'>
-[Fail] Check moms_flower_shop.pub.deprecated_table_reference
-+----------------------------+-------------------------------+
-| table_name                 | upstram_deprecated_table_name |
-+----------------------------+-------------------------------+
-| agg_installs_and_campaigns | app_installs                  |
-+----------------------------+-------------------------------+
-1 rows.
 
 </code>
 </pre>
@@ -209,9 +204,9 @@ Schema moms_flower_shop.pub.app_installs
         To make sure we won't break prod if we delete our table, we
         can choose to resolve the dependency by either: 
         
-        * Deleting the file `models/analytics/agg_installs_and_campaigns.sql` 
-        representing the model
-        * Updating the `FROM` statement like we did for our previous model:
+        * If the model is not being used, we can just delete it alltogether.
+        * Otherwise, we can update the `FROM` statement of `models/analytics/agg_installs_and_campaigns.sql` 
+        like we did for our previous model:
         
         ``` sql models/analytics/agg_installs_and_campaigns.sql
         ...
@@ -228,7 +223,6 @@ Schema moms_flower_shop.pub.app_installs
 
 <pre style={{ fontFamily: 'monospace' }} className='language-error'>
 <code className='language-error'>
-[Pass] Check moms_flower_shop.pub.deprecated_table_reference
 
 </code>
 </pre>
@@ -236,7 +230,7 @@ Schema moms_flower_shop.pub.app_installs
 </Steps>
 
 That was really cool, ha? Let's explore what other cool things we can 
-do with SDF's information scehma and semantic undersstanding in our 
+do with SDF's information scehma and semantic understanding in our 
 next tutorial - [enriching your warehouse](/tutorials/enriching-your-warehouse)
 
 

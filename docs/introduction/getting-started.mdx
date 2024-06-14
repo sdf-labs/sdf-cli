@@ -59,13 +59,13 @@ After running the command, you will see the following output:
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.270 secs
+   Finished new in 0.103 secs
 
 </code>
 </pre>
 
 <Tip>
-    You can view and modify the source code for all our examples directly in our [GitHub repository](https://github.com/sdf-labs/sdf-docs/tree/main/examples).
+    You can view and modify the source code for all our examples directly in our [GitHub repository](https://github.com/sdf-labs/sdf-cli/tree/main/examples).
 </Tip>
 
 This will create a new directory with the name of your workspace. In this case, that's `hello`. Feel free to change it to whatever you'd like, as long as the name is a valid SQL identifier.
@@ -104,7 +104,7 @@ Let's see just how easy it is to set up SDF and run your first query.
 <code className='language-shell'>
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.754 secs
+   Finished 1 model [1 succeeded] in 0.593 secs
 
 Schema hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -132,7 +132,7 @@ Schema hello.pub.main
 <code className='language-shell'>
 Working set 1 model file, 1 .sdf file
     Running hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.772 secs
+   Finished 1 model [1 succeeded] in 0.544 secs
 
 Table hello.pub.main
 +----------+-----------------+
@@ -165,7 +165,7 @@ Table hello.pub.main
 Working set 2 model files, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
   Compiling hello.pub.main2 (./src/main2.sql)
-   Finished 2 models [2 succeeded] in 0.763 secs
+   Finished 2 models [2 succeeded] in 0.590 secs
 main2.column_1
 │
 │ copy

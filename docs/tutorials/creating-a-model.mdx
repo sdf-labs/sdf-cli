@@ -39,7 +39,7 @@ Init for run commands:
 ## Guide
 <Steps>
     <Step title="Create a New Analytics Layer Model">
-        To create a new model in SDF, all you need to do is to create a new SQL file.
+        To create a new model in SDF, all you need to do is create a new SQL file.
         To follow best practices, we will create the model in the `models/analytics` directory.
 
         Create a file called `dim_marketing_campaigns.sql` under `models/analytics` and copy the SQL below.
@@ -67,6 +67,7 @@ Init for run commands:
         FROM marketing_campaigns m
             LEFT OUTER JOIN stg_installs_per_campaign i
             ON (m.campaign_id = i.campaign_id)
+        ORDER BY total_num_installs DESC NULLS LAST
         ```
     </Step>
     <Step title="Validate the Model Through Static Analysis">
@@ -98,25 +99,25 @@ Init for run commands:
 <pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
 Working set 11 model files, 8 .sdf files
-  Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
   Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
   Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+  Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
   Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
-  Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
   Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+  Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
   Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
   Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
   Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
   Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-   Finished 11 models [11 succeeded] in 0.868 secs
+   Finished 11 models [11 succeeded] in 0.642 secs
 
 </code>
 </pre>
 
         We will see how it looks like when this command fails in later tutorials. 
         <Note>
-            `sdf compile` will always be executed before `sdf run` so this step is not mendatory 
+            `sdf compile` will always be executed before `sdf run` so this step is not mandatory 
             to enjoy the benefits of SDF's static analysis. However, we think it provides additional 
             insights into our workspace that are worth noting.
         </Note>
@@ -138,27 +139,27 @@ Working set 11 model files, 8 .sdf files
 Working set 12 model files, 8 .sdf files
     Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
     Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
-    Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
     Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+    Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
     Running moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
     Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
     Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 7 models [7 succeeded] in 0.914 secs
+   Finished 7 models [7 succeeded] in 0.717 secs
 
 Table moms_flower_shop.pub.dim_marketing_campaigns
 +-------------+---------------------------------+--------------------+-------------------------------+------------------------+
 | campaign_id | campaign_name                   | total_num_installs | avg_customer_acquisition_cost | install_duration_ratio |
 +-------------+---------------------------------+--------------------+-------------------------------+------------------------+
-| 1           | friends_referrals_1_9b24ce4c65  | 4                  | 415.6705553235069             | 3                      |
-| 2           | google_search_2_1f8ef42073      | 3                  | 262.5668650569566             | 2                      |
-| 75          | facebook_ads_75_bea6eb4c3b      | 3                  | 371.60088106160225            | 3                      |
-| 20          | google_search_20_8905096a23     | 9                  | 235.48052663048566            | 1                      |
-| 22          | friends_referrals_22_69b6886d4a | 6                  | 291.20440851463724            | 2                      |
-| 23          | google_search_23_a1500edff0     | 12                 | 220.80896032244655            | 1                      |
-| 25          | friends_referrals_25_f1a9344085 | 3                  | 699.613728300676              | 5                      |
-| 26          | google_search_26_bb6932ae6d     | 6                  | 452.0241191684092             | 3                      |
-| 29          | google_search_29_11c9b19036     | 1                  | 154.53976255178992            | 1                      |
-| 36          | instagram_ads_36_a3f63248bb     | 5                  | 311.6106039265774             | 2                      |
+| 25          | friends_referrals_25_f1a9344085 | 12                 | 174.903432075169              | 1                      |
+| 18          | instagram_ads_18_92b545ab18     | 10                 | 288.52496746162666            | 2                      |
+| 61          | friends_referrals_61_17d7bb85f3 | 10                 | 313.0172449950501             | 2                      |
+| 51          | instagram_ads_51_94f540ce54     | 9                  | 261.3704859860934             | 2                      |
+| 26          | google_search_26_bb6932ae6d     | 9                  | 301.34941277893944            | 2                      |
+| 17          | google_search_17_a400715565     | 9                  | 245.21392390373887            | 1                      |
+| 49          | friends_referrals_49_16b0b159fa | 9                  | 288.469560173737              | 2                      |
+| 60          | facebook_ads_60_c107c6b147      | 8                  | 345.1581886309037             | 2                      |
+| 32          | google_search_32_893397b50d     | 8                  | 369.19360069982207            | 2                      |
+| 103         | instagram_ads_103_cd5421fbd9    | 8                  | 223.14798839074024            | 1                      |
 +-------------+---------------------------------+--------------------+-------------------------------+------------------------+
 114 rows, showing only 10 rows. Run with --limit 0 to show all rows.
 
@@ -167,7 +168,7 @@ Table moms_flower_shop.pub.dim_marketing_campaigns
     </Step>
 </Steps>
 
-Congratulations! You just created the your first model using SDF!
+Congratulations! You just created your first model using SDF!
 
 ## Next Steps
 **Our work here isn't done!**

@@ -1,6 +1,6 @@
 table:
   name: agg_installs_and_campaigns
-  # Uncomment below to complete the "Enriching Your Warehouse" Tutorial >>>>>
+  # Uncomment below to begin the "Enriching Your Warehouse" Tutorial >>>>>
   classifiers:
     - RETENTION.infinity
   # <<<<<

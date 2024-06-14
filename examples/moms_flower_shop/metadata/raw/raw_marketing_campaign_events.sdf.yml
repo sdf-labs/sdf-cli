@@ -4,7 +4,7 @@ table:
     An hourly table logging marketing campaigns. If a campaign is running that hour, it will be logged in the table. 
     If no campaigns are running for a certain houe, no campaigns will be logged.
   
-  # Uncomment below to complete the "Enriching Your Warehouse" Tutorial >>>>>
+  # Uncomment below to begin the "Enriching Your Warehouse" Tutorial >>>>>
   # classifiers:
     # - RETENTION.d7
   # <<<<<
@@ -12,7 +12,7 @@ table:
   columns:
     - name: event_id
       description: A unique identifier of the marketing campaign event
-      # Uncomment to complete the "Enriching your Warehouse" tutorial >>>>>
+      # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
       # classifiers:
       #   - EVENT.marketing
       # <<<<<

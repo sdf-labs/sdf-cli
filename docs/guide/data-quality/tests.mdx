@@ -22,11 +22,11 @@ Tests may have three results, with text highlighting providing an indication of 
 
 | Test Result | Meaning | 
 | ------------|---------|
-| 🟢          | Passing | 
 | 🟡          | Warning | 
-| 🔴          | Failing | 
+| 🔴          | Error   | 
 
 ## Using a Test
+
 Tests are added to columns in table blocks. Each column has 'constraints' and test functions should be expressed as the expectation you have of the column.
 
 Test libraries are written as SDF workspaces that are imported by your workspace.
@@ -38,11 +38,20 @@ table:
   name: a_really_great_table
   columns:
     - name: cool_column
-      constraints:
-      - is: std.unique()
-      - is: std.not_null()
+      tests:
+      - expect: unique()
+      - expect: not_null()
         severity: warning
 ``` 
+
+<Tip>
+  SDF's tests libraby is an out-of-the-box optimized testing mechanism.
+  All tests associated with a table will be run within one query. 
+  
+  One query --> one table scan --> significant compute savings compare to other 
+  data quality solutions.
+</Tip>
+
 
 ## SDF Standard Library Tests
 
@@ -71,11 +80,177 @@ table:
 | ------------------------------ | --------- |----------------------------------------- |
 | `unique_columns([c1, c2])`| Table    | Table with columns `c1` and `c2` has unique values across these two columns |
 
+<Tip>
+  The full repo of `sdf_tests`, our open-source tests library, is is available on GitHub [here](https://github.com/sdf-labs/tests).
+</Tip>
+
 ## Writing Your Own Test
+<Steps>
+  <Step title="Prerequisite">
+    SDF's built-in tests library `sdf_tests` uses Jinja macros. Therefore, setting Jinja
+    as a preprocessor is required. 
 
-[TODO]
+    Create the sample workspace `tests`:
+    ```shell
+    sdf new --sample tests
+    ```
 
-## FAQ
-- How do I inspect the query that is created by a series of tests?
-- How do I write my own test library?
-- 
+
+    In the file `workspace.sdf.yml`, we have Jinja set as the default preprocessor:
+    ```yml workspace.sdf.yml
+    workspace:
+      name: Tests workspace
+      ...
+      defaults: 
+        preprocessor: jinja
+    ```
+  </Step>
+  <Step title="Add Tests">
+    Open the table metadata file `src_metadata/raw_inapp_events.sdf.yml`.
+    In the file, find the three commented out tests and uncomment them. They should look like this:
+
+    <CodeGroup>
+    ```yml column_name: event_id
+    ...
+    - name: event_id
+      description: A unique identifier of an in-app event within mom's flower shop's mobile app
+      # Uncomment the following tests:
+      tests:
+      - expect: unique()
+        severity: error
+      - expect: not_null()
+        severity: error
+    ...
+    ```
+    ```yml column_name: event_name
+    ...
+    - name: event_name
+      description: The name of the in-app events. Supported events - install, add_to_cart, go_to_checkout, place_order
+      # Uncomment the following tests:
+      tests:
+      - expect: in_accepted_values(['install', 'add_to_cart', 'go_to_checkout', 'place_order'])
+        severity: warning
+    ...
+    ```
+    ```yml column_name: event_value
+    ...
+    - name: event_value
+      description: >
+        Any numeric value associated with the event. 
+        For example, upon placing an order, the event value would be the total order amount in USD.
+      # Uncomment the following tests:
+      tests:
+        - expect: between(0, 1000)
+          severity: warning
+    ...
+    ```
+    </CodeGroup>
+  </Step>
+  <Step title="Run Tests">
+    Run the tests. In the terminal, run:
+    ```shell
+    sdf test 
+    ```
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
+Working set 1 model file, 1 test file, 2 .sdf files
+    Running tests_workspace.pub.raw_inapp_events (./src/raw_inapp_events.sql)
+    Testing tests_workspace.pub.test_raw_inapp_events (./.sdfcache/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
+   Finished 1 model [1 succeeded], 1 test [1 passed] in 0.607 secs
+[Pass] Test tests_workspace.pub.test_raw_inapp_events
+
+</code>
+</pre>
+  </Step>
+  <Step title="Inspect the Test">
+    This step is not mandatory, but sometimes it can be helpful to view the compiled test query.
+    To access the query, navigate to the file located in `.sdfcache/dbg/compiled-files/.sdfcache/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql`.
+
+    The file will hold the compiled tests query and will look like this:
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<code className='language-shell'>
+
+
+WITH
+raw_inapp_events_constraints AS (
+    SELECT
+        CASE WHEN COUNT(DISTINCT event_id) != COUNT(event_id) 
+    THEN  
+    &#39;err: column event_id is NOT unique&#39; ELSE NULL END AS event_id_1
+        ,
+        CASE WHEN COUNT(CASE WHEN event_id IS NULL THEN 1 ELSE NULL END) &gt; 0 
+    THEN  
+    &#39;err: column event_id has NULL values&#39; ELSE NULL END AS event_id_2
+        ,
+        CASE WHEN COUNT(CASE WHEN event_name NOT IN (&#39;install&#39;, &#39;add_to_cart&#39;, &#39;go_to_checkout&#39;, &#39;place_order&#39;) THEN 1 ELSE NULL END) &gt; 0 
+    THEN  
+    &#39;wrn: column event_name has values outside accepted values &#39;&#39;install&#39;&#39;, &#39;&#39;add_to_cart&#39;&#39;, &#39;&#39;go_to_checkout&#39;&#39;, &#39;&#39;place_order&#39;&#39;&#39; ELSE NULL END AS event_name_1
+        ,
+        CASE WHEN NOT(MIN(event_value) &gt;= 0) or  MAX(event_value) &gt; 1000
+	THEN 
+	&#39;wrn: column event_value has values outside of 0..1000&#39; ELSE NULL END AS event_value_1
+    FROM tests_workspace.pub.raw_inapp_events
+)
+
+SELECT reason 
+FROM (
+   
+    SELECT event_id_1 as reason FROM raw_inapp_events_constraints WHERE event_id_1 IS NOT NULL
+    UNION ALL
+       
+    SELECT event_id_2 as reason FROM raw_inapp_events_constraints WHERE event_id_2 IS NOT NULL
+    UNION ALL 
+       
+    SELECT event_name_1 as reason FROM raw_inapp_events_constraints WHERE event_name_1 IS NOT NULL
+    UNION ALL 
+       
+    SELECT event_value_1 as reason FROM raw_inapp_events_constraints WHERE event_value_1 IS NOT NULL 
+    ) AS _combined_errors
+ORDER BY reason;
+
+</code>
+</pre>
+  </Step>
+  <Step title="Fail a Test">
+    Let's see how it'll look like if the test fails.
+    In `src_metadata/raw_inapp_events.sdf.yml`, edit the test associated with the column `event_value`
+    and reduce the maximum in the range to be 10 instead of 1000:
+    ``` yml
+    ...
+    - name: event_value
+      description: >
+        Any numeric value associated with the event. 
+        For example, upon placing an order, the event value would be the total order amount in USD.
+      # Uncomment the following tests:
+      tests:
+        - expect: between(0, 10)  <-- Chnage here - from 1000 to 10
+          severity: warning
+    ...
+    ```
+
+    Now let's run the test again:
+
+    ```shell
+    sdf test 
+    ```
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<code className='language-error'>
+    Running tests_workspace.pub.raw_inapp_events (./src/raw_inapp_events.sql)
+    Testing tests_workspace.pub.test_raw_inapp_events (./.sdfcache/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
+   Finished 1 model [1 succeeded], 1 test [1 failed] in 0.610 secs, for details see below.
+[Fail] Test tests_workspace.pub.test_raw_inapp_events
++-----------------------------------------------------+
+| reason                                              |
++-----------------------------------------------------+
+| wrn: column event_value has values outside of 0..10 |
++-----------------------------------------------------+
+1 rows.
+
+-------
+Summary 1 model [1 succeeded], 1 test [1 failed] in 0.610 secs.
+-------
+
+</code>
+</pre>
+  </Step>
+</Steps>

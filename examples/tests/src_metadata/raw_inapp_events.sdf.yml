@@ -2,21 +2,18 @@ table:
   name: raw_inapp_events
   description: Logged actions (events) that users perform inside the mobile app of mom's flower shop.
   
-  # Uncomment below to begin the "Enriching Your Warehouse" Tutorial >>>>>
-  classifiers:
-    - RETENTION.d7
-  # <<<<<
-  
   columns:
     - name: index
       description: row_number
       
     - name: event_id
       description: A unique identifier of an in-app event within mom's flower shop's mobile app
-      # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
-      classifiers:
-        - EVENT.inapp
-      # <<<<<
+      # Uncomment the following tests:
+      # tests:
+      # - expect: unique()
+      #   severity: error
+      # - expect: not_null()
+      #   severity: error
 
     - name: customer_id
       description: The identifier of the customer that performed the event
@@ -26,11 +23,19 @@ table:
       
     - name: event_name
       description: The name of the in-app events. Supported events - install, add_to_cart, go_to_checkout, place_order
+      # Uncomment the following tests:
+      # tests:
+      # - expect: in_accepted_values(['install', 'add_to_cart', 'go_to_checkout', 'place_order'])
+      #   severity: warning
 
     - name: event_value
       description: >
         Any numeric value associated with the event. 
         For example, upon placing an order, the event value would be the total order amount in USD.
+      # Uncomment the following tests:
+      # tests:
+      #   - expect: between(0, 1000)
+      #     severity: warning
     
     - name: additional_details
       description: >

@@ -11,3 +11,4 @@ SELECT
 FROM marketing_campaigns m
     LEFT OUTER JOIN stg_installs_per_campaign i
     ON (m.campaign_id = i.campaign_id)
+ORDER BY total_num_installs DESC NULLS LAST

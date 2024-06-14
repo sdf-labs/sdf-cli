@@ -2,7 +2,7 @@ table:
   name: raw_inapp_events
   description: Logged actions (events) that users perform inside the mobile app of mom s flower shop.
   
-  # Uncomment below to complete the "Enriching Your Warehouse" Tutorial >>>>>
+  # Uncomment below to begin the "Enriching Your Warehouse" Tutorial >>>>>
   # classifiers:
     # - RETENTION.d7
   # <<<<<
@@ -13,7 +13,7 @@ table:
       
     - name: event_id
       description: A unique identifier of an in-app event within mom s flower shop s mobile app
-      # Uncomment to complete the "Enriching your Warehouse" tutorial >>>>>
+      # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
       # classifiers:
       #   - EVENT.inapp
       # <<<<<

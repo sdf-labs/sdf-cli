@@ -1,12 +1,12 @@
 ---
-title: "Enriching Your Warehouse"
+title:"Enriching Your Warehouse"
 ---
 
 ## Overview
 In the previous tutorial, we set up guardrails based on checks. 
 In this tutorial, we will see how SDF's semantic understanding 
 can help transform your data warehouse from strings and numbers 
-to real world business logic:
+to real-world business logic:
 * Maintain business logic consistency
 * Control development environment and minimize mistakes from propagating
 * Comply with privacy and GDPR requirements
@@ -37,10 +37,25 @@ Init for run commands:
         # <<<<<<<
         ```        
     </Step>
+    <Step title="Intro to SDF Classifiers">
+        SDF's has the ability to annotate columns and tables with user defined types which represent
+        real-world business logic. Those types enrich the data warehouse and create new SQL types - 
+        instead of just BIGINTs, we can now have currencies, different types of IDs, zip-codes, and many more.
+        
+        SDF **automatically propagates** those types to downstream assets, enriching the entire 
+        data warehouse with a new layer of semantic understanding.
+
+        <Tip>
+            To learn more about SDF's classifiers, read our [classifiers guide](/guide/basics/classifiers).
+        </Tip>
+    </Step>
     <Step title="Creating New Classifiers">
+        Let's focus back on Mom's Flower Shop.
+        
         If you recall, V1 of `app_installs` had an incorrect `JOIN` between 
-        mobile app in-app events in the `inapp_events` table, and marketing
+        mobile app in-app events in the `raw_inapp_events` table, and marketing 
         campaign events in the `raw_marketing_campaign_events` table:
+        
         ``` sql
         ...
         FROM inapp_events i 
@@ -49,7 +64,12 @@ Init for run commands:
         ...
         ```
 
-        Let's classify each column.
+        Essentially, we were joining two elements that are completely different. 
+        Like comparing Apples to Oranges. These kind of mistakes happen all the time. 
+        Thankfully, we can leverage SDF's semantic understanding and smart propagation 
+        to set guardrails which will prevent future similar mistakes.
+
+        Let's use SDF classifiers to add the missing business logic.
 
         The column classifiers file `classifications/column_classifiers.sdf.yml` already contains 
         the event classifiers. Take a look yourself:
@@ -121,7 +141,7 @@ Schema moms_flower_shop.pub.dim_marketing_campaigns
 </code>
 </pre>
 
-        Further more, we can see that `app_installs` inherited both `EVENT.inapp`
+        Furthermore, we can see that `app_installs` inherited both `EVENT.inapp`
         and `EVENT.marketing`. This is due to the incorrect `JOIN` we found.
 
         ```shell 
@@ -166,7 +186,7 @@ Schema moms_flower_shop.pub.app_installs
                 sdf.information_schema.columns c
             WHERE
                 -- more than one EVENT classifier is assigned
-                c.classifiers LIKE '%EVENT%EVENT%'
+                CAST(c.classifiers AS VARCHAR) LIKE '%EVENT%EVENT%'
             ``` 
 
             Let's run it:
@@ -187,16 +207,23 @@ Schema moms_flower_shop.pub.app_installs
 
 </code>
 </pre>
-        </Step>
+    </Step>
+    <Step title="Deprecate App Installs">
+        In the [previous tutorial](/tutorials/deprecating-a-model), we already resolved
+        any downstream dependencies of `app_installs` and we now fully support the newer 
+        version, `app_installs_v2`. It is safe to deprecate the model - just delete the file.
+
+        Or course, you can run `sdf compile` to validate the change.
+    </Step>
 </Steps>
 
 ## Bonus 
-Classifiers can enrich your your data warehouse in many ways.
+Classifiers can enrich your data warehouse in many ways.
 The following are just a few examples of added information layers
 to your static tables. 
 
 With each example, you can create checks and reports 
-to monitor your warehouse's health and and compliance.
+to monitor your warehouse's health and compliance.
 
 <Steps>
     <Step title="Privacy">
@@ -269,7 +296,7 @@ Schema moms_flower_shop.pub.customers
         We can assign short term retention to our raw tables, while keeping infinite
         retention for any analytics tables. 
 
-        To each raw table metadata found in `metadata/raw/*`, add:
+        For each raw table metadata found in `metadata/raw/*`, add:
         ``` yml
         ...
         classifiers:

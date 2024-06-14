@@ -20,7 +20,7 @@ workspace:
       type: resource  
     - path: metadata  # Tables metadata
     
-    # Uncomment here to complete the "Deprecating a Model" tutorial >>>>>>
+    # Uncomment here to begin the "Deprecating a Model" tutorial >>>>>>
     - path: classifications  # Classifiers
     - path: checks  # Checks against SDF's information schema
       type: check
