@@ -24,26 +24,26 @@
 	},
 	"topbarLinks": [
 		{
-		  "name": "Support",
-		  "url": "https://www.sdf.com/support"
+			"name": "Support",
+			"url": "https://www.sdf.com/support"
 		}
-	  ],
-	  "tabs": [
+	],
+	"tabs": [
 		{
 			"name": "Database",
-    		"url": "database"
+			"url": "database"
 		},
 		{
 			"name": "Cloud",
-    		"url": "cloud"
+			"url": "cloud"
 		},
 		{
 			"name": "Releases",
-    		"url": "releases"
+			"url": "releases"
 		},
 		{
 			"name": "Reference",
-    		"url": "reference"
+			"url": "reference"
 		}
 	],
 	"anchors": [
@@ -109,26 +109,26 @@
 						"guide/setup/environments"
 					]
 				},
-				{  
-					"group":"Using SDF",
+				{
+					"group": "Using SDF",
 					"icon": "play",
-					"pages":[
+					"pages": [
 						"guide/basics/lineage_metadata",
 						"guide/basics/classifiers",
-						{  
-							"group":"Macro Processing",
+						{
+							"group": "Macro Processing",
 							"icon": "microchip",
-							"pages":[
+							"pages": [
 								"guide/macro-processing/overview",
 								"guide/macro-processing/jinja",
 								"guide/macro-processing/jinja-variables",
 								"guide/macro-processing/sql-variables"
 							]
 						},
-						{  
-							"group":"Data Quality",
+						{
+							"group": "Data Quality",
 							"icon": "helmet-safety",
-							"pages":[
+							"pages": [
 								"guide/data-quality/overview",
 								"guide/data-quality/checks",
 								"guide/data-quality/reports",
@@ -154,7 +154,7 @@
 				"integrations/overview",
 				{
 					"group": "Snowflake",
-					"icon" : "snowflake",
+					"icon": "snowflake",
 					"pages": [
 						"integrations/snowflake/getting-started",
 						"integrations/snowflake/basic-materialization",
@@ -163,7 +163,7 @@
 				},
 				{
 					"group": "Redshift",
-					"icon" : "aws",
+					"icon": "aws",
 					"pages": [
 						"integrations/redshift/getting-started"
 					]
@@ -181,7 +181,6 @@
 					"icon": "github",
 					"pages": [
 						"integrations/cicd/ci_cd"
-						
 					]
 				},
 				{
@@ -189,13 +188,6 @@
 					"icon": "block-brick",
 					"pages": [
 						"integrations/databricks/databricks"
-					]
-				},
-				{
-					"group": "OpenAI",
-					"icon": "wand",
-					"pages": [
-						"integrations/openai/ai-classification"
 					]
 				}
 			]
