@@ -292,8 +292,9 @@
 			"pages": [
 				"database/introduction",
 				"database/file-formats",
+				"database/partitioning",
 				{
-					"group": "Functions",
+					"group": "Supported Functions",
 					"pages": [
 						"database/functions/aggregate_functions",
 						"database/functions/math_functions",
@@ -301,7 +302,8 @@
 						"database/functions/string_functions",
 						"database/functions/temporal_functions"
 					]
-				}
+				},
+				"database/benchmarks"
 			]
 		},
 		{

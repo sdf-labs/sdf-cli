@@ -1,0 +1,55 @@
+---
+title: "Partitioning"
+description:
+  "Use advanced partition capabilities to maximize performance."
+---
+
+## Overview
+Date partitioning using a folder structure such as `year={yyyy}/month={mm}/day={dd}` is a common approach to organizing data, particularly in data lakes, distributed file systems like HDFS, and modern data warehouses like AWS Redshift, Google BigQuery, and Snowflake. 
+This strategy leverages the hierarchical nature of file systems to efficiently manage and query large datasets based on temporal attributes.
+
+There are several advantages to date partitioning, and although it does typically add complexity to the data infrastructure layer, it can dramatically improve query performance. SDF tries to minimize the complexity of working with partitioned datasets.
+
+Using Partitions can provide:
+- **Improved Query Performance**
+  - *Predicate Pushdown*: Queries that filter by date can quickly locate the relevant partitions without scanning the entire dataset. 
+  - *Reduced Scan Scope*: Only the partitions that match the date filter criteria are scanned, significantly reducing I/O and improving query performance.
+- **Simplify Long-Term Data Management**
+  - *Data Archiving and Deletion*: Old data can be easily archived or deleted by dropping partitions. SDF can simplify data deletion even further by providing automated mechanisms for data deletion with Classifiers & Reports. Deleting stale data can help keep data costs in check.
+  - *Incremental Data Loading*: Data has a tendency to only grow over time. With partitions, new data can be added incrementally to the relevant partitions without affecting the entire dataset.
+
+## Amazon S3 with SDF
+SDF allows querying data stored in S3 using SQL. For efficiency, SDF suggests using the Parquet data format.
+ You can partition data by date using a HDFS-like folder structure:
+
+** Example Directory Structure**
+
+``` shell
+s3://my-bucket/data/logs/year=2024/month=08/day=12/
+```
+
+You may define an external partitioned table in SQL, or YML.
+
+**Example Partitioned S3 Table Definition in SQL**
+``` sql
+CREATE EXTERNAL TABLE logs 
+PARTITIONED BY (year STRING, month STRING, day STRING)
+STORED AS PARQUET
+LOCATION 's3://my-bucket/data/logs/';
+```
+
+**Example Partitioned S3 Table Definition in YML** 
+In the scenario below, SDF infers the schema directly from the parquet files. Crucially, SDF expects the schemas to be identical between the partitions.
+``` yml
+table:
+  name: logs
+  location: 's3://my-bucket/data/logs/'
+  file-format: parquet
+  partitioned-by:
+    - name: "year"
+      format: "YYYY"
+    - name: "month"
+      format: "MM"
+    - name: "day"
+      format: "DD"
+```

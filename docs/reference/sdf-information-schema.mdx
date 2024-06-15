@@ -32,59 +32,9 @@ sdf run -q "select * from sdf.information_schema.column_lineage"
 ```
 
 The information schema tables have the following schemas.
-### `sdf.information_schema.tables`
-##### The INFORMATION_SCHEMA.TABLES view contains one row for each table or view or query in a dataset.
-| column_name | data_type | description |
-|-------------|-----------|-------------|
-| `table_id` | varchar not null | The table_id (i.e. &#123;catalog&#125;.&#123;schema&#125;.&#123;table&#125;) of the table. |
-| `catalog_name` | varchar not null | The catalog_name of the catalog to which the table belongs. |
-| `schema_name` | varchar not null | The schema_name of the schema to which the table belongs. |
-| `table_name` | varchar not null | The table_name of the table. |
-| `depends_on` | array&lt;varchar&gt; | An array of table_ids on which the table depends. |
-| `depended_on_by` | array&lt;varchar&gt; | An array of table_ids that depend on the table. |
-| `description` | varchar | The description of the table. |
-| `dialect` | varchar not null | The dialect of the table. Possible values include &#39;presto&#39;, &#39;snowflake&#39;, &#39;redshift&#39;, etc. |
-| `materialization` | varchar | The materialization of the table. Possible values include &#39;view&#39;, &#39;table&#39;, &#39;external-table&#39;, &#39;incremental-table&#39;, etc. |
-| `purpose` | varchar | The purpose of the table (i.e. what is this table used for). Possible values include &#39;model&#39;, &#39;system&#39;, &#39;external-system&#39;, &#39;test&#39;, &#39;check&#39;, etc. |
-| `classifiers` | array&lt;varchar&gt; | An array of classifiers propagated to or originating on this table. |
-| `source_locations` | array&lt;varchar&gt; | An array of source locations (e.g. file, uri, etc.) from which the table is derived. |
-
-### `sdf.information_schema.columns`
-##### This table contains one row for each column in all tables in the workspace. It includes the column&#39;s metadata, such as its datatype, description, and whether it is nullable.
-| column_name | data_type | description |
-|-------------|-----------|-------------|
-| `table_id` | varchar not null | The table_id (i.e. &#123;catalog&#125;.&#123;schema&#125;.&#123;table&#125;) of the table to which the column belongs. |
-| `column_id` | varchar not null | The column_id (i.e. &#123;table_id&#125;.&#123;column_name&#125;) of the column, composed of the table_id and column_name. |
-| `catalog_name` | varchar not null | The catalog_name of the catalog to which the table belongs. |
-| `schema_name` | varchar not null | The schema_name of the schema to which the table belongs. |
-| `table_name` | varchar not null | The table_name of the table to which the column belongs. |
-| `table_purpose` | varchar | The purpose of the table to which the column belongs. Possible values include &#39;model&#39;, &#39;system&#39;, &#39;external-system&#39; etc. |
-| `column_name` | varchar not null | The column_name of the column. |
-| `datatype` | varchar | The datatype of the column. |
-| `description` | varchar | The description of the column. |
-| `depends_on` | array&lt;varchar&gt; | An array of column_ids on which the column depends. |
-| `depended_on_by` | array&lt;varchar&gt; | An array of column_ids that depend on the column. |
-| `classifiers` | array&lt;varchar&gt; | An array of classifiers propagated to or originating on this column. |
-
-### `sdf.information_schema.table_lineage`
-##### This table contains one row for each table relationship (i.e. from_table_id to to_table_id)
-| column_name | data_type | description |
-|-------------|-----------|-------------|
-| `from_table_id` | varchar | The table_id of the table from which the lineage originates. This field is null if the table named in `to_table_id` is a root table (i.e. does not have upstream dependencies). |
-| `to_table_id` | varchar | The table_id of the table to which the lineage points. This field is null if the table named in `from_table_id` is a leaf table (i.e. does not have downstream dependencies). |
-| `lineage_kind` | varchar | The kind of lineage relationship between the tables. Possible values include &#39;scan&#39;. This field is null if either `to_table_id` or `from_table_id` is a root or leaf table respectively. |
-
-### `sdf.information_schema.column_lineage`
-##### This table contains one row for each column relationship (i.e. from_column_id to to_column_id)
-| column_name | data_type | description |
-|-------------|-----------|-------------|
-| `from_table_id` | varchar | The table_id of the table from which the lineage originates. This field is null if the column named in `to_column_id` is a root column (i.e. does not have upstream dependencies). |
-| `from_column_id` | varchar | The column_id of the column from which the lineage originates. This field is null if the column named in `to_column_id` is a root column (i.e. does not have upstream dependencies). |
-| `to_table_id` | varchar | The table_id of the table to which the lineage points. This field is null if the column named in `from_column_id` is a leaf column (i.e. does not have downstream dependencies). |
-| `to_column_id` | varchar | The column_id of the column to which the lineage points. This field is null if the column named in `from_column_id` is a leaf column (i.e. does not have downstream dependencies). |
-| `lineage_kind` | varchar | The kind of lineage relationship between the columns. Possible values include &#39;copy&#39; or &#39;mod&#39;. This field is null if either `to_column_id` or `from_column_id` is a root or leaf column respectively. |
-
-
+```shell
+$sdf man information-schema --format markdown --show none
+```
 
 ### Information Schema DDLs
 Below are the DDLs representing these tables in SQL.

@@ -1,0 +1,56 @@
+---
+title: "Benchmarks"
+description:
+  "Monitoring SDF's performance over time"
+---
+
+## Overview
+Benchmarks are exciting because they level the playing field for everyone. SDF aspires to conform to as many DB benchmarks as possible. 
+Crucially, SDF execution semantics are built on top of [Apache Datafusion](https://datafusion.apache.org/) so we expect performance to closely mirror that engine.
+
+Configuration is minimal since all dependency management of when to load which tables, what to keep in memory, and in what order to execute queries is handled automatically by SDF.
+
+For each benchmark, simply download the data and write `sdf run` on your terminal. No configuration necessary.
+
+## Presto / Trino  / AWS Athena
+There are many SQL engine products that have their root in the Facebook developed [Presto](https://prestodb.io/) engine. The [Trino](https://trino.io/) dialect (a fork off of Presto) is the default execution dialect of SDF. Trino is the engine powering [AWS Athena](https://aws.amazon.com/athena/).
+
+### TPCH
+The [TPC-H](https://www.tpc.org/tpch/) benchmark is a standard benchmark used to evaluate the performance of various analytical database engines. It consists of a suite of business-oriented ad-hoc queries and concurrent data modifications. These queries are designed to model real-world decision support scenarios.
+
+**Overview of TPC-H Benchmark**
+- Scale Factor: TPC-H defines different scale factors (SF) to represent the database size, ranging from SF 1 (1 GB) to SF 10000 (10 TB) and beyond.
+- Queries: There are 22 queries in the TPC-H benchmark, each designed to test different aspects of SQL engine performance, such as join operations, aggregations, and sorting.
+
+To get started with SDF's TPCH benchmark, please download the workspace from [here](https://github.com/sdf-labs/sdf-cli/tree/main/benchmarks).
+1.  Download the TPCH SDF workspace
+2.  Download the data via the supplied hydrate.sh script
+3.  You have two scale factors available to you 0.1GB, and 10GB
+4.  To execute the benchmark, `sdf run -e [full | tiny]` depending on the scale factor
+
+### IMDB - Join Order Benchmark
+The IMDb SQL database benchmark, similar to the TPC-H benchmark, is designed to evaluate analytical database performance. It is also known as the [join order benchmark](https://github.com/gregrahn/join-order-benchmark?tab=readme-ov-file)
+It uses data derived from the Internet Movie Database (IMDb), which contains comprehensive information about movies, 
+television programs, actors, production crew personnel, and other related information. It is based on a 2015 VLDB paper titled [How Good Are Query Optimizers Really?](https://www.vldb.org/pvldb/vol9/p204-leis.pdf)
+
+- Scale: The compressed data size is only ~1.2GB
+- Queries: There are 113 queries in total, divided into several sets. 
+
+To get started with SDF's IMDB benchmark, please download the workspace from [here](https://github.com/sdf-labs/sdf-cli/tree/main/benchmarks).
+1.  Download the IMDB SDF workspace
+2.  Download the data via the supplied hydrate.sh script
+4.  To execute the benchmark, execute `sdf run`
+
+### Clickbench
+The ClickBench benchmark is designed to evaluate the performance of database systems using a dataset and queries derived from the real-world use cases of ClickHouse, 
+a leading analytical database. This benchmark aims to measure how well different database systems handle large-scale analytical workloads.
+
+You can see a large scale report of Clickbench results [here](https://benchmark.clickhouse.com/)
+
+- Scale: The data in this clickbench set is ~1GB compressed
+- Queries: There are 43 queries in total
+
+To get started with SDF's Clickbench benchmark, please download the workspace from [here](https://github.com/sdf-labs/sdf-cli/tree/main/benchmarks).
+1.  Download the Clickbench SDF workspace
+2.  Download the data via the supplied hydrate.sh script
+4.  To execute the benchmark, execute `sdf run`
