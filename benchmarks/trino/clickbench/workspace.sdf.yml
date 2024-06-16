@@ -1,0 +1,17 @@
+workspace:
+  edition: "1.2"
+  name: "clickbench"
+  defaults: 
+    dialect: trino
+  description: >
+    The ClickBench benchmark is designed to evaluate the performance of database systems using a dataset and queries derived from the real-world use cases of ClickHouse, 
+    a leading analytical database. This benchmark aims to measure how well different database systems handle large-scale analytical workloads.
+
+    To run the benchmark:
+    1. Run the included hydrate.sh script which downloads relevant data
+    2. To execute all queries: `sdf run --no-cache`
+  includes:
+    - path: sources
+    - path: queries
+    - path: hits.parquet
+      type: resource

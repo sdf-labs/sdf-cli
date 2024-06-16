@@ -1,0 +1,1 @@
+CREATE EXTERNAL TABLE supplier STORED AS PARQUET LOCATION 'tpch_pd_scale_10/supplier/';

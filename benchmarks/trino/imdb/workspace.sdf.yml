@@ -1,0 +1,17 @@
+workspace:
+  edition: "1.2"
+  name: "imdb"
+  defaults: 
+    dialect: trino
+  description: >
+    This queryset is based on the various tables made public by IMDB. Similar to the TPC-H benchmark, 
+    is designed to evaluate analytical database performance. It is also known as the join order benchmark.
+
+    To run the benchmark:
+    1. Run the included hydrate.sh script which downloads relevant data
+    2. To execute all queries: `sdf run --no-cache`
+  includes:
+    - path: queries/
+    - path: sources
+    - path: imdb_data
+      type: resource
