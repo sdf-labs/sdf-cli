@@ -46,7 +46,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working set 3 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.761 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.452 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -164,7 +164,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 Working set 4 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
   Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.449 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.214 secs
 
 Schema sdf_snowflake.staging.latest_repo_name
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -206,23 +206,23 @@ Schema sdf_snowflake.staging.latest_repo_name
 Working set 4 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
     Running sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 8.401 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 8.032 secs
 
 Table sdf_snowflake.staging.latest_repo_name
-+------------------------------------------------------------------+-----------+
-| repo_name                                                        | repo_id   |
-+------------------------------------------------------------------+-----------+
-| bhowar03/program-4-bhowar                                        | 815324551 |
-| Raksha1209/coding-crabs                                          | 815056351 |
-| him-hmt/HMT                                                      | 815134406 |
-| TechPranali/streaming-05-traffic-data                            | 814907325 |
-| princewill016/alx-system_engineering-devops                      | 815052649 |
-| VictorMedellin7/OrdinarioGyM                                     | 814898587 |
-| pfpt-stg-aut/SHIELD_REPOSITORY_PERMISSION_CHANGE_PUBLIC_71LiXZaK | 815287913 |
-| saugnik/temp                                                     | 815259206 |
-| akshayshedage/microservice-config                                | 814969115 |
-| pc3457/Stock-Market                                              | 815243565 |
-+------------------------------------------------------------------+-----------+
++------------------------------------+-----------+
+| repo_name                          | repo_id   |
++------------------------------------+-----------+
+| Bagoole-Ivan/iwdd230               | 815526808 |
+| PROTOTYPEJESUS/BootstrapPortafolio | 815656548 |
+| Magic-Kot/space                    | 815500046 |
+| notjuanda/PlataformaDeCursosOnline | 815646286 |
+| Taha-Rizwan/PlantsvsZombies        | 791730798 |
+| RitikaShubham/WalletApp_Ui_Design  | 815432338 |
+| saurabhsharmaiit123/BharatPay      | 815642274 |
+| lililuya/Learning-ScoreHMR         | 815585112 |
+| Skylarkz45/skyzyplerkudaxyz        | 815409279 |
+| taiyuanfang/sockperf_win_x64       | 815452725 |
++------------------------------------+-----------+
 10 rows.
 
 </code>
@@ -270,7 +270,7 @@ Table sdf_snowflake.staging.latest_repo_name
 Working set 5 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.397 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.908 secs
 
 Schema sdf_snowflake.staging.push_events
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -334,20 +334,20 @@ Schema sdf_snowflake.staging.push_events
 <pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
 Working set 6 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
-Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
-Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
 Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
-  Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (./src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (./src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
   Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (./src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+  Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (./src/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-   Finished 13 models [6 succeeded, 7 downloaded] in 2.658 secs
+   Finished 13 models [6 succeeded, 7 downloaded] in 2.691 secs
 
 </code>
 </pre>

@@ -92,7 +92,8 @@
 				"cloud/authentication",
 				"cloud/deployment",
 				"cloud/sso",
-				"cloud/troubleshooting"
+				"cloud/troubleshooting",
+				"cloud/organization_roles"
 			]
 		},
 		{
@@ -198,6 +199,7 @@
 				"reference/sdf-cli",
 				"reference/sdf-yml",
 				"reference/sdf-information-schema",
+				"reference/support",
 				"reference/error-codes"
 			]
 		},
@@ -311,29 +313,43 @@
 			"pages": [
 				"releases/latest",
 				{
-					"group": "April 2024",
+					"group": "2024",
 					"pages": [
-						"releases/v0.1.192",
-						"releases/v0.2.0",
-						"releases/v0.2.11"
-					]
+					{
+						"group": "May 2024",
+						"pages": [
+							"releases/v0.2.19"
+						]
+					},
+					{
+						"group": "April 2024",
+						"pages": [
+							"releases/v0.1.192",
+							"releases/v0.2.0",
+							"releases/v0.2.11"
+						]
+					},
+					{
+						"group": "March 2024",
+						"pages": [
+							"releases/v0.1.184",
+							"releases/v0.1.187",
+							"releases/v0.1.191"
+						]
+					},
+					{
+						"group": "January 2024",
+						"pages": [
+							"releases/v0.1.136",
+							"releases/v0.1.135",
+							"releases/v0.1.134"
+						]
+					}
+				]
 				},
 				{
-					"group": "March 2024",
+					"group": "2023",
 					"pages": [
-						"releases/v0.1.184",
-						"releases/v0.1.187",
-						"releases/v0.1.191"
-					]
-				},
-				{
-					"group": "January 2024",
-					"pages": [
-						"releases/v0.1.136",
-						"releases/v0.1.135",
-						"releases/v0.1.134"
-					]
-				},
 				{
 					"group": "September 2023",
 					"pages": [
@@ -416,6 +432,7 @@
 						"releases/v0.1.8",
 						"releases/v0.1.7"
 					]
+				}]
 				},
 				{
 					"group": "Migration Guides",

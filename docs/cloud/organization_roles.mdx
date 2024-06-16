@@ -1,0 +1,40 @@
+---
+title: "Organization Roles"
+description:
+  "Oganization roles and permissions with SDF Cloud."
+---
+
+## SDF User Permissions Reference
+
+To better protect your data models and data warehouse, SDF provides role hierarchies for Organizations and Workspaces. 
+Each SDF user has a Workspace role in each Workspace they belong to, plus a single Organization role. 
+
+To reach these settings, navigate to Settings, select the Members tab, and then search for the desired member to update setting. 
+In a drop down to the right, you are able to view and update the selected member's permissions and role.
+
+<img src="https://cdn.sdf.com/docs/User_roles_under_settings_and_members.png"/>
+
+## Organization Roles
+
+An Organization role grants a user access to an SDF Organization, including all of the 
+Workspaces within that Organization. All users have an Organization role regardless of whether they belong to a Workspace.
+The following table lists the available Organization roles.
+<Tip>
+Admin role users can change organization settings and invite new members.
+</Tip>
+Member role users cannot view or change organization settings or billing.
+
+| Permission | Organization Admin | Organization Member |
+| :---       |      :----:        |      :----:         |
+| View Organization Details and User Memebership | ✔️ | ✔️ |
+| View Workspaces within Organization | ✔️ | ✔️ |
+| Create & Delete Workspaces within Organization | ✔️ | ✔️ |
+| Access Workspace Catalog & Column-Level Lineage  | ✔️ | ✔️ |
+| Update Organization User Permissions | ✔️ |  |
+| Manage Organization Name & Endpoint | ✔️ |  |
+| Set up Integrations and Connect to a Database | ✔️ |  |
+| Set up Access Keys | ✔️ |  |
+
+## Billing Management Role 
+Organization admin who's email is associated with our stripe customer object can manage and update billing. This is 
+indicated by a purple crown on the member's settings page. 
