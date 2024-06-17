@@ -176,7 +176,7 @@ where
 ## Environment Variables
 Environment variables can be accessed via the built in jinja macro `env_var(VAR)`. This function is accessible in both SQL, and YML files.
 
-Give it a try:
+### Give it a try in SQL:
 <Steps>
     <Step title="Navigate to Your Workspace">
         Navigate to your SDF workspace. To create a new one, see our getting started section [here](/guide/macro-processing/jinja#getting-started-with-jinja).
@@ -209,4 +209,76 @@ Give it a try:
     </Step>
 </Steps>
 
+### Give it a try in YML:
+
+<Steps>
+    <Step title="Navigate to Your Workspace">
+        Navigate to your SDF workspace. To create a new one, see our getting started section [here](/guide/macro-processing/jinja#getting-started-with-jinja).
+    </Step>
+    <Step title="Turn on the macro preprocessor">
+        SDF will only use the macro-processor when instructed. In your `workspace.sdf.yml`, in the workspace, block,
+        add the preprocessor configuration.
+        ```yml
+            workspace:
+              defaults:
+                preprocessor: jinja
+              ...
+        ```
+
+        Let's also add a default catalog name:
+        ```yml
+            workspace:
+              defaults:
+                preprocessor: jinja
+                catalog: my_catalog  <-- Add this line
+              ...
+        ```
+    </Step>
+    <Step title="Give it a Try!">
+        First, run `sdf compile` with the existing configuration. Notice that the catalog name of all
+        assets should be `my_catalog` as we set it up in the previous step.
+
+        Now, let's introduce an environment variable.
+
+        Change the default catalog to point to an environment variable. In this example, we will use the local 
+        username:
+        ```yml
+            workspace:
+              defaults:
+                preprocessor: jinja
+                catalog: "{{env_var('USER')}}_catalog"  <-- Change this line
+              ...
+        ```
+
+        Now, when we run `sdf compile`, the catalog name of all aassets will be `{your_username}_catalog`, when `{your_username}` is 
+        the username you use for your local machine. 
+
+        <Tip>
+            You can run `printenv` in your terminal to view all available encironment variables on your machine.
+        </Tip>
+    </Step>
+    <Step title="Create a New Environment variable">
+        It is possible to create new environment variables and reference them using SDF. 
+
+        Let's create a new variable named `DEFAULT_CATALOG`. For the sake of this example, 
+        we can set it to be `my_default_catalog`.
+        
+        In your terminal, run:
+        ``` shell
+        export DEFAULT_CATALOG="my_default_catalog"
+        ```
+
+        Now, we need to update the `env_var` reference we set in the previous step:
+        ```yml
+            workspace:
+              defaults:
+                preprocessor: jinja
+                catalog: "{{env_var('DEFAULT_CATALOG')}}"  <-- Change this line
+              ...
+        ```
+
+        Run `sdf compile` again. This time, the catalog name of all aassets will match the new environment variable we set up - 
+        `my_default_catalog`.
+    </Step>
+</Steps>
 
