@@ -29,7 +29,8 @@ title: "SDF YML Schema"
 `exists-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macto)|
 `table-location:` | [`TableLocation?`](#enum-tablelocation)| Specify table ,location, defaults to none if not set|
 `creation-flags:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines the table creation options, defaults to none if not set|
-`incremental-options:` | [`IncrementalOptions?`](#nested-element-incrementaloptions)| Contains various options governing incremental table evaluation (only for incremental tables)|
+`incremental-options:` | [`IncrementalOptions?`](#nested-element-incrementaloptions)| Options governing incremental table evaluation (only for incremental tables)|
+`snapshot-options:` | [`SnapshotOptions?`](#nested-element-snapshotoptions)| Options governing snapshot table evaluation (only for snapshot tables)|
 `dependencies:` | `array`| All tables that this table depends on (syntax: catalog.schema.table)|
 `depended-on-by:` | `array`| All tables that depend on this table (syntax: catalog.schema.table)|
 `columns:` | `array`| The columns of the schema: name, type, metadata|
@@ -189,6 +190,7 @@ Values |
 `view`
 `materialized-view`
 `incremental-table`
+`snapshot-table`
 `recursive-table`
 ## Enum: `TableCreationFlags`
 Value | Description|
@@ -271,6 +273,16 @@ Value | Description|
 `fail` | Fail when the new schema of an incremental table does not match the old one|
 `append` | Keep all the columns of the old incremental table schema while appending the new columns from the new schema. Initialize all the columns that were deleted in the new schema with NULL|
 `sync` | Delete all the deleted columns from the incremental table; Append all the new columns|
+## Enum: `SnapshotStrategy`
+Values |
+| :--- |
+`timestamp`
+`check`
+## Enum: `CheckColsSpec`
+Value | Description|
+| :--- | :------- |
+`cols` | A list of column names to be used for checking if a snapshot&#39;s source data set was updated|
+`all` | Use all columns to check whether a snapshot&#39;s source data set was updated|
 ## Enum: `FileFormat`
 Store table data in these formats.
 Values |
@@ -428,6 +440,13 @@ Values |
 `merge-update-columns:` | `array`| List of column names to be updated as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
 `merge-exclude-columns:` | `array`| List of column names to exclude from updating as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
 `on-schema-change:` | [`OnSchemaChange?`](#enum-onschemachange)| Method for reacting to changing schema in the source of the incremental table Possible values are &amp;#96;fail&amp;#96;, &amp;#96;append&amp;#96;, and &amp;#96;sync&amp;#96;. If left unspecified, the default behavior is to ignore the change and possibly error out if the schema change is incompatible. &amp;#96;fail&amp;#96; causes a failure whenever any deviation in the schema of the source is detected; &amp;#96;append&amp;#96; adds new columns but does not delete the columns removed from the source; &amp;#96;sync&amp;#96; adds new columns and deletess the columns removed from the source;|
+### Nested element: `SnapshotOptions`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`strategy:` | [`SnapshotStrategy`](#enum-snapshotstrategy)| Snapshot strategy; may be one of &amp;#96;timestamp&amp;#96; (default), or &amp;#96;check&amp;#96;|
+`unique-key:` | `string`| Expression used for identifying records that will be updated according to the snapshot strategiy; May be a column name or an expression combining multiple columns|
+`updated-at:` | `string?`| Name of the timestamp column used to identify the last update time This option is only required for the &amp;#96;timestamp&amp;#96; snapshot strategy|
+`check-cols:` | [`CheckColsSpec?`](#enum-checkcolsspec)| Specification of which columns to check for change (may be a list of column names or &amp;#96;all&amp;#96;) This option is only required for the &amp;#96;check&amp;#96; snapshot strategy|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |

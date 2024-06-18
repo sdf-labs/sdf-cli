@@ -4,7 +4,7 @@ title: "Aggregate Functions"
 
 
 ## `any_value`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/any_value)
 
 ```sql
 function any_value(&lt;$1&gt;) returns $1
@@ -12,7 +12,7 @@ function any_value(&lt;$1&gt;) returns $1
 Returns the first non-null value of a column
 
 ## `approx_count_distinct`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_count_distinct)
 
 ```sql
 function approx_count_distinct($1, ...) returns decimal(38, 0)
@@ -20,7 +20,7 @@ function approx_count_distinct($1, ...) returns decimal(38, 0)
 approximate distinct row count
 
 ## `approx_percentile`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_percentile)
 
 ```sql
 function approx_percentile(&lt;double, double&gt;) returns double
@@ -28,7 +28,7 @@ function approx_percentile(&lt;double, double&gt;) returns double
 percentile approximation of inputs
 
 ## `approx_percentile_accumulate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_percentile_accumulate)
 
 ```sql
 function approx_percentile_accumulate(&lt;double&gt;) returns object
@@ -36,7 +36,7 @@ function approx_percentile_accumulate(&lt;double&gt;) returns object
 tdigest state in JSON format
 
 ## `approx_percentile_combine`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_percentile_combine)
 
 ```sql
 function approx_percentile_combine(&lt;object&gt;) returns object
@@ -44,7 +44,7 @@ function approx_percentile_combine(&lt;object&gt;) returns object
 A tdigest state in JSON format
 
 ## `approx_percentile_estimate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_percentile_estimate)
 
 ```sql
 function approx_percentile_estimate(&lt;object, double&gt;) returns double
@@ -52,7 +52,7 @@ function approx_percentile_estimate(&lt;object, double&gt;) returns double
 ESTIMATED PERCENTILE VALUE
 
 ## `approx_top_k`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_top_k)
 
 ```sql
 function approx_top_k(&lt;$1&gt;) returns array
@@ -70,7 +70,7 @@ function approx_top_k(&lt;$1, decimal(38, 0), decimal(38, 0)&gt;) returns array
 Array containing top k items and their frequencies
 
 ## `approx_top_k_accumulate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_top_k_accumulate)
 
 ```sql
 function approx_top_k_accumulate(&lt;$1, decimal(38, 0)&gt;) returns object
@@ -78,7 +78,7 @@ function approx_top_k_accumulate(&lt;$1, decimal(38, 0)&gt;) returns object
 An internal state
 
 ## `approx_top_k_combine`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_top_k_combine)
 
 ```sql
 function approx_top_k_combine(&lt;object&gt;) returns object
@@ -91,7 +91,7 @@ function approx_top_k_combine(&lt;object, decimal(38, 0)&gt;) returns object
 A state created by combining information from combining  all input
 
 ## `approx_top_k_estimate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approx_top_k_estimate)
 
 ```sql
 function approx_top_k_estimate(&lt;object&gt;) returns array
@@ -104,7 +104,7 @@ function approx_top_k_estimate(&lt;object, decimal(38, 0)&gt;) returns array
 Array containing most common k items and their frequencies
 
 ## `approximate_jaccard_index`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approximate_jaccard_index)
 
 ```sql
 function approximate_jaccard_index(&lt;variant&gt;) returns double
@@ -112,7 +112,7 @@ function approximate_jaccard_index(&lt;variant&gt;) returns double
 Similarity approximation of inputs
 
 ## `approximate_similarity`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/approximate_similarity)
 
 ```sql
 function approximate_similarity(&lt;variant&gt;) returns double
@@ -120,7 +120,7 @@ function approximate_similarity(&lt;variant&gt;) returns double
 Similarity approximation of inputs
 
 ## `array_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_agg)
 
 ```sql
 function array_agg(&lt;$1&gt;) returns array
@@ -128,7 +128,7 @@ function array_agg(&lt;$1&gt;) returns array
 output array
 
 ## `array_union_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_union_agg)
 
 ```sql
 function array_union_agg(&lt;array&gt;) returns array
@@ -141,7 +141,7 @@ function array_union_agg(&lt;array&gt;) returns array
 output array
 
 ## `array_unique_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_unique_agg)
 
 ```sql
 function array_unique_agg(&lt;$1&gt;) returns array
@@ -149,7 +149,7 @@ function array_unique_agg(&lt;$1&gt;) returns array
 output array
 
 ## `avg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/avg)
 
 ```sql
 function avg(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -167,7 +167,7 @@ function avg(&lt;string&gt;) returns string
 
 
 ## `bitand_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitand_agg)
 
 ```sql
 function bitand_agg(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -180,7 +180,7 @@ function bitand_agg(&lt;string&gt;) returns string
 
 
 ## `bitmap_bit_position`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitmap_bit_position)
 
 ```sql
 function bitmap_bit_position(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -188,7 +188,7 @@ function bitmap_bit_position(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 relative position in bitmap
 
 ## `bitmap_bucket_number`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitmap_bucket_number)
 
 ```sql
 function bitmap_bucket_number(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -196,7 +196,7 @@ function bitmap_bucket_number(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 bucket index of the destination bitmap
 
 ## `bitmap_construct_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitmap_construct_agg)
 
 ```sql
 function bitmap_construct_agg(&lt;decimal(38, 0)&gt;) returns binary
@@ -204,7 +204,7 @@ function bitmap_construct_agg(&lt;decimal(38, 0)&gt;) returns binary
 bitmap
 
 ## `bitmap_count`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitmap_count)
 
 ```sql
 function bitmap_count(&lt;binary&gt;) returns decimal(38, 0)
@@ -212,7 +212,7 @@ function bitmap_count(&lt;binary&gt;) returns decimal(38, 0)
 number of set bits in the bitmap
 
 ## `bitmap_or_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitmap_or_agg)
 
 ```sql
 function bitmap_or_agg(&lt;binary&gt;) returns binary
@@ -220,7 +220,7 @@ function bitmap_or_agg(&lt;binary&gt;) returns binary
 destination bitmap
 
 ## `bitor_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitor_agg)
 
 ```sql
 function bitor_agg(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -233,7 +233,7 @@ function bitor_agg(&lt;string&gt;) returns string
 
 
 ## `bitxor_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitxor_agg)
 
 ```sql
 function bitxor_agg(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -246,7 +246,7 @@ function bitxor_agg(&lt;string&gt;) returns string
 
 
 ## `booland_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/booland_agg)
 
 ```sql
 function booland_agg(&lt;decimal(38, 0)&gt;) returns boolean
@@ -259,7 +259,7 @@ function booland_agg(&lt;boolean&gt;) returns boolean
 
 
 ## `boolor_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/boolor_agg)
 
 ```sql
 function boolor_agg(&lt;decimal(38, 0)&gt;) returns boolean
@@ -272,7 +272,7 @@ function boolor_agg(&lt;boolean&gt;) returns boolean
 
 
 ## `boolxor_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/boolxor_agg)
 
 ```sql
 function boolxor_agg(&lt;decimal(38, 0)&gt;) returns boolean
@@ -285,7 +285,7 @@ function boolxor_agg(&lt;boolean&gt;) returns boolean
 
 
 ## `corr`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/corr)
 
 ```sql
 function corr(&lt;double, double&gt;) returns double
@@ -293,7 +293,7 @@ function corr(&lt;double, double&gt;) returns double
 Returns the correlation coefficient for non-null pairs in a group.
 
 ## `count`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/count)
 
 ```sql
 function count($1, ...) returns decimal(38, 0)
@@ -301,7 +301,7 @@ function count($1, ...) returns decimal(38, 0)
 Return number of non-null values of a given expression
 
 ## `count_if`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/count_if)
 
 ```sql
 function count_if(&lt;boolean&gt;) returns decimal(38, 0)
@@ -314,7 +314,7 @@ function count_if(&lt;boolean&gt;) returns double
 Returns a conditional count
 
 ## `covar_pop`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/covar_pop)
 
 ```sql
 function covar_pop(&lt;double, double&gt;) returns double
@@ -322,7 +322,7 @@ function covar_pop(&lt;double, double&gt;) returns double
 Returns the population covariance for non-null pairs in a group.
 
 ## `covar_samp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/covar_samp)
 
 ```sql
 function covar_samp(&lt;double, double&gt;) returns double
@@ -330,7 +330,7 @@ function covar_samp(&lt;double, double&gt;) returns double
 Returns the sample covariance for non-null pairs in a group.
 
 ## `grouping`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/grouping)
 
 ```sql
 function grouping(...) returns int
@@ -338,7 +338,7 @@ function grouping(...) returns int
 
 
 ## `grouping_id`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/grouping_id)
 
 ```sql
 function grouping_id($1, ...) returns decimal(38, 0)
@@ -346,7 +346,7 @@ function grouping_id($1, ...) returns decimal(38, 0)
 Returns grouping bit-vector
 
 ## `hash_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hash_agg)
 
 ```sql
 function hash_agg($1, ...) returns decimal(38, 0)
@@ -379,7 +379,7 @@ function hash_agg(&lt;$1, $2, $3, $4, $5&gt;) returns decimal(38, 0)
 aggregate hash value
 
 ## `hll`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hll)
 
 ```sql
 function hll($1, ...) returns decimal(38, 0)
@@ -387,7 +387,7 @@ function hll($1, ...) returns decimal(38, 0)
 approximate distinct row count
 
 ## `hll_accumulate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hll_accumulate)
 
 ```sql
 function hll_accumulate($1, ...) returns binary
@@ -395,7 +395,7 @@ function hll_accumulate($1, ...) returns binary
 HyperLogLog state
 
 ## `hll_combine`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hll_combine)
 
 ```sql
 function hll_combine(&lt;binary&gt;) returns binary
@@ -403,7 +403,7 @@ function hll_combine(&lt;binary&gt;) returns binary
 combined HyperLogLog state
 
 ## `hll_estimate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hll_estimate)
 
 ```sql
 function hll_estimate(&lt;binary&gt;) returns decimal(38, 0)
@@ -411,7 +411,7 @@ function hll_estimate(&lt;binary&gt;) returns decimal(38, 0)
 approximate distinct row count
 
 ## `hll_export`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hll_export)
 
 ```sql
 function hll_export(&lt;binary&gt;) returns object
@@ -419,7 +419,7 @@ function hll_export(&lt;binary&gt;) returns object
 HyperLogLog state as a compound OBJECT
 
 ## `hll_import`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hll_import)
 
 ```sql
 function hll_import(&lt;object&gt;) returns binary
@@ -427,7 +427,7 @@ function hll_import(&lt;object&gt;) returns binary
 HyperLogLog state in binary format
 
 ## `kurtosis`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/kurtosis)
 
 ```sql
 function kurtosis(&lt;decimal(38, 0)&gt;) returns double
@@ -440,7 +440,7 @@ function kurtosis(&lt;double&gt;) returns double
 Returns the sample kurtosis of the values in a group. Null values are ignored.
 
 ## `listagg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/listagg)
 
 ```sql
 function listagg(&lt;varchar&gt;) returns varchar
@@ -453,7 +453,7 @@ function listagg(&lt;varchar, varchar&gt;) returns varchar
 output string
 
 ## `max`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/max)
 
 ```sql
 function max(&lt;$1&gt;) returns $1
@@ -461,7 +461,7 @@ function max(&lt;$1&gt;) returns $1
 Returns the maximum of a column
 
 ## `max_by`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/max_by)
 
 ```sql
 function max_by(&lt;$1, $2&gt;) returns $1
@@ -474,7 +474,7 @@ function max_by(&lt;$1, $2, decimal(38, 0)&gt;) returns array
 Returns value of first column with maximum second column val
 
 ## `median`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/median)
 
 ```sql
 function median(&lt;&gt;) returns decimal(38, 0)
@@ -487,7 +487,7 @@ function median(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 value of sort key at specified percentile
 
 ## `min`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/min)
 
 ```sql
 function min(&lt;$1&gt;) returns $1
@@ -495,7 +495,7 @@ function min(&lt;$1&gt;) returns $1
 Returns the minimum of a column
 
 ## `min_by`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/min_by)
 
 ```sql
 function min_by(&lt;$1, $2&gt;) returns $1
@@ -508,7 +508,7 @@ function min_by(&lt;$1, $2, decimal(38, 0)&gt;) returns array
 Returns value of first column with minimum second column val
 
 ## `minhash`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/minhash)
 
 ```sql
 function minhash(decimal(38, 0), $1, ...) returns variant
@@ -516,7 +516,7 @@ function minhash(decimal(38, 0), $1, ...) returns variant
 Minhash state including an array of k (first input arg) minimum hash values
 
 ## `minhash_combine`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/minhash_combine)
 
 ```sql
 function minhash_combine(&lt;variant&gt;) returns variant
@@ -524,7 +524,7 @@ function minhash_combine(&lt;variant&gt;) returns variant
 Combined result of two (or more) minhash states
 
 ## `mode`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/mode)
 
 ```sql
 function mode(&lt;$1&gt;) returns $1
@@ -532,7 +532,7 @@ function mode(&lt;$1&gt;) returns $1
 Returns the most frequent item of a column
 
 ## `object_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/object_agg)
 
 ```sql
 function object_agg(&lt;varchar, variant&gt;) returns object
@@ -540,7 +540,7 @@ function object_agg(&lt;varchar, variant&gt;) returns object
 output object
 
 ## `percentile_cont`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/percentile_cont)
 
 ```sql
 function percentile_cont(&lt;&gt;) returns double
@@ -553,7 +553,7 @@ function percentile_cont(&lt;decimal(38, 0)&gt;) returns double
 value of sort key at specified percentile
 
 ## `percentile_disc`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/percentile_disc)
 
 ```sql
 function percentile_disc(&lt;&gt;) returns decimal(38, 0)
@@ -566,7 +566,7 @@ function percentile_disc(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
 value of sort key at specified percentile
 
 ## `regr_avgx`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_avgx)
 
 ```sql
 function regr_avgx(&lt;double, double&gt;) returns double
@@ -574,7 +574,7 @@ function regr_avgx(&lt;double, double&gt;) returns double
 Returns the average of the independent variable (2nd parameter) for non-null pairs.
 
 ## `regr_avgy`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_avgy)
 
 ```sql
 function regr_avgy(&lt;double, double&gt;) returns double
@@ -582,7 +582,7 @@ function regr_avgy(&lt;double, double&gt;) returns double
 Returns the average of the dependent variable (1st parameter) for non-null pairs.
 
 ## `regr_count`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_count)
 
 ```sql
 function regr_count(&lt;double, double&gt;) returns double
@@ -590,7 +590,7 @@ function regr_count(&lt;double, double&gt;) returns double
 Returns the number of non-null number pairs.
 
 ## `regr_intercept`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_intercept)
 
 ```sql
 function regr_intercept(&lt;double, double&gt;) returns double
@@ -598,7 +598,7 @@ function regr_intercept(&lt;double, double&gt;) returns double
 Returns the intercept of the univariate linear regression line for non-null pairs.
 
 ## `regr_r2`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_r2)
 
 ```sql
 function regr_r2(&lt;double, double&gt;) returns double
@@ -606,7 +606,7 @@ function regr_r2(&lt;double, double&gt;) returns double
 Returns the coefficient of determination for non-null pairs.
 
 ## `regr_slope`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_slope)
 
 ```sql
 function regr_slope(&lt;double, double&gt;) returns double
@@ -614,7 +614,7 @@ function regr_slope(&lt;double, double&gt;) returns double
 Returns the slope of the linear regression line for non-null pairs.
 
 ## `regr_sxx`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_sxx)
 
 ```sql
 function regr_sxx(&lt;double, double&gt;) returns double
@@ -622,7 +622,7 @@ function regr_sxx(&lt;double, double&gt;) returns double
 Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr2) for non-null pairs.
 
 ## `regr_sxy`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_sxy)
 
 ```sql
 function regr_sxy(&lt;double, double&gt;) returns double
@@ -630,7 +630,7 @@ function regr_sxy(&lt;double, double&gt;) returns double
 Returns REGR_COUNT(expr1, expr2) * COVAR_POP(expr1, expr2) for non-null pairs.
 
 ## `regr_syy`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_syy)
 
 ```sql
 function regr_syy(&lt;double, double&gt;) returns double
@@ -638,7 +638,7 @@ function regr_syy(&lt;double, double&gt;) returns double
 Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr1) for non-null pairs.
 
 ## `skew`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/skew)
 
 ```sql
 function skew(&lt;decimal(38, 0)&gt;) returns double
@@ -651,7 +651,7 @@ function skew(&lt;double&gt;) returns double
 Returns the sample skew of the values in a group. Null values are ignored.
 
 ## `stddev`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stddev)
 
 ```sql
 function stddev(&lt;decimal(38, 0)&gt;) returns double
@@ -664,7 +664,7 @@ function stddev(&lt;double&gt;) returns double
 Returns the sample standard deviation of the values in a group. Null values are ignored.
 
 ## `stddev_pop`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stddev_pop)
 
 ```sql
 function stddev_pop(&lt;decimal(38, 0)&gt;) returns double
@@ -677,7 +677,7 @@ function stddev_pop(&lt;double&gt;) returns double
 Returns the population standard deviation of the values in a group. Null values are ignored.
 
 ## `stddev_samp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stddev_samp)
 
 ```sql
 function stddev_samp(&lt;decimal(38, 0)&gt;) returns double
@@ -690,7 +690,7 @@ function stddev_samp(&lt;double&gt;) returns double
 Returns the sample standard deviation of the values in a group. Null values are ignored.
 
 ## `sum`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sum)
 
 ```sql
 function sum(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -703,7 +703,7 @@ function sum(&lt;double&gt;) returns double
 Returns a sum of a column
 
 ## `var_pop`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/var_pop)
 
 ```sql
 function var_pop(&lt;decimal(38, 0)&gt;) returns double
@@ -716,7 +716,7 @@ function var_pop(&lt;double&gt;) returns double
 Returns the population variance of the values in a group. Null values are ignored.
 
 ## `var_samp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/var_samp)
 
 ```sql
 function var_samp(&lt;decimal(38, 0)&gt;) returns double
@@ -729,7 +729,7 @@ function var_samp(&lt;double&gt;) returns double
 Returns the sample variance of the values in a group. Null values are ignored.
 
 ## `variance`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/variance)
 
 ```sql
 function variance(&lt;decimal(38, 0)&gt;) returns double
@@ -742,7 +742,7 @@ function variance(&lt;double&gt;) returns double
 Returns the sample variance of the values in a group. Null values are ignored.
 
 ## `variance_pop`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/variance_pop)
 
 ```sql
 function variance_pop(&lt;decimal(38, 0)&gt;) returns double
@@ -755,7 +755,7 @@ function variance_pop(&lt;double&gt;) returns double
 Returns the population variance of the values in a group. Null values are ignored.
 
 ## `variance_samp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/variance_samp)
 
 ```sql
 function variance_samp(&lt;decimal(38, 0)&gt;) returns double

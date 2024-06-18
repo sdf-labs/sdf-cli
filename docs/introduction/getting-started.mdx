@@ -29,7 +29,6 @@ Commands:
   stats    Statistics for your data
   report   Report code quality
   check    Check code quality
-  ai       Infer metadata like classifiers and add them optionally to the workspace
   lineage  Display lineage for a given table and/or column
   push     Push a local workspace to the SDF Service
   system   System maintenance, install and update
@@ -59,7 +58,7 @@ After running the command, you will see the following output:
     Created hello/.gitignore
     Created hello/src/main.sql
     Created hello/workspace.sdf.yml
-   Finished new in 0.187 secs
+   Finished new in 0.101 secs
 
 </code>
 </pre>
@@ -104,7 +103,7 @@ Let's see just how easy it is to set up SDF and run your first query.
 <code className='language-shell'>
 Working set 1 model file, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.683 secs
+   Finished 1 model [1 succeeded] in 0.578 secs
 
 Schema hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -132,14 +131,14 @@ Schema hello.pub.main
 <code className='language-shell'>
 Working set 1 model file, 1 .sdf file
     Running hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.641 secs
+   Finished 1 model [1 succeeded] in 0.548 secs
 
 Table hello.pub.main
-+----------+-----------------+
-| column_1 | column_2        |
-+----------+-----------------+
-| hello    | Jeffrey Walters |
-+----------+-----------------+
+┌──────────┬─────────────────┐
+│ column_1 ┆ column_2        │
+╞══════════╪═════════════════╡
+│ hello    ┆ Jeffrey Walters │
+└──────────┴─────────────────┘
 1 rows.
 
 </code>
@@ -165,7 +164,7 @@ Table hello.pub.main
 Working set 2 model files, 1 .sdf file
   Compiling hello.pub.main (./src/main.sql)
   Compiling hello.pub.main2 (./src/main2.sql)
-   Finished 2 models [2 succeeded] in 0.664 secs
+   Finished 2 models [2 succeeded] in 0.587 secs
 main2.column_1
 │
 │ copy

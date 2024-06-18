@@ -4,7 +4,7 @@ title: "Date & Time Functions"
 
 
 ## `add_months`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/add_months)
 
 ```sql
 function add_months(&lt;string, bigint&gt;) returns timestamp
@@ -12,7 +12,7 @@ function add_months(&lt;string, bigint&gt;) returns timestamp
 
 
 ## `convert_timezone`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/convert_timezone)
 
 ```sql
 function convert_timezone&lt;$1&gt; (&lt;varchar, varchar, $1&gt;) returns timestamp
@@ -27,7 +27,7 @@ function convert_timezone&lt;$1&gt; (&lt;varchar, $1&gt;) returns timestamp
 Returns the input timestamp converted from source timezone to a destination timezone
 
 ## `date_from_parts`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/date_from_parts)
 
 ```sql
 function date_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns date
@@ -35,7 +35,7 @@ function date_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;)
 Construct a date from individual components
 
 ## `date_part`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/date_part)
 
 ```sql
 function date_part&lt;$1&gt; (&lt;string, $1&gt;) returns double
@@ -45,7 +45,7 @@ function date_part&lt;$1&gt; (&lt;string, $1&gt;) returns double
 
 
 ## `date_trunc`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/date_trunc)
 
 ```sql
 function date_trunc&lt;$1&gt; (&lt;string, $1&gt;) returns $1
@@ -55,7 +55,7 @@ function date_trunc&lt;$1&gt; (&lt;string, $1&gt;) returns $1
 
 
 ## `dateadd`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dateadd)
 
 ```sql
 function dateadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
@@ -65,7 +65,7 @@ function dateadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
 
 
 ## `datediff`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/datediff)
 
 ```sql
 function datediff&lt;$1, $2&gt; (&lt;string, $1, $2&gt;) returns bigint
@@ -76,7 +76,7 @@ function datediff&lt;$1, $2&gt; (&lt;string, $1, $2&gt;) returns bigint
 
 
 ## `day`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/day)
 
 ```sql
 function day(&lt;$1&gt;) returns bigint
@@ -84,7 +84,7 @@ function day(&lt;$1&gt;) returns bigint
 
 
 ## `dayname`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayname)
 
 ```sql
 function dayname&lt;$1&gt; (&lt;$1&gt;) returns varchar
@@ -93,7 +93,7 @@ function dayname&lt;$1&gt; (&lt;$1&gt;) returns varchar
 
 
 ## `dayofmonth`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayofmonth)
 
 ```sql
 function dayofmonth(&lt;$1&gt;) returns bigint
@@ -101,7 +101,7 @@ function dayofmonth(&lt;$1&gt;) returns bigint
 
 
 ## `dayofweek`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayofweek)
 
 ```sql
 function dayofweek(&lt;$1&gt;) returns bigint
@@ -109,7 +109,7 @@ function dayofweek(&lt;$1&gt;) returns bigint
 
 
 ## `dayofweekiso`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayofweekiso)
 
 ```sql
 function dayofweekiso(&lt;$1&gt;) returns bigint
@@ -117,7 +117,7 @@ function dayofweekiso(&lt;$1&gt;) returns bigint
 
 
 ## `dayofyear`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayofyear)
 
 ```sql
 function dayofyear(&lt;$1&gt;) returns bigint
@@ -125,7 +125,7 @@ function dayofyear(&lt;$1&gt;) returns bigint
 
 
 ## `extract`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/extract)
 
 ```sql
 function extract&lt;$1&gt; (&lt;string, $1&gt;) returns double
@@ -135,7 +135,7 @@ function extract&lt;$1&gt; (&lt;string, $1&gt;) returns double
 
 
 ## `hour`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hour)
 
 ```sql
 function hour(&lt;$1&gt;) returns bigint
@@ -143,7 +143,7 @@ function hour(&lt;$1&gt;) returns bigint
 
 
 ## `last_day`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/last_day)
 
 ```sql
 function last_day&lt;$1&gt; (&lt;$1&gt;) returns date
@@ -159,7 +159,7 @@ function last_day&lt;$1&gt; (&lt;$1, string&gt;) returns date
 
 
 ## `minute`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/minute)
 
 ```sql
 function minute(&lt;$1&gt;) returns bigint
@@ -167,7 +167,7 @@ function minute(&lt;$1&gt;) returns bigint
 
 
 ## `month`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/month)
 
 ```sql
 function month(&lt;$1&gt;) returns bigint
@@ -175,7 +175,7 @@ function month(&lt;$1&gt;) returns bigint
 
 
 ## `monthname`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/monthname)
 
 ```sql
 function monthname&lt;$1&gt; (&lt;$1&gt;) returns varchar
@@ -184,7 +184,7 @@ function monthname&lt;$1&gt; (&lt;$1&gt;) returns varchar
 
 
 ## `months_between`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/months_between)
 
 ```sql
 function months_between&lt;$1&gt; (&lt;$1, $1&gt;) returns bigint
@@ -193,7 +193,7 @@ function months_between&lt;$1&gt; (&lt;$1, $1&gt;) returns bigint
 
 
 ## `next_day`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/next_day)
 
 ```sql
 function next_day&lt;$1&gt; (&lt;$1, varchar&gt;) returns date
@@ -202,7 +202,7 @@ function next_day&lt;$1&gt; (&lt;$1, varchar&gt;) returns date
 
 
 ## `previous_day`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/previous_day)
 
 ```sql
 function previous_day&lt;$1&gt; (&lt;$1, varchar&gt;) returns date
@@ -211,7 +211,7 @@ function previous_day&lt;$1&gt; (&lt;$1, varchar&gt;) returns date
 
 
 ## `quarter`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/quarter)
 
 ```sql
 function quarter(&lt;$1&gt;) returns bigint
@@ -219,7 +219,7 @@ function quarter(&lt;$1&gt;) returns bigint
 
 
 ## `second`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/second)
 
 ```sql
 function second(&lt;$1&gt;) returns bigint
@@ -227,7 +227,7 @@ function second(&lt;$1&gt;) returns bigint
 
 
 ## `time_from_parts`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/time_from_parts)
 
 ```sql
 function time_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns time
@@ -240,7 +240,7 @@ function time_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0), dec
 Construct a time from individual components
 
 ## `time_slice`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/time_slice)
 
 ```sql
 function time_slice&lt;$1&gt; (&lt;$1, bigint, string&gt;) returns $1
@@ -255,7 +255,7 @@ function time_slice&lt;$1&gt; (&lt;$1, bigint, string, string&gt;) returns $1
 
 
 ## `timeadd`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timeadd)
 
 ```sql
 function timeadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
@@ -265,7 +265,7 @@ function timeadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
 
 
 ## `timediff`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timediff)
 
 ```sql
 function timediff&lt;$1&gt; (&lt;string, $1, $1&gt;) returns bigint
@@ -275,7 +275,7 @@ function timediff&lt;$1&gt; (&lt;string, $1, $1&gt;) returns bigint
 
 
 ## `timestamp_from_parts`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timestamp_from_parts)
 
 ```sql
 function timestamp_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns timestamp
@@ -298,7 +298,7 @@ function timestamp_from_parts(&lt;date, time&gt;) returns timestamp
 Construct a timestamp from individual components
 
 ## `timestampadd`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timestampadd)
 
 ```sql
 function timestampadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
@@ -308,7 +308,7 @@ function timestampadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
 
 
 ## `timestampdiff`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timestampdiff)
 
 ```sql
 function timestampdiff&lt;$1&gt; (&lt;string, $1, $1&gt;) returns bigint
@@ -318,7 +318,7 @@ function timestampdiff&lt;$1&gt; (&lt;string, $1, $1&gt;) returns bigint
 
 
 ## `trunc`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/trunc)
 
 ```sql
 function trunc(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -356,7 +356,7 @@ function trunc(&lt;timestamp, varchar&gt;) returns timestamp
 truncate the fractional or date part
 
 ## `week`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/week)
 
 ```sql
 function week(&lt;$1&gt;) returns bigint
@@ -364,7 +364,7 @@ function week(&lt;$1&gt;) returns bigint
 
 
 ## `weekiso`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/weekiso)
 
 ```sql
 function weekiso(&lt;$1&gt;) returns bigint
@@ -372,7 +372,7 @@ function weekiso(&lt;$1&gt;) returns bigint
 
 
 ## `weekofyear`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/weekofyear)
 
 ```sql
 function weekofyear(&lt;$1&gt;) returns bigint
@@ -380,7 +380,7 @@ function weekofyear(&lt;$1&gt;) returns bigint
 
 
 ## `year`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/year)
 
 ```sql
 function year(&lt;$1&gt;) returns bigint
@@ -388,7 +388,7 @@ function year(&lt;$1&gt;) returns bigint
 
 
 ## `yearofweek`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/yearofweek)
 
 ```sql
 function yearofweek(&lt;$1&gt;) returns bigint
@@ -396,7 +396,7 @@ function yearofweek(&lt;$1&gt;) returns bigint
 
 
 ## `yearofweekiso`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/yearofweekiso)
 
 ```sql
 function yearofweekiso(&lt;$1&gt;) returns bigint

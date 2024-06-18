@@ -99,18 +99,18 @@ Init for run commands:
 <pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
 Working set 11 model files, 8 .sdf files
-  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
   Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
-  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
   Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
-  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
   Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
   Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
   Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
   Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
   Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-   Finished 11 models [11 succeeded] in 0.769 secs
+   Finished 11 models [11 succeeded] in 0.639 secs
 
 </code>
 </pre>
@@ -137,31 +137,32 @@ Working set 11 model files, 8 .sdf files
 <pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
 Working set 12 model files, 8 .sdf files
-    Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
     Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
+    Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
     Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
     Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
     Running moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
     Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
     Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 7 models [7 succeeded] in 0.808 secs
+   Finished 7 models [7 succeeded] in 0.732 secs
 
 Table moms_flower_shop.pub.dim_marketing_campaigns
-+-------------+---------------------------------+--------------------+-------------------------------+------------------------+
-| campaign_id | campaign_name                   | total_num_installs | avg_customer_acquisition_cost | install_duration_ratio |
-+-------------+---------------------------------+--------------------+-------------------------------+------------------------+
-| 25          | friends_referrals_25_f1a9344085 | 12                 | 174.903432075169              | 1                      |
-| 18          | instagram_ads_18_92b545ab18     | 10                 | 288.52496746162666            | 2                      |
-| 61          | friends_referrals_61_17d7bb85f3 | 10                 | 313.0172449950501             | 2                      |
-| 51          | instagram_ads_51_94f540ce54     | 9                  | 261.3704859860934             | 2                      |
-| 26          | google_search_26_bb6932ae6d     | 9                  | 301.34941277893944            | 2                      |
-| 17          | google_search_17_a400715565     | 9                  | 245.21392390373887            | 1                      |
-| 49          | friends_referrals_49_16b0b159fa | 9                  | 288.469560173737              | 2                      |
-| 60          | facebook_ads_60_c107c6b147      | 8                  | 345.1581886309037             | 2                      |
-| 32          | google_search_32_893397b50d     | 8                  | 369.19360069982207            | 2                      |
-| 103         | instagram_ads_103_cd5421fbd9    | 8                  | 223.14798839074024            | 1                      |
-+-------------+---------------------------------+--------------------+-------------------------------+------------------------+
-114 rows, showing only 10 rows. Run with --limit 0 to show all rows.
+┌─────────────┬─────────────────────────────────┬────────────────────┬───────────────────────────────┬────────────────────────┐
+│ campaign_id ┆ campaign_name                   ┆ total_num_installs ┆ avg_customer_acquisition_cost ┆ install_duration_ratio │
+╞═════════════╪═════════════════════════════════╪════════════════════╪═══════════════════════════════╪════════════════════════╡
+│ 25          ┆ friends_referrals_25_f1a9344085 ┆ 12                 ┆ 174.903432075169              ┆ 1                      │
+│ 18          ┆ instagram_ads_18_92b545ab18     ┆ 10                 ┆ 288.52496746162666            ┆ 2                      │
+│ 61          ┆ friends_referrals_61_17d7bb85f3 ┆ 10                 ┆ 313.0172449950501             ┆ 2                      │
+│ 51          ┆ instagram_ads_51_94f540ce54     ┆ 9                  ┆ 261.3704859860934             ┆ 2                      │
+│ 26          ┆ google_search_26_bb6932ae6d     ┆ 9                  ┆ 301.34941277893944            ┆ 2                      │
+│ 17          ┆ google_search_17_a400715565     ┆ 9                  ┆ 245.21392390373887            ┆ 1                      │
+│ 49          ┆ friends_referrals_49_16b0b159fa ┆ 9                  ┆ 288.469560173737              ┆ 2                      │
+│ 60          ┆ facebook_ads_60_c107c6b147      ┆ 8                  ┆ 345.1581886309037             ┆ 2                      │
+│ 32          ┆ google_search_32_893397b50d     ┆ 8                  ┆ 369.19360069982207            ┆ 2                      │
+│ 103         ┆ instagram_ads_103_cd5421fbd9    ┆ 8                  ┆ 223.14798839074024            ┆ 1                      │
+└─────────────┴─────────────────────────────────┴────────────────────┴───────────────────────────────┴────────────────────────┘
+114 rows, showing only 10 rows.
+  Run with --limit 0 to show all rows.
 
 </code>
 </pre>

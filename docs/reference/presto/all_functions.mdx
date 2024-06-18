@@ -21,7 +21,7 @@ function -&lt;$1&gt; (&lt;time, $1&gt;) returns time
 
 
 ## `abs`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#abs)
 
 ```sql
 function abs(&lt;tinyint&gt;) returns tinyint
@@ -54,7 +54,7 @@ function abs(&lt;real&gt;) returns real
 
 
 ## `acos`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#acos)
 
 ```sql
 function acos(&lt;double&gt;) returns double
@@ -62,7 +62,7 @@ function acos(&lt;double&gt;) returns double
 
 
 ## `all_match`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#all_match)
 
 ```sql
 function all_match(&lt;array&lt;$1&gt;, function($1, boolean)&gt;) returns boolean
@@ -70,7 +70,7 @@ function all_match(&lt;array&lt;$1&gt;, function($1, boolean)&gt;) returns boole
 
 
 ## `any_match`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#any_match)
 
 ```sql
 function any_match(&lt;array&lt;$1&gt;, function($1, boolean)&gt;) returns boolean
@@ -78,7 +78,7 @@ function any_match(&lt;array&lt;$1&gt;, function($1, boolean)&gt;) returns boole
 
 
 ## `approx_distinct`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_distinct)
 
 ```sql
 function approx_distinct(&lt;boolean&gt;) returns bigint
@@ -111,7 +111,7 @@ function approx_distinct(&lt;unknown, double&gt;) returns bigint
 
 
 ## `approx_most_frequent`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_most_frequent)
 
 ```sql
 function approx_most_frequent(&lt;bigint, bigint, bigint&gt;) returns map&lt;bigint, bigint&gt;
@@ -124,7 +124,7 @@ function approx_most_frequent(&lt;bigint, varchar, bigint&gt;) returns map&lt;va
 
 
 ## `approx_percentile`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_percentile)
 
 ```sql
 function approx_percentile(&lt;bigint, array&lt;double&gt;&gt;) returns array&lt;bigint&gt;
@@ -202,7 +202,7 @@ function approx_percentile(&lt;real, double, double, double&gt;) returns real
 
 
 ## `approx_set`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#approx_set)
 
 ```sql
 function approx_set(&lt;bigint&gt;) returns hyperloglog
@@ -220,7 +220,7 @@ function approx_set(&lt;varchar&gt;) returns hyperloglog
 
 
 ## `arbitrary`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#arbitrary)
 
 ```sql
 function arbitrary(&lt;$1&gt;) returns $1
@@ -228,7 +228,7 @@ function arbitrary(&lt;$1&gt;) returns $1
 
 
 ## `array_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#array_agg)
 
 ```sql
 function array_agg(&lt;$1&gt;) returns array&lt;$1&gt;
@@ -236,7 +236,7 @@ function array_agg(&lt;$1&gt;) returns array&lt;$1&gt;
 
 
 ## `array_distinct`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_distinct)
 
 ```sql
 function array_distinct(&lt;array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
@@ -244,7 +244,7 @@ function array_distinct(&lt;array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
 
 
 ## `array_except`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_except)
 
 ```sql
 function array_except(&lt;array&lt;$3&gt;, array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
@@ -252,7 +252,7 @@ function array_except(&lt;array&lt;$3&gt;, array&lt;$3&gt;&gt;) returns array&lt
 
 
 ## `array_intersect`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_intersect)
 
 ```sql
 function array_intersect(&lt;array&lt;$3&gt;, array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
@@ -260,7 +260,7 @@ function array_intersect(&lt;array&lt;$3&gt;, array&lt;$3&gt;&gt;) returns array
 
 
 ## `array_join`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_join)
 
 ```sql
 function array_join(&lt;array&lt;$1&gt;, varchar&gt;) returns varchar
@@ -273,7 +273,7 @@ function array_join(&lt;array&lt;$1&gt;, varchar, varchar&gt;) returns varchar
 
 
 ## `array_max`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_max)
 
 ```sql
 function array_max(&lt;array&lt;$1&gt;&gt;) returns $1
@@ -281,7 +281,7 @@ function array_max(&lt;array&lt;$1&gt;&gt;) returns $1
 
 
 ## `array_min`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_min)
 
 ```sql
 function array_min(&lt;array&lt;$1&gt;&gt;) returns $1
@@ -289,7 +289,7 @@ function array_min(&lt;array&lt;$1&gt;&gt;) returns $1
 
 
 ## `array_position`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_position)
 
 ```sql
 function array_position(&lt;array&lt;$1&gt;, $1&gt;) returns bigint
@@ -297,7 +297,7 @@ function array_position(&lt;array&lt;$1&gt;, $1&gt;) returns bigint
 
 
 ## `array_remove`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_remove)
 
 ```sql
 function array_remove(&lt;array&lt;$3&gt;, $3&gt;) returns array&lt;$3&gt;
@@ -305,7 +305,7 @@ function array_remove(&lt;array&lt;$3&gt;, $3&gt;) returns array&lt;$3&gt;
 
 
 ## `array_sort`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_sort)
 
 ```sql
 function array_sort(&lt;array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
@@ -318,7 +318,7 @@ function array_sort(&lt;array&lt;$1&gt;, function($1, $1, bigint)&gt;) returns a
 
 
 ## `array_union`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_union)
 
 ```sql
 function array_union(&lt;array&lt;$3&gt;, array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
@@ -326,7 +326,7 @@ function array_union(&lt;array&lt;$3&gt;, array&lt;$3&gt;&gt;) returns array&lt;
 
 
 ## `arrays_overlap`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#arrays_overlap)
 
 ```sql
 function arrays_overlap(&lt;array&lt;$3&gt;, array&lt;$3&gt;&gt;) returns boolean
@@ -334,7 +334,7 @@ function arrays_overlap(&lt;array&lt;$3&gt;, array&lt;$3&gt;&gt;) returns boolea
 
 
 ## `asin`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#asin)
 
 ```sql
 function asin(&lt;double&gt;) returns double
@@ -342,7 +342,7 @@ function asin(&lt;double&gt;) returns double
 
 
 ## `at_timezone`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#at_timezone)
 
 ```sql
 function at_timezone(&lt;timestamp(p), varchar&gt;) returns timestamp(p)
@@ -350,7 +350,7 @@ function at_timezone(&lt;timestamp(p), varchar&gt;) returns timestamp(p)
 
 
 ## `atan`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#atan)
 
 ```sql
 function atan(&lt;double&gt;) returns double
@@ -358,7 +358,7 @@ function atan(&lt;double&gt;) returns double
 
 
 ## `atan2`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#atan2)
 
 ```sql
 function atan2(&lt;double, double&gt;) returns double
@@ -366,7 +366,7 @@ function atan2(&lt;double, double&gt;) returns double
 
 
 ## `avg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#avg)
 
 ```sql
 function avg(&lt;double&gt;) returns double
@@ -394,7 +394,7 @@ function avg(&lt;real&gt;) returns real
 
 
 ## `bar`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#bar)
 
 ```sql
 function bar(&lt;double, bigint&gt;) returns varchar
@@ -407,7 +407,7 @@ function bar(&lt;double, bigint, color, color&gt;) returns varchar
 
 
 ## `beta_cdf`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#beta_cdf)
 
 ```sql
 function beta_cdf(&lt;double, double, double&gt;) returns double
@@ -415,7 +415,7 @@ function beta_cdf(&lt;double, double, double&gt;) returns double
 
 
 ## `bing_tile`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile)
 
 ```sql
 function bing_tile(&lt;bigint, bigint, bigint&gt;) returns bingtile
@@ -428,7 +428,7 @@ function bing_tile(&lt;varchar&gt;) returns bingtile
 
 
 ## `bing_tile_at`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_at)
 
 ```sql
 function bing_tile_at(&lt;double, double, bigint&gt;) returns bingtile
@@ -436,7 +436,7 @@ function bing_tile_at(&lt;double, double, bigint&gt;) returns bingtile
 
 
 ## `bing_tile_coordinates`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_coordinates)
 
 ```sql
 function bing_tile_coordinates(&lt;bingtile&gt;) returns row(x bigint, y bigint)
@@ -444,7 +444,7 @@ function bing_tile_coordinates(&lt;bingtile&gt;) returns row(x bigint, y bigint)
 
 
 ## `bing_tile_polygon`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_polygon)
 
 ```sql
 function bing_tile_polygon(&lt;bingtile&gt;) returns geometry
@@ -452,7 +452,7 @@ function bing_tile_polygon(&lt;bingtile&gt;) returns geometry
 
 
 ## `bing_tile_quadkey`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_quadkey)
 
 ```sql
 function bing_tile_quadkey(&lt;bingtile&gt;) returns varchar
@@ -460,7 +460,7 @@ function bing_tile_quadkey(&lt;bingtile&gt;) returns varchar
 
 
 ## `bing_tile_zoom_level`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_zoom_level)
 
 ```sql
 function bing_tile_zoom_level(&lt;bingtile&gt;) returns tinyint
@@ -468,7 +468,7 @@ function bing_tile_zoom_level(&lt;bingtile&gt;) returns tinyint
 
 
 ## `bing_tiles_around`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tiles_around)
 
 ```sql
 function bing_tiles_around(&lt;double, double, bigint&gt;) returns array&lt;bingtile&gt;
@@ -481,7 +481,7 @@ function bing_tiles_around(&lt;double, double, bigint, double&gt;) returns array
 
 
 ## `bit_count`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bit_count)
 
 ```sql
 function bit_count(&lt;bigint, bigint&gt;) returns bigint
@@ -489,7 +489,7 @@ function bit_count(&lt;bigint, bigint&gt;) returns bigint
 
 
 ## `bitwise_and`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_and)
 
 ```sql
 function bitwise_and(&lt;bigint, bigint&gt;) returns bigint
@@ -497,7 +497,7 @@ function bitwise_and(&lt;bigint, bigint&gt;) returns bigint
 
 
 ## `bitwise_and_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bitwise_and_agg)
 
 ```sql
 function bitwise_and_agg(&lt;bigint&gt;) returns bigint
@@ -505,7 +505,7 @@ function bitwise_and_agg(&lt;bigint&gt;) returns bigint
 
 
 ## `bitwise_left_shift`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_left_shift)
 
 ```sql
 function bitwise_left_shift(&lt;bigint, bigint&gt;) returns bigint
@@ -528,7 +528,7 @@ function bitwise_left_shift(&lt;tinyint, bigint&gt;) returns tinyint
 
 
 ## `bitwise_not`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_not)
 
 ```sql
 function bitwise_not(&lt;bigint&gt;) returns bigint
@@ -536,7 +536,7 @@ function bitwise_not(&lt;bigint&gt;) returns bigint
 
 
 ## `bitwise_or`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_or)
 
 ```sql
 function bitwise_or(&lt;bigint, bigint&gt;) returns bigint
@@ -544,7 +544,7 @@ function bitwise_or(&lt;bigint, bigint&gt;) returns bigint
 
 
 ## `bitwise_or_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bitwise_or_agg)
 
 ```sql
 function bitwise_or_agg(&lt;bigint&gt;) returns bigint
@@ -552,7 +552,7 @@ function bitwise_or_agg(&lt;bigint&gt;) returns bigint
 
 
 ## `bitwise_right_shift`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_right_shift)
 
 ```sql
 function bitwise_right_shift(&lt;bigint, bigint&gt;) returns bigint
@@ -575,7 +575,7 @@ function bitwise_right_shift(&lt;tinyint, bigint&gt;) returns tinyint
 
 
 ## `bitwise_right_shift_arithmetic`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_right_shift_arithmetic)
 
 ```sql
 function bitwise_right_shift_arithmetic(&lt;bigint, bigint&gt;) returns bigint
@@ -598,7 +598,7 @@ function bitwise_right_shift_arithmetic(&lt;tinyint, bigint&gt;) returns tinyint
 
 
 ## `bitwise_xor`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_xor)
 
 ```sql
 function bitwise_xor(&lt;bigint, bigint&gt;) returns bigint
@@ -606,7 +606,7 @@ function bitwise_xor(&lt;bigint, bigint&gt;) returns bigint
 
 
 ## `bool_and`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bool_and)
 
 ```sql
 function bool_and(&lt;boolean&gt;) returns boolean
@@ -614,7 +614,7 @@ function bool_and(&lt;boolean&gt;) returns boolean
 
 
 ## `bool_or`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bool_or)
 
 ```sql
 function bool_or(&lt;boolean&gt;) returns boolean
@@ -635,7 +635,7 @@ function btrim(&lt;varchar, varchar&gt;) returns varchar
 
 
 ## `cardinality`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#cardinality)
 
 ```sql
 function cardinality(&lt;array&lt;$3&gt;&gt;) returns bigint
@@ -658,7 +658,7 @@ function cardinality(&lt;setdigest&gt;) returns bigint
 
 
 ## `cbrt`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cbrt)
 
 ```sql
 function cbrt(&lt;double&gt;) returns double
@@ -666,7 +666,7 @@ function cbrt(&lt;double&gt;) returns double
 
 
 ## `ceil`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ceil)
 
 ```sql
 function ceil(&lt;bigint&gt;) returns bigint
@@ -704,7 +704,7 @@ function ceil(&lt;tinyint&gt;) returns tinyint
 
 
 ## `ceiling`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ceiling)
 
 ```sql
 function ceiling(&lt;bigint&gt;) returns bigint
@@ -742,7 +742,7 @@ function ceiling(&lt;tinyint&gt;) returns tinyint
 
 
 ## `char2hexint`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#char2hexint)
 
 ```sql
 function char2hexint(&lt;varchar&gt;) returns varchar
@@ -750,7 +750,7 @@ function char2hexint(&lt;varchar&gt;) returns varchar
 
 
 ## `checksum`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#checksum)
 
 ```sql
 function checksum(&lt;$1&gt;) returns varbinary
@@ -758,7 +758,7 @@ function checksum(&lt;$1&gt;) returns varbinary
 
 
 ## `chr`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#chr)
 
 ```sql
 function chr(&lt;bigint&gt;) returns varchar
@@ -766,7 +766,7 @@ function chr(&lt;bigint&gt;) returns varchar
 
 
 ## `classify`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#classify)
 
 ```sql
 function classify(&lt;map&lt;bigint, double&gt;, classifier&gt;) returns bigint
@@ -774,7 +774,7 @@ function classify(&lt;map&lt;bigint, double&gt;, classifier&gt;) returns bigint
 
 
 ## `coalesce`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#coalesce-function)
 
 ```sql
 function coalesce($1, ...) returns $1
@@ -782,7 +782,7 @@ function coalesce($1, ...) returns $1
 
 
 ## `codepoint`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#codepoint)
 
 ```sql
 function codepoint(&lt;varchar&gt;) returns bigint
@@ -790,7 +790,7 @@ function codepoint(&lt;varchar&gt;) returns bigint
 
 
 ## `color`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#color)
 
 ```sql
 function color(&lt;double, color, color&gt;) returns color
@@ -808,7 +808,7 @@ function color(&lt;varchar&gt;) returns color
 
 
 ## `combinations`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#combinations)
 
 ```sql
 function combinations(&lt;array&lt;$1&gt;, bigint&gt;) returns array&lt;array&lt;$1&gt;&gt;
@@ -816,7 +816,7 @@ function combinations(&lt;array&lt;$1&gt;, bigint&gt;) returns array&lt;array&lt
 
 
 ## `concat`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#concat)
 
 ```sql
 function concat(&lt;$3, array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
@@ -849,7 +849,7 @@ function concat(varbinary, ...) returns varbinary
 
 
 ## `concat_ws`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#concat_ws)
 
 ```sql
 function concat_ws(&lt;varchar, array&lt;varchar&gt;&gt;) returns varchar
@@ -862,7 +862,7 @@ function concat_ws(varchar, ...) returns varchar
 
 
 ## `contains`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#contains)
 
 ```sql
 function contains(&lt;array&lt;$1&gt;, $1&gt;) returns boolean
@@ -883,7 +883,7 @@ function contains_array_varchar(&lt;array&lt;varchar&gt;, varchar&gt;) returns b
 
 
 ## `contains_sequence`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#contains_sequence)
 
 ```sql
 function contains_sequence(&lt;array&lt;$1&gt;, array&lt;$1&gt;&gt;) returns boolean
@@ -891,7 +891,7 @@ function contains_sequence(&lt;array&lt;$1&gt;, array&lt;$1&gt;&gt;) returns boo
 
 
 ## `convex_hull_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#convex_hull_agg)
 
 ```sql
 function convex_hull_agg(&lt;geometry&gt;) returns geometry
@@ -899,7 +899,7 @@ function convex_hull_agg(&lt;geometry&gt;) returns geometry
 
 
 ## `corr`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#corr)
 
 ```sql
 function corr(&lt;double, double&gt;) returns double
@@ -912,7 +912,7 @@ function corr(&lt;real, real&gt;) returns real
 
 
 ## `cos`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cos)
 
 ```sql
 function cos(&lt;double&gt;) returns double
@@ -920,7 +920,7 @@ function cos(&lt;double&gt;) returns double
 
 
 ## `cosh`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cosh)
 
 ```sql
 function cosh(&lt;double&gt;) returns double
@@ -928,7 +928,7 @@ function cosh(&lt;double&gt;) returns double
 
 
 ## `cosine_similarity`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cosine_similarity)
 
 ```sql
 function cosine_similarity(&lt;map&lt;varchar, double&gt;, map&lt;varchar, double&gt;&gt;) returns double
@@ -936,7 +936,7 @@ function cosine_similarity(&lt;map&lt;varchar, double&gt;, map&lt;varchar, doubl
 
 
 ## `count`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#count)
 
 ```sql
 function count(&lt;&gt;) returns bigint
@@ -949,7 +949,7 @@ function count(&lt;$1&gt;) returns bigint
 
 
 ## `count_if`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#count_if)
 
 ```sql
 function count_if(&lt;boolean&gt;) returns bigint
@@ -957,7 +957,7 @@ function count_if(&lt;boolean&gt;) returns bigint
 
 
 ## `covar_pop`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#covar_pop)
 
 ```sql
 function covar_pop(&lt;double, double&gt;) returns double
@@ -970,7 +970,7 @@ function covar_pop(&lt;real, real&gt;) returns real
 
 
 ## `covar_samp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#covar_samp)
 
 ```sql
 function covar_samp(&lt;double, double&gt;) returns double
@@ -983,7 +983,7 @@ function covar_samp(&lt;real, real&gt;) returns real
 
 
 ## `crc32`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#crc32)
 
 ```sql
 function crc32(&lt;varbinary&gt;) returns bigint
@@ -991,7 +991,7 @@ function crc32(&lt;varbinary&gt;) returns bigint
 
 
 ## `cume_dist`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#cume_dist)
 
 ```sql
 function cume_dist(&lt;&gt;) returns double
@@ -999,7 +999,7 @@ function cume_dist(&lt;&gt;) returns double
 
 
 ## `current_catalog`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_catalog)
 
 ```sql
 function current_catalog(&lt;&gt;) returns varchar
@@ -1007,7 +1007,7 @@ function current_catalog(&lt;&gt;) returns varchar
 
 
 ## `current_date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_date)
 
 ```sql
 function current_date(&lt;&gt;) returns date
@@ -1018,7 +1018,7 @@ function current_date(&lt;&gt;) returns date
 
 
 ## `current_groups`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_groups)
 
 ```sql
 function current_groups(&lt;&gt;) returns array&lt;varchar&gt;
@@ -1029,7 +1029,7 @@ function current_groups(&lt;&gt;) returns array&lt;varchar&gt;
 
 
 ## `current_schema`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_schema)
 
 ```sql
 function current_schema(&lt;&gt;) returns varchar
@@ -1037,7 +1037,7 @@ function current_schema(&lt;&gt;) returns varchar
 
 
 ## `current_time`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_time)
 
 ```sql
 function current_time(&lt;&gt;) returns time
@@ -1048,7 +1048,7 @@ function current_time(&lt;&gt;) returns time
 
 
 ## `current_timestamp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_timestamp)
 
 ```sql
 function current_timestamp(&lt;&gt;) returns timestamp
@@ -1091,7 +1091,7 @@ function current_timestamp(&lt;9&gt;) returns timestamp(9)
 
 
 ## `current_timezone`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_timezone)
 
 ```sql
 function current_timezone(&lt;&gt;) returns varchar
@@ -1102,7 +1102,7 @@ function current_timezone(&lt;&gt;) returns varchar
 
 
 ## `current_user`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_user)
 
 ```sql
 function current_user(&lt;&gt;) returns varchar
@@ -1110,7 +1110,7 @@ function current_user(&lt;&gt;) returns varchar
 
 
 ## `date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date)
 
 ```sql
 function date(&lt;timestamp(p)&gt;) returns date
@@ -1123,7 +1123,7 @@ function date(&lt;varchar&gt;) returns date
 
 
 ## `date_add`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_add)
 
 ```sql
 function date_add(&lt;varchar, bigint, date&gt;) returns date
@@ -1141,7 +1141,7 @@ function date_add(&lt;varchar, bigint, timestamp(p)&gt;) returns timestamp(p)
 
 
 ## `date_diff`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_diff)
 
 ```sql
 function date_diff(&lt;varchar, date, date&gt;) returns bigint
@@ -1159,7 +1159,7 @@ function date_diff(&lt;varchar, timestamp(p), timestamp(p)&gt;) returns bigint
 
 
 ## `date_format`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_format)
 
 ```sql
 function date_format(&lt;timestamp(p), varchar&gt;) returns varchar
@@ -1167,7 +1167,7 @@ function date_format(&lt;timestamp(p), varchar&gt;) returns varchar
 
 
 ## `date_parse`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_parse)
 
 ```sql
 function date_parse(&lt;varchar, varchar&gt;) returns timestamp
@@ -1193,7 +1193,7 @@ function date_part(&lt;varchar, date&gt;) returns double
 
 
 ## `date_trunc`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_trunc)
 
 ```sql
 function date_trunc(&lt;varchar, time(p)&gt;) returns time(p)
@@ -1211,7 +1211,7 @@ function date_trunc(&lt;varchar, date&gt;) returns date
 
 
 ## `day`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day)
 
 ```sql
 function day(&lt;date&gt;) returns bigint
@@ -1229,7 +1229,7 @@ function day(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `day_of_month`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_month)
 
 ```sql
 function day_of_month(&lt;date&gt;) returns bigint
@@ -1247,7 +1247,7 @@ function day_of_month(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `day_of_week`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_week)
 
 ```sql
 function day_of_week(&lt;date&gt;) returns bigint
@@ -1260,7 +1260,7 @@ function day_of_week(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `day_of_year`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_year)
 
 ```sql
 function day_of_year(&lt;date&gt;) returns bigint
@@ -1273,7 +1273,7 @@ function day_of_year(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `degrees`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#degrees)
 
 ```sql
 function degrees(&lt;double&gt;) returns double
@@ -1281,7 +1281,7 @@ function degrees(&lt;double&gt;) returns double
 
 
 ## `dense_rank`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#dense_rank)
 
 ```sql
 function dense_rank(&lt;&gt;) returns bigint
@@ -1289,7 +1289,7 @@ function dense_rank(&lt;&gt;) returns bigint
 
 
 ## `dow`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#dow)
 
 ```sql
 function dow(&lt;date&gt;) returns bigint
@@ -1302,7 +1302,7 @@ function dow(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `doy`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#doy)
 
 ```sql
 function doy(&lt;date&gt;) returns bigint
@@ -1315,7 +1315,7 @@ function doy(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `e`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#e)
 
 ```sql
 function e(&lt;&gt;) returns double
@@ -1323,7 +1323,7 @@ function e(&lt;&gt;) returns double
 
 
 ## `element_at`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#element_at)
 
 ```sql
 function element_at(&lt;map&lt;$4, $5&gt;, $4&gt;) returns $5
@@ -1336,7 +1336,7 @@ function element_at(&lt;array&lt;$3&gt;, bigint&gt;) returns $3
 
 
 ## `empty_approx_set`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#empty_approx_set)
 
 ```sql
 function empty_approx_set(&lt;&gt;) returns hyperloglog
@@ -1357,7 +1357,7 @@ function evaluate_classifier_predictions(&lt;varchar, varchar&gt;) returns varch
 
 
 ## `every`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#every)
 
 ```sql
 function every(&lt;boolean&gt;) returns boolean
@@ -1365,7 +1365,7 @@ function every(&lt;boolean&gt;) returns boolean
 
 
 ## `exp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#exp)
 
 ```sql
 function exp(&lt;double&gt;) returns double
@@ -1373,7 +1373,7 @@ function exp(&lt;double&gt;) returns double
 
 
 ## `features`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#features)
 
 ```sql
 function features(&lt;double&gt;) returns map&lt;bigint, double&gt;
@@ -1426,7 +1426,7 @@ function features(&lt;double, double, double, double, double, double, double, do
 
 
 ## `filter`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#filter)
 
 ```sql
 function filter(&lt;array&lt;$1&gt;, function($1, boolean)&gt;) returns array&lt;$1&gt;
@@ -1434,7 +1434,7 @@ function filter(&lt;array&lt;$1&gt;, function($1, boolean)&gt;) returns array&lt
 
 
 ## `first_value`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#first_value)
 
 ```sql
 function first_value(&lt;$1&gt;) returns $1
@@ -1442,7 +1442,7 @@ function first_value(&lt;$1&gt;) returns $1
 
 
 ## `flatten`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#flatten)
 
 ```sql
 function flatten(&lt;array&lt;array&lt;$3&gt;&gt;&gt;) returns array&lt;$3&gt;
@@ -1450,7 +1450,7 @@ function flatten(&lt;array&lt;array&lt;$3&gt;&gt;&gt;) returns array&lt;$3&gt;
 
 
 ## `floor`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#floor)
 
 ```sql
 function floor(&lt;bigint&gt;) returns bigint
@@ -1488,7 +1488,7 @@ function floor(&lt;tinyint&gt;) returns tinyint
 
 
 ## `format`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#format)
 
 ```sql
 function format(&lt;varchar, $1&gt;) returns varchar
@@ -1516,7 +1516,7 @@ function format(&lt;varchar, $1, $2, $3, $4, $5&gt;) returns varchar
 
 
 ## `format_datetime`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#format_datetime)
 
 ```sql
 function format_datetime(&lt;timestamp(p), varchar&gt;) returns varchar
@@ -1524,7 +1524,7 @@ function format_datetime(&lt;timestamp(p), varchar&gt;) returns varchar
 
 
 ## `format_number`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#format_number)
 
 ```sql
 function format_number(&lt;bigint&gt;) returns varchar
@@ -1537,7 +1537,7 @@ function format_number(&lt;double&gt;) returns varchar
 
 
 ## `from_base`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#from_base)
 
 ```sql
 function from_base(&lt;varchar, bigint&gt;) returns bigint
@@ -1545,7 +1545,7 @@ function from_base(&lt;varchar, bigint&gt;) returns bigint
 
 
 ## `from_base32`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base32)
 
 ```sql
 function from_base32(&lt;varbinary&gt;) returns varbinary
@@ -1558,7 +1558,7 @@ function from_base32(&lt;varchar&gt;) returns varbinary
 
 
 ## `from_base64`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base64)
 
 ```sql
 function from_base64(&lt;varbinary&gt;) returns varbinary
@@ -1571,7 +1571,7 @@ function from_base64(&lt;varchar&gt;) returns varbinary
 
 
 ## `from_base64url`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base64url)
 
 ```sql
 function from_base64url(&lt;varbinary&gt;) returns varbinary
@@ -1584,7 +1584,7 @@ function from_base64url(&lt;varchar&gt;) returns varbinary
 
 
 ## `from_big_endian_32`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_big_endian_32)
 
 ```sql
 function from_big_endian_32(&lt;varbinary&gt;) returns bigint
@@ -1592,7 +1592,7 @@ function from_big_endian_32(&lt;varbinary&gt;) returns bigint
 
 
 ## `from_big_endian_64`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_big_endian_64)
 
 ```sql
 function from_big_endian_64(&lt;varbinary&gt;) returns bigint
@@ -1600,7 +1600,7 @@ function from_big_endian_64(&lt;varbinary&gt;) returns bigint
 
 
 ## `from_encoded_polyline`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#from_encoded_polyline)
 
 ```sql
 function from_encoded_polyline(&lt;varchar&gt;) returns geometry
@@ -1608,7 +1608,7 @@ function from_encoded_polyline(&lt;varchar&gt;) returns geometry
 
 
 ## `from_geojson_geometry`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#from_geojson_geometry)
 
 ```sql
 function from_geojson_geometry(&lt;varchar&gt;) returns sphericalgeography
@@ -1616,7 +1616,7 @@ function from_geojson_geometry(&lt;varchar&gt;) returns sphericalgeography
 
 
 ## `from_hex`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_hex)
 
 ```sql
 function from_hex(&lt;varbinary&gt;) returns varbinary
@@ -1629,7 +1629,7 @@ function from_hex(&lt;varchar&gt;) returns varbinary
 
 
 ## `from_ieee754_32`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_ieee754_32)
 
 ```sql
 function from_ieee754_32(&lt;varbinary&gt;) returns real
@@ -1637,7 +1637,7 @@ function from_ieee754_32(&lt;varbinary&gt;) returns real
 
 
 ## `from_ieee754_64`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_ieee754_64)
 
 ```sql
 function from_ieee754_64(&lt;varbinary&gt;) returns double
@@ -1645,7 +1645,7 @@ function from_ieee754_64(&lt;varbinary&gt;) returns double
 
 
 ## `from_iso8601_date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_iso8601_date)
 
 ```sql
 function from_iso8601_date(&lt;varchar&gt;) returns date
@@ -1653,7 +1653,7 @@ function from_iso8601_date(&lt;varchar&gt;) returns date
 
 
 ## `from_iso8601_timestamp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_iso8601_timestamp)
 
 ```sql
 function from_iso8601_timestamp(&lt;varchar&gt;) returns timestamp
@@ -1661,7 +1661,7 @@ function from_iso8601_timestamp(&lt;varchar&gt;) returns timestamp
 
 
 ## `from_iso8601_timestamp_nanos`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_iso8601_timestamp_nanos)
 
 ```sql
 function from_iso8601_timestamp_nanos(&lt;varchar&gt;) returns timestamp(9)
@@ -1669,7 +1669,7 @@ function from_iso8601_timestamp_nanos(&lt;varchar&gt;) returns timestamp(9)
 
 
 ## `from_unixtime`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_unixtime)
 
 ```sql
 function from_unixtime(&lt;bigint&gt;) returns timestamp
@@ -1687,7 +1687,7 @@ function from_unixtime(&lt;bigint, varchar&gt;) returns timestamp
 
 
 ## `from_unixtime_nanos`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_unixtime_nanos)
 
 ```sql
 function from_unixtime_nanos(&lt;bigint&gt;) returns timestamp(9)
@@ -1700,7 +1700,7 @@ function from_unixtime_nanos(&lt;decimal(p, s)&gt;) returns timestamp(9)
 
 
 ## `from_utf8`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#from_utf8)
 
 ```sql
 function from_utf8(&lt;varbinary&gt;) returns varchar
@@ -1718,7 +1718,7 @@ function from_utf8(&lt;varbinary, varchar&gt;) returns varchar
 
 
 ## `geometric_mean`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#geometric_mean)
 
 ```sql
 function geometric_mean(&lt;bigint&gt;) returns double
@@ -1736,7 +1736,7 @@ function geometric_mean(&lt;real&gt;) returns real
 
 
 ## `geometry_from_hadoop_shape`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_from_hadoop_shape)
 
 ```sql
 function geometry_from_hadoop_shape(&lt;varbinary&gt;) returns geometry
@@ -1744,7 +1744,7 @@ function geometry_from_hadoop_shape(&lt;varbinary&gt;) returns geometry
 
 
 ## `geometry_invalid_reason`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_invalid_reason)
 
 ```sql
 function geometry_invalid_reason(&lt;geometry&gt;) returns varchar
@@ -1752,7 +1752,7 @@ function geometry_invalid_reason(&lt;geometry&gt;) returns varchar
 
 
 ## `geometry_nearest_points`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_nearest_points)
 
 ```sql
 function geometry_nearest_points(&lt;geometry, geometry&gt;) returns row(c0 geometry, c1 geometry)
@@ -1760,7 +1760,7 @@ function geometry_nearest_points(&lt;geometry, geometry&gt;) returns row(c0 geom
 
 
 ## `geometry_to_bing_tiles`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_to_bing_tiles)
 
 ```sql
 function geometry_to_bing_tiles(&lt;geometry, bigint&gt;) returns array&lt;bingtile&gt;
@@ -1768,7 +1768,7 @@ function geometry_to_bing_tiles(&lt;geometry, bigint&gt;) returns array&lt;bingt
 
 
 ## `geometry_union`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_union)
 
 ```sql
 function geometry_union(&lt;array&lt;geometry&gt;&gt;) returns geometry
@@ -1776,7 +1776,7 @@ function geometry_union(&lt;array&lt;geometry&gt;&gt;) returns geometry
 
 
 ## `geometry_union_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_union_agg)
 
 ```sql
 function geometry_union_agg(&lt;geometry&gt;) returns geometry
@@ -1784,7 +1784,7 @@ function geometry_union_agg(&lt;geometry&gt;) returns geometry
 
 
 ## `great_circle_distance`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#great_circle_distance)
 
 ```sql
 function great_circle_distance(&lt;double, double, double, double&gt;) returns double
@@ -1792,7 +1792,7 @@ function great_circle_distance(&lt;double, double, double, double&gt;) returns d
 
 
 ## `greatest`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/comparison.html#greatest)
 
 ```sql
 function greatest($3, ...) returns $3
@@ -1808,7 +1808,7 @@ function grouping(...) returns int
 
 
 ## `hamming_distance`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#hamming_distance)
 
 ```sql
 function hamming_distance(&lt;varchar, varchar&gt;) returns bigint
@@ -1816,7 +1816,7 @@ function hamming_distance(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `hash_counts`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#hash_counts)
 
 ```sql
 function hash_counts(&lt;setdigest&gt;) returns map&lt;bigint, smallint&gt;
@@ -1824,7 +1824,7 @@ function hash_counts(&lt;setdigest&gt;) returns map&lt;bigint, smallint&gt;
 
 
 ## `histogram`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#histogram)
 
 ```sql
 function histogram(&lt;$1&gt;) returns map&lt;$1, bigint&gt;
@@ -1832,7 +1832,7 @@ function histogram(&lt;$1&gt;) returns map&lt;$1, bigint&gt;
 
 
 ## `hmac_md5`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_md5)
 
 ```sql
 function hmac_md5(&lt;varbinary, varbinary&gt;) returns varbinary
@@ -1840,7 +1840,7 @@ function hmac_md5(&lt;varbinary, varbinary&gt;) returns varbinary
 
 
 ## `hmac_sha1`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha1)
 
 ```sql
 function hmac_sha1(&lt;varbinary, varbinary&gt;) returns varbinary
@@ -1848,7 +1848,7 @@ function hmac_sha1(&lt;varbinary, varbinary&gt;) returns varbinary
 
 
 ## `hmac_sha256`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha256)
 
 ```sql
 function hmac_sha256(&lt;varbinary, varbinary&gt;) returns varbinary
@@ -1856,7 +1856,7 @@ function hmac_sha256(&lt;varbinary, varbinary&gt;) returns varbinary
 
 
 ## `hmac_sha512`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha512)
 
 ```sql
 function hmac_sha512(&lt;varbinary, varbinary&gt;) returns varbinary
@@ -1864,7 +1864,7 @@ function hmac_sha512(&lt;varbinary, varbinary&gt;) returns varbinary
 
 
 ## `hour`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#hour)
 
 ```sql
 function hour(&lt;interval day to second&gt;) returns bigint
@@ -1882,7 +1882,7 @@ function hour(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `human_readable_seconds`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#human_readable_seconds)
 
 ```sql
 function human_readable_seconds(&lt;double&gt;) returns varchar
@@ -1890,7 +1890,7 @@ function human_readable_seconds(&lt;double&gt;) returns varchar
 
 
 ## `if`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#if-expression)
 
 ```sql
 function if(&lt;boolean, $1, $1&gt;) returns $1
@@ -1898,7 +1898,7 @@ function if(&lt;boolean, $1, $1&gt;) returns $1
 
 
 ## `index`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#index)
 
 ```sql
 function index(&lt;varchar, varchar&gt;) returns bigint
@@ -1906,7 +1906,7 @@ function index(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `infinity`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#infinity)
 
 ```sql
 function infinity(&lt;&gt;) returns double
@@ -1914,7 +1914,7 @@ function infinity(&lt;&gt;) returns double
 
 
 ## `intersection_cardinality`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#intersection_cardinality)
 
 ```sql
 function intersection_cardinality(&lt;setdigest, setdigest&gt;) returns bigint
@@ -1922,7 +1922,7 @@ function intersection_cardinality(&lt;setdigest, setdigest&gt;) returns bigint
 
 
 ## `inverse_beta_cdf`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#inverse_beta_cdf)
 
 ```sql
 function inverse_beta_cdf(&lt;double, double, double&gt;) returns double
@@ -1930,7 +1930,7 @@ function inverse_beta_cdf(&lt;double, double, double&gt;) returns double
 
 
 ## `inverse_normal_cdf`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#inverse_normal_cdf)
 
 ```sql
 function inverse_normal_cdf(&lt;double, double, double&gt;) returns double
@@ -1938,7 +1938,7 @@ function inverse_normal_cdf(&lt;double, double, double&gt;) returns double
 
 
 ## `is_finite`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#is_finite)
 
 ```sql
 function is_finite(&lt;double&gt;) returns boolean
@@ -1946,7 +1946,7 @@ function is_finite(&lt;double&gt;) returns boolean
 
 
 ## `is_infinite`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#is_infinite)
 
 ```sql
 function is_infinite(&lt;double&gt;) returns boolean
@@ -1954,7 +1954,7 @@ function is_infinite(&lt;double&gt;) returns boolean
 
 
 ## `is_json_scalar`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#is_json_scalar)
 
 ```sql
 function is_json_scalar(&lt;json&gt;) returns boolean
@@ -1967,7 +1967,7 @@ function is_json_scalar(&lt;varchar&gt;) returns boolean
 
 
 ## `is_nan`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#is_nan)
 
 ```sql
 function is_nan(&lt;double&gt;) returns boolean
@@ -1980,7 +1980,7 @@ function is_nan(&lt;real&gt;) returns boolean
 
 
 ## `jaccard_index`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#jaccard_index)
 
 ```sql
 function jaccard_index(&lt;setdigest, setdigest&gt;) returns double
@@ -1988,7 +1988,7 @@ function jaccard_index(&lt;setdigest, setdigest&gt;) returns double
 
 
 ## `json_array_contains`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_array_contains)
 
 ```sql
 function json_array_contains(&lt;json, bigint&gt;) returns boolean
@@ -2031,7 +2031,7 @@ function json_array_contains(&lt;varchar, varchar&gt;) returns boolean
 
 
 ## `json_array_get`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_array_get)
 
 ```sql
 function json_array_get(&lt;json, bigint&gt;) returns json
@@ -2044,7 +2044,7 @@ function json_array_get(&lt;varchar, bigint&gt;) returns json
 
 
 ## `json_array_length`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_array_length)
 
 ```sql
 function json_array_length(&lt;json&gt;) returns bigint
@@ -2057,7 +2057,7 @@ function json_array_length(&lt;varchar&gt;) returns bigint
 
 
 ## `json_extract`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_extract)
 
 ```sql
 function json_extract(&lt;json, jsonpath&gt;) returns json
@@ -2070,7 +2070,7 @@ function json_extract(&lt;varchar, jsonpath&gt;) returns json
 
 
 ## `json_extract_scalar`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_extract_scalar)
 
 ```sql
 function json_extract_scalar(&lt;json, jsonpath&gt;) returns varchar
@@ -2083,7 +2083,7 @@ function json_extract_scalar(&lt;varchar, jsonpath&gt;) returns varchar
 
 
 ## `json_format`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_format)
 
 ```sql
 function json_format(&lt;json&gt;) returns varchar
@@ -2091,7 +2091,7 @@ function json_format(&lt;json&gt;) returns varchar
 
 
 ## `json_parse`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_parse)
 
 ```sql
 function json_parse(&lt;varchar&gt;) returns json
@@ -2099,7 +2099,7 @@ function json_parse(&lt;varchar&gt;) returns json
 
 
 ## `json_size`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_size)
 
 ```sql
 function json_size(&lt;json, jsonpath&gt;) returns bigint
@@ -2112,7 +2112,7 @@ function json_size(&lt;varchar, jsonpath&gt;) returns bigint
 
 
 ## `kurtosis`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#kurtosis)
 
 ```sql
 function kurtosis(&lt;bigint&gt;) returns double
@@ -2125,7 +2125,7 @@ function kurtosis(&lt;double&gt;) returns double
 
 
 ## `lag`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#lag)
 
 ```sql
 function lag(&lt;$1&gt;) returns $1
@@ -2143,7 +2143,7 @@ function lag(&lt;$1, bigint, $1&gt;) returns $1
 
 
 ## `last_day_of_month`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#last_day_of_month)
 
 ```sql
 function last_day_of_month(&lt;date&gt;) returns date
@@ -2156,7 +2156,7 @@ function last_day_of_month(&lt;timestamp(p)&gt;) returns date
 
 
 ## `last_value`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#last_value)
 
 ```sql
 function last_value(&lt;$1&gt;) returns $1
@@ -2164,7 +2164,7 @@ function last_value(&lt;$1&gt;) returns $1
 
 
 ## `lead`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#lead)
 
 ```sql
 function lead(&lt;$1&gt;) returns $1
@@ -2182,7 +2182,7 @@ function lead(&lt;$1, bigint, $1&gt;) returns $1
 
 
 ## `learn_classifier`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_classifier)
 
 ```sql
 function learn_classifier(&lt;bigint, map&lt;bigint, double&gt;&gt;) returns classifier
@@ -2200,7 +2200,7 @@ function learn_classifier(&lt;varchar, map&lt;bigint, double&gt;&gt;) returns cl
 
 
 ## `learn_libsvm_classifier`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_libsvm_classifier)
 
 ```sql
 function learn_libsvm_classifier(&lt;bigint, map&lt;bigint, double&gt;, varchar&gt;) returns classifier
@@ -2218,7 +2218,7 @@ function learn_libsvm_classifier(&lt;varchar, map&lt;bigint, double&gt;, varchar
 
 
 ## `learn_libsvm_regressor`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_libsvm_regressor)
 
 ```sql
 function learn_libsvm_regressor(&lt;bigint, map&lt;bigint, double&gt;, varchar&gt;) returns regressor
@@ -2231,7 +2231,7 @@ function learn_libsvm_regressor(&lt;double, map&lt;bigint, double&gt;, varchar&g
 
 
 ## `learn_regressor`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_regressor)
 
 ```sql
 function learn_regressor(&lt;bigint, map&lt;bigint, double&gt;&gt;) returns regressor
@@ -2244,7 +2244,7 @@ function learn_regressor(&lt;double, map&lt;bigint, double&gt;&gt;) returns regr
 
 
 ## `least`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/comparison.html#least)
 
 ```sql
 function least($3, ...) returns $3
@@ -2252,7 +2252,7 @@ function least($3, ...) returns $3
 
 
 ## `length`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#length)
 
 ```sql
 function length(&lt;varchar&gt;) returns bigint
@@ -2278,7 +2278,7 @@ function length_array(&lt;array&lt;$1&gt;&gt;) returns bigint
 
 
 ## `levenshtein_distance`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#levenshtein_distance)
 
 ```sql
 function levenshtein_distance(&lt;varchar, varchar&gt;) returns bigint
@@ -2286,7 +2286,7 @@ function levenshtein_distance(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `line_interpolate_point`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_interpolate_point)
 
 ```sql
 function line_interpolate_point(&lt;geometry, double&gt;) returns geometry
@@ -2294,7 +2294,7 @@ function line_interpolate_point(&lt;geometry, double&gt;) returns geometry
 
 
 ## `line_interpolate_points`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_interpolate_points)
 
 ```sql
 function line_interpolate_points(&lt;geometry, double&gt;) returns array&lt;geometry&gt;
@@ -2302,7 +2302,7 @@ function line_interpolate_points(&lt;geometry, double&gt;) returns array&lt;geom
 
 
 ## `line_locate_point`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_locate_point)
 
 ```sql
 function line_locate_point(&lt;geometry, geometry&gt;) returns double
@@ -2310,7 +2310,7 @@ function line_locate_point(&lt;geometry, geometry&gt;) returns double
 
 
 ## `listagg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#listagg)
 
 ```sql
 function listagg(&lt;varchar, varchar, boolean, varchar, boolean&gt;) returns varchar
@@ -2318,7 +2318,7 @@ function listagg(&lt;varchar, varchar, boolean, varchar, boolean&gt;) returns va
 
 
 ## `ln`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ln)
 
 ```sql
 function ln(&lt;double&gt;) returns double
@@ -2326,7 +2326,7 @@ function ln(&lt;double&gt;) returns double
 
 
 ## `localtime`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#localtime)
 
 ```sql
 function localtime(&lt;&gt;) returns time
@@ -2337,7 +2337,7 @@ function localtime(&lt;&gt;) returns time
 
 
 ## `localtimestamp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#localtimestamp)
 
 ```sql
 function localtimestamp(&lt;&gt;) returns timestamp
@@ -2380,7 +2380,7 @@ function localtimestamp(&lt;9&gt;) returns timestamp(9)
 
 
 ## `log`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log)
 
 ```sql
 function log(&lt;double, double&gt;) returns double
@@ -2388,7 +2388,7 @@ function log(&lt;double, double&gt;) returns double
 
 
 ## `log10`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log10)
 
 ```sql
 function log10(&lt;double&gt;) returns double
@@ -2396,7 +2396,7 @@ function log10(&lt;double&gt;) returns double
 
 
 ## `log2`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log2)
 
 ```sql
 function log2(&lt;double&gt;) returns double
@@ -2404,7 +2404,7 @@ function log2(&lt;double&gt;) returns double
 
 
 ## `lower`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#lower)
 
 ```sql
 function lower(&lt;varchar&gt;) returns varchar
@@ -2412,7 +2412,7 @@ function lower(&lt;varchar&gt;) returns varchar
 
 
 ## `lpad`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#lpad)
 
 ```sql
 function lpad(&lt;varbinary, bigint, varbinary&gt;) returns varbinary
@@ -2425,7 +2425,7 @@ function lpad(&lt;varchar, bigint, varchar&gt;) returns varchar
 
 
 ## `ltrim`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#ltrim)
 
 ```sql
 function ltrim(&lt;varchar&gt;) returns varchar
@@ -2438,7 +2438,7 @@ function ltrim(&lt;varchar, codepoints&gt;) returns varchar
 
 
 ## `luhn_check`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#luhn_check)
 
 ```sql
 function luhn_check(&lt;varchar&gt;) returns boolean
@@ -2454,7 +2454,7 @@ function make_array($1, ...) returns array&lt;$1&gt;
 
 
 ## `make_set_digest`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#make_set_digest)
 
 ```sql
 function make_set_digest(&lt;$1&gt;) returns setdigest
@@ -2462,7 +2462,7 @@ function make_set_digest(&lt;$1&gt;) returns setdigest
 
 
 ## `map`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map)
 
 ```sql
 function map(&lt;array&lt;$4&gt;, array&lt;$5&gt;&gt;) returns map&lt;$4, $5&gt;
@@ -2475,7 +2475,7 @@ function map(&lt;&gt;) returns map&lt;unknown, unknown&gt;
 
 
 ## `map_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#map_agg)
 
 ```sql
 function map_agg(&lt;$4, $5&gt;) returns map&lt;$4, $5&gt;
@@ -2483,7 +2483,7 @@ function map_agg(&lt;$4, $5&gt;) returns map&lt;$4, $5&gt;
 
 
 ## `map_concat`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_concat)
 
 ```sql
 function map_concat(map&lt;$4, $5&gt;, ...) returns map&lt;$4, $5&gt;
@@ -2491,7 +2491,7 @@ function map_concat(map&lt;$4, $5&gt;, ...) returns map&lt;$4, $5&gt;
 
 
 ## `map_entries`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_entries)
 
 ```sql
 function map_entries(&lt;map&lt;$4, $5&gt;&gt;) returns array&lt;row(c0 $4, c1 $5)&gt;
@@ -2499,7 +2499,7 @@ function map_entries(&lt;map&lt;$4, $5&gt;&gt;) returns array&lt;row(c0 $4, c1 $
 
 
 ## `map_filter`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_filter)
 
 ```sql
 function map_filter(&lt;map&lt;$4, $5&gt;, function($4, $5, boolean)&gt;) returns map&lt;$4, $5&gt;
@@ -2507,7 +2507,7 @@ function map_filter(&lt;map&lt;$4, $5&gt;, function($4, $5, boolean)&gt;) return
 
 
 ## `map_from_entries`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_from_entries)
 
 ```sql
 function map_from_entries(&lt;array&lt;row(c0 $4, c1 $5)&gt;&gt;) returns map&lt;$4, $5&gt;
@@ -2515,7 +2515,7 @@ function map_from_entries(&lt;array&lt;row(c0 $4, c1 $5)&gt;&gt;) returns map&lt
 
 
 ## `map_keys`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_keys)
 
 ```sql
 function map_keys(&lt;map&lt;$4, $5&gt;&gt;) returns array&lt;$4&gt;
@@ -2523,7 +2523,7 @@ function map_keys(&lt;map&lt;$4, $5&gt;&gt;) returns array&lt;$4&gt;
 
 
 ## `map_union`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#map_union)
 
 ```sql
 function map_union(&lt;map&lt;$4, $5&gt;&gt;) returns map&lt;$4, $5&gt;
@@ -2531,7 +2531,7 @@ function map_union(&lt;map&lt;$4, $5&gt;&gt;) returns map&lt;$4, $5&gt;
 
 
 ## `map_values`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_values)
 
 ```sql
 function map_values(&lt;map&lt;$4, $5&gt;&gt;) returns array&lt;$5&gt;
@@ -2539,7 +2539,7 @@ function map_values(&lt;map&lt;$4, $5&gt;&gt;) returns array&lt;$5&gt;
 
 
 ## `map_zip_with`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_zip_with)
 
 ```sql
 function map_zip_with(&lt;map&lt;$4, $8&gt;, map&lt;$4, $7&gt;, function($4, $8, $7, $6)&gt;) returns map&lt;$4, $6&gt;
@@ -2547,7 +2547,7 @@ function map_zip_with(&lt;map&lt;$4, $8&gt;, map&lt;$4, $7&gt;, function($4, $8,
 
 
 ## `max`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#max)
 
 ```sql
 function max(&lt;$3, bigint&gt;) returns array&lt;$3&gt;
@@ -2560,7 +2560,7 @@ function max($1, ...) returns $1
 
 
 ## `max_by`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#max_by)
 
 ```sql
 function max_by(&lt;$5, $4, bigint&gt;) returns array&lt;$5&gt;
@@ -2573,7 +2573,7 @@ function max_by(&lt;$5, $4&gt;) returns $5
 
 
 ## `md5`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#md5)
 
 ```sql
 function md5(&lt;varbinary&gt;) returns varbinary
@@ -2581,7 +2581,7 @@ function md5(&lt;varbinary&gt;) returns varbinary
 
 
 ## `merge`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#merge)
 
 ```sql
 function merge(&lt;hyperloglog&gt;) returns hyperloglog
@@ -2599,7 +2599,7 @@ function merge(&lt;tdigest&gt;) returns tdigest
 
 
 ## `merge_set_digest`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#merge_set_digest)
 
 ```sql
 function merge_set_digest(&lt;setdigest&gt;) returns setdigest
@@ -2607,7 +2607,7 @@ function merge_set_digest(&lt;setdigest&gt;) returns setdigest
 
 
 ## `millisecond`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#millisecond)
 
 ```sql
 function millisecond(&lt;interval day to second&gt;) returns bigint
@@ -2625,7 +2625,7 @@ function millisecond(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `min`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#min)
 
 ```sql
 function min(&lt;$3, bigint&gt;) returns array&lt;$3&gt;
@@ -2638,7 +2638,7 @@ function min($1, ...) returns $1
 
 
 ## `min_by`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#min_by)
 
 ```sql
 function min_by(&lt;$5, $4, bigint&gt;) returns array&lt;$5&gt;
@@ -2651,7 +2651,7 @@ function min_by(&lt;$5, $4&gt;) returns $5
 
 
 ## `minute`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#minute)
 
 ```sql
 function minute(&lt;interval day to second&gt;) returns bigint
@@ -2669,7 +2669,7 @@ function minute(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `mod`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#mod)
 
 ```sql
 function mod(&lt;bigint, bigint&gt;) returns bigint
@@ -2707,7 +2707,7 @@ function mod(&lt;tinyint, tinyint&gt;) returns tinyint
 
 
 ## `month`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#month)
 
 ```sql
 function month(&lt;date&gt;) returns bigint
@@ -2725,7 +2725,7 @@ function month(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `multimap_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#multimap_agg)
 
 ```sql
 function multimap_agg(&lt;$4, $5&gt;) returns map&lt;$4, array&lt;$5&gt;&gt;
@@ -2733,7 +2733,7 @@ function multimap_agg(&lt;$4, $5&gt;) returns map&lt;$4, array&lt;$5&gt;&gt;
 
 
 ## `multimap_from_entries`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#multimap_from_entries)
 
 ```sql
 function multimap_from_entries(&lt;array&lt;row(c0 $4, c1 $5)&gt;&gt;) returns map&lt;$4, array&lt;$5&gt;&gt;
@@ -2741,7 +2741,7 @@ function multimap_from_entries(&lt;array&lt;row(c0 $4, c1 $5)&gt;&gt;) returns m
 
 
 ## `murmur3`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#murmur3)
 
 ```sql
 function murmur3(&lt;varbinary&gt;) returns varbinary
@@ -2749,7 +2749,7 @@ function murmur3(&lt;varbinary&gt;) returns varbinary
 
 
 ## `nan`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#nan)
 
 ```sql
 function nan(&lt;&gt;) returns double
@@ -2757,7 +2757,7 @@ function nan(&lt;&gt;) returns double
 
 
 ## `ngrams`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#ngrams)
 
 ```sql
 function ngrams(&lt;array&lt;$1&gt;, bigint&gt;) returns array&lt;array&lt;$1&gt;&gt;
@@ -2765,7 +2765,7 @@ function ngrams(&lt;array&lt;$1&gt;, bigint&gt;) returns array&lt;array&lt;$1&gt
 
 
 ## `none_match`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#none_match)
 
 ```sql
 function none_match(&lt;array&lt;$1&gt;, function($1, boolean)&gt;) returns boolean
@@ -2773,7 +2773,7 @@ function none_match(&lt;array&lt;$1&gt;, function($1, boolean)&gt;) returns bool
 
 
 ## `normal_cdf`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#normal_cdf)
 
 ```sql
 function normal_cdf(&lt;double, double, double&gt;) returns double
@@ -2781,7 +2781,7 @@ function normal_cdf(&lt;double, double, double&gt;) returns double
 
 
 ## `normalize`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#normalize)
 
 ```sql
 function normalize(&lt;varchar, varchar&gt;) returns varchar
@@ -2789,7 +2789,7 @@ function normalize(&lt;varchar, varchar&gt;) returns varchar
 
 
 ## `now`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#now)
 
 ```sql
 function now(&lt;&gt;) returns timestamp
@@ -2800,7 +2800,7 @@ function now(&lt;&gt;) returns timestamp
 
 
 ## `nth_value`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#nth_value)
 
 ```sql
 function nth_value(&lt;$1, bigint&gt;) returns $1
@@ -2808,7 +2808,7 @@ function nth_value(&lt;$1, bigint&gt;) returns $1
 
 
 ## `ntile`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#ntile)
 
 ```sql
 function ntile(&lt;bigint&gt;) returns bigint
@@ -2816,7 +2816,7 @@ function ntile(&lt;bigint&gt;) returns bigint
 
 
 ## `nullif`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#nullif-function)
 
 ```sql
 function nullif(&lt;$1, $1&gt;) returns $1
@@ -2824,7 +2824,7 @@ function nullif(&lt;$1, $1&gt;) returns $1
 
 
 ## `numeric_histogram`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#numeric_histogram)
 
 ```sql
 function numeric_histogram(&lt;bigint, double&gt;) returns map&lt;double, double&gt;
@@ -2847,7 +2847,7 @@ function numeric_histogram(&lt;bigint, real, double&gt;) returns map&lt;real, re
 
 
 ## `objectid`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/connector/mongodb.html#objectid)
 
 ```sql
 function objectid(&lt;&gt;) returns objectid
@@ -2860,7 +2860,7 @@ function objectid(&lt;varchar&gt;) returns objectid
 
 
 ## `objectid_timestamp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/../connector/mongodb.html#objectid_timestamp)
 
 ```sql
 function objectid_timestamp(&lt;objectid&gt;) returns timestamp
@@ -2868,7 +2868,7 @@ function objectid_timestamp(&lt;objectid&gt;) returns timestamp
 
 
 ## `parse_data_size`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#parse_data_size)
 
 ```sql
 function parse_data_size(&lt;varchar&gt;) returns decimal(38, 0)
@@ -2876,7 +2876,7 @@ function parse_data_size(&lt;varchar&gt;) returns decimal(38, 0)
 
 
 ## `parse_datetime`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#parse_datetime)
 
 ```sql
 function parse_datetime(&lt;varchar, varchar&gt;) returns timestamp
@@ -2884,7 +2884,7 @@ function parse_datetime(&lt;varchar, varchar&gt;) returns timestamp
 
 
 ## `parse_duration`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#parse_duration)
 
 ```sql
 function parse_duration(&lt;varchar&gt;) returns interval day to second
@@ -2892,7 +2892,7 @@ function parse_duration(&lt;varchar&gt;) returns interval day to second
 
 
 ## `parse_presto_data_size`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#parse_data_size)
 
 ```sql
 function parse_presto_data_size(&lt;varchar&gt;) returns decimal(38, 0)
@@ -2900,7 +2900,7 @@ function parse_presto_data_size(&lt;varchar&gt;) returns decimal(38, 0)
 
 
 ## `percent_rank`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#percent_rank)
 
 ```sql
 function percent_rank(&lt;&gt;) returns double
@@ -2908,7 +2908,7 @@ function percent_rank(&lt;&gt;) returns double
 
 
 ## `pi`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#pi)
 
 ```sql
 function pi(&lt;&gt;) returns double
@@ -2916,7 +2916,7 @@ function pi(&lt;&gt;) returns double
 
 
 ## `pow`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#pow)
 
 ```sql
 function pow(&lt;double, double&gt;) returns double
@@ -2924,7 +2924,7 @@ function pow(&lt;double, double&gt;) returns double
 
 
 ## `power`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#power)
 
 ```sql
 function power(&lt;double, double&gt;) returns double
@@ -2932,7 +2932,7 @@ function power(&lt;double, double&gt;) returns double
 
 
 ## `qdigest_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#qdigest_agg)
 
 ```sql
 function qdigest_agg(&lt;bigint&gt;) returns qdigest
@@ -2980,7 +2980,7 @@ function qdigest_agg(&lt;real, bigint, double&gt;) returns qdigest
 
 
 ## `quantile_at_value`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#quantile_at_value)
 
 ```sql
 function quantile_at_value(&lt;qdigest, bigint&gt;) returns double
@@ -2998,7 +2998,7 @@ function quantile_at_value(&lt;qdigest, real&gt;) returns double
 
 
 ## `quarter`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#quarter)
 
 ```sql
 function quarter(&lt;date&gt;) returns bigint
@@ -3011,7 +3011,7 @@ function quarter(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `radians`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#radians)
 
 ```sql
 function radians(&lt;double&gt;) returns double
@@ -3019,7 +3019,7 @@ function radians(&lt;double&gt;) returns double
 
 
 ## `rand`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#rand)
 
 ```sql
 function rand(&lt;bigint&gt;) returns bigint
@@ -3094,7 +3094,7 @@ function rand(&lt;tinyint, tinyint&gt;) returns tinyint
 
 
 ## `random`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#random)
 
 ```sql
 function random(&lt;bigint&gt;) returns bigint
@@ -3169,7 +3169,7 @@ function random(&lt;tinyint, tinyint&gt;) returns tinyint
 
 
 ## `rank`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#rank)
 
 ```sql
 function rank(&lt;&gt;) returns bigint
@@ -3196,7 +3196,7 @@ Changes the classification label of the first argument to the desired classifier
 select reclassify(12345, &#39;pii.masked&#39;) as value; -- value &#39;12345&#39; 
 ```
 ## `reduce`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#reduce)
 
 ```sql
 function reduce(&lt;array&lt;$1&gt;, $10, function($10, $1, $10), function($10, $9)&gt;) returns $9
@@ -3204,7 +3204,7 @@ function reduce(&lt;array&lt;$1&gt;, $10, function($10, $1, $10), function($10, 
 
 
 ## `reduce_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#reduce_agg)
 
 ```sql
 function reduce_agg(&lt;$1, $10, function($10, $1, $10), function($10, $10, $10)&gt;) returns $10
@@ -3212,7 +3212,7 @@ function reduce_agg(&lt;$1, $10, function($10, $1, $10), function($10, $10, $10)
 
 
 ## `regexp_count`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_count)
 
 ```sql
 function regexp_count(&lt;varchar, joniregexp&gt;) returns bigint
@@ -3220,7 +3220,7 @@ function regexp_count(&lt;varchar, joniregexp&gt;) returns bigint
 
 
 ## `regexp_extract`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract)
 
 ```sql
 function regexp_extract(&lt;varchar, joniregexp&gt;) returns varchar
@@ -3233,7 +3233,7 @@ function regexp_extract(&lt;varchar, joniregexp, bigint&gt;) returns varchar
 
 
 ## `regexp_extract_all`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract_all)
 
 ```sql
 function regexp_extract_all(&lt;varchar, joniregexp&gt;) returns array&lt;varchar&gt;
@@ -3246,7 +3246,7 @@ function regexp_extract_all(&lt;varchar, joniregexp, bigint&gt;) returns array&l
 
 
 ## `regexp_like`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_like)
 
 ```sql
 function regexp_like(&lt;varchar, joniregexp&gt;) returns boolean
@@ -3254,7 +3254,7 @@ function regexp_like(&lt;varchar, joniregexp&gt;) returns boolean
 
 
 ## `regexp_position`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_position)
 
 ```sql
 function regexp_position(&lt;varchar, joniregexp&gt;) returns bigint
@@ -3272,7 +3272,7 @@ function regexp_position(&lt;varchar, joniregexp, bigint, bigint&gt;) returns bi
 
 
 ## `regexp_replace`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_replace)
 
 ```sql
 function regexp_replace(&lt;varchar, joniregexp, function(array&lt;varchar&gt;, varchar)&gt;) returns varchar
@@ -3290,7 +3290,7 @@ function regexp_replace(&lt;varchar, joniregexp, varchar&gt;) returns varchar
 
 
 ## `regexp_split`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_split)
 
 ```sql
 function regexp_split(&lt;varchar, joniregexp&gt;) returns array&lt;varchar&gt;
@@ -3298,7 +3298,7 @@ function regexp_split(&lt;varchar, joniregexp&gt;) returns array&lt;varchar&gt;
 
 
 ## `regr_intercept`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#regr_intercept)
 
 ```sql
 function regr_intercept(&lt;double, double&gt;) returns double
@@ -3311,7 +3311,7 @@ function regr_intercept(&lt;real, real&gt;) returns real
 
 
 ## `regr_slope`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#regr_slope)
 
 ```sql
 function regr_slope(&lt;double, double&gt;) returns double
@@ -3324,7 +3324,7 @@ function regr_slope(&lt;real, real&gt;) returns real
 
 
 ## `regress`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#regress)
 
 ```sql
 function regress(&lt;map&lt;bigint, double&gt;, regressor&gt;) returns double
@@ -3332,7 +3332,7 @@ function regress(&lt;map&lt;bigint, double&gt;, regressor&gt;) returns double
 
 
 ## `render`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#render)
 
 ```sql
 function render(&lt;boolean&gt;) returns varchar
@@ -3355,7 +3355,7 @@ function render(&lt;varchar, color&gt;) returns varchar
 
 
 ## `repeat`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#repeat)
 
 ```sql
 function repeat(&lt;$1, bigint&gt;) returns array&lt;$1&gt;
@@ -3363,7 +3363,7 @@ function repeat(&lt;$1, bigint&gt;) returns array&lt;$1&gt;
 
 
 ## `replace`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#replace)
 
 ```sql
 function replace(&lt;varchar, varchar, varchar&gt;) returns varchar
@@ -3376,7 +3376,7 @@ function replace(&lt;varchar, varchar&gt;) returns varchar
 
 
 ## `reverse`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#reverse)
 
 ```sql
 function reverse(&lt;array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
@@ -3394,7 +3394,7 @@ function reverse(&lt;varchar&gt;) returns varchar
 
 
 ## `rgb`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#rgb)
 
 ```sql
 function rgb(&lt;bigint, bigint, bigint&gt;) returns color
@@ -3402,7 +3402,7 @@ function rgb(&lt;bigint, bigint, bigint&gt;) returns color
 
 
 ## `round`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#round)
 
 ```sql
 function round(&lt;double&gt;) returns double
@@ -3475,7 +3475,7 @@ function round(&lt;tinyint, bigint&gt;) returns tinyint
 
 
 ## `row_number`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#row_number)
 
 ```sql
 function row_number(&lt;&gt;) returns bigint
@@ -3483,7 +3483,7 @@ function row_number(&lt;&gt;) returns bigint
 
 
 ## `rpad`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#rpad)
 
 ```sql
 function rpad(&lt;varbinary, bigint, varbinary&gt;) returns varbinary
@@ -3496,7 +3496,7 @@ function rpad(&lt;varchar, bigint, varchar&gt;) returns varchar
 
 
 ## `rtrim`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#rtrim)
 
 ```sql
 function rtrim(&lt;varchar&gt;) returns varchar
@@ -3509,7 +3509,7 @@ function rtrim(&lt;varchar, codepoints&gt;) returns varchar
 
 
 ## `second`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#second)
 
 ```sql
 function second(&lt;interval day to second&gt;) returns bigint
@@ -3527,7 +3527,7 @@ function second(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `sequence`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#sequence)
 
 ```sql
 function sequence(&lt;bigint, bigint&gt;) returns array&lt;bigint&gt;
@@ -3560,7 +3560,7 @@ function sequence(&lt;timestamp(p), timestamp(p), interval day to second&gt;) re
 
 
 ## `sha1`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha1)
 
 ```sql
 function sha1(&lt;varbinary&gt;) returns varbinary
@@ -3568,7 +3568,7 @@ function sha1(&lt;varbinary&gt;) returns varbinary
 
 
 ## `sha256`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha256)
 
 ```sql
 function sha256(&lt;varbinary&gt;) returns varbinary
@@ -3576,7 +3576,7 @@ function sha256(&lt;varbinary&gt;) returns varbinary
 
 
 ## `sha512`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha512)
 
 ```sql
 function sha512(&lt;varbinary&gt;) returns varbinary
@@ -3584,7 +3584,7 @@ function sha512(&lt;varbinary&gt;) returns varbinary
 
 
 ## `shuffle`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#shuffle)
 
 ```sql
 function shuffle(&lt;array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
@@ -3595,7 +3595,7 @@ function shuffle(&lt;array&lt;$3&gt;&gt;) returns array&lt;$3&gt;
 
 
 ## `sign`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sign)
 
 ```sql
 function sign(&lt;bigint&gt;) returns bigint
@@ -3633,7 +3633,7 @@ function sign(&lt;tinyint&gt;) returns tinyint
 
 
 ## `simplify_geometry`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#simplify_geometry)
 
 ```sql
 function simplify_geometry(&lt;geometry, double&gt;) returns geometry
@@ -3641,7 +3641,7 @@ function simplify_geometry(&lt;geometry, double&gt;) returns geometry
 
 
 ## `sin`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sin)
 
 ```sql
 function sin(&lt;double&gt;) returns double
@@ -3649,7 +3649,7 @@ function sin(&lt;double&gt;) returns double
 
 
 ## `sinh`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sinh)
 
 ```sql
 function sinh(&lt;double&gt;) returns double
@@ -3657,7 +3657,7 @@ function sinh(&lt;double&gt;) returns double
 
 
 ## `skewness`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#skewness)
 
 ```sql
 function skewness(&lt;bigint&gt;) returns double
@@ -3670,7 +3670,7 @@ function skewness(&lt;double&gt;) returns double
 
 
 ## `slice`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#slice)
 
 ```sql
 function slice(&lt;array&lt;$3&gt;, bigint, bigint&gt;) returns array&lt;$3&gt;
@@ -3678,7 +3678,7 @@ function slice(&lt;array&lt;$3&gt;, bigint, bigint&gt;) returns array&lt;$3&gt;
 
 
 ## `soundex`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#soundex)
 
 ```sql
 function soundex(&lt;varchar&gt;) returns varchar
@@ -3707,7 +3707,7 @@ function spatial_partitions(&lt;kdbtree, geometry, double&gt;) returns array&lt;
 
 
 ## `split`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#split)
 
 ```sql
 function split(&lt;varchar, varchar&gt;) returns array&lt;varchar&gt;
@@ -3720,7 +3720,7 @@ function split(&lt;varchar, varchar, bigint&gt;) returns array&lt;varchar&gt;
 
 
 ## `split_part`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#split_part)
 
 ```sql
 function split_part(&lt;varchar, varchar, bigint&gt;) returns varchar
@@ -3728,7 +3728,7 @@ function split_part(&lt;varchar, varchar, bigint&gt;) returns varchar
 
 
 ## `split_to_map`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#split_to_map)
 
 ```sql
 function split_to_map(&lt;varchar, varchar, varchar&gt;) returns map&lt;varchar, varchar&gt;
@@ -3736,7 +3736,7 @@ function split_to_map(&lt;varchar, varchar, varchar&gt;) returns map&lt;varchar,
 
 
 ## `split_to_multimap`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#split_to_multimap)
 
 ```sql
 function split_to_multimap(&lt;varchar, varchar, varchar&gt;) returns map&lt;varchar, array&lt;varchar&gt;&gt;
@@ -3744,7 +3744,7 @@ function split_to_multimap(&lt;varchar, varchar, varchar&gt;) returns map&lt;var
 
 
 ## `spooky_hash_v2_32`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#spooky_hash_v2_32)
 
 ```sql
 function spooky_hash_v2_32(&lt;varbinary&gt;) returns varbinary
@@ -3752,7 +3752,7 @@ function spooky_hash_v2_32(&lt;varbinary&gt;) returns varbinary
 
 
 ## `spooky_hash_v2_64`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#spooky_hash_v2_64)
 
 ```sql
 function spooky_hash_v2_64(&lt;varbinary&gt;) returns varbinary
@@ -3760,7 +3760,7 @@ function spooky_hash_v2_64(&lt;varbinary&gt;) returns varbinary
 
 
 ## `sqrt`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sqrt)
 
 ```sql
 function sqrt(&lt;double&gt;) returns double
@@ -3768,7 +3768,7 @@ function sqrt(&lt;double&gt;) returns double
 
 
 ## `st_area`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Area)
 
 ```sql
 function st_area(&lt;geometry&gt;) returns double
@@ -3781,7 +3781,7 @@ function st_area(&lt;sphericalgeography&gt;) returns double
 
 
 ## `st_asbinary`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_AsBinary)
 
 ```sql
 function st_asbinary(&lt;geometry&gt;) returns varbinary
@@ -3789,7 +3789,7 @@ function st_asbinary(&lt;geometry&gt;) returns varbinary
 
 
 ## `st_astext`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_AsText)
 
 ```sql
 function st_astext(&lt;geometry&gt;) returns varchar
@@ -3797,7 +3797,7 @@ function st_astext(&lt;geometry&gt;) returns varchar
 
 
 ## `st_boundary`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Boundary)
 
 ```sql
 function st_boundary(&lt;geometry&gt;) returns geometry
@@ -3805,7 +3805,7 @@ function st_boundary(&lt;geometry&gt;) returns geometry
 
 
 ## `st_buffer`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Buffer)
 
 ```sql
 function st_buffer(&lt;geometry, double&gt;) returns geometry
@@ -3813,7 +3813,7 @@ function st_buffer(&lt;geometry, double&gt;) returns geometry
 
 
 ## `st_centroid`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Centroid)
 
 ```sql
 function st_centroid(&lt;geometry&gt;) returns geometry
@@ -3821,7 +3821,7 @@ function st_centroid(&lt;geometry&gt;) returns geometry
 
 
 ## `st_contains`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Contains)
 
 ```sql
 function st_contains(&lt;geometry, geometry&gt;) returns boolean
@@ -3829,7 +3829,7 @@ function st_contains(&lt;geometry, geometry&gt;) returns boolean
 
 
 ## `st_convexhull`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_ConvexHull)
 
 ```sql
 function st_convexhull(&lt;geometry&gt;) returns geometry
@@ -3837,7 +3837,7 @@ function st_convexhull(&lt;geometry&gt;) returns geometry
 
 
 ## `st_coorddim`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_CoordDim)
 
 ```sql
 function st_coorddim(&lt;geometry&gt;) returns tinyint
@@ -3845,7 +3845,7 @@ function st_coorddim(&lt;geometry&gt;) returns tinyint
 
 
 ## `st_crosses`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Crosses)
 
 ```sql
 function st_crosses(&lt;geometry, geometry&gt;) returns boolean
@@ -3853,7 +3853,7 @@ function st_crosses(&lt;geometry, geometry&gt;) returns boolean
 
 
 ## `st_difference`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Difference)
 
 ```sql
 function st_difference(&lt;geometry, geometry&gt;) returns geometry
@@ -3861,7 +3861,7 @@ function st_difference(&lt;geometry, geometry&gt;) returns geometry
 
 
 ## `st_dimension`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Dimension)
 
 ```sql
 function st_dimension(&lt;geometry&gt;) returns tinyint
@@ -3869,7 +3869,7 @@ function st_dimension(&lt;geometry&gt;) returns tinyint
 
 
 ## `st_disjoint`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Disjoint)
 
 ```sql
 function st_disjoint(&lt;geometry, geometry&gt;) returns boolean
@@ -3877,7 +3877,7 @@ function st_disjoint(&lt;geometry, geometry&gt;) returns boolean
 
 
 ## `st_distance`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Distance)
 
 ```sql
 function st_distance(&lt;geometry, geometry&gt;) returns double
@@ -3890,7 +3890,7 @@ function st_distance(&lt;sphericalgeography, sphericalgeography&gt;) returns dou
 
 
 ## `st_endpoint`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_EndPoint)
 
 ```sql
 function st_endpoint(&lt;geometry&gt;) returns geometry
@@ -3898,7 +3898,7 @@ function st_endpoint(&lt;geometry&gt;) returns geometry
 
 
 ## `st_envelope`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Envelope)
 
 ```sql
 function st_envelope(&lt;geometry&gt;) returns geometry
@@ -3906,7 +3906,7 @@ function st_envelope(&lt;geometry&gt;) returns geometry
 
 
 ## `st_envelopeaspts`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_EnvelopeAsPts)
 
 ```sql
 function st_envelopeaspts(&lt;geometry&gt;) returns array&lt;geometry&gt;
@@ -3914,7 +3914,7 @@ function st_envelopeaspts(&lt;geometry&gt;) returns array&lt;geometry&gt;
 
 
 ## `st_equals`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Equals)
 
 ```sql
 function st_equals(&lt;geometry, geometry&gt;) returns boolean
@@ -3922,7 +3922,7 @@ function st_equals(&lt;geometry, geometry&gt;) returns boolean
 
 
 ## `st_exteriorring`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_ExteriorRing)
 
 ```sql
 function st_exteriorring(&lt;geometry&gt;) returns geometry
@@ -3930,7 +3930,7 @@ function st_exteriorring(&lt;geometry&gt;) returns geometry
 
 
 ## `st_geometries`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Geometries)
 
 ```sql
 function st_geometries(&lt;geometry&gt;) returns array&lt;geometry&gt;
@@ -3938,7 +3938,7 @@ function st_geometries(&lt;geometry&gt;) returns array&lt;geometry&gt;
 
 
 ## `st_geometryfromtext`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryFromText)
 
 ```sql
 function st_geometryfromtext(&lt;varchar&gt;) returns geometry
@@ -3946,7 +3946,7 @@ function st_geometryfromtext(&lt;varchar&gt;) returns geometry
 
 
 ## `st_geometryn`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryN)
 
 ```sql
 function st_geometryn(&lt;geometry, bigint&gt;) returns geometry
@@ -3954,7 +3954,7 @@ function st_geometryn(&lt;geometry, bigint&gt;) returns geometry
 
 
 ## `st_geometrytype`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryType)
 
 ```sql
 function st_geometrytype(&lt;geometry&gt;) returns varchar
@@ -3962,7 +3962,7 @@ function st_geometrytype(&lt;geometry&gt;) returns varchar
 
 
 ## `st_geomfrombinary`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeomFromBinary)
 
 ```sql
 function st_geomfrombinary(&lt;varbinary&gt;) returns geometry
@@ -3970,7 +3970,7 @@ function st_geomfrombinary(&lt;varbinary&gt;) returns geometry
 
 
 ## `st_interiorringn`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_InteriorRingN)
 
 ```sql
 function st_interiorringn(&lt;geometry, bigint&gt;) returns geometry
@@ -3978,7 +3978,7 @@ function st_interiorringn(&lt;geometry, bigint&gt;) returns geometry
 
 
 ## `st_interiorrings`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_InteriorRings)
 
 ```sql
 function st_interiorrings(&lt;geometry&gt;) returns array&lt;geometry&gt;
@@ -3986,7 +3986,7 @@ function st_interiorrings(&lt;geometry&gt;) returns array&lt;geometry&gt;
 
 
 ## `st_intersection`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Intersection)
 
 ```sql
 function st_intersection(&lt;geometry, geometry&gt;) returns geometry
@@ -3994,7 +3994,7 @@ function st_intersection(&lt;geometry, geometry&gt;) returns geometry
 
 
 ## `st_intersects`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Intersects)
 
 ```sql
 function st_intersects(&lt;geometry, geometry&gt;) returns boolean
@@ -4002,7 +4002,7 @@ function st_intersects(&lt;geometry, geometry&gt;) returns boolean
 
 
 ## `st_isclosed`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsClosed)
 
 ```sql
 function st_isclosed(&lt;geometry&gt;) returns boolean
@@ -4010,7 +4010,7 @@ function st_isclosed(&lt;geometry&gt;) returns boolean
 
 
 ## `st_isempty`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsEmpty)
 
 ```sql
 function st_isempty(&lt;geometry&gt;) returns boolean
@@ -4018,7 +4018,7 @@ function st_isempty(&lt;geometry&gt;) returns boolean
 
 
 ## `st_isring`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsRing)
 
 ```sql
 function st_isring(&lt;geometry&gt;) returns boolean
@@ -4026,7 +4026,7 @@ function st_isring(&lt;geometry&gt;) returns boolean
 
 
 ## `st_issimple`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsSimple)
 
 ```sql
 function st_issimple(&lt;geometry&gt;) returns boolean
@@ -4034,7 +4034,7 @@ function st_issimple(&lt;geometry&gt;) returns boolean
 
 
 ## `st_isvalid`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsValid)
 
 ```sql
 function st_isvalid(&lt;geometry&gt;) returns boolean
@@ -4042,7 +4042,7 @@ function st_isvalid(&lt;geometry&gt;) returns boolean
 
 
 ## `st_length`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Length)
 
 ```sql
 function st_length(&lt;geometry&gt;) returns double
@@ -4055,7 +4055,7 @@ function st_length(&lt;sphericalgeography&gt;) returns double
 
 
 ## `st_linefromtext`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_LineFromText)
 
 ```sql
 function st_linefromtext(&lt;varchar&gt;) returns geometry
@@ -4063,7 +4063,7 @@ function st_linefromtext(&lt;varchar&gt;) returns geometry
 
 
 ## `st_linestring`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_LineString)
 
 ```sql
 function st_linestring(&lt;array&lt;geometry&gt;&gt;) returns geometry
@@ -4071,7 +4071,7 @@ function st_linestring(&lt;array&lt;geometry&gt;&gt;) returns geometry
 
 
 ## `st_multipoint`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_MultiPoint)
 
 ```sql
 function st_multipoint(&lt;array&lt;geometry&gt;&gt;) returns geometry
@@ -4079,7 +4079,7 @@ function st_multipoint(&lt;array&lt;geometry&gt;&gt;) returns geometry
 
 
 ## `st_numgeometries`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumGeometries)
 
 ```sql
 function st_numgeometries(&lt;geometry&gt;) returns bigint
@@ -4087,7 +4087,7 @@ function st_numgeometries(&lt;geometry&gt;) returns bigint
 
 
 ## `st_numinteriorring`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumInteriorRing)
 
 ```sql
 function st_numinteriorring(&lt;geometry&gt;) returns bigint
@@ -4095,7 +4095,7 @@ function st_numinteriorring(&lt;geometry&gt;) returns bigint
 
 
 ## `st_numpoints`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumPoints)
 
 ```sql
 function st_numpoints(&lt;geometry&gt;) returns bigint
@@ -4103,7 +4103,7 @@ function st_numpoints(&lt;geometry&gt;) returns bigint
 
 
 ## `st_overlaps`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Overlaps)
 
 ```sql
 function st_overlaps(&lt;geometry, geometry&gt;) returns boolean
@@ -4111,7 +4111,7 @@ function st_overlaps(&lt;geometry, geometry&gt;) returns boolean
 
 
 ## `st_point`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Point)
 
 ```sql
 function st_point(&lt;double, double&gt;) returns geometry
@@ -4119,7 +4119,7 @@ function st_point(&lt;double, double&gt;) returns geometry
 
 
 ## `st_pointn`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_PointN)
 
 ```sql
 function st_pointn(&lt;geometry, bigint&gt;) returns geometry
@@ -4127,7 +4127,7 @@ function st_pointn(&lt;geometry, bigint&gt;) returns geometry
 
 
 ## `st_points`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Points)
 
 ```sql
 function st_points(&lt;geometry&gt;) returns array&lt;geometry&gt;
@@ -4135,7 +4135,7 @@ function st_points(&lt;geometry&gt;) returns array&lt;geometry&gt;
 
 
 ## `st_polygon`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Polygon)
 
 ```sql
 function st_polygon(&lt;varchar&gt;) returns geometry
@@ -4143,7 +4143,7 @@ function st_polygon(&lt;varchar&gt;) returns geometry
 
 
 ## `st_relate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Relate)
 
 ```sql
 function st_relate(&lt;geometry, geometry, varchar&gt;) returns boolean
@@ -4151,7 +4151,7 @@ function st_relate(&lt;geometry, geometry, varchar&gt;) returns boolean
 
 
 ## `st_startpoint`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_StartPoint)
 
 ```sql
 function st_startpoint(&lt;geometry&gt;) returns geometry
@@ -4159,7 +4159,7 @@ function st_startpoint(&lt;geometry&gt;) returns geometry
 
 
 ## `st_symdifference`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_SymDifference)
 
 ```sql
 function st_symdifference(&lt;geometry, geometry&gt;) returns geometry
@@ -4167,7 +4167,7 @@ function st_symdifference(&lt;geometry, geometry&gt;) returns geometry
 
 
 ## `st_touches`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Touches)
 
 ```sql
 function st_touches(&lt;geometry, geometry&gt;) returns boolean
@@ -4175,7 +4175,7 @@ function st_touches(&lt;geometry, geometry&gt;) returns boolean
 
 
 ## `st_union`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Union)
 
 ```sql
 function st_union(&lt;geometry, geometry&gt;) returns geometry
@@ -4183,7 +4183,7 @@ function st_union(&lt;geometry, geometry&gt;) returns geometry
 
 
 ## `st_within`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Within)
 
 ```sql
 function st_within(&lt;geometry, geometry&gt;) returns boolean
@@ -4191,7 +4191,7 @@ function st_within(&lt;geometry, geometry&gt;) returns boolean
 
 
 ## `st_x`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_X)
 
 ```sql
 function st_x(&lt;geometry&gt;) returns double
@@ -4199,7 +4199,7 @@ function st_x(&lt;geometry&gt;) returns double
 
 
 ## `st_xmax`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_XMax)
 
 ```sql
 function st_xmax(&lt;geometry&gt;) returns double
@@ -4207,7 +4207,7 @@ function st_xmax(&lt;geometry&gt;) returns double
 
 
 ## `st_xmin`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_XMin)
 
 ```sql
 function st_xmin(&lt;geometry&gt;) returns double
@@ -4215,7 +4215,7 @@ function st_xmin(&lt;geometry&gt;) returns double
 
 
 ## `st_y`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Y)
 
 ```sql
 function st_y(&lt;geometry&gt;) returns double
@@ -4223,7 +4223,7 @@ function st_y(&lt;geometry&gt;) returns double
 
 
 ## `st_ymax`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_YMax)
 
 ```sql
 function st_ymax(&lt;geometry&gt;) returns double
@@ -4231,7 +4231,7 @@ function st_ymax(&lt;geometry&gt;) returns double
 
 
 ## `st_ymin`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_YMin)
 
 ```sql
 function st_ymin(&lt;geometry&gt;) returns double
@@ -4239,7 +4239,7 @@ function st_ymin(&lt;geometry&gt;) returns double
 
 
 ## `starts_with`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#starts_with)
 
 ```sql
 function starts_with(&lt;varchar, varchar&gt;) returns boolean
@@ -4247,7 +4247,7 @@ function starts_with(&lt;varchar, varchar&gt;) returns boolean
 
 
 ## `stddev`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev)
 
 ```sql
 function stddev(&lt;bigint&gt;) returns double
@@ -4260,7 +4260,7 @@ function stddev(&lt;double&gt;) returns double
 
 
 ## `stddev_pop`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev_pop)
 
 ```sql
 function stddev_pop(&lt;bigint&gt;) returns double
@@ -4273,7 +4273,7 @@ function stddev_pop(&lt;double&gt;) returns double
 
 
 ## `stddev_samp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev_samp)
 
 ```sql
 function stddev_samp(&lt;bigint&gt;) returns double
@@ -4286,7 +4286,7 @@ function stddev_samp(&lt;double&gt;) returns double
 
 
 ## `strpos`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#strpos)
 
 ```sql
 function strpos(&lt;varchar, varchar&gt;) returns bigint
@@ -4299,7 +4299,7 @@ function strpos(&lt;varchar, varchar, bigint&gt;) returns bigint
 
 
 ## `substr`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#substr)
 
 ```sql
 function substr(&lt;varchar, bigint&gt;) returns varchar
@@ -4322,7 +4322,7 @@ function substr(&lt;varbinary, bigint, bigint&gt;) returns varbinary
 
 
 ## `substring`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#substring)
 
 ```sql
 function substring(&lt;varchar, bigint&gt;) returns varchar
@@ -4335,7 +4335,7 @@ function substring(&lt;varchar, bigint, bigint&gt;) returns varchar
 
 
 ## `sum`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#sum)
 
 ```sql
 function sum(&lt;bigint&gt;) returns bigint
@@ -4368,7 +4368,7 @@ function sum(&lt;interval year to month&gt;) returns interval year to month
 
 
 ## `tan`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#tan)
 
 ```sql
 function tan(&lt;double&gt;) returns double
@@ -4376,7 +4376,7 @@ function tan(&lt;double&gt;) returns double
 
 
 ## `tanh`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#tanh)
 
 ```sql
 function tanh(&lt;double&gt;) returns double
@@ -4384,7 +4384,7 @@ function tanh(&lt;double&gt;) returns double
 
 
 ## `tdigest_agg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/tdigest.html#tdigest_agg)
 
 ```sql
 function tdigest_agg(&lt;double&gt;) returns tdigest
@@ -4397,7 +4397,7 @@ function tdigest_agg(&lt;double, double&gt;) returns tdigest
 
 
 ## `timestamp_objectid`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/../connector/mongodb.html#timestamp_objectid)
 
 ```sql
 function timestamp_objectid(&lt;timestamp(0)&gt;) returns objectid
@@ -4405,7 +4405,7 @@ function timestamp_objectid(&lt;timestamp(0)&gt;) returns objectid
 
 
 ## `timezone_hour`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#timezone_hour)
 
 ```sql
 function timezone_hour(&lt;time(p)&gt;) returns bigint
@@ -4418,7 +4418,7 @@ function timezone_hour(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `timezone_minute`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#timezone_minute)
 
 ```sql
 function timezone_minute(&lt;time(p)&gt;) returns bigint
@@ -4431,7 +4431,7 @@ function timezone_minute(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `to_base`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#to_base)
 
 ```sql
 function to_base(&lt;bigint, bigint&gt;) returns varchar
@@ -4439,7 +4439,7 @@ function to_base(&lt;bigint, bigint&gt;) returns varchar
 
 
 ## `to_base32`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base32)
 
 ```sql
 function to_base32(&lt;varbinary&gt;) returns varchar
@@ -4447,7 +4447,7 @@ function to_base32(&lt;varbinary&gt;) returns varchar
 
 
 ## `to_base64`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base64)
 
 ```sql
 function to_base64(&lt;varbinary&gt;) returns varchar
@@ -4455,7 +4455,7 @@ function to_base64(&lt;varbinary&gt;) returns varchar
 
 
 ## `to_base64url`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base64url)
 
 ```sql
 function to_base64url(&lt;varbinary&gt;) returns varchar
@@ -4463,7 +4463,7 @@ function to_base64url(&lt;varbinary&gt;) returns varchar
 
 
 ## `to_big_endian_32`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_big_endian_32)
 
 ```sql
 function to_big_endian_32(&lt;bigint&gt;) returns varbinary
@@ -4471,7 +4471,7 @@ function to_big_endian_32(&lt;bigint&gt;) returns varbinary
 
 
 ## `to_big_endian_64`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_big_endian_64)
 
 ```sql
 function to_big_endian_64(&lt;bigint&gt;) returns varbinary
@@ -4479,7 +4479,7 @@ function to_big_endian_64(&lt;bigint&gt;) returns varbinary
 
 
 ## `to_char`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#to_char)
 
 ```sql
 function to_char(&lt;timestamp(p), varchar&gt;) returns varchar
@@ -4487,7 +4487,7 @@ function to_char(&lt;timestamp(p), varchar&gt;) returns varchar
 
 
 ## `to_date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#to_date)
 
 ```sql
 function to_date(&lt;varchar, varchar&gt;) returns date
@@ -4495,7 +4495,7 @@ function to_date(&lt;varchar, varchar&gt;) returns date
 
 
 ## `to_encoded_polyline`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_encoded_polyline)
 
 ```sql
 function to_encoded_polyline(&lt;geometry&gt;) returns varchar
@@ -4503,7 +4503,7 @@ function to_encoded_polyline(&lt;geometry&gt;) returns varchar
 
 
 ## `to_geojson_geometry`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_geojson_geometry)
 
 ```sql
 function to_geojson_geometry(&lt;sphericalgeography&gt;) returns varchar
@@ -4511,7 +4511,7 @@ function to_geojson_geometry(&lt;sphericalgeography&gt;) returns varchar
 
 
 ## `to_geometry`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_geometry)
 
 ```sql
 function to_geometry(&lt;sphericalgeography&gt;) returns geometry
@@ -4519,7 +4519,7 @@ function to_geometry(&lt;sphericalgeography&gt;) returns geometry
 
 
 ## `to_hex`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_hex)
 
 ```sql
 function to_hex(&lt;varbinary&gt;) returns varchar
@@ -4527,7 +4527,7 @@ function to_hex(&lt;varbinary&gt;) returns varchar
 
 
 ## `to_ieee754_32`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_ieee754_32)
 
 ```sql
 function to_ieee754_32(&lt;real&gt;) returns varbinary
@@ -4535,7 +4535,7 @@ function to_ieee754_32(&lt;real&gt;) returns varbinary
 
 
 ## `to_ieee754_64`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_ieee754_64)
 
 ```sql
 function to_ieee754_64(&lt;double&gt;) returns varbinary
@@ -4543,7 +4543,7 @@ function to_ieee754_64(&lt;double&gt;) returns varbinary
 
 
 ## `to_iso8601`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#to_iso8601)
 
 ```sql
 function to_iso8601(&lt;date&gt;) returns varchar
@@ -4556,7 +4556,7 @@ function to_iso8601(&lt;timestamp(p)&gt;) returns varchar
 
 
 ## `to_milliseconds`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#to_milliseconds)
 
 ```sql
 function to_milliseconds(&lt;interval day to second&gt;) returns bigint
@@ -4564,7 +4564,7 @@ function to_milliseconds(&lt;interval day to second&gt;) returns bigint
 
 
 ## `to_spherical_geography`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_spherical_geography)
 
 ```sql
 function to_spherical_geography(&lt;geometry&gt;) returns sphericalgeography
@@ -4572,7 +4572,7 @@ function to_spherical_geography(&lt;geometry&gt;) returns sphericalgeography
 
 
 ## `to_timestamp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#to_timestamp)
 
 ```sql
 function to_timestamp(&lt;varchar, varchar&gt;) returns timestamp
@@ -4588,7 +4588,7 @@ function to_timestamp_seconds(&lt;$1&gt;) returns timestamp
 
 
 ## `to_unixtime`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#to_unixtime)
 
 ```sql
 function to_unixtime(&lt;timestamp(p)&gt;) returns double
@@ -4596,7 +4596,7 @@ function to_unixtime(&lt;timestamp(p)&gt;) returns double
 
 
 ## `to_utf8`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#to_utf8)
 
 ```sql
 function to_utf8(&lt;varchar&gt;) returns varbinary
@@ -4604,7 +4604,7 @@ function to_utf8(&lt;varchar&gt;) returns varbinary
 
 
 ## `transform`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#transform)
 
 ```sql
 function transform(&lt;array&lt;$1&gt;, function($1, $11)&gt;) returns array&lt;$11&gt;
@@ -4612,7 +4612,7 @@ function transform(&lt;array&lt;$1&gt;, function($1, $11)&gt;) returns array&lt;
 
 
 ## `transform_keys`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#transform_keys)
 
 ```sql
 function transform_keys(&lt;map&lt;$13, $5&gt;, function($13, $5, $12)&gt;) returns map&lt;$12, $5&gt;
@@ -4620,7 +4620,7 @@ function transform_keys(&lt;map&lt;$13, $5&gt;, function($13, $5, $12)&gt;) retu
 
 
 ## `transform_values`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#transform_values)
 
 ```sql
 function transform_values(&lt;map&lt;$4, $8&gt;, function($4, $8, $7)&gt;) returns map&lt;$4, $7&gt;
@@ -4628,7 +4628,7 @@ function transform_values(&lt;map&lt;$4, $8&gt;, function($4, $8, $7)&gt;) retur
 
 
 ## `translate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#translate)
 
 ```sql
 function translate(&lt;varchar, varchar, varchar&gt;) returns varchar
@@ -4636,7 +4636,7 @@ function translate(&lt;varchar, varchar, varchar&gt;) returns varchar
 
 
 ## `trim`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#trim)
 
 ```sql
 function trim(&lt;varchar&gt;) returns varchar
@@ -4649,7 +4649,7 @@ function trim(&lt;varchar, codepoints&gt;) returns varchar
 
 
 ## `trim_array`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#trim_array)
 
 ```sql
 function trim_array(&lt;array&lt;$3&gt;, bigint&gt;) returns array&lt;$3&gt;
@@ -4657,7 +4657,7 @@ function trim_array(&lt;array&lt;$3&gt;, bigint&gt;) returns array&lt;$3&gt;
 
 
 ## `truncate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#truncate)
 
 ```sql
 function truncate(&lt;decimal(p, s), bigint&gt;) returns decimal(p, s)
@@ -4680,7 +4680,7 @@ function truncate(&lt;real&gt;) returns real
 
 
 ## `try`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#try-function)
 
 ```sql
 function try(&lt;$1&gt;) returns $1
@@ -4688,7 +4688,7 @@ function try(&lt;$1&gt;) returns $1
 
 
 ## `typeof`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#typeof)
 
 ```sql
 function typeof(&lt;$1&gt;) returns varchar
@@ -4696,7 +4696,7 @@ function typeof(&lt;$1&gt;) returns varchar
 
 
 ## `upper`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#upper)
 
 ```sql
 function upper(&lt;varchar&gt;) returns varchar
@@ -4704,7 +4704,7 @@ function upper(&lt;varchar&gt;) returns varchar
 
 
 ## `url_decode`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_decode)
 
 ```sql
 function url_decode(&lt;varchar&gt;) returns varchar
@@ -4712,7 +4712,7 @@ function url_decode(&lt;varchar&gt;) returns varchar
 
 
 ## `url_encode`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_encode)
 
 ```sql
 function url_encode(&lt;varchar&gt;) returns varchar
@@ -4720,7 +4720,7 @@ function url_encode(&lt;varchar&gt;) returns varchar
 
 
 ## `url_extract_fragment`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_fragment)
 
 ```sql
 function url_extract_fragment(&lt;varchar&gt;) returns varchar
@@ -4728,7 +4728,7 @@ function url_extract_fragment(&lt;varchar&gt;) returns varchar
 
 
 ## `url_extract_host`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_host)
 
 ```sql
 function url_extract_host(&lt;varchar&gt;) returns varchar
@@ -4736,7 +4736,7 @@ function url_extract_host(&lt;varchar&gt;) returns varchar
 
 
 ## `url_extract_parameter`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_parameter)
 
 ```sql
 function url_extract_parameter(&lt;varchar, varchar&gt;) returns varchar
@@ -4744,7 +4744,7 @@ function url_extract_parameter(&lt;varchar, varchar&gt;) returns varchar
 
 
 ## `url_extract_path`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_path)
 
 ```sql
 function url_extract_path(&lt;varchar&gt;) returns varchar
@@ -4752,7 +4752,7 @@ function url_extract_path(&lt;varchar&gt;) returns varchar
 
 
 ## `url_extract_port`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_port)
 
 ```sql
 function url_extract_port(&lt;varchar&gt;) returns bigint
@@ -4760,7 +4760,7 @@ function url_extract_port(&lt;varchar&gt;) returns bigint
 
 
 ## `url_extract_protocol`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_protocol)
 
 ```sql
 function url_extract_protocol(&lt;varchar&gt;) returns varchar
@@ -4768,7 +4768,7 @@ function url_extract_protocol(&lt;varchar&gt;) returns varchar
 
 
 ## `url_extract_query`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_query)
 
 ```sql
 function url_extract_query(&lt;varchar&gt;) returns varchar
@@ -4776,7 +4776,7 @@ function url_extract_query(&lt;varchar&gt;) returns varchar
 
 
 ## `uuid`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/uuid.html#uuid)
 
 ```sql
 function uuid(&lt;&gt;) returns uuid
@@ -4787,7 +4787,7 @@ function uuid(&lt;&gt;) returns uuid
 
 
 ## `value_at_quantile`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#value_at_quantile)
 
 ```sql
 function value_at_quantile(&lt;qdigest, double&gt;) returns bigint
@@ -4800,7 +4800,7 @@ function value_at_quantile(&lt;tdigest, double&gt;) returns double
 
 
 ## `values_at_quantiles`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#values_at_quantiles)
 
 ```sql
 function values_at_quantiles(&lt;qdigest, array&lt;double&gt;&gt;) returns array&lt;bigint&gt;
@@ -4813,7 +4813,7 @@ function values_at_quantiles(&lt;tdigest, array&lt;double&gt;&gt;) returns array
 
 
 ## `var_pop`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#var_pop)
 
 ```sql
 function var_pop(&lt;bigint&gt;) returns double
@@ -4826,7 +4826,7 @@ function var_pop(&lt;double&gt;) returns double
 
 
 ## `var_samp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#var_samp)
 
 ```sql
 function var_samp(&lt;bigint&gt;) returns double
@@ -4839,7 +4839,7 @@ function var_samp(&lt;double&gt;) returns double
 
 
 ## `variance`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#variance)
 
 ```sql
 function variance(&lt;bigint&gt;) returns double
@@ -4852,7 +4852,7 @@ function variance(&lt;double&gt;) returns double
 
 
 ## `week`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#week)
 
 ```sql
 function week(&lt;date&gt;) returns bigint
@@ -4865,7 +4865,7 @@ function week(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `week_of_year`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#week_of_year)
 
 ```sql
 function week_of_year(&lt;date&gt;) returns bigint
@@ -4878,7 +4878,7 @@ function week_of_year(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `width_bucket`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#width_bucket)
 
 ```sql
 function width_bucket(&lt;double, array&lt;double&gt;&gt;) returns bigint
@@ -4891,7 +4891,7 @@ function width_bucket(&lt;double, double, double, bigint&gt;) returns bigint
 
 
 ## `wilson_interval_lower`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#wilson_interval_lower)
 
 ```sql
 function wilson_interval_lower(&lt;bigint, bigint, double&gt;) returns double
@@ -4899,7 +4899,7 @@ function wilson_interval_lower(&lt;bigint, bigint, double&gt;) returns double
 
 
 ## `wilson_interval_upper`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#wilson_interval_upper)
 
 ```sql
 function wilson_interval_upper(&lt;bigint, bigint, double&gt;) returns double
@@ -4907,7 +4907,7 @@ function wilson_interval_upper(&lt;bigint, bigint, double&gt;) returns double
 
 
 ## `with_timezone`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#with_timezone)
 
 ```sql
 function with_timezone(&lt;timestamp(p), varchar&gt;) returns timestamp(p)
@@ -4915,7 +4915,7 @@ function with_timezone(&lt;timestamp(p), varchar&gt;) returns timestamp(p)
 
 
 ## `word_stem`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#word_stem)
 
 ```sql
 function word_stem(&lt;varchar&gt;) returns varchar
@@ -4928,7 +4928,7 @@ function word_stem(&lt;varchar, varchar&gt;) returns varchar
 
 
 ## `xxhash64`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#xxhash64)
 
 ```sql
 function xxhash64(&lt;varbinary&gt;) returns varbinary
@@ -4936,7 +4936,7 @@ function xxhash64(&lt;varbinary&gt;) returns varbinary
 
 
 ## `year`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#year)
 
 ```sql
 function year(&lt;date&gt;) returns bigint
@@ -4954,7 +4954,7 @@ function year(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `year_of_week`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#year_of_week)
 
 ```sql
 function year_of_week(&lt;date&gt;) returns bigint
@@ -4967,7 +4967,7 @@ function year_of_week(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `yow`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#yow)
 
 ```sql
 function yow(&lt;date&gt;) returns bigint
@@ -4980,7 +4980,7 @@ function yow(&lt;timestamp(p)&gt;) returns bigint
 
 
 ## `zip`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#zip)
 
 ```sql
 function zip(&lt;array&lt;$14&gt;, array&lt;$15&gt;&gt;) returns array&lt;row(c0 $14, c1 $15)&gt;
@@ -5003,7 +5003,7 @@ function zip(&lt;array&lt;$14&gt;, array&lt;$15&gt;, array&lt;$16&gt;, array&lt;
 
 
 ## `zip_with`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#zip_with)
 
 ```sql
 function zip_with(&lt;array&lt;$1&gt;, array&lt;$11&gt;, function($1, $11, $9)&gt;) returns array&lt;$9&gt;

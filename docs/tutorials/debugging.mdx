@@ -148,7 +148,7 @@ customers.campaign_id
 Working set 12 model files, 8 .sdf files
   Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
   Compiling moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 11 models [2 succeeded, 9 reused] in 0.821 secs
+   Finished 11 models [2 succeeded, 9 reused] in 0.612 secs
 
 </code>
 </pre>
@@ -195,31 +195,32 @@ stg_installs_per_campaign.total_num_installs
 <pre style={{ fontFamily: 'monospace' }} className='language-error'>
 <code className='language-error'>
 Working set 12 model files, 8 .sdf files
-    Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
     Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+    Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
     Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
     Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
     Running moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
     Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
     Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 7 models [7 succeeded] in 0.828 secs
+   Finished 7 models [7 succeeded] in 0.733 secs
 
 Table moms_flower_shop.pub.dim_marketing_campaigns
-+-------------+---------------------------------+--------------------+-------------------------------+------------------------+
-| campaign_id | campaign_name                   | total_num_installs | avg_customer_acquisition_cost | install_duration_ratio |
-+-------------+---------------------------------+--------------------+-------------------------------+------------------------+
-| 3           | instagram_ads_3_3e31b541d8      | 192                | 7.958249909930306             | 0                      |
-| 1           | friends_referrals_1_9b24ce4c65  | 160                | 10.391763883087673            | 0                      |
-| 0           | instagram_ads_0_8c1fdf7cb0      | 91                 | 4.513104055002336             | 0                      |
-| 13          | friends_referrals_13_c6e177ff0a | 72                 | 22.915686962366962            | 0                      |
-| 14          | google_search_14_3775b59a56     | 48                 | 54.12730118839374             | 0                      |
-| 19          | friends_referrals_19_3f4a9d9fc3 | 26                 | 59.38710281622366             | 0                      |
-| 11          | google_search_11_56e2a09ed5     | 19                 | 58.38329050623466             | 0                      |
-| 4           | friends_referrals_4_c554b77114  | 17                 | 163.69881288433993            | 1                      |
-| 22          | friends_referrals_22_69b6886d4a | 15                 | 116.4817634058549             | 0                      |
-| 17          | google_search_17_a400715565     | 15                 | 147.1283543422433             | 1                      |
-+-------------+---------------------------------+--------------------+-------------------------------+------------------------+
-114 rows, showing only 10 rows. Run with --limit 0 to show all rows.
+┌─────────────┬─────────────────────────────────┬────────────────────┬───────────────────────────────┬────────────────────────┐
+│ campaign_id ┆ campaign_name                   ┆ total_num_installs ┆ avg_customer_acquisition_cost ┆ install_duration_ratio │
+╞═════════════╪═════════════════════════════════╪════════════════════╪═══════════════════════════════╪════════════════════════╡
+│ 3           ┆ instagram_ads_3_3e31b541d8      ┆ 192                ┆ 7.958249909930306             ┆ 0                      │
+│ 1           ┆ friends_referrals_1_9b24ce4c65  ┆ 160                ┆ 10.391763883087673            ┆ 0                      │
+│ 0           ┆ instagram_ads_0_8c1fdf7cb0      ┆ 91                 ┆ 4.513104055002336             ┆ 0                      │
+│ 13          ┆ friends_referrals_13_c6e177ff0a ┆ 72                 ┆ 22.915686962366962            ┆ 0                      │
+│ 14          ┆ google_search_14_3775b59a56     ┆ 48                 ┆ 54.12730118839374             ┆ 0                      │
+│ 19          ┆ friends_referrals_19_3f4a9d9fc3 ┆ 26                 ┆ 59.38710281622366             ┆ 0                      │
+│ 11          ┆ google_search_11_56e2a09ed5     ┆ 19                 ┆ 58.38329050623466             ┆ 0                      │
+│ 4           ┆ friends_referrals_4_c554b77114  ┆ 17                 ┆ 163.69881288433993            ┆ 1                      │
+│ 17          ┆ google_search_17_a400715565     ┆ 15                 ┆ 147.1283543422433             ┆ 1                      │
+│ 22          ┆ friends_referrals_22_69b6886d4a ┆ 15                 ┆ 116.4817634058549             ┆ 0                      │
+└─────────────┴─────────────────────────────────┴────────────────────┴───────────────────────────────┴────────────────────────┘
+114 rows, showing only 10 rows.
+  Run with --limit 0 to show all rows.
 
 </code>
 </pre>

@@ -3,7 +3,7 @@ title: "Temporal Functions"
 ---
 
 ## `add_months`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_ADD_MONTHS.html)
 
 ```sql
 function add_months(&lt;date, bigint&gt;) returns timestamp
@@ -16,7 +16,7 @@ function add_months(&lt;timestamp, bigint&gt;) returns timestamp
 
 
 ## `convert_timezone`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/CONVERT_TIMEZONE.html)
 
 ```sql
 function convert_timezone(&lt;varchar, varchar&gt;) returns timestamp
@@ -29,7 +29,7 @@ function convert_timezone(&lt;varchar, varchar, varchar&gt;) returns timestamp
 
 
 ## `current_date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_CURRENT_DATE_function.html)
 
 ```sql
 function current_date(&lt;&gt;) returns date
@@ -37,7 +37,7 @@ function current_date(&lt;&gt;) returns date
 
 
 ## `current_datetime`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function current_datetime(&lt;&gt;) returns timestamp
@@ -45,7 +45,7 @@ function current_datetime(&lt;&gt;) returns timestamp
 
 
 ## `current_time`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function current_time(&lt;&gt;) returns time
@@ -53,7 +53,7 @@ function current_time(&lt;&gt;) returns time
 
 
 ## `date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function date(&lt;$1&gt;) returns date
@@ -61,7 +61,7 @@ function date(&lt;$1&gt;) returns date
 
 
 ## `date_add`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function date_add&lt;$1&gt; (&lt;varchar, bigint, $1&gt;) returns date
@@ -71,7 +71,7 @@ function date_add&lt;$1&gt; (&lt;varchar, bigint, $1&gt;) returns date
 
 
 ## `date_cmp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATE_CMP.html)
 
 ```sql
 function date_cmp(&lt;varchar, varchar&gt;) returns bigint
@@ -79,7 +79,7 @@ function date_cmp(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `date_cmp_timestamp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATE_CMP_TIMESTAMP.html)
 
 ```sql
 function date_cmp_timestamp(&lt;varchar, varchar&gt;) returns bigint
@@ -87,7 +87,7 @@ function date_cmp_timestamp(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `date_cmp_timestampz`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function date_cmp_timestampz(&lt;varchar, varchar&gt;) returns bigint
@@ -95,7 +95,7 @@ function date_cmp_timestampz(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `date_part`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATE_PART_function.html)
 
 ```sql
 function date_part(&lt;varchar, varchar&gt;) returns float
@@ -104,7 +104,7 @@ function date_part(&lt;varchar, varchar&gt;) returns float
 
 
 ## `date_part_year`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATE_PART_YEAR.html)
 
 ```sql
 function date_part_year(&lt;varchar&gt;) returns bigint
@@ -112,7 +112,7 @@ function date_part_year(&lt;varchar&gt;) returns bigint
 
 
 ## `dateadd`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATEADD_function.html)
 
 ```sql
 function dateadd&lt;$1&gt; (&lt;varchar, bigint, $1&gt;) returns date
@@ -122,7 +122,7 @@ function dateadd&lt;$1&gt; (&lt;varchar, bigint, $1&gt;) returns date
 
 
 ## `datediff`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATEDIFF_function.html)
 
 ```sql
 function datediff&lt;$1, $2&gt; (&lt;varchar, $1, $2&gt;) returns bigint
@@ -133,7 +133,7 @@ function datediff&lt;$1, $2&gt; (&lt;varchar, $1, $2&gt;) returns bigint
 
 
 ## `getdate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_GETDATE.html)
 
 ```sql
 function getdate(&lt;&gt;) returns timestamp
@@ -141,7 +141,7 @@ function getdate(&lt;&gt;) returns timestamp
 
 
 ## `sysdate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_SYSDATE.html)
 
 ```sql
 function sysdate(&lt;&gt;) returns date
@@ -149,7 +149,7 @@ function sysdate(&lt;&gt;) returns date
 
 
 ## `timeofday`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TIMEOFDAY_function.html)
 
 ```sql
 function timeofday(&lt;&gt;) returns varchar
@@ -157,7 +157,7 @@ function timeofday(&lt;&gt;) returns varchar
 
 
 ## `timestamp_cmp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TIMESTAMP_CMP.html)
 
 ```sql
 function timestamp_cmp(&lt;varchar, varchar&gt;) returns bigint
@@ -165,7 +165,7 @@ function timestamp_cmp(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `timestamp_cmp_date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TIMESTAMP_CMP_DATE.html)
 
 ```sql
 function timestamp_cmp_date(&lt;varchar, varchar&gt;) returns bigint
@@ -173,7 +173,7 @@ function timestamp_cmp_date(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `timestamp_cmp_timestampz`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function timestamp_cmp_timestampz(&lt;varchar, varchar&gt;) returns bigint
@@ -181,7 +181,7 @@ function timestamp_cmp_timestampz(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `timestampz_cmp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function timestampz_cmp(&lt;varchar, varchar&gt;) returns bigint
@@ -189,7 +189,7 @@ function timestampz_cmp(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `timestampz_cmp_date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function timestampz_cmp_date(&lt;varchar, varchar&gt;) returns bigint
@@ -197,7 +197,7 @@ function timestampz_cmp_date(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `timestampz_cmp_timestamp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ```sql
 function timestampz_cmp_timestamp(&lt;varchar, varchar&gt;) returns bigint
@@ -205,7 +205,7 @@ function timestampz_cmp_timestamp(&lt;varchar, varchar&gt;) returns bigint
 
 
 ## `timezone`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TIMEZONE.html)
 
 ```sql
 function timezone(&lt;varchar, varchar&gt;) returns timestamp
@@ -213,7 +213,7 @@ function timezone(&lt;varchar, varchar&gt;) returns timestamp
 
 
 ## `to_date`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_DATE_function.html)
 
 ```sql
 function to_date(&lt;varchar, varchar&gt;) returns date
@@ -226,7 +226,7 @@ function to_date(&lt;varchar, varchar, boolean&gt;) returns date
 
 
 ## `to_timestamp`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_TIMESTAMP.html)
 
 ```sql
 function to_timestamp(&lt;varchar, varchar&gt;) returns timestamp

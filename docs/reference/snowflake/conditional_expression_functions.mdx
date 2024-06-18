@@ -4,7 +4,7 @@ title: "Conditional Expression Functions"
 
 
 ## `booland`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/booland)
 
 ```sql
 function booland(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
@@ -12,7 +12,7 @@ function booland(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
 returns result of logical (Boolean) AND of x and y
 
 ## `boolnot`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/boolnot)
 
 ```sql
 function boolnot(&lt;decimal(38, 0)&gt;) returns boolean
@@ -20,7 +20,7 @@ function boolnot(&lt;decimal(38, 0)&gt;) returns boolean
 returns result of logical (Boolean) NOT of x
 
 ## `boolor`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/boolor)
 
 ```sql
 function boolor(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
@@ -28,7 +28,7 @@ function boolor(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
 returns result of logical (Boolean) OR of x and y
 
 ## `boolxor`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/boolxor)
 
 ```sql
 function boolxor(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
@@ -36,7 +36,7 @@ function boolxor(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns boolean
 returns result of logical (Boolean) XOR of x and y
 
 ## `coalesce`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/coalesce)
 
 ```sql
 function coalesce($1, ...) returns $1
@@ -44,7 +44,7 @@ function coalesce($1, ...) returns $1
 returns the first non-null expression among its arguments
 
 ## `decode`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/decode)
 
 ```sql
 function decode($1, $1, $1, ...) returns $1
@@ -52,7 +52,7 @@ function decode($1, $1, $1, ...) returns $1
 compare an expression to search values and returns the matching one
 
 ## `equal_null`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/equal_null)
 
 ```sql
 function equal_null(&lt;$1, $1&gt;) returns boolean
@@ -65,7 +65,7 @@ function equal_null(&lt;array, array&gt;) returns boolean
 Checks if two values are equal, with NULL=NULL semantic
 
 ## `greatest`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/greatest)
 
 ```sql
 function greatest($1, ...) returns $1
@@ -73,7 +73,7 @@ function greatest($1, ...) returns $1
 returns the largest value from a list of expressions
 
 ## `greatest_ignore_nulls`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/greatest_ignore_nulls)
 
 ```sql
 function greatest_ignore_nulls($1, ...) returns $1
@@ -81,7 +81,7 @@ function greatest_ignore_nulls($1, ...) returns $1
 returns the largest value from a list of expressions
 
 ## `iff`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/iff)
 
 ```sql
 function iff(&lt;boolean, $1, $1&gt;) returns $1
@@ -89,7 +89,7 @@ function iff(&lt;boolean, $1, $1&gt;) returns $1
 Returns arg2 if arg1 is true, arg3 otherwise.
 
 ## `ifnull`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/ifnull)
 
 ```sql
 function ifnull(&lt;$1, $1&gt;) returns $1
@@ -97,7 +97,7 @@ function ifnull(&lt;$1, $1&gt;) returns $1
 Returns second expression if the first expression is NULL, the first expression otherwise.
 
 ## `least`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/least)
 
 ```sql
 function least($1, ...) returns $1
@@ -105,7 +105,7 @@ function least($1, ...) returns $1
 returns the smallest value from a list of expressions
 
 ## `least_ignore_nulls`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/least_ignore_nulls)
 
 ```sql
 function least_ignore_nulls($1, ...) returns $1
@@ -113,7 +113,7 @@ function least_ignore_nulls($1, ...) returns $1
 returns the smallest value from a list of expressions
 
 ## `nullif`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/nullif)
 
 ```sql
 function nullif(&lt;$1, $1&gt;) returns $1
@@ -121,7 +121,7 @@ function nullif(&lt;$1, $1&gt;) returns $1
 
 
 ## `nullifzero`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/nullifzero)
 
 ```sql
 function nullifzero(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
@@ -134,7 +134,7 @@ function nullifzero(&lt;double&gt;) returns double
 Returns the 1st input, with values equal to 0 replaced with NULL
 
 ## `nvl`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/nvl)
 
 ```sql
 function nvl(&lt;$1, $1&gt;) returns $1
@@ -142,7 +142,7 @@ function nvl(&lt;$1, $1&gt;) returns $1
 Returns second expression if the first expression is NULL, the first expression otherwise.
 
 ## `nvl2`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/nvl2)
 
 ```sql
 function nvl2(&lt;$1, $1, $1&gt;) returns $1
@@ -150,7 +150,7 @@ function nvl2(&lt;$1, $1, $1&gt;) returns $1
 Returns second expression if the first expression is NOT NULL. Returns the third expression otherwise.
 
 ## `regr_valx`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_valx)
 
 ```sql
 function regr_valx(&lt;double, double&gt;) returns double
@@ -158,7 +158,7 @@ function regr_valx(&lt;double, double&gt;) returns double
 Returns the value of the dependent variable (2nd param) if both values are not-null.
 
 ## `regr_valy`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regr_valy)
 
 ```sql
 function regr_valy(&lt;double, double&gt;) returns double
@@ -166,7 +166,7 @@ function regr_valy(&lt;double, double&gt;) returns double
 Returns the value of the independent variable (1st param) if both values are not-null.
 
 ## `zeroifnull`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/zeroifnull)
 
 ```sql
 function zeroifnull(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)

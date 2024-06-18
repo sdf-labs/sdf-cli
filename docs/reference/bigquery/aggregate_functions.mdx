@@ -3,7 +3,7 @@ title: "Aggregate Functions"
 ---
 
 ## `any_value`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#any_value)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#any_value)
 
 ```sql
 function any_value(&lt;$1&gt;) returns $1
@@ -11,7 +11,7 @@ function any_value(&lt;$1&gt;) returns $1
 
 
 ## `array_agg`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#array_agg)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_agg)
 
 ```sql
 function array_agg(&lt;$1&gt;) returns array&lt;$1&gt;
@@ -19,7 +19,7 @@ function array_agg(&lt;$1&gt;) returns array&lt;$1&gt;
 
 
 ## `array_avg`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_avg)
 
 ```sql
 function array_avg&lt;$1&gt; (&lt;array&lt;$1&gt;&gt;) returns double
@@ -28,7 +28,7 @@ function array_avg&lt;$1&gt; (&lt;array&lt;$1&gt;&gt;) returns double
 
 
 ## `array_concat_agg`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#array_concat_agg)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_concat_agg)
 
 ```sql
 function array_concat_agg(&lt;array&lt;$1&gt;&gt;) returns array&lt;$1&gt;
@@ -36,7 +36,7 @@ function array_concat_agg(&lt;array&lt;$1&gt;&gt;) returns array&lt;$1&gt;
 
 
 ## `avg`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#avg)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#avg)
 
 ```sql
 function avg&lt;$1&gt; (&lt;$1&gt;) returns $1
@@ -50,7 +50,7 @@ function avg(&lt;bigint&gt;) returns double
 
 
 ## `bit_and`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#bit_and)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#bit_and)
 
 ```sql
 function bit_and(&lt;bigint&gt;) returns bigint
@@ -58,7 +58,7 @@ function bit_and(&lt;bigint&gt;) returns bigint
 
 
 ## `bit_or`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#bit_or)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#bit_or)
 
 ```sql
 function bit_or(&lt;bigint&gt;) returns bigint
@@ -66,7 +66,7 @@ function bit_or(&lt;bigint&gt;) returns bigint
 
 
 ## `bit_xor`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#bit_xor)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#bit_xor)
 
 ```sql
 function bit_xor(&lt;bigint&gt;) returns bigint
@@ -74,7 +74,7 @@ function bit_xor(&lt;bigint&gt;) returns bigint
 
 
 ## `corr`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/statistical_aggregate_functions#corr)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#corr)
 
 ```sql
 function corr(&lt;float64, float64&gt;) returns float64
@@ -82,7 +82,7 @@ function corr(&lt;float64, float64&gt;) returns float64
 
 
 ## `count`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#count)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#count)
 
 ```sql
 function count(&lt;$1&gt;) returns bigint
@@ -90,7 +90,7 @@ function count(&lt;$1&gt;) returns bigint
 
 
 ## `countif`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#countif)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#countif)
 
 ```sql
 function countif(&lt;bool&gt;) returns bigint
@@ -98,7 +98,7 @@ function countif(&lt;bool&gt;) returns bigint
 
 
 ## `covar_pop`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/statistical_aggregate_functions#covar_pop)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#covar_pop)
 
 ```sql
 function covar_pop(&lt;float64, float64&gt;) returns float64
@@ -106,7 +106,7 @@ function covar_pop(&lt;float64, float64&gt;) returns float64
 
 
 ## `covar_samp`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/statistical_aggregate_functions#covar_samp)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#covar_samp)
 
 ```sql
 function covar_samp(&lt;float64, float64&gt;) returns float64
@@ -114,7 +114,7 @@ function covar_samp(&lt;float64, float64&gt;) returns float64
 
 
 ## `logical_and`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#logical_and)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#logical_and)
 
 ```sql
 function logical_and(&lt;bool&gt;) returns bool
@@ -122,7 +122,7 @@ function logical_and(&lt;bool&gt;) returns bool
 
 
 ## `logical_or`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#logical_or)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#logical_or)
 
 ```sql
 function logical_or(&lt;bool&gt;) returns bool
@@ -130,7 +130,7 @@ function logical_or(&lt;bool&gt;) returns bool
 
 
 ## `max`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#max)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#max)
 
 ```sql
 function max(&lt;$1&gt;) returns $1
@@ -138,7 +138,7 @@ function max(&lt;$1&gt;) returns $1
 
 
 ## `max_by`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#max_by)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#max_by)
 
 ```sql
 function max_by(&lt;$1, $2&gt;) returns $1
@@ -146,7 +146,7 @@ function max_by(&lt;$1, $2&gt;) returns $1
 
 
 ## `min`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#min)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#min)
 
 ```sql
 function min(&lt;$1&gt;) returns $1
@@ -154,7 +154,7 @@ function min(&lt;$1&gt;) returns $1
 
 
 ## `min_by`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#min_by)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#min_by)
 
 ```sql
 function min_by(&lt;$1, $2&gt;) returns $1
@@ -162,7 +162,7 @@ function min_by(&lt;$1, $2&gt;) returns $1
 
 
 ## `stddev_pop`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/statistical_aggregate_functions#stddev_pop)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#stddev_pop)
 
 ```sql
 function stddev_pop(&lt;float64&gt;) returns float64
@@ -170,7 +170,7 @@ function stddev_pop(&lt;float64&gt;) returns float64
 
 
 ## `stddev_samp`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/statistical_aggregate_functions#stddev_samp)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#stddev_samp)
 
 ```sql
 function stddev_samp(&lt;float64&gt;) returns float64
@@ -178,7 +178,7 @@ function stddev_samp(&lt;float64&gt;) returns float64
 
 
 ## `string_agg`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#string_agg)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#string_agg)
 
 ```sql
 function string_agg&lt;$1&gt; (&lt;$1&gt;) returns $1
@@ -193,7 +193,7 @@ function string_agg&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
 
 
 ## `sum`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/aggregate_functions#sum)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sum)
 
 ```sql
 function sum(&lt;$1&gt;) returns $1
@@ -201,7 +201,7 @@ function sum(&lt;$1&gt;) returns $1
 
 
 ## `var_pop`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/statistical_aggregate_functions#var_pop)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#var_pop)
 
 ```sql
 function var_pop(&lt;float64&gt;) returns float64
@@ -209,7 +209,7 @@ function var_pop(&lt;float64&gt;) returns float64
 
 
 ## `var_samp`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/statistical_aggregate_functions#var_samp)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#var_samp)
 
 ```sql
 function var_samp(&lt;float64&gt;) returns float64

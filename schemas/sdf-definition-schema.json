@@ -491,6 +491,7 @@
         "view",
         "materialized-view",
         "incremental-table",
+        "snapshot-table",
         "recursive-table"
       ]
     },
@@ -1214,10 +1215,21 @@
           ]
         },
         "incremental-options": {
-          "description": "Contains various options governing incremental table evaluation (only for incremental tables)",
+          "description": "Options governing incremental table evaluation (only for incremental tables)",
           "anyOf": [
             {
               "$ref": "#/definitions/IncrementalOptions"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot-options": {
+          "description": "Options governing snapshot table evaluation (only for snapshot tables)",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SnapshotOptions"
             },
             {
               "type": "null"
@@ -1515,6 +1527,80 @@
           "type": "string",
           "enum": [
             "sync"
+          ]
+        }
+      ]
+    },
+    "SnapshotOptions": {
+      "type": "object",
+      "required": [
+        "strategy",
+        "unique-key"
+      ],
+      "properties": {
+        "strategy": {
+          "description": "Snapshot strategy; may be one of `timestamp` (default), or `check`",
+          "allOf": [
+            {
+              "$ref": "#/definitions/SnapshotStrategy"
+            }
+          ]
+        },
+        "unique-key": {
+          "description": "Expression used for identifying records that will be updated according to the snapshot strategiy; May be a column name or an expression combining multiple columns",
+          "type": "string"
+        },
+        "updated-at": {
+          "description": "Name of the timestamp column used to identify the last update time This option is only required for the `timestamp` snapshot strategy",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "check-cols": {
+          "description": "Specification of which columns to check for change (may be a list of column names or `all`) This option is only required for the `check` snapshot strategy",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CheckColsSpec"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "SnapshotStrategy": {
+      "type": "string",
+      "enum": [
+        "timestamp",
+        "check"
+      ]
+    },
+    "CheckColsSpec": {
+      "oneOf": [
+        {
+          "description": "A list of column names to be used for checking if a snapshot's source data set was updated",
+          "type": "object",
+          "required": [
+            "cols"
+          ],
+          "properties": {
+            "cols": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "description": "Use all columns to check whether a snapshot's source data set was updated",
+          "type": "string",
+          "enum": [
+            "all"
           ]
         }
       ]

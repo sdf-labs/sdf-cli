@@ -4,7 +4,7 @@ title: "String Functions"
 
 
 ## `regexp_count`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regexp_count)
 
 ```sql
 function regexp_count(&lt;varchar, varchar&gt;) returns decimal(38, 0)
@@ -22,7 +22,7 @@ function regexp_count(&lt;varchar, varchar, decimal(38, 0), varchar&gt;) returns
 returns number of matches of regular expression pattern in subject
 
 ## `regexp_instr`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regexp_instr)
 
 ```sql
 function regexp_instr(&lt;varchar, varchar&gt;) returns decimal(38, 0)
@@ -55,7 +55,7 @@ function regexp_instr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), deci
 returns position at which the subject matches the regular expression pattern
 
 ## `regexp_like`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regexp_like)
 
 ```sql
 function regexp_like(&lt;varchar, varchar&gt;) returns boolean
@@ -68,7 +68,7 @@ function regexp_like(&lt;varchar, varchar, varchar&gt;) returns boolean
 returns TRUE if subject RLIKE pattern
 
 ## `regexp_replace`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regexp_replace)
 
 ```sql
 function regexp_replace(&lt;varchar, varchar&gt;) returns varchar
@@ -96,7 +96,7 @@ function regexp_replace(&lt;varchar, varchar, varchar, decimal(38, 0), decimal(3
 replaces substring in subject matching a regular expression pattern
 
 ## `regexp_substr`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regexp_substr)
 
 ```sql
 function regexp_substr(&lt;varchar, varchar&gt;) returns varchar
@@ -124,7 +124,7 @@ function regexp_substr(&lt;varchar, varchar, decimal(38, 0), decimal(38, 0), var
 returns substring in subject which matches the regular expression pattern
 
 ## `regexp_substr_all`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/regexp_substr_all)
 
 ```sql
 function regexp_substr_all(&lt;varchar, varchar&gt;) returns array

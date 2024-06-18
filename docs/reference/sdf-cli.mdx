@@ -18,8 +18,6 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf stats`↴](#sdf-stats)
 * [`sdf report`↴](#sdf-report)
 * [`sdf check`↴](#sdf-check)
-* [`sdf ai`↴](#sdf-ai)
-* [`sdf ai classify`↴](#sdf-ai-classify)
 * [`sdf lineage`↴](#sdf-lineage)
 * [`sdf push`↴](#sdf-push)
 * [`sdf system`↴](#sdf-system)
@@ -28,7 +26,6 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf auth`↴](#sdf-auth)
 * [`sdf auth login`↴](#sdf-auth-login)
 * [`sdf auth login aws`↴](#sdf-auth-login-aws)
-* [`sdf auth login openai`↴](#sdf-auth-login-openai)
 * [`sdf auth login snowflake`↴](#sdf-auth-login-snowflake)
 * [`sdf auth logout`↴](#sdf-auth-logout)
 * [`sdf auth logout aws`↴](#sdf-auth-logout-aws)
@@ -61,7 +58,6 @@ SDF&#39;s modular SQL
 * `stats` — Statistics for your data
 * `report` — Report code quality
 * `check` — Check code quality
-* `ai` — Infer metadata like classifiers and add them optionally to the workspace
 * `lineage` — Display lineage for a given table and/or column
 * `push` — Push a local workspace to the SDF Service
 * `system` — System maintenance, install and update
@@ -752,71 +748,6 @@ Check code quality
 
 
 
-## `sdf ai`
-
-Infer metadata like classifiers and add them optionally to the workspace
-
-**Usage:** `sdf ai [OPTIONS]  COMMAND `
-
-###### **Subcommands:**
-
-* `classify` — Auto classify columns
-
-###### **Options:**
-
-* `-s`, `--show  SHOW `
-
-  Default value: `all`
-
-  Possible values: `all`, `progress`, `result`, `none`
-
-
-
-
-## `sdf ai classify`
-
-Auto classify columns
-
-**Usage:** `sdf ai classify [OPTIONS] [TARGETS]...`
-
-###### **Arguments:**
-
-* ` TARGETS ` — Classify only the given source dirs, files or tables [default: all root tables]
-
-###### **Options:**
-
-* `-e`, `--environment  ENVIRONMENT ` — Scope inference to using this environment
-* `--save-location  SAVE_LOCATION ` — Add inferred classifiers to this include path [default: ./src]
-* `--classifiers  CLASSIFIERS ` — Infer these classifiers [default: all classifiers]
-* `--no-use-of-samples` — Do NOT pass samples to inference engine
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-use-of-data` — Do NOT pass at most 5 data values to inference engine
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-use-of-description` — Do NOT pass table/column descriptions to inference engine
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `-y`, `--yes` — Answer yes to all prompts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
-
-
-
 ## `sdf lineage`
 
 Display lineage for a given table and/or column
@@ -1193,7 +1124,6 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 ###### **Subcommands:**
 
 * `aws` — Configure how to authenticate with AWS
-* `openai` — Configure how to authenticate with OpenAI
 * `snowflake` — Configure how to authenticate with Snowflake
 
 ###### **Options:**
@@ -1232,20 +1162,6 @@ Configure how to authenticate with AWS
 * `--access-key-id  ACCESS_KEY_ID ` — AWS access key id
 * `--secret-access-key  SECRET_ACCESS_KEY ` — AWS secret access key
 * `--session-token  SESSION_TOKEN ` — AWS session token
-
-
-
-## `sdf auth login openai`
-
-Configure how to authenticate with OpenAI
-
-**Usage:** `sdf auth login openai [OPTIONS] --api-key  API_KEY `
-
-###### **Options:**
-
-* `-n`, `--name  NAME ` — Name of the credential to use
-* `--api-key  API_KEY ` — Mapping of bucket names to regions
-* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
 
 
 
@@ -1526,5 +1442,5 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 
 
 
-   Finished man in 0.190 secs
+   Finished man in 0.107 secs
 

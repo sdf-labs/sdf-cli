@@ -3,7 +3,7 @@ title: "Date Functions"
 ---
 
 ## `current_date`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#current_date)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#current_date)
 
 ```sql
 function current_date(&lt;&gt;) returns date
@@ -16,7 +16,7 @@ function current_date(&lt;string&gt;) returns date
 
 
 ## `date`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date)
 
 ```sql
 function date(&lt;bigint, bigint, bigint&gt;) returns date
@@ -39,7 +39,7 @@ function date(&lt;datetime&gt;) returns date
 
 
 ## `date_add`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_add)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_add)
 
 ```sql
 function date_add&lt;$1&gt; (&lt;$1, interval&gt;) returns $1
@@ -48,7 +48,7 @@ function date_add&lt;$1&gt; (&lt;$1, interval&gt;) returns $1
 
 
 ## `date_diff`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_diff)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_diff)
 
 ```sql
 function date_diff&lt;$1&gt; (&lt;$1, $1, date_part string&gt;) returns bigint
@@ -58,7 +58,7 @@ function date_diff&lt;$1&gt; (&lt;$1, $1, date_part string&gt;) returns bigint
 
 
 ## `date_from_unix_date`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_from_unix_date)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_from_unix_date)
 
 ```sql
 function date_from_unix_date(&lt;bigint&gt;) returns date
@@ -66,7 +66,7 @@ function date_from_unix_date(&lt;bigint&gt;) returns date
 
 
 ## `date_trunc`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_trunc)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_trunc)
 
 ```sql
 function date_trunc&lt;$1&gt; (&lt;$1, date_part string&gt;) returns $1
@@ -76,7 +76,7 @@ function date_trunc&lt;$1&gt; (&lt;$1, date_part string&gt;) returns $1
 
 
 ## `format_date`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#format_date)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#format_date)
 
 ```sql
 function format_date&lt;$1&gt; (&lt;string, $1&gt;) returns string
@@ -85,7 +85,7 @@ function format_date&lt;$1&gt; (&lt;string, $1&gt;) returns string
 
 
 ## `last_day`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#last_day)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#last_day)
 
 ```sql
 function last_day&lt;$1&gt; (&lt;$1&gt;) returns date
@@ -101,7 +101,7 @@ function last_day&lt;$1&gt; (&lt;$1, date_part string&gt;) returns date
 
 
 ## `parse_date`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#parse_date)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#parse_date)
 
 ```sql
 function parse_date(&lt;string, string&gt;) returns date
@@ -109,7 +109,7 @@ function parse_date(&lt;string, string&gt;) returns date
 
 
 ## `unix_date`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#unix_date)
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#unix_date)
 
 ```sql
 function unix_date(&lt;date&gt;) returns bigint

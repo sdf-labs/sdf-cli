@@ -4,7 +4,7 @@ title: "Table Functions"
 
 
 ## `flatten`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/flatten)
 
 ```sql
 function flatten&lt;$1&gt; (&lt;input $1&gt;) returns struct&lt;seq bigint, key string, path string, index bigint, value variant, this $1&gt;
@@ -13,7 +13,7 @@ function flatten&lt;$1&gt; (&lt;input $1&gt;) returns struct&lt;seq bigint, key 
 
 
 ## `generator`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/generator)
 
 ```sql
 function generator(&lt;&gt;) returns struct&lt;dummy bigint&gt;
@@ -21,7 +21,7 @@ function generator(&lt;&gt;) returns struct&lt;dummy bigint&gt;
 
 
 ## `get_object_references`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get_object_references)
 
 ```sql
 function get_object_references(&lt;&gt;) returns struct&lt;database_name string, schema_name string, object_name string, referenced_database_name string, referenced_schema_name string, referenced_object_name string, referenced_object_type string&gt;
@@ -29,7 +29,7 @@ function get_object_references(&lt;&gt;) returns struct&lt;database_name string,
 
 
 ## `infer_schema`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/infer_schema)
 
 ```sql
 function infer_schema(&lt;&gt;) returns struct&lt;
@@ -45,7 +45,7 @@ function infer_schema(&lt;&gt;) returns struct&lt;
 
 
 ## `rest_event_history`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/rest_event_history)
 
 ```sql
 function rest_event_history(&lt;rest_service_type string&gt;) returns struct&lt;
@@ -68,7 +68,7 @@ function rest_event_history(&lt;rest_service_type string&gt;) returns struct&lt;
 
 
 ## `validate`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/validate)
 
 ```sql
 function validate(&lt;string, job_id string&gt;) returns struct&lt;

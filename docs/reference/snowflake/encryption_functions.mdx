@@ -4,7 +4,7 @@ title: "Encryption Functions"
 
 
 ## `decrypt`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/decrypt)
 
 ```sql
 function decrypt(&lt;binary, varchar&gt;) returns binary
@@ -37,7 +37,7 @@ function decrypt(&lt;binary, varchar, varchar, varchar&gt;) returns binary
 decrypted binary string (return)
 
 ## `decrypt_raw`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/decrypt_raw)
 
 ```sql
 function decrypt_raw(&lt;binary, binary&gt;) returns binary
@@ -65,7 +65,7 @@ function decrypt_raw(&lt;binary, binary, binary, binary, varchar, binary&gt;) re
 decrypted binary string (return)
 
 ## `encrypt`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/encrypt)
 
 ```sql
 function encrypt(&lt;binary, varchar&gt;) returns binary
@@ -128,7 +128,7 @@ function encrypt(&lt;varchar, varchar, varchar, varchar&gt;) returns binary
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ## `encrypt_raw`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/encrypt_raw)
 
 ```sql
 function encrypt_raw(&lt;binary, binary&gt;) returns variant
@@ -151,7 +151,7 @@ function encrypt_raw(&lt;binary, binary, binary, binary, varchar&gt;) returns va
 variant containing the encrypted binary string and additional data (return)
 
 ## `try_decrypt`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_decrypt)
 
 ```sql
 function try_decrypt(&lt;binary, varchar&gt;) returns binary
@@ -184,7 +184,7 @@ function try_decrypt(&lt;binary, varchar, varchar, varchar&gt;) returns binary
 decrypted binary string (return)
 
 ## `try_decrypt_raw`
-[🔗 Official Documentation]()
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_decrypt_raw)
 
 ```sql
 function try_decrypt_raw(&lt;binary, binary&gt;) returns binary

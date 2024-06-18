@@ -46,7 +46,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working set 3 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.269 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.066 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -164,7 +164,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 Working set 4 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
   Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.194 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.101 secs
 
 Schema sdf_snowflake.staging.latest_repo_name
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -206,23 +206,23 @@ Schema sdf_snowflake.staging.latest_repo_name
 Working set 4 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
     Running sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 6.314 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 7.371 secs
 
 Table sdf_snowflake.staging.latest_repo_name
-+-------------------------------------------+-----------+
-| repo_name                                 | repo_id   |
-+-------------------------------------------+-----------+
-| Shahdev32/RESTFULL_API                    | 816029978 |
-| ValeryEgorova/RPJ_paper                   | 816005045 |
-| Rock257/MovieApp                          | 815781589 |
-| minder-smoke-tests/smoke-test-python-7769 | 815939449 |
-| direwolf-github/ephemeral-ci-8badbef5     | 815763023 |
-| dropmode/springbootdemo                   | 815808238 |
-| minder-smoke-tests/smoke-test-go-7652     | 815902724 |
-| cypher3107/blogs.github.io                | 815797222 |
-| iGNSS/GNSS-INS                            | 815464452 |
-| manikanta569/Responsive_website           | 815995997 |
-+-------------------------------------------+-----------+
+┌───────────────────────────────────────────────────────────────┬───────────┐
+│ repo_name                                                     ┆ repo_id   │
+╞═══════════════════════════════════════════════════════════════╪═══════════╡
+│ Juan-Ayme/sistema-ventas                                      ┆ 816051657 │
+│ samaresh77/Authentication                                     ┆ 815944720 │
+│ devhub-blue-sea-sa-east-1/org-public-empty-csc-repo-sa-east-1 ┆ 816009773 │
+│ barbartoto03/ak7                                              ┆ 815932878 │
+│ minder-smoke-tests/smoke-test-rust-11913                      ┆ 815971978 │
+│ Dejanimitrijevic/silver-dejan-test                            ┆ 816021943 │
+│ egeoztass/Product-Service-API                                 ┆ 643674560 │
+│ amitrajputfff/Insect-Catching-Game                            ┆ 816035221 │
+│ CatBoxs/Cat_tv                                                ┆ 815754969 │
+│ nasrindbd/reg                                                 ┆ 815943253 │
+└───────────────────────────────────────────────────────────────┴───────────┘
 10 rows.
 
 </code>
@@ -270,7 +270,7 @@ Table sdf_snowflake.staging.latest_repo_name
 Working set 5 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.216 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.247 secs
 
 Schema sdf_snowflake.staging.push_events
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -334,20 +334,20 @@ Schema sdf_snowflake.staging.push_events
 <pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
 Working set 6 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
 Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
+Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
-Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
-Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
+  Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (./src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+  Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (./src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-  Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-  Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (./src/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-   Finished 13 models [6 succeeded, 7 downloaded] in 2.399 secs
+   Finished 13 models [6 succeeded, 7 downloaded] in 2.274 secs
 
 </code>
 </pre>
