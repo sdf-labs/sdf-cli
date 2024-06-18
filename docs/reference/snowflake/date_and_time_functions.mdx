@@ -7,7 +7,7 @@ title: "Date & Time Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/add_months)
 
 ```sql
-function add_months(&lt;string, bigint&gt;) returns timestamp
+function add_months(<string, bigint>) returns timestamp
 ```
 
 
@@ -15,13 +15,13 @@ function add_months(&lt;string, bigint&gt;) returns timestamp
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/convert_timezone)
 
 ```sql
-function convert_timezone&lt;$1&gt; (&lt;varchar, varchar, $1&gt;) returns timestamp
+function convert_timezone<$1> (<varchar, varchar, $1>) returns timestamp
 	where $1 in (timestamp, string)
 ```
 Returns the input timestamp converted from source timezone to a destination timezone
 
 ```sql
-function convert_timezone&lt;$1&gt; (&lt;varchar, $1&gt;) returns timestamp
+function convert_timezone<$1> (<varchar, $1>) returns timestamp
 	where $1 in (timestamp, string)
 ```
 Returns the input timestamp converted from source timezone to a destination timezone
@@ -30,7 +30,7 @@ Returns the input timestamp converted from source timezone to a destination time
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/date_from_parts)
 
 ```sql
-function date_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns date
+function date_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns date
 ```
 Construct a date from individual components
 
@@ -38,7 +38,7 @@ Construct a date from individual components
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/date_part)
 
 ```sql
-function date_part&lt;$1&gt; (&lt;string, $1&gt;) returns double
+function date_part<$1> (<string, $1>) returns double
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -48,7 +48,7 @@ function date_part&lt;$1&gt; (&lt;string, $1&gt;) returns double
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/date_trunc)
 
 ```sql
-function date_trunc&lt;$1&gt; (&lt;string, $1&gt;) returns $1
+function date_trunc<$1> (<string, $1>) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -58,7 +58,7 @@ function date_trunc&lt;$1&gt; (&lt;string, $1&gt;) returns $1
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dateadd)
 
 ```sql
-function dateadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
+function dateadd<$1> (<string, double, $1>) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -68,7 +68,7 @@ function dateadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/datediff)
 
 ```sql
-function datediff&lt;$1, $2&gt; (&lt;string, $1, $2&gt;) returns bigint
+function datediff<$1, $2> (<string, $1, $2>) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 	and $2 in (date, time, timestamp, varchar)
@@ -79,7 +79,7 @@ function datediff&lt;$1, $2&gt; (&lt;string, $1, $2&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/day)
 
 ```sql
-function day(&lt;$1&gt;) returns bigint
+function day(<$1>) returns bigint
 ```
 
 
@@ -87,7 +87,7 @@ function day(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayname)
 
 ```sql
-function dayname&lt;$1&gt; (&lt;$1&gt;) returns varchar
+function dayname<$1> (<$1>) returns varchar
 	where $1 in (date, string)
 ```
 
@@ -96,7 +96,7 @@ function dayname&lt;$1&gt; (&lt;$1&gt;) returns varchar
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayofmonth)
 
 ```sql
-function dayofmonth(&lt;$1&gt;) returns bigint
+function dayofmonth(<$1>) returns bigint
 ```
 
 
@@ -104,7 +104,7 @@ function dayofmonth(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayofweek)
 
 ```sql
-function dayofweek(&lt;$1&gt;) returns bigint
+function dayofweek(<$1>) returns bigint
 ```
 
 
@@ -112,7 +112,7 @@ function dayofweek(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayofweekiso)
 
 ```sql
-function dayofweekiso(&lt;$1&gt;) returns bigint
+function dayofweekiso(<$1>) returns bigint
 ```
 
 
@@ -120,7 +120,7 @@ function dayofweekiso(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dayofyear)
 
 ```sql
-function dayofyear(&lt;$1&gt;) returns bigint
+function dayofyear(<$1>) returns bigint
 ```
 
 
@@ -128,7 +128,7 @@ function dayofyear(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/extract)
 
 ```sql
-function extract&lt;$1&gt; (&lt;string, $1&gt;) returns double
+function extract<$1> (<string, $1>) returns double
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, dayofweek_iso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -138,7 +138,7 @@ function extract&lt;$1&gt; (&lt;string, $1&gt;) returns double
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hour)
 
 ```sql
-function hour(&lt;$1&gt;) returns bigint
+function hour(<$1>) returns bigint
 ```
 
 
@@ -146,13 +146,13 @@ function hour(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/last_day)
 
 ```sql
-function last_day&lt;$1&gt; (&lt;$1&gt;) returns date
+function last_day<$1> (<$1>) returns date
 	where $1 in (date, time, timestamp, varchar)
 ```
 
 
 ```sql
-function last_day&lt;$1&gt; (&lt;$1, string&gt;) returns date
+function last_day<$1> (<$1, string>) returns date
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -162,7 +162,7 @@ function last_day&lt;$1&gt; (&lt;$1, string&gt;) returns date
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/minute)
 
 ```sql
-function minute(&lt;$1&gt;) returns bigint
+function minute(<$1>) returns bigint
 ```
 
 
@@ -170,7 +170,7 @@ function minute(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/month)
 
 ```sql
-function month(&lt;$1&gt;) returns bigint
+function month(<$1>) returns bigint
 ```
 
 
@@ -178,7 +178,7 @@ function month(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/monthname)
 
 ```sql
-function monthname&lt;$1&gt; (&lt;$1&gt;) returns varchar
+function monthname<$1> (<$1>) returns varchar
 	where $1 in (date, string)
 ```
 
@@ -187,7 +187,7 @@ function monthname&lt;$1&gt; (&lt;$1&gt;) returns varchar
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/months_between)
 
 ```sql
-function months_between&lt;$1&gt; (&lt;$1, $1&gt;) returns bigint
+function months_between<$1> (<$1, $1>) returns bigint
 	where $1 in (date, time, timestamp, varchar)
 ```
 
@@ -196,7 +196,7 @@ function months_between&lt;$1&gt; (&lt;$1, $1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/next_day)
 
 ```sql
-function next_day&lt;$1&gt; (&lt;$1, varchar&gt;) returns date
+function next_day<$1> (<$1, varchar>) returns date
 	where $1 in (date, string)
 ```
 
@@ -205,7 +205,7 @@ function next_day&lt;$1&gt; (&lt;$1, varchar&gt;) returns date
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/previous_day)
 
 ```sql
-function previous_day&lt;$1&gt; (&lt;$1, varchar&gt;) returns date
+function previous_day<$1> (<$1, varchar>) returns date
 	where $1 in (date, string)
 ```
 
@@ -214,7 +214,7 @@ function previous_day&lt;$1&gt; (&lt;$1, varchar&gt;) returns date
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/quarter)
 
 ```sql
-function quarter(&lt;$1&gt;) returns bigint
+function quarter(<$1>) returns bigint
 ```
 
 
@@ -222,7 +222,7 @@ function quarter(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/second)
 
 ```sql
-function second(&lt;$1&gt;) returns bigint
+function second(<$1>) returns bigint
 ```
 
 
@@ -230,12 +230,12 @@ function second(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/time_from_parts)
 
 ```sql
-function time_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns time
+function time_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns time
 ```
 Construct a time from individual components
 
 ```sql
-function time_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns time
+function time_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns time
 ```
 Construct a time from individual components
 
@@ -243,13 +243,13 @@ Construct a time from individual components
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/time_slice)
 
 ```sql
-function time_slice&lt;$1&gt; (&lt;$1, bigint, string&gt;) returns $1
+function time_slice<$1> (<$1, bigint, string>) returns $1
 	where $1 in (date, time, timestamp, varchar)
 ```
 
 
 ```sql
-function time_slice&lt;$1&gt; (&lt;$1, bigint, string, string&gt;) returns $1
+function time_slice<$1> (<$1, bigint, string, string>) returns $1
 	where $1 in (date, time, timestamp, varchar)
 ```
 
@@ -258,7 +258,7 @@ function time_slice&lt;$1&gt; (&lt;$1, bigint, string, string&gt;) returns $1
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timeadd)
 
 ```sql
-function timeadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
+function timeadd<$1> (<string, double, $1>) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -268,7 +268,7 @@ function timeadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timediff)
 
 ```sql
-function timediff&lt;$1&gt; (&lt;string, $1, $1&gt;) returns bigint
+function timediff<$1> (<string, $1, $1>) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -278,22 +278,22 @@ function timediff&lt;$1&gt; (&lt;string, $1, $1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timestamp_from_parts)
 
 ```sql
-function timestamp_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns timestamp
+function timestamp_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns timestamp
 ```
 Construct a timestamp from individual components
 
 ```sql
-function timestamp_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns timestamp
+function timestamp_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns timestamp
 ```
 Construct a timestamp from individual components
 
 ```sql
-function timestamp_from_parts(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar&gt;) returns timestamp
+function timestamp_from_parts(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), varchar>) returns timestamp
 ```
 Construct a timestamp from individual components
 
 ```sql
-function timestamp_from_parts(&lt;date, time&gt;) returns timestamp
+function timestamp_from_parts(<date, time>) returns timestamp
 ```
 Construct a timestamp from individual components
 
@@ -301,7 +301,7 @@ Construct a timestamp from individual components
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timestampadd)
 
 ```sql
-function timestampadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
+function timestampadd<$1> (<string, double, $1>) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -311,7 +311,7 @@ function timestampadd&lt;$1&gt; (&lt;string, double, $1&gt;) returns $1
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/timestampdiff)
 
 ```sql
-function timestampdiff&lt;$1&gt; (&lt;string, $1, $1&gt;) returns bigint
+function timestampdiff<$1> (<string, $1, $1>) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
 	where $1 in (date, time, timestamp, varchar)
 ```
@@ -321,37 +321,37 @@ function timestampdiff&lt;$1&gt; (&lt;string, $1, $1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/trunc)
 
 ```sql
-function trunc(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
+function trunc(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 truncate the fractional or date part
 
 ```sql
-function trunc(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
+function trunc(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 truncate the fractional or date part
 
 ```sql
-function trunc(&lt;double&gt;) returns double
+function trunc(<double>) returns double
 ```
 truncate the fractional or date part
 
 ```sql
-function trunc(&lt;double, double&gt;) returns double
+function trunc(<double, double>) returns double
 ```
 truncate the fractional or date part
 
 ```sql
-function trunc(&lt;date, varchar&gt;) returns date
+function trunc(<date, varchar>) returns date
 ```
 truncate the fractional or date part
 
 ```sql
-function trunc(&lt;time, varchar&gt;) returns time
+function trunc(<time, varchar>) returns time
 ```
 truncate the fractional or date part
 
 ```sql
-function trunc(&lt;timestamp, varchar&gt;) returns timestamp
+function trunc(<timestamp, varchar>) returns timestamp
 ```
 truncate the fractional or date part
 
@@ -359,7 +359,7 @@ truncate the fractional or date part
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/week)
 
 ```sql
-function week(&lt;$1&gt;) returns bigint
+function week(<$1>) returns bigint
 ```
 
 
@@ -367,7 +367,7 @@ function week(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/weekiso)
 
 ```sql
-function weekiso(&lt;$1&gt;) returns bigint
+function weekiso(<$1>) returns bigint
 ```
 
 
@@ -375,7 +375,7 @@ function weekiso(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/weekofyear)
 
 ```sql
-function weekofyear(&lt;$1&gt;) returns bigint
+function weekofyear(<$1>) returns bigint
 ```
 
 
@@ -383,7 +383,7 @@ function weekofyear(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/year)
 
 ```sql
-function year(&lt;$1&gt;) returns bigint
+function year(<$1>) returns bigint
 ```
 
 
@@ -391,7 +391,7 @@ function year(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/yearofweek)
 
 ```sql
-function yearofweek(&lt;$1&gt;) returns bigint
+function yearofweek(<$1>) returns bigint
 ```
 
 
@@ -399,12 +399,12 @@ function yearofweek(&lt;$1&gt;) returns bigint
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/yearofweekiso)
 
 ```sql
-function yearofweekiso(&lt;$1&gt;) returns bigint
+function yearofweekiso(<$1>) returns bigint
 ```
 
 
 ```sql
-function yearofweekiso(&lt;$1&gt;) returns bigint
+function yearofweekiso(<$1>) returns bigint
 ```
 
 

@@ -7,7 +7,7 @@ title: "Context Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/all_user_names)
 
 ```sql
-function all_user_names(&lt;&gt;) returns array
+function all_user_names(<>) returns array
 ```
 
 
@@ -15,7 +15,7 @@ function all_user_names(&lt;&gt;) returns array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_account)
 
 ```sql
-function current_account(&lt;&gt;) returns string
+function current_account(<>) returns string
 ```
 
 
@@ -23,7 +23,7 @@ function current_account(&lt;&gt;) returns string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_account_name)
 
 ```sql
-function current_account_name(&lt;&gt;) returns string
+function current_account_name(<>) returns string
 ```
 
 
@@ -31,7 +31,7 @@ function current_account_name(&lt;&gt;) returns string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_available_roles)
 
 ```sql
-function current_available_roles(&lt;&gt;) returns string
+function current_available_roles(<>) returns string
 ```
 
 
@@ -39,12 +39,12 @@ function current_available_roles(&lt;&gt;) returns string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_client)
 
 ```sql
-function current_client(&lt;&gt;) returns varchar
+function current_client(<>) returns varchar
 ```
 Returns the current client version.
 
 ```sql
-function current_client(&lt;&gt;) returns string
+function current_client(<>) returns string
 ```
 
 
@@ -52,7 +52,7 @@ function current_client(&lt;&gt;) returns string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_database)
 
 ```sql
-function current_database(&lt;&gt;) returns varchar
+function current_database(<>) returns varchar
 ```
 Returns the current database.
 
@@ -60,7 +60,7 @@ Returns the current database.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_date)
 
 ```sql
-function current_date(&lt;&gt;) returns date
+function current_date(<>) returns date
 ```
 Returns the current date.
 
@@ -68,7 +68,7 @@ Returns the current date.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_ip_address)
 
 ```sql
-function current_ip_address(&lt;&gt;) returns varchar
+function current_ip_address(<>) returns varchar
 ```
 Returns the Client Internet Protocol address (IP address) of the current request.
 
@@ -76,7 +76,7 @@ Returns the Client Internet Protocol address (IP address) of the current request
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_organization_name)
 
 ```sql
-function current_organization_name(&lt;&gt;) returns varchar
+function current_organization_name(<>) returns varchar
 ```
 Returns the name of the organization the current account belongs to.
 
@@ -84,7 +84,7 @@ Returns the name of the organization the current account belongs to.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_region)
 
 ```sql
-function current_region(&lt;&gt;) returns varchar
+function current_region(<>) returns varchar
 ```
 Returns the current region name.
 
@@ -92,7 +92,7 @@ Returns the current region name.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_role)
 
 ```sql
-function current_role(&lt;&gt;) returns varchar
+function current_role(<>) returns varchar
 ```
 Returns the currently active role name.
 
@@ -100,7 +100,7 @@ Returns the currently active role name.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_role_type)
 
 ```sql
-function current_role_type(&lt;&gt;) returns varchar
+function current_role_type(<>) returns varchar
 ```
 Returns if the current role is of type account or database
 
@@ -108,7 +108,7 @@ Returns if the current role is of type account or database
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_schema)
 
 ```sql
-function current_schema(&lt;&gt;) returns varchar
+function current_schema(<>) returns varchar
 ```
 Returns the current schema.
 
@@ -116,7 +116,7 @@ Returns the current schema.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_schemas)
 
 ```sql
-function current_schemas(&lt;&gt;) returns varchar
+function current_schemas(<>) returns varchar
 ```
 Returns active search path schemas
 
@@ -124,15 +124,15 @@ Returns active search path schemas
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_secondary_roles)
 
 ```sql
-function current_secondary_roles(&lt;&gt;) returns varchar
+function current_secondary_roles(<>) returns varchar
 ```
-Returns the currently active secondary roles&#39; names.
+Returns the currently active secondary roles' names.
 
 ## `current_session`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_session)
 
 ```sql
-function current_session(&lt;&gt;) returns varchar
+function current_session(<>) returns varchar
 ```
 Returns the current session.
 
@@ -140,7 +140,7 @@ Returns the current session.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_statement)
 
 ```sql
-function current_statement(&lt;&gt;) returns varchar
+function current_statement(<>) returns varchar
 ```
 Returns the text of the currently executing statement.
 
@@ -148,12 +148,12 @@ Returns the text of the currently executing statement.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_time)
 
 ```sql
-function current_time(&lt;&gt;) returns time
+function current_time(<>) returns time
 ```
 Returns the current time.
 
 ```sql
-function current_time(&lt;decimal(38, 0)&gt;) returns time
+function current_time(<decimal(38, 0)>) returns time
 ```
 Returns the current time.
 
@@ -161,12 +161,12 @@ Returns the current time.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_timestamp)
 
 ```sql
-function current_timestamp(&lt;&gt;) returns timestamp
+function current_timestamp(<>) returns timestamp
 ```
 Returns the current timestamp.
 
 ```sql
-function current_timestamp(&lt;decimal(38, 0)&gt;) returns timestamp
+function current_timestamp(<decimal(38, 0)>) returns timestamp
 ```
 Returns the current timestamp.
 
@@ -174,7 +174,7 @@ Returns the current timestamp.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_transaction)
 
 ```sql
-function current_transaction(&lt;&gt;) returns decimal(38, 0)
+function current_transaction(<>) returns decimal(38, 0)
 ```
 Returns the transaction id of an open transaction in the current session or scope.
 
@@ -182,7 +182,7 @@ Returns the transaction id of an open transaction in the current session or scop
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_user)
 
 ```sql
-function current_user(&lt;&gt;) returns varchar
+function current_user(<>) returns varchar
 ```
 Returns the current user name.
 
@@ -190,7 +190,7 @@ Returns the current user name.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_version)
 
 ```sql
-function current_version(&lt;&gt;) returns varchar
+function current_version(<>) returns varchar
 ```
 Returns the current software version (major.minor.patch).
 
@@ -198,7 +198,7 @@ Returns the current software version (major.minor.patch).
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_warehouse)
 
 ```sql
-function current_warehouse(&lt;&gt;) returns varchar
+function current_warehouse(<>) returns varchar
 ```
 Returns the warehouse currently in use.
 
@@ -206,7 +206,7 @@ Returns the warehouse currently in use.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/getdate)
 
 ```sql
-function getdate(&lt;&gt;) returns timestamp
+function getdate(<>) returns timestamp
 ```
 Returns the current timestamp
 
@@ -214,7 +214,7 @@ Returns the current timestamp
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/getvariable)
 
 ```sql
-function getvariable(&lt;string&gt;) returns string
+function getvariable(<string>) returns string
 ```
 
 
@@ -222,7 +222,7 @@ function getvariable(&lt;string&gt;) returns string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/invoker_role)
 
 ```sql
-function invoker_role(&lt;&gt;) returns varchar
+function invoker_role(<>) returns varchar
 ```
 Returns the invoker role
 
@@ -230,7 +230,7 @@ Returns the invoker role
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/invoker_share)
 
 ```sql
-function invoker_share(&lt;&gt;) returns varchar
+function invoker_share(<>) returns varchar
 ```
 Returns the invoker role
 
@@ -238,7 +238,7 @@ Returns the invoker role
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_database_role_in_session)
 
 ```sql
-function is_database_role_in_session(&lt;varchar&gt;) returns boolean
+function is_database_role_in_session(<varchar>) returns boolean
 ```
 Return true if the db role is in current role hierarchy
 
@@ -246,15 +246,15 @@ Return true if the db role is in current role hierarchy
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_granted_to_invoker_role)
 
 ```sql
-function is_granted_to_invoker_role(&lt;varchar&gt;) returns boolean
+function is_granted_to_invoker_role(<varchar>) returns boolean
 ```
-Returns true if the arg is in invoker_role&#39;s hierarchy
+Returns true if the arg is in invoker_role's hierarchy
 
 ## `is_role_in_session`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_role_in_session)
 
 ```sql
-function is_role_in_session(&lt;varchar&gt;) returns boolean
+function is_role_in_session(<varchar>) returns boolean
 ```
 Return true if in current hierarchy
 
@@ -262,12 +262,12 @@ Return true if in current hierarchy
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/last_query_id)
 
 ```sql
-function last_query_id(&lt;&gt;) returns varchar
+function last_query_id(<>) returns varchar
 ```
 Returns the id of the last executed statement in the current session.
 
 ```sql
-function last_query_id(&lt;decimal(38, 0)&gt;) returns varchar
+function last_query_id(<decimal(38, 0)>) returns varchar
 ```
 Returns the id of the last executed statement in the current session.
 
@@ -275,7 +275,7 @@ Returns the id of the last executed statement in the current session.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/last_transaction)
 
 ```sql
-function last_transaction(&lt;&gt;) returns decimal(38, 0)
+function last_transaction(<>) returns decimal(38, 0)
 ```
 Returns the transaction id of the last committed or rolled back transaction in the current session.
 
@@ -283,12 +283,12 @@ Returns the transaction id of the last committed or rolled back transaction in t
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/localtime)
 
 ```sql
-function localtime(&lt;&gt;) returns time
+function localtime(<>) returns time
 ```
 Returns the current time.
 
 ```sql
-function localtime(&lt;decimal(38, 0)&gt;) returns time
+function localtime(<decimal(38, 0)>) returns time
 ```
 Returns the current time.
 
@@ -296,12 +296,12 @@ Returns the current time.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/localtimestamp)
 
 ```sql
-function localtimestamp(&lt;&gt;) returns timestamp
+function localtimestamp(<>) returns timestamp
 ```
 Returns the current timestamp.
 
 ```sql
-function localtimestamp(&lt;decimal(38, 0)&gt;) returns timestamp
+function localtimestamp(<decimal(38, 0)>) returns timestamp
 ```
 Returns the current timestamp.
 
@@ -309,7 +309,7 @@ Returns the current timestamp.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sysdate)
 
 ```sql
-function sysdate(&lt;&gt;) returns timestamp
+function sysdate(<>) returns timestamp
 ```
 Returns the current timestamp in the UTC time zone
 
@@ -317,7 +317,7 @@ Returns the current timestamp in the UTC time zone
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/systimestamp)
 
 ```sql
-function systimestamp(&lt;&gt;) returns timestamp
+function systimestamp(<>) returns timestamp
 ```
 Returns the current timestamp
 

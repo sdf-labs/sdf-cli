@@ -7,7 +7,7 @@ title: "Account Usage Table Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/tag_references_with_lineage)
 
 ```sql
-function tag_references_with_lineage(&lt;string&gt;) returns struct&lt;
+function tag_references_with_lineage(<string>) returns struct<
   tag_database string,
   tag_schema string,
   tag_id bigint,
@@ -22,7 +22,7 @@ function tag_references_with_lineage(&lt;string&gt;) returns struct&lt;
   domain string,
   column_id bigint,
   column_name string
-&gt;
+>
 
 ```
 

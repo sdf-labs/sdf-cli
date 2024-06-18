@@ -7,7 +7,7 @@ title: "Information Schema"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/alert_history)
 
 ```sql
-function alert_history(&lt;&gt;) returns struct&lt;
+function alert_history(<>) returns struct<
   name string,
   database_name string,
   schema_name string,
@@ -20,7 +20,7 @@ function alert_history(&lt;&gt;) returns struct&lt;
   sql_error_message string,
   scheduled_time timestamp,
   completed_time timestamp
-&gt;
+>
 
 ```
 
@@ -29,14 +29,14 @@ function alert_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/auto_refresh_registration_history)
 
 ```sql
-function auto_refresh_registration_history(&lt;&gt;) returns struct&lt;
+function auto_refresh_registration_history(<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   object_name string,
   object_type string,
   credits_used bigint,
   files_registered bigint
-&gt;
+>
 
 ```
 
@@ -45,14 +45,14 @@ function auto_refresh_registration_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/automatic_clustering_history)
 
 ```sql
-function automatic_clustering_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
+function automatic_clustering_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   table_name string,
   credits_used bigint,
   num_bytes_reclustered bigint,
   num_rows_reclustered bigint
-&gt;
+>
 
 	where $1 in (date, string)
 	and $2 in (date, string)
@@ -63,7 +63,7 @@ function automatic_clustering_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/complete_task_graphs)
 
 ```sql
-function complete_task_graphs(&lt;&gt;) returns struct&lt;
+function complete_task_graphs(<>) returns struct<
   root_task_name string,
   database_name string,
   schema_name string,
@@ -82,7 +82,7 @@ function complete_task_graphs(&lt;&gt;) returns struct&lt;
   attempt_number bigint,
   config string,
   graph_run_group_id bigint
-&gt;
+>
 
 ```
 
@@ -91,7 +91,7 @@ function complete_task_graphs(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/copy_history)
 
 ```sql
-function copy_history(&lt;table_name string, start_time timestamp&gt;) returns struct&lt;
+function copy_history(<table_name string, start_time timestamp>) returns struct<
   file_name string,
   stage_location string,
   last_load_time timestamp,
@@ -112,7 +112,7 @@ function copy_history(&lt;table_name string, start_time timestamp&gt;) returns s
   pipe_schema_name string,
   pipe_name string,
   pipe_received_time timestamp
-&gt;
+>
 
 ```
 
@@ -121,7 +121,7 @@ function copy_history(&lt;table_name string, start_time timestamp&gt;) returns s
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_task_graphs)
 
 ```sql
-function current_task_graphs(&lt;&gt;) returns struct&lt;
+function current_task_graphs(<>) returns struct<
   root_task_name string,
   database_name string,
   schema_name string,
@@ -140,7 +140,7 @@ function current_task_graphs(&lt;&gt;) returns struct&lt;
   attempt_number bigint,
   config string,
   graph_run_group_id bigint
-&gt;
+>
 
 ```
 
@@ -149,7 +149,7 @@ function current_task_graphs(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/data_transfer_history)
 
 ```sql
-function data_transfer_history(&lt;&gt;) returns struct&lt;
+function data_transfer_history(<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   source_cloud string,
@@ -158,7 +158,7 @@ function data_transfer_history(&lt;&gt;) returns struct&lt;
   destination_region string,
   bytes_transferred bigint,
   transfer_type string
-&gt;
+>
 
 ```
 
@@ -167,27 +167,27 @@ function data_transfer_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_refresh_history)
 
 ```sql
-function database_refresh_history(&lt;string&gt;) returns struct&lt;
+function database_refresh_history(<string>) returns struct<
   current_phase string,
   start_time timestamp,
   end_time timestamp,
   job_uuid string,
   copy_bytes bigint,
   object_count bigint
-&gt;
+>
 
 ```
 
 
 ```sql
-function database_refresh_history(&lt;&gt;) returns struct&lt;
+function database_refresh_history(<>) returns struct<
   current_phase string,
   start_time timestamp,
   end_time timestamp,
   job_uuid string,
   copy_bytes bigint,
   object_count bigint
-&gt;
+>
 
 ```
 
@@ -196,25 +196,25 @@ function database_refresh_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_refresh_progress)
 
 ```sql
-function database_refresh_progress(&lt;string&gt;) returns struct&lt;
+function database_refresh_progress(<string>) returns struct<
   phase_name string,
   result string,
   start_time timestamp,
   end_time timestamp,
   details variant
-&gt;
+>
 
 ```
 
 
 ```sql
-function database_refresh_progress(&lt;&gt;) returns struct&lt;
+function database_refresh_progress(<>) returns struct<
   phase_name string,
   result string,
   start_time timestamp,
   end_time timestamp,
   details variant
-&gt;
+>
 
 ```
 
@@ -223,13 +223,13 @@ function database_refresh_progress(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_refresh_progress_by_job)
 
 ```sql
-function database_refresh_progress_by_job(&lt;string&gt;) returns struct&lt;
+function database_refresh_progress_by_job(<string>) returns struct<
   phase_name string,
   result string,
   start_time timestamp,
   end_time timestamp,
   details variant
-&gt;
+>
 
 ```
 
@@ -238,13 +238,13 @@ function database_refresh_progress_by_job(&lt;string&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_replication_usage_history)
 
 ```sql
-function database_replication_usage_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
+function database_replication_usage_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   database_name string,
   credits_used string,
   bytes_transferred bigint
-&gt;
+>
 
 	where $1 in (date, string)
 	and $2 in (date, string)
@@ -255,11 +255,11 @@ function database_replication_usage_history&lt;$1, $2&gt; (&lt;&gt;) returns str
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_storage_usage_history)
 
 ```sql
-function database_storage_usage_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;usage_date date,
+function database_storage_usage_history<$1, $2> (<>) returns struct<usage_date date,
   database_name string,
   average_database_bytes bigint,
   average_fail_safe_bytes bigint
-&gt;
+>
 
 	where $1 in (date, string)
 	and $2 in (date, string)
@@ -270,7 +270,7 @@ function database_storage_usage_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dynamic_table_graph_history)
 
 ```sql
-function dynamic_table_graph_history(&lt;&gt;) returns struct&lt;
+function dynamic_table_graph_history(<>) returns struct<
   name string,
   schema_name string,
   database_name string,
@@ -282,7 +282,7 @@ function dynamic_table_graph_history(&lt;&gt;) returns struct&lt;
   valid_from timestamp,
   valid_to timestamp,
   scheduling_state object
-&gt;
+>
 
 ```
 
@@ -291,7 +291,7 @@ function dynamic_table_graph_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dynamic_table_refresh_history)
 
 ```sql
-function dynamic_table_refresh_history(&lt;&gt;) returns struct&lt;
+function dynamic_table_refresh_history(<>) returns struct<
   name string,
   schema_name string,
   database_name string,
@@ -308,7 +308,7 @@ function dynamic_table_refresh_history(&lt;&gt;) returns struct&lt;
   statistics object,
   refresh_action string,
   refresh_trigger string
-&gt;
+>
 
 ```
 
@@ -317,7 +317,7 @@ function dynamic_table_refresh_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_functions_history)
 
 ```sql
-function external_functions_history(&lt;&gt;) returns struct&lt;
+function external_functions_history(<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   name string,
@@ -332,7 +332,7 @@ function external_functions_history(&lt;&gt;) returns struct&lt;
   received_rows bigint,
   sent_bytes bigint,
   received_bytes bigint
-&gt;
+>
 
 ```
 
@@ -341,14 +341,14 @@ function external_functions_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_table_file_registration_history)
 
 ```sql
-function external_table_file_registration_history(&lt;table_name string&gt;) returns struct&lt;
+function external_table_file_registration_history(<table_name string>) returns struct<
   job_created_time timestamp,
   file_name string,
   operation_status string,
   message string,
   file_size bigint,
   last_modified timestamp
-&gt;
+>
 
 ```
 
@@ -357,14 +357,14 @@ function external_table_file_registration_history(&lt;table_name string&gt;) ret
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_table_files)
 
 ```sql
-function external_table_files(&lt;table_name string&gt;) returns struct&lt;
+function external_table_files(<table_name string>) returns struct<
   file_name string,
   registered_on timestamp,
   file_size bigint,
   last_modified timestamp,
   etag string,
   md5 string
-&gt;
+>
 
 ```
 
@@ -373,7 +373,7 @@ function external_table_files(&lt;table_name string&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/login_history)
 
 ```sql
-function login_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, &quot;connection&quot; string&gt;
+function login_history<$1, $2> (<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
@@ -383,7 +383,7 @@ function login_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;event_timestam
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/login_history_by_user)
 
 ```sql
-function login_history_by_user&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, &quot;connection&quot; string&gt;
+function login_history_by_user<$1, $2> (<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
@@ -393,7 +393,7 @@ function login_history_by_user&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;event_
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/materialized_view_refresh_history)
 
 ```sql
-function materialized_view_refresh_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt; start_time timestamp, end_time timestamp, credits_used string, materialized_view_name string &gt;
+function materialized_view_refresh_history<$1, $2> (<>) returns struct< start_time timestamp, end_time timestamp, credits_used string, materialized_view_name string >
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
@@ -403,14 +403,14 @@ function materialized_view_refresh_history&lt;$1, $2&gt; (&lt;&gt;) returns stru
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/notification_history)
 
 ```sql
-function notification_history(&lt;&gt;) returns struct&lt;
+function notification_history(<>) returns struct<
   created timestamp,
   processed timestamp,
   message_source string,
   integration_name string,
   status string,
   message string
-&gt;
+>
 
 ```
 
@@ -419,14 +419,14 @@ function notification_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/pipe_usage_history)
 
 ```sql
-function pipe_usage_history(&lt;&gt;) returns struct&lt;
+function pipe_usage_history(<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   pipe_name string,
   credits_used string,
   bytes_inserted bigint,
   files_inserted bigint
-&gt;
+>
 
 ```
 
@@ -435,7 +435,7 @@ function pipe_usage_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/policy_references)
 
 ```sql
-function policy_references(&lt;&gt;) returns struct&lt;
+function policy_references(<>) returns struct<
   policy_db string,
   policy_schema string,
   policy_name string,
@@ -450,7 +450,7 @@ function policy_references(&lt;&gt;) returns struct&lt;
   tag_schema string,
   tag_name string,
   policy_status string
-&gt;
+>
 
 ```
 
@@ -459,13 +459,13 @@ function policy_references(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_acceleration_history)
 
 ```sql
-function query_acceleration_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;start_time timestamp,
+function query_acceleration_history<$1, $2> (<>) returns struct<start_time timestamp,
   end_time timestamp,
   credits_used bigint,
   warehouse_name string,
   num_files_scanned bigint,
   num_bytes_scanned bigint
-&gt;
+>
 
 	where $1 in (date, string)
 	and $2 in (date, string)
@@ -476,7 +476,7 @@ function query_acceleration_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;s
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history)
 
 ```sql
-function query_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;query_id string,
+function query_history<$1, $2> (<>) returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -521,7 +521,7 @@ function query_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;query_id strin
   query_hash string,
   query_hash_version bigint,
   query_parameterized_hash string,
-  query_parameterized_hash_version bigint&gt;
+  query_parameterized_hash_version bigint>
 
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
@@ -532,7 +532,7 @@ function query_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;query_id strin
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history_by_session)
 
 ```sql
-function query_history_by_session&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;query_id string,
+function query_history_by_session<$1, $2> (<>) returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -577,7 +577,7 @@ function query_history_by_session&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;que
   query_hash string,
   query_hash_version bigint,
   query_parameterized_hash string,
-  query_parameterized_hash_version bigint&gt;
+  query_parameterized_hash_version bigint>
 
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
@@ -588,7 +588,7 @@ function query_history_by_session&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;que
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history_by_user)
 
 ```sql
-function query_history_by_user&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;query_id string,
+function query_history_by_user<$1, $2> (<>) returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -633,7 +633,7 @@ function query_history_by_user&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;query_
   query_hash string,
   query_hash_version bigint,
   query_parameterized_hash string,
-  query_parameterized_hash_version bigint&gt;
+  query_parameterized_hash_version bigint>
 
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
@@ -644,7 +644,7 @@ function query_history_by_user&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;query_
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history_by_warehouse)
 
 ```sql
-function query_history_by_warehouse&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;query_id string,
+function query_history_by_warehouse<$1, $2> (<>) returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -689,7 +689,7 @@ function query_history_by_warehouse&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;q
   query_hash string,
   query_hash_version bigint,
   query_parameterized_hash string,
-  query_parameterized_hash_version bigint&gt;
+  query_parameterized_hash_version bigint>
 
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
@@ -700,7 +700,7 @@ function query_history_by_warehouse&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;q
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_refresh_history)
 
 ```sql
-function replication_group_refresh_history(&lt;string&gt;) returns struct&lt;
+function replication_group_refresh_history(<string>) returns struct<
   phase_name string,
   start_time timestamp,
   end_time timestamp,
@@ -709,7 +709,7 @@ function replication_group_refresh_history(&lt;string&gt;) returns struct&lt;
   object_count variant,
   primary_snapshot_timestamp timestamp,
   error variant
-&gt;
+>
 
 ```
 
@@ -718,13 +718,13 @@ function replication_group_refresh_history(&lt;string&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_refresh_progress)
 
 ```sql
-function replication_group_refresh_progress(&lt;string&gt;) returns struct&lt;
+function replication_group_refresh_progress(<string>) returns struct<
   phase_name string,
   start_time timestamp,
   end_time timestamp,
   progress string,
   details variant
-&gt;
+>
 
 ```
 
@@ -733,13 +733,13 @@ function replication_group_refresh_progress(&lt;string&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_refresh_progress_by_job)
 
 ```sql
-function replication_group_refresh_progress_by_job(&lt;string&gt;) returns struct&lt;
+function replication_group_refresh_progress_by_job(<string>) returns struct<
   phase_name string,
   start_time timestamp,
   end_time timestamp,
   progress string,
   details variant
-&gt;
+>
 
 ```
 
@@ -748,13 +748,13 @@ function replication_group_refresh_progress_by_job(&lt;string&gt;) returns struc
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_usage_history)
 
 ```sql
-function replication_group_usage_history(&lt;&gt;) returns struct&lt;
+function replication_group_usage_history(<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   replication_group_name string,
   credits_used string,
   bytes_transferred bigint
-&gt;
+>
 
 ```
 
@@ -763,13 +763,13 @@ function replication_group_usage_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_usage_history)
 
 ```sql
-function replication_usage_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
+function replication_usage_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   database_name string,
   credits_used string,
   bytes_transferred bigint
-&gt;
+>
 
 	where $1 in (date, string)
 	and $2 in (date, string)
@@ -780,12 +780,12 @@ function replication_usage_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/search_optimization_history)
 
 ```sql
-function search_optimization_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
+function search_optimization_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   credits_used string,
   table_name string
-&gt;
+>
 
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
@@ -796,12 +796,12 @@ function search_optimization_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/serverless_task_history)
 
 ```sql
-function serverless_task_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
+function serverless_task_history<$1, $2> (<>) returns struct<
   start_time timestamp,
   end_time timestamp,
   task_name string,
   credits_used string
-&gt;
+>
 
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
@@ -812,14 +812,14 @@ function serverless_task_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stage_directory_file_registration_history)
 
 ```sql
-function stage_directory_file_registration_history&lt;$1&gt; (&lt;stage_name string&gt;) returns struct&lt;
+function stage_directory_file_registration_history<$1> (<stage_name string>) returns struct<
   job_created_time timestamp,
   file_name string,
   operation_status string,
   message string,
   file_size bigint,
   last_modified timestamp
-&gt;
+>
 
 	where $1 in (timestamp, string)
 ```
@@ -829,7 +829,7 @@ function stage_directory_file_registration_history&lt;$1&gt; (&lt;stage_name str
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stage_storage_usage_history)
 
 ```sql
-function stage_storage_usage_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;usage_date date, average_stage_bytes bigint&gt;
+function stage_storage_usage_history<$1, $2> (<>) returns struct<usage_date date, average_stage_bytes bigint>
 
 	where $1 in (date, string)
 	and $2 in (date, string)
@@ -840,7 +840,7 @@ function stage_storage_usage_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/tag_references)
 
 ```sql
-function tag_references(&lt;string, string&gt;) returns struct&lt;
+function tag_references(<string, string>) returns struct<
   tag_database string,
   tag_schema string,
   tag_name string,
@@ -851,7 +851,7 @@ function tag_references(&lt;string, string&gt;) returns struct&lt;
   object_name string,
   domain string,
   column_name string
-&gt;
+>
 
 ```
 
@@ -860,7 +860,7 @@ function tag_references(&lt;string, string&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/tag_references_all_columns)
 
 ```sql
-function tag_references_all_columns(&lt;string, string&gt;) returns struct&lt;
+function tag_references_all_columns(<string, string>) returns struct<
   tag_database string,
   tag_schema string,
   tag_name string,
@@ -871,7 +871,7 @@ function tag_references_all_columns(&lt;string, string&gt;) returns struct&lt;
   object_name string,
   domain string,
   column_name string
-&gt;
+>
 
 ```
 
@@ -880,7 +880,7 @@ function tag_references_all_columns(&lt;string, string&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/task_dependents)
 
 ```sql
-function task_dependents(&lt;task_name string&gt;) returns struct&lt;
+function task_dependents(<task_name string>) returns struct<
   created_on timestamp,
   name string,
   database_name string,
@@ -893,7 +893,7 @@ function task_dependents(&lt;task_name string&gt;) returns struct&lt;
   state string,
   definition string,
   condition string
-&gt;
+>
 
 ```
 
@@ -902,7 +902,7 @@ function task_dependents(&lt;task_name string&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/task_history)
 
 ```sql
-function task_history(&lt;&gt;) returns struct&lt;
+function task_history(<>) returns struct<
   query_id string,
   name string,
   database_name string,
@@ -926,7 +926,7 @@ function task_history(&lt;&gt;) returns struct&lt;
   query_parameterized_hash string,
   query_parameterized_hash_version bigint,
   graph_run_group_id bigint
-&gt;
+>
 
 ```
 
@@ -935,7 +935,7 @@ function task_history(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/validate_pipe_load)
 
 ```sql
-function validate_pipe_load(&lt;pipe_name string, start_time timestamp&gt;) returns struct&lt;
+function validate_pipe_load(<pipe_name string, start_time timestamp>) returns struct<
   error string,
   file string,
   line bigint,
@@ -948,7 +948,7 @@ function validate_pipe_load(&lt;pipe_name string, start_time timestamp&gt;) retu
   row_number bigint,
   row_start_line bigint,
   rejected_record string
-&gt;
+>
 
 ```
 
@@ -957,14 +957,14 @@ function validate_pipe_load(&lt;pipe_name string, start_time timestamp&gt;) retu
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/warehouse_load_history)
 
 ```sql
-function warehouse_load_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;start_time timestamp,
+function warehouse_load_history<$1, $2> (<>) returns struct<start_time timestamp,
   end_time timestamp,
   warehouse_name string,
   avg_running decimal(38,2),
   avg_queued_load decimal(38,2),
   avg_queued_provisioning decimal(38,2),
   avg_blocked decimal(38,2)
-&gt;
+>
 
 	where $1 in (date, string)
 	and $2 in (date, string)
@@ -975,13 +975,13 @@ function warehouse_load_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;start
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/warehouse_metering_history)
 
 ```sql
-function warehouse_metering_history&lt;$1, $2&gt; (&lt;&gt;) returns struct&lt;start_time timestamp,
+function warehouse_metering_history<$1, $2> (<>) returns struct<start_time timestamp,
   end_time timestamp,
   warehouse_name string,
   credits_used bigint,
   credits_used_compute bigint,
   credits_used_cloud_services bigint
-&gt;
+>
 
 	where $1 in (date, string)
 	and $2 in (date, string)

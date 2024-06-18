@@ -6,7 +6,7 @@ title: "Math Functions"
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#abs)
 
 ```sql
-function abs&lt;$1&gt; (&lt;$1&gt;) returns $1
+function abs<$1> (<$1>) returns $1
 	where $1 in (bigint, float64)
 ```
 
@@ -15,7 +15,7 @@ function abs&lt;$1&gt; (&lt;$1&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#acos)
 
 ```sql
-function acos&lt;$1&gt; (&lt;$1&gt;) returns double
+function acos<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
 
@@ -24,7 +24,7 @@ function acos&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#acosh)
 
 ```sql
-function acosh&lt;$1&gt; (&lt;$1&gt;) returns double
+function acosh<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
 
@@ -33,7 +33,7 @@ function acosh&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#asin)
 
 ```sql
-function asin&lt;$1&gt; (&lt;$1&gt;) returns double
+function asin<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
 
@@ -42,7 +42,7 @@ function asin&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#asinh)
 
 ```sql
-function asinh&lt;$1&gt; (&lt;$1&gt;) returns double
+function asinh<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
 
@@ -51,7 +51,7 @@ function asinh&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#atan)
 
 ```sql
-function atan&lt;$1&gt; (&lt;$1&gt;) returns double
+function atan<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
 
@@ -60,7 +60,7 @@ function atan&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#atan2)
 
 ```sql
-function atan2&lt;$1, $2&gt; (&lt;$1, $2&gt;) returns double
+function atan2<$1, $2> (<$1, $2>) returns double
 	where $1 in (bigint, double)
 	and $2 in (bigint, double)
 ```
@@ -70,7 +70,7 @@ function atan2&lt;$1, $2&gt; (&lt;$1, $2&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#atanh)
 
 ```sql
-function atanh&lt;$1&gt; (&lt;$1&gt;) returns double
+function atanh<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -79,7 +79,7 @@ function atanh&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cbrt)
 
 ```sql
-function cbrt&lt;$1&gt; (&lt;$1&gt;) returns double
+function cbrt<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -88,12 +88,12 @@ function cbrt&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ceil)
 
 ```sql
-function ceil(&lt;bigint&gt;) returns double
+function ceil(<bigint>) returns double
 ```
 
 
 ```sql
-function ceil&lt;$1&gt; (&lt;$1&gt;) returns $1
+function ceil<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
 
@@ -102,12 +102,12 @@ function ceil&lt;$1&gt; (&lt;$1&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ceiling)
 
 ```sql
-function ceiling(&lt;bigint&gt;) returns double
+function ceiling(<bigint>) returns double
 ```
 
 
 ```sql
-function ceiling&lt;$1&gt; (&lt;$1&gt;) returns $1
+function ceiling<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
 
@@ -116,7 +116,7 @@ function ceiling&lt;$1&gt; (&lt;$1&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cos)
 
 ```sql
-function cos&lt;$1&gt; (&lt;$1&gt;) returns double
+function cos<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -125,7 +125,7 @@ function cos&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cosh)
 
 ```sql
-function cosh&lt;$1&gt; (&lt;$1&gt;) returns double
+function cosh<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -134,7 +134,7 @@ function cosh&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cot)
 
 ```sql
-function cot&lt;$1&gt; (&lt;$1&gt;) returns double
+function cot<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -143,7 +143,7 @@ function cot&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#coth)
 
 ```sql
-function coth&lt;$1&gt; (&lt;$1&gt;) returns double
+function coth<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -152,7 +152,7 @@ function coth&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#csc)
 
 ```sql
-function csc&lt;$1&gt; (&lt;$1&gt;) returns double
+function csc<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -161,7 +161,7 @@ function csc&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#csch)
 
 ```sql
-function csch&lt;$1&gt; (&lt;$1&gt;) returns double
+function csch<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -170,28 +170,28 @@ function csch&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#div)
 
 ```sql
-function div&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
+function div<$1> (<$1, $1>) returns $1
 	where $1 in (bigint)
 ```
 
 
 ```sql
-function div(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function div(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function div(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function div(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function div(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function div(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function div(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function div(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
@@ -199,12 +199,12 @@ function div(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#exp)
 
 ```sql
-function exp(&lt;bigint&gt;) returns double
+function exp(<bigint>) returns double
 ```
 
 
 ```sql
-function exp&lt;$1&gt; (&lt;$1&gt;) returns $1
+function exp<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
 
@@ -213,13 +213,13 @@ function exp&lt;$1&gt; (&lt;$1&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#floor)
 
 ```sql
-function floor&lt;$1&gt; (&lt;$1&gt;) returns $1
+function floor<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
 
 
 ```sql
-function floor(&lt;bigint&gt;) returns double
+function floor(<bigint>) returns double
 ```
 
 
@@ -227,7 +227,7 @@ function floor(&lt;bigint&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#greatest)
 
 ```sql
-function greatest&lt;$1&gt; ($1, ...) returns $1
+function greatest<$1> ($1, ...) returns $1
 	where $1 in (bigint, double)
 ```
 
@@ -236,7 +236,7 @@ function greatest&lt;$1&gt; ($1, ...) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ieee_divide)
 
 ```sql
-function ieee_divide&lt;$1, $2&gt; (&lt;$1, $2&gt;) returns double
+function ieee_divide<$1, $2> (<$1, $2>) returns double
 	where $1 in (bigint, double)
 	and $2 in (bigint, double)
 ```
@@ -246,7 +246,7 @@ function ieee_divide&lt;$1, $2&gt; (&lt;$1, $2&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#is_inf)
 
 ```sql
-function is_inf&lt;$1&gt; (&lt;$1&gt;) returns bool
+function is_inf<$1> (<$1>) returns bool
 	where $1 in (bigint, double)
 ```
 
@@ -255,7 +255,7 @@ function is_inf&lt;$1&gt; (&lt;$1&gt;) returns bool
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#is_nan)
 
 ```sql
-function is_nan&lt;$1&gt; (&lt;$1&gt;) returns bool
+function is_nan<$1> (<$1>) returns bool
 	where $1 in (bigint, double)
 ```
 
@@ -264,7 +264,7 @@ function is_nan&lt;$1&gt; (&lt;$1&gt;) returns bool
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#least)
 
 ```sql
-function least&lt;$1&gt; ($1, ...) returns $1
+function least<$1> ($1, ...) returns $1
 	where $1 in (bigint, double)
 ```
 
@@ -273,12 +273,12 @@ function least&lt;$1&gt; ($1, ...) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ln)
 
 ```sql
-function ln(&lt;bigint&gt;) returns double
+function ln(<bigint>) returns double
 ```
 
 
 ```sql
-function ln&lt;$1&gt; (&lt;$1&gt;) returns double
+function ln<$1> (<$1>) returns double
 	where $1 in (double)
 ```
 
@@ -287,74 +287,74 @@ function ln&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#log)
 
 ```sql
-function log(&lt;bigint&gt;) returns double
+function log(<bigint>) returns double
 ```
 
 
 ```sql
-function log&lt;$1&gt; (&lt;$1&gt;) returns double
+function log<$1> (<$1>) returns double
 	where $1 in (double)
 ```
 
 
 ```sql
-function log&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
+function log<$1> (<$1, $1>) returns $1
 	where $1 in (double)
 ```
 
 
 ```sql
-function log(&lt;bigint, bigint&gt;) returns double
+function log(<bigint, bigint>) returns double
 ```
 
 
 ```sql
-function log(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function log(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function log(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function log(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function log(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function log(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function log(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function log(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function log(&lt;double, bigint&gt;) returns double
+function log(<double, bigint>) returns double
 ```
 
 
 ```sql
-function log(&lt;bigint, double&gt;) returns double
+function log(<bigint, double>) returns double
 ```
 
 
 ```sql
-function log(&lt;decimal(p,s), double&gt;) returns double
+function log(<decimal(p,s), double>) returns double
 ```
 
 
 ```sql
-function log(&lt;double, decimal(p,s)&gt;) returns double
+function log(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function log(&lt;double, decimal(p,s)&gt;) returns double
+function log(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function log(&lt;decimal(p,s), double&gt;) returns double
+function log(<decimal(p,s), double>) returns double
 ```
 
 
@@ -362,12 +362,12 @@ function log(&lt;decimal(p,s), double&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#log10)
 
 ```sql
-function log10(&lt;bigint&gt;) returns double
+function log10(<bigint>) returns double
 ```
 
 
 ```sql
-function log10&lt;$1&gt; (&lt;$1&gt;) returns $1
+function log10<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
 
@@ -376,28 +376,28 @@ function log10&lt;$1&gt; (&lt;$1&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#mod)
 
 ```sql
-function mod&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
+function mod<$1> (<$1, $1>) returns $1
 	where $1 in (bigint)
 ```
 
 
 ```sql
-function mod(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function mod(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function mod(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function mod(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function mod(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function mod(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function mod(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function mod(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
@@ -405,63 +405,63 @@ function mod(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#pow)
 
 ```sql
-function pow&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
+function pow<$1> (<$1, $1>) returns $1
 	where $1 in (double)
 ```
 
 
 ```sql
-function pow(&lt;bigint, bigint&gt;) returns double
+function pow(<bigint, bigint>) returns double
 ```
 
 
 ```sql
-function pow(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function pow(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function pow(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function pow(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function pow(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function pow(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function pow(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function pow(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function pow(&lt;double, bigint&gt;) returns double
+function pow(<double, bigint>) returns double
 ```
 
 
 ```sql
-function pow(&lt;bigint, double&gt;) returns double
+function pow(<bigint, double>) returns double
 ```
 
 
 ```sql
-function pow(&lt;double, decimal(p,s)&gt;) returns double
+function pow(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function pow(&lt;decimal(p,s), double&gt;) returns double
+function pow(<decimal(p,s), double>) returns double
 ```
 
 
 ```sql
-function pow(&lt;double, decimal(p,s)&gt;) returns double
+function pow(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function pow(&lt;decimal(p,s), double&gt;) returns double
+function pow(<decimal(p,s), double>) returns double
 ```
 
 
@@ -469,63 +469,63 @@ function pow(&lt;decimal(p,s), double&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#power)
 
 ```sql
-function power&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
+function power<$1> (<$1, $1>) returns $1
 	where $1 in (double)
 ```
 
 
 ```sql
-function power(&lt;bigint, bigint&gt;) returns double
+function power(<bigint, bigint>) returns double
 ```
 
 
 ```sql
-function power(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function power(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function power(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function power(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function power(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function power(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function power(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function power(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function power(&lt;double, bigint&gt;) returns double
+function power(<double, bigint>) returns double
 ```
 
 
 ```sql
-function power(&lt;bigint, double&gt;) returns double
+function power(<bigint, double>) returns double
 ```
 
 
 ```sql
-function power(&lt;double, decimal(p,s)&gt;) returns double
+function power(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function power(&lt;decimal(p,s), double&gt;) returns double
+function power(<decimal(p,s), double>) returns double
 ```
 
 
 ```sql
-function power(&lt;double, decimal(p,s)&gt;) returns double
+function power(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function power(&lt;decimal(p,s), double&gt;) returns double
+function power(<decimal(p,s), double>) returns double
 ```
 
 
@@ -533,7 +533,7 @@ function power(&lt;decimal(p,s), double&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#rand)
 
 ```sql
-function rand(&lt;&gt;) returns double
+function rand(<>) returns double
 ```
 
 
@@ -541,7 +541,7 @@ function rand(&lt;&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#range_bucket)
 
 ```sql
-function range_bucket(&lt;$1, array&lt;$1&gt;&gt;) returns int64
+function range_bucket(<$1, array<$1>>) returns int64
 ```
 
 
@@ -549,35 +549,35 @@ function range_bucket(&lt;$1, array&lt;$1&gt;&gt;) returns int64
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#round)
 
 ```sql
-function round(&lt;bigint&gt;) returns double
+function round(<bigint>) returns double
 ```
 
 
 ```sql
-function round&lt;$1&gt; (&lt;$1&gt;) returns $1
+function round<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
 
 
 ```sql
-function round(&lt;bigint, bigint&gt;) returns double
+function round(<bigint, bigint>) returns double
 ```
 
 
 ```sql
-function round&lt;$1&gt; (&lt;$1, bigint&gt;) returns $1
+function round<$1> (<$1, bigint>) returns $1
 	where $1 in (double)
 ```
 
 
 ```sql
-function round(&lt;bigint, bigint, rounding_mode string&gt;) returns double
+function round(<bigint, bigint, rounding_mode string>) returns double
 	where rounding_mode in (round_half_even, round_half_away_from_zero)
 ```
 
 
 ```sql
-function round&lt;$1&gt; (&lt;$1, bigint, rounding_mode string&gt;) returns $1
+function round<$1> (<$1, bigint, rounding_mode string>) returns $1
 	where rounding_mode in (round_half_even, round_half_away_from_zero)
 	where $1 in (double)
 ```
@@ -587,58 +587,58 @@ function round&lt;$1&gt; (&lt;$1, bigint, rounding_mode string&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_add)
 
 ```sql
-function safe_add&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
+function safe_add<$1> (<$1, $1>) returns $1
 	where $1 in (bigint, double)
 ```
 
 
 ```sql
-function safe_add(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function safe_add(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_add(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function safe_add(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_add(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function safe_add(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_add(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function safe_add(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_add(&lt;double, bigint&gt;) returns double
+function safe_add(<double, bigint>) returns double
 ```
 
 
 ```sql
-function safe_add(&lt;bigint, double&gt;) returns double
+function safe_add(<bigint, double>) returns double
 ```
 
 
 ```sql
-function safe_add(&lt;double, decimal(p,s)&gt;) returns double
+function safe_add(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function safe_add(&lt;decimal(p,s), double&gt;) returns double
+function safe_add(<decimal(p,s), double>) returns double
 ```
 
 
 ```sql
-function safe_add(&lt;double, decimal(p,s)&gt;) returns double
+function safe_add(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function safe_add(&lt;decimal(p,s), double&gt;) returns double
+function safe_add(<decimal(p,s), double>) returns double
 ```
 
 
@@ -646,58 +646,58 @@ function safe_add(&lt;decimal(p,s), double&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_divide)
 
 ```sql
-function safe_divide&lt;$1&gt; (&lt;$1, $1&gt;) returns double
+function safe_divide<$1> (<$1, $1>) returns double
 	where $1 in (bigint, double)
 ```
 
 
 ```sql
-function safe_divide(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function safe_divide(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_divide(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function safe_divide(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_divide(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function safe_divide(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_divide(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function safe_divide(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_divide(&lt;double, bigint&gt;) returns double
+function safe_divide(<double, bigint>) returns double
 ```
 
 
 ```sql
-function safe_divide(&lt;bigint, double&gt;) returns double
+function safe_divide(<bigint, double>) returns double
 ```
 
 
 ```sql
-function safe_divide(&lt;double, decimal(p,s)&gt;) returns double
+function safe_divide(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function safe_divide(&lt;decimal(p,s), double&gt;) returns double
+function safe_divide(<decimal(p,s), double>) returns double
 ```
 
 
 ```sql
-function safe_divide(&lt;double, decimal(p,s)&gt;) returns double
+function safe_divide(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function safe_divide(&lt;decimal(p,s), double&gt;) returns double
+function safe_divide(<decimal(p,s), double>) returns double
 ```
 
 
@@ -705,58 +705,58 @@ function safe_divide(&lt;decimal(p,s), double&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_multiply)
 
 ```sql
-function safe_multiply&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
+function safe_multiply<$1> (<$1, $1>) returns $1
 	where $1 in (bigint, double)
 ```
 
 
 ```sql
-function safe_multiply(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function safe_multiply(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_multiply(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function safe_multiply(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_multiply(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function safe_multiply(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_multiply(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function safe_multiply(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_multiply(&lt;double, bigint&gt;) returns double
+function safe_multiply(<double, bigint>) returns double
 ```
 
 
 ```sql
-function safe_multiply(&lt;bigint, double&gt;) returns double
+function safe_multiply(<bigint, double>) returns double
 ```
 
 
 ```sql
-function safe_multiply(&lt;double, decimal(p,s)&gt;) returns double
+function safe_multiply(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function safe_multiply(&lt;decimal(p,s), double&gt;) returns double
+function safe_multiply(<decimal(p,s), double>) returns double
 ```
 
 
 ```sql
-function safe_multiply(&lt;double, decimal(p,s)&gt;) returns double
+function safe_multiply(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function safe_multiply(&lt;decimal(p,s), double&gt;) returns double
+function safe_multiply(<decimal(p,s), double>) returns double
 ```
 
 
@@ -764,7 +764,7 @@ function safe_multiply(&lt;decimal(p,s), double&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_negate)
 
 ```sql
-function safe_negate&lt;$1&gt; (&lt;$1&gt;) returns $1
+function safe_negate<$1> (<$1>) returns $1
 	where $1 in (bigint, double)
 ```
 
@@ -773,58 +773,58 @@ function safe_negate&lt;$1&gt; (&lt;$1&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_subtract)
 
 ```sql
-function safe_subtract&lt;$1&gt; (&lt;$1, $1&gt;) returns $1
+function safe_subtract<$1> (<$1, $1>) returns $1
 	where $1 in (bigint, double)
 ```
 
 
 ```sql
-function safe_subtract(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function safe_subtract(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_subtract(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function safe_subtract(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_subtract(&lt;decimal(p,s), bigint&gt;) returns decimal(p,s)
+function safe_subtract(<decimal(p,s), bigint>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_subtract(&lt;bigint, decimal(p,s)&gt;) returns decimal(p,s)
+function safe_subtract(<bigint, decimal(p,s)>) returns decimal(p,s)
 ```
 
 
 ```sql
-function safe_subtract(&lt;double, bigint&gt;) returns double
+function safe_subtract(<double, bigint>) returns double
 ```
 
 
 ```sql
-function safe_subtract(&lt;bigint, double&gt;) returns double
+function safe_subtract(<bigint, double>) returns double
 ```
 
 
 ```sql
-function safe_subtract(&lt;double, decimal(p,s)&gt;) returns double
+function safe_subtract(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function safe_subtract(&lt;decimal(p,s), double&gt;) returns double
+function safe_subtract(<decimal(p,s), double>) returns double
 ```
 
 
 ```sql
-function safe_subtract(&lt;double, decimal(p,s)&gt;) returns double
+function safe_subtract(<double, decimal(p,s)>) returns double
 ```
 
 
 ```sql
-function safe_subtract(&lt;decimal(p,s), double&gt;) returns double
+function safe_subtract(<decimal(p,s), double>) returns double
 ```
 
 
@@ -832,7 +832,7 @@ function safe_subtract(&lt;decimal(p,s), double&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sec)
 
 ```sql
-function sec&lt;$1&gt; (&lt;$1&gt;) returns double
+function sec<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -841,7 +841,7 @@ function sec&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sech)
 
 ```sql
-function sech&lt;$1&gt; (&lt;$1&gt;) returns double
+function sech<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -850,7 +850,7 @@ function sech&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sign)
 
 ```sql
-function sign&lt;$1&gt; (&lt;$1&gt;) returns $1
+function sign<$1> (<$1>) returns $1
 	where $1 in (bigint, double)
 ```
 
@@ -859,7 +859,7 @@ function sign&lt;$1&gt; (&lt;$1&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sin)
 
 ```sql
-function sin&lt;$1&gt; (&lt;$1&gt;) returns double
+function sin<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -868,7 +868,7 @@ function sin&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sinh)
 
 ```sql
-function sinh&lt;$1&gt; (&lt;$1&gt;) returns double
+function sinh<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -877,12 +877,12 @@ function sinh&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sqrt)
 
 ```sql
-function sqrt(&lt;bigint&gt;) returns double
+function sqrt(<bigint>) returns double
 ```
 
 
 ```sql
-function sqrt&lt;$1&gt; (&lt;$1&gt;) returns $1
+function sqrt<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
 
@@ -891,7 +891,7 @@ function sqrt&lt;$1&gt; (&lt;$1&gt;) returns $1
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#tan)
 
 ```sql
-function tan&lt;$1&gt; (&lt;$1&gt;) returns double
+function tan<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -900,7 +900,7 @@ function tan&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#tanh)
 
 ```sql
-function tanh&lt;$1&gt; (&lt;$1&gt;) returns double
+function tanh<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
 
@@ -909,23 +909,23 @@ function tanh&lt;$1&gt; (&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#trunc)
 
 ```sql
-function trunc(&lt;bigint&gt;) returns double
+function trunc(<bigint>) returns double
 ```
 
 
 ```sql
-function trunc&lt;$1&gt; (&lt;$1&gt;) returns $1
+function trunc<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
 
 
 ```sql
-function trunc(&lt;bigint, bigint&gt;) returns double
+function trunc(<bigint, bigint>) returns double
 ```
 
 
 ```sql
-function trunc&lt;$1&gt; (&lt;$1, bigint&gt;) returns $1
+function trunc<$1> (<$1, bigint>) returns $1
 	where $1 in (double)
 ```
 

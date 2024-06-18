@@ -1,1 +1,1 @@
-CREATE EXTERNAL TABLE supplier STORED AS PARQUET LOCATION 'tpch_pd_scale_10/supplier/';
+CREATE TABLE supplier with (format='PARQUET', LOCATION='tpch_pd_scale_10/supplier/');

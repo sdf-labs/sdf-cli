@@ -7,27 +7,27 @@ title: "Conversion Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/date)
 
 ```sql
-function date(&lt;timestamp&gt;) returns date
+function date(<timestamp>) returns date
 ```
 Converts the timestamp argument to a date
 
 ```sql
-function date(&lt;timestamp&gt;) returns date
+function date(<timestamp>) returns date
 ```
 Converts the timestamp argument to a date
 
 ```sql
-function date(&lt;timestamp&gt;) returns date
+function date(<timestamp>) returns date
 ```
 Converts the timestamp argument to a date
 
 ```sql
-function date(&lt;varchar&gt;) returns date
+function date(<varchar>) returns date
 ```
 Converts the string argument to a date
 
 ```sql
-function date(&lt;varchar, varchar&gt;) returns date
+function date(<varchar, varchar>) returns date
 ```
 Converts the string argument to a date according to a format argument
 
@@ -35,27 +35,27 @@ Converts the string argument to a date according to a format argument
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/time)
 
 ```sql
-function time(&lt;timestamp&gt;) returns time
+function time(<timestamp>) returns time
 ```
 Converts the timestamp argument to a time
 
 ```sql
-function time(&lt;timestamp&gt;) returns time
+function time(<timestamp>) returns time
 ```
 Converts the timestamp argument to a time
 
 ```sql
-function time(&lt;timestamp&gt;) returns time
+function time(<timestamp>) returns time
 ```
 Converts the timestamp argument to a time
 
 ```sql
-function time(&lt;varchar&gt;) returns time
+function time(<varchar>) returns time
 ```
 Converts the timestamp argument to a time
 
 ```sql
-function time(&lt;variant&gt;) returns time
+function time(<variant>) returns time
 ```
 Converts the timestamp argument to a time
 
@@ -63,7 +63,7 @@ Converts the timestamp argument to a time
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_array)
 
 ```sql
-function to_array(&lt;$1&gt;) returns array
+function to_array(<$1>) returns array
 ```
 
 
@@ -71,12 +71,12 @@ function to_array(&lt;$1&gt;) returns array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_binary)
 
 ```sql
-function to_binary(&lt;$1&gt;) returns binary
+function to_binary(<$1>) returns binary
 ```
 
 
 ```sql
-function to_binary(&lt;$1, string&gt;) returns binary
+function to_binary(<$1, string>) returns binary
 ```
 
 
@@ -84,7 +84,7 @@ function to_binary(&lt;$1, string&gt;) returns binary
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_boolean)
 
 ```sql
-function to_boolean(&lt;$1&gt;) returns boolean
+function to_boolean(<$1>) returns boolean
 ```
 
 
@@ -92,12 +92,12 @@ function to_boolean(&lt;$1&gt;) returns boolean
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_char)
 
 ```sql
-function to_char(&lt;$1, string&gt;) returns string
+function to_char(<$1, string>) returns string
 ```
 
 
 ```sql
-function to_char(&lt;$1&gt;) returns string
+function to_char(<$1>) returns string
 ```
 
 
@@ -105,12 +105,12 @@ function to_char(&lt;$1&gt;) returns string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_date)
 
 ```sql
-function to_date(&lt;$1&gt;) returns datetime
+function to_date(<$1>) returns datetime
 ```
 
 
 ```sql
-function to_date(&lt;$1, string&gt;) returns datetime
+function to_date(<$1, string>) returns datetime
 ```
 
 
@@ -118,32 +118,32 @@ function to_date(&lt;$1, string&gt;) returns datetime
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_decimal)
 
 ```sql
-function to_decimal(&lt;$1&gt;) returns decimal(38, 0)
+function to_decimal(<$1>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_decimal(&lt;$1, bigint&gt;) returns decimal(38, 0)
+function to_decimal(<$1, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_decimal(&lt;$1, bigint, bigint&gt;) returns decimal(38, 0)
+function to_decimal(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_decimal(&lt;$1, string&gt;) returns decimal(38, 0)
+function to_decimal(<$1, string>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_decimal(&lt;$1, string, bigint&gt;) returns decimal(38, 0)
+function to_decimal(<$1, string, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_decimal(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
+function to_decimal(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -151,7 +151,7 @@ function to_decimal(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_double)
 
 ```sql
-function to_double(&lt;$1&gt;) returns double
+function to_double(<$1>) returns double
 ```
 
 
@@ -159,7 +159,7 @@ function to_double(&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_json)
 
 ```sql
-function to_json(&lt;variant&gt;) returns varchar
+function to_json(<variant>) returns varchar
 ```
 Convert variant data to string as JSON
 
@@ -167,32 +167,32 @@ Convert variant data to string as JSON
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_number)
 
 ```sql
-function to_number(&lt;$1&gt;) returns decimal(38, 0)
+function to_number(<$1>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_number(&lt;$1, bigint&gt;) returns decimal(38, 0)
+function to_number(<$1, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_number(&lt;$1, bigint, bigint&gt;) returns decimal(38, 0)
+function to_number(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_number(&lt;$1, string&gt;) returns decimal(38, 0)
+function to_number(<$1, string>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_number(&lt;$1, string, bigint&gt;) returns decimal(38, 0)
+function to_number(<$1, string, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_number(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
+function to_number(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -200,32 +200,32 @@ function to_number(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_numeric)
 
 ```sql
-function to_numeric(&lt;$1&gt;) returns decimal(38, 0)
+function to_numeric(<$1>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_numeric(&lt;$1, bigint&gt;) returns decimal(38, 0)
+function to_numeric(<$1, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_numeric(&lt;$1, bigint, bigint&gt;) returns decimal(38, 0)
+function to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_numeric(&lt;$1, string&gt;) returns decimal(38, 0)
+function to_numeric(<$1, string>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_numeric(&lt;$1, string, bigint&gt;) returns decimal(38, 0)
+function to_numeric(<$1, string, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function to_numeric(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
+function to_numeric(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -233,7 +233,7 @@ function to_numeric(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_object)
 
 ```sql
-function to_object(&lt;$1&gt;) returns object
+function to_object(<$1>) returns object
 ```
 
 
@@ -241,12 +241,12 @@ function to_object(&lt;$1&gt;) returns object
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_time)
 
 ```sql
-function to_time(&lt;$1&gt;) returns time
+function to_time(<$1>) returns time
 ```
 
 
 ```sql
-function to_time(&lt;$1, string&gt;) returns time
+function to_time(<$1, string>) returns time
 ```
 
 
@@ -254,12 +254,12 @@ function to_time(&lt;$1, string&gt;) returns time
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_timestamp)
 
 ```sql
-function to_timestamp(&lt;$1&gt;) returns timestamp
+function to_timestamp(<$1>) returns timestamp
 ```
 
 
 ```sql
-function to_timestamp(&lt;$1, string&gt;) returns timestamp
+function to_timestamp(<$1, string>) returns timestamp
 ```
 
 
@@ -267,12 +267,12 @@ function to_timestamp(&lt;$1, string&gt;) returns timestamp
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_timestamp_ltz)
 
 ```sql
-function to_timestamp_ltz(&lt;$1&gt;) returns timestamp
+function to_timestamp_ltz(<$1>) returns timestamp
 ```
 
 
 ```sql
-function to_timestamp_ltz(&lt;$1, string&gt;) returns timestamp
+function to_timestamp_ltz(<$1, string>) returns timestamp
 ```
 
 
@@ -280,12 +280,12 @@ function to_timestamp_ltz(&lt;$1, string&gt;) returns timestamp
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_timestamp_ntz)
 
 ```sql
-function to_timestamp_ntz(&lt;$1&gt;) returns timestamp
+function to_timestamp_ntz(<$1>) returns timestamp
 ```
 
 
 ```sql
-function to_timestamp_ntz(&lt;$1, string&gt;) returns timestamp
+function to_timestamp_ntz(<$1, string>) returns timestamp
 ```
 
 
@@ -293,12 +293,12 @@ function to_timestamp_ntz(&lt;$1, string&gt;) returns timestamp
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_timestamp_tz)
 
 ```sql
-function to_timestamp_tz(&lt;$1&gt;) returns timestamp
+function to_timestamp_tz(<$1>) returns timestamp
 ```
 
 
 ```sql
-function to_timestamp_tz(&lt;$1, string&gt;) returns timestamp
+function to_timestamp_tz(<$1, string>) returns timestamp
 ```
 
 
@@ -306,12 +306,12 @@ function to_timestamp_tz(&lt;$1, string&gt;) returns timestamp
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_varchar)
 
 ```sql
-function to_varchar(&lt;$1&gt;) returns string
+function to_varchar(<$1>) returns string
 ```
 
 
 ```sql
-function to_varchar(&lt;$1, string&gt;) returns string
+function to_varchar(<$1, string>) returns string
 ```
 
 
@@ -319,7 +319,7 @@ function to_varchar(&lt;$1, string&gt;) returns string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_variant)
 
 ```sql
-function to_variant(&lt;$1&gt;) returns variant
+function to_variant(<$1>) returns variant
 ```
 
 
@@ -327,7 +327,7 @@ function to_variant(&lt;$1&gt;) returns variant
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_xml)
 
 ```sql
-function to_xml(&lt;variant&gt;) returns varchar
+function to_xml(<variant>) returns varchar
 ```
 Convert variant data to string as XML
 
@@ -335,12 +335,12 @@ Convert variant data to string as XML
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_binary)
 
 ```sql
-function try_to_binary(&lt;$1&gt;) returns binary
+function try_to_binary(<$1>) returns binary
 ```
 
 
 ```sql
-function try_to_binary(&lt;string, string&gt;) returns binary
+function try_to_binary(<string, string>) returns binary
 ```
 
 
@@ -348,7 +348,7 @@ function try_to_binary(&lt;string, string&gt;) returns binary
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_boolean)
 
 ```sql
-function try_to_boolean(&lt;$1&gt;) returns boolean
+function try_to_boolean(<$1>) returns boolean
 ```
 
 
@@ -356,12 +356,12 @@ function try_to_boolean(&lt;$1&gt;) returns boolean
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_date)
 
 ```sql
-function try_to_date(&lt;$1&gt;) returns datetime
+function try_to_date(<$1>) returns datetime
 ```
 
 
 ```sql
-function try_to_date(&lt;$1, string&gt;) returns datetime
+function try_to_date(<$1, string>) returns datetime
 ```
 
 
@@ -369,32 +369,32 @@ function try_to_date(&lt;$1, string&gt;) returns datetime
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_decimal)
 
 ```sql
-function try_to_decimal(&lt;$1&gt;) returns decimal(38, 0)
+function try_to_decimal(<$1>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_decimal(&lt;$1, bigint&gt;) returns decimal(38, 0)
+function try_to_decimal(<$1, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_decimal(&lt;$1, bigint, bigint&gt;) returns decimal(38, 0)
+function try_to_decimal(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_decimal(&lt;$1, string&gt;) returns decimal(38, 0)
+function try_to_decimal(<$1, string>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_decimal(&lt;$1, string, bigint&gt;) returns decimal(38, 0)
+function try_to_decimal(<$1, string, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_decimal(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
+function try_to_decimal(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -402,7 +402,7 @@ function try_to_decimal(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_double)
 
 ```sql
-function try_to_double(&lt;$1&gt;) returns double
+function try_to_double(<$1>) returns double
 ```
 
 
@@ -410,32 +410,32 @@ function try_to_double(&lt;$1&gt;) returns double
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_number)
 
 ```sql
-function try_to_number(&lt;$1&gt;) returns decimal(38, 0)
+function try_to_number(<$1>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_number(&lt;$1, bigint&gt;) returns decimal(38, 0)
+function try_to_number(<$1, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_number(&lt;$1, bigint, bigint&gt;) returns decimal(38, 0)
+function try_to_number(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_number(&lt;$1, string&gt;) returns decimal(38, 0)
+function try_to_number(<$1, string>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_number(&lt;$1, string, bigint&gt;) returns decimal(38, 0)
+function try_to_number(<$1, string, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_number(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
+function try_to_number(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -443,32 +443,32 @@ function try_to_number(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_numeric)
 
 ```sql
-function try_to_numeric(&lt;$1&gt;) returns decimal(38, 0)
+function try_to_numeric(<$1>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_numeric(&lt;$1, bigint&gt;) returns decimal(38, 0)
+function try_to_numeric(<$1, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_numeric(&lt;$1, bigint, bigint&gt;) returns decimal(38, 0)
+function try_to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_numeric(&lt;$1, string&gt;) returns decimal(38, 0)
+function try_to_numeric(<$1, string>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_numeric(&lt;$1, string, bigint&gt;) returns decimal(38, 0)
+function try_to_numeric(<$1, string, bigint>) returns decimal(38, 0)
 ```
 
 
 ```sql
-function try_to_numeric(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 0)
+function try_to_numeric(<$1, string, bigint, bigint>) returns decimal(38, 0)
 ```
 
 
@@ -476,12 +476,12 @@ function try_to_numeric(&lt;$1, string, bigint, bigint&gt;) returns decimal(38, 
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_time)
 
 ```sql
-function try_to_time(&lt;$1&gt;) returns time
+function try_to_time(<$1>) returns time
 ```
 
 
 ```sql
-function try_to_time(&lt;$1, string&gt;) returns time
+function try_to_time(<$1, string>) returns time
 ```
 
 
@@ -489,12 +489,12 @@ function try_to_time(&lt;$1, string&gt;) returns time
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_timestamp)
 
 ```sql
-function try_to_timestamp(&lt;$1&gt;) returns timestamp
+function try_to_timestamp(<$1>) returns timestamp
 ```
 
 
 ```sql
-function try_to_timestamp(&lt;$1, string&gt;) returns timestamp
+function try_to_timestamp(<$1, string>) returns timestamp
 ```
 
 
@@ -502,12 +502,12 @@ function try_to_timestamp(&lt;$1, string&gt;) returns timestamp
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_timestamp_ntz)
 
 ```sql
-function try_to_timestamp_ntz(&lt;$1&gt;) returns timestamp
+function try_to_timestamp_ntz(<$1>) returns timestamp
 ```
 
 
 ```sql
-function try_to_timestamp_ntz(&lt;$1, string&gt;) returns timestamp
+function try_to_timestamp_ntz(<$1, string>) returns timestamp
 ```
 
 
@@ -515,12 +515,12 @@ function try_to_timestamp_ntz(&lt;$1, string&gt;) returns timestamp
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_timestamp_tz)
 
 ```sql
-function try_to_timestamp_tz(&lt;$1&gt;) returns timestamp
+function try_to_timestamp_tz(<$1>) returns timestamp
 ```
 
 
 ```sql
-function try_to_timestamp_tz(&lt;$1, string&gt;) returns timestamp
+function try_to_timestamp_tz(<$1, string>) returns timestamp
 ```
 
 

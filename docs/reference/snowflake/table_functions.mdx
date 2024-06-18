@@ -7,7 +7,7 @@ title: "Table Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/flatten)
 
 ```sql
-function flatten&lt;$1&gt; (&lt;input $1&gt;) returns struct&lt;seq bigint, key string, path string, index bigint, value variant, this $1&gt;
+function flatten<$1> (<input $1>) returns struct<seq bigint, key string, path string, index bigint, value variant, this $1>
 	where $1 in (variant, object, array)
 ```
 
@@ -16,7 +16,7 @@ function flatten&lt;$1&gt; (&lt;input $1&gt;) returns struct&lt;seq bigint, key 
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/generator)
 
 ```sql
-function generator(&lt;&gt;) returns struct&lt;dummy bigint&gt;
+function generator(<>) returns struct<dummy bigint>
 ```
 
 
@@ -24,7 +24,7 @@ function generator(&lt;&gt;) returns struct&lt;dummy bigint&gt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get_object_references)
 
 ```sql
-function get_object_references(&lt;&gt;) returns struct&lt;database_name string, schema_name string, object_name string, referenced_database_name string, referenced_schema_name string, referenced_object_name string, referenced_object_type string&gt;
+function get_object_references(<>) returns struct<database_name string, schema_name string, object_name string, referenced_database_name string, referenced_schema_name string, referenced_object_name string, referenced_object_type string>
 ```
 
 
@@ -32,14 +32,14 @@ function get_object_references(&lt;&gt;) returns struct&lt;database_name string,
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/infer_schema)
 
 ```sql
-function infer_schema(&lt;&gt;) returns struct&lt;
+function infer_schema(<>) returns struct<
   column_name string,
   type string,
   nullable boolean,
   expression string,
   filenames string,
   order_id bigint
-&gt;
+>
 
 ```
 
@@ -48,7 +48,7 @@ function infer_schema(&lt;&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/rest_event_history)
 
 ```sql
-function rest_event_history(&lt;rest_service_type string&gt;) returns struct&lt;
+function rest_event_history(<rest_service_type string>) returns struct<
   event_timestamp timestamp,
   event_id bigint,
   event_type string,
@@ -62,7 +62,7 @@ function rest_event_history(&lt;rest_service_type string&gt;) returns struct&lt;
   actor_domain string,
   resource_name string,
   resource_domain string
-&gt;
+>
 
 ```
 
@@ -71,7 +71,7 @@ function rest_event_history(&lt;rest_service_type string&gt;) returns struct&lt;
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/validate)
 
 ```sql
-function validate(&lt;string, job_id string&gt;) returns struct&lt;
+function validate(<string, job_id string>) returns struct<
   error string,
   file string,
   line bigint,
@@ -84,13 +84,13 @@ function validate(&lt;string, job_id string&gt;) returns struct&lt;
   row_number bigint,
   row_start_line bigint,
   rejected_record string
-&gt;
+>
 
 ```
 
 
 ```sql
-function validate(&lt;job_id string&gt;) returns struct&lt;
+function validate(<job_id string>) returns struct<
   error string,
   file string,
   line bigint,
@@ -103,7 +103,7 @@ function validate(&lt;job_id string&gt;) returns struct&lt;
   row_number bigint,
   row_start_line bigint,
   rejected_record string
-&gt;
+>
 
 ```
 

@@ -7,12 +7,12 @@ title: "Semi-Structured and Structured Data Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_append)
 
 ```sql
-function array_append(&lt;array, $1&gt;) returns array
+function array_append(<array, $1>) returns array
 ```
 the resulting array
 
 ```sql
-function array_append(&lt;array, $1&gt;) returns array
+function array_append(<array, $1>) returns array
 ```
 the resulting array
 
@@ -20,27 +20,27 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_cat)
 
 ```sql
-function array_cat(&lt;array, array&gt;) returns array
+function array_cat(<array, array>) returns array
 ```
 Concatenate two arrays
 
 ```sql
-function array_cat(&lt;variant, variant&gt;) returns array
+function array_cat(<variant, variant>) returns array
 ```
 Concatenate two arrays
 
 ```sql
-function array_cat(&lt;array, variant&gt;) returns array
+function array_cat(<array, variant>) returns array
 ```
 Concatenate two arrays
 
 ```sql
-function array_cat(&lt;variant, array&gt;) returns array
+function array_cat(<variant, array>) returns array
 ```
 Concatenate two arrays
 
 ```sql
-function array_cat(&lt;array, array&gt;) returns array
+function array_cat(<array, array>) returns array
 ```
 Concatenate two arrays
 
@@ -48,17 +48,17 @@ Concatenate two arrays
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_compact)
 
 ```sql
-function array_compact(&lt;array&gt;) returns array
+function array_compact(<array>) returns array
 ```
 Compact array by removing nulls
 
 ```sql
-function array_compact(&lt;variant&gt;) returns array
+function array_compact(<variant>) returns array
 ```
 Compact array by removing nulls
 
 ```sql
-function array_compact(&lt;array&gt;) returns array
+function array_compact(<array>) returns array
 ```
 Compact array by removing nulls
 
@@ -71,22 +71,22 @@ function array_construct($1, ...) returns array
 the resulting array
 
 ```sql
-function array_construct(&lt;$1, $2&gt;) returns array
+function array_construct(<$1, $2>) returns array
 ```
 the resulting array
 
 ```sql
-function array_construct(&lt;$1, $2, $3&gt;) returns array
+function array_construct(<$1, $2, $3>) returns array
 ```
 the resulting array
 
 ```sql
-function array_construct(&lt;$1, $2, $3, $4&gt;) returns array
+function array_construct(<$1, $2, $3, $4>) returns array
 ```
 the resulting array
 
 ```sql
-function array_construct(&lt;$1, $2, $3, $4, $5&gt;) returns array
+function array_construct(<$1, $2, $3, $4, $5>) returns array
 ```
 the resulting array
 
@@ -102,12 +102,12 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_contains)
 
 ```sql
-function array_contains(&lt;variant, array&gt;) returns boolean
+function array_contains(<variant, array>) returns boolean
 ```
 Returns true if array contains value
 
 ```sql
-function array_contains(&lt;$1, array&gt;) returns boolean
+function array_contains(<$1, array>) returns boolean
 ```
 Returns true if array contains value
 
@@ -115,12 +115,12 @@ Returns true if array contains value
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_distinct)
 
 ```sql
-function array_distinct(&lt;array&gt;) returns array
+function array_distinct(<array>) returns array
 ```
 the resulting array
 
 ```sql
-function array_distinct(&lt;array&gt;) returns array
+function array_distinct(<array>) returns array
 ```
 the resulting array
 
@@ -128,12 +128,12 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_except)
 
 ```sql
-function array_except(&lt;array, array&gt;) returns array
+function array_except(<array, array>) returns array
 ```
 the resulting array
 
 ```sql
-function array_except(&lt;array, array&gt;) returns array
+function array_except(<array, array>) returns array
 ```
 the resulting array
 
@@ -141,7 +141,7 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_flatten)
 
 ```sql
-function array_flatten(&lt;array&gt;) returns array
+function array_flatten(<array>) returns array
 ```
 the resulting array
 
@@ -149,12 +149,12 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_generate_range)
 
 ```sql
-function array_generate_range(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns array
+function array_generate_range(<decimal(38, 0), decimal(38, 0)>) returns array
 ```
 the resulting array
 
 ```sql
-function array_generate_range(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns array
+function array_generate_range(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns array
 ```
 the resulting array
 
@@ -162,12 +162,12 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_insert)
 
 ```sql
-function array_insert(&lt;array, decimal(38, 0), $1&gt;) returns array
+function array_insert(<array, decimal(38, 0), $1>) returns array
 ```
 the resulting array
 
 ```sql
-function array_insert(&lt;array, decimal(38, 0), $1&gt;) returns array
+function array_insert(<array, decimal(38, 0), $1>) returns array
 ```
 the resulting array
 
@@ -175,12 +175,12 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_intersection)
 
 ```sql
-function array_intersection(&lt;array, array&gt;) returns array
+function array_intersection(<array, array>) returns array
 ```
 the resulting array
 
 ```sql
-function array_intersection(&lt;array, array&gt;) returns array
+function array_intersection(<array, array>) returns array
 ```
 the resulting array
 
@@ -188,12 +188,12 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_max)
 
 ```sql
-function array_max(&lt;array&gt;) returns variant
+function array_max(<array>) returns variant
 ```
 the maximum defined element in the array, or NULL
 
 ```sql
-function array_max(&lt;array&gt;) returns $1
+function array_max(<array>) returns $1
 ```
 the maximum defined element in the array, or NULL
 
@@ -201,12 +201,12 @@ the maximum defined element in the array, or NULL
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_min)
 
 ```sql
-function array_min(&lt;array&gt;) returns variant
+function array_min(<array>) returns variant
 ```
 the minimum defined element in the array, or NULL
 
 ```sql
-function array_min(&lt;array&gt;) returns $1
+function array_min(<array>) returns $1
 ```
 the minimum defined element in the array, or NULL
 
@@ -214,12 +214,12 @@ the minimum defined element in the array, or NULL
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_position)
 
 ```sql
-function array_position(&lt;variant, array&gt;) returns decimal(38, 0)
+function array_position(<variant, array>) returns decimal(38, 0)
 ```
 Returns the first index position of the element in the array
 
 ```sql
-function array_position(&lt;$1, array&gt;) returns decimal(38, 0)
+function array_position(<$1, array>) returns decimal(38, 0)
 ```
 Returns the first index position of the element in the array
 
@@ -227,12 +227,12 @@ Returns the first index position of the element in the array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_prepend)
 
 ```sql
-function array_prepend(&lt;array, $1&gt;) returns array
+function array_prepend(<array, $1>) returns array
 ```
 the resulting array
 
 ```sql
-function array_prepend(&lt;array, $1&gt;) returns array
+function array_prepend(<array, $1>) returns array
 ```
 the resulting array
 
@@ -240,12 +240,12 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_remove)
 
 ```sql
-function array_remove(&lt;array, variant&gt;) returns array
+function array_remove(<array, variant>) returns array
 ```
 the resulting array
 
 ```sql
-function array_remove(&lt;array, $1&gt;) returns array
+function array_remove(<array, $1>) returns array
 ```
 the resulting array
 
@@ -253,12 +253,12 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_remove_at)
 
 ```sql
-function array_remove_at(&lt;array, decimal(38, 0)&gt;) returns array
+function array_remove_at(<array, decimal(38, 0)>) returns array
 ```
 the resulting array
 
 ```sql
-function array_remove_at(&lt;array, decimal(38, 0)&gt;) returns array
+function array_remove_at(<array, decimal(38, 0)>) returns array
 ```
 the resulting array
 
@@ -266,17 +266,17 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_size)
 
 ```sql
-function array_size(&lt;array&gt;) returns decimal(38, 0)
+function array_size(<array>) returns decimal(38, 0)
 ```
 Returns array size
 
 ```sql
-function array_size(&lt;array&gt;) returns decimal(38, 0)
+function array_size(<array>) returns decimal(38, 0)
 ```
 Returns array size
 
 ```sql
-function array_size(&lt;variant&gt;) returns decimal(38, 0)
+function array_size(<variant>) returns decimal(38, 0)
 ```
 Returns array size
 
@@ -284,12 +284,12 @@ Returns array size
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_slice)
 
 ```sql
-function array_slice(&lt;array, decimal(38, 0), decimal(38, 0)&gt;) returns array
+function array_slice(<array, decimal(38, 0), decimal(38, 0)>) returns array
 ```
 the resulting array
 
 ```sql
-function array_slice(&lt;array, decimal(38, 0), decimal(38, 0)&gt;) returns array
+function array_slice(<array, decimal(38, 0), decimal(38, 0)>) returns array
 ```
 the resulting array
 
@@ -297,17 +297,17 @@ the resulting array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_sort)
 
 ```sql
-function array_sort(&lt;array&gt;) returns array
+function array_sort(<array>) returns array
 ```
 the sorted array
 
 ```sql
-function array_sort(&lt;array, boolean&gt;) returns array
+function array_sort(<array, boolean>) returns array
 ```
 the sorted array
 
 ```sql
-function array_sort(&lt;array, boolean, boolean&gt;) returns array
+function array_sort(<array, boolean, boolean>) returns array
 ```
 the sorted array
 
@@ -315,12 +315,12 @@ the sorted array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_to_string)
 
 ```sql
-function array_to_string(&lt;array, varchar&gt;) returns varchar
+function array_to_string(<array, varchar>) returns varchar
 ```
 Convert array to a string
 
 ```sql
-function array_to_string(&lt;variant, varchar&gt;) returns varchar
+function array_to_string(<variant, varchar>) returns varchar
 ```
 Convert array to a string
 
@@ -328,12 +328,12 @@ Convert array to a string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/arrays_overlap)
 
 ```sql
-function arrays_overlap(&lt;array, array&gt;) returns boolean
+function arrays_overlap(<array, array>) returns boolean
 ```
 Returns true if two arrays have elements in common
 
 ```sql
-function arrays_overlap(&lt;array, array&gt;) returns boolean
+function arrays_overlap(<array, array>) returns boolean
 ```
 Returns true if two arrays have elements in common
 
@@ -341,7 +341,7 @@ Returns true if two arrays have elements in common
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/arrays_to_object)
 
 ```sql
-function arrays_to_object(&lt;array, array&gt;) returns object
+function arrays_to_object(<array, array>) returns object
 ```
 the resulting object
 
@@ -349,7 +349,7 @@ the resulting object
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_array)
 
 ```sql
-function as_array(&lt;variant&gt;) returns array
+function as_array(<variant>) returns array
 ```
 Use VARIANT value as ARRAY
 
@@ -357,7 +357,7 @@ Use VARIANT value as ARRAY
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_binary)
 
 ```sql
-function as_binary(&lt;variant&gt;) returns binary
+function as_binary(<variant>) returns binary
 ```
 Use VARIANT value as binary string
 
@@ -365,7 +365,7 @@ Use VARIANT value as binary string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_boolean)
 
 ```sql
-function as_boolean(&lt;variant&gt;) returns boolean
+function as_boolean(<variant>) returns boolean
 ```
 Use VARIANT value as Boolean
 
@@ -373,7 +373,7 @@ Use VARIANT value as Boolean
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_char)
 
 ```sql
-function as_char(&lt;variant&gt;) returns varchar
+function as_char(<variant>) returns varchar
 ```
 Use VARIANT value as text string
 
@@ -381,7 +381,7 @@ Use VARIANT value as text string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_date)
 
 ```sql
-function as_date(&lt;variant&gt;) returns date
+function as_date(<variant>) returns date
 ```
 Use VARIANT value as DATE
 
@@ -389,17 +389,17 @@ Use VARIANT value as DATE
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_decimal)
 
 ```sql
-function as_decimal(&lt;variant&gt;) returns decimal(38, 0)
+function as_decimal(<variant>) returns decimal(38, 0)
 ```
 Use VARIANT value as decimal fixed-point
 
 ```sql
-function as_decimal(&lt;variant, decimal(38, 0)&gt;) returns decimal(38, 0)
+function as_decimal(<variant, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Use VARIANT value as decimal fixed-point
 
 ```sql
-function as_decimal(&lt;variant, decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
+function as_decimal(<variant, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Use VARIANT value as decimal fixed-point
 
@@ -407,7 +407,7 @@ Use VARIANT value as decimal fixed-point
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_double)
 
 ```sql
-function as_double(&lt;variant&gt;) returns double
+function as_double(<variant>) returns double
 ```
 Use VARIANT value as real
 
@@ -415,12 +415,12 @@ Use VARIANT value as real
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_integer)
 
 ```sql
-function as_integer(&lt;variant&gt;) returns decimal(38, 0)
+function as_integer(<variant>) returns decimal(38, 0)
 ```
 Use VARIANT value as integer
 
 ```sql
-function as_integer(&lt;variant, decimal(38, 0)&gt;) returns decimal(38, 0)
+function as_integer(<variant, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Use VARIANT value as integer
 
@@ -428,17 +428,17 @@ Use VARIANT value as integer
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_number)
 
 ```sql
-function as_number(&lt;variant&gt;) returns decimal(38, 0)
+function as_number(<variant>) returns decimal(38, 0)
 ```
 Use VARIANT value as as decimal fixed-point
 
 ```sql
-function as_number(&lt;variant, decimal(38, 0)&gt;) returns decimal(38, 0)
+function as_number(<variant, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Use VARIANT value as as decimal fixed-point
 
 ```sql
-function as_number(&lt;variant, decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
+function as_number(<variant, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Use VARIANT value as as decimal fixed-point
 
@@ -446,7 +446,7 @@ Use VARIANT value as as decimal fixed-point
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_object)
 
 ```sql
-function as_object(&lt;variant&gt;) returns object
+function as_object(<variant>) returns object
 ```
 Use VARIANT value as OBJECT
 
@@ -454,7 +454,7 @@ Use VARIANT value as OBJECT
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_real)
 
 ```sql
-function as_real(&lt;variant&gt;) returns double
+function as_real(<variant>) returns double
 ```
 Use VARIANT value as real
 
@@ -462,7 +462,7 @@ Use VARIANT value as real
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_time)
 
 ```sql
-function as_time(&lt;variant&gt;) returns time
+function as_time(<variant>) returns time
 ```
 Use VARIANT value as TIME
 
@@ -470,12 +470,12 @@ Use VARIANT value as TIME
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_timestamp_ltz)
 
 ```sql
-function as_timestamp_ltz(&lt;variant&gt;) returns timestamp
+function as_timestamp_ltz(<variant>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_LTZ
 
 ```sql
-function as_timestamp_ltz(&lt;variant, decimal(38, 0)&gt;) returns timestamp
+function as_timestamp_ltz(<variant, decimal(38, 0)>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_LTZ
 
@@ -483,12 +483,12 @@ Use VARIANT value as TIMESTAMP_LTZ
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_timestamp_ntz)
 
 ```sql
-function as_timestamp_ntz(&lt;variant&gt;) returns timestamp
+function as_timestamp_ntz(<variant>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_NTZ
 
 ```sql
-function as_timestamp_ntz(&lt;variant, decimal(38, 0)&gt;) returns timestamp
+function as_timestamp_ntz(<variant, decimal(38, 0)>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_NTZ
 
@@ -496,12 +496,12 @@ Use VARIANT value as TIMESTAMP_NTZ
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_timestamp_tz)
 
 ```sql
-function as_timestamp_tz(&lt;variant&gt;) returns timestamp
+function as_timestamp_tz(<variant>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_TZ
 
 ```sql
-function as_timestamp_tz(&lt;variant, decimal(38, 0)&gt;) returns timestamp
+function as_timestamp_tz(<variant, decimal(38, 0)>) returns timestamp
 ```
 Use VARIANT value as TIMESTAMP_TZ
 
@@ -509,7 +509,7 @@ Use VARIANT value as TIMESTAMP_TZ
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/as_varchar)
 
 ```sql
-function as_varchar(&lt;variant&gt;) returns varchar
+function as_varchar(<variant>) returns varchar
 ```
 Use VARIANT value as text sting
 
@@ -517,7 +517,7 @@ Use VARIANT value as text sting
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/check_json)
 
 ```sql
-function check_json(&lt;varchar&gt;) returns varchar
+function check_json(<varchar>) returns varchar
 ```
 Checks JSON for errors
 
@@ -525,12 +525,12 @@ Checks JSON for errors
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/check_xml)
 
 ```sql
-function check_xml(&lt;varchar&gt;) returns varchar
+function check_xml(<varchar>) returns varchar
 ```
 Checks XML for errors
 
 ```sql
-function check_xml(&lt;varchar, boolean&gt;) returns varchar
+function check_xml(<varchar, boolean>) returns varchar
 ```
 Checks XML for errors
 
@@ -538,27 +538,27 @@ Checks XML for errors
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get)
 
 ```sql
-function get(&lt;variant, varchar&gt;) returns variant
+function get(<variant, varchar>) returns variant
 ```
 Get VARIANT element value from an array or object
 
 ```sql
-function get(&lt;variant, decimal(38, 0)&gt;) returns variant
+function get(<variant, decimal(38, 0)>) returns variant
 ```
 Get VARIANT element value from an array or object
 
 ```sql
-function get(&lt;object, varchar&gt;) returns variant
+function get(<object, varchar>) returns variant
 ```
 Get VARIANT element value from an array or object
 
 ```sql
-function get(&lt;array, decimal(38, 0)&gt;) returns variant
+function get(<array, decimal(38, 0)>) returns variant
 ```
 Get VARIANT element value from an array or object
 
 ```sql
-function get(&lt;object, $1&gt;) returns variant
+function get(<object, $1>) returns variant
 ```
 Get VARIANT element value from an array or object
 
@@ -566,22 +566,22 @@ Get VARIANT element value from an array or object
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get_ignore_case)
 
 ```sql
-function get_ignore_case(&lt;variant, varchar&gt;) returns variant
+function get_ignore_case(<variant, varchar>) returns variant
 ```
 Get VARIANT element value from an array or object with path name
 
 ```sql
-function get_ignore_case(&lt;variant, varchar&gt;) returns object
+function get_ignore_case(<variant, varchar>) returns object
 ```
 Get VARIANT element value from an array or object with path name
 
 ```sql
-function get_ignore_case(&lt;object, varchar&gt;) returns $1
+function get_ignore_case(<object, varchar>) returns $1
 ```
 Get VARIANT element value from an array or object with path name
 
 ```sql
-function get_ignore_case(&lt;object, $1&gt;) returns $1
+function get_ignore_case(<object, $1>) returns $1
 ```
 Get VARIANT element value from an array or object with path name
 
@@ -589,32 +589,32 @@ Get VARIANT element value from an array or object with path name
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get_path)
 
 ```sql
-function get_path(&lt;variant, varchar&gt;) returns variant
+function get_path(<variant, varchar>) returns variant
 ```
 Get VARIANT element value from an array or object with path name
 
 ```sql
-function get_path(&lt;object, varchar&gt;) returns variant
+function get_path(<object, varchar>) returns variant
 ```
 Get VARIANT element value from an array or object with path name
 
 ```sql
-function get_path(&lt;array, varchar&gt;) returns variant
+function get_path(<array, varchar>) returns variant
 ```
 Get VARIANT element value from an array or object with path name
 
 ```sql
-function get_path(&lt;array, varchar&gt;) returns $1
+function get_path(<array, varchar>) returns $1
 ```
 Get VARIANT element value from an array or object with path name
 
 ```sql
-function get_path(&lt;object, varchar&gt;) returns $1
+function get_path(<object, varchar>) returns $1
 ```
 Get VARIANT element value from an array or object with path name
 
 ```sql
-function get_path(&lt;object, varchar&gt;) returns $1
+function get_path(<object, varchar>) returns $1
 ```
 Get VARIANT element value from an array or object with path name
 
@@ -622,7 +622,7 @@ Get VARIANT element value from an array or object with path name
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_array)
 
 ```sql
-function is_array(&lt;variant&gt;) returns boolean
+function is_array(<variant>) returns boolean
 ```
 Returns true if VARIANT value is an array
 
@@ -630,7 +630,7 @@ Returns true if VARIANT value is an array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_binary)
 
 ```sql
-function is_binary(&lt;variant&gt;) returns boolean
+function is_binary(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a binary string
 
@@ -638,7 +638,7 @@ Returns true if VARIANT value is a binary string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_boolean)
 
 ```sql
-function is_boolean(&lt;variant&gt;) returns boolean
+function is_boolean(<variant>) returns boolean
 ```
 Returns true if VARIANT value is Boolean
 
@@ -646,7 +646,7 @@ Returns true if VARIANT value is Boolean
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_char)
 
 ```sql
-function is_char(&lt;variant&gt;) returns boolean
+function is_char(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a text string
 
@@ -654,7 +654,7 @@ Returns true if VARIANT value is a text string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_date)
 
 ```sql
-function is_date(&lt;variant&gt;) returns boolean
+function is_date(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a DATE
 
@@ -662,7 +662,7 @@ Returns true if VARIANT value is a DATE
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_date_value)
 
 ```sql
-function is_date_value(&lt;variant&gt;) returns boolean
+function is_date_value(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a DATE
 
@@ -670,7 +670,7 @@ Returns true if VARIANT value is a DATE
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_decimal)
 
 ```sql
-function is_decimal(&lt;variant&gt;) returns boolean
+function is_decimal(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a decimal fixed-point number
 
@@ -678,7 +678,7 @@ Returns true if VARIANT value is a decimal fixed-point number
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_double)
 
 ```sql
-function is_double(&lt;variant&gt;) returns boolean
+function is_double(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a real number
 
@@ -686,7 +686,7 @@ Returns true if VARIANT value is a real number
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_integer)
 
 ```sql
-function is_integer(&lt;variant&gt;) returns boolean
+function is_integer(<variant>) returns boolean
 ```
 Returns true if VARIANT value is integer
 
@@ -694,7 +694,7 @@ Returns true if VARIANT value is integer
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_object)
 
 ```sql
-function is_object(&lt;variant&gt;) returns boolean
+function is_object(<variant>) returns boolean
 ```
 Returns true if VARIANT value is an object
 
@@ -702,7 +702,7 @@ Returns true if VARIANT value is an object
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_real)
 
 ```sql
-function is_real(&lt;variant&gt;) returns boolean
+function is_real(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a real number
 
@@ -710,7 +710,7 @@ Returns true if VARIANT value is a real number
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_time)
 
 ```sql
-function is_time(&lt;variant&gt;) returns boolean
+function is_time(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a TIME
 
@@ -718,7 +718,7 @@ Returns true if VARIANT value is a TIME
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_timestamp_ltz)
 
 ```sql
-function is_timestamp_ltz(&lt;variant&gt;) returns boolean
+function is_timestamp_ltz(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a TIMESTAMP_LTZ
 
@@ -726,7 +726,7 @@ Returns true if VARIANT value is a TIMESTAMP_LTZ
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_timestamp_ntz)
 
 ```sql
-function is_timestamp_ntz(&lt;variant&gt;) returns boolean
+function is_timestamp_ntz(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a TIMESTAMP_NTZ
 
@@ -734,7 +734,7 @@ Returns true if VARIANT value is a TIMESTAMP_NTZ
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_timestamp_tz)
 
 ```sql
-function is_timestamp_tz(&lt;variant&gt;) returns boolean
+function is_timestamp_tz(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a TIMESTAMP_TZ
 
@@ -742,7 +742,7 @@ Returns true if VARIANT value is a TIMESTAMP_TZ
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_varchar)
 
 ```sql
-function is_varchar(&lt;variant&gt;) returns boolean
+function is_varchar(<variant>) returns boolean
 ```
 Returns true if VARIANT value is a text string
 
@@ -750,7 +750,7 @@ Returns true if VARIANT value is a text string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/json_extract_path_text)
 
 ```sql
-function json_extract_path_text(&lt;varchar, varchar&gt;) returns varchar
+function json_extract_path_text(<varchar, varchar>) returns varchar
 ```
 Parses the first argument as a JSON and returns the value of the element pointed to by the second argument
 
@@ -758,7 +758,7 @@ Parses the first argument as a JSON and returns the value of the element pointed
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/map_cat)
 
 ```sql
-function map_cat(&lt;object, object&gt;) returns object
+function map_cat(<object, object>) returns object
 ```
 
 
@@ -766,7 +766,7 @@ function map_cat(&lt;object, object&gt;) returns object
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/map_contains_key)
 
 ```sql
-function map_contains_key(&lt;varchar, object&gt;) returns boolean
+function map_contains_key(<varchar, object>) returns boolean
 ```
 
 
@@ -774,27 +774,27 @@ function map_contains_key(&lt;varchar, object&gt;) returns boolean
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/map_delete)
 
 ```sql
-function map_delete(&lt;object, varchar&gt;) returns object
+function map_delete(<object, varchar>) returns object
 ```
 
 
 ```sql
-function map_delete(&lt;object, varchar, varchar&gt;) returns object
+function map_delete(<object, varchar, varchar>) returns object
 ```
 
 
 ```sql
-function map_delete(&lt;object, varchar, varchar, varchar&gt;) returns object
+function map_delete(<object, varchar, varchar, varchar>) returns object
 ```
 
 
 ```sql
-function map_delete(&lt;object, varchar, varchar, varchar, varchar&gt;) returns object
+function map_delete(<object, varchar, varchar, varchar, varchar>) returns object
 ```
 
 
 ```sql
-function map_delete(&lt;object, varchar, varchar, varchar, varchar, varchar&gt;) returns object
+function map_delete(<object, varchar, varchar, varchar, varchar, varchar>) returns object
 ```
 
 
@@ -802,12 +802,12 @@ function map_delete(&lt;object, varchar, varchar, varchar, varchar, varchar&gt;)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/map_insert)
 
 ```sql
-function map_insert(&lt;object, $1, $2&gt;) returns object
+function map_insert(<object, $1, $2>) returns object
 ```
 
 
 ```sql
-function map_insert(&lt;object, $1, $2, boolean&gt;) returns object
+function map_insert(<object, $1, $2, boolean>) returns object
 ```
 
 
@@ -815,7 +815,7 @@ function map_insert(&lt;object, $1, $2, boolean&gt;) returns object
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/map_keys)
 
 ```sql
-function map_keys(&lt;object&gt;) returns array
+function map_keys(<object>) returns array
 ```
 
 
@@ -823,32 +823,32 @@ function map_keys(&lt;object&gt;) returns array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/map_pick)
 
 ```sql
-function map_pick(&lt;object, string&gt;) returns object
+function map_pick(<object, string>) returns object
 ```
 
 
 ```sql
-function map_pick(&lt;object, string, string&gt;) returns object
+function map_pick(<object, string, string>) returns object
 ```
 
 
 ```sql
-function map_pick(&lt;object, string, string, string&gt;) returns object
+function map_pick(<object, string, string, string>) returns object
 ```
 
 
 ```sql
-function map_pick(&lt;object, string, string, string, string&gt;) returns object
+function map_pick(<object, string, string, string, string>) returns object
 ```
 
 
 ```sql
-function map_pick(&lt;object, string, string, string, string, string&gt;) returns object
+function map_pick(<object, string, string, string, string, string>) returns object
 ```
 
 
 ```sql
-function map_pick(&lt;object, array&gt;) returns object
+function map_pick(<object, array>) returns object
 ```
 
 
@@ -856,7 +856,7 @@ function map_pick(&lt;object, array&gt;) returns object
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/map_size)
 
 ```sql
-function map_size(&lt;object&gt;) returns bigint
+function map_size(<object>) returns bigint
 ```
 
 
@@ -893,22 +893,22 @@ the resulting OBJECT
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/object_insert)
 
 ```sql
-function object_insert(&lt;object, varchar, $1&gt;) returns object
+function object_insert(<object, varchar, $1>) returns object
 ```
 the resulting OBJECT
 
 ```sql
-function object_insert(&lt;object, varchar, $1, boolean&gt;) returns object
+function object_insert(<object, varchar, $1, boolean>) returns object
 ```
 the resulting OBJECT
 
 ```sql
-function object_insert(&lt;object, varchar, $1&gt;) returns object
+function object_insert(<object, varchar, $1>) returns object
 ```
 the resulting OBJECT
 
 ```sql
-function object_insert(&lt;object, varchar, $1, boolean&gt;) returns object
+function object_insert(<object, varchar, $1, boolean>) returns object
 ```
 the resulting OBJECT
 
@@ -916,12 +916,12 @@ the resulting OBJECT
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/object_keys)
 
 ```sql
-function object_keys(&lt;object&gt;) returns array
+function object_keys(<object>) returns array
 ```
 the resulting ARRAY
 
 ```sql
-function object_keys(&lt;object&gt;) returns array
+function object_keys(<object>) returns array
 ```
 the resulting ARRAY
 
@@ -947,7 +947,7 @@ the resulting OBJECT
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/parse_json)
 
 ```sql
-function parse_json(&lt;varchar&gt;) returns variant
+function parse_json(<varchar>) returns variant
 ```
 Parses string as a JSON document
 
@@ -955,17 +955,17 @@ Parses string as a JSON document
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/parse_xml)
 
 ```sql
-function parse_xml(&lt;varchar&gt;) returns object
+function parse_xml(<varchar>) returns object
 ```
 Parses string as an XML document
 
 ```sql
-function parse_xml(&lt;varchar, boolean&gt;) returns object
+function parse_xml(<varchar, boolean>) returns object
 ```
 Parses string as an XML document
 
 ```sql
-function parse_xml(&lt;&gt;) returns variant
+function parse_xml(<>) returns variant
 ```
 
 
@@ -973,7 +973,7 @@ function parse_xml(&lt;&gt;) returns variant
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/strip_null_value)
 
 ```sql
-function strip_null_value(&lt;variant&gt;) returns variant
+function strip_null_value(<variant>) returns variant
 ```
 Converts null values to SQL NULLs
 
@@ -981,7 +981,7 @@ Converts null values to SQL NULLs
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_parse_json)
 
 ```sql
-function try_parse_json(&lt;varchar&gt;) returns variant
+function try_parse_json(<varchar>) returns variant
 ```
 Parses string as a JSON document
 
@@ -989,7 +989,7 @@ Parses string as a JSON document
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/typeof)
 
 ```sql
-function typeof(&lt;variant&gt;) returns varchar
+function typeof(<variant>) returns varchar
 ```
 Returns SQL type word of a variant value
 
@@ -997,22 +997,22 @@ Returns SQL type word of a variant value
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/xmlget)
 
 ```sql
-function xmlget(&lt;variant, varchar, decimal(38, 0)&gt;) returns object
+function xmlget(<variant, varchar, decimal(38, 0)>) returns object
 ```
 Get XML element object by XML tag name
 
 ```sql
-function xmlget(&lt;object, varchar, decimal(38, 0)&gt;) returns object
+function xmlget(<object, varchar, decimal(38, 0)>) returns object
 ```
 Get XML element object by XML tag name
 
 ```sql
-function xmlget(&lt;variant, varchar&gt;) returns object
+function xmlget(<variant, varchar>) returns object
 ```
 Get XML element object by XML tag name
 
 ```sql
-function xmlget(&lt;object, varchar&gt;) returns object
+function xmlget(<object, varchar>) returns object
 ```
 Get XML element object by XML tag name
 

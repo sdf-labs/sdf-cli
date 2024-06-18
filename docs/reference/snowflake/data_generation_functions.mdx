@@ -7,7 +7,7 @@ title: "Data Generation Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/normal)
 
 ```sql
-function normal(&lt;double, double, decimal(38, 0)&gt;) returns double
+function normal(<double, double, decimal(38, 0)>) returns double
 ```
 Returns a normal distribution
 
@@ -15,12 +15,12 @@ Returns a normal distribution
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/random)
 
 ```sql
-function random(&lt;&gt;) returns decimal(38, 0)
+function random(<>) returns decimal(38, 0)
 ```
 returns a random number sequence
 
 ```sql
-function random(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
+function random(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a random number sequence
 
@@ -28,7 +28,7 @@ returns a random number sequence
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/randstr)
 
 ```sql
-function randstr(&lt;decimal(38, 0), decimal(38, 0)&gt;) returns varchar
+function randstr(<decimal(38, 0), decimal(38, 0)>) returns varchar
 ```
 Returns a random string of alphanumeric characters
 
@@ -36,12 +36,12 @@ Returns a random string of alphanumeric characters
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/seq1)
 
 ```sql
-function seq1(&lt;&gt;) returns decimal(38, 0)
+function seq1(<>) returns decimal(38, 0)
 ```
 returns a sequence of 1-byte integers
 
 ```sql
-function seq1(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
+function seq1(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a sequence of 1-byte integers
 
@@ -49,12 +49,12 @@ returns a sequence of 1-byte integers
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/seq2)
 
 ```sql
-function seq2(&lt;&gt;) returns decimal(38, 0)
+function seq2(<>) returns decimal(38, 0)
 ```
 returns a sequence of 2-byte integers
 
 ```sql
-function seq2(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
+function seq2(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a sequence of 2-byte integers
 
@@ -62,12 +62,12 @@ returns a sequence of 2-byte integers
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/seq4)
 
 ```sql
-function seq4(&lt;&gt;) returns decimal(38, 0)
+function seq4(<>) returns decimal(38, 0)
 ```
 returns a sequence of 4-byte integers
 
 ```sql
-function seq4(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
+function seq4(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a sequence of 4-byte integers
 
@@ -75,12 +75,12 @@ returns a sequence of 4-byte integers
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/seq8)
 
 ```sql
-function seq8(&lt;&gt;) returns decimal(38, 0)
+function seq8(<>) returns decimal(38, 0)
 ```
 returns a sequence of 8-byte integers
 
 ```sql
-function seq8(&lt;decimal(38, 0)&gt;) returns decimal(38, 0)
+function seq8(<decimal(38, 0)>) returns decimal(38, 0)
 ```
 returns a sequence of 8-byte integers
 
@@ -88,12 +88,12 @@ returns a sequence of 8-byte integers
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/uniform)
 
 ```sql
-function uniform(&lt;decimal(38, 0), decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
+function uniform(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a uniform random distribution
 
 ```sql
-function uniform(&lt;double, double, decimal(38, 0)&gt;) returns double
+function uniform(<double, double, decimal(38, 0)>) returns double
 ```
 Returns a uniform random distribution
 
@@ -101,7 +101,7 @@ Returns a uniform random distribution
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/zipf)
 
 ```sql
-function zipf(&lt;double, decimal(38, 0), decimal(38, 0)&gt;) returns decimal(38, 0)
+function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns a Zipf distribution
 

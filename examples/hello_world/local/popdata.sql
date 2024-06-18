@@ -1,4 +1,4 @@
-create external table popdata 
-stored as csv 
-with header row 
-location 'local/pop.csv';
+create table popdata 
+with ( format='csv',
+skip_header_line_count=1, -- skip the first line of the file
+location='local/pop.csv');

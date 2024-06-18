@@ -1,1 +1,1 @@
-CREATE EXTERNAL TABLE part STORED AS PARQUET LOCATION 'tpch_pd_scale_10/part/';
+CREATE TABLE part with (format='PARQUET', LOCATION='tpch_pd_scale_10/part/');

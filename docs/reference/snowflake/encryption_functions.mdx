@@ -7,32 +7,32 @@ title: "Encryption Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/decrypt)
 
 ```sql
-function decrypt(&lt;binary, varchar&gt;) returns binary
+function decrypt(<binary, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt(&lt;binary, varchar, binary&gt;) returns binary
+function decrypt(<binary, varchar, binary>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt(&lt;binary, varchar, binary, varchar&gt;) returns binary
+function decrypt(<binary, varchar, binary, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt(&lt;binary, varchar&gt;) returns binary
+function decrypt(<binary, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt(&lt;binary, varchar, varchar&gt;) returns binary
+function decrypt(<binary, varchar, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt(&lt;binary, varchar, varchar, varchar&gt;) returns binary
+function decrypt(<binary, varchar, varchar, varchar>) returns binary
 ```
 decrypted binary string (return)
 
@@ -40,27 +40,27 @@ decrypted binary string (return)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/decrypt_raw)
 
 ```sql
-function decrypt_raw(&lt;binary, binary&gt;) returns binary
+function decrypt_raw(<binary, binary>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt_raw(&lt;binary, binary, binary&gt;) returns binary
+function decrypt_raw(<binary, binary, binary>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt_raw(&lt;binary, binary, binary, binary&gt;) returns binary
+function decrypt_raw(<binary, binary, binary, binary>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt_raw(&lt;binary, binary, binary, binary, varchar&gt;) returns binary
+function decrypt_raw(<binary, binary, binary, binary, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function decrypt_raw(&lt;binary, binary, binary, binary, varchar, binary&gt;) returns binary
+function decrypt_raw(<binary, binary, binary, binary, varchar, binary>) returns binary
 ```
 decrypted binary string (return)
 
@@ -68,62 +68,62 @@ decrypted binary string (return)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/encrypt)
 
 ```sql
-function encrypt(&lt;binary, varchar&gt;) returns binary
+function encrypt(<binary, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;binary, varchar, binary&gt;) returns binary
+function encrypt(<binary, varchar, binary>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;binary, varchar, binary, varchar&gt;) returns binary
+function encrypt(<binary, varchar, binary, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;varchar, varchar&gt;) returns binary
+function encrypt(<varchar, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;varchar, varchar, binary&gt;) returns binary
+function encrypt(<varchar, varchar, binary>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;varchar, varchar, binary, varchar&gt;) returns binary
+function encrypt(<varchar, varchar, binary, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;binary, varchar&gt;) returns binary
+function encrypt(<binary, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;binary, varchar, varchar&gt;) returns binary
+function encrypt(<binary, varchar, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;binary, varchar, varchar, varchar&gt;) returns binary
+function encrypt(<binary, varchar, varchar, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;varchar, varchar&gt;) returns binary
+function encrypt(<varchar, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;varchar, varchar, varchar&gt;) returns binary
+function encrypt(<varchar, varchar, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
 ```sql
-function encrypt(&lt;varchar, varchar, varchar, varchar&gt;) returns binary
+function encrypt(<varchar, varchar, varchar, varchar>) returns binary
 ```
 encrypted binary string including IV/nonce and AEAD tag (return)
 
@@ -131,22 +131,22 @@ encrypted binary string including IV/nonce and AEAD tag (return)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/encrypt_raw)
 
 ```sql
-function encrypt_raw(&lt;binary, binary&gt;) returns variant
+function encrypt_raw(<binary, binary>) returns variant
 ```
 variant containing the encrypted binary string and additional data (return)
 
 ```sql
-function encrypt_raw(&lt;binary, binary, binary&gt;) returns variant
+function encrypt_raw(<binary, binary, binary>) returns variant
 ```
 variant containing the encrypted binary string and additional data (return)
 
 ```sql
-function encrypt_raw(&lt;binary, binary, binary, binary&gt;) returns variant
+function encrypt_raw(<binary, binary, binary, binary>) returns variant
 ```
 variant containing the encrypted binary string and additional data (return)
 
 ```sql
-function encrypt_raw(&lt;binary, binary, binary, binary, varchar&gt;) returns variant
+function encrypt_raw(<binary, binary, binary, binary, varchar>) returns variant
 ```
 variant containing the encrypted binary string and additional data (return)
 
@@ -154,32 +154,32 @@ variant containing the encrypted binary string and additional data (return)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_decrypt)
 
 ```sql
-function try_decrypt(&lt;binary, varchar&gt;) returns binary
+function try_decrypt(<binary, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt(&lt;binary, varchar, binary&gt;) returns binary
+function try_decrypt(<binary, varchar, binary>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt(&lt;binary, varchar, binary, varchar&gt;) returns binary
+function try_decrypt(<binary, varchar, binary, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt(&lt;binary, varchar&gt;) returns binary
+function try_decrypt(<binary, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt(&lt;binary, varchar, varchar&gt;) returns binary
+function try_decrypt(<binary, varchar, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt(&lt;binary, varchar, varchar, varchar&gt;) returns binary
+function try_decrypt(<binary, varchar, varchar, varchar>) returns binary
 ```
 decrypted binary string (return)
 
@@ -187,27 +187,27 @@ decrypted binary string (return)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_decrypt_raw)
 
 ```sql
-function try_decrypt_raw(&lt;binary, binary&gt;) returns binary
+function try_decrypt_raw(<binary, binary>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt_raw(&lt;binary, binary, binary&gt;) returns binary
+function try_decrypt_raw(<binary, binary, binary>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt_raw(&lt;binary, binary, binary, binary&gt;) returns binary
+function try_decrypt_raw(<binary, binary, binary, binary>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt_raw(&lt;binary, binary, binary, binary, varchar&gt;) returns binary
+function try_decrypt_raw(<binary, binary, binary, binary, varchar>) returns binary
 ```
 decrypted binary string (return)
 
 ```sql
-function try_decrypt_raw(&lt;binary, binary, binary, binary, varchar, binary&gt;) returns binary
+function try_decrypt_raw(<binary, binary, binary, binary, varchar, binary>) returns binary
 ```
 decrypted binary string (return)
 

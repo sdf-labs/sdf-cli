@@ -1,1 +1,1 @@
-create external table one stored as CSV location  'data/a.csv';
+create table one with (format='CSV', location='data/a.csv');

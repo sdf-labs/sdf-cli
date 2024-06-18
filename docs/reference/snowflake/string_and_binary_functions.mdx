@@ -7,7 +7,7 @@ title: "String & Binary Functions"
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/ascii)
 
 ```sql
-function ascii(&lt;varchar&gt;) returns decimal(38, 0)
+function ascii(<varchar>) returns decimal(38, 0)
 ```
 Returns the ascii code of the first character of the string
 
@@ -15,12 +15,12 @@ Returns the ascii code of the first character of the string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/base64_decode_binary)
 
 ```sql
-function base64_decode_binary(&lt;varchar&gt;) returns binary
+function base64_decode_binary(<varchar>) returns binary
 ```
 return decoded binary
 
 ```sql
-function base64_decode_binary(&lt;varchar, varchar&gt;) returns binary
+function base64_decode_binary(<varchar, varchar>) returns binary
 ```
 return decoded binary
 
@@ -28,12 +28,12 @@ return decoded binary
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/base64_decode_string)
 
 ```sql
-function base64_decode_string(&lt;varchar&gt;) returns varchar
+function base64_decode_string(<varchar>) returns varchar
 ```
 return decoded string
 
 ```sql
-function base64_decode_string(&lt;varchar, varchar&gt;) returns varchar
+function base64_decode_string(<varchar, varchar>) returns varchar
 ```
 return decoded string
 
@@ -41,32 +41,32 @@ return decoded string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/base64_encode)
 
 ```sql
-function base64_encode(&lt;varchar&gt;) returns varchar
+function base64_encode(<varchar>) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function base64_encode(<varchar, decimal(38, 0)>) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(&lt;varchar, decimal(38, 0), varchar&gt;) returns varchar
+function base64_encode(<varchar, decimal(38, 0), varchar>) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(&lt;binary&gt;) returns varchar
+function base64_encode(<binary>) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(&lt;binary, decimal(38, 0)&gt;) returns varchar
+function base64_encode(<binary, decimal(38, 0)>) returns varchar
 ```
 return encoded string
 
 ```sql
-function base64_encode(&lt;binary, decimal(38, 0), varchar&gt;) returns varchar
+function base64_encode(<binary, decimal(38, 0), varchar>) returns varchar
 ```
 return encoded string
 
@@ -74,12 +74,12 @@ return encoded string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bit_length)
 
 ```sql
-function bit_length(&lt;varchar&gt;) returns decimal(38, 0)
+function bit_length(<varchar>) returns decimal(38, 0)
 ```
 Returns the length of the object in bits
 
 ```sql
-function bit_length(&lt;binary&gt;) returns decimal(38, 0)
+function bit_length(<binary>) returns decimal(38, 0)
 ```
 Returns the length of the object in bits
 
@@ -87,7 +87,7 @@ Returns the length of the object in bits
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/char)
 
 ```sql
-function char(&lt;decimal(38, 0)&gt;) returns varchar
+function char(<decimal(38, 0)>) returns varchar
 ```
 Convert an ASCII or Unicode code into a single character
 
@@ -95,22 +95,22 @@ Convert an ASCII or Unicode code into a single character
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/charindex)
 
 ```sql
-function charindex(&lt;varchar, varchar&gt;) returns decimal(38, 0)
+function charindex(<varchar, varchar>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function charindex(&lt;varchar, varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
+function charindex(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function charindex(&lt;binary, binary&gt;) returns decimal(38, 0)
+function charindex(<binary, binary>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function charindex(&lt;binary, binary, decimal(38, 0)&gt;) returns decimal(38, 0)
+function charindex(<binary, binary, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
@@ -118,7 +118,7 @@ Returns the position of the needle in the haystack, optionally from a given inde
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/chr)
 
 ```sql
-function chr(&lt;decimal(38, 0)&gt;) returns varchar
+function chr(<decimal(38, 0)>) returns varchar
 ```
 Convert an ASCII or Unicode code into a single character
 
@@ -126,7 +126,7 @@ Convert an ASCII or Unicode code into a single character
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/collate)
 
 ```sql
-function collate(&lt;$1, string&gt;) returns $1
+function collate(<$1, string>) returns $1
 ```
 
 
@@ -134,7 +134,7 @@ function collate(&lt;$1, string&gt;) returns $1
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/collation)
 
 ```sql
-function collation(&lt;$1&gt;) returns string
+function collation(<$1>) returns string
 ```
 
 
@@ -142,12 +142,12 @@ function collation(&lt;$1&gt;) returns string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/compress)
 
 ```sql
-function compress(&lt;varchar, varchar&gt;) returns binary
+function compress(<varchar, varchar>) returns binary
 ```
 compressed data (return)
 
 ```sql
-function compress(&lt;binary, varchar&gt;) returns binary
+function compress(<binary, varchar>) returns binary
 ```
 compressed data (return)
 
@@ -181,12 +181,12 @@ Returns concatenation of the input strings with separator, or null if any one of
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/contains)
 
 ```sql
-function contains(&lt;varchar, varchar&gt;) returns boolean
+function contains(<varchar, varchar>) returns boolean
 ```
 returns TRUE if arg1 constains arg2
 
 ```sql
-function contains(&lt;binary, binary&gt;) returns boolean
+function contains(<binary, binary>) returns boolean
 ```
 returns TRUE if arg1 constains arg2
 
@@ -194,7 +194,7 @@ returns TRUE if arg1 constains arg2
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/decompress_binary)
 
 ```sql
-function decompress_binary(&lt;binary, varchar&gt;) returns binary
+function decompress_binary(<binary, varchar>) returns binary
 ```
 decompressed binary (return)
 
@@ -202,7 +202,7 @@ decompressed binary (return)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/decompress_string)
 
 ```sql
-function decompress_string(&lt;binary, varchar&gt;) returns varchar
+function decompress_string(<binary, varchar>) returns varchar
 ```
 decompressed string (return)
 
@@ -210,12 +210,12 @@ decompressed string (return)
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/editdistance)
 
 ```sql
-function editdistance(&lt;varchar, varchar&gt;) returns decimal(38, 0)
+function editdistance(<varchar, varchar>) returns decimal(38, 0)
 ```
 Returns the Levenshtein edit distance between two strings.
 
 ```sql
-function editdistance(&lt;varchar, varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
+function editdistance(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the Levenshtein edit distance between two strings.
 
@@ -223,12 +223,12 @@ Returns the Levenshtein edit distance between two strings.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/endswith)
 
 ```sql
-function endswith(&lt;varchar, varchar&gt;) returns boolean
+function endswith(<varchar, varchar>) returns boolean
 ```
 returns TRUE if arg1 ends with arg2
 
 ```sql
-function endswith(&lt;binary, binary&gt;) returns boolean
+function endswith(<binary, binary>) returns boolean
 ```
 returns TRUE if arg1 ends with arg2
 
@@ -236,7 +236,7 @@ returns TRUE if arg1 ends with arg2
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hex_decode_binary)
 
 ```sql
-function hex_decode_binary(&lt;varchar&gt;) returns binary
+function hex_decode_binary(<varchar>) returns binary
 ```
 return decoded binary
 
@@ -244,7 +244,7 @@ return decoded binary
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hex_decode_string)
 
 ```sql
-function hex_decode_string(&lt;varchar&gt;) returns varchar
+function hex_decode_string(<varchar>) returns varchar
 ```
 return decoded string
 
@@ -252,22 +252,22 @@ return decoded string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/hex_encode)
 
 ```sql
-function hex_encode(&lt;varchar&gt;) returns varchar
+function hex_encode(<varchar>) returns varchar
 ```
 return encoded string
 
 ```sql
-function hex_encode(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function hex_encode(<varchar, decimal(38, 0)>) returns varchar
 ```
 return encoded string
 
 ```sql
-function hex_encode(&lt;binary&gt;) returns varchar
+function hex_encode(<binary>) returns varchar
 ```
 return encoded string
 
 ```sql
-function hex_encode(&lt;binary, decimal(38, 0)&gt;) returns varchar
+function hex_encode(<binary, decimal(38, 0)>) returns varchar
 ```
 return encoded string
 
@@ -275,12 +275,12 @@ return encoded string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/initcap)
 
 ```sql
-function initcap(&lt;varchar&gt;) returns varchar
+function initcap(<varchar>) returns varchar
 ```
 return string with all the initial letter of each word is LOWERcase.
 
 ```sql
-function initcap(&lt;varchar, varchar&gt;) returns varchar
+function initcap(<varchar, varchar>) returns varchar
 ```
 return string with all the initial letter of each word is LOWERcase.
 
@@ -288,7 +288,7 @@ return string with all the initial letter of each word is LOWERcase.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/insert)
 
 ```sql
-function insert(&lt;varchar, decimal(38, 0), decimal(38, 0), varchar&gt;) returns varchar
+function insert(<varchar, decimal(38, 0), decimal(38, 0), varchar>) returns varchar
 ```
 Returns the first string with a substring at the given position and length replaced with the second string
 
@@ -296,7 +296,7 @@ Returns the first string with a substring at the given position and length repla
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/jarowinkler_similarity)
 
 ```sql
-function jarowinkler_similarity(&lt;varchar, varchar&gt;) returns decimal(38, 0)
+function jarowinkler_similarity(<varchar, varchar>) returns decimal(38, 0)
 ```
 Returns the Jaro-Winkler similarity metric between two strings.
 
@@ -304,7 +304,7 @@ Returns the Jaro-Winkler similarity metric between two strings.
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/left)
 
 ```sql
-function left(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function left(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns leftmost N characters of the input string
 
@@ -312,12 +312,12 @@ Returns leftmost N characters of the input string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/len)
 
 ```sql
-function len(&lt;varchar&gt;) returns decimal(38, 0)
+function len(<varchar>) returns decimal(38, 0)
 ```
 Returns length of string
 
 ```sql
-function len(&lt;binary&gt;) returns decimal(38, 0)
+function len(<binary>) returns decimal(38, 0)
 ```
 Returns length of binary input
 
@@ -325,12 +325,12 @@ Returns length of binary input
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/length)
 
 ```sql
-function length(&lt;varchar&gt;) returns decimal(38, 0)
+function length(<varchar>) returns decimal(38, 0)
 ```
 Returns the length of the string
 
 ```sql
-function length(&lt;binary&gt;) returns decimal(38, 0)
+function length(<binary>) returns decimal(38, 0)
 ```
 Returns the length of the string
 
@@ -338,7 +338,7 @@ Returns the length of the string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/lower)
 
 ```sql
-function lower(&lt;varchar&gt;) returns varchar
+function lower(<varchar>) returns varchar
 ```
 return string with all characters in lowercase
 
@@ -346,17 +346,17 @@ return string with all characters in lowercase
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/lpad)
 
 ```sql
-function lpad(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function lpad(<varchar, decimal(38, 0)>) returns varchar
 ```
 padded result string
 
 ```sql
-function lpad(&lt;varchar, decimal(38, 0), varchar&gt;) returns varchar
+function lpad(<varchar, decimal(38, 0), varchar>) returns varchar
 ```
 padded result string
 
 ```sql
-function lpad(&lt;binary, decimal(38, 0), binary&gt;) returns binary
+function lpad(<binary, decimal(38, 0), binary>) returns binary
 ```
 padded result string
 
@@ -364,12 +364,12 @@ padded result string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/ltrim)
 
 ```sql
-function ltrim(&lt;varchar&gt;) returns varchar
+function ltrim(<varchar>) returns varchar
 ```
 return string trimmed from left
 
 ```sql
-function ltrim(&lt;varchar, varchar&gt;) returns varchar
+function ltrim(<varchar, varchar>) returns varchar
 ```
 return string trimmed from left
 
@@ -377,12 +377,12 @@ return string trimmed from left
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/md5)
 
 ```sql
-function md5(&lt;varchar&gt;) returns varchar
+function md5(<varchar>) returns varchar
 ```
 Hex-encoded MD5 digest
 
 ```sql
-function md5(&lt;binary&gt;) returns varchar
+function md5(<binary>) returns varchar
 ```
 Hex-encoded MD5 digest
 
@@ -390,12 +390,12 @@ Hex-encoded MD5 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/md5_binary)
 
 ```sql
-function md5_binary(&lt;varchar&gt;) returns binary
+function md5_binary(<varchar>) returns binary
 ```
 Binary MD5 digest
 
 ```sql
-function md5_binary(&lt;binary&gt;) returns binary
+function md5_binary(<binary>) returns binary
 ```
 Binary MD5 digest
 
@@ -403,12 +403,12 @@ Binary MD5 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/md5_hex)
 
 ```sql
-function md5_hex(&lt;varchar&gt;) returns varchar
+function md5_hex(<varchar>) returns varchar
 ```
 Hex-encoded MD5 digest
 
 ```sql
-function md5_hex(&lt;binary&gt;) returns varchar
+function md5_hex(<binary>) returns varchar
 ```
 Hex-encoded MD5 digest
 
@@ -416,7 +416,7 @@ Hex-encoded MD5 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/md5_number_lower64)
 
 ```sql
-function md5_number_lower64(&lt;string&gt;) returns binary
+function md5_number_lower64(<string>) returns binary
 ```
 
 
@@ -424,7 +424,7 @@ function md5_number_lower64(&lt;string&gt;) returns binary
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/md5_number_upper64)
 
 ```sql
-function md5_number_upper64(&lt;string&gt;) returns binary
+function md5_number_upper64(<string>) returns binary
 ```
 
 
@@ -432,12 +432,12 @@ function md5_number_upper64(&lt;string&gt;) returns binary
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/octet_length)
 
 ```sql
-function octet_length(&lt;varchar&gt;) returns decimal(38, 0)
+function octet_length(<varchar>) returns decimal(38, 0)
 ```
 Returns the length of the string in bytes
 
 ```sql
-function octet_length(&lt;binary&gt;) returns decimal(38, 0)
+function octet_length(<binary>) returns decimal(38, 0)
 ```
 Returns the length of the string in bytes
 
@@ -445,12 +445,12 @@ Returns the length of the string in bytes
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/parse_ip)
 
 ```sql
-function parse_ip(&lt;varchar, varchar&gt;) returns object
+function parse_ip(<varchar, varchar>) returns object
 ```
 Returns an object with all the components of the IP
 
 ```sql
-function parse_ip(&lt;varchar, varchar, decimal(38, 0)&gt;) returns object
+function parse_ip(<varchar, varchar, decimal(38, 0)>) returns object
 ```
 Returns an object with all the components of the IP
 
@@ -458,12 +458,12 @@ Returns an object with all the components of the IP
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/parse_url)
 
 ```sql
-function parse_url(&lt;varchar&gt;) returns object
+function parse_url(<varchar>) returns object
 ```
 Returns an object with all the components of the URL
 
 ```sql
-function parse_url(&lt;varchar, decimal(38, 0)&gt;) returns object
+function parse_url(<varchar, decimal(38, 0)>) returns object
 ```
 Returns an object with all the components of the URL
 
@@ -471,22 +471,22 @@ Returns an object with all the components of the URL
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/position)
 
 ```sql
-function position(&lt;varchar, varchar&gt;) returns decimal(38, 0)
+function position(<varchar, varchar>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function position(&lt;varchar, varchar, decimal(38, 0)&gt;) returns decimal(38, 0)
+function position(<varchar, varchar, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function position(&lt;binary, binary&gt;) returns decimal(38, 0)
+function position(<binary, binary>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
 ```sql
-function position(&lt;binary, binary, decimal(38, 0)&gt;) returns decimal(38, 0)
+function position(<binary, binary, decimal(38, 0)>) returns decimal(38, 0)
 ```
 Returns the position of the needle in the haystack, optionally from a given index
 
@@ -494,7 +494,7 @@ Returns the position of the needle in the haystack, optionally from a given inde
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/repeat)
 
 ```sql
-function repeat(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function repeat(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns the input string repeated N times
 
@@ -502,12 +502,12 @@ Returns the input string repeated N times
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replace)
 
 ```sql
-function replace(&lt;varchar, varchar&gt;) returns varchar
+function replace(<varchar, varchar>) returns varchar
 ```
 replaces all occurrences of searched substring in subject with a replacement
 
 ```sql
-function replace(&lt;varchar, varchar, varchar&gt;) returns varchar
+function replace(<varchar, varchar, varchar>) returns varchar
 ```
 replaces all occurrences of searched substring in subject with a replacement
 
@@ -515,12 +515,12 @@ replaces all occurrences of searched substring in subject with a replacement
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/reverse)
 
 ```sql
-function reverse(&lt;varchar&gt;) returns varchar
+function reverse(<varchar>) returns varchar
 ```
 return string with character order reversed
 
 ```sql
-function reverse(&lt;binary&gt;) returns binary
+function reverse(<binary>) returns binary
 ```
 return string with character order reversed
 
@@ -528,7 +528,7 @@ return string with character order reversed
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/right)
 
 ```sql
-function right(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function right(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns rightmost N characters of the input string
 
@@ -536,17 +536,17 @@ Returns rightmost N characters of the input string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/rpad)
 
 ```sql
-function rpad(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function rpad(<varchar, decimal(38, 0)>) returns varchar
 ```
 padded result string
 
 ```sql
-function rpad(&lt;varchar, decimal(38, 0), varchar&gt;) returns varchar
+function rpad(<varchar, decimal(38, 0), varchar>) returns varchar
 ```
 padded result string
 
 ```sql
-function rpad(&lt;binary, decimal(38, 0), binary&gt;) returns binary
+function rpad(<binary, decimal(38, 0), binary>) returns binary
 ```
 padded result string
 
@@ -554,12 +554,12 @@ padded result string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/rtrim)
 
 ```sql
-function rtrim(&lt;varchar&gt;) returns varchar
+function rtrim(<varchar>) returns varchar
 ```
 return string trimmed from right
 
 ```sql
-function rtrim(&lt;varchar, varchar&gt;) returns varchar
+function rtrim(<varchar, varchar>) returns varchar
 ```
 return string trimmed from right
 
@@ -567,7 +567,7 @@ return string trimmed from right
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/rtrimmed_length)
 
 ```sql
-function rtrimmed_length(&lt;varchar&gt;) returns varchar
+function rtrimmed_length(<varchar>) returns varchar
 ```
 Returns the length of the input string without trailing blanks
 
@@ -575,12 +575,12 @@ Returns the length of the input string without trailing blanks
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sha1)
 
 ```sql
-function sha1(&lt;varchar&gt;) returns varchar
+function sha1(<varchar>) returns varchar
 ```
 Hex-encoded SHA1 digest
 
 ```sql
-function sha1(&lt;binary&gt;) returns varchar
+function sha1(<binary>) returns varchar
 ```
 Hex-encoded SHA1 digest
 
@@ -588,12 +588,12 @@ Hex-encoded SHA1 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sha1_binary)
 
 ```sql
-function sha1_binary(&lt;varchar&gt;) returns binary
+function sha1_binary(<varchar>) returns binary
 ```
 Binary SHA1 digest
 
 ```sql
-function sha1_binary(&lt;binary&gt;) returns binary
+function sha1_binary(<binary>) returns binary
 ```
 Binary SHA1 digest
 
@@ -601,12 +601,12 @@ Binary SHA1 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sha1_hex)
 
 ```sql
-function sha1_hex(&lt;varchar&gt;) returns varchar
+function sha1_hex(<varchar>) returns varchar
 ```
 Hex-encoded SHA1 digest
 
 ```sql
-function sha1_hex(&lt;binary&gt;) returns varchar
+function sha1_hex(<binary>) returns varchar
 ```
 Hex-encoded SHA1 digest
 
@@ -614,22 +614,22 @@ Hex-encoded SHA1 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sha2)
 
 ```sql
-function sha2(&lt;varchar&gt;) returns varchar
+function sha2(<varchar>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function sha2(<varchar, decimal(38, 0)>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2(&lt;binary&gt;) returns varchar
+function sha2(<binary>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2(&lt;binary, decimal(38, 0)&gt;) returns varchar
+function sha2(<binary, decimal(38, 0)>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
@@ -637,22 +637,22 @@ Hex-encoded SHA2 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sha2_binary)
 
 ```sql
-function sha2_binary(&lt;varchar&gt;) returns binary
+function sha2_binary(<varchar>) returns binary
 ```
 Binary SHA2 digest
 
 ```sql
-function sha2_binary(&lt;varchar, decimal(38, 0)&gt;) returns binary
+function sha2_binary(<varchar, decimal(38, 0)>) returns binary
 ```
 Binary SHA2 digest
 
 ```sql
-function sha2_binary(&lt;binary&gt;) returns binary
+function sha2_binary(<binary>) returns binary
 ```
 Binary SHA2 digest
 
 ```sql
-function sha2_binary(&lt;binary, decimal(38, 0)&gt;) returns binary
+function sha2_binary(<binary, decimal(38, 0)>) returns binary
 ```
 Binary SHA2 digest
 
@@ -660,22 +660,22 @@ Binary SHA2 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sha2_hex)
 
 ```sql
-function sha2_hex(&lt;varchar&gt;) returns varchar
+function sha2_hex(<varchar>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2_hex(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function sha2_hex(<varchar, decimal(38, 0)>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2_hex(&lt;binary&gt;) returns varchar
+function sha2_hex(<binary>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
 ```sql
-function sha2_hex(&lt;binary, decimal(38, 0)&gt;) returns varchar
+function sha2_hex(<binary, decimal(38, 0)>) returns varchar
 ```
 Hex-encoded SHA2 digest
 
@@ -683,7 +683,7 @@ Hex-encoded SHA2 digest
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/soundex)
 
 ```sql
-function soundex(&lt;varchar&gt;) returns varchar
+function soundex(<varchar>) returns varchar
 ```
 soundex encoding of string
 
@@ -691,7 +691,7 @@ soundex encoding of string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/soundex_p123)
 
 ```sql
-function soundex_p123(&lt;varchar&gt;) returns varchar
+function soundex_p123(<varchar>) returns varchar
 ```
 soundex_p123 encoding of string
 
@@ -699,7 +699,7 @@ soundex_p123 encoding of string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/space)
 
 ```sql
-function space(&lt;decimal(38, 0)&gt;) returns varchar
+function space(<decimal(38, 0)>) returns varchar
 ```
 N spaces
 
@@ -707,7 +707,7 @@ N spaces
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/split)
 
 ```sql
-function split(&lt;varchar, varchar&gt;) returns array
+function split(<varchar, varchar>) returns array
 ```
 return split string as array
 
@@ -715,7 +715,7 @@ return split string as array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/split_part)
 
 ```sql
-function split_part(&lt;varchar, varchar, decimal(38, 0)&gt;) returns varchar
+function split_part(<varchar, varchar, decimal(38, 0)>) returns varchar
 ```
 Splits a string with a delimiter and returns the requested part
 
@@ -723,7 +723,7 @@ Splits a string with a delimiter and returns the requested part
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/split_to_table)
 
 ```sql
-function split_to_table(&lt;string, string&gt;) returns struct&lt;seq int, index int, value string&gt;
+function split_to_table(<string, string>) returns struct<seq int, index int, value string>
 ```
 
 
@@ -731,12 +731,12 @@ function split_to_table(&lt;string, string&gt;) returns struct&lt;seq int, index
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/startswith)
 
 ```sql
-function startswith(&lt;varchar, varchar&gt;) returns boolean
+function startswith(<varchar, varchar>) returns boolean
 ```
 returns TRUE if arg1 starts with arg2
 
 ```sql
-function startswith(&lt;binary, binary&gt;) returns boolean
+function startswith(<binary, binary>) returns boolean
 ```
 returns TRUE if arg1 starts with arg2
 
@@ -744,17 +744,17 @@ returns TRUE if arg1 starts with arg2
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/strtok)
 
 ```sql
-function strtok(&lt;varchar&gt;) returns varchar
+function strtok(<varchar>) returns varchar
 ```
 Tokenizes a string with a delimiter and returns the requested part
 
 ```sql
-function strtok(&lt;varchar, varchar&gt;) returns varchar
+function strtok(<varchar, varchar>) returns varchar
 ```
 Tokenizes a string with a delimiter and returns the requested part
 
 ```sql
-function strtok(&lt;varchar, varchar, decimal(38, 0)&gt;) returns varchar
+function strtok(<varchar, varchar, decimal(38, 0)>) returns varchar
 ```
 Tokenizes a string with a delimiter and returns the requested part
 
@@ -762,7 +762,7 @@ Tokenizes a string with a delimiter and returns the requested part
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/strtok_split_to_table)
 
 ```sql
-function strtok_split_to_table(string, ...) returns struct&lt;seq int, index int, value string&gt;
+function strtok_split_to_table(string, ...) returns struct<seq int, index int, value string>
 ```
 
 
@@ -770,12 +770,12 @@ function strtok_split_to_table(string, ...) returns struct&lt;seq int, index int
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/strtok_to_array)
 
 ```sql
-function strtok_to_array(&lt;varchar&gt;) returns array
+function strtok_to_array(<varchar>) returns array
 ```
 Return tokenized string as array
 
 ```sql
-function strtok_to_array(&lt;varchar, varchar&gt;) returns array
+function strtok_to_array(<varchar, varchar>) returns array
 ```
 Return tokenized string as array
 
@@ -783,22 +783,22 @@ Return tokenized string as array
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/substr)
 
 ```sql
-function substr(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function substr(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns string fragment of the input string
 
 ```sql
-function substr(&lt;varchar, decimal(38, 0), decimal(38, 0)&gt;) returns varchar
+function substr(<varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
 ```
 Returns string fragment of the input string
 
 ```sql
-function substr(&lt;binary, decimal(38, 0)&gt;) returns binary
+function substr(<binary, decimal(38, 0)>) returns binary
 ```
 Returns string fragment of the input string
 
 ```sql
-function substr(&lt;binary, decimal(38, 0), decimal(38, 0)&gt;) returns binary
+function substr(<binary, decimal(38, 0), decimal(38, 0)>) returns binary
 ```
 Returns string fragment of the input string
 
@@ -806,22 +806,22 @@ Returns string fragment of the input string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/substring)
 
 ```sql
-function substring(&lt;varchar, decimal(38, 0)&gt;) returns varchar
+function substring(<varchar, decimal(38, 0)>) returns varchar
 ```
 Returns string fragment of the input string
 
 ```sql
-function substring(&lt;varchar, decimal(38, 0), decimal(38, 0)&gt;) returns varchar
+function substring(<varchar, decimal(38, 0), decimal(38, 0)>) returns varchar
 ```
 Returns string fragment of the input string
 
 ```sql
-function substring(&lt;binary, decimal(38, 0)&gt;) returns binary
+function substring(<binary, decimal(38, 0)>) returns binary
 ```
 Returns string fragment of the input string
 
 ```sql
-function substring(&lt;binary, decimal(38, 0), decimal(38, 0)&gt;) returns binary
+function substring(<binary, decimal(38, 0), decimal(38, 0)>) returns binary
 ```
 Returns string fragment of the input string
 
@@ -829,7 +829,7 @@ Returns string fragment of the input string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/translate)
 
 ```sql
-function translate(&lt;varchar, varchar, varchar&gt;) returns varchar
+function translate(<varchar, varchar, varchar>) returns varchar
 ```
 replaces all occurences of each character of the source alphabet in the subject with the corresponding character in the target alphabet
 
@@ -837,12 +837,12 @@ replaces all occurences of each character of the source alphabet in the subject 
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/trim)
 
 ```sql
-function trim(&lt;varchar&gt;) returns varchar
+function trim(<varchar>) returns varchar
 ```
 return string trimmed from both sides
 
 ```sql
-function trim(&lt;varchar, varchar&gt;) returns varchar
+function trim(<varchar, varchar>) returns varchar
 ```
 return string trimmed from both sides
 
@@ -850,12 +850,12 @@ return string trimmed from both sides
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_base64_decode_binary)
 
 ```sql
-function try_base64_decode_binary(&lt;varchar&gt;) returns binary
+function try_base64_decode_binary(<varchar>) returns binary
 ```
 return decoded binary
 
 ```sql
-function try_base64_decode_binary(&lt;varchar, varchar&gt;) returns binary
+function try_base64_decode_binary(<varchar, varchar>) returns binary
 ```
 return decoded binary
 
@@ -863,12 +863,12 @@ return decoded binary
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_base64_decode_string)
 
 ```sql
-function try_base64_decode_string(&lt;varchar&gt;) returns varchar
+function try_base64_decode_string(<varchar>) returns varchar
 ```
 return decoded string
 
 ```sql
-function try_base64_decode_string(&lt;varchar, varchar&gt;) returns varchar
+function try_base64_decode_string(<varchar, varchar>) returns varchar
 ```
 return decoded string
 
@@ -876,7 +876,7 @@ return decoded string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_hex_decode_binary)
 
 ```sql
-function try_hex_decode_binary(&lt;varchar&gt;) returns binary
+function try_hex_decode_binary(<varchar>) returns binary
 ```
 return decoded binary
 
@@ -884,7 +884,7 @@ return decoded binary
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_hex_decode_string)
 
 ```sql
-function try_hex_decode_string(&lt;varchar&gt;) returns varchar
+function try_hex_decode_string(<varchar>) returns varchar
 ```
 return decoded string
 
@@ -892,7 +892,7 @@ return decoded string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/unicode)
 
 ```sql
-function unicode(&lt;varchar&gt;) returns decimal(38, 0)
+function unicode(<varchar>) returns decimal(38, 0)
 ```
 Returns the Unicode code point of the first character of the string
 
@@ -900,7 +900,7 @@ Returns the Unicode code point of the first character of the string
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/upper)
 
 ```sql
-function upper(&lt;varchar&gt;) returns varchar
+function upper(<varchar>) returns varchar
 ```
 return string with all characters in uppercase
 
@@ -908,12 +908,12 @@ return string with all characters in uppercase
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/uuid_string)
 
 ```sql
-function uuid_string(&lt;&gt;) returns varchar
+function uuid_string(<>) returns varchar
 ```
 Returns a pseudo-randomly generated (version 4) UUID.
 
 ```sql
-function uuid_string(&lt;varchar, varchar&gt;) returns varchar
+function uuid_string(<varchar, varchar>) returns varchar
 ```
 Returns a pseudo-randomly generated (version 4) UUID.
 

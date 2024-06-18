@@ -1,1 +1,1 @@
-CREATE EXTERNAL TABLE partsupp STORED AS PARQUET LOCATION 'tpch_pd_scale_10/partsupp/';
+CREATE TABLE partsupp with (format='PARQUET', LOCATION='tpch_pd_scale_10/partsupp/');

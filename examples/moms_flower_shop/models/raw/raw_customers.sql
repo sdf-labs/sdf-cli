@@ -1,1 +1,2 @@
-CREATE EXTERNAL TABLE raw_customers stored AS PARQUET LOCATION  'seeds/parquet/customers.parquet';
+CREATE TABLE raw_customers 
+WITH (FORMAT='PARQUET', LOCATION='seeds/parquet/customers.parquet');

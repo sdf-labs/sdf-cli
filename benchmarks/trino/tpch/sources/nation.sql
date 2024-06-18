@@ -1,1 +1,1 @@
-CREATE EXTERNAL TABLE nation STORED AS PARQUET LOCATION 'tpch_pd_scale_10/nation/';
+CREATE TABLE nation with (format='PARQUET', LOCATION='tpch_pd_scale_10/nation/');
