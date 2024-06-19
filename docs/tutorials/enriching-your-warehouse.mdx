@@ -154,7 +154,6 @@ Schema moms_flower_shop.pub.dim_marketing_campaigns
 
 Schema moms_flower_shop.pub.app_installs
        This table is a staging table which adds campaign information to app install events
-
        [TABLE_STATUS.deprecated]
 ┌───────────────┬──────────────┬─────────────────────────────┬─────────────┐
 │ column_name   ┆ data_type    ┆ classifier                  ┆ description │
@@ -200,11 +199,11 @@ Schema moms_flower_shop.pub.app_installs
 <pre style={{ fontFamily: 'monospace' }} className='language-error'>
 <code className='language-error'>
 [Fail] Check moms_flower_shop.pub.mixed_event_ids
-+--------------+-------------+--------------------------------+
-| table_name   | column name | classifiers                    |
-+--------------+-------------+--------------------------------+
-| app_installs | event_id    | [EVENT.inapp, EVENT.marketing] |
-+--------------+-------------+--------------------------------+
+┌──────────────┬─────────────┬────────────────────────────────┐
+│ table_name   ┆ column name ┆ classifiers                    │
+╞══════════════╪═════════════╪════════════════════════════════╡
+│ app_installs ┆ event_id    ┆ [EVENT.inapp, EVENT.marketing] │
+└──────────────┴─────────────┴────────────────────────────────┘
 1 rows.
 
 </code>
@@ -341,7 +340,6 @@ Schema moms_flower_shop.pub.customers
 
 Schema moms_flower_shop.pub.raw_addresses
        All relevant information related to street addresses known to mom&#39;s flower shop.  This information comes from the user input into the mobile app.
-
        [RETENTION.d7]
 ┌───────────────┬───────────┬────────────┬──────────────────────────────────────────────────────────┐
 │ column_name   ┆ data_type ┆ classifier ┆ description                                              │

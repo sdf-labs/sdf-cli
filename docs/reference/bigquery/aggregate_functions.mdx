@@ -3,217 +3,209 @@ title: "Aggregate Functions"
 ---
 
 ## `any_value`
+
+#### Supported Signatures
+```sql
+function any_value($1) returns $1
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#any_value)
 
-```sql
-function any_value(<$1>) returns $1
-```
-
-
 ## `array_agg`
+
+#### Supported Signatures
+```sql
+function array_agg($1) returns array<$1>
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_agg)
 
-```sql
-function array_agg(<$1>) returns array<$1>
-```
-
-
 ## `array_avg`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_avg)
 
+#### Supported Signatures
 ```sql
-function array_avg<$1> (<array<$1>>) returns double
+function array_avg $1(array<$1>) returns double
 	where $1 in (int, bigint, float, double)
 ```
-
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_avg)
 
 ## `array_concat_agg`
+
+#### Supported Signatures
+```sql
+function array_concat_agg(array<$1>) returns array<$1>
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_concat_agg)
 
-```sql
-function array_concat_agg(<array<$1>>) returns array<$1>
-```
-
-
 ## `avg`
+
+#### Supported Signatures
+```sql
+function avg $1($1) returns $1
+	where $1 in (double, interval)
+function avg(bigint) returns double
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#avg)
 
-```sql
-function avg<$1> (<$1>) returns $1
-	where $1 in (double, interval)
-```
-
-
-```sql
-function avg(<bigint>) returns double
-```
-
-
 ## `bit_and`
+
+#### Supported Signatures
+```sql
+function bit_and(bigint) returns bigint
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#bit_and)
 
-```sql
-function bit_and(<bigint>) returns bigint
-```
-
-
 ## `bit_or`
+
+#### Supported Signatures
+```sql
+function bit_or(bigint) returns bigint
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#bit_or)
 
-```sql
-function bit_or(<bigint>) returns bigint
-```
-
-
 ## `bit_xor`
+
+#### Supported Signatures
+```sql
+function bit_xor(bigint) returns bigint
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#bit_xor)
 
-```sql
-function bit_xor(<bigint>) returns bigint
-```
-
-
 ## `corr`
+
+#### Supported Signatures
+```sql
+function corr(float64, float64) returns float64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#corr)
 
-```sql
-function corr(<float64, float64>) returns float64
-```
-
-
 ## `count`
+
+#### Supported Signatures
+```sql
+function count($1) returns bigint
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#count)
 
-```sql
-function count(<$1>) returns bigint
-```
-
-
 ## `countif`
+
+#### Supported Signatures
+```sql
+function countif(bool) returns bigint
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#countif)
 
-```sql
-function countif(<bool>) returns bigint
-```
-
-
 ## `covar_pop`
+
+#### Supported Signatures
+```sql
+function covar_pop(float64, float64) returns float64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#covar_pop)
 
-```sql
-function covar_pop(<float64, float64>) returns float64
-```
-
-
 ## `covar_samp`
+
+#### Supported Signatures
+```sql
+function covar_samp(float64, float64) returns float64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#covar_samp)
 
-```sql
-function covar_samp(<float64, float64>) returns float64
-```
-
-
 ## `logical_and`
+
+#### Supported Signatures
+```sql
+function logical_and(bool) returns bool
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#logical_and)
 
-```sql
-function logical_and(<bool>) returns bool
-```
-
-
 ## `logical_or`
+
+#### Supported Signatures
+```sql
+function logical_or(bool) returns bool
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#logical_or)
 
-```sql
-function logical_or(<bool>) returns bool
-```
-
-
 ## `max`
+
+#### Supported Signatures
+```sql
+function max($1) returns $1
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#max)
 
-```sql
-function max(<$1>) returns $1
-```
-
-
 ## `max_by`
+
+#### Supported Signatures
+```sql
+function max_by($1, $2) returns $1
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#max_by)
 
-```sql
-function max_by(<$1, $2>) returns $1
-```
-
-
 ## `min`
+
+#### Supported Signatures
+```sql
+function min($1) returns $1
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#min)
 
-```sql
-function min(<$1>) returns $1
-```
-
-
 ## `min_by`
+
+#### Supported Signatures
+```sql
+function min_by($1, $2) returns $1
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#min_by)
 
-```sql
-function min_by(<$1, $2>) returns $1
-```
-
-
 ## `stddev_pop`
+
+#### Supported Signatures
+```sql
+function stddev_pop(float64) returns float64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#stddev_pop)
 
-```sql
-function stddev_pop(<float64>) returns float64
-```
-
-
 ## `stddev_samp`
+
+#### Supported Signatures
+```sql
+function stddev_samp(float64) returns float64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#stddev_samp)
 
-```sql
-function stddev_samp(<float64>) returns float64
-```
-
-
 ## `string_agg`
+
+#### Supported Signatures
+```sql
+function string_agg $1($1) returns $1
+	where $1 in (string, bytes)
+function string_agg $1($1, $1) returns $1
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#string_agg)
 
-```sql
-function string_agg<$1> (<$1>) returns $1
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function string_agg<$1> (<$1, $1>) returns $1
-	where $1 in (string, bytes)
-```
-
-
 ## `sum`
+
+#### Supported Signatures
+```sql
+function sum($1) returns $1
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sum)
 
-```sql
-function sum(<$1>) returns $1
-```
-
-
 ## `var_pop`
+
+#### Supported Signatures
+```sql
+function var_pop(float64) returns float64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#var_pop)
 
-```sql
-function var_pop(<float64>) returns float64
-```
-
-
 ## `var_samp`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#var_samp)
 
+#### Supported Signatures
 ```sql
-function var_samp(<float64>) returns float64
+function var_samp(float64) returns float64
 ```
-
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#var_samp)
 
 

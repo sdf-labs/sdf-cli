@@ -4,481 +4,465 @@ title: "System Functions"
 
 
 ## `get_query_operator_stats`
+
+#### Supported Signatures
+```sql
+function get_query_operator_stats(string) returns struct<query_id string, step_id bigint, operator_id bigint, parent_operators array, operator_type string, operator_statistics variant, execution_time_breakdown variant, operator_attributes variant>
+
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get_query_operator_stats)
 
-```sql
-function get_query_operator_stats(<string>) returns struct<query_id string, step_id bigint, operator_id bigint, parent_operators array, operator_type string, operator_statistics variant, execution_time_breakdown variant, operator_attributes variant>
-
-```
-
-
 ## `system$abort_session`
+
+#### Description
+Abort the specified open session
+#### Supported Signatures
+```sql
+function system$abort_session(decimal(38, 0)) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$abort_session)
 
-```sql
-function system$abort_session(<decimal(38, 0)>) returns varchar
-```
-Abort the specified open session
-
 ## `system$abort_transaction`
+
+#### Description
+Abort the specified transaction if it is running. If the transaction is already is committed/rolled back then the state of the transaction is not altered.
+#### Supported Signatures
+```sql
+function system$abort_transaction(decimal(38, 0)) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$abort_transaction)
 
-```sql
-function system$abort_transaction(<decimal(38, 0)>) returns varchar
-```
-Abort the specified transaction if it is running. If the transaction is already is committed/rolled back then the state of the transaction is not altered.
-
 ## `system$behavior_change_bundle_status`
+
+#### Description
+returned value
+#### Supported Signatures
+```sql
+function system$behavior_change_bundle_status(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$behavior_change_bundle_status)
 
-```sql
-function system$behavior_change_bundle_status(<varchar>) returns varchar
-```
-returned value
-
 ## `system$cancel_all_queries`
+
+#### Description
+cancel all the queries running in the specified session
+#### Supported Signatures
+```sql
+function system$cancel_all_queries() returns varchar
+function system$cancel_all_queries(decimal(38, 0)) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$cancel_all_queries)
 
-```sql
-function system$cancel_all_queries(<>) returns varchar
-```
-cancel all the queries running in the specified session
-
-```sql
-function system$cancel_all_queries(<decimal(38, 0)>) returns varchar
-```
-cancel all the queries running in the specified session
-
 ## `system$cancel_query`
+
+#### Description
+cancel the specified running query
+#### Supported Signatures
+```sql
+function system$cancel_query(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$cancel_query)
 
-```sql
-function system$cancel_query(<varchar>) returns varchar
-```
-cancel the specified running query
-
 ## `system$clustering_depth`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$clustering_depth)
 
+#### Description
+Average depth of the table
+#### Supported Signatures
 ```sql
 function system$clustering_depth(varchar, ...) returns double
-```
-Average depth of the table
-
-```sql
 function system$clustering_depth(varchar, varchar, ...) returns double
-```
-Average depth of the table
-
-```sql
 function system$clustering_depth(varchar, varchar, varchar, ...) returns double
 ```
-Average depth of the table
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$clustering_depth)
 
 ## `system$clustering_information`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$clustering_information)
 
+#### Description
+returns clustering information as json
+#### Supported Signatures
 ```sql
 function system$clustering_information(varchar, ...) returns varchar
-```
-returns clustering information as json
-
-```sql
 function system$clustering_information(varchar, varchar, ...) returns varchar
-```
-returns clustering information as json
-
-```sql
 function system$clustering_information(varchar, varchar, varchar, ...) returns varchar
-```
-returns clustering information as json
-
-```sql
 function system$clustering_information(varchar, ...) returns varchar
-```
-returns clustering information as json
-
-```sql
 function system$clustering_information(varchar, decimal(38, 0), ...) returns varchar
 ```
-returns clustering information as json
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$clustering_information)
 
 ## `system$convert_pipes_sqs_to_sns`
+
+#### Description
+returns true if all SQS pipes' metadata based on this bucket are successfully converted to new SNS topic-based pipes.
+#### Supported Signatures
+```sql
+function system$convert_pipes_sqs_to_sns(varchar, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$convert_pipes_sqs_to_sns)
 
-```sql
-function system$convert_pipes_sqs_to_sns(<varchar, varchar>) returns varchar
-```
-returns true if all SQS pipes' metadata based on this bucket are successfully converted to new SNS topic-based pipes.
-
 ## `system$disable_database_replication`
+
+#### Description
+Returns success/fail message of the operation
+#### Supported Signatures
+```sql
+function system$disable_database_replication(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$disable_database_replication)
 
-```sql
-function system$disable_database_replication(<varchar>) returns varchar
-```
-Returns success/fail message of the operation
-
 ## `system$estimate_query_acceleration`
+
+#### Description
+estimate query acceleration result
+#### Supported Signatures
+```sql
+function system$estimate_query_acceleration(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$estimate_query_acceleration)
 
-```sql
-function system$estimate_query_acceleration(<varchar>) returns varchar
-```
-estimate query acceleration result
-
 ## `system$estimate_search_optimization_costs`
+
+#### Description
+result: the cost report result for search optimization on the given table
+#### Supported Signatures
+```sql
+function system$estimate_search_optimization_costs(varchar) returns varchar
+function system$estimate_search_optimization_costs(varchar, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$estimate_search_optimization_costs)
 
-```sql
-function system$estimate_search_optimization_costs(<varchar>) returns varchar
-```
-result: the cost report result for search optimization on the given table
-
-```sql
-function system$estimate_search_optimization_costs(<varchar, varchar>) returns varchar
-```
-result: the cost report result for search optimization on the given table
-
 ## `system$explain_json_to_text`
+
+#### Description
+text format explain plan from json
+#### Supported Signatures
+```sql
+function system$explain_json_to_text(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$explain_json_to_text)
 
-```sql
-function system$explain_json_to_text(<varchar>) returns varchar
-```
-text format explain plan from json
-
 ## `system$explain_plan_json`
+
+#### Description
+json of the explain plan result
+#### Supported Signatures
+```sql
+function system$explain_plan_json(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$explain_plan_json)
 
-```sql
-function system$explain_plan_json(<varchar>) returns varchar
-```
-json of the explain plan result
-
 ## `system$external_table_pipe_status`
+
+#### Description
+returns pipe status as json
+#### Supported Signatures
+```sql
+function system$external_table_pipe_status(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$external_table_pipe_status)
 
-```sql
-function system$external_table_pipe_status(<varchar>) returns varchar
-```
-returns pipe status as json
-
 ## `system$generate_saml_csr`
+
+#### Description
+returns the result of the operation.
+#### Supported Signatures
+```sql
+function system$generate_saml_csr() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$generate_saml_csr)
 
-```sql
-function system$generate_saml_csr(<>) returns varchar
-```
-returns the result of the operation.
-
 ## `system$get_aws_sns_iam_policy`
+
+#### Description
+returns IAM policy for the SNS topic
+#### Supported Signatures
+```sql
+function system$get_aws_sns_iam_policy(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_aws_sns_iam_policy)
 
-```sql
-function system$get_aws_sns_iam_policy(<varchar>) returns varchar
-```
-returns IAM policy for the SNS topic
-
 ## `system$get_directory_table_status`
+
+#### Description
+returns the associated directory table status
+#### Supported Signatures
+```sql
+function system$get_directory_table_status() returns varchar
+function system$get_directory_table_status(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_directory_table_status)
 
-```sql
-function system$get_directory_table_status(<>) returns varchar
-```
-returns the associated directory table status
-
-```sql
-function system$get_directory_table_status(<varchar>) returns varchar
-```
-returns the associated directory table status
-
 ## `system$get_iceberg_table_information`
+
+#### Description
+returns the latest Iceberg metadata information
+#### Supported Signatures
+```sql
+function system$get_iceberg_table_information(varchar) returns varchar
+function system$get_iceberg_table_information(varchar, decimal(38, 0)) returns varchar
+function system$get_iceberg_table_information(decimal(38, 0)) returns varchar
+function system$get_iceberg_table_information(decimal(38, 0), decimal(38, 0)) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_iceberg_table_information)
 
-```sql
-function system$get_iceberg_table_information(<varchar>) returns varchar
-```
-returns the latest Iceberg metadata information
-
-```sql
-function system$get_iceberg_table_information(<varchar, decimal(38, 0)>) returns varchar
-```
-returns the latest Iceberg metadata information
-
-```sql
-function system$get_iceberg_table_information(<decimal(38, 0)>) returns varchar
-```
-returns the latest Iceberg metadata information
-
-```sql
-function system$get_iceberg_table_information(<decimal(38, 0), decimal(38, 0)>) returns varchar
-```
-returns the latest Iceberg metadata information
-
 ## `system$get_predecessor_return_value`
+
+#### Description
+Return data
+#### Supported Signatures
+```sql
+function system$get_predecessor_return_value() returns varchar
+function system$get_predecessor_return_value(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_predecessor_return_value)
 
-```sql
-function system$get_predecessor_return_value(<>) returns varchar
-```
-Return data
-
-```sql
-function system$get_predecessor_return_value(<varchar>) returns varchar
-```
-Return data
-
 ## `system$get_service_logs`
+
+#### Description
+return status of operation
+#### Supported Signatures
+```sql
+function system$get_service_logs(varchar, decimal(38, 0), varchar) returns varchar
+function system$get_service_logs(varchar, decimal(38, 0), varchar, decimal(38, 0)) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_service_logs)
 
-```sql
-function system$get_service_logs(<varchar, decimal(38, 0), varchar>) returns varchar
-```
-return status of operation
-
-```sql
-function system$get_service_logs(<varchar, decimal(38, 0), varchar, decimal(38, 0)>) returns varchar
-```
-return status of operation
-
 ## `system$get_service_status`
+
+#### Description
+return service resource set status
+#### Supported Signatures
+```sql
+function system$get_service_status($1) returns varchar
+function system$get_service_status($1, decimal(38, 0)) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_service_status)
 
-```sql
-function system$get_service_status(<$1>) returns varchar
-```
-return service resource set status
-
-```sql
-function system$get_service_status(<$1, decimal(38, 0)>) returns varchar
-```
-return service resource set status
-
 ## `system$get_tag`
+
+#### Description
+Returns the associated tag value
+#### Supported Signatures
+```sql
+function system$get_tag() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_tag)
 
-```sql
-function system$get_tag(<>) returns varchar
-```
-Returns the associated tag value
-
 ## `system$get_tag_allowed_values`
+
+#### Description
+Returns the allowed values for a tag
+#### Supported Signatures
+```sql
+function system$get_tag_allowed_values() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_tag_allowed_values)
 
-```sql
-function system$get_tag_allowed_values(<>) returns varchar
-```
-Returns the allowed values for a tag
-
 ## `system$get_tag_on_current_column`
+
+#### Description
+Returns the associated tag value
+#### Supported Signatures
+```sql
+function system$get_tag_on_current_column() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_tag_on_current_column)
 
-```sql
-function system$get_tag_on_current_column(<>) returns varchar
-```
-Returns the associated tag value
-
 ## `system$get_tag_on_current_table`
+
+#### Description
+Returns the associated tag value on the current table
+#### Supported Signatures
+```sql
+function system$get_tag_on_current_table() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_tag_on_current_table)
 
-```sql
-function system$get_tag_on_current_table(<>) returns varchar
-```
-Returns the associated tag value on the current table
-
 ## `system$get_task_graph_config`
+
+#### Description
+Result
+#### Supported Signatures
+```sql
+function system$get_task_graph_config() returns varchar
+function system$get_task_graph_config(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$get_task_graph_config)
 
-```sql
-function system$get_task_graph_config(<>) returns varchar
-```
-Result
-
-```sql
-function system$get_task_graph_config(<varchar>) returns varchar
-```
-Result
-
 ## `system$global_account_set_parameter`
+
+#### Description
+param set result from the account
+#### Supported Signatures
+```sql
+function system$global_account_set_parameter(varchar, varchar, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$global_account_set_parameter)
 
-```sql
-function system$global_account_set_parameter(<varchar, varchar, varchar>) returns varchar
-```
-param set result from the account
-
 ## `system$last_change_commit_time`
+
+#### Description
+returns the largest commit time as a long.
+#### Supported Signatures
+```sql
+function system$last_change_commit_time(varchar) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$last_change_commit_time)
 
-```sql
-function system$last_change_commit_time(<varchar>) returns decimal(38, 0)
-```
-returns the largest commit time as a long.
-
 ## `system$migrate_saml_idp_registration`
+
+#### Description
+Returns the result of the operation.
+#### Supported Signatures
+```sql
+function system$migrate_saml_idp_registration(varchar) returns varchar
+function system$migrate_saml_idp_registration(varchar, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$migrate_saml_idp_registration)
 
-```sql
-function system$migrate_saml_idp_registration(<varchar>) returns varchar
-```
-Returns the result of the operation.
-
-```sql
-function system$migrate_saml_idp_registration(<varchar, varchar>) returns varchar
-```
-Returns the result of the operation.
-
 ## `system$pipe_force_resume`
+
+#### Description
+returns result of operation
+#### Supported Signatures
+```sql
+function system$pipe_force_resume(varchar) returns varchar
+function system$pipe_force_resume(varchar, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$pipe_force_resume)
 
-```sql
-function system$pipe_force_resume(<varchar>) returns varchar
-```
-returns result of operation
-
-```sql
-function system$pipe_force_resume(<varchar, varchar>) returns varchar
-```
-returns result of operation
-
 ## `system$pipe_rebinding_with_notification_channel`
+
+#### Description
+returns true if the pipe successfully rebinds with its assigned notification channel
+#### Supported Signatures
+```sql
+function system$pipe_rebinding_with_notification_channel(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$pipe_rebinding_with_notification_channel)
 
-```sql
-function system$pipe_rebinding_with_notification_channel(<varchar>) returns varchar
-```
-returns true if the pipe successfully rebinds with its assigned notification channel
-
 ## `system$pipe_status`
+
+#### Description
+returns pipe status as json
+#### Supported Signatures
+```sql
+function system$pipe_status(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$pipe_status)
 
-```sql
-function system$pipe_status(<varchar>) returns varchar
-```
-returns pipe status as json
-
 ## `system$query_reference`
+
+#### Description
+Returns the query reference identifier
+#### Supported Signatures
+```sql
+function system$query_reference(varchar) returns varchar
+function system$query_reference(varchar, boolean) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$query_reference)
 
-```sql
-function system$query_reference(<varchar>) returns varchar
-```
-Returns the query reference identifier
-
-```sql
-function system$query_reference(<varchar, boolean>) returns varchar
-```
-Returns the query reference identifier
-
 ## `system$reference`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$reference)
 
+#### Description
+Returns the reference identifier
+#### Supported Signatures
 ```sql
 function system$reference(varchar, varchar, ...) returns varchar
-```
-Returns the reference identifier
-
-```sql
 function system$reference(varchar, varchar, boolean, ...) returns varchar
-```
-Returns the reference identifier
-
-```sql
 function system$reference(varchar, varchar, boolean, varchar, ...) returns varchar
-```
-Returns the reference identifier
-
-```sql
 function system$reference(varchar, varchar, ...) returns varchar
-```
-Returns the reference identifier
-
-```sql
 function system$reference(varchar, varchar, varchar, ...) returns varchar
-```
-Returns the reference identifier
-
-```sql
 function system$reference(varchar, varchar, varchar, varchar, ...) returns varchar
 ```
-Returns the reference identifier
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$reference)
 
 ## `system$set_return_value`
+
+#### Description
+Returns "OK" if succeeded
+#### Supported Signatures
+```sql
+function system$set_return_value(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$set_return_value)
 
-```sql
-function system$set_return_value(<varchar>) returns varchar
-```
-Returns "OK" if succeeded
-
 ## `system$show_active_behavior_change_bundles`
+
+#### Description
+returned value
+#### Supported Signatures
+```sql
+function system$show_active_behavior_change_bundles() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$show_active_behavior_change_bundles)
 
-```sql
-function system$show_active_behavior_change_bundles(<>) returns varchar
-```
-returned value
-
 ## `system$snowpipe_streaming_update_channel_offset_token`
+
+#### Description
+returns status of update
+#### Supported Signatures
+```sql
+function system$snowpipe_streaming_update_channel_offset_token(varchar, varchar, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$snowpipe_streaming_update_channel_offset_token)
 
-```sql
-function system$snowpipe_streaming_update_channel_offset_token(<varchar, varchar, varchar>) returns varchar
-```
-returns status of update
-
 ## `system$task_dependents_enable`
+
+#### Description
+Returns "OK" if succeeded
+#### Supported Signatures
+```sql
+function system$task_dependents_enable(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$task_dependents_enable)
 
-```sql
-function system$task_dependents_enable(<varchar>) returns varchar
-```
-Returns "OK" if succeeded
-
 ## `system$task_runtime_info`
+
+#### Description
+result
+#### Supported Signatures
+```sql
+function system$task_runtime_info(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$task_runtime_info)
 
-```sql
-function system$task_runtime_info(<varchar>) returns varchar
-```
-result
-
 ## `system$typeof`
+
+#### Supported Signatures
+```sql
+function system$typeof($1) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$typeof)
 
-```sql
-function system$typeof(<$1>) returns varchar
-```
-
-
 ## `system$user_task_cancel_ongoing_executions`
+
+#### Description
+Returns "OK" if succeeded
+#### Supported Signatures
+```sql
+function system$user_task_cancel_ongoing_executions(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$user_task_cancel_ongoing_executions)
 
-```sql
-function system$user_task_cancel_ongoing_executions(<varchar>) returns varchar
-```
-Returns "OK" if succeeded
-
 ## `system$verify_external_oauth_token`
+
+#### Description
+The OAuth Access Token.
+#### Supported Signatures
+```sql
+function system$verify_external_oauth_token() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$verify_external_oauth_token)
 
-```sql
-function system$verify_external_oauth_token(<>) returns varchar
-```
-The OAuth Access Token.
-
 ## `system$wait`
+
+#### Description
+Wait for a finite amount of time
+#### Supported Signatures
+```sql
+function system$wait(decimal(38, 0)) returns varchar
+function system$wait(decimal(38, 0), varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/system$wait)
-
-```sql
-function system$wait(<decimal(38, 0)>) returns varchar
-```
-Wait for a finite amount of time
-
-```sql
-function system$wait(<decimal(38, 0), varchar>) returns varchar
-```
-Wait for a finite amount of time
 
 

@@ -4,321 +4,359 @@ title: "Context Functions"
 
 
 ## `all_user_names`
+
+#### Supported Signatures
+```sql
+function all_user_names() returns array
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/all_user_names)
 
-```sql
-function all_user_names(<>) returns array
-```
-
-
 ## `current_account`
+
+#### Supported Signatures
+```sql
+function current_account() returns string
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_account)
 
-```sql
-function current_account(<>) returns string
-```
-
-
 ## `current_account_name`
+
+#### Supported Signatures
+```sql
+function current_account_name() returns string
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_account_name)
 
-```sql
-function current_account_name(<>) returns string
-```
-
-
 ## `current_available_roles`
+
+#### Supported Signatures
+```sql
+function current_available_roles() returns string
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_available_roles)
 
-```sql
-function current_available_roles(<>) returns string
-```
-
-
 ## `current_client`
+
+#### Description
+Returns the current client version.
+#### Supported Signatures
+```sql
+function current_client() returns varchar
+function current_client() returns string
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_client)
 
-```sql
-function current_client(<>) returns varchar
-```
-Returns the current client version.
-
-```sql
-function current_client(<>) returns string
-```
-
-
 ## `current_database`
+
+#### Description
+Returns the current database.
+#### Supported Signatures
+```sql
+function current_database() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_database)
 
-```sql
-function current_database(<>) returns varchar
-```
-Returns the current database.
-
 ## `current_date`
+
+#### Description
+Returns the current date.
+#### Supported Signatures
+```sql
+function current_date() returns date
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_date)
 
-```sql
-function current_date(<>) returns date
-```
-Returns the current date.
-
 ## `current_ip_address`
+
+#### Description
+Returns the Client Internet Protocol address (IP address) of the current request.
+#### Supported Signatures
+```sql
+function current_ip_address() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_ip_address)
 
-```sql
-function current_ip_address(<>) returns varchar
-```
-Returns the Client Internet Protocol address (IP address) of the current request.
-
 ## `current_organization_name`
+
+#### Description
+Returns the name of the organization the current account belongs to.
+#### Supported Signatures
+```sql
+function current_organization_name() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_organization_name)
 
-```sql
-function current_organization_name(<>) returns varchar
-```
-Returns the name of the organization the current account belongs to.
-
 ## `current_region`
+
+#### Description
+Returns the current region name.
+#### Supported Signatures
+```sql
+function current_region() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_region)
 
-```sql
-function current_region(<>) returns varchar
-```
-Returns the current region name.
-
 ## `current_role`
+
+#### Description
+Returns the currently active role name.
+#### Supported Signatures
+```sql
+function current_role() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_role)
 
-```sql
-function current_role(<>) returns varchar
-```
-Returns the currently active role name.
-
 ## `current_role_type`
+
+#### Description
+Returns if the current role is of type account or database
+#### Supported Signatures
+```sql
+function current_role_type() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_role_type)
 
-```sql
-function current_role_type(<>) returns varchar
-```
-Returns if the current role is of type account or database
-
 ## `current_schema`
+
+#### Description
+Returns the current schema.
+#### Supported Signatures
+```sql
+function current_schema() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_schema)
 
-```sql
-function current_schema(<>) returns varchar
-```
-Returns the current schema.
-
 ## `current_schemas`
+
+#### Description
+Returns active search path schemas
+#### Supported Signatures
+```sql
+function current_schemas() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_schemas)
 
-```sql
-function current_schemas(<>) returns varchar
-```
-Returns active search path schemas
-
 ## `current_secondary_roles`
+
+#### Description
+Returns the currently active secondary roles' names.
+#### Supported Signatures
+```sql
+function current_secondary_roles() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_secondary_roles)
 
-```sql
-function current_secondary_roles(<>) returns varchar
-```
-Returns the currently active secondary roles' names.
-
 ## `current_session`
+
+#### Description
+Returns the current session.
+#### Supported Signatures
+```sql
+function current_session() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_session)
 
-```sql
-function current_session(<>) returns varchar
-```
-Returns the current session.
-
 ## `current_statement`
+
+#### Description
+Returns the text of the currently executing statement.
+#### Supported Signatures
+```sql
+function current_statement() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_statement)
 
-```sql
-function current_statement(<>) returns varchar
-```
-Returns the text of the currently executing statement.
-
 ## `current_time`
+
+#### Description
+Returns the current time.
+#### Supported Signatures
+```sql
+function current_time() returns time
+function current_time(decimal(38, 0)) returns time
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_time)
 
-```sql
-function current_time(<>) returns time
-```
-Returns the current time.
-
-```sql
-function current_time(<decimal(38, 0)>) returns time
-```
-Returns the current time.
-
 ## `current_timestamp`
+
+#### Description
+Returns the current timestamp.
+#### Supported Signatures
+```sql
+function current_timestamp() returns timestamp
+function current_timestamp(decimal(38, 0)) returns timestamp
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_timestamp)
 
-```sql
-function current_timestamp(<>) returns timestamp
-```
-Returns the current timestamp.
-
-```sql
-function current_timestamp(<decimal(38, 0)>) returns timestamp
-```
-Returns the current timestamp.
-
 ## `current_transaction`
+
+#### Description
+Returns the transaction id of an open transaction in the current session or scope.
+#### Supported Signatures
+```sql
+function current_transaction() returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_transaction)
 
-```sql
-function current_transaction(<>) returns decimal(38, 0)
-```
-Returns the transaction id of an open transaction in the current session or scope.
-
 ## `current_user`
+
+#### Description
+Returns the current user name.
+#### Supported Signatures
+```sql
+function current_user() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_user)
 
-```sql
-function current_user(<>) returns varchar
-```
-Returns the current user name.
-
 ## `current_version`
+
+#### Description
+Returns the current software version (major.minor.patch).
+#### Supported Signatures
+```sql
+function current_version() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_version)
 
-```sql
-function current_version(<>) returns varchar
-```
-Returns the current software version (major.minor.patch).
-
 ## `current_warehouse`
+
+#### Description
+Returns the warehouse currently in use.
+#### Supported Signatures
+```sql
+function current_warehouse() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_warehouse)
 
-```sql
-function current_warehouse(<>) returns varchar
-```
-Returns the warehouse currently in use.
-
 ## `getdate`
+
+#### Description
+Returns the current timestamp
+#### Supported Signatures
+```sql
+function getdate() returns timestamp
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/getdate)
 
-```sql
-function getdate(<>) returns timestamp
-```
-Returns the current timestamp
-
 ## `getvariable`
+
+#### Supported Signatures
+```sql
+function getvariable(string) returns string
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/getvariable)
 
-```sql
-function getvariable(<string>) returns string
-```
-
-
 ## `invoker_role`
+
+#### Description
+Returns the invoker role
+#### Supported Signatures
+```sql
+function invoker_role() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/invoker_role)
 
-```sql
-function invoker_role(<>) returns varchar
-```
-Returns the invoker role
-
 ## `invoker_share`
+
+#### Description
+Returns the invoker role
+#### Supported Signatures
+```sql
+function invoker_share() returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/invoker_share)
 
-```sql
-function invoker_share(<>) returns varchar
-```
-Returns the invoker role
-
 ## `is_database_role_in_session`
+
+#### Description
+Return true if the db role is in current role hierarchy
+#### Supported Signatures
+```sql
+function is_database_role_in_session(varchar) returns boolean
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_database_role_in_session)
 
-```sql
-function is_database_role_in_session(<varchar>) returns boolean
-```
-Return true if the db role is in current role hierarchy
-
 ## `is_granted_to_invoker_role`
+
+#### Description
+Returns true if the arg is in invoker_role's hierarchy
+#### Supported Signatures
+```sql
+function is_granted_to_invoker_role(varchar) returns boolean
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_granted_to_invoker_role)
 
-```sql
-function is_granted_to_invoker_role(<varchar>) returns boolean
-```
-Returns true if the arg is in invoker_role's hierarchy
-
 ## `is_role_in_session`
+
+#### Description
+Return true if in current hierarchy
+#### Supported Signatures
+```sql
+function is_role_in_session(varchar) returns boolean
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/is_role_in_session)
 
-```sql
-function is_role_in_session(<varchar>) returns boolean
-```
-Return true if in current hierarchy
-
 ## `last_query_id`
+
+#### Description
+Returns the id of the last executed statement in the current session.
+#### Supported Signatures
+```sql
+function last_query_id() returns varchar
+function last_query_id(decimal(38, 0)) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/last_query_id)
 
-```sql
-function last_query_id(<>) returns varchar
-```
-Returns the id of the last executed statement in the current session.
-
-```sql
-function last_query_id(<decimal(38, 0)>) returns varchar
-```
-Returns the id of the last executed statement in the current session.
-
 ## `last_transaction`
+
+#### Description
+Returns the transaction id of the last committed or rolled back transaction in the current session.
+#### Supported Signatures
+```sql
+function last_transaction() returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/last_transaction)
 
-```sql
-function last_transaction(<>) returns decimal(38, 0)
-```
-Returns the transaction id of the last committed or rolled back transaction in the current session.
-
 ## `localtime`
+
+#### Description
+Returns the current time.
+#### Supported Signatures
+```sql
+function localtime() returns time
+function localtime(decimal(38, 0)) returns time
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/localtime)
 
-```sql
-function localtime(<>) returns time
-```
-Returns the current time.
-
-```sql
-function localtime(<decimal(38, 0)>) returns time
-```
-Returns the current time.
-
 ## `localtimestamp`
+
+#### Description
+Returns the current timestamp.
+#### Supported Signatures
+```sql
+function localtimestamp() returns timestamp
+function localtimestamp(decimal(38, 0)) returns timestamp
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/localtimestamp)
 
-```sql
-function localtimestamp(<>) returns timestamp
-```
-Returns the current timestamp.
-
-```sql
-function localtimestamp(<decimal(38, 0)>) returns timestamp
-```
-Returns the current timestamp.
-
 ## `sysdate`
+
+#### Description
+Returns the current timestamp in the UTC time zone
+#### Supported Signatures
+```sql
+function sysdate() returns timestamp
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sysdate)
 
-```sql
-function sysdate(<>) returns timestamp
-```
-Returns the current timestamp in the UTC time zone
-
 ## `systimestamp`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/systimestamp)
 
-```sql
-function systimestamp(<>) returns timestamp
-```
+#### Description
 Returns the current timestamp
+#### Supported Signatures
+```sql
+function systimestamp() returns timestamp
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/systimestamp)
 
 

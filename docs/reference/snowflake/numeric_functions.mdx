@@ -4,408 +4,378 @@ title: "Numeric Functions"
 
 
 ## `acos`
+
+#### Description
+Compute the arccosine of the input expression (returned as radians).
+#### Supported Signatures
+```sql
+function acos(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/acos)
 
-```sql
-function acos(<double>) returns double
-```
-Compute the arccosine of the input expression (returned as radians).
-
 ## `acosh`
+
+#### Description
+Compute the inverse hyperbolic cosine of the input expression.
+#### Supported Signatures
+```sql
+function acosh(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/acosh)
 
-```sql
-function acosh(<double>) returns double
-```
-Compute the inverse hyperbolic cosine of the input expression.
-
 ## `asin`
+
+#### Description
+Compute the arcsine of the input expression (returned as radians).
+#### Supported Signatures
+```sql
+function asin(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/asin)
 
-```sql
-function asin(<double>) returns double
-```
-Compute the arcsine of the input expression (returned as radians).
-
 ## `asinh`
+
+#### Description
+Compute the inverse hyperbolic sine of the input expression.
+#### Supported Signatures
+```sql
+function asinh(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/asinh)
 
-```sql
-function asinh(<double>) returns double
-```
-Compute the inverse hyperbolic sine of the input expression.
-
 ## `atan`
+
+#### Description
+Compute the arctangent of the input expression (returned as radians).
+#### Supported Signatures
+```sql
+function atan(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/atan)
 
-```sql
-function atan(<double>) returns double
-```
-Compute the arctangent of the input expression (returned as radians).
-
 ## `atan2`
+
+#### Description
+Compute the angle (in radians) between the x-axis and point (x, y).
+#### Supported Signatures
+```sql
+function atan2(double, double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/atan2)
 
-```sql
-function atan2(<double, double>) returns double
-```
-Compute the angle (in radians) between the x-axis and point (x, y).
-
 ## `atanh`
+
+#### Description
+Compute the inverse hyperbolic tangent of the input expression (as radians).
+#### Supported Signatures
+```sql
+function atanh(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/atanh)
 
-```sql
-function atanh(<double>) returns double
-```
-Compute the inverse hyperbolic tangent of the input expression (as radians).
-
 ## `cbrt`
+
+#### Description
+Compute the cubic root of the input expression.
+#### Supported Signatures
+```sql
+function cbrt(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/cbrt)
 
-```sql
-function cbrt(<double>) returns double
-```
-Compute the cubic root of the input expression.
-
 ## `ceil`
+
+#### Description
+round to the nearest integer not smaller than input
+#### Supported Signatures
+```sql
+function ceil(decimal(38, 0)) returns decimal(38, 0)
+function ceil(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function ceil(double) returns double
+function ceil(double, double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/ceil)
 
-```sql
-function ceil(<decimal(38, 0)>) returns decimal(38, 0)
-```
-round to the nearest integer not smaller than input
-
-```sql
-function ceil(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-round to the nearest integer not smaller than input
-
-```sql
-function ceil(<double>) returns double
-```
-round to the nearest integer not smaller than input
-
-```sql
-function ceil(<double, double>) returns double
-```
-round to the nearest integer not smaller than input
-
 ## `cos`
+
+#### Description
+Compute the cosine of the input expression (as radians).
+#### Supported Signatures
+```sql
+function cos(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/cos)
 
-```sql
-function cos(<double>) returns double
-```
-Compute the cosine of the input expression (as radians).
-
 ## `cosh`
+
+#### Description
+Compute the hyperbolic cosine of the input expression.
+#### Supported Signatures
+```sql
+function cosh(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/cosh)
 
-```sql
-function cosh(<double>) returns double
-```
-Compute the hyperbolic cosine of the input expression.
-
 ## `cot`
+
+#### Description
+Compute the cotangent of the input expression (as radians).
+#### Supported Signatures
+```sql
+function cot(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/cot)
 
-```sql
-function cot(<double>) returns double
-```
-Compute the cotangent of the input expression (as radians).
-
 ## `degrees`
+
+#### Description
+convert r (radians) to degrees.
+#### Supported Signatures
+```sql
+function degrees(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/degrees)
 
-```sql
-function degrees(<double>) returns double
-```
-convert r (radians) to degrees.
-
 ## `div0`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/div0)
 
+#### Description
+Divides two numbers; returns 0 if divisor is 0
+#### Supported Signatures
 ```sql
 function div0(decimal(38, 0), decimal(38, 0), ...) returns decimal(38, 0)
-```
-Divides two numbers; returns 0 if divisor is 0
-
-```sql
 function div0(double, double, ...) returns double
 ```
-Divides two numbers; returns 0 if divisor is 0
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/div0)
 
 ## `div0null`
+
+#### Description
+Divides two numbers; returns 0 if divisor is 0 or null
+#### Supported Signatures
+```sql
+function div0null(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function div0null(double, double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/div0null)
 
-```sql
-function div0null(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-Divides two numbers; returns 0 if divisor is 0 or null
-
-```sql
-function div0null(<double, double>) returns double
-```
-Divides two numbers; returns 0 if divisor is 0 or null
-
 ## `exp`
+
+#### Description
+returns e raised to the x'th power
+#### Supported Signatures
+```sql
+function exp(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/exp)
 
-```sql
-function exp(<double>) returns double
-```
-returns e raised to the x'th power
-
 ## `factorial`
+
+#### Description
+Factorial of f
+#### Supported Signatures
+```sql
+function factorial(decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/factorial)
 
-```sql
-function factorial(<decimal(38, 0)>) returns decimal(38, 0)
-```
-Factorial of f
-
 ## `floor`
+
+#### Description
+round to the nearest integer not greater than input
+#### Supported Signatures
+```sql
+function floor(decimal(38, 0)) returns decimal(38, 0)
+function floor(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function floor(double) returns double
+function floor(double, double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/floor)
 
-```sql
-function floor(<decimal(38, 0)>) returns decimal(38, 0)
-```
-round to the nearest integer not greater than input
-
-```sql
-function floor(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-round to the nearest integer not greater than input
-
-```sql
-function floor(<double>) returns double
-```
-round to the nearest integer not greater than input
-
-```sql
-function floor(<double, double>) returns double
-```
-round to the nearest integer not greater than input
-
 ## `ln`
+
+#### Description
+returns the natural logarithm of a
+#### Supported Signatures
+```sql
+function ln(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/ln)
 
-```sql
-function ln(<double>) returns double
-```
-returns the natural logarithm of a
-
 ## `log`
+
+#### Description
+returns the logarithm base b of a
+#### Supported Signatures
+```sql
+function log(double, double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/log)
 
-```sql
-function log(<double, double>) returns double
-```
-returns the logarithm base b of a
-
 ## `mod`
+
+#### Description
+Computes modulo of two numbers
+#### Supported Signatures
+```sql
+function mod(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function mod(double, double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/mod)
 
-```sql
-function mod(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-Computes modulo of two numbers
-
-```sql
-function mod(<double, double>) returns double
-```
-Computes modulo of two numbers
-
 ## `pi`
+
+#### Description
+Returns the constant pi.
+#### Supported Signatures
+```sql
+function pi() returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/pi)
 
-```sql
-function pi(<>) returns double
-```
-Returns the constant pi.
-
 ## `pow`
+
+#### Description
+returns x raised to the y'th power
+#### Supported Signatures
+```sql
+function pow(double, double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/pow)
 
-```sql
-function pow(<double, double>) returns double
-```
-returns x raised to the y'th power
-
 ## `power`
+
+#### Description
+returns x raised to the y'th power
+#### Supported Signatures
+```sql
+function power(double, double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/power)
 
-```sql
-function power(<double, double>) returns double
-```
-returns x raised to the y'th power
-
 ## `radians`
+
+#### Description
+convert d (degrees) to radians.
+#### Supported Signatures
+```sql
+function radians(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/radians)
 
-```sql
-function radians(<double>) returns double
-```
-convert d (degrees) to radians.
-
 ## `round`
+
+#### Description
+round to the nearest integer, with .5 rounded away from 0
+#### Supported Signatures
+```sql
+function round(double) returns double
+function round(double, double) returns double
+function round(double, double, varchar) returns double
+function round(decimal(38, 0)) returns decimal(38, 0)
+function round(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function round(decimal(38, 0)) returns decimal(38, 0)
+function round(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function round(decimal(38, 0), decimal(38, 0), varchar) returns decimal(38, 0)
+function round() returns bigint
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/round)
 
-```sql
-function round(<double>) returns double
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<double, double>) returns double
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<double, double, varchar>) returns double
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<decimal(38, 0)>) returns decimal(38, 0)
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<decimal(38, 0)>) returns decimal(38, 0)
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<decimal(38, 0), decimal(38, 0), varchar>) returns decimal(38, 0)
-```
-round to the nearest integer, with .5 rounded away from 0
-
-```sql
-function round(<>) returns bigint
-```
-
-
 ## `sign`
+
+#### Description
+returns sign of x
+#### Supported Signatures
+```sql
+function sign(decimal(38, 0)) returns decimal(38, 0)
+function sign(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sign)
 
-```sql
-function sign(<decimal(38, 0)>) returns decimal(38, 0)
-```
-returns sign of x
-
-```sql
-function sign(<double>) returns double
-```
-returns sign of x
-
 ## `sin`
+
+#### Description
+Compute the sine of the input expression (as radians).
+#### Supported Signatures
+```sql
+function sin(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sin)
 
-```sql
-function sin(<double>) returns double
-```
-Compute the sine of the input expression (as radians).
-
 ## `sinh`
+
+#### Description
+Compute the hyperbolic sine of the input expression.
+#### Supported Signatures
+```sql
+function sinh(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sinh)
 
-```sql
-function sinh(<double>) returns double
-```
-Compute the hyperbolic sine of the input expression.
-
 ## `sqrt`
+
+#### Description
+Compute the square root of the input expression.
+#### Supported Signatures
+```sql
+function sqrt(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/sqrt)
 
-```sql
-function sqrt(<double>) returns double
-```
-Compute the square root of the input expression.
-
 ## `square`
+
+#### Description
+Compute the square of the input expression.
+#### Supported Signatures
+```sql
+function square(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/square)
 
-```sql
-function square(<double>) returns double
-```
-Compute the square of the input expression.
-
 ## `tan`
+
+#### Description
+Compute the tangent of the input expression (as radians).
+#### Supported Signatures
+```sql
+function tan(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/tan)
 
-```sql
-function tan(<double>) returns double
-```
-Compute the tangent of the input expression (as radians).
-
 ## `tanh`
+
+#### Description
+Compute the hyperbolic tangent of the input expression (as radians).
+#### Supported Signatures
+```sql
+function tanh(double) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/tanh)
 
-```sql
-function tanh(<double>) returns double
-```
-Compute the hyperbolic tangent of the input expression (as radians).
-
 ## `truncate`
+
+#### Description
+truncate the fractional or date part
+#### Supported Signatures
+```sql
+function truncate(decimal(38, 0)) returns decimal(38, 0)
+function truncate(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function truncate(double) returns double
+function truncate(double, double) returns double
+function truncate(date, varchar) returns date
+function truncate(time, varchar) returns time
+function truncate(timestamp, varchar) returns timestamp
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/truncate)
 
-```sql
-function truncate(<decimal(38, 0)>) returns decimal(38, 0)
-```
-truncate the fractional or date part
-
-```sql
-function truncate(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-truncate the fractional or date part
-
-```sql
-function truncate(<double>) returns double
-```
-truncate the fractional or date part
-
-```sql
-function truncate(<double, double>) returns double
-```
-truncate the fractional or date part
-
-```sql
-function truncate(<date, varchar>) returns date
-```
-truncate the fractional or date part
-
-```sql
-function truncate(<time, varchar>) returns time
-```
-truncate the fractional or date part
-
-```sql
-function truncate(<timestamp, varchar>) returns timestamp
-```
-truncate the fractional or date part
-
 ## `width_bucket`
+
+#### Description
+returns the bucket a value falls into in an equiwidth histogram
+#### Supported Signatures
+```sql
+function width_bucket(decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function width_bucket(double, double, double, decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/width_bucket)
-
-```sql
-function width_bucket(<decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-returns the bucket a value falls into in an equiwidth histogram
-
-```sql
-function width_bucket(<double, double, double, decimal(38, 0)>) returns decimal(38, 0)
-```
-returns the bucket a value falls into in an equiwidth histogram
 
 

@@ -3,81 +3,71 @@ title: "Array Functions"
 ---
 
 ## `array_concat`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_concat)
 
+
+**Example/s:**
+```sql examples.sql
+SELECT ARRAY_CONCAT([1, 2], [3, 4], [5, 6]) as count_to_six; -- value '[1,2,3,4,5,6]'
+```
+#### Supported Signatures
 ```sql
 function array_concat(array<$1>, ...) returns array<$1>
 ```
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_concat)
 
-
-```sql example.sql
-SELECT ARRAY_CONCAT([1, 2], [3, 4], [5, 6]) as count_to_six; -- value '[1,2,3,4,5,6]' 
-```
 ## `array_length`
+
+#### Supported Signatures
+```sql
+function array_length(array<$1>) returns bigint
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_length)
 
-```sql
-function array_length(<array<$1>>) returns bigint
-```
-
-
 ## `array_reverse`
+
+#### Supported Signatures
+```sql
+function array_reverse(array<$1>) returns array<$1>
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_reverse)
 
-```sql
-function array_reverse(<array<$1>>) returns array<$1>
-```
-
-
 ## `array_to_string`
+
+#### Supported Signatures
+```sql
+function array_to_string(array<$1>, string) returns string
+function array_to_string(array<$1>, string, string) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_to_string)
 
-```sql
-function array_to_string(<array<$1>, string>) returns string
-```
-
-
-```sql
-function array_to_string(<array<$1>, string, string>) returns string
-```
-
-
 ## `generate_array`
+
+#### Supported Signatures
+```sql
+function generate_array $1($1, $1) returns array<int>
+	where $1 in (bigint, double)
+function generate_array $1($1, $1, $1) returns array<int>
+	where $1 in (bigint, double)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#generate_array)
 
-```sql
-function generate_array<$1> (<$1, $1>) returns array<int>
-	where $1 in (bigint, double)
-```
-
-
-```sql
-function generate_array<$1> (<$1, $1, $1>) returns array<int>
-	where $1 in (bigint, double)
-```
-
-
 ## `generate_date_array`
+
+#### Supported Signatures
+```sql
+function generate_date_array(date, date) returns array[date]
+function generate_date_array(date, date, interval) returns array[date]
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#generate_date_array)
 
-```sql
-function generate_date_array(<date, date>) returns array[date]
-```
-
-
-```sql
-function generate_date_array(<date, date, interval>) returns array[date]
-```
-
-
 ## `generate_timestamp_array`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#generate_timestamp_array)
 
+#### Supported Signatures
 ```sql
-function generate_timestamp_array<$1, $2> (<$1, $2, interval>) returns array<timestamp>
+function generate_timestamp_array $1, $2($1, $2, interval) returns array<timestamp>
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
-
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#generate_timestamp_array)
 
 

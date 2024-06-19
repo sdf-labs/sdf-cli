@@ -4,35 +4,35 @@ title: "Table Functions"
 
 
 ## `flatten`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/flatten)
 
+#### Supported Signatures
 ```sql
-function flatten<$1> (<input $1>) returns struct<seq bigint, key string, path string, index bigint, value variant, this $1>
+function flatten $1(input $1) returns struct<seq bigint, key string, path string, index bigint, value variant, this $1>
 	where $1 in (variant, object, array)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/flatten)
 
 ## `generator`
+
+#### Supported Signatures
+```sql
+function generator() returns struct<dummy bigint>
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/generator)
 
-```sql
-function generator(<>) returns struct<dummy bigint>
-```
-
-
 ## `get_object_references`
+
+#### Supported Signatures
+```sql
+function get_object_references() returns struct<database_name string, schema_name string, object_name string, referenced_database_name string, referenced_schema_name string, referenced_object_name string, referenced_object_type string>
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get_object_references)
 
-```sql
-function get_object_references(<>) returns struct<database_name string, schema_name string, object_name string, referenced_database_name string, referenced_schema_name string, referenced_object_name string, referenced_object_type string>
-```
-
-
 ## `infer_schema`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/infer_schema)
 
+#### Supported Signatures
 ```sql
-function infer_schema(<>) returns struct<
+function infer_schema() returns struct<
   column_name string,
   type string,
   nullable boolean,
@@ -42,13 +42,13 @@ function infer_schema(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/infer_schema)
 
 ## `rest_event_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/rest_event_history)
 
+#### Supported Signatures
 ```sql
-function rest_event_history(<rest_service_type string>) returns struct<
+function rest_event_history(rest_service_type string) returns struct<
   event_timestamp timestamp,
   event_id bigint,
   event_type string,
@@ -65,47 +65,43 @@ function rest_event_history(<rest_service_type string>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/rest_event_history)
 
 ## `validate`
+
+#### Supported Signatures
+```sql
+function validate(string, job_id string) returns struct<
+  error string,
+  file string,
+  line bigint,
+  character bigint,
+  byte_offset bigint,
+  category string,
+  code bigint,
+  sql_state bigint,
+  column_name string,
+  row_number bigint,
+  row_start_line bigint,
+  rejected_record string
+>
+
+function validate(job_id string) returns struct<
+  error string,
+  file string,
+  line bigint,
+  character bigint,
+  byte_offset bigint,
+  category string,
+  code bigint,
+  sql_state bigint,
+  column_name string,
+  row_number bigint,
+  row_start_line bigint,
+  rejected_record string
+>
+
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/validate)
-
-```sql
-function validate(<string, job_id string>) returns struct<
-  error string,
-  file string,
-  line bigint,
-  character bigint,
-  byte_offset bigint,
-  category string,
-  code bigint,
-  sql_state bigint,
-  column_name string,
-  row_number bigint,
-  row_start_line bigint,
-  rejected_record string
->
-
-```
-
-
-```sql
-function validate(<job_id string>) returns struct<
-  error string,
-  file string,
-  line bigint,
-  character bigint,
-  byte_offset bigint,
-  category string,
-  code bigint,
-  sql_state bigint,
-  column_name string,
-  row_number bigint,
-  row_start_line bigint,
-  rejected_record string
->
-
-```
-
 
 

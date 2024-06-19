@@ -156,7 +156,7 @@ table:
 Working set 1 model file, 1 test file, 2 .sdf files
     Running tests_workspace.pub.raw_inapp_events (./src/raw_inapp_events.sql)
     Testing tests_workspace.pub.test_raw_inapp_events (./.sdfcache/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
-   Finished 1 model [1 succeeded], 1 test [1 passed] in 0.809 secs
+   Finished 1 model [1 succeeded], 1 test [1 passed] in 0.634 secs
 [Pass] Test tests_workspace.pub.test_raw_inapp_events
 
 </code>
@@ -235,20 +235,117 @@ ORDER BY reason;
     ```
 <pre style={{ fontFamily: 'monospace' }} className='language-error'>
 <code className='language-error'>
-    Running tests_workspace.pub.raw_inapp_events (./src/raw_inapp_events.sql)
-    Testing tests_workspace.pub.test_raw_inapp_events (./.sdfcache/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
-   Finished 1 model [1 succeeded], 1 test [1 failed] in 0.812 secs, for details see below.
-[Fail] Test tests_workspace.pub.test_raw_inapp_events
-+-----------------------------------------------------+
-| reason                                              |
-+-----------------------------------------------------+
-| wrn: column event_value has values outside of 0..10 |
-+-----------------------------------------------------+
-1 rows.
+markup_scanner input:
+CREATE TABLE raw_inapp_events 
+WITH (FORMAT='CSV', skip_header_line_count=1, LOCATION='seeds/inapp_events.csv');
+markup_scanner output:
+CREATE TABLE raw_inapp_events 
+WITH (FORMAT='CSV', skip_header_line_count=1, LOCATION='seeds/inapp_events.csv');
+markup_scanner input:
+{% set column_tests = {
+	'event_id': [
+		sdf_test.unique('err','event_id'),
+		sdf_test.not_null('err','event_id')],
+	'event_name': [
+		sdf_test.in_accepted_values('wrn','event_name', ['&apos;install&apos;', '&apos;add_to_cart&apos;', '&apos;go_to_checkout&apos;', '&apos;place_order&apos;'])],
+	'event_value': [
+		sdf_test.between('wrn','event_value', '0', '10')]
+} %}
+{% set table_tests = {
+	'0': sdf_test.generate_column_tests('tests_workspace.pub.raw_inapp_events', column_tests)
+} %}
+{{ sdf_test.generate_table_tests('tests_workspace.pub.raw_inapp_events', table_tests)  }}
+markup_scanner output:
+{% set column_tests = {
+	'event_id': [
+		sdf_test.unique('err','event_id'),
+		sdf_test.not_null('err','event_id')],
+	'event_name': [
+		sdf_test.in_accepted_values('wrn','event_name', ['&apos;install&apos;', '&apos;add_to_cart&apos;', '&apos;go_to_checkout&apos;', '&apos;place_order&apos;'])],
+	'event_value': [
+		sdf_test.between('wrn','event_value', '0', '10')]
+} %}
+{% set table_tests = {
+	'0': sdf_test.generate_column_tests('tests_workspace.pub.raw_inapp_events', column_tests)
+} %}
+{{ sdf_test.generate_table_tests('tests_workspace.pub.raw_inapp_events', table_tests)  }}
+markup_filter input:
+&lceil;1:1&rceil;&lfloor;9:4&rfloor;
+&lceil;10:1&rceil;&lfloor;12:4&rfloor;
+&lceil;13:1&rceil;WITH
+raw_inapp_events_constraints AS (
+    SELECT
+        CASE WHEN COUNT(DISTINCT event_id) != COUNT(event_id) 
+    THEN  
+    'err: column event_id is NOT unique' ELSE NULL END AS event_id_1
+        ,
+        CASE WHEN COUNT(CASE WHEN event_id IS NULL THEN 1 ELSE NULL END) > 0 
+    THEN  
+    'err: column event_id has NULL values' ELSE NULL END AS event_id_2
+        ,
+        CASE WHEN COUNT(CASE WHEN event_name NOT IN (&apos;install&apos;, &apos;add_to_cart&apos;, &apos;go_to_checkout&apos;, &apos;place_order&apos;) THEN 1 ELSE NULL END) > 0 
+    THEN  
+    'wrn: column event_name has values outside accepted values ''install'', ''add_to_cart'', ''go_to_checkout'', ''place_order''' ELSE NULL END AS event_name_1
+        ,
+        CASE WHEN NOT(MIN(event_value) >= 0) or  MAX(event_value) > 10
+	THEN 
+	'wrn: column event_value has values outside of 0..10' ELSE NULL END AS event_value_1
+    FROM tests_workspace.pub.raw_inapp_events
+)
+SELECT reason 
+FROM (
+   
+    SELECT event_id_1 as reason FROM raw_inapp_events_constraints WHERE event_id_1 IS NOT NULL
+    UNION ALL
+       
+    SELECT event_id_2 as reason FROM raw_inapp_events_constraints WHERE event_id_2 IS NOT NULL
+    UNION ALL 
+       
+    SELECT event_name_1 as reason FROM raw_inapp_events_constraints WHERE event_name_1 IS NOT NULL
+    UNION ALL 
+       
+    SELECT event_value_1 as reason FROM raw_inapp_events_constraints WHERE event_value_1 IS NOT NULL 
+    ) AS _combined_errors
+ORDER BY reason;&lfloor;13:89&rfloor;
+markup_filter output:
 
--------
-Summary 1 model [1 succeeded], 1 test [1 failed] in 0.812 secs.
--------
+
+WITH
+raw_inapp_events_constraints AS (
+    SELECT
+        CASE WHEN COUNT(DISTINCT event_id) != COUNT(event_id) 
+    THEN  
+    'err: column event_id is NOT unique' ELSE NULL END AS event_id_1
+        ,
+        CASE WHEN COUNT(CASE WHEN event_id IS NULL THEN 1 ELSE NULL END) > 0 
+    THEN  
+    'err: column event_id has NULL values' ELSE NULL END AS event_id_2
+        ,
+        CASE WHEN COUNT(CASE WHEN event_name NOT IN (&apos;install&apos;, &apos;add_to_cart&apos;, &apos;go_to_checkout&apos;, &apos;place_order&apos;) THEN 1 ELSE NULL END) > 0 
+    THEN  
+    'wrn: column event_name has values outside accepted values ''install'', ''add_to_cart'', ''go_to_checkout'', ''place_order''' ELSE NULL END AS event_name_1
+        ,
+        CASE WHEN NOT(MIN(event_value) >= 0) or  MAX(event_value) > 10
+	THEN 
+	'wrn: column event_value has values outside of 0..10' ELSE NULL END AS event_value_1
+    FROM tests_workspace.pub.raw_inapp_events
+)
+
+SELECT reason 
+FROM (
+   
+    SELECT event_id_1 as reason FROM raw_inapp_events_constraints WHERE event_id_1 IS NOT NULL
+    UNION ALL
+       
+    SELECT event_id_2 as reason FROM raw_inapp_events_constraints WHERE event_id_2 IS NOT NULL
+    UNION ALL 
+       
+    SELECT event_name_1 as reason FROM raw_inapp_events_constraints WHERE event_name_1 IS NOT NULL
+    UNION ALL 
+       
+    SELECT event_value_1 as reason FROM raw_inapp_events_constraints WHERE event_value_1 IS NOT NULL 
+    ) AS _combined_errors
+ORDER BY reason;
 
 </code>
 </pre>

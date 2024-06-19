@@ -127,7 +127,6 @@ app_installs.platform
 
 Schema moms_flower_shop.pub.app_installs
        This table is a staging table which adds campaign information to app install events
-
        [TABLE_STATUS.deprecated]
 ┌───────────────┬──────────────┬────────────┬─────────────┐
 │ column_name   ┆ data_type    ┆ classifier ┆ description │
@@ -195,11 +194,11 @@ Schema moms_flower_shop.pub.app_installs
 <code className='language-error'>
 
 Report moms_flower_shop.pub.deprecated_table_reference
-+-------------------------------------------------+-----------------------------------+
-| table_id                                        | upstream_deprecated_table_id      |
-+-------------------------------------------------+-----------------------------------+
-| moms_flower_shop.pub.agg_installs_and_campaigns | moms_flower_shop.pub.app_installs |
-+-------------------------------------------------+-----------------------------------+
+┌─────────────────────────────────────────────────┬───────────────────────────────────┐
+│ table_id                                        ┆ upstream_deprecated_table_id      │
+╞═════════════════════════════════════════════════╪═══════════════════════════════════╡
+│ moms_flower_shop.pub.agg_installs_and_campaigns ┆ moms_flower_shop.pub.app_installs │
+└─────────────────────────────────────────────────┴───────────────────────────────────┘
 1 rows.
 
 </code>
@@ -235,8 +234,10 @@ Report moms_flower_shop.pub.deprecated_table_reference
 <code className='language-error'>
 
 Report moms_flower_shop.pub.deprecated_table_reference
-++
-++
+┌──────────┬──────────────────────────────┐
+│ table_id ┆ upstream_deprecated_table_id │
+╞══════════╪══════════════════════════════╡
+└──────────┴──────────────────────────────┘
 0 rows.
 
 </code>
