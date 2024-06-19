@@ -4,105 +4,99 @@ title: "Data Generation Functions"
 
 
 ## `normal`
+
+#### Description
+Returns a normal distribution
+#### Supported Signatures
+```sql
+function normal(double, double, decimal(38, 0)) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/normal)
 
-```sql
-function normal(<double, double, decimal(38, 0)>) returns double
-```
-Returns a normal distribution
-
 ## `random`
+
+#### Description
+returns a random number sequence
+#### Supported Signatures
+```sql
+function random() returns decimal(38, 0)
+function random(decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/random)
 
-```sql
-function random(<>) returns decimal(38, 0)
-```
-returns a random number sequence
-
-```sql
-function random(<decimal(38, 0)>) returns decimal(38, 0)
-```
-returns a random number sequence
-
 ## `randstr`
+
+#### Description
+Returns a random string of alphanumeric characters
+#### Supported Signatures
+```sql
+function randstr(decimal(38, 0), decimal(38, 0)) returns varchar
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/randstr)
 
-```sql
-function randstr(<decimal(38, 0), decimal(38, 0)>) returns varchar
-```
-Returns a random string of alphanumeric characters
-
 ## `seq1`
+
+#### Description
+returns a sequence of 1-byte integers
+#### Supported Signatures
+```sql
+function seq1() returns decimal(38, 0)
+function seq1(decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/seq1)
 
-```sql
-function seq1(<>) returns decimal(38, 0)
-```
-returns a sequence of 1-byte integers
-
-```sql
-function seq1(<decimal(38, 0)>) returns decimal(38, 0)
-```
-returns a sequence of 1-byte integers
-
 ## `seq2`
+
+#### Description
+returns a sequence of 2-byte integers
+#### Supported Signatures
+```sql
+function seq2() returns decimal(38, 0)
+function seq2(decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/seq2)
 
-```sql
-function seq2(<>) returns decimal(38, 0)
-```
-returns a sequence of 2-byte integers
-
-```sql
-function seq2(<decimal(38, 0)>) returns decimal(38, 0)
-```
-returns a sequence of 2-byte integers
-
 ## `seq4`
+
+#### Description
+returns a sequence of 4-byte integers
+#### Supported Signatures
+```sql
+function seq4() returns decimal(38, 0)
+function seq4(decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/seq4)
 
-```sql
-function seq4(<>) returns decimal(38, 0)
-```
-returns a sequence of 4-byte integers
-
-```sql
-function seq4(<decimal(38, 0)>) returns decimal(38, 0)
-```
-returns a sequence of 4-byte integers
-
 ## `seq8`
+
+#### Description
+returns a sequence of 8-byte integers
+#### Supported Signatures
+```sql
+function seq8() returns decimal(38, 0)
+function seq8(decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/seq8)
 
-```sql
-function seq8(<>) returns decimal(38, 0)
-```
-returns a sequence of 8-byte integers
-
-```sql
-function seq8(<decimal(38, 0)>) returns decimal(38, 0)
-```
-returns a sequence of 8-byte integers
-
 ## `uniform`
+
+#### Description
+Returns a uniform random distribution
+#### Supported Signatures
+```sql
+function uniform(decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+function uniform(double, double, decimal(38, 0)) returns double
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/uniform)
 
-```sql
-function uniform(<decimal(38, 0), decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-Returns a uniform random distribution
-
-```sql
-function uniform(<double, double, decimal(38, 0)>) returns double
-```
-Returns a uniform random distribution
-
 ## `zipf`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/zipf)
 
-```sql
-function zipf(<double, decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
+#### Description
 Returns a Zipf distribution
+#### Supported Signatures
+```sql
+function zipf(double, decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/zipf)
 
 

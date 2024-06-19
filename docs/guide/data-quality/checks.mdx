@@ -22,18 +22,16 @@ Let's write and modify a check, starting with one of the sdf samples.
   sdf new --sample hello_with_pii && cd hello_with_pii
   ```
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_with_pii/.gitignore
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_with_pii/checks/code_check.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_with_pii/src/main.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_with_pii/workspace.sdf.yml
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.096&nbsp;secs
+    Created hello_with_pii/.gitignore
+    Created hello_with_pii/checks/code_check.sql
+    Created hello_with_pii/src/main.sql
+    Created hello_with_pii/workspace.sdf.yml
+   Finished new in 0.107 secs
 
 </code>
 </pre>
-</div>
 
     This sample workspace contains a model, and a classifier, and a check. 
 
@@ -64,19 +62,17 @@ Let's write and modify a check, starting with one of the sdf samples.
     Hurray! The check passes.
 
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./src/main.sql)
-Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.code_check&nbsp;(./checks/code_check.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.242&nbsp;secs
-[Pass]&nbsp;Check&nbsp;hello.pub.code_check
+Working set 1 model file, 1 .sdf file
+  Compiling hello.pub.main (./src/main.sql)
+Working set 1 test file, 1 .sdf file
+    Testing hello.pub.code_check (./checks/code_check.sql)
+   Finished 1 model [1 succeeded], 1 check [1 passed] in 1.015 secs
+[Pass] Check hello.pub.code_check
 
 </code>
 </pre>
-</div>
 
     But, carefully read the check.
 
@@ -108,30 +104,28 @@ Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
     Running `sdf check` again will **result in a failed test**. The output will look like this:
 
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./src/main.sql)
-Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.code_check&nbsp;(./checks/code_check.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.241&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
+Working set 1 model file, 1 .sdf file
+  Compiling hello.pub.main (./src/main.sql)
+Working set 1 test file, 1 .sdf file
+    Testing hello.pub.code_check (./checks/code_check.sql)
+   Finished 1 model [1 succeeded], 1 check [1 failed] in 1.003 secs, for details see below.
 
-[Fail]&nbsp;Check&nbsp;hello.pub.code_check
-+------------+-------------+-------------+
-|&nbsp;table_name&nbsp;|&nbsp;column&nbsp;name&nbsp;|&nbsp;classifiers&nbsp;|
-+------------+-------------+-------------+
-|&nbsp;main&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;column_2&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;[PII.name]&nbsp;&nbsp;|
-+------------+-------------+-------------+
-1&nbsp;rows.
+[Fail] Check hello.pub.code_check
+┌────────────┬─────────────┬─────────────┐
+│ table_name ┆ column name ┆ classifiers │
+╞════════════╪═════════════╪═════════════╡
+│ main       ┆ column_2    ┆ [PII.name]  │
+└────────────┴─────────────┴─────────────┘
+1 rows.
 
 -------
-Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.241&nbsp;secs.
+Summary 1 model [1 succeeded], 1 check [1 failed] in 1.003 secs.
 -------
 
 </code>
 </pre>
-</div>
 
   </Step>
 </Steps>
@@ -180,20 +174,18 @@ Let's fix this failing check! We can apply an `md5()` hash to column_2 (the name
 
 
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./src/main.sql)
-&nbsp;&nbsp;Compiling&nbsp;hello.pub.sink&nbsp;(./src/sink.sql)
-Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.code_check&nbsp;(./checks/code_check.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.254&nbsp;secs
-[Pass]&nbsp;Check&nbsp;hello.pub.code_check
+Working set 2 model files, 1 .sdf file
+  Compiling hello.pub.main (./src/main.sql)
+  Compiling hello.pub.sink (./src/sink.sql)
+Working set 1 test file, 1 .sdf file
+    Testing hello.pub.code_check (./checks/code_check.sql)
+   Finished 2 models [2 succeeded], 1 check [1 passed] in 0.993 secs
+[Pass] Check hello.pub.code_check
 
 </code>
 </pre>
-</div>
 
   </Step>
 </Steps>

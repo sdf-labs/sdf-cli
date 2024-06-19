@@ -3,29 +3,21 @@ title: "Aggregate Functions"
 ---
 
 ## `approx_count_distinct`
+
+#### Supported Signatures
+```sql
+function approx_count_distinct(bigint) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
-```sql
-function approx_count_distinct(<bigint>) returns bigint
-```
-
-
 ## `regexp_count`
+
+#### Supported Signatures
+```sql
+function regexp_count(varchar, varchar) returns bigint
+function regexp_count(varchar, varchar, bigint) returns bigint
+function regexp_count(varchar, varchar, bigint, varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/REGEXP_COUNT.html)
-
-```sql
-function regexp_count(<varchar, varchar>) returns bigint
-```
-
-
-```sql
-function regexp_count(<varchar, varchar, bigint>) returns bigint
-```
-
-
-```sql
-function regexp_count(<varchar, varchar, bigint, varchar>) returns bigint
-```
-
 
 

@@ -3,48 +3,48 @@ title: "Hash Functions"
 ---
 
 ## `farm_fingerprint`
+
+#### Supported Signatures
+```sql
+function farm_fingerprint $1($1) returns bigint
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#farm_fingerprint)
 
+## `md5`
+
+#### Supported Signatures
 ```sql
-function farm_fingerprint<$1> (<$1>) returns bigint
+function md5 $1($1) returns bytes
 	where $1 in (string, bytes)
 ```
-
-
-## `md5`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#md5)
 
+## `sha1`
+
+#### Supported Signatures
 ```sql
-function md5<$1> (<$1>) returns bytes
+function sha1 $1($1) returns bytes
 	where $1 in (string, bytes)
 ```
-
-
-## `sha1`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sha1)
 
+## `sha256`
+
+#### Supported Signatures
 ```sql
-function sha1<$1> (<$1>) returns bytes
+function sha256 $1($1) returns bytes
 	where $1 in (string, bytes)
 ```
-
-
-## `sha256`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sha256)
 
-```sql
-function sha256<$1> (<$1>) returns bytes
-	where $1 in (string, bytes)
-```
-
-
 ## `sha512`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sha512)
 
+#### Supported Signatures
 ```sql
-function sha512<$1> (<$1>) returns bytes
+function sha512 $1($1) returns bytes
 	where $1 in (string, bytes)
 ```
-
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sha512)
 
 

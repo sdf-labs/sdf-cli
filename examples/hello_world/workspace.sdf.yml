@@ -3,23 +3,25 @@ workspace:
   edition: "1.2"
   defaults:
     dialect: presto
-    environment: local
   description: >
     Hello World! Let's analyze the world population.
 
-    To build using the local population data (./local/pop.csv), run using the 'local' environment: 'sdf run -e local'
+    To build using the local population data (./local/pop.csv), run using the 'local' environment: 'sdf build --profile local'
 
-    To pull data from s3 (s3://sdfdatasets), build using the remote environment: 'sdf run -e remote'
+    To pull data from s3 (s3://sdfdatasets), build using the remote environment: 'sdf build --profile remote'
 
-    (Note: You may need to log into your aws cli before building from remote. Use 'sdf auth aws --profile <profile>')
+    (Note: You may need to log into your aws cli before building from remote. Use 'sdf auth aws --profile <PROFILE-NAME>')
 
     Type 'sdf compile' to view schema information
+
+    Type 'sdf auth login' and 'sdf deploy --profile <local|remote>' to deploy the workspace to the sdf console
+
+    To follow along: https://docs.sdf.com/examples/hello-world
 ---
 environment:
   name: local
   includes:
     - path: local
-      type: model
     - path: local/pop.csv
       type: resource
 ---

@@ -96,26 +96,24 @@ Init for run commands:
         
         It will look like this:
        
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_customers&nbsp;(./models/raw/raw_customers.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.inapp_events&nbsp;(./models/staging/inapp_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.app_installs&nbsp;(./models/staging/app_installs.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.customers&nbsp;(./models/staging/customers.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.203&nbsp;secs
+Working set 11 model files, 8 .sdf files
+  Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
+  Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
+  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
+  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+  Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+  Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
+  Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
+  Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
+  Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
+  Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
+   Finished 11 models [11 succeeded] in 0.658 secs
 
 </code>
 </pre>
-</div>
 
         We will see how it looks like when this command fails in later tutorials. 
         <Note>
@@ -136,40 +134,38 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
 
         Notice that to execute our query, SDF ran all the models it is dependent on.
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.pub.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.pub.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.pub.inapp_events&nbsp;(./models/staging/inapp_events.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.pub.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.pub.app_installs&nbsp;(./models/staging/app_installs.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.pub.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.pub.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.225&nbsp;secs
+Working set 12 model files, 8 .sdf files
+    Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
+    Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
+    Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
+    Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
+    Running moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
+    Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
+    Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
+   Finished 7 models [7 succeeded] in 0.744 secs
 
-Table&nbsp;moms_flower_shop.pub.dim_marketing_campaigns
+Table moms_flower_shop.pub.dim_marketing_campaigns
 ┌─────────────┬─────────────────────────────────┬────────────────────┬───────────────────────────────┬────────────────────────┐
-│&nbsp;campaign_id&nbsp;┆&nbsp;campaign_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;total_num_installs&nbsp;┆&nbsp;avg_customer_acquisition_cost&nbsp;┆&nbsp;install_duration_ratio&nbsp;│
+│ campaign_id ┆ campaign_name                   ┆ total_num_installs ┆ avg_customer_acquisition_cost ┆ install_duration_ratio │
 ╞═════════════╪═════════════════════════════════╪════════════════════╪═══════════════════════════════╪════════════════════════╡
-│&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;friends_referrals_25_f1a9344085&nbsp;┆&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;174.903432075169&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;61&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;friends_referrals_61_17d7bb85f3&nbsp;┆&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;313.0172449950501&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;instagram_ads_18_92b545ab18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;288.52496746162666&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;instagram_ads_51_94f540ce54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;261.3704859860934&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;26&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;google_search_26_bb6932ae6d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;301.34941277893944&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;49&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;friends_referrals_49_16b0b159fa&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;288.469560173737&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;google_search_17_a400715565&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;245.21392390373887&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;google_search_32_893397b50d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;369.19360069982207&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;instagram_ads_27_51742fd406&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;337.24899695415485&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;facebook_ads_60_c107c6b147&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;345.1581886309037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│ 25          ┆ friends_referrals_25_f1a9344085 ┆ 12                 ┆ 174.903432075169              ┆ 1                      │
+│ 18          ┆ instagram_ads_18_92b545ab18     ┆ 10                 ┆ 288.52496746162666            ┆ 2                      │
+│ 61          ┆ friends_referrals_61_17d7bb85f3 ┆ 10                 ┆ 313.0172449950501             ┆ 2                      │
+│ 51          ┆ instagram_ads_51_94f540ce54     ┆ 9                  ┆ 261.3704859860934             ┆ 2                      │
+│ 26          ┆ google_search_26_bb6932ae6d     ┆ 9                  ┆ 301.34941277893944            ┆ 2                      │
+│ 17          ┆ google_search_17_a400715565     ┆ 9                  ┆ 245.21392390373887            ┆ 1                      │
+│ 49          ┆ friends_referrals_49_16b0b159fa ┆ 9                  ┆ 288.469560173737              ┆ 2                      │
+│ 60          ┆ facebook_ads_60_c107c6b147      ┆ 8                  ┆ 345.1581886309037             ┆ 2                      │
+│ 32          ┆ google_search_32_893397b50d     ┆ 8                  ┆ 369.19360069982207            ┆ 2                      │
+│ 103         ┆ instagram_ads_103_cd5421fbd9    ┆ 8                  ┆ 223.14798839074024            ┆ 1                      │
 └─────────────┴─────────────────────────────────┴────────────────────┴───────────────────────────────┴────────────────────────┘
-114&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
-&nbsp;&nbsp;Run&nbsp;with&nbsp;--limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+114 rows, showing only 10 rows.
+  Run with --limit 0 to show all rows.
 
 </code>
 </pre>
-</div>
     </Step>
 </Steps>
 

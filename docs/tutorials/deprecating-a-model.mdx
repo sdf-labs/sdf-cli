@@ -59,45 +59,43 @@ Now, the paths are included in our project.
         sdf lineage app_installs --forward --show result
         ```
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Table:&nbsp;app_installs
+Table: app_installs
 
 app_installs.campaign_id
 
 app_installs.campaign_name
 │
-│&nbsp;copy
+│ copy
 └──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;agg_installs_and_campaigns.campaign_name
+       agg_installs_and_campaigns.campaign_name
 
 app_installs.campaign_type
 
 app_installs.customer_id
 │
-│&nbsp;mod
+│ mod
 └──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;agg_installs_and_campaigns.distinct_installs
+       agg_installs_and_campaigns.distinct_installs
 
 app_installs.event_id
 
 app_installs.install_time
 │
-│&nbsp;mod
+│ mod
 └──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;agg_installs_and_campaigns.install_date
+       agg_installs_and_campaigns.install_date
 
 app_installs.platform
 │
-│&nbsp;copy
+│ copy
 └──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;agg_installs_and_campaigns.platform
+       agg_installs_and_campaigns.platform
 
 
 </code>
 </pre>
-</div>
         <Tip>
             **Wow!** The model `agg_installs_and_campaigns` is also using the 
             old version table!
@@ -124,29 +122,26 @@ app_installs.platform
         ```
 
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
 <code className='language-error'>
 
-Schema&nbsp;moms_flower_shop.pub.app_installs
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;table&nbsp;is&nbsp;a&nbsp;staging&nbsp;table&nbsp;which&nbsp;adds&nbsp;campaign&nbsp;information&nbsp;to&nbsp;app&nbsp;install&nbsp;events
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TABLE_STATUS.deprecated]
+Schema moms_flower_shop.pub.app_installs
+       This table is a staging table which adds campaign information to app install events
+       [TABLE_STATUS.deprecated]
 ┌───────────────┬──────────────┬────────────┬─────────────┐
-│&nbsp;column_name&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+│ column_name   ┆ data_type    ┆ classifier ┆ description │
 ╞═══════════════╪══════════════╪════════════╪═════════════╡
-│&nbsp;event_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;customer_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;install_time&nbsp;&nbsp;┆&nbsp;timestamp(0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;platform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;campaign_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;campaign_name&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;campaign_type&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│ event_id      ┆ bigint       ┆            ┆             │
+│ customer_id   ┆ bigint       ┆            ┆             │
+│ install_time  ┆ timestamp(0) ┆            ┆             │
+│ platform      ┆ varchar      ┆            ┆             │
+│ campaign_id   ┆ bigint       ┆            ┆             │
+│ campaign_name ┆ varchar      ┆            ┆             │
+│ campaign_type ┆ varchar      ┆            ┆             │
 └───────────────┴──────────────┴────────────┴─────────────┘
 
 </code>
 </pre>
-</div>
         
         <Tip>
             Read more about classifiers in the [Classifiers Guide](/guide/basics/classifiers).
@@ -195,21 +190,19 @@ Schema&nbsp;moms_flower_shop.pub.app_installs
         ```
 
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
 <code className='language-error'>
 
-Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
-+-------------------------------------------------+-----------------------------------+
-|&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;upstream_deprecated_table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
-+-------------------------------------------------+-----------------------------------+
-|&nbsp;moms_flower_shop.pub.agg_installs_and_campaigns&nbsp;|&nbsp;moms_flower_shop.pub.app_installs&nbsp;|
-+-------------------------------------------------+-----------------------------------+
-1&nbsp;rows.
+Report moms_flower_shop.pub.deprecated_table_reference
+┌─────────────────────────────────────────────────┬───────────────────────────────────┐
+│ table_id                                        ┆ upstream_deprecated_table_id      │
+╞═════════════════════════════════════════════════╪═══════════════════════════════════╡
+│ moms_flower_shop.pub.agg_installs_and_campaigns ┆ moms_flower_shop.pub.app_installs │
+└─────────────────────────────────────────────────┴───────────────────────────────────┘
+1 rows.
 
 </code>
 </pre>
-</div>
 
         It works! Now, we should fix `agg_installs_and_campaigns`.
         <Tip>
@@ -237,18 +230,18 @@ Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
         ```
 
         All clear!
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<pre style={{ fontFamily: 'monospace' }} className='language-error'>
 <code className='language-error'>
 
-Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
-++
-++
-0&nbsp;rows.
+Report moms_flower_shop.pub.deprecated_table_reference
+┌──────────┬──────────────────────────────┐
+│ table_id ┆ upstream_deprecated_table_id │
+╞══════════╪══════════════════════════════╡
+└──────────┴──────────────────────────────┘
+0 rows.
 
 </code>
 </pre>
-</div>
     </Step>
 </Steps>
 

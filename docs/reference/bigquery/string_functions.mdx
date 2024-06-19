@@ -3,554 +3,458 @@ title: "String Functions"
 ---
 
 ## `ascii`
+
+#### Supported Signatures
+```sql
+function ascii(string) returns int64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ascii)
 
-```sql
-function ascii(<string>) returns int64
-```
-
-
 ## `byte_length`
+
+#### Supported Signatures
+```sql
+function byte_length $1($1) returns int64
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#byte_length)
 
-```sql
-function byte_length<$1> (<$1>) returns int64
-	where $1 in (string, bytes)
-```
-
-
 ## `char_length`
+
+#### Supported Signatures
+```sql
+function char_length(string) returns int64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#char_length)
 
-```sql
-function char_length(<string>) returns int64
-```
-
-
 ## `character_length`
+
+#### Supported Signatures
+```sql
+function character_length(string) returns int64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#character_length)
 
-```sql
-function character_length(<string>) returns int64
-```
-
-
 ## `chr`
+
+#### Supported Signatures
+```sql
+function chr(int64) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#chr)
 
-```sql
-function chr(<int64>) returns string
-```
-
-
 ## `code_points_to_bytes`
+
+#### Supported Signatures
+```sql
+function code_points_to_bytes(array<int64>) returns bytes
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#code_points_to_bytes)
 
-```sql
-function code_points_to_bytes(<array<int64>>) returns bytes
-```
-
-
 ## `code_points_to_string`
+
+#### Supported Signatures
+```sql
+function code_points_to_string(array<int64>) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#code_points_to_string)
 
-```sql
-function code_points_to_string(<array<int64>>) returns string
-```
-
-
 ## `collate`
+
+#### Supported Signatures
+```sql
+function collate(string, string) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#collate)
 
-```sql
-function collate(<string, string>) returns string
-```
-
-
 ## `concat`
+
+#### Supported Signatures
+```sql
+function concat $1($1, ...) returns $1
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#concat)
 
-```sql
-function concat<$1> ($1, ...) returns $1
-	where $1 in (string, bytes)
-```
-
-
 ## `contains_substr`
+
+#### Supported Signatures
+```sql
+function contains_substr $1($1, string) returns bool
+	where $1 in (string, bigint, bool, timestamp, time, date, datetime)
+function contains_substr $1(array<$1>, string) returns bool
+	where $1 in (string, bigint, bool, timestamp, time, date, datetime)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#contains_substr)
 
-```sql
-function contains_substr<$1> (<$1, string>) returns bool
-	where $1 in (string, bigint, bool, timestamp, time, date, datetime)
-```
-
-
-```sql
-function contains_substr<$1> (<array<$1>, string>) returns bool
-	where $1 in (string, bigint, bool, timestamp, time, date, datetime)
-```
-
-
 ## `ends_with`
+
+#### Supported Signatures
+```sql
+function ends_with $1($1, string) returns bool
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ends_with)
 
-```sql
-function ends_with<$1> (<$1, string>) returns bool
-	where $1 in (string, bytes)
-```
-
-
 ## `format`
+
+#### Supported Signatures
+```sql
+function format(string) returns string
+function format(string, $1) returns string
+function format(string, $1, $2) returns string
+function format(string, $1, $2, $3) returns string
+function format(string, $1, $2, $3, $4) returns string
+function format(string, $1, $2, $3, $4, $5) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#format)
 
-```sql
-function format(<string>) returns string
-```
-
-
-```sql
-function format(<string, $1>) returns string
-```
-
-
-```sql
-function format(<string, $1, $2>) returns string
-```
-
-
-```sql
-function format(<string, $1, $2, $3>) returns string
-```
-
-
-```sql
-function format(<string, $1, $2, $3, $4>) returns string
-```
-
-
-```sql
-function format(<string, $1, $2, $3, $4, $5>) returns string
-```
-
-
 ## `from_base32`
+
+#### Supported Signatures
+```sql
+function from_base32(string) returns bytes
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#from_base32)
 
-```sql
-function from_base32(<string>) returns bytes
-```
-
-
 ## `from_base64`
+
+#### Supported Signatures
+```sql
+function from_base64(string) returns bytes
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#from_base64)
 
-```sql
-function from_base64(<string>) returns bytes
-```
-
-
 ## `from_hex`
+
+#### Supported Signatures
+```sql
+function from_hex(string) returns bytes
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#from_hex)
 
-```sql
-function from_hex(<string>) returns bytes
-```
-
-
 ## `initcap`
+
+#### Supported Signatures
+```sql
+function initcap(string) returns string
+function initcap(string, string) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#initcap)
 
-```sql
-function initcap(<string>) returns string
-```
-
-
-```sql
-function initcap(<string, string>) returns string
-```
-
-
 ## `instr`
+
+#### Supported Signatures
+```sql
+function instr(string, string) returns int64
+function instr(string, string, int64) returns int64
+function instr(string, string, int64, int64) returns int64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#instr)
 
-```sql
-function instr(<string, string>) returns int64
-```
-
-
-```sql
-function instr(<string, string, int64>) returns int64
-```
-
-
-```sql
-function instr(<string, string, int64, int64>) returns int64
-```
-
-
 ## `left`
+
+#### Supported Signatures
+```sql
+function left $1($1, int64) returns $1
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#left)
 
+## `length`
+
+#### Supported Signatures
 ```sql
-function left<$1> (<$1, int64>) returns $1
+function length $1($1) returns int64
 	where $1 in (string, bytes)
 ```
-
-
-## `length`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#length)
 
-```sql
-function length<$1> (<$1>) returns int64
-	where $1 in (string, bytes)
-```
-
-
 ## `lower`
+
+#### Supported Signatures
+```sql
+function lower(string) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#lower)
 
-```sql
-function lower(<string>) returns string
-```
-
-
 ## `lpad`
+
+#### Supported Signatures
+```sql
+function lpad(string, int64, string) returns string
+function lpad(string, int64) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#lpad)
 
-```sql
-function lpad(<string, int64, string>) returns string
-```
-
-
-```sql
-function lpad(<string, int64>) returns string
-```
-
-
 ## `ltrim`
+
+#### Supported Signatures
+```sql
+function ltrim(string) returns string
+function ltrim(string, string) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ltrim)
 
-```sql
-function ltrim(<string>) returns string
-```
-
-
-```sql
-function ltrim(<string, string>) returns string
-```
-
-
 ## `normalize_and_casefold`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#normalize_and_casefold)
 
+#### Supported Signatures
 ```sql
-function normalize_and_casefold(<string>) returns string
-```
-
-
-```sql
-function normalize_and_casefold(<string, normalization_mode string>) returns string
+function normalize_and_casefold(string) returns string
+function normalize_and_casefold(string, normalization_mode string) returns string
 	where normalization_mode in (nfc, nfd, nfkc, nfkd)
 ```
-
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#normalize_and_casefold)
 
 ## `octet_length`
+
+#### Supported Signatures
+```sql
+function octet_length $1($1) returns int64
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#octet_length)
 
+## `regexp_contains`
+
+#### Supported Signatures
 ```sql
-function octet_length<$1> (<$1>) returns int64
+function regexp_contains $1($1, string) returns bool
 	where $1 in (string, bytes)
 ```
-
-
-## `regexp_contains`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#regexp_contains)
 
+## `regexp_extract`
+
+#### Supported Signatures
 ```sql
-function regexp_contains<$1> (<$1, string>) returns bool
+function regexp_extract $1($1, string) returns $1
+	where $1 in (string, bytes)
+function regexp_extract $1($1, string, int64) returns $1
+	where $1 in (string, bytes)
+function regexp_extract $1($1, string, int64, int64) returns $1
 	where $1 in (string, bytes)
 ```
-
-
-## `regexp_extract`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#regexp_extract)
 
-```sql
-function regexp_extract<$1> (<$1, string>) returns $1
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function regexp_extract<$1> (<$1, string, int64>) returns $1
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function regexp_extract<$1> (<$1, string, int64, int64>) returns $1
-	where $1 in (string, bytes)
-```
-
-
 ## `regexp_extract_all`
+
+#### Supported Signatures
+```sql
+function regexp_extract_all $1($1, string) returns array<$1>
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#regexp_extract_all)
 
+## `regexp_instr`
+
+#### Supported Signatures
 ```sql
-function regexp_extract_all<$1> (<$1, string>) returns array<$1>
+function regexp_instr $1($1, $1) returns int64
+	where $1 in (string, bytes)
+function regexp_instr $1($1, $1, int64) returns int64
+	where $1 in (string, bytes)
+function regexp_instr $1($1, $1, int64, int64, int64) returns int64
 	where $1 in (string, bytes)
 ```
-
-
-## `regexp_instr`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#regexp_instr)
 
-```sql
-function regexp_instr<$1> (<$1, $1>) returns int64
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function regexp_instr<$1> (<$1, $1, int64>) returns int64
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function regexp_instr<$1> (<$1, $1, int64, int64, int64>) returns int64
-	where $1 in (string, bytes)
-```
-
-
 ## `regexp_replace`
+
+#### Supported Signatures
+```sql
+function regexp_replace $1($1, string, string) returns $1
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#regexp_replace)
 
+## `regexp_substr`
+
+#### Supported Signatures
 ```sql
-function regexp_replace<$1> (<$1, string, string>) returns $1
+function regexp_substr $1($1, string) returns $1
+	where $1 in (string, bytes)
+function regexp_substr $1($1, string, int64) returns $1
+	where $1 in (string, bytes)
+function regexp_substr $1($1, string, int64, int64) returns $1
 	where $1 in (string, bytes)
 ```
-
-
-## `regexp_substr`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#regexp_substr)
 
-```sql
-function regexp_substr<$1> (<$1, string>) returns $1
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function regexp_substr<$1> (<$1, string, int64>) returns $1
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function regexp_substr<$1> (<$1, string, int64, int64>) returns $1
-	where $1 in (string, bytes)
-```
-
-
 ## `repeat`
+
+#### Supported Signatures
+```sql
+function repeat $1($1, int64) returns $1
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#repeat)
 
+## `replace`
+
+#### Supported Signatures
 ```sql
-function repeat<$1> (<$1, int64>) returns $1
+function replace $1($1, string, string) returns $1
 	where $1 in (string, bytes)
 ```
-
-
-## `replace`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#replace)
 
+## `reverse`
+
+#### Supported Signatures
 ```sql
-function replace<$1> (<$1, string, string>) returns $1
+function reverse $1($1) returns $1
 	where $1 in (string, bytes)
 ```
-
-
-## `reverse`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#reverse)
 
+## `right`
+
+#### Supported Signatures
 ```sql
-function reverse<$1> (<$1>) returns $1
+function right $1($1, int64) returns $1
 	where $1 in (string, bytes)
 ```
-
-
-## `right`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#right)
 
-```sql
-function right<$1> (<$1, int64>) returns $1
-	where $1 in (string, bytes)
-```
-
-
 ## `rpad`
+
+#### Supported Signatures
+```sql
+function rpad(string, int64, string) returns string
+function rpad(string, int64) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#rpad)
 
-```sql
-function rpad(<string, int64, string>) returns string
-```
-
-
-```sql
-function rpad(<string, int64>) returns string
-```
-
-
 ## `rtrim`
+
+#### Supported Signatures
+```sql
+function rtrim(string) returns string
+function rtrim(string, string) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#rtrim)
 
-```sql
-function rtrim(<string>) returns string
-```
-
-
-```sql
-function rtrim(<string, string>) returns string
-```
-
-
 ## `safe_convert_bytes_to_string`
+
+#### Supported Signatures
+```sql
+function safe_convert_bytes_to_string(bytes) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_convert_bytes_to_string)
 
-```sql
-function safe_convert_bytes_to_string(<bytes>) returns string
-```
-
-
 ## `soundex`
+
+#### Supported Signatures
+```sql
+function soundex(string) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#soundex)
 
-```sql
-function soundex(<string>) returns string
-```
-
-
 ## `split`
+
+#### Supported Signatures
+```sql
+function split $1($1) returns array<$1>
+	where $1 in (string, bytes)
+function split $1($1, $1) returns array<$1>
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#split)
 
-```sql
-function split<$1> (<$1>) returns array<$1>
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function split<$1> (<$1, $1>) returns array<$1>
-	where $1 in (string, bytes)
-```
-
-
 ## `starts_with`
+
+#### Supported Signatures
+```sql
+function starts_with(string, string) returns bool
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#starts_with)
 
-```sql
-function starts_with(<string, string>) returns bool
-```
-
-
 ## `substr`
+
+#### Supported Signatures
+```sql
+function substr(string, int64) returns string
+function substr(string, int64, int64) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#substr)
 
-```sql
-function substr(<string, int64>) returns string
-```
-
-
-```sql
-function substr(<string, int64, int64>) returns string
-```
-
-
 ## `substring`
+
+#### Supported Signatures
+```sql
+function substring $1($1, int64) returns $1
+	where $1 in (string, bytes)
+function substring $1($1, int64, int64) returns $1
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#substring)
 
-```sql
-function substring<$1> (<$1, int64>) returns $1
-	where $1 in (string, bytes)
-```
-
-
-```sql
-function substring<$1> (<$1, int64, int64>) returns $1
-	where $1 in (string, bytes)
-```
-
-
 ## `to_base32`
+
+#### Supported Signatures
+```sql
+function to_base32(bytes) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#to_base32)
 
-```sql
-function to_base32(<bytes>) returns string
-```
-
-
 ## `to_base64`
+
+#### Supported Signatures
+```sql
+function to_base64(bytes) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#to_base64)
 
-```sql
-function to_base64(<bytes>) returns string
-```
-
-
 ## `to_code_points`
+
+#### Supported Signatures
+```sql
+function to_code_points $1($1) returns array<int64>
+	where $1 in (string, bytes)
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#to_code_points)
 
-```sql
-function to_code_points<$1> (<$1>) returns array<int64>
-	where $1 in (string, bytes)
-```
-
-
 ## `to_hex`
+
+#### Supported Signatures
+```sql
+function to_hex(bytes) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#to_hex)
 
-```sql
-function to_hex(<bytes>) returns string
-```
-
-
 ## `translate`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#translate)
 
+#### Supported Signatures
 ```sql
-function translate<$1> (<$1, $1, $1>) returns $1
+function translate $1($1, $1, $1) returns $1
 	where $1 in (string, bytes)
 ```
-
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#translate)
 
 ## `trim`
+
+#### Supported Signatures
+```sql
+function trim(string) returns string
+function trim(string, string) returns string
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#trim)
 
-```sql
-function trim(<string>) returns string
-```
-
-
-```sql
-function trim(<string, string>) returns string
-```
-
-
 ## `unicode`
+
+#### Supported Signatures
+```sql
+function unicode(string) returns int64
+```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#unicode)
 
-```sql
-function unicode(<string>) returns int64
-```
-
-
 ## `upper`
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#upper)
 
+#### Supported Signatures
 ```sql
-function upper(<string>) returns string
+function upper(string) returns string
 ```
-
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#upper)
 
 

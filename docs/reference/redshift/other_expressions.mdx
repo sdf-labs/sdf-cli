@@ -3,785 +3,697 @@ title: "Other Expressions"
 ---
 
 ## `add_months`
+
+#### Supported Signatures
+```sql
+function add_months(varchar, bigint) returns timestamp
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_ADD_MONTHS.html)
 
-```sql
-function add_months(<varchar, bigint>) returns timestamp
-```
-
-
 ## `any_value`
+
+#### Supported Signatures
+```sql
+function any_value($1) returns $1
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_ANY_VALUE.html)
 
-```sql
-function any_value(<$1>) returns $1
-```
-
-
 ## `array`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_array.html)
 
+#### Supported Signatures
 ```sql
 function array($1, ...) returns super
 ```
-
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_array.html)
 
 ## `array_flatten`
+
+#### Supported Signatures
+```sql
+function array_flatten(super) returns super
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/array_flatten.html)
 
-```sql
-function array_flatten(<super>) returns super
-```
-
-
 ## `bpcharcmp`
+
+#### Supported Signatures
+```sql
+function bpcharcmp(varchar, varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_BPCHARCMP.html)
 
-```sql
-function bpcharcmp(<varchar, varchar>) returns bigint
-```
-
-
 ## `bttext_pattern_cmp`
+
+#### Supported Signatures
+```sql
+function bttext_pattern_cmp(varchar, varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_BTTEXT_PATTERN_CMP.html)
 
-```sql
-function bttext_pattern_cmp(<varchar, varchar>) returns bigint
-```
-
-
 ## `can_json_parse`
+
+#### Supported Signatures
+```sql
+function can_json_parse(varchar) returns boolean
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/CAN_JSON_PARSE.html)
 
-```sql
-function can_json_parse(<varchar>) returns boolean
-```
-
-
 ## `cbrt`
+
+#### Supported Signatures
+```sql
+function cbrt(float) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_CBRT.html)
 
-```sql
-function cbrt(<float>) returns float
-```
-
-
 ## `ceiling`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
+#### Supported Signatures
 ```sql
-function ceiling(<float>) returns float
+function ceiling(float) returns float
 ```
-
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ## `charindex`
+
+#### Supported Signatures
+```sql
+function charindex(varchar, varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_CHARINDEX.html)
 
-```sql
-function charindex(<varchar, varchar>) returns bigint
-```
-
-
 ## `collate`
+
+#### Supported Signatures
+```sql
+function collate(varchar, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_COLLATE.html)
 
-```sql
-function collate(<varchar, varchar>) returns varchar
-```
-
-
 ## `cot`
+
+#### Supported Signatures
+```sql
+function cot(float) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_COT.html)
 
-```sql
-function cot(<float>) returns float
-```
-
-
 ## `crc32`
+
+#### Supported Signatures
+```sql
+function crc32(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/crc32-function.html)
 
-```sql
-function crc32(<varchar>) returns varchar
-```
-
-
 ## `decimal_precision`
+
+#### Supported Signatures
+```sql
+function decimal_precision(super) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_decimal_precision.html)
 
-```sql
-function decimal_precision(<super>) returns bigint
-```
-
-
 ## `decimal_scale`
+
+#### Supported Signatures
+```sql
+function decimal_scale(super) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_decimal_scale.html)
 
-```sql
-function decimal_scale(<super>) returns bigint
-```
-
-
 ## `degrees`
+
+#### Supported Signatures
+```sql
+function degrees(float) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DEGREES.html)
 
-```sql
-function degrees(<float>) returns float
-```
-
-
 ## `dexp`
+
+#### Supported Signatures
+```sql
+function dexp(float) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DEXP.html)
 
-```sql
-function dexp(<float>) returns float
-```
-
-
 ## `difference`
+
+#### Supported Signatures
+```sql
+function difference(varchar, varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/DIFFERENCE.html)
 
-```sql
-function difference(<varchar, varchar>) returns bigint
-```
-
-
 ## `dlog1`
+
+#### Supported Signatures
+```sql
+function dlog1(float) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DLOG1.html)
 
-```sql
-function dlog1(<float>) returns float
-```
-
-
 ## `dlog10`
+
+#### Supported Signatures
+```sql
+function dlog10(float) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DLOG10.html)
 
-```sql
-function dlog10(<float>) returns float
-```
-
-
 ## `farmfingerprint64`
+
+#### Supported Signatures
+```sql
+function farmfingerprint64(varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_FARMFINGERPRINT64.html)
 
-```sql
-function farmfingerprint64(<varchar>) returns bigint
-```
-
-
 ## `fnv_hash`
+
+#### Supported Signatures
+```sql
+function fnv_hash(varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_FNV_HASH.html)
 
-```sql
-function fnv_hash(<varchar>) returns bigint
-```
-
-
 ## `from_hex`
+
+#### Supported Signatures
+```sql
+function from_hex(varchar) returns varbyte
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_FROM_HEX.html)
 
-```sql
-function from_hex(<varchar>) returns varbyte
-```
-
-
 ## `from_varbyte`
+
+#### Supported Signatures
+```sql
+function from_varbyte(varbyte, varchar) returns varbyte
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_FROM_VARBYTE.html)
 
-```sql
-function from_varbyte(<varbyte, varchar>) returns varbyte
-```
-
-
 ## `func_sha1`
+
+#### Supported Signatures
+```sql
+function func_sha1(varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/FUNC_SHA1.html)
 
-```sql
-function func_sha1(<varchar>) returns bigint
-```
-
-
 ## `getbit`
+
+#### Supported Signatures
+```sql
+function getbit(varbyte, bigint) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_GETBIT.html)
 
-```sql
-function getbit(<varbyte, bigint>) returns bigint
-```
-
-
 ## `greatest`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
+#### Supported Signatures
 ```sql
 function greatest($1, ...) returns $1
 ```
-
-
-## `interval_cmp`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_INTERVAL_CMP.html)
-
-```sql
-function interval_cmp(<varchar, varchar>) returns bigint
-```
-
-
-## `is_array`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_array.html)
-
-```sql
-function is_array(<super>) returns boolean
-```
-
-
-## `is_bigint`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_bigint.html)
-
-```sql
-function is_bigint(<super>) returns boolean
-```
-
-
-## `is_boolean`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_boolean.html)
-
-```sql
-function is_boolean(<super>) returns boolean
-```
-
-
-## `is_char`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_char.html)
-
-```sql
-function is_char(<super>) returns boolean
-```
-
-
-## `is_decimal`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_decimal.html)
-
-```sql
-function is_decimal(<super>) returns boolean
-```
-
-
-## `is_float`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_float.html)
-
-```sql
-function is_float(<super>) returns boolean
-```
-
-
-## `is_object`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_object.html)
-
-```sql
-function is_object(<super>) returns boolean
-```
-
-
-## `is_scalar`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_scalar.html)
-
-```sql
-function is_scalar(<super>) returns boolean
-```
-
-
-## `is_smallint`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_smallint.html)
-
-```sql
-function is_smallint(<super>) returns boolean
-```
-
-
-## `is_valid_json`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/IS_VALID_JSON.html)
-
-```sql
-function is_valid_json(<varchar>) returns boolean
-```
-
-
-## `is_valid_json_array`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/IS_VALID_JSON_ARRAY.html)
-
-```sql
-function is_valid_json_array(<varchar>) returns boolean
-```
-
-
-## `is_varchar`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_varchar.html)
-
-```sql
-function is_varchar(<super>) returns boolean
-```
-
-
-## `json_extract_array_element_text`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_EXTRACT_ARRAY_ELEMENT_TEXT.html)
-
-```sql
-function json_extract_array_element_text(<varchar, bigint>) returns varchar
-```
-
-
-```sql
-function json_extract_array_element_text(<varchar, bigint, boolean>) returns varchar
-```
-
-
-## `json_extract_path_text`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_EXTRACT_PATH_TEXT.html)
-
-```sql
-function json_extract_path_text(<varchar, varchar>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, varchar>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, varchar>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, boolean>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, varchar, boolean>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, boolean>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, boolean>) returns varchar
-```
-
-
-```sql
-function json_extract_path_text(<varchar, varchar, varchar, varchar, varchar, varchar, boolean>) returns varchar
-```
-
-
-## `json_parse`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_PARSE.html)
-
-```sql
-function json_parse(<varchar>) returns super
-```
-
-
-## `json_serialize`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_SERIALIZE.html)
-
-```sql
-function json_serialize(<$1>) returns varchar
-```
-
-
-## `json_serialize_to_varbyte`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_SERIALIZE_TO_VARBYTE.html)
-
-```sql
-function json_serialize_to_varbyte(<$1>) returns varbyte
-```
-
-
-## `json_size`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_json_size.html)
-
-```sql
-function json_size(<super>) returns bigint
-```
-
-
-## `json_typeof`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_json_typeof.html)
-
-```sql
-function json_typeof(<super>) returns varchar
-```
-
-
-## `last_day`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_LAST_DAY.html)
-
-```sql
-function last_day(<varchar>) returns date
-```
-
-
-## `least`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
+## `interval_cmp`
+
+#### Supported Signatures
+```sql
+function interval_cmp(varchar, varchar) returns bigint
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_INTERVAL_CMP.html)
+
+## `is_array`
+
+#### Supported Signatures
+```sql
+function is_array(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_array.html)
+
+## `is_bigint`
+
+#### Supported Signatures
+```sql
+function is_bigint(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_bigint.html)
+
+## `is_boolean`
+
+#### Supported Signatures
+```sql
+function is_boolean(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_boolean.html)
+
+## `is_char`
+
+#### Supported Signatures
+```sql
+function is_char(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_char.html)
+
+## `is_decimal`
+
+#### Supported Signatures
+```sql
+function is_decimal(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_decimal.html)
+
+## `is_float`
+
+#### Supported Signatures
+```sql
+function is_float(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_float.html)
+
+## `is_object`
+
+#### Supported Signatures
+```sql
+function is_object(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_object.html)
+
+## `is_scalar`
+
+#### Supported Signatures
+```sql
+function is_scalar(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_scalar.html)
+
+## `is_smallint`
+
+#### Supported Signatures
+```sql
+function is_smallint(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_smallint.html)
+
+## `is_valid_json`
+
+#### Supported Signatures
+```sql
+function is_valid_json(varchar) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/IS_VALID_JSON.html)
+
+## `is_valid_json_array`
+
+#### Supported Signatures
+```sql
+function is_valid_json_array(varchar) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/IS_VALID_JSON_ARRAY.html)
+
+## `is_varchar`
+
+#### Supported Signatures
+```sql
+function is_varchar(super) returns boolean
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_is_varchar.html)
+
+## `json_extract_array_element_text`
+
+#### Supported Signatures
+```sql
+function json_extract_array_element_text(varchar, bigint) returns varchar
+function json_extract_array_element_text(varchar, bigint, boolean) returns varchar
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_EXTRACT_ARRAY_ELEMENT_TEXT.html)
+
+## `json_extract_path_text`
+
+#### Supported Signatures
+```sql
+function json_extract_path_text(varchar, varchar) returns varchar
+function json_extract_path_text(varchar, varchar, varchar) returns varchar
+function json_extract_path_text(varchar, varchar, varchar, varchar) returns varchar
+function json_extract_path_text(varchar, varchar, varchar, varchar, varchar) returns varchar
+function json_extract_path_text(varchar, varchar, varchar, varchar, varchar, varchar) returns varchar
+function json_extract_path_text(varchar, varchar, boolean) returns varchar
+function json_extract_path_text(varchar, varchar, varchar, boolean) returns varchar
+function json_extract_path_text(varchar, varchar, varchar, varchar, boolean) returns varchar
+function json_extract_path_text(varchar, varchar, varchar, varchar, varchar, boolean) returns varchar
+function json_extract_path_text(varchar, varchar, varchar, varchar, varchar, varchar, boolean) returns varchar
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_EXTRACT_PATH_TEXT.html)
+
+## `json_parse`
+
+#### Supported Signatures
+```sql
+function json_parse(varchar) returns super
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_PARSE.html)
+
+## `json_serialize`
+
+#### Supported Signatures
+```sql
+function json_serialize($1) returns varchar
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_SERIALIZE.html)
+
+## `json_serialize_to_varbyte`
+
+#### Supported Signatures
+```sql
+function json_serialize_to_varbyte($1) returns varbyte
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_SERIALIZE_TO_VARBYTE.html)
+
+## `json_size`
+
+#### Supported Signatures
+```sql
+function json_size(super) returns bigint
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_json_size.html)
+
+## `json_typeof`
+
+#### Supported Signatures
+```sql
+function json_typeof(super) returns varchar
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_json_typeof.html)
+
+## `last_day`
+
+#### Supported Signatures
+```sql
+function last_day(varchar) returns date
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_LAST_DAY.html)
+
+## `least`
+
+#### Supported Signatures
 ```sql
 function least($1, ...) returns $1
 ```
-
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
 ## `len`
+
+#### Supported Signatures
+```sql
+function len(varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_LEN.html)
 
-```sql
-function len(<varchar>) returns bigint
-```
-
-
 ## `md5`
+
+#### Supported Signatures
+```sql
+function md5(varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_MD5.html)
 
-```sql
-function md5(<varchar>) returns bigint
-```
-
-
 ## `mod`
+
+#### Supported Signatures
+```sql
+function mod(bigint, bigint) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_MOD.html)
 
-```sql
-function mod(<bigint, bigint>) returns bigint
-```
-
-
 ## `months_between`
+
+#### Supported Signatures
+```sql
+function months_between(varchar, varchar) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_MONTHS_BETWEEN_function.html)
 
-```sql
-function months_between(<varchar, varchar>) returns float
-```
-
-
 ## `murmur3_32_hash`
+
+#### Supported Signatures
+```sql
+function murmur3_32_hash(varchar) returns bigint
+function murmur3_32_hash(varchar, bigint) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/MURMUR3_32_HASH.html)
 
-```sql
-function murmur3_32_hash(<varchar>) returns bigint
-```
-
-
-```sql
-function murmur3_32_hash(<varchar, bigint>) returns bigint
-```
-
-
 ## `next_day`
+
+#### Supported Signatures
+```sql
+function next_day(varchar, varchar) returns date
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_NEXT_DAY.html)
 
-```sql
-function next_day(<varchar, varchar>) returns date
-```
-
-
 ## `nvl`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_NVL_function.html)
 
+#### Supported Signatures
 ```sql
 function nvl($1, ...) returns $1
 ```
-
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_NVL_function.html)
 
 ## `nvl2`
+
+#### Supported Signatures
+```sql
+function nvl2($1, $2, $2) returns $2
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_NVL2.html)
 
-```sql
-function nvl2(<$1, $2, $2>) returns $2
-```
-
-
 ## `octetindex`
+
+#### Supported Signatures
+```sql
+function octetindex(varchar, varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/OCTETINDEX.html)
 
-```sql
-function octetindex(<varchar, varchar>) returns bigint
-```
-
-
 ## `pi`
+
+#### Supported Signatures
+```sql
+function pi() returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_PI.html)
 
-```sql
-function pi(<>) returns float
-```
-
-
 ## `quote_ident`
+
+#### Supported Signatures
+```sql
+function quote_ident(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_QUOTE_IDENT.html)
 
-```sql
-function quote_ident(<varchar>) returns varchar
-```
-
-
 ## `quote_literal`
+
+#### Supported Signatures
+```sql
+function quote_literal(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_QUOTE_LITERAL.html)
 
-```sql
-function quote_literal(<varchar>) returns varchar
-```
-
-
 ## `radians`
+
+#### Supported Signatures
+```sql
+function radians(float) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_RADIANS.html)
 
-```sql
-function radians(<float>) returns float
-```
-
-
 ## `reclassify`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
-```sql
-function reclassify(<$1, varchar, varchar>) returns $1
-```
+#### Description
 Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
 
-```sql example.sql
-select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345' 
+**Example/s:**
+```sql examples.sql
+select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345'
 ```
+#### Supported Signatures
+```sql
+function reclassify($1, varchar, varchar) returns $1
+```
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
+
 ## `regexp_instr`
+
+#### Supported Signatures
+```sql
+function regexp_instr(varchar, varchar) returns bigint
+function regexp_instr(varchar, varchar, bigint) returns bigint
+function regexp_instr(varchar, varchar, bigint, bigint) returns bigint
+function regexp_instr(varchar, varchar, bigint, bigint, bigint) returns bigint
+function regexp_instr(varchar, varchar, bigint, bigint, bigint, varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/REGEXP_INSTR.html)
 
-```sql
-function regexp_instr(<varchar, varchar>) returns bigint
-```
-
-
-```sql
-function regexp_instr(<varchar, varchar, bigint>) returns bigint
-```
-
-
-```sql
-function regexp_instr(<varchar, varchar, bigint, bigint>) returns bigint
-```
-
-
-```sql
-function regexp_instr(<varchar, varchar, bigint, bigint, bigint>) returns bigint
-```
-
-
-```sql
-function regexp_instr(<varchar, varchar, bigint, bigint, bigint, varchar>) returns bigint
-```
-
-
 ## `regexp_substr`
+
+#### Supported Signatures
+```sql
+function regexp_substr(varchar, varchar) returns varchar
+function regexp_substr(varchar, varchar, varchar) returns varchar
+function regexp_substr(varchar, varchar, varchar, bigint) returns varchar
+function regexp_substr(varchar, varchar, varchar, bigint, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/REGEXP_SUBSTR.html)
 
-```sql
-function regexp_substr(<varchar, varchar>) returns varchar
-```
-
-
-```sql
-function regexp_substr(<varchar, varchar, varchar>) returns varchar
-```
-
-
-```sql
-function regexp_substr(<varchar, varchar, varchar, bigint>) returns varchar
-```
-
-
-```sql
-function regexp_substr(<varchar, varchar, varchar, bigint, varchar>) returns varchar
-```
-
-
 ## `replicate`
+
+#### Supported Signatures
+```sql
+function replicate(varchar, bigint) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_REPLICATE.html)
 
-```sql
-function replicate(<varchar, bigint>) returns varchar
-```
-
-
 ## `sha`
+
+#### Supported Signatures
+```sql
+function sha(varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/SHA.html)
 
-```sql
-function sha(<varchar>) returns bigint
-```
-
-
 ## `sha1`
+
+#### Supported Signatures
+```sql
+function sha1(varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/SHA1.html)
 
-```sql
-function sha1(<varchar>) returns bigint
-```
-
-
 ## `sha2`
+
+#### Supported Signatures
+```sql
+function sha2(varchar, bigint) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/SHA2.html)
 
-```sql
-function sha2(<varchar, bigint>) returns bigint
-```
-
-
 ## `sign`
+
+#### Supported Signatures
+```sql
+function sign(float) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_SIGN.html)
 
-```sql
-function sign(<float>) returns bigint
-```
-
-
 ## `size`
+
+#### Supported Signatures
+```sql
+function size($1) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_SIZE.html)
 
-```sql
-function size(<$1>) returns bigint
-```
-
-
 ## `soundex`
+
+#### Supported Signatures
+```sql
+function soundex(varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/SOUNDEX.html)
 
-```sql
-function soundex(<varchar>) returns varchar
-```
-
-
 ## `split_to_array`
+
+#### Supported Signatures
+```sql
+function split_to_array(varchar, varchar) returns super
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/split_to_array.html)
 
-```sql
-function split_to_array(<varchar, varchar>) returns super
-```
-
-
 ## `strtol`
+
+#### Supported Signatures
+```sql
+function strtol(varchar, bigint) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_STRTOL.html)
 
-```sql
-function strtol(<varchar, bigint>) returns bigint
-```
-
-
 ## `subarray`
+
+#### Supported Signatures
+```sql
+function subarray(super, bigint, bigint) returns super
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_subarray.html)
 
-```sql
-function subarray(<super, bigint, bigint>) returns super
-```
-
-
 ## `text_to_int_alt`
+
+#### Supported Signatures
+```sql
+function text_to_int_alt(varchar) returns bigint
+function text_to_int_alt(varchar, varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TEXT_TO_INT_ALT.html)
 
-```sql
-function text_to_int_alt(<varchar>) returns bigint
-```
-
-
-```sql
-function text_to_int_alt(<varchar, varchar>) returns bigint
-```
-
-
 ## `text_to_numeric_alt`
+
+#### Supported Signatures
+```sql
+function text_to_numeric_alt(varchar) returns float
+function text_to_numeric_alt(varchar, varchar) returns float
+function text_to_numeric_alt(varchar, bigint, bigint) returns float
+function text_to_numeric_alt(varchar, varchar, bigint, bigint) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TEXT_TO_NUMERIC_ALT.html)
 
-```sql
-function text_to_numeric_alt(<varchar>) returns float
-```
-
-
-```sql
-function text_to_numeric_alt(<varchar, varchar>) returns float
-```
-
-
-```sql
-function text_to_numeric_alt(<varchar, bigint, bigint>) returns float
-```
-
-
-```sql
-function text_to_numeric_alt(<varchar, varchar, bigint, bigint>) returns float
-```
-
-
 ## `textlen`
+
+#### Supported Signatures
+```sql
+function textlen(varchar) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TEXTLEN.html)
 
-```sql
-function textlen(<varchar>) returns bigint
-```
-
-
 ## `to_char`
+
+#### Supported Signatures
+```sql
+function to_char($1, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_CHAR.html)
 
-```sql
-function to_char(<$1, varchar>) returns varchar
-```
-
-
 ## `to_hex`
+
+#### Supported Signatures
+```sql
+function to_hex(varbyte) returns varchar
+function to_hex(bigint) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_HEX.html)
 
-```sql
-function to_hex(<varbyte>) returns varchar
-```
-
-
-```sql
-function to_hex(<bigint>) returns varchar
-```
-
-
 ## `to_number`
+
+#### Supported Signatures
+```sql
+function to_number(varchar, varchar) returns float
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_NUMBER.html)
 
-```sql
-function to_number(<varchar, varchar>) returns float
-```
-
-
 ## `to_varbyte`
+
+#### Supported Signatures
+```sql
+function to_varbyte(varchar, varchar) returns varbyte
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_VARBYTE.html)
 
-```sql
-function to_varbyte(<varchar, varchar>) returns varbyte
-```
-
-
 ## `trunc`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TRUNC.html)
 
+#### Supported Signatures
 ```sql
-function trunc(<varchar>) returns date
+function trunc(varchar) returns date
 ```
-
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TRUNC.html)
 
 

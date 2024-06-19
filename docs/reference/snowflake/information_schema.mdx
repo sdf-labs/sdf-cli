@@ -4,10 +4,10 @@ title: "Information Schema"
 
 
 ## `alert_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/alert_history)
 
+#### Supported Signatures
 ```sql
-function alert_history(<>) returns struct<
+function alert_history() returns struct<
   name string,
   database_name string,
   schema_name string,
@@ -23,13 +23,13 @@ function alert_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/alert_history)
 
 ## `auto_refresh_registration_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/auto_refresh_registration_history)
 
+#### Supported Signatures
 ```sql
-function auto_refresh_registration_history(<>) returns struct<
+function auto_refresh_registration_history() returns struct<
   start_time timestamp,
   end_time timestamp,
   object_name string,
@@ -39,13 +39,13 @@ function auto_refresh_registration_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/auto_refresh_registration_history)
 
 ## `automatic_clustering_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/automatic_clustering_history)
 
+#### Supported Signatures
 ```sql
-function automatic_clustering_history<$1, $2> (<>) returns struct<
+function automatic_clustering_history $1, $2() returns struct<
   start_time timestamp,
   end_time timestamp,
   table_name string,
@@ -57,13 +57,13 @@ function automatic_clustering_history<$1, $2> (<>) returns struct<
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/automatic_clustering_history)
 
 ## `complete_task_graphs`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/complete_task_graphs)
 
+#### Supported Signatures
 ```sql
-function complete_task_graphs(<>) returns struct<
+function complete_task_graphs() returns struct<
   root_task_name string,
   database_name string,
   schema_name string,
@@ -85,13 +85,13 @@ function complete_task_graphs(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/complete_task_graphs)
 
 ## `copy_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/copy_history)
 
+#### Supported Signatures
 ```sql
-function copy_history(<table_name string, start_time timestamp>) returns struct<
+function copy_history(table_name string, start_time timestamp) returns struct<
   file_name string,
   stage_location string,
   last_load_time timestamp,
@@ -115,13 +115,13 @@ function copy_history(<table_name string, start_time timestamp>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/copy_history)
 
 ## `current_task_graphs`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_task_graphs)
 
+#### Supported Signatures
 ```sql
-function current_task_graphs(<>) returns struct<
+function current_task_graphs() returns struct<
   root_task_name string,
   database_name string,
   schema_name string,
@@ -143,13 +143,13 @@ function current_task_graphs(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/current_task_graphs)
 
 ## `data_transfer_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/data_transfer_history)
 
+#### Supported Signatures
 ```sql
-function data_transfer_history(<>) returns struct<
+function data_transfer_history() returns struct<
   start_time timestamp,
   end_time timestamp,
   source_cloud string,
@@ -161,84 +161,76 @@ function data_transfer_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/data_transfer_history)
 
 ## `database_refresh_history`
+
+#### Supported Signatures
+```sql
+function database_refresh_history(string) returns struct<
+  current_phase string,
+  start_time timestamp,
+  end_time timestamp,
+  job_uuid string,
+  copy_bytes bigint,
+  object_count bigint
+>
+
+function database_refresh_history() returns struct<
+  current_phase string,
+  start_time timestamp,
+  end_time timestamp,
+  job_uuid string,
+  copy_bytes bigint,
+  object_count bigint
+>
+
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_refresh_history)
 
-```sql
-function database_refresh_history(<string>) returns struct<
-  current_phase string,
-  start_time timestamp,
-  end_time timestamp,
-  job_uuid string,
-  copy_bytes bigint,
-  object_count bigint
->
-
-```
-
-
-```sql
-function database_refresh_history(<>) returns struct<
-  current_phase string,
-  start_time timestamp,
-  end_time timestamp,
-  job_uuid string,
-  copy_bytes bigint,
-  object_count bigint
->
-
-```
-
-
 ## `database_refresh_progress`
+
+#### Supported Signatures
+```sql
+function database_refresh_progress(string) returns struct<
+  phase_name string,
+  result string,
+  start_time timestamp,
+  end_time timestamp,
+  details variant
+>
+
+function database_refresh_progress() returns struct<
+  phase_name string,
+  result string,
+  start_time timestamp,
+  end_time timestamp,
+  details variant
+>
+
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_refresh_progress)
 
-```sql
-function database_refresh_progress(<string>) returns struct<
-  phase_name string,
-  result string,
-  start_time timestamp,
-  end_time timestamp,
-  details variant
->
-
-```
-
-
-```sql
-function database_refresh_progress(<>) returns struct<
-  phase_name string,
-  result string,
-  start_time timestamp,
-  end_time timestamp,
-  details variant
->
-
-```
-
-
 ## `database_refresh_progress_by_job`
+
+#### Supported Signatures
+```sql
+function database_refresh_progress_by_job(string) returns struct<
+  phase_name string,
+  result string,
+  start_time timestamp,
+  end_time timestamp,
+  details variant
+>
+
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_refresh_progress_by_job)
 
-```sql
-function database_refresh_progress_by_job(<string>) returns struct<
-  phase_name string,
-  result string,
-  start_time timestamp,
-  end_time timestamp,
-  details variant
->
-
-```
-
-
 ## `database_replication_usage_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_replication_usage_history)
 
+#### Supported Signatures
 ```sql
-function database_replication_usage_history<$1, $2> (<>) returns struct<
+function database_replication_usage_history $1, $2() returns struct<
   start_time timestamp,
   end_time timestamp,
   database_name string,
@@ -249,13 +241,13 @@ function database_replication_usage_history<$1, $2> (<>) returns struct<
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_replication_usage_history)
 
 ## `database_storage_usage_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_storage_usage_history)
 
+#### Supported Signatures
 ```sql
-function database_storage_usage_history<$1, $2> (<>) returns struct<usage_date date,
+function database_storage_usage_history $1, $2() returns struct<usage_date date,
   database_name string,
   average_database_bytes bigint,
   average_fail_safe_bytes bigint
@@ -264,13 +256,13 @@ function database_storage_usage_history<$1, $2> (<>) returns struct<usage_date d
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_storage_usage_history)
 
 ## `dynamic_table_graph_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dynamic_table_graph_history)
 
+#### Supported Signatures
 ```sql
-function dynamic_table_graph_history(<>) returns struct<
+function dynamic_table_graph_history() returns struct<
   name string,
   schema_name string,
   database_name string,
@@ -285,13 +277,13 @@ function dynamic_table_graph_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dynamic_table_graph_history)
 
 ## `dynamic_table_refresh_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dynamic_table_refresh_history)
 
+#### Supported Signatures
 ```sql
-function dynamic_table_refresh_history(<>) returns struct<
+function dynamic_table_refresh_history() returns struct<
   name string,
   schema_name string,
   database_name string,
@@ -311,13 +303,13 @@ function dynamic_table_refresh_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dynamic_table_refresh_history)
 
 ## `external_functions_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_functions_history)
 
+#### Supported Signatures
 ```sql
-function external_functions_history(<>) returns struct<
+function external_functions_history() returns struct<
   start_time timestamp,
   end_time timestamp,
   name string,
@@ -335,13 +327,13 @@ function external_functions_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_functions_history)
 
 ## `external_table_file_registration_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_table_file_registration_history)
 
+#### Supported Signatures
 ```sql
-function external_table_file_registration_history(<table_name string>) returns struct<
+function external_table_file_registration_history(table_name string) returns struct<
   job_created_time timestamp,
   file_name string,
   operation_status string,
@@ -351,13 +343,13 @@ function external_table_file_registration_history(<table_name string>) returns s
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_table_file_registration_history)
 
 ## `external_table_files`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_table_files)
 
+#### Supported Signatures
 ```sql
-function external_table_files(<table_name string>) returns struct<
+function external_table_files(table_name string) returns struct<
   file_name string,
   registered_on timestamp,
   file_size bigint,
@@ -367,43 +359,43 @@ function external_table_files(<table_name string>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/external_table_files)
 
 ## `login_history`
+
+#### Supported Signatures
+```sql
+function login_history $1, $2() returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/login_history)
 
+## `login_history_by_user`
+
+#### Supported Signatures
 ```sql
-function login_history<$1, $2> (<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
+function login_history_by_user $1, $2() returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
-
-
-## `login_history_by_user`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/login_history_by_user)
 
-```sql
-function login_history_by_user<$1, $2> (<>) returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
-	where $1 in (timestamp, string)
-	and $2 in (timestamp, string)
-```
-
-
 ## `materialized_view_refresh_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/materialized_view_refresh_history)
 
+#### Supported Signatures
 ```sql
-function materialized_view_refresh_history<$1, $2> (<>) returns struct< start_time timestamp, end_time timestamp, credits_used string, materialized_view_name string >
+function materialized_view_refresh_history $1, $2() returns struct< start_time timestamp, end_time timestamp, credits_used string, materialized_view_name string >
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/materialized_view_refresh_history)
 
 ## `notification_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/notification_history)
 
+#### Supported Signatures
 ```sql
-function notification_history(<>) returns struct<
+function notification_history() returns struct<
   created timestamp,
   processed timestamp,
   message_source string,
@@ -413,13 +405,13 @@ function notification_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/notification_history)
 
 ## `pipe_usage_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/pipe_usage_history)
 
+#### Supported Signatures
 ```sql
-function pipe_usage_history(<>) returns struct<
+function pipe_usage_history() returns struct<
   start_time timestamp,
   end_time timestamp,
   pipe_name string,
@@ -429,13 +421,13 @@ function pipe_usage_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/pipe_usage_history)
 
 ## `policy_references`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/policy_references)
 
+#### Supported Signatures
 ```sql
-function policy_references(<>) returns struct<
+function policy_references() returns struct<
   policy_db string,
   policy_schema string,
   policy_name string,
@@ -453,13 +445,13 @@ function policy_references(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/policy_references)
 
 ## `query_acceleration_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_acceleration_history)
 
+#### Supported Signatures
 ```sql
-function query_acceleration_history<$1, $2> (<>) returns struct<start_time timestamp,
+function query_acceleration_history $1, $2() returns struct<start_time timestamp,
   end_time timestamp,
   credits_used bigint,
   warehouse_name string,
@@ -470,13 +462,69 @@ function query_acceleration_history<$1, $2> (<>) returns struct<start_time times
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_acceleration_history)
 
 ## `query_history`
+
+#### Supported Signatures
+```sql
+function query_history $1, $2() returns struct<query_id string,
+  query_text string,
+  database_name string,
+  schema_name string,
+  query_type string,
+  session_id bigint,
+  user_name string,
+  role_name string,
+  warehouse_name string,
+  warehouse_size string,
+  warehouse_type string,
+  cluster_number bigint,
+  query_tag string,
+  execution_status string,
+  error_code bigint,
+  error_message string,
+  start_time timestamp,
+  end_time timestamp,
+  total_elapsed_time bigint,
+  bytes_scanned bigint,
+  rows_produced bigint,
+  compilation_time bigint,
+  execution_time bigint,
+  queued_provisioning_time bigint,
+  queued_repair_time bigint,
+  queued_overload_time bigint,
+  transaction_blocked_time bigint,
+  outbound_data_transfer_cloud string,
+  outbound_data_transfer_region string,
+  outbound_data_transfer_bytes bigint,
+  inbound_data_transfer_cloud string,
+  inbound_data_transfer_region string,
+  inbound_data_transfer_bytes bigint,
+  list_external_file_time bigint,
+  credits_used_cloud_services bigint,
+  release_version string,
+  external_function_total_invocations bigint,
+  external_function_total_sent_rows bigint,
+  external_function_total_received_rows bigint,
+  external_function_total_sent_bytes bigint,
+  external_function_total_received_bytes bigint,
+  is_client_generated_statement	boolean,
+  query_hash string,
+  query_hash_version bigint,
+  query_parameterized_hash string,
+  query_parameterized_hash_version bigint>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history)
 
+## `query_history_by_session`
+
+#### Supported Signatures
 ```sql
-function query_history<$1, $2> (<>) returns struct<query_id string,
+function query_history_by_session $1, $2() returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -526,13 +574,13 @@ function query_history<$1, $2> (<>) returns struct<query_id string,
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
-
-
-## `query_history_by_session`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history_by_session)
 
+## `query_history_by_user`
+
+#### Supported Signatures
 ```sql
-function query_history_by_session<$1, $2> (<>) returns struct<query_id string,
+function query_history_by_user $1, $2() returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -582,13 +630,13 @@ function query_history_by_session<$1, $2> (<>) returns struct<query_id string,
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
-
-
-## `query_history_by_user`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history_by_user)
 
+## `query_history_by_warehouse`
+
+#### Supported Signatures
 ```sql
-function query_history_by_user<$1, $2> (<>) returns struct<query_id string,
+function query_history_by_warehouse $1, $2() returns struct<query_id string,
   query_text string,
   database_name string,
   schema_name string,
@@ -638,69 +686,13 @@ function query_history_by_user<$1, $2> (<>) returns struct<query_id string,
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
-
-
-## `query_history_by_warehouse`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history_by_warehouse)
 
-```sql
-function query_history_by_warehouse<$1, $2> (<>) returns struct<query_id string,
-  query_text string,
-  database_name string,
-  schema_name string,
-  query_type string,
-  session_id bigint,
-  user_name string,
-  role_name string,
-  warehouse_name string,
-  warehouse_size string,
-  warehouse_type string,
-  cluster_number bigint,
-  query_tag string,
-  execution_status string,
-  error_code bigint,
-  error_message string,
-  start_time timestamp,
-  end_time timestamp,
-  total_elapsed_time bigint,
-  bytes_scanned bigint,
-  rows_produced bigint,
-  compilation_time bigint,
-  execution_time bigint,
-  queued_provisioning_time bigint,
-  queued_repair_time bigint,
-  queued_overload_time bigint,
-  transaction_blocked_time bigint,
-  outbound_data_transfer_cloud string,
-  outbound_data_transfer_region string,
-  outbound_data_transfer_bytes bigint,
-  inbound_data_transfer_cloud string,
-  inbound_data_transfer_region string,
-  inbound_data_transfer_bytes bigint,
-  list_external_file_time bigint,
-  credits_used_cloud_services bigint,
-  release_version string,
-  external_function_total_invocations bigint,
-  external_function_total_sent_rows bigint,
-  external_function_total_received_rows bigint,
-  external_function_total_sent_bytes bigint,
-  external_function_total_received_bytes bigint,
-  is_client_generated_statement	boolean,
-  query_hash string,
-  query_hash_version bigint,
-  query_parameterized_hash string,
-  query_parameterized_hash_version bigint>
-
-	where $1 in (timestamp, string)
-	and $2 in (timestamp, string)
-```
-
-
 ## `replication_group_refresh_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_refresh_history)
 
+#### Supported Signatures
 ```sql
-function replication_group_refresh_history(<string>) returns struct<
+function replication_group_refresh_history(string) returns struct<
   phase_name string,
   start_time timestamp,
   end_time timestamp,
@@ -712,13 +704,28 @@ function replication_group_refresh_history(<string>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_refresh_history)
 
 ## `replication_group_refresh_progress`
+
+#### Supported Signatures
+```sql
+function replication_group_refresh_progress(string) returns struct<
+  phase_name string,
+  start_time timestamp,
+  end_time timestamp,
+  progress string,
+  details variant
+>
+
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_refresh_progress)
 
+## `replication_group_refresh_progress_by_job`
+
+#### Supported Signatures
 ```sql
-function replication_group_refresh_progress(<string>) returns struct<
+function replication_group_refresh_progress_by_job(string) returns struct<
   phase_name string,
   start_time timestamp,
   end_time timestamp,
@@ -727,28 +734,13 @@ function replication_group_refresh_progress(<string>) returns struct<
 >
 
 ```
-
-
-## `replication_group_refresh_progress_by_job`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_refresh_progress_by_job)
 
-```sql
-function replication_group_refresh_progress_by_job(<string>) returns struct<
-  phase_name string,
-  start_time timestamp,
-  end_time timestamp,
-  progress string,
-  details variant
->
-
-```
-
-
 ## `replication_group_usage_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_usage_history)
 
+#### Supported Signatures
 ```sql
-function replication_group_usage_history(<>) returns struct<
+function replication_group_usage_history() returns struct<
   start_time timestamp,
   end_time timestamp,
   replication_group_name string,
@@ -757,13 +749,13 @@ function replication_group_usage_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_usage_history)
 
 ## `replication_usage_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_usage_history)
 
+#### Supported Signatures
 ```sql
-function replication_usage_history<$1, $2> (<>) returns struct<
+function replication_usage_history $1, $2() returns struct<
   start_time timestamp,
   end_time timestamp,
   database_name string,
@@ -774,13 +766,13 @@ function replication_usage_history<$1, $2> (<>) returns struct<
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_usage_history)
 
 ## `search_optimization_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/search_optimization_history)
 
+#### Supported Signatures
 ```sql
-function search_optimization_history<$1, $2> (<>) returns struct<
+function search_optimization_history $1, $2() returns struct<
   start_time timestamp,
   end_time timestamp,
   credits_used string,
@@ -790,13 +782,13 @@ function search_optimization_history<$1, $2> (<>) returns struct<
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/search_optimization_history)
 
 ## `serverless_task_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/serverless_task_history)
 
+#### Supported Signatures
 ```sql
-function serverless_task_history<$1, $2> (<>) returns struct<
+function serverless_task_history $1, $2() returns struct<
   start_time timestamp,
   end_time timestamp,
   task_name string,
@@ -806,13 +798,13 @@ function serverless_task_history<$1, $2> (<>) returns struct<
 	where $1 in (timestamp, string)
 	and $2 in (timestamp, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/serverless_task_history)
 
 ## `stage_directory_file_registration_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stage_directory_file_registration_history)
 
+#### Supported Signatures
 ```sql
-function stage_directory_file_registration_history<$1> (<stage_name string>) returns struct<
+function stage_directory_file_registration_history $1(stage_name string) returns struct<
   job_created_time timestamp,
   file_name string,
   operation_status string,
@@ -823,24 +815,44 @@ function stage_directory_file_registration_history<$1> (<stage_name string>) ret
 
 	where $1 in (timestamp, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stage_directory_file_registration_history)
 
 ## `stage_storage_usage_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stage_storage_usage_history)
 
+#### Supported Signatures
 ```sql
-function stage_storage_usage_history<$1, $2> (<>) returns struct<usage_date date, average_stage_bytes bigint>
+function stage_storage_usage_history $1, $2() returns struct<usage_date date, average_stage_bytes bigint>
 
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/stage_storage_usage_history)
 
 ## `tag_references`
+
+#### Supported Signatures
+```sql
+function tag_references(string, string) returns struct<
+  tag_database string,
+  tag_schema string,
+  tag_name string,
+  tag_value string,
+  level string,
+  object_database string,
+  object_schema string,
+  object_name string,
+  domain string,
+  column_name string
+>
+
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/tag_references)
 
+## `tag_references_all_columns`
+
+#### Supported Signatures
 ```sql
-function tag_references(<string, string>) returns struct<
+function tag_references_all_columns(string, string) returns struct<
   tag_database string,
   tag_schema string,
   tag_name string,
@@ -854,33 +866,13 @@ function tag_references(<string, string>) returns struct<
 >
 
 ```
-
-
-## `tag_references_all_columns`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/tag_references_all_columns)
 
-```sql
-function tag_references_all_columns(<string, string>) returns struct<
-  tag_database string,
-  tag_schema string,
-  tag_name string,
-  tag_value string,
-  level string,
-  object_database string,
-  object_schema string,
-  object_name string,
-  domain string,
-  column_name string
->
-
-```
-
-
 ## `task_dependents`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/task_dependents)
 
+#### Supported Signatures
 ```sql
-function task_dependents(<task_name string>) returns struct<
+function task_dependents(task_name string) returns struct<
   created_on timestamp,
   name string,
   database_name string,
@@ -896,13 +888,13 @@ function task_dependents(<task_name string>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/task_dependents)
 
 ## `task_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/task_history)
 
+#### Supported Signatures
 ```sql
-function task_history(<>) returns struct<
+function task_history() returns struct<
   query_id string,
   name string,
   database_name string,
@@ -929,13 +921,13 @@ function task_history(<>) returns struct<
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/task_history)
 
 ## `validate_pipe_load`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/validate_pipe_load)
 
+#### Supported Signatures
 ```sql
-function validate_pipe_load(<pipe_name string, start_time timestamp>) returns struct<
+function validate_pipe_load(pipe_name string, start_time timestamp) returns struct<
   error string,
   file string,
   line bigint,
@@ -951,13 +943,13 @@ function validate_pipe_load(<pipe_name string, start_time timestamp>) returns st
 >
 
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/validate_pipe_load)
 
 ## `warehouse_load_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/warehouse_load_history)
 
+#### Supported Signatures
 ```sql
-function warehouse_load_history<$1, $2> (<>) returns struct<start_time timestamp,
+function warehouse_load_history $1, $2() returns struct<start_time timestamp,
   end_time timestamp,
   warehouse_name string,
   avg_running decimal(38,2),
@@ -969,13 +961,13 @@ function warehouse_load_history<$1, $2> (<>) returns struct<start_time timestamp
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/warehouse_load_history)
 
 ## `warehouse_metering_history`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/warehouse_metering_history)
 
+#### Supported Signatures
 ```sql
-function warehouse_metering_history<$1, $2> (<>) returns struct<start_time timestamp,
+function warehouse_metering_history $1, $2() returns struct<start_time timestamp,
   end_time timestamp,
   warehouse_name string,
   credits_used bigint,
@@ -986,6 +978,6 @@ function warehouse_metering_history<$1, $2> (<>) returns struct<start_time times
 	where $1 in (date, string)
 	and $2 in (date, string)
 ```
-
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/warehouse_metering_history)
 
 

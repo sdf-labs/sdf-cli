@@ -4,59 +4,73 @@ title: "Bitwise Expression Functions"
 
 
 ## `bitand`
+
+#### Description
+returns result of bitwise AND of integers x and y
+#### Supported Signatures
+```sql
+function bitand(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitand)
 
-```sql
-function bitand(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-returns result of bitwise AND of integers x and y
-
 ## `bitnot`
+
+#### Description
+returns result of bitwise negation of integer x
+#### Supported Signatures
+```sql
+function bitnot(decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitnot)
 
-```sql
-function bitnot(<decimal(38, 0)>) returns decimal(38, 0)
-```
-returns result of bitwise negation of integer x
-
 ## `bitor`
+
+#### Description
+returns result of bitwise OR of integers x and y
+#### Supported Signatures
+```sql
+function bitor(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitor)
 
-```sql
-function bitor(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-returns result of bitwise OR of integers x and y
-
 ## `bitshiftleft`
+
+#### Description
+returns result of arg1 bit-shifted left by arg2 bits
+#### Supported Signatures
+```sql
+function bitshiftleft(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitshiftleft)
 
-```sql
-function bitshiftleft(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-returns result of arg1 bit-shifted left by arg2 bits
-
 ## `bitshiftright`
+
+#### Description
+returns result of arg1 bit-shifted right by arg2 bits
+#### Supported Signatures
+```sql
+function bitshiftright(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitshiftright)
 
-```sql
-function bitshiftright(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-returns result of arg1 bit-shifted right by arg2 bits
-
 ## `bitxor`
+
+#### Description
+returns result of bitwise XOR of integers x and y
+#### Supported Signatures
+```sql
+function bitxor(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/bitxor)
 
-```sql
-function bitxor(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
-returns result of bitwise XOR of integers x and y
-
 ## `getbit`
-[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/getbit)
 
-```sql
-function getbit(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
-```
+#### Description
 returns result of the bit of base in specific bit index
+#### Supported Signatures
+```sql
+function getbit(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/getbit)
 
 

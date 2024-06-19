@@ -3,81 +3,57 @@ title: "String Functions"
 ---
 
 ## `array_concat`
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_array_concat.html)
 
+#### Supported Signatures
 ```sql
 function array_concat(super, ...) returns super
 ```
-
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_array_concat.html)
 
 ## `get_array_length`
+
+#### Supported Signatures
+```sql
+function get_array_length(super) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/get_array_length.html)
 
-```sql
-function get_array_length(<super>) returns bigint
-```
-
-
 ## `json_array_length`
+
+#### Supported Signatures
+```sql
+function json_array_length(varchar) returns bigint
+function json_array_length(varchar, boolean) returns bigint
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/JSON_ARRAY_LENGTH.html)
 
-```sql
-function json_array_length(<varchar>) returns bigint
-```
-
-
-```sql
-function json_array_length(<varchar, boolean>) returns bigint
-```
-
-
 ## `regexp_replace`
+
+#### Supported Signatures
+```sql
+function regexp_replace(varchar, varchar) returns varchar
+function regexp_replace(varchar, varchar, varchar) returns varchar
+function regexp_replace(varchar, varchar, varchar, bigint) returns varchar
+function regexp_replace(varchar, varchar, varchar, bigint, varchar) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/REGEXP_REPLACE.html)
 
-```sql
-function regexp_replace(<varchar, varchar>) returns varchar
-```
-
-
-```sql
-function regexp_replace(<varchar, varchar, varchar>) returns varchar
-```
-
-
-```sql
-function regexp_replace(<varchar, varchar, varchar, bigint>) returns varchar
-```
-
-
-```sql
-function regexp_replace(<varchar, varchar, varchar, bigint, varchar>) returns varchar
-```
-
-
 ## `substr`
+
+#### Supported Signatures
+```sql
+function substr(varchar, bigint) returns varchar
+function substr(varchar, bigint, bigint) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
-```sql
-function substr(<varchar, bigint>) returns varchar
-```
-
-
-```sql
-function substr(<varchar, bigint, bigint>) returns varchar
-```
-
-
 ## `substring`
+
+#### Supported Signatures
+```sql
+function substring(varchar, bigint) returns varchar
+function substring(varchar, bigint, bigint) returns varchar
+```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_SUBSTRING.html)
-
-```sql
-function substring(<varchar, bigint>) returns varchar
-```
-
-
-```sql
-function substring(<varchar, bigint, bigint>) returns varchar
-```
-
 
 

@@ -26,7 +26,7 @@ title: "SDF YML Schema"
 `materialization:` | [`Materialization?`](#enum-materialization)| The table-type of this table (new version)|
 `purpose:` | [`TablePurpose?`](#enum-tablepurpose)| Specify what kind of table or view this is|
 `origin:` | [`TableOrigin?`](#enum-tableorigin)| The origin of this table &lt;remote&gt; or &lt;local&gt;|
-`exists-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macto)|
+`exists-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macro)|
 `table-location:` | [`TableLocation?`](#enum-tablelocation)| Specify table ,location, defaults to none if not set|
 `creation-flags:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines the table creation options, defaults to none if not set|
 `incremental-options:` | [`IncrementalOptions?`](#nested-element-incrementaloptions)| Options governing incremental table evaluation (only for incremental tables)|

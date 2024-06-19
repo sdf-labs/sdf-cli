@@ -22,32 +22,30 @@ Let's write and modify a report, starting with one of the sdf samples.
     sdf new --sample pii_saas_platform
     ```
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/.gitignore
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/checks/no_pii_in_external.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/classification/taxonomy.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/classification/users.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/ddls/payment/public/invoices.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/ddls/payment/public/organizations.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/ddls/payment/public/users.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/reports/tables_with_pii.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/external/invoice_stats.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/external/org_invoice_stats.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/internal/avg_invoice_amt.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/internal/invoice_payment_delay.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/internal/mau_per_org.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/internal/most_frequent_payer.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/internal/total_revenue_per_org.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/internal/users_per_domain.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/src/internal/users_per_org.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/workspace.sdf.yml
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.097&nbsp;secs
+    Created pii_saas_platform/.gitignore
+    Created pii_saas_platform/checks/no_pii_in_external.sql
+    Created pii_saas_platform/classification/taxonomy.sdf.yml
+    Created pii_saas_platform/classification/users.sdf.yml
+    Created pii_saas_platform/ddls/payment/public/invoices.sql
+    Created pii_saas_platform/ddls/payment/public/organizations.sql
+    Created pii_saas_platform/ddls/payment/public/users.sql
+    Created pii_saas_platform/reports/tables_with_pii.sql
+    Created pii_saas_platform/src/external/invoice_stats.sql
+    Created pii_saas_platform/src/external/org_invoice_stats.sql
+    Created pii_saas_platform/src/internal/avg_invoice_amt.sql
+    Created pii_saas_platform/src/internal/invoice_payment_delay.sql
+    Created pii_saas_platform/src/internal/mau_per_org.sql
+    Created pii_saas_platform/src/internal/most_frequent_payer.sql
+    Created pii_saas_platform/src/internal/total_revenue_per_org.sql
+    Created pii_saas_platform/src/internal/users_per_domain.sql
+    Created pii_saas_platform/src/internal/users_per_org.sql
+    Created pii_saas_platform/workspace.sdf.yml
+   Finished new in 0.102 secs
 
 </code>
 </pre>
-</div>
     This sample contains a report and a workspace modeled after a simple SAAS platform.
 
     Notice the report in the `reports` directory. This report simply lists all tables with PII. It's configured in the `workspace.sdf.yml` file with [includes type](/reference/sdf-yml#enum-includetype) `report` like so:
@@ -100,40 +98,38 @@ Let's write and modify a report, starting with one of the sdf samples.
     sdf report --show all
     ```
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;payment.public.invoices&nbsp;(./ddls/payment/public/invoices.sql)
-&nbsp;&nbsp;Compiling&nbsp;payment.public.organizations&nbsp;(./ddls/payment/public/organizations.sql)
-&nbsp;&nbsp;Compiling&nbsp;payment.public.users&nbsp;(./ddls/payment/public/users.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.avg_invoice_amt&nbsp;(./src/internal/avg_invoice_amt.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.invoice_payment_delay&nbsp;(./src/internal/invoice_payment_delay.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.total_revenue_per_org&nbsp;(./src/internal/total_revenue_per_org.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.external.invoice_stats&nbsp;(./src/external/invoice_stats.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.external.org_invoice_stats&nbsp;(./src/external/org_invoice_stats.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.mau_per_org&nbsp;(./src/internal/mau_per_org.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.most_frequent_payer&nbsp;(./src/internal/most_frequent_payer.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_domain&nbsp;(./src/internal/users_per_domain.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_org&nbsp;(./src/internal/users_per_org.sql)
-Working&nbsp;set&nbsp;1&nbsp;report&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;Reporting&nbsp;sdf.reports.tables_with_pii&nbsp;(./reports/tables_with_pii.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.531&nbsp;secs
+Working set 12 model files, 3 .sdf files
+  Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
+  Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
+  Compiling payment.public.users (./ddls/payment/public/users.sql)
+  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
+  Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
+  Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
+  Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
+  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
+  Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
+  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
+  Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
+  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
+Working set 1 report file, 1 .sdf file
+  Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
+   Finished 12 models [12 succeeded], 1 report [1 succeeded] in 1.724 secs
 
-Report&nbsp;sdf.reports.tables_with_pii
-+----------------------------------------------+-------------------------+-----------+
-|&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;dialect&nbsp;&nbsp;&nbsp;|
-+----------------------------------------------+-------------------------+-----------+
-|&nbsp;payment.public.users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.internal.most_frequent_payer&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.external.invoice_stats&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.internal.users_per_domain&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-+----------------------------------------------+-------------------------+-----------+
-4&nbsp;rows.
+Report sdf.reports.tables_with_pii
+┌──────────────────────────────────────────────┬─────────────────────────┬───────────┐
+│ table_id                                     ┆ description             ┆ dialect   │
+╞══════════════════════════════════════════════╪═════════════════════════╪═══════════╡
+│ transformations.external.invoice_stats       ┆                         ┆ snowflake │
+│ payment.public.users                         ┆ DDL for the users table ┆ snowflake │
+│ transformations.internal.most_frequent_payer ┆                         ┆ snowflake │
+│ transformations.internal.users_per_domain    ┆                         ┆ snowflake │
+└──────────────────────────────────────────────┴─────────────────────────┴───────────┘
+4 rows.
 
 </code>
 </pre>
-</div>
 
     As you can see from the output, it looks we have three tables containing columns with PII. Let's say we also wanted to show the names of the columns that contain PII. We can do this by modifying the SQL query to include the column name like so:
     ```sql
@@ -154,31 +150,29 @@ Report&nbsp;sdf.reports.tables_with_pii
     ```shell
     sdf report --show all
     ```
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
-Working&nbsp;set&nbsp;1&nbsp;report&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;Reporting&nbsp;sdf.reports.tables_with_pii&nbsp;(./reports/tables_with_pii.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.425&nbsp;secs
+Working set 12 model files, 3 .sdf files
+Working set 1 report file, 1 .sdf file
+  Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
+   Finished 12 models [12 reused], 1 report [1 succeeded] in 2.278 secs
 
-Report&nbsp;sdf.reports.tables_with_pii
-+----------------------------------------------+--------------+-------------------------+-----------+
-|&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;column_name&nbsp;&nbsp;|&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;dialect&nbsp;&nbsp;&nbsp;|
-+----------------------------------------------+--------------+-------------------------+-----------+
-|&nbsp;transformations.external.invoice_stats&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;payment.public.users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;payment.public.users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;payment.public.users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.internal.users_per_domain&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;email_domain&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.external.invoice_stats&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.internal.most_frequent_payer&nbsp;|&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-+----------------------------------------------+--------------+-------------------------+-----------+
-7&nbsp;rows.
+Report sdf.reports.tables_with_pii
+┌──────────────────────────────────────────────┬──────────────┬─────────────────────────┬───────────┐
+│ table_id                                     ┆ column_name  ┆ description             ┆ dialect   │
+╞══════════════════════════════════════════════╪══════════════╪═════════════════════════╪═══════════╡
+│ transformations.external.invoice_stats       ┆ email        ┆                         ┆ snowflake │
+│ payment.public.users                         ┆ email        ┆ DDL for the users table ┆ snowflake │
+│ payment.public.users                         ┆ phone        ┆ DDL for the users table ┆ snowflake │
+│ transformations.internal.users_per_domain    ┆ email_domain ┆                         ┆ snowflake │
+│ transformations.external.invoice_stats       ┆ name         ┆                         ┆ snowflake │
+│ payment.public.users                         ┆ name         ┆ DDL for the users table ┆ snowflake │
+│ transformations.internal.most_frequent_payer ┆ email        ┆                         ┆ snowflake │
+└──────────────────────────────────────────────┴──────────────┴─────────────────────────┴───────────┘
+7 rows.
 
 </code>
 </pre>
-</div>
   </Step>
   <Step title="Add a New Report">
     Let's say we'd like to extend our analysis a bit but still maintain the original report. We can do this by adding a new report to the `reports` directory. Let's add a new report to find the most frequently used datatypes in columns with PII. We can do this with the following SQL:
@@ -195,39 +189,37 @@ Report&nbsp;sdf.reports.tables_with_pii
     ```
 
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
-Working&nbsp;set&nbsp;2&nbsp;report&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;Reporting&nbsp;sdf.reports.pii_datatypes&nbsp;(./reports/pii_datatypes.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;2&nbsp;reports&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;reused]&nbsp;in&nbsp;0.433&nbsp;secs
+Working set 12 model files, 3 .sdf files
+Working set 2 report files, 1 .sdf file
+  Reporting sdf.reports.pii_datatypes (./reports/pii_datatypes.sql)
+   Finished 12 models [12 reused], 2 reports [1 succeeded, 1 reused] in 2.192 secs
 
-Report&nbsp;sdf.reports.tables_with_pii
-+----------------------------------------------+--------------+-------------------------+-----------+
-|&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;column_name&nbsp;&nbsp;|&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;dialect&nbsp;&nbsp;&nbsp;|
-+----------------------------------------------+--------------+-------------------------+-----------+
-|&nbsp;payment.public.users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.internal.users_per_domain&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;email_domain&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.external.invoice_stats&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;payment.public.users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.internal.most_frequent_payer&nbsp;|&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;transformations.external.invoice_stats&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;snowflake&nbsp;|
-|&nbsp;payment.public.users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;|&nbsp;snowflake&nbsp;|
-+----------------------------------------------+--------------+-------------------------+-----------+
-7&nbsp;rows.
+Report sdf.reports.tables_with_pii
+┌──────────────────────────────────────────────┬──────────────┬─────────────────────────┬───────────┐
+│ table_id                                     ┆ column_name  ┆ description             ┆ dialect   │
+╞══════════════════════════════════════════════╪══════════════╪═════════════════════════╪═══════════╡
+│ payment.public.users                         ┆ email        ┆ DDL for the users table ┆ snowflake │
+│ payment.public.users                         ┆ phone        ┆ DDL for the users table ┆ snowflake │
+│ transformations.internal.users_per_domain    ┆ email_domain ┆                         ┆ snowflake │
+│ transformations.external.invoice_stats       ┆ email        ┆                         ┆ snowflake │
+│ payment.public.users                         ┆ name         ┆ DDL for the users table ┆ snowflake │
+│ transformations.internal.most_frequent_payer ┆ email        ┆                         ┆ snowflake │
+│ transformations.external.invoice_stats       ┆ name         ┆                         ┆ snowflake │
+└──────────────────────────────────────────────┴──────────────┴─────────────────────────┴───────────┘
+7 rows.
 
-Report&nbsp;sdf.reports.pii_datatypes
-+----------+-----------+
-|&nbsp;datatype&nbsp;|&nbsp;frequency&nbsp;|
-+----------+-----------+
-|&nbsp;varchar&nbsp;&nbsp;|&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
-+----------+-----------+
-1&nbsp;rows.
+Report sdf.reports.pii_datatypes
+┌──────────┬───────────┐
+│ datatype ┆ frequency │
+╞══════════╪═══════════╡
+│ varchar  ┆ 7         │
+└──────────┴───────────┘
+1 rows.
 
 </code>
 </pre>
-</div>
   </Step>
   <Step title="Save the Output (Optional)">
     We can save the output of a report to a file by using the `--format` flag. Let's save the output of our reports to a file called `sdf_reports.csv`:
