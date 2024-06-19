@@ -42,7 +42,7 @@ Let's write and modify a report, starting with one of the sdf samples.
     Created pii_saas_platform/src/internal/users_per_domain.sql
     Created pii_saas_platform/src/internal/users_per_org.sql
     Created pii_saas_platform/workspace.sdf.yml
-   Finished new in 0.105 secs
+   Finished new in 0.304 secs
 
 </code>
 </pre>
@@ -101,21 +101,21 @@ Let's write and modify a report, starting with one of the sdf samples.
 <pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
 Working set 12 model files, 3 .sdf files
-  Compiling payment.public.users (./ddls/payment/public/users.sql)
-  Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
   Compiling payment.public.invoices (./ddls/payment/public/invoices.sql)
-  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
-  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
-  Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
+  Compiling payment.public.organizations (./ddls/payment/public/organizations.sql)
+  Compiling payment.public.users (./ddls/payment/public/users.sql)
   Compiling transformations.internal.mau_per_org (./src/internal/mau_per_org.sql)
-  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
-  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
-  Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
+  Compiling transformations.external.invoice_stats (./src/external/invoice_stats.sql)
+  Compiling transformations.external.org_invoice_stats (./src/external/org_invoice_stats.sql)
   Compiling transformations.internal.users_per_domain (./src/internal/users_per_domain.sql)
+  Compiling transformations.internal.avg_invoice_amt (./src/internal/avg_invoice_amt.sql)
+  Compiling transformations.internal.invoice_payment_delay (./src/internal/invoice_payment_delay.sql)
+  Compiling transformations.internal.most_frequent_payer (./src/internal/most_frequent_payer.sql)
   Compiling transformations.internal.users_per_org (./src/internal/users_per_org.sql)
+  Compiling transformations.internal.total_revenue_per_org (./src/internal/total_revenue_per_org.sql)
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 succeeded], 1 report [1 succeeded] in 1.551 secs
+   Finished 12 models [12 succeeded], 1 report [1 succeeded] in 1.752 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+-------------------------+-----------+
@@ -155,7 +155,7 @@ Report sdf.reports.tables_with_pii
 Working set 12 model files, 3 .sdf files
 Working set 1 report file, 1 .sdf file
   Reporting sdf.reports.tables_with_pii (./reports/tables_with_pii.sql)
-   Finished 12 models [12 reused], 1 report [1 succeeded] in 1.316 secs
+   Finished 12 models [12 reused], 1 report [1 succeeded] in 1.574 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+
@@ -194,7 +194,7 @@ Report sdf.reports.tables_with_pii
 Working set 12 model files, 3 .sdf files
 Working set 2 report files, 1 .sdf file
   Reporting sdf.reports.pii_datatypes (./reports/pii_datatypes.sql)
-   Finished 12 models [12 reused], 2 reports [1 succeeded, 1 reused] in 1.322 secs
+   Finished 12 models [12 reused], 2 reports [1 succeeded, 1 reused] in 1.503 secs
 
 Report sdf.reports.tables_with_pii
 +----------------------------------------------+--------------+-------------------------+-----------+
