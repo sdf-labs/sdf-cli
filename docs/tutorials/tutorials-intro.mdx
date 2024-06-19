@@ -42,56 +42,6 @@ For the sake of the tutorials, there is no need to connect to a database or to l
     sdf new --sample moms_flower_shop
     ```
 
-    After running the command, you will see the following output: 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
-<code className='language-shell'>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_(_)_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wWWWw&nbsp;&nbsp;&nbsp;_
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@@@@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(_)@(_)&nbsp;&nbsp;&nbsp;vVVVv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@@@@&nbsp;&nbsp;(___)&nbsp;_(_)_
-&nbsp;&nbsp;&nbsp;&nbsp;@@()@@&nbsp;wWWWw&nbsp;&nbsp;(_)\&nbsp;&nbsp;&nbsp;&nbsp;(___)&nbsp;&nbsp;&nbsp;_(_)_&nbsp;&nbsp;@@()@@&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;(_)@(_)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@@@@&nbsp;&nbsp;(___)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`|/&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;(_)@(_)&nbsp;&nbsp;@@@@&nbsp;&nbsp;&nbsp;\|/&nbsp;&nbsp;&nbsp;(_)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\|&nbsp;&nbsp;&nbsp;&nbsp;\|/&nbsp;&nbsp;&nbsp;&nbsp;/(_)&nbsp;&nbsp;&nbsp;&nbsp;\|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
-&nbsp;&nbsp;&nbsp;\&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;|/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;/&nbsp;\&nbsp;|&nbsp;/&nbsp;&nbsp;\|/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|/&nbsp;&nbsp;&nbsp;&nbsp;\|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\|/
-&nbsp;&nbsp;&nbsp;&nbsp;\\|//&nbsp;&nbsp;&nbsp;\\|///&nbsp;&nbsp;\\\|//\\\|///&nbsp;\|///&nbsp;&nbsp;\\\|//&nbsp;&nbsp;\\|//&nbsp;&nbsp;\\\|//&nbsp;
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/.gitignore
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/checks/README.txt
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/classifications/column_classifiers.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/classifications/table_classifiers.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/metadata/analytics/agg_installs_and_campaigns.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/metadata/analytics/dim_marketing_campaigns.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/metadata/raw/raw_addresses.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/metadata/raw/raw_customers.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/metadata/raw/raw_inapp_events.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/metadata/raw/raw_marketing_campaign_events.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/metadata/staging/app_installs.sdf.yml
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/analytics/agg_installs_and_campaigns.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/raw/raw_addresses.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/raw/raw_customers.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/raw/raw_inapp_events.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/raw/raw_marketing_campaign_events.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/staging/app_installs.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/staging/app_installs_v2.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/staging/customers.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/staging/inapp_events.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/staging/marketing_campaigns.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/models/staging/stg_installs_per_campaign.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/reports/README.txt
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/seeds/csv/README.txt
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/seeds/parquet/addresses.parquet
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/seeds/parquet/customers.parquet
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/seeds/parquet/inapp_events.parquet
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/seeds/parquet/marketing_campaign_events.parquet
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;moms_flower_shop/workspace.sdf.yml
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.140&nbsp;secs
-
-</code>
-</pre>
-</div>
-
     That's it!
   </Step>
   <Step title="Workspace Overview">
@@ -211,7 +161,7 @@ Table&nbsp;moms_flower_shop.pub.raw_customers
       When setting up your own workspace, you can connect existing data providers to SDF.
       Follow the relevant [provider's guide](/integrations/snowflake) to get started.
     </Tip>
-  </Step>
+  </Step> 
   <Step title="Other Models">
     We can also explore the other models that are found under the `models` directory.
 
@@ -232,13 +182,13 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.customers&nbsp;(./models/staging/customers.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.203&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.209&nbsp;secs
 
 </code>
 </pre>
 </div>
 
-    <Tip>
+    <Tip> 
     SDF intelligently caches previous compilations. Since we compiled the source models 
     under `models/raw` in previous steps, those will not be re-compiled in this run. 
     </Tip>
@@ -258,10 +208,10 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_customers&nbsp;(./models/raw/raw_customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.inapp_events&nbsp;(./models/staging/inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.app_installs&nbsp;(./models/staging/app_installs.sql)
@@ -269,7 +219,7 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.pub.customers&nbsp;(./models/staging/customers.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.217&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.229&nbsp;secs
 
 </code>
 </pre>

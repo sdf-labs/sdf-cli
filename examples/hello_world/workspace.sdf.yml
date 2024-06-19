@@ -7,11 +7,11 @@ workspace:
   description: >
     Hello World! Let's analyze the world population.
 
-    To build using the local population data (./local/pop.csv), run using the 'local' environment: 'sdf build --profile local'
+    To build using the local population data (./local/pop.csv), run using the 'local' environment: 'sdf run -e local'
 
-    To pull data from s3 (s3://sdfdatasets), build using the remote environment: 'sdf build --profile remote'
+    To pull data from s3 (s3://sdfdatasets), build using the remote environment: 'sdf run -e remote'
 
-    (Note: You may need to log into your aws cli before building from remote. Use 'sdf auth aws --profile <PROFILE-NAME>')
+    (Note: You may need to log into your aws cli before building from remote. Use 'sdf auth aws --profile <profile>')
 
     Type 'sdf compile' to view schema information
 ---
