@@ -4,320 +4,524 @@ title: "Conversion Functions"
 
 
 ## `date`
-
-#### Description
-Converts the timestamp argument to a date
-#### Supported Signatures
-```sql
-function date(timestamp) returns date
-function date(timestamp) returns date
-function date(timestamp) returns date
-function date(varchar) returns date
-function date(varchar, varchar) returns date
-```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/date)
 
-## `time`
-
-#### Description
-Converts the timestamp argument to a time
-#### Supported Signatures
 ```sql
-function time(timestamp) returns time
-function time(timestamp) returns time
-function time(timestamp) returns time
-function time(varchar) returns time
-function time(variant) returns time
+function date(<timestamp>) returns date
 ```
+Converts the timestamp argument to a date
+
+```sql
+function date(<timestamp>) returns date
+```
+Converts the timestamp argument to a date
+
+```sql
+function date(<timestamp>) returns date
+```
+Converts the timestamp argument to a date
+
+```sql
+function date(<varchar>) returns date
+```
+Converts the string argument to a date
+
+```sql
+function date(<varchar, varchar>) returns date
+```
+Converts the string argument to a date according to a format argument
+
+## `time`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/time)
 
-## `to_array`
-
-#### Supported Signatures
 ```sql
-function to_array($1) returns array
+function time(<timestamp>) returns time
 ```
+Converts the timestamp argument to a time
+
+```sql
+function time(<timestamp>) returns time
+```
+Converts the timestamp argument to a time
+
+```sql
+function time(<timestamp>) returns time
+```
+Converts the timestamp argument to a time
+
+```sql
+function time(<varchar>) returns time
+```
+Converts the timestamp argument to a time
+
+```sql
+function time(<variant>) returns time
+```
+Converts the timestamp argument to a time
+
+## `to_array`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_array)
 
-## `to_binary`
-
-#### Supported Signatures
 ```sql
-function to_binary($1) returns binary
-function to_binary($1, string) returns binary
+function to_array(<$1>) returns array
 ```
+
+
+## `to_binary`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_binary)
 
-## `to_boolean`
-
-#### Supported Signatures
 ```sql
-function to_boolean($1) returns boolean
+function to_binary(<$1>) returns binary
 ```
+
+
+```sql
+function to_binary(<$1, string>) returns binary
+```
+
+
+## `to_boolean`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_boolean)
 
-## `to_char`
-
-#### Supported Signatures
 ```sql
-function to_char($1, string) returns string
-function to_char($1) returns string
+function to_boolean(<$1>) returns boolean
 ```
+
+
+## `to_char`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_char)
 
-## `to_date`
-
-#### Supported Signatures
 ```sql
-function to_date($1) returns datetime
-function to_date($1, string) returns datetime
+function to_char(<$1, string>) returns string
 ```
+
+
+```sql
+function to_char(<$1>) returns string
+```
+
+
+## `to_date`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_date)
 
-## `to_decimal`
-
-#### Supported Signatures
 ```sql
-function to_decimal($1) returns decimal(38, 0)
-function to_decimal($1, bigint) returns decimal(38, 0)
-function to_decimal($1, bigint, bigint) returns decimal(38, 0)
-function to_decimal($1, string) returns decimal(38, 0)
-function to_decimal($1, string, bigint) returns decimal(38, 0)
-function to_decimal($1, string, bigint, bigint) returns decimal(38, 0)
+function to_date(<$1>) returns datetime
 ```
+
+
+```sql
+function to_date(<$1, string>) returns datetime
+```
+
+
+## `to_decimal`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_decimal)
 
-## `to_double`
-
-#### Supported Signatures
 ```sql
-function to_double($1) returns double
+function to_decimal(<$1>) returns decimal(38, 0)
 ```
+
+
+```sql
+function to_decimal(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_decimal(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `to_double`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_double)
 
-## `to_json`
-
-#### Description
-Convert variant data to string as JSON
-#### Supported Signatures
 ```sql
-function to_json(variant) returns varchar
+function to_double(<$1>) returns double
 ```
+
+
+## `to_json`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_json)
 
-## `to_number`
-
-#### Supported Signatures
 ```sql
-function to_number($1) returns decimal(38, 0)
-function to_number($1, bigint) returns decimal(38, 0)
-function to_number($1, bigint, bigint) returns decimal(38, 0)
-function to_number($1, string) returns decimal(38, 0)
-function to_number($1, string, bigint) returns decimal(38, 0)
-function to_number($1, string, bigint, bigint) returns decimal(38, 0)
+function to_json(<variant>) returns varchar
 ```
+Convert variant data to string as JSON
+
+## `to_number`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_number)
 
-## `to_numeric`
-
-#### Supported Signatures
 ```sql
-function to_numeric($1) returns decimal(38, 0)
-function to_numeric($1, bigint) returns decimal(38, 0)
-function to_numeric($1, bigint, bigint) returns decimal(38, 0)
-function to_numeric($1, string) returns decimal(38, 0)
-function to_numeric($1, string, bigint) returns decimal(38, 0)
-function to_numeric($1, string, bigint, bigint) returns decimal(38, 0)
+function to_number(<$1>) returns decimal(38, 0)
 ```
+
+
+```sql
+function to_number(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_number(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `to_numeric`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_numeric)
 
-## `to_object`
-
-#### Supported Signatures
 ```sql
-function to_object($1) returns object
+function to_numeric(<$1>) returns decimal(38, 0)
 ```
+
+
+```sql
+function to_numeric(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function to_numeric(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `to_object`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_object)
 
-## `to_time`
-
-#### Supported Signatures
 ```sql
-function to_time($1) returns time
-function to_time($1, string) returns time
+function to_object(<$1>) returns object
 ```
+
+
+## `to_time`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_time)
 
-## `to_timestamp`
-
-#### Supported Signatures
 ```sql
-function to_timestamp($1) returns timestamp
-function to_timestamp($1, string) returns timestamp
+function to_time(<$1>) returns time
 ```
+
+
+```sql
+function to_time(<$1, string>) returns time
+```
+
+
+## `to_timestamp`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_timestamp)
 
-## `to_timestamp_ltz`
-
-#### Supported Signatures
 ```sql
-function to_timestamp_ltz($1) returns timestamp
-function to_timestamp_ltz($1, string) returns timestamp
+function to_timestamp(<$1>) returns timestamp
 ```
+
+
+```sql
+function to_timestamp(<$1, string>) returns timestamp
+```
+
+
+## `to_timestamp_ltz`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_timestamp_ltz)
 
-## `to_timestamp_ntz`
-
-#### Supported Signatures
 ```sql
-function to_timestamp_ntz($1) returns timestamp
-function to_timestamp_ntz($1, string) returns timestamp
+function to_timestamp_ltz(<$1>) returns timestamp
 ```
+
+
+```sql
+function to_timestamp_ltz(<$1, string>) returns timestamp
+```
+
+
+## `to_timestamp_ntz`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_timestamp_ntz)
 
-## `to_timestamp_tz`
-
-#### Supported Signatures
 ```sql
-function to_timestamp_tz($1) returns timestamp
-function to_timestamp_tz($1, string) returns timestamp
+function to_timestamp_ntz(<$1>) returns timestamp
 ```
+
+
+```sql
+function to_timestamp_ntz(<$1, string>) returns timestamp
+```
+
+
+## `to_timestamp_tz`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_timestamp_tz)
 
-## `to_varchar`
-
-#### Supported Signatures
 ```sql
-function to_varchar($1) returns string
-function to_varchar($1, string) returns string
+function to_timestamp_tz(<$1>) returns timestamp
 ```
+
+
+```sql
+function to_timestamp_tz(<$1, string>) returns timestamp
+```
+
+
+## `to_varchar`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_varchar)
 
-## `to_variant`
-
-#### Supported Signatures
 ```sql
-function to_variant($1) returns variant
+function to_varchar(<$1>) returns string
 ```
+
+
+```sql
+function to_varchar(<$1, string>) returns string
+```
+
+
+## `to_variant`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_variant)
 
-## `to_xml`
-
-#### Description
-Convert variant data to string as XML
-#### Supported Signatures
 ```sql
-function to_xml(variant) returns varchar
+function to_variant(<$1>) returns variant
 ```
+
+
+## `to_xml`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_xml)
 
-## `try_to_binary`
-
-#### Supported Signatures
 ```sql
-function try_to_binary($1) returns binary
-function try_to_binary(string, string) returns binary
+function to_xml(<variant>) returns varchar
 ```
+Convert variant data to string as XML
+
+## `try_to_binary`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_binary)
 
-## `try_to_boolean`
-
-#### Supported Signatures
 ```sql
-function try_to_boolean($1) returns boolean
+function try_to_binary(<$1>) returns binary
 ```
+
+
+```sql
+function try_to_binary(<string, string>) returns binary
+```
+
+
+## `try_to_boolean`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_boolean)
 
-## `try_to_date`
-
-#### Supported Signatures
 ```sql
-function try_to_date($1) returns datetime
-function try_to_date($1, string) returns datetime
+function try_to_boolean(<$1>) returns boolean
 ```
+
+
+## `try_to_date`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_date)
 
-## `try_to_decimal`
-
-#### Supported Signatures
 ```sql
-function try_to_decimal($1) returns decimal(38, 0)
-function try_to_decimal($1, bigint) returns decimal(38, 0)
-function try_to_decimal($1, bigint, bigint) returns decimal(38, 0)
-function try_to_decimal($1, string) returns decimal(38, 0)
-function try_to_decimal($1, string, bigint) returns decimal(38, 0)
-function try_to_decimal($1, string, bigint, bigint) returns decimal(38, 0)
+function try_to_date(<$1>) returns datetime
 ```
+
+
+```sql
+function try_to_date(<$1, string>) returns datetime
+```
+
+
+## `try_to_decimal`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_decimal)
 
-## `try_to_double`
-
-#### Supported Signatures
 ```sql
-function try_to_double($1) returns double
+function try_to_decimal(<$1>) returns decimal(38, 0)
 ```
+
+
+```sql
+function try_to_decimal(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_decimal(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `try_to_double`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_double)
 
-## `try_to_number`
-
-#### Supported Signatures
 ```sql
-function try_to_number($1) returns decimal(38, 0)
-function try_to_number($1, bigint) returns decimal(38, 0)
-function try_to_number($1, bigint, bigint) returns decimal(38, 0)
-function try_to_number($1, string) returns decimal(38, 0)
-function try_to_number($1, string, bigint) returns decimal(38, 0)
-function try_to_number($1, string, bigint, bigint) returns decimal(38, 0)
+function try_to_double(<$1>) returns double
 ```
+
+
+## `try_to_number`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_number)
 
-## `try_to_numeric`
-
-#### Supported Signatures
 ```sql
-function try_to_numeric($1) returns decimal(38, 0)
-function try_to_numeric($1, bigint) returns decimal(38, 0)
-function try_to_numeric($1, bigint, bigint) returns decimal(38, 0)
-function try_to_numeric($1, string) returns decimal(38, 0)
-function try_to_numeric($1, string, bigint) returns decimal(38, 0)
-function try_to_numeric($1, string, bigint, bigint) returns decimal(38, 0)
+function try_to_number(<$1>) returns decimal(38, 0)
 ```
+
+
+```sql
+function try_to_number(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_number(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `try_to_numeric`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_numeric)
 
-## `try_to_time`
-
-#### Supported Signatures
 ```sql
-function try_to_time($1) returns time
-function try_to_time($1, string) returns time
+function try_to_numeric(<$1>) returns decimal(38, 0)
 ```
+
+
+```sql
+function try_to_numeric(<$1, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, string>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, string, bigint>) returns decimal(38, 0)
+```
+
+
+```sql
+function try_to_numeric(<$1, string, bigint, bigint>) returns decimal(38, 0)
+```
+
+
+## `try_to_time`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_time)
 
-## `try_to_timestamp`
-
-#### Supported Signatures
 ```sql
-function try_to_timestamp($1) returns timestamp
-function try_to_timestamp($1, string) returns timestamp
+function try_to_time(<$1>) returns time
 ```
+
+
+```sql
+function try_to_time(<$1, string>) returns time
+```
+
+
+## `try_to_timestamp`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_timestamp)
 
-## `try_to_timestamp_ntz`
-
-#### Supported Signatures
 ```sql
-function try_to_timestamp_ntz($1) returns timestamp
-function try_to_timestamp_ntz($1, string) returns timestamp
+function try_to_timestamp(<$1>) returns timestamp
 ```
+
+
+```sql
+function try_to_timestamp(<$1, string>) returns timestamp
+```
+
+
+## `try_to_timestamp_ntz`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_timestamp_ntz)
 
-## `try_to_timestamp_tz`
-
-#### Supported Signatures
 ```sql
-function try_to_timestamp_tz($1) returns timestamp
-function try_to_timestamp_tz($1, string) returns timestamp
+function try_to_timestamp_ntz(<$1>) returns timestamp
 ```
+
+
+```sql
+function try_to_timestamp_ntz(<$1, string>) returns timestamp
+```
+
+
+## `try_to_timestamp_tz`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_timestamp_tz)
+
+```sql
+function try_to_timestamp_tz(<$1>) returns timestamp
+```
+
+
+```sql
+function try_to_timestamp_tz(<$1, string>) returns timestamp
+```
+
 
 

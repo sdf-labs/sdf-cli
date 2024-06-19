@@ -1186,7 +1186,7 @@
           ]
         },
         "exists-remotely": {
-          "description": "Whether the table exists in the remote DB (used for is_incremental macro)",
+          "description": "Whether the table exists in the remote DB (used for is_incremental macto)",
           "type": [
             "boolean",
             "null"

@@ -3,3740 +3,5011 @@ title: "All Functions"
 ---
 
 ## `+`
+[🔗 Official Documentation]()
 
-#### Supported Signatures
 ```sql
-function + $1(time, $1) returns time
+function +<$1> (<time, $1>) returns time
 	where $1 in (interval day to second, interval year to month)
 ```
-[🔗 Official Documentation]()
+
 
 ## `-`
+[🔗 Official Documentation]()
 
-#### Supported Signatures
 ```sql
-function - $1(time, $1) returns time
+function -<$1> (<time, $1>) returns time
 	where $1 in (interval day to second, interval year to month)
 ```
-[🔗 Official Documentation]()
+
 
 ## `abs`
-
-#### Supported Signatures
-```sql
-function abs(tinyint) returns tinyint
-function abs(smallint) returns smallint
-function abs(bigint) returns bigint
-function abs(double) returns double
-function abs(decimal(p, s)) returns decimal(p, s)
-function abs(real) returns real
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#abs)
 
-## `acos`
-
-#### Supported Signatures
 ```sql
-function acos(double) returns double
+function abs(<tinyint>) returns tinyint
 ```
+
+
+```sql
+function abs(<smallint>) returns smallint
+```
+
+
+```sql
+function abs(<bigint>) returns bigint
+```
+
+
+```sql
+function abs(<double>) returns double
+```
+
+
+```sql
+function abs(<decimal(p, s)>) returns decimal(p, s)
+```
+
+
+```sql
+function abs(<real>) returns real
+```
+
+
+## `acos`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#acos)
 
-## `all_match`
-
-#### Supported Signatures
 ```sql
-function all_match(array<$1>, function($1, boolean)) returns boolean
+function acos(<double>) returns double
 ```
+
+
+## `all_match`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#all_match)
 
-## `any_match`
-
-#### Supported Signatures
 ```sql
-function any_match(array<$1>, function($1, boolean)) returns boolean
+function all_match(<array<$1>, function($1, boolean)>) returns boolean
 ```
+
+
+## `any_match`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#any_match)
 
-## `approx_distinct`
-
-#### Supported Signatures
 ```sql
-function approx_distinct(boolean) returns bigint
-function approx_distinct(boolean, double) returns bigint
-function approx_distinct($1) returns bigint
-function approx_distinct($1, double) returns bigint
-function approx_distinct(unknown) returns bigint
-function approx_distinct(unknown, double) returns bigint
+function any_match(<array<$1>, function($1, boolean)>) returns boolean
 ```
+
+
+## `approx_distinct`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_distinct)
 
-## `approx_most_frequent`
-
-#### Supported Signatures
 ```sql
-function approx_most_frequent(bigint, bigint, bigint) returns map<bigint, bigint>
-function approx_most_frequent(bigint, varchar, bigint) returns map<varchar, bigint>
+function approx_distinct(<boolean>) returns bigint
 ```
+
+
+```sql
+function approx_distinct(<boolean, double>) returns bigint
+```
+
+
+```sql
+function approx_distinct(<$1>) returns bigint
+```
+
+
+```sql
+function approx_distinct(<$1, double>) returns bigint
+```
+
+
+```sql
+function approx_distinct(<unknown>) returns bigint
+```
+
+
+```sql
+function approx_distinct(<unknown, double>) returns bigint
+```
+
+
+## `approx_most_frequent`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_most_frequent)
 
-## `approx_percentile`
-
-#### Supported Signatures
 ```sql
-function approx_percentile(bigint, array<double>) returns array<bigint>
-function approx_percentile(bigint, double, array<double>) returns array<bigint>
-function approx_percentile(double, array<double>) returns array<double>
-function approx_percentile(double, double, array<double>) returns array<double>
-function approx_percentile(real, array<double>) returns array<real>
-function approx_percentile(real, double, array<double>) returns array<real>
-function approx_percentile(bigint, double) returns bigint
-function approx_percentile(bigint, double, double) returns bigint
-function approx_percentile(bigint, double, double, double) returns bigint
-function approx_percentile(double, double) returns double
-function approx_percentile(double, double, double) returns double
-function approx_percentile(double, double, double, double) returns double
-function approx_percentile(real, double) returns real
-function approx_percentile(real, double, double) returns real
-function approx_percentile(real, double, double, double) returns real
+function approx_most_frequent(<bigint, bigint, bigint>) returns map<bigint, bigint>
 ```
+
+
+```sql
+function approx_most_frequent(<bigint, varchar, bigint>) returns map<varchar, bigint>
+```
+
+
+## `approx_percentile`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_percentile)
 
-## `approx_set`
-
-#### Supported Signatures
 ```sql
-function approx_set(bigint) returns hyperloglog
-function approx_set(double) returns hyperloglog
-function approx_set(varchar) returns hyperloglog
+function approx_percentile(<bigint, array<double>>) returns array<bigint>
 ```
+
+
+```sql
+function approx_percentile(<bigint, double, array<double>>) returns array<bigint>
+```
+
+
+```sql
+function approx_percentile(<double, array<double>>) returns array<double>
+```
+
+
+```sql
+function approx_percentile(<double, double, array<double>>) returns array<double>
+```
+
+
+```sql
+function approx_percentile(<real, array<double>>) returns array<real>
+```
+
+
+```sql
+function approx_percentile(<real, double, array<double>>) returns array<real>
+```
+
+
+```sql
+function approx_percentile(<bigint, double>) returns bigint
+```
+
+
+```sql
+function approx_percentile(<bigint, double, double>) returns bigint
+```
+
+
+```sql
+function approx_percentile(<bigint, double, double, double>) returns bigint
+```
+
+
+```sql
+function approx_percentile(<double, double>) returns double
+```
+
+
+```sql
+function approx_percentile(<double, double, double>) returns double
+```
+
+
+```sql
+function approx_percentile(<double, double, double, double>) returns double
+```
+
+
+```sql
+function approx_percentile(<real, double>) returns real
+```
+
+
+```sql
+function approx_percentile(<real, double, double>) returns real
+```
+
+
+```sql
+function approx_percentile(<real, double, double, double>) returns real
+```
+
+
+## `approx_set`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#approx_set)
 
-## `arbitrary`
-
-#### Supported Signatures
 ```sql
-function arbitrary($1) returns $1
+function approx_set(<bigint>) returns hyperloglog
 ```
+
+
+```sql
+function approx_set(<double>) returns hyperloglog
+```
+
+
+```sql
+function approx_set(<varchar>) returns hyperloglog
+```
+
+
+## `arbitrary`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#arbitrary)
 
-## `array_agg`
-
-#### Supported Signatures
 ```sql
-function array_agg($1) returns array<$1>
+function arbitrary(<$1>) returns $1
 ```
+
+
+## `array_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#array_agg)
 
-## `array_distinct`
-
-#### Supported Signatures
 ```sql
-function array_distinct(array<$3>) returns array<$3>
+function array_agg(<$1>) returns array<$1>
 ```
+
+
+## `array_distinct`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_distinct)
 
-## `array_except`
-
-#### Supported Signatures
 ```sql
-function array_except(array<$3>, array<$3>) returns array<$3>
+function array_distinct(<array<$3>>) returns array<$3>
 ```
+
+
+## `array_except`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_except)
 
-## `array_intersect`
-
-#### Supported Signatures
 ```sql
-function array_intersect(array<$3>, array<$3>) returns array<$3>
+function array_except(<array<$3>, array<$3>>) returns array<$3>
 ```
+
+
+## `array_intersect`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_intersect)
 
-## `array_join`
-
-#### Supported Signatures
 ```sql
-function array_join(array<$1>, varchar) returns varchar
-function array_join(array<$1>, varchar, varchar) returns varchar
+function array_intersect(<array<$3>, array<$3>>) returns array<$3>
 ```
+
+
+## `array_join`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_join)
 
-## `array_max`
-
-#### Supported Signatures
 ```sql
-function array_max(array<$1>) returns $1
+function array_join(<array<$1>, varchar>) returns varchar
 ```
+
+
+```sql
+function array_join(<array<$1>, varchar, varchar>) returns varchar
+```
+
+
+## `array_max`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_max)
 
-## `array_min`
-
-#### Supported Signatures
 ```sql
-function array_min(array<$1>) returns $1
+function array_max(<array<$1>>) returns $1
 ```
+
+
+## `array_min`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_min)
 
-## `array_position`
-
-#### Supported Signatures
 ```sql
-function array_position(array<$1>, $1) returns bigint
+function array_min(<array<$1>>) returns $1
 ```
+
+
+## `array_position`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_position)
 
-## `array_remove`
-
-#### Supported Signatures
 ```sql
-function array_remove(array<$3>, $3) returns array<$3>
+function array_position(<array<$1>, $1>) returns bigint
 ```
+
+
+## `array_remove`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_remove)
 
-## `array_sort`
-
-#### Supported Signatures
 ```sql
-function array_sort(array<$3>) returns array<$3>
-function array_sort(array<$1>, function($1, $1, bigint)) returns array<$1>
+function array_remove(<array<$3>, $3>) returns array<$3>
 ```
+
+
+## `array_sort`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_sort)
 
-## `array_union`
-
-#### Supported Signatures
 ```sql
-function array_union(array<$3>, array<$3>) returns array<$3>
+function array_sort(<array<$3>>) returns array<$3>
 ```
+
+
+```sql
+function array_sort(<array<$1>, function($1, $1, bigint)>) returns array<$1>
+```
+
+
+## `array_union`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_union)
 
-## `arrays_overlap`
-
-#### Supported Signatures
 ```sql
-function arrays_overlap(array<$3>, array<$3>) returns boolean
+function array_union(<array<$3>, array<$3>>) returns array<$3>
 ```
+
+
+## `arrays_overlap`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#arrays_overlap)
 
-## `asin`
-
-#### Supported Signatures
 ```sql
-function asin(double) returns double
+function arrays_overlap(<array<$3>, array<$3>>) returns boolean
 ```
+
+
+## `asin`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#asin)
 
-## `at_timezone`
-
-#### Supported Signatures
 ```sql
-function at_timezone(timestamp(p), varchar) returns timestamp(p)
+function asin(<double>) returns double
 ```
+
+
+## `at_timezone`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#at_timezone)
 
-## `atan`
-
-#### Supported Signatures
 ```sql
-function atan(double) returns double
+function at_timezone(<timestamp(p), varchar>) returns timestamp(p)
 ```
+
+
+## `atan`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#atan)
 
-## `atan2`
-
-#### Supported Signatures
 ```sql
-function atan2(double, double) returns double
+function atan(<double>) returns double
 ```
+
+
+## `atan2`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#atan2)
 
-## `avg`
-
-#### Supported Signatures
 ```sql
-function avg(double) returns double
-function avg(decimal(p, s)) returns decimal(p, s)
-function avg(interval day to second) returns interval day to second
-function avg(interval year to month) returns interval year to month
-function avg(real) returns real
+function atan2(<double, double>) returns double
 ```
+
+
+## `avg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#avg)
 
-## `bar`
-
-#### Supported Signatures
 ```sql
-function bar(double, bigint) returns varchar
-function bar(double, bigint, color, color) returns varchar
+function avg(<double>) returns double
 ```
+
+
+```sql
+function avg(<decimal(p, s)>) returns decimal(p, s)
+```
+
+
+```sql
+function avg(<interval day to second>) returns interval day to second
+```
+
+
+```sql
+function avg(<interval year to month>) returns interval year to month
+```
+
+
+```sql
+function avg(<real>) returns real
+```
+
+
+## `bar`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#bar)
 
-## `beta_cdf`
-
-#### Supported Signatures
 ```sql
-function beta_cdf(double, double, double) returns double
+function bar(<double, bigint>) returns varchar
 ```
+
+
+```sql
+function bar(<double, bigint, color, color>) returns varchar
+```
+
+
+## `beta_cdf`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#beta_cdf)
 
-## `bing_tile`
-
-#### Supported Signatures
 ```sql
-function bing_tile(bigint, bigint, bigint) returns bingtile
-function bing_tile(varchar) returns bingtile
+function beta_cdf(<double, double, double>) returns double
 ```
+
+
+## `bing_tile`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile)
 
-## `bing_tile_at`
-
-#### Supported Signatures
 ```sql
-function bing_tile_at(double, double, bigint) returns bingtile
+function bing_tile(<bigint, bigint, bigint>) returns bingtile
 ```
+
+
+```sql
+function bing_tile(<varchar>) returns bingtile
+```
+
+
+## `bing_tile_at`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_at)
 
-## `bing_tile_coordinates`
-
-#### Supported Signatures
 ```sql
-function bing_tile_coordinates(bingtile) returns row(x bigint, y bigint)
+function bing_tile_at(<double, double, bigint>) returns bingtile
 ```
+
+
+## `bing_tile_coordinates`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_coordinates)
 
-## `bing_tile_polygon`
-
-#### Supported Signatures
 ```sql
-function bing_tile_polygon(bingtile) returns geometry
+function bing_tile_coordinates(<bingtile>) returns row(x bigint, y bigint)
 ```
+
+
+## `bing_tile_polygon`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_polygon)
 
-## `bing_tile_quadkey`
-
-#### Supported Signatures
 ```sql
-function bing_tile_quadkey(bingtile) returns varchar
+function bing_tile_polygon(<bingtile>) returns geometry
 ```
+
+
+## `bing_tile_quadkey`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_quadkey)
 
-## `bing_tile_zoom_level`
-
-#### Supported Signatures
 ```sql
-function bing_tile_zoom_level(bingtile) returns tinyint
+function bing_tile_quadkey(<bingtile>) returns varchar
 ```
+
+
+## `bing_tile_zoom_level`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_zoom_level)
 
-## `bing_tiles_around`
-
-#### Supported Signatures
 ```sql
-function bing_tiles_around(double, double, bigint) returns array<bingtile>
-function bing_tiles_around(double, double, bigint, double) returns array<bingtile>
+function bing_tile_zoom_level(<bingtile>) returns tinyint
 ```
+
+
+## `bing_tiles_around`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tiles_around)
 
-## `bit_count`
-
-#### Supported Signatures
 ```sql
-function bit_count(bigint, bigint) returns bigint
+function bing_tiles_around(<double, double, bigint>) returns array<bingtile>
 ```
+
+
+```sql
+function bing_tiles_around(<double, double, bigint, double>) returns array<bingtile>
+```
+
+
+## `bit_count`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bit_count)
 
-## `bitwise_and`
-
-#### Supported Signatures
 ```sql
-function bitwise_and(bigint, bigint) returns bigint
+function bit_count(<bigint, bigint>) returns bigint
 ```
+
+
+## `bitwise_and`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_and)
 
-## `bitwise_and_agg`
-
-#### Supported Signatures
 ```sql
-function bitwise_and_agg(bigint) returns bigint
+function bitwise_and(<bigint, bigint>) returns bigint
 ```
+
+
+## `bitwise_and_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bitwise_and_agg)
 
-## `bitwise_left_shift`
-
-#### Supported Signatures
 ```sql
-function bitwise_left_shift(bigint, bigint) returns bigint
-function bitwise_left_shift(integer, bigint) returns integer
-function bitwise_left_shift(smallint, bigint) returns smallint
-function bitwise_left_shift(tinyint, bigint) returns tinyint
+function bitwise_and_agg(<bigint>) returns bigint
 ```
+
+
+## `bitwise_left_shift`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_left_shift)
 
-## `bitwise_not`
-
-#### Supported Signatures
 ```sql
-function bitwise_not(bigint) returns bigint
+function bitwise_left_shift(<bigint, bigint>) returns bigint
 ```
+
+
+```sql
+function bitwise_left_shift(<integer, bigint>) returns integer
+```
+
+
+```sql
+function bitwise_left_shift(<smallint, bigint>) returns smallint
+```
+
+
+```sql
+function bitwise_left_shift(<tinyint, bigint>) returns tinyint
+```
+
+
+## `bitwise_not`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_not)
 
-## `bitwise_or`
-
-#### Supported Signatures
 ```sql
-function bitwise_or(bigint, bigint) returns bigint
+function bitwise_not(<bigint>) returns bigint
 ```
+
+
+## `bitwise_or`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_or)
 
-## `bitwise_or_agg`
-
-#### Supported Signatures
 ```sql
-function bitwise_or_agg(bigint) returns bigint
+function bitwise_or(<bigint, bigint>) returns bigint
 ```
+
+
+## `bitwise_or_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bitwise_or_agg)
 
-## `bitwise_right_shift`
-
-#### Supported Signatures
 ```sql
-function bitwise_right_shift(bigint, bigint) returns bigint
-function bitwise_right_shift(integer, bigint) returns integer
-function bitwise_right_shift(smallint, bigint) returns smallint
-function bitwise_right_shift(tinyint, bigint) returns tinyint
+function bitwise_or_agg(<bigint>) returns bigint
 ```
+
+
+## `bitwise_right_shift`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_right_shift)
 
-## `bitwise_right_shift_arithmetic`
-
-#### Supported Signatures
 ```sql
-function bitwise_right_shift_arithmetic(bigint, bigint) returns bigint
-function bitwise_right_shift_arithmetic(integer, bigint) returns integer
-function bitwise_right_shift_arithmetic(smallint, bigint) returns smallint
-function bitwise_right_shift_arithmetic(tinyint, bigint) returns tinyint
+function bitwise_right_shift(<bigint, bigint>) returns bigint
 ```
+
+
+```sql
+function bitwise_right_shift(<integer, bigint>) returns integer
+```
+
+
+```sql
+function bitwise_right_shift(<smallint, bigint>) returns smallint
+```
+
+
+```sql
+function bitwise_right_shift(<tinyint, bigint>) returns tinyint
+```
+
+
+## `bitwise_right_shift_arithmetic`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_right_shift_arithmetic)
 
-## `bitwise_xor`
-
-#### Supported Signatures
 ```sql
-function bitwise_xor(bigint, bigint) returns bigint
+function bitwise_right_shift_arithmetic(<bigint, bigint>) returns bigint
 ```
+
+
+```sql
+function bitwise_right_shift_arithmetic(<integer, bigint>) returns integer
+```
+
+
+```sql
+function bitwise_right_shift_arithmetic(<smallint, bigint>) returns smallint
+```
+
+
+```sql
+function bitwise_right_shift_arithmetic(<tinyint, bigint>) returns tinyint
+```
+
+
+## `bitwise_xor`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_xor)
 
-## `bool_and`
-
-#### Supported Signatures
 ```sql
-function bool_and(boolean) returns boolean
+function bitwise_xor(<bigint, bigint>) returns bigint
 ```
+
+
+## `bool_and`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bool_and)
 
-## `bool_or`
-
-#### Supported Signatures
 ```sql
-function bool_or(boolean) returns boolean
+function bool_and(<boolean>) returns boolean
 ```
+
+
+## `bool_or`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bool_or)
 
-## `btrim`
-
-#### Supported Signatures
 ```sql
-function btrim(varchar) returns varchar
-function btrim(varchar, varchar) returns varchar
+function bool_or(<boolean>) returns boolean
 ```
+
+
+## `btrim`
 [🔗 Official Documentation]()
 
-## `cardinality`
-
-#### Supported Signatures
 ```sql
-function cardinality(array<$3>) returns bigint
-function cardinality(hyperloglog) returns bigint
-function cardinality(map<$4, $5>) returns bigint
-function cardinality(setdigest) returns bigint
+function btrim(<varchar>) returns varchar
 ```
+
+
+```sql
+function btrim(<varchar, varchar>) returns varchar
+```
+
+
+## `cardinality`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#cardinality)
 
-## `cbrt`
-
-#### Supported Signatures
 ```sql
-function cbrt(double) returns double
+function cardinality(<array<$3>>) returns bigint
 ```
+
+
+```sql
+function cardinality(<hyperloglog>) returns bigint
+```
+
+
+```sql
+function cardinality(<map<$4, $5>>) returns bigint
+```
+
+
+```sql
+function cardinality(<setdigest>) returns bigint
+```
+
+
+## `cbrt`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cbrt)
 
-## `ceil`
-
-#### Supported Signatures
 ```sql
-function ceil(bigint) returns bigint
-function ceil(decimal(p, s)) returns decimal(rp, 0)
-function ceil(double) returns double
-function ceil(integer) returns integer
-function ceil(real) returns real
-function ceil(smallint) returns smallint
-function ceil(tinyint) returns tinyint
+function cbrt(<double>) returns double
 ```
+
+
+## `ceil`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ceil)
 
-## `ceiling`
-
-#### Supported Signatures
 ```sql
-function ceiling(bigint) returns bigint
-function ceiling(decimal(p, s)) returns decimal(rp, 0)
-function ceiling(double) returns double
-function ceiling(integer) returns integer
-function ceiling(real) returns real
-function ceiling(smallint) returns smallint
-function ceiling(tinyint) returns tinyint
+function ceil(<bigint>) returns bigint
 ```
+
+
+```sql
+function ceil(<decimal(p, s)>) returns decimal(rp, 0)
+```
+
+
+```sql
+function ceil(<double>) returns double
+```
+
+
+```sql
+function ceil(<integer>) returns integer
+```
+
+
+```sql
+function ceil(<real>) returns real
+```
+
+
+```sql
+function ceil(<smallint>) returns smallint
+```
+
+
+```sql
+function ceil(<tinyint>) returns tinyint
+```
+
+
+## `ceiling`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ceiling)
 
-## `char2hexint`
-
-#### Supported Signatures
 ```sql
-function char2hexint(varchar) returns varchar
+function ceiling(<bigint>) returns bigint
 ```
+
+
+```sql
+function ceiling(<decimal(p, s)>) returns decimal(rp, 0)
+```
+
+
+```sql
+function ceiling(<double>) returns double
+```
+
+
+```sql
+function ceiling(<integer>) returns integer
+```
+
+
+```sql
+function ceiling(<real>) returns real
+```
+
+
+```sql
+function ceiling(<smallint>) returns smallint
+```
+
+
+```sql
+function ceiling(<tinyint>) returns tinyint
+```
+
+
+## `char2hexint`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#char2hexint)
 
-## `checksum`
-
-#### Supported Signatures
 ```sql
-function checksum($1) returns varbinary
+function char2hexint(<varchar>) returns varchar
 ```
+
+
+## `checksum`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#checksum)
 
-## `chr`
-
-#### Supported Signatures
 ```sql
-function chr(bigint) returns varchar
+function checksum(<$1>) returns varbinary
 ```
+
+
+## `chr`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#chr)
 
-## `classify`
-
-#### Supported Signatures
 ```sql
-function classify(map<bigint, double>, classifier) returns bigint
+function chr(<bigint>) returns varchar
 ```
+
+
+## `classify`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#classify)
 
-## `coalesce`
+```sql
+function classify(<map<bigint, double>, classifier>) returns bigint
+```
 
-#### Supported Signatures
+
+## `coalesce`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#coalesce-function)
+
 ```sql
 function coalesce($1, ...) returns $1
 ```
-[🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#coalesce-function)
+
 
 ## `codepoint`
-
-#### Supported Signatures
-```sql
-function codepoint(varchar) returns bigint
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#codepoint)
 
-## `color`
-
-#### Supported Signatures
 ```sql
-function color(double, color, color) returns color
-function color(double, double, double, color, color) returns color
-function color(varchar) returns color
+function codepoint(<varchar>) returns bigint
 ```
+
+
+## `color`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#color)
 
-## `combinations`
-
-#### Supported Signatures
 ```sql
-function combinations(array<$1>, bigint) returns array<array<$1>>
+function color(<double, color, color>) returns color
 ```
+
+
+```sql
+function color(<double, double, double, color, color>) returns color
+```
+
+
+```sql
+function color(<varchar>) returns color
+```
+
+
+## `combinations`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#combinations)
 
-## `concat`
-
-#### Supported Signatures
 ```sql
-function concat($3, array<$3>) returns array<$3>
-function concat(array<$3>, ...) returns array<$3>
-function concat(array<$3>, $3) returns array<$3>
-function concat(varchar, varchar) returns varchar
-function concat(varchar, ...) returns varchar
-function concat(varbinary, ...) returns varbinary
+function combinations(<array<$1>, bigint>) returns array<array<$1>>
 ```
+
+
+## `concat`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#concat)
 
-## `concat_ws`
-
-#### Supported Signatures
 ```sql
-function concat_ws(varchar, array<varchar>) returns varchar
-function concat_ws(varchar, ...) returns varchar
+function concat(<$3, array<$3>>) returns array<$3>
 ```
+
+
+```sql
+function concat(array<$3>, ...) returns array<$3>
+```
+
+
+```sql
+function concat(<array<$3>, $3>) returns array<$3>
+```
+
+
+```sql
+function concat(<varchar, varchar>) returns varchar
+```
+
+
+```sql
+function concat(varchar, ...) returns varchar
+```
+
+
+```sql
+function concat(varbinary, ...) returns varbinary
+```
+
+
+## `concat_ws`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#concat_ws)
 
-## `contains`
-
-#### Supported Signatures
 ```sql
-function contains(array<$1>, $1) returns boolean
-function contains(varchar, ipaddress) returns boolean
+function concat_ws(<varchar, array<varchar>>) returns varchar
 ```
+
+
+```sql
+function concat_ws(varchar, ...) returns varchar
+```
+
+
+## `contains`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#contains)
 
-## `contains_array_varchar`
-
-#### Supported Signatures
 ```sql
-function contains_array_varchar(array<varchar>, varchar) returns boolean
+function contains(<array<$1>, $1>) returns boolean
 ```
+
+
+```sql
+function contains(<varchar, ipaddress>) returns boolean
+```
+
+
+## `contains_array_varchar`
 [🔗 Official Documentation]()
 
-## `contains_sequence`
-
-#### Supported Signatures
 ```sql
-function contains_sequence(array<$1>, array<$1>) returns boolean
+function contains_array_varchar(<array<varchar>, varchar>) returns boolean
 ```
+
+
+## `contains_sequence`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#contains_sequence)
 
-## `convex_hull_agg`
-
-#### Supported Signatures
 ```sql
-function convex_hull_agg(geometry) returns geometry
+function contains_sequence(<array<$1>, array<$1>>) returns boolean
 ```
+
+
+## `convex_hull_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#convex_hull_agg)
 
-## `corr`
-
-#### Supported Signatures
 ```sql
-function corr(double, double) returns double
-function corr(real, real) returns real
+function convex_hull_agg(<geometry>) returns geometry
 ```
+
+
+## `corr`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#corr)
 
-## `cos`
-
-#### Supported Signatures
 ```sql
-function cos(double) returns double
+function corr(<double, double>) returns double
 ```
+
+
+```sql
+function corr(<real, real>) returns real
+```
+
+
+## `cos`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cos)
 
-## `cosh`
-
-#### Supported Signatures
 ```sql
-function cosh(double) returns double
+function cos(<double>) returns double
 ```
+
+
+## `cosh`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cosh)
 
-## `cosine_similarity`
-
-#### Supported Signatures
 ```sql
-function cosine_similarity(map<varchar, double>, map<varchar, double>) returns double
+function cosh(<double>) returns double
 ```
+
+
+## `cosine_similarity`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cosine_similarity)
 
-## `count`
-
-#### Supported Signatures
 ```sql
-function count() returns bigint
-function count($1) returns bigint
+function cosine_similarity(<map<varchar, double>, map<varchar, double>>) returns double
 ```
+
+
+## `count`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#count)
 
-## `count_if`
-
-#### Supported Signatures
 ```sql
-function count_if(boolean) returns bigint
+function count(<>) returns bigint
 ```
+
+
+```sql
+function count(<$1>) returns bigint
+```
+
+
+## `count_if`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#count_if)
 
-## `covar_pop`
-
-#### Supported Signatures
 ```sql
-function covar_pop(double, double) returns double
-function covar_pop(real, real) returns real
+function count_if(<boolean>) returns bigint
 ```
+
+
+## `covar_pop`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#covar_pop)
 
-## `covar_samp`
-
-#### Supported Signatures
 ```sql
-function covar_samp(double, double) returns double
-function covar_samp(real, real) returns real
+function covar_pop(<double, double>) returns double
 ```
+
+
+```sql
+function covar_pop(<real, real>) returns real
+```
+
+
+## `covar_samp`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#covar_samp)
 
-## `crc32`
-
-#### Supported Signatures
 ```sql
-function crc32(varbinary) returns bigint
+function covar_samp(<double, double>) returns double
 ```
+
+
+```sql
+function covar_samp(<real, real>) returns real
+```
+
+
+## `crc32`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#crc32)
 
-## `cume_dist`
-
-#### Supported Signatures
 ```sql
-function cume_dist() returns double
+function crc32(<varbinary>) returns bigint
 ```
+
+
+## `cume_dist`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#cume_dist)
 
-## `current_catalog`
-
-#### Supported Signatures
 ```sql
-function current_catalog() returns varchar
+function cume_dist(<>) returns double
 ```
+
+
+## `current_catalog`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_catalog)
 
-## `current_date`
-
-#### Supported Signatures
 ```sql
-function current_date() returns date
+function current_catalog(<>) returns varchar
+```
+
+
+## `current_date`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_date)
+
+```sql
+function current_date(<>) returns date
 ```
 *Note: current_date() is stable,  i.e. might return a
                 different value for a different query execution.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_date)
+
 
 ## `current_groups`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_groups)
 
-#### Supported Signatures
 ```sql
-function current_groups() returns array<varchar>
+function current_groups(<>) returns array<varchar>
 ```
 *Note: current_groups() is stable,  i.e. might return a
                 different value for a different query execution.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_groups)
+
 
 ## `current_schema`
-
-#### Supported Signatures
-```sql
-function current_schema() returns varchar
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_schema)
 
-## `current_time`
-
-#### Supported Signatures
 ```sql
-function current_time() returns time
+function current_schema(<>) returns varchar
+```
+
+
+## `current_time`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_time)
+
+```sql
+function current_time(<>) returns time
 ```
 *Note: current_time() is stable,  i.e. might return a
                 different value for a different query execution.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_time)
+
 
 ## `current_timestamp`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_timestamp)
 
-#### Supported Signatures
 ```sql
-function current_timestamp() returns timestamp
-function current_timestamp(0) returns timestamp(0)
-function current_timestamp(3) returns timestamp(3)
-function current_timestamp(6) returns timestamp(6)
-function current_timestamp(9) returns timestamp(9)
+function current_timestamp(<>) returns timestamp
 ```
 *Note: current_timestamp() is stable,  i.e. might return a
                 different value for a different query execution.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_timestamp)
+
+
+```sql
+function current_timestamp(<0>) returns timestamp(0)
+```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+
+
+```sql
+function current_timestamp(<3>) returns timestamp(3)
+```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+
+
+```sql
+function current_timestamp(<6>) returns timestamp(6)
+```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+
+
+```sql
+function current_timestamp(<9>) returns timestamp(9)
+```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+
 
 ## `current_timezone`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_timezone)
 
-#### Supported Signatures
 ```sql
-function current_timezone() returns varchar
+function current_timezone(<>) returns varchar
 ```
 *Note: current_timezone() is stable,  i.e. might return a
                 different value for a different query execution.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_timezone)
+
 
 ## `current_user`
-
-#### Supported Signatures
-```sql
-function current_user() returns varchar
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_user)
 
-## `date`
-
-#### Supported Signatures
 ```sql
-function date(timestamp(p)) returns date
-function date(varchar) returns date
+function current_user(<>) returns varchar
 ```
+
+
+## `date`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date)
 
-## `date_add`
-
-#### Supported Signatures
 ```sql
-function date_add(varchar, bigint, date) returns date
-function date_add(varchar, bigint, time(p)) returns time(p)
-function date_add(varchar, bigint, timestamp(p)) returns timestamp(p)
+function date(<timestamp(p)>) returns date
 ```
+
+
+```sql
+function date(<varchar>) returns date
+```
+
+
+## `date_add`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_add)
 
-## `date_diff`
-
-#### Supported Signatures
 ```sql
-function date_diff(varchar, date, date) returns bigint
-function date_diff(varchar, time(p), time(p)) returns bigint
-function date_diff(varchar, timestamp(p), timestamp(p)) returns bigint
+function date_add(<varchar, bigint, date>) returns date
 ```
+
+
+```sql
+function date_add(<varchar, bigint, time(p)>) returns time(p)
+```
+
+
+```sql
+function date_add(<varchar, bigint, timestamp(p)>) returns timestamp(p)
+```
+
+
+## `date_diff`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_diff)
 
-## `date_format`
-
-#### Supported Signatures
 ```sql
-function date_format(timestamp(p), varchar) returns varchar
+function date_diff(<varchar, date, date>) returns bigint
 ```
+
+
+```sql
+function date_diff(<varchar, time(p), time(p)>) returns bigint
+```
+
+
+```sql
+function date_diff(<varchar, timestamp(p), timestamp(p)>) returns bigint
+```
+
+
+## `date_format`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_format)
 
-## `date_parse`
-
-#### Supported Signatures
 ```sql
-function date_parse(varchar, varchar) returns timestamp
+function date_format(<timestamp(p), varchar>) returns varchar
 ```
+
+
+## `date_parse`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_parse)
 
-## `date_part`
-
-#### Supported Signatures
 ```sql
-function date_part(varchar, time(p)) returns double
-function date_part(varchar, timestamp(p)) returns double
-function date_part(varchar, date) returns double
+function date_parse(<varchar, varchar>) returns timestamp
 ```
+
+
+## `date_part`
 [🔗 Official Documentation]()
+
+```sql
+function date_part(<varchar, time(p)>) returns double
+```
+
+
+```sql
+function date_part(<varchar, timestamp(p)>) returns double
+```
+
+
+```sql
+function date_part(<varchar, date>) returns double
+```
+
 
 ## `date_trunc`
-
-#### Supported Signatures
-```sql
-function date_trunc(varchar, time(p)) returns time(p)
-function date_trunc(varchar, timestamp(p)) returns timestamp(p)
-function date_trunc(varchar, date) returns date
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_trunc)
 
-## `day`
-
-#### Supported Signatures
 ```sql
-function day(date) returns bigint
-function day(interval day to second) returns bigint
-function day(timestamp(p)) returns bigint
+function date_trunc(<varchar, time(p)>) returns time(p)
 ```
+
+
+```sql
+function date_trunc(<varchar, timestamp(p)>) returns timestamp(p)
+```
+
+
+```sql
+function date_trunc(<varchar, date>) returns date
+```
+
+
+## `day`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day)
 
-## `day_of_month`
-
-#### Supported Signatures
 ```sql
-function day_of_month(date) returns bigint
-function day_of_month(interval day to second) returns bigint
-function day_of_month(timestamp(p)) returns bigint
+function day([date]) returns bigint
 ```
+
+
+```sql
+function day(<interval day to second>) returns bigint
+```
+
+
+```sql
+function day(<timestamp(p)>) returns bigint
+```
+
+
+## `day_of_month`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_month)
 
-## `day_of_week`
-
-#### Supported Signatures
 ```sql
-function day_of_week(date) returns bigint
-function day_of_week(timestamp(p)) returns bigint
+function day_of_month([date]) returns bigint
 ```
+
+
+```sql
+function day_of_month(<interval day to second>) returns bigint
+```
+
+
+```sql
+function day_of_month(<timestamp(p)>) returns bigint
+```
+
+
+## `day_of_week`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_week)
 
-## `day_of_year`
-
-#### Supported Signatures
 ```sql
-function day_of_year(date) returns bigint
-function day_of_year(timestamp(p)) returns bigint
+function day_of_week([date]) returns bigint
 ```
+
+
+```sql
+function day_of_week(<timestamp(p)>) returns bigint
+```
+
+
+## `day_of_year`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_year)
 
-## `degrees`
-
-#### Supported Signatures
 ```sql
-function degrees(double) returns double
+function day_of_year([date]) returns bigint
 ```
+
+
+```sql
+function day_of_year(<timestamp(p)>) returns bigint
+```
+
+
+## `degrees`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#degrees)
 
-## `dense_rank`
-
-#### Supported Signatures
 ```sql
-function dense_rank() returns bigint
+function degrees(<double>) returns double
 ```
+
+
+## `dense_rank`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#dense_rank)
 
-## `dow`
-
-#### Supported Signatures
 ```sql
-function dow(date) returns bigint
-function dow(timestamp(p)) returns bigint
+function dense_rank(<>) returns bigint
 ```
+
+
+## `dow`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#dow)
 
-## `doy`
-
-#### Supported Signatures
 ```sql
-function doy(date) returns bigint
-function doy(timestamp(p)) returns bigint
+function dow([date]) returns bigint
 ```
+
+
+```sql
+function dow(<timestamp(p)>) returns bigint
+```
+
+
+## `doy`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#doy)
 
-## `e`
-
-#### Supported Signatures
 ```sql
-function e() returns double
+function doy([date]) returns bigint
 ```
+
+
+```sql
+function doy(<timestamp(p)>) returns bigint
+```
+
+
+## `e`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#e)
 
-## `element_at`
-
-#### Supported Signatures
 ```sql
-function element_at(map<$4, $5>, $4) returns $5
-function element_at(array<$3>, bigint) returns $3
+function e(<>) returns double
 ```
+
+
+## `element_at`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#element_at)
 
-## `empty_approx_set`
-
-#### Supported Signatures
 ```sql
-function empty_approx_set() returns hyperloglog
+function element_at(<map<$4, $5>, $4>) returns $5
 ```
+
+
+```sql
+function element_at(<array<$3>, bigint>) returns $3
+```
+
+
+## `empty_approx_set`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#empty_approx_set)
 
-## `evaluate_classifier_predictions`
-
-#### Supported Signatures
 ```sql
-function evaluate_classifier_predictions(bigint, bigint) returns varchar
-function evaluate_classifier_predictions(varchar, varchar) returns varchar
+function empty_approx_set(<>) returns hyperloglog
 ```
+
+
+## `evaluate_classifier_predictions`
 [🔗 Official Documentation]()
 
-## `every`
-
-#### Supported Signatures
 ```sql
-function every(boolean) returns boolean
+function evaluate_classifier_predictions(<bigint, bigint>) returns varchar
 ```
+
+
+```sql
+function evaluate_classifier_predictions(<varchar, varchar>) returns varchar
+```
+
+
+## `every`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#every)
 
-## `exp`
-
-#### Supported Signatures
 ```sql
-function exp(double) returns double
+function every(<boolean>) returns boolean
 ```
+
+
+## `exp`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#exp)
 
-## `features`
-
-#### Supported Signatures
 ```sql
-function features(double) returns map<bigint, double>
-function features(double, double) returns map<bigint, double>
-function features(double, double, double) returns map<bigint, double>
-function features(double, double, double, double) returns map<bigint, double>
-function features(double, double, double, double, double) returns map<bigint, double>
-function features(double, double, double, double, double, double) returns map<bigint, double>
-function features(double, double, double, double, double, double, double) returns map<bigint, double>
-function features(double, double, double, double, double, double, double, double) returns map<bigint, double>
-function features(double, double, double, double, double, double, double, double, double) returns map<bigint, double>
-function features(double, double, double, double, double, double, double, double, double, double) returns map<bigint, double>
+function exp(<double>) returns double
 ```
+
+
+## `features`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#features)
 
-## `filter`
-
-#### Supported Signatures
 ```sql
-function filter(array<$1>, function($1, boolean)) returns array<$1>
+function features(<double>) returns map<bigint, double>
 ```
+
+
+```sql
+function features(<double, double>) returns map<bigint, double>
+```
+
+
+```sql
+function features(<double, double, double>) returns map<bigint, double>
+```
+
+
+```sql
+function features(<double, double, double, double>) returns map<bigint, double>
+```
+
+
+```sql
+function features(<double, double, double, double, double>) returns map<bigint, double>
+```
+
+
+```sql
+function features(<double, double, double, double, double, double>) returns map<bigint, double>
+```
+
+
+```sql
+function features(<double, double, double, double, double, double, double>) returns map<bigint, double>
+```
+
+
+```sql
+function features(<double, double, double, double, double, double, double, double>) returns map<bigint, double>
+```
+
+
+```sql
+function features(<double, double, double, double, double, double, double, double, double>) returns map<bigint, double>
+```
+
+
+```sql
+function features(<double, double, double, double, double, double, double, double, double, double>) returns map<bigint, double>
+```
+
+
+## `filter`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#filter)
 
-## `first_value`
-
-#### Supported Signatures
 ```sql
-function first_value($1) returns $1
+function filter(<array<$1>, function($1, boolean)>) returns array<$1>
 ```
+
+
+## `first_value`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#first_value)
 
-## `flatten`
-
-#### Supported Signatures
 ```sql
-function flatten(array<array<$3>>) returns array<$3>
+function first_value(<$1>) returns $1
 ```
+
+
+## `flatten`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#flatten)
 
-## `floor`
-
-#### Supported Signatures
 ```sql
-function floor(bigint) returns bigint
-function floor(decimal(p, s)) returns decimal(rp, 0)
-function floor(double) returns double
-function floor(integer) returns integer
-function floor(real) returns real
-function floor(smallint) returns smallint
-function floor(tinyint) returns tinyint
+function flatten(<array<array<$3>>>) returns array<$3>
 ```
+
+
+## `floor`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#floor)
 
-## `format`
-
-#### Supported Signatures
 ```sql
-function format(varchar, $1) returns varchar
-function format(varchar, $1, $2) returns varchar
-function format(varchar, $1, $2, $3) returns varchar
-function format(varchar, $1, $2, $3, $4) returns varchar
-function format(varchar, $1, $2, $3, $4, $5) returns varchar
+function floor(<bigint>) returns bigint
 ```
+
+
+```sql
+function floor(<decimal(p, s)>) returns decimal(rp, 0)
+```
+
+
+```sql
+function floor(<double>) returns double
+```
+
+
+```sql
+function floor(<integer>) returns integer
+```
+
+
+```sql
+function floor(<real>) returns real
+```
+
+
+```sql
+function floor(<smallint>) returns smallint
+```
+
+
+```sql
+function floor(<tinyint>) returns tinyint
+```
+
+
+## `format`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#format)
 
-## `format_datetime`
-
-#### Supported Signatures
 ```sql
-function format_datetime(timestamp(p), varchar) returns varchar
+function format(<varchar, $1>) returns varchar
 ```
+
+
+```sql
+function format(<varchar, $1, $2>) returns varchar
+```
+
+
+```sql
+function format(<varchar, $1, $2, $3>) returns varchar
+```
+
+
+```sql
+function format(<varchar, $1, $2, $3, $4>) returns varchar
+```
+
+
+```sql
+function format(<varchar, $1, $2, $3, $4, $5>) returns varchar
+```
+
+
+## `format_datetime`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#format_datetime)
 
-## `format_number`
-
-#### Supported Signatures
 ```sql
-function format_number(bigint) returns varchar
-function format_number(double) returns varchar
+function format_datetime(<timestamp(p), varchar>) returns varchar
 ```
+
+
+## `format_number`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#format_number)
 
-## `from_base`
-
-#### Supported Signatures
 ```sql
-function from_base(varchar, bigint) returns bigint
+function format_number(<bigint>) returns varchar
 ```
+
+
+```sql
+function format_number(<double>) returns varchar
+```
+
+
+## `from_base`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#from_base)
 
-## `from_base32`
-
-#### Supported Signatures
 ```sql
-function from_base32(varbinary) returns varbinary
-function from_base32(varchar) returns varbinary
+function from_base(<varchar, bigint>) returns bigint
 ```
+
+
+## `from_base32`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base32)
 
-## `from_base64`
-
-#### Supported Signatures
 ```sql
-function from_base64(varbinary) returns varbinary
-function from_base64(varchar) returns varbinary
+function from_base32(<varbinary>) returns varbinary
 ```
+
+
+```sql
+function from_base32(<varchar>) returns varbinary
+```
+
+
+## `from_base64`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base64)
 
-## `from_base64url`
-
-#### Supported Signatures
 ```sql
-function from_base64url(varbinary) returns varbinary
-function from_base64url(varchar) returns varbinary
+function from_base64(<varbinary>) returns varbinary
 ```
+
+
+```sql
+function from_base64(<varchar>) returns varbinary
+```
+
+
+## `from_base64url`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base64url)
 
-## `from_big_endian_32`
-
-#### Supported Signatures
 ```sql
-function from_big_endian_32(varbinary) returns bigint
+function from_base64url(<varbinary>) returns varbinary
 ```
+
+
+```sql
+function from_base64url(<varchar>) returns varbinary
+```
+
+
+## `from_big_endian_32`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_big_endian_32)
 
-## `from_big_endian_64`
-
-#### Supported Signatures
 ```sql
-function from_big_endian_64(varbinary) returns bigint
+function from_big_endian_32(<varbinary>) returns bigint
 ```
+
+
+## `from_big_endian_64`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_big_endian_64)
 
-## `from_encoded_polyline`
-
-#### Supported Signatures
 ```sql
-function from_encoded_polyline(varchar) returns geometry
+function from_big_endian_64(<varbinary>) returns bigint
 ```
+
+
+## `from_encoded_polyline`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#from_encoded_polyline)
 
-## `from_geojson_geometry`
-
-#### Supported Signatures
 ```sql
-function from_geojson_geometry(varchar) returns sphericalgeography
+function from_encoded_polyline(<varchar>) returns geometry
 ```
+
+
+## `from_geojson_geometry`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#from_geojson_geometry)
 
-## `from_hex`
-
-#### Supported Signatures
 ```sql
-function from_hex(varbinary) returns varbinary
-function from_hex(varchar) returns varbinary
+function from_geojson_geometry(<varchar>) returns sphericalgeography
 ```
+
+
+## `from_hex`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_hex)
 
-## `from_ieee754_32`
-
-#### Supported Signatures
 ```sql
-function from_ieee754_32(varbinary) returns real
+function from_hex(<varbinary>) returns varbinary
 ```
+
+
+```sql
+function from_hex(<varchar>) returns varbinary
+```
+
+
+## `from_ieee754_32`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_ieee754_32)
 
-## `from_ieee754_64`
-
-#### Supported Signatures
 ```sql
-function from_ieee754_64(varbinary) returns double
+function from_ieee754_32(<varbinary>) returns real
 ```
+
+
+## `from_ieee754_64`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_ieee754_64)
 
-## `from_iso8601_date`
-
-#### Supported Signatures
 ```sql
-function from_iso8601_date(varchar) returns date
+function from_ieee754_64(<varbinary>) returns double
 ```
+
+
+## `from_iso8601_date`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_iso8601_date)
 
-## `from_iso8601_timestamp`
-
-#### Supported Signatures
 ```sql
-function from_iso8601_timestamp(varchar) returns timestamp
+function from_iso8601_date(<varchar>) returns date
 ```
+
+
+## `from_iso8601_timestamp`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_iso8601_timestamp)
 
-## `from_iso8601_timestamp_nanos`
-
-#### Supported Signatures
 ```sql
-function from_iso8601_timestamp_nanos(varchar) returns timestamp(9)
+function from_iso8601_timestamp(<varchar>) returns timestamp
 ```
+
+
+## `from_iso8601_timestamp_nanos`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_iso8601_timestamp_nanos)
 
-## `from_unixtime`
-
-#### Supported Signatures
 ```sql
-function from_unixtime(bigint) returns timestamp
-function from_unixtime(bigint, bigint, bigint) returns timestamp
-function from_unixtime(bigint, varchar) returns timestamp
+function from_iso8601_timestamp_nanos(<varchar>) returns timestamp(9)
 ```
+
+
+## `from_unixtime`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_unixtime)
 
-## `from_unixtime_nanos`
-
-#### Supported Signatures
 ```sql
-function from_unixtime_nanos(bigint) returns timestamp(9)
-function from_unixtime_nanos(decimal(p, s)) returns timestamp(9)
+function from_unixtime(<bigint>) returns timestamp
 ```
+
+
+```sql
+function from_unixtime(<bigint, bigint, bigint>) returns timestamp
+```
+
+
+```sql
+function from_unixtime(<bigint, varchar>) returns timestamp
+```
+
+
+## `from_unixtime_nanos`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_unixtime_nanos)
 
-## `from_utf8`
-
-#### Supported Signatures
 ```sql
-function from_utf8(varbinary) returns varchar
-function from_utf8(varbinary, bigint) returns varchar
-function from_utf8(varbinary, varchar) returns varchar
+function from_unixtime_nanos(<bigint>) returns timestamp(9)
 ```
+
+
+```sql
+function from_unixtime_nanos(<decimal(p, s)>) returns timestamp(9)
+```
+
+
+## `from_utf8`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#from_utf8)
 
-## `geometric_mean`
-
-#### Supported Signatures
 ```sql
-function geometric_mean(bigint) returns double
-function geometric_mean(double) returns double
-function geometric_mean(real) returns real
+function from_utf8(<varbinary>) returns varchar
 ```
+
+
+```sql
+function from_utf8(<varbinary, bigint>) returns varchar
+```
+
+
+```sql
+function from_utf8(<varbinary, varchar>) returns varchar
+```
+
+
+## `geometric_mean`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#geometric_mean)
 
-## `geometry_from_hadoop_shape`
-
-#### Supported Signatures
 ```sql
-function geometry_from_hadoop_shape(varbinary) returns geometry
+function geometric_mean(<bigint>) returns double
 ```
+
+
+```sql
+function geometric_mean(<double>) returns double
+```
+
+
+```sql
+function geometric_mean(<real>) returns real
+```
+
+
+## `geometry_from_hadoop_shape`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_from_hadoop_shape)
 
-## `geometry_invalid_reason`
-
-#### Supported Signatures
 ```sql
-function geometry_invalid_reason(geometry) returns varchar
+function geometry_from_hadoop_shape(<varbinary>) returns geometry
 ```
+
+
+## `geometry_invalid_reason`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_invalid_reason)
 
-## `geometry_nearest_points`
-
-#### Supported Signatures
 ```sql
-function geometry_nearest_points(geometry, geometry) returns row(c0 geometry, c1 geometry)
+function geometry_invalid_reason(<geometry>) returns varchar
 ```
+
+
+## `geometry_nearest_points`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_nearest_points)
 
-## `geometry_to_bing_tiles`
-
-#### Supported Signatures
 ```sql
-function geometry_to_bing_tiles(geometry, bigint) returns array<bingtile>
+function geometry_nearest_points(<geometry, geometry>) returns row(c0 geometry, c1 geometry)
 ```
+
+
+## `geometry_to_bing_tiles`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_to_bing_tiles)
 
-## `geometry_union`
-
-#### Supported Signatures
 ```sql
-function geometry_union(array<geometry>) returns geometry
+function geometry_to_bing_tiles(<geometry, bigint>) returns array<bingtile>
 ```
+
+
+## `geometry_union`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_union)
 
-## `geometry_union_agg`
-
-#### Supported Signatures
 ```sql
-function geometry_union_agg(geometry) returns geometry
+function geometry_union(<array<geometry>>) returns geometry
 ```
+
+
+## `geometry_union_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_union_agg)
 
-## `great_circle_distance`
-
-#### Supported Signatures
 ```sql
-function great_circle_distance(double, double, double, double) returns double
+function geometry_union_agg(<geometry>) returns geometry
 ```
+
+
+## `great_circle_distance`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#great_circle_distance)
 
-## `greatest`
+```sql
+function great_circle_distance(<double, double, double, double>) returns double
+```
 
-#### Supported Signatures
+
+## `greatest`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/comparison.html#greatest)
+
 ```sql
 function greatest($3, ...) returns $3
 ```
-[🔗 Official Documentation](https://trino.io/docs/current/functions/comparison.html#greatest)
+
 
 ## `grouping`
+[🔗 Official Documentation]()
 
-#### Supported Signatures
 ```sql
 function grouping(...) returns int
 ```
-[🔗 Official Documentation]()
+
 
 ## `hamming_distance`
-
-#### Supported Signatures
-```sql
-function hamming_distance(varchar, varchar) returns bigint
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#hamming_distance)
 
-## `hash_counts`
-
-#### Supported Signatures
 ```sql
-function hash_counts(setdigest) returns map<bigint, smallint>
+function hamming_distance(<varchar, varchar>) returns bigint
 ```
+
+
+## `hash_counts`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#hash_counts)
 
-## `histogram`
-
-#### Supported Signatures
 ```sql
-function histogram($1) returns map<$1, bigint>
+function hash_counts(<setdigest>) returns map<bigint, smallint>
 ```
+
+
+## `histogram`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#histogram)
 
-## `hmac_md5`
-
-#### Supported Signatures
 ```sql
-function hmac_md5(varbinary, varbinary) returns varbinary
+function histogram(<$1>) returns map<$1, bigint>
 ```
+
+
+## `hmac_md5`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_md5)
 
-## `hmac_sha1`
-
-#### Supported Signatures
 ```sql
-function hmac_sha1(varbinary, varbinary) returns varbinary
+function hmac_md5(<varbinary, varbinary>) returns varbinary
 ```
+
+
+## `hmac_sha1`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha1)
 
-## `hmac_sha256`
-
-#### Supported Signatures
 ```sql
-function hmac_sha256(varbinary, varbinary) returns varbinary
+function hmac_sha1(<varbinary, varbinary>) returns varbinary
 ```
+
+
+## `hmac_sha256`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha256)
 
-## `hmac_sha512`
-
-#### Supported Signatures
 ```sql
-function hmac_sha512(varbinary, varbinary) returns varbinary
+function hmac_sha256(<varbinary, varbinary>) returns varbinary
 ```
+
+
+## `hmac_sha512`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha512)
 
-## `hour`
-
-#### Supported Signatures
 ```sql
-function hour(interval day to second) returns bigint
-function hour(time(p)) returns bigint
-function hour(timestamp(p)) returns bigint
+function hmac_sha512(<varbinary, varbinary>) returns varbinary
 ```
+
+
+## `hour`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#hour)
 
-## `human_readable_seconds`
-
-#### Supported Signatures
 ```sql
-function human_readable_seconds(double) returns varchar
+function hour(<interval day to second>) returns bigint
 ```
+
+
+```sql
+function hour(<time(p)>) returns bigint
+```
+
+
+```sql
+function hour(<timestamp(p)>) returns bigint
+```
+
+
+## `human_readable_seconds`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#human_readable_seconds)
 
-## `if`
-
-#### Supported Signatures
 ```sql
-function if(boolean, $1, $1) returns $1
+function human_readable_seconds(<double>) returns varchar
 ```
+
+
+## `if`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#if-expression)
 
-## `index`
-
-#### Supported Signatures
 ```sql
-function index(varchar, varchar) returns bigint
+function if(<boolean, $1, $1>) returns $1
 ```
+
+
+## `index`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#index)
 
-## `infinity`
-
-#### Supported Signatures
 ```sql
-function infinity() returns double
+function index(<varchar, varchar>) returns bigint
 ```
+
+
+## `infinity`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#infinity)
 
-## `intersection_cardinality`
-
-#### Supported Signatures
 ```sql
-function intersection_cardinality(setdigest, setdigest) returns bigint
+function infinity(<>) returns double
 ```
+
+
+## `intersection_cardinality`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#intersection_cardinality)
 
-## `inverse_beta_cdf`
-
-#### Supported Signatures
 ```sql
-function inverse_beta_cdf(double, double, double) returns double
+function intersection_cardinality(<setdigest, setdigest>) returns bigint
 ```
+
+
+## `inverse_beta_cdf`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#inverse_beta_cdf)
 
-## `inverse_normal_cdf`
-
-#### Supported Signatures
 ```sql
-function inverse_normal_cdf(double, double, double) returns double
+function inverse_beta_cdf(<double, double, double>) returns double
 ```
+
+
+## `inverse_normal_cdf`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#inverse_normal_cdf)
 
-## `is_finite`
-
-#### Supported Signatures
 ```sql
-function is_finite(double) returns boolean
+function inverse_normal_cdf(<double, double, double>) returns double
 ```
+
+
+## `is_finite`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#is_finite)
 
-## `is_infinite`
-
-#### Supported Signatures
 ```sql
-function is_infinite(double) returns boolean
+function is_finite(<double>) returns boolean
 ```
+
+
+## `is_infinite`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#is_infinite)
 
-## `is_json_scalar`
-
-#### Supported Signatures
 ```sql
-function is_json_scalar(json) returns boolean
-function is_json_scalar(varchar) returns boolean
+function is_infinite(<double>) returns boolean
 ```
+
+
+## `is_json_scalar`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#is_json_scalar)
 
-## `is_nan`
-
-#### Supported Signatures
 ```sql
-function is_nan(double) returns boolean
-function is_nan(real) returns boolean
+function is_json_scalar(<json>) returns boolean
 ```
+
+
+```sql
+function is_json_scalar(<varchar>) returns boolean
+```
+
+
+## `is_nan`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#is_nan)
 
-## `jaccard_index`
-
-#### Supported Signatures
 ```sql
-function jaccard_index(setdigest, setdigest) returns double
+function is_nan(<double>) returns boolean
 ```
+
+
+```sql
+function is_nan(<real>) returns boolean
+```
+
+
+## `jaccard_index`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#jaccard_index)
 
-## `json_array_contains`
-
-#### Supported Signatures
 ```sql
-function json_array_contains(json, bigint) returns boolean
-function json_array_contains(json, boolean) returns boolean
-function json_array_contains(json, double) returns boolean
-function json_array_contains(json, varchar) returns boolean
-function json_array_contains(varchar, bigint) returns boolean
-function json_array_contains(varchar, boolean) returns boolean
-function json_array_contains(varchar, double) returns boolean
-function json_array_contains(varchar, varchar) returns boolean
+function jaccard_index(<setdigest, setdigest>) returns double
 ```
+
+
+## `json_array_contains`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_array_contains)
 
-## `json_array_get`
-
-#### Supported Signatures
 ```sql
-function json_array_get(json, bigint) returns json
-function json_array_get(varchar, bigint) returns json
+function json_array_contains(<json, bigint>) returns boolean
 ```
+
+
+```sql
+function json_array_contains(<json, boolean>) returns boolean
+```
+
+
+```sql
+function json_array_contains(<json, double>) returns boolean
+```
+
+
+```sql
+function json_array_contains(<json, varchar>) returns boolean
+```
+
+
+```sql
+function json_array_contains(<varchar, bigint>) returns boolean
+```
+
+
+```sql
+function json_array_contains(<varchar, boolean>) returns boolean
+```
+
+
+```sql
+function json_array_contains(<varchar, double>) returns boolean
+```
+
+
+```sql
+function json_array_contains(<varchar, varchar>) returns boolean
+```
+
+
+## `json_array_get`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_array_get)
 
-## `json_array_length`
-
-#### Supported Signatures
 ```sql
-function json_array_length(json) returns bigint
-function json_array_length(varchar) returns bigint
+function json_array_get(<json, bigint>) returns json
 ```
+
+
+```sql
+function json_array_get(<varchar, bigint>) returns json
+```
+
+
+## `json_array_length`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_array_length)
 
-## `json_extract`
-
-#### Supported Signatures
 ```sql
-function json_extract(json, jsonpath) returns json
-function json_extract(varchar, jsonpath) returns json
+function json_array_length(<json>) returns bigint
 ```
+
+
+```sql
+function json_array_length(<varchar>) returns bigint
+```
+
+
+## `json_extract`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_extract)
 
-## `json_extract_scalar`
-
-#### Supported Signatures
 ```sql
-function json_extract_scalar(json, jsonpath) returns varchar
-function json_extract_scalar(varchar, jsonpath) returns varchar
+function json_extract(<json, jsonpath>) returns json
 ```
+
+
+```sql
+function json_extract(<varchar, jsonpath>) returns json
+```
+
+
+## `json_extract_scalar`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_extract_scalar)
 
-## `json_format`
-
-#### Supported Signatures
 ```sql
-function json_format(json) returns varchar
+function json_extract_scalar(<json, jsonpath>) returns varchar
 ```
+
+
+```sql
+function json_extract_scalar(<varchar, jsonpath>) returns varchar
+```
+
+
+## `json_format`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_format)
 
-## `json_parse`
-
-#### Supported Signatures
 ```sql
-function json_parse(varchar) returns json
+function json_format(<json>) returns varchar
 ```
+
+
+## `json_parse`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_parse)
 
-## `json_size`
-
-#### Supported Signatures
 ```sql
-function json_size(json, jsonpath) returns bigint
-function json_size(varchar, jsonpath) returns bigint
+function json_parse(<varchar>) returns json
 ```
+
+
+## `json_size`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/json.html#json_size)
 
-## `kurtosis`
-
-#### Supported Signatures
 ```sql
-function kurtosis(bigint) returns double
-function kurtosis(double) returns double
+function json_size(<json, jsonpath>) returns bigint
 ```
+
+
+```sql
+function json_size(<varchar, jsonpath>) returns bigint
+```
+
+
+## `kurtosis`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#kurtosis)
 
-## `lag`
-
-#### Supported Signatures
 ```sql
-function lag($1) returns $1
-function lag($1, bigint) returns $1
-function lag($1, bigint, $1) returns $1
+function kurtosis(<bigint>) returns double
 ```
+
+
+```sql
+function kurtosis(<double>) returns double
+```
+
+
+## `lag`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#lag)
 
-## `last_day_of_month`
-
-#### Supported Signatures
 ```sql
-function last_day_of_month(date) returns date
-function last_day_of_month(timestamp(p)) returns date
+function lag(<$1>) returns $1
 ```
+
+
+```sql
+function lag(<$1, bigint>) returns $1
+```
+
+
+```sql
+function lag(<$1, bigint, $1>) returns $1
+```
+
+
+## `last_day_of_month`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#last_day_of_month)
 
-## `last_value`
-
-#### Supported Signatures
 ```sql
-function last_value($1) returns $1
+function last_day_of_month([date]) returns date
 ```
+
+
+```sql
+function last_day_of_month(<timestamp(p)>) returns date
+```
+
+
+## `last_value`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#last_value)
 
-## `lead`
-
-#### Supported Signatures
 ```sql
-function lead($1) returns $1
-function lead($1, bigint) returns $1
-function lead($1, bigint, $1) returns $1
+function last_value(<$1>) returns $1
 ```
+
+
+## `lead`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#lead)
 
-## `learn_classifier`
-
-#### Supported Signatures
 ```sql
-function learn_classifier(bigint, map<bigint, double>) returns classifier
-function learn_classifier(double, map<bigint, double>) returns classifier
-function learn_classifier(varchar, map<bigint, double>) returns classifier
+function lead(<$1>) returns $1
 ```
+
+
+```sql
+function lead(<$1, bigint>) returns $1
+```
+
+
+```sql
+function lead(<$1, bigint, $1>) returns $1
+```
+
+
+## `learn_classifier`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_classifier)
 
-## `learn_libsvm_classifier`
-
-#### Supported Signatures
 ```sql
-function learn_libsvm_classifier(bigint, map<bigint, double>, varchar) returns classifier
-function learn_libsvm_classifier(double, map<bigint, double>, varchar) returns classifier
-function learn_libsvm_classifier(varchar, map<bigint, double>, varchar) returns classifier
+function learn_classifier(<bigint, map<bigint, double>>) returns classifier
 ```
+
+
+```sql
+function learn_classifier(<double, map<bigint, double>>) returns classifier
+```
+
+
+```sql
+function learn_classifier(<varchar, map<bigint, double>>) returns classifier
+```
+
+
+## `learn_libsvm_classifier`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_libsvm_classifier)
 
-## `learn_libsvm_regressor`
-
-#### Supported Signatures
 ```sql
-function learn_libsvm_regressor(bigint, map<bigint, double>, varchar) returns regressor
-function learn_libsvm_regressor(double, map<bigint, double>, varchar) returns regressor
+function learn_libsvm_classifier(<bigint, map<bigint, double>, varchar>) returns classifier
 ```
+
+
+```sql
+function learn_libsvm_classifier(<double, map<bigint, double>, varchar>) returns classifier
+```
+
+
+```sql
+function learn_libsvm_classifier(<varchar, map<bigint, double>, varchar>) returns classifier
+```
+
+
+## `learn_libsvm_regressor`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_libsvm_regressor)
 
-## `learn_regressor`
-
-#### Supported Signatures
 ```sql
-function learn_regressor(bigint, map<bigint, double>) returns regressor
-function learn_regressor(double, map<bigint, double>) returns regressor
+function learn_libsvm_regressor(<bigint, map<bigint, double>, varchar>) returns regressor
 ```
+
+
+```sql
+function learn_libsvm_regressor(<double, map<bigint, double>, varchar>) returns regressor
+```
+
+
+## `learn_regressor`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_regressor)
 
-## `least`
+```sql
+function learn_regressor(<bigint, map<bigint, double>>) returns regressor
+```
 
-#### Supported Signatures
+
+```sql
+function learn_regressor(<double, map<bigint, double>>) returns regressor
+```
+
+
+## `least`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/comparison.html#least)
+
 ```sql
 function least($3, ...) returns $3
 ```
-[🔗 Official Documentation](https://trino.io/docs/current/functions/comparison.html#least)
+
 
 ## `length`
-
-#### Supported Signatures
-```sql
-function length(varchar) returns bigint
-function length(varbinary) returns bigint
-function length(array<$1>) returns bigint
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#length)
 
-## `length_array`
-
-#### Supported Signatures
 ```sql
-function length_array(array<$1>) returns bigint
+function length(<varchar>) returns bigint
 ```
+
+
+```sql
+function length(<varbinary>) returns bigint
+```
+
+
+```sql
+function length(<array<$1>>) returns bigint
+```
+
+
+## `length_array`
 [🔗 Official Documentation]()
 
-## `levenshtein_distance`
-
-#### Supported Signatures
 ```sql
-function levenshtein_distance(varchar, varchar) returns bigint
+function length_array(<array<$1>>) returns bigint
 ```
+
+
+## `levenshtein_distance`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#levenshtein_distance)
 
-## `line_interpolate_point`
-
-#### Supported Signatures
 ```sql
-function line_interpolate_point(geometry, double) returns geometry
+function levenshtein_distance(<varchar, varchar>) returns bigint
 ```
+
+
+## `line_interpolate_point`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_interpolate_point)
 
-## `line_interpolate_points`
-
-#### Supported Signatures
 ```sql
-function line_interpolate_points(geometry, double) returns array<geometry>
+function line_interpolate_point(<geometry, double>) returns geometry
 ```
+
+
+## `line_interpolate_points`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_interpolate_points)
 
-## `line_locate_point`
-
-#### Supported Signatures
 ```sql
-function line_locate_point(geometry, geometry) returns double
+function line_interpolate_points(<geometry, double>) returns array<geometry>
 ```
+
+
+## `line_locate_point`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_locate_point)
 
-## `listagg`
-
-#### Supported Signatures
 ```sql
-function listagg(varchar, varchar, boolean, varchar, boolean) returns varchar
+function line_locate_point(<geometry, geometry>) returns double
 ```
+
+
+## `listagg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#listagg)
 
-## `ln`
-
-#### Supported Signatures
 ```sql
-function ln(double) returns double
+function listagg(<varchar, varchar, boolean, varchar, boolean>) returns varchar
 ```
+
+
+## `ln`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ln)
 
-## `localtime`
-
-#### Supported Signatures
 ```sql
-function localtime() returns time
+function ln(<double>) returns double
+```
+
+
+## `localtime`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#localtime)
+
+```sql
+function localtime(<>) returns time
 ```
 *Note: localtime() is stable,  i.e. might return a
                 different value for a different query execution.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#localtime)
+
 
 ## `localtimestamp`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#localtimestamp)
 
-#### Supported Signatures
 ```sql
-function localtimestamp() returns timestamp
-function localtimestamp(0) returns timestamp(0)
-function localtimestamp(3) returns timestamp(3)
-function localtimestamp(6) returns timestamp(6)
-function localtimestamp(9) returns timestamp(9)
+function localtimestamp(<>) returns timestamp
 ```
 *Note: localtimestamp() is stable,  i.e. might return a
                 different value for a different query execution.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#localtimestamp)
+
+
+```sql
+function localtimestamp(<0>) returns timestamp(0)
+```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+
+
+```sql
+function localtimestamp(<3>) returns timestamp(3)
+```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+
+
+```sql
+function localtimestamp(<6>) returns timestamp(6)
+```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+
+
+```sql
+function localtimestamp(<9>) returns timestamp(9)
+```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+
 
 ## `log`
-
-#### Supported Signatures
-```sql
-function log(double, double) returns double
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log)
 
-## `log10`
-
-#### Supported Signatures
 ```sql
-function log10(double) returns double
+function log(<double, double>) returns double
 ```
+
+
+## `log10`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log10)
 
-## `log2`
-
-#### Supported Signatures
 ```sql
-function log2(double) returns double
+function log10(<double>) returns double
 ```
+
+
+## `log2`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log2)
 
-## `lower`
-
-#### Supported Signatures
 ```sql
-function lower(varchar) returns varchar
+function log2(<double>) returns double
 ```
+
+
+## `lower`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#lower)
 
-## `lpad`
-
-#### Supported Signatures
 ```sql
-function lpad(varbinary, bigint, varbinary) returns varbinary
-function lpad(varchar, bigint, varchar) returns varchar
+function lower(<varchar>) returns varchar
 ```
+
+
+## `lpad`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#lpad)
 
-## `ltrim`
-
-#### Supported Signatures
 ```sql
-function ltrim(varchar) returns varchar
-function ltrim(varchar, codepoints) returns varchar
+function lpad(<varbinary, bigint, varbinary>) returns varbinary
 ```
+
+
+```sql
+function lpad(<varchar, bigint, varchar>) returns varchar
+```
+
+
+## `ltrim`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#ltrim)
 
-## `luhn_check`
-
-#### Supported Signatures
 ```sql
-function luhn_check(varchar) returns boolean
+function ltrim(<varchar>) returns varchar
 ```
+
+
+```sql
+function ltrim(<varchar, codepoints>) returns varchar
+```
+
+
+## `luhn_check`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#luhn_check)
 
-## `make_array`
+```sql
+function luhn_check(<varchar>) returns boolean
+```
 
-#### Supported Signatures
+
+## `make_array`
+[🔗 Official Documentation]()
+
 ```sql
 function make_array($1, ...) returns array<$1>
 ```
-[🔗 Official Documentation]()
+
 
 ## `make_set_digest`
-
-#### Supported Signatures
-```sql
-function make_set_digest($1) returns setdigest
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#make_set_digest)
 
-## `map`
-
-#### Supported Signatures
 ```sql
-function map(array<$4>, array<$5>) returns map<$4, $5>
-function map() returns map<unknown, unknown>
+function make_set_digest(<$1>) returns setdigest
 ```
+
+
+## `map`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map)
 
-## `map_agg`
-
-#### Supported Signatures
 ```sql
-function map_agg($4, $5) returns map<$4, $5>
+function map(<array<$4>, array<$5>>) returns map<$4, $5>
 ```
+
+
+```sql
+function map(<>) returns map<unknown, unknown>
+```
+
+
+## `map_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#map_agg)
 
-## `map_concat`
+```sql
+function map_agg(<$4, $5>) returns map<$4, $5>
+```
 
-#### Supported Signatures
+
+## `map_concat`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_concat)
+
 ```sql
 function map_concat(map<$4, $5>, ...) returns map<$4, $5>
 ```
-[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_concat)
+
 
 ## `map_entries`
-
-#### Supported Signatures
-```sql
-function map_entries(map<$4, $5>) returns array<row(c0 $4, c1 $5)>
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_entries)
 
-## `map_filter`
-
-#### Supported Signatures
 ```sql
-function map_filter(map<$4, $5>, function($4, $5, boolean)) returns map<$4, $5>
+function map_entries(<map<$4, $5>>) returns array<row(c0 $4, c1 $5)>
 ```
+
+
+## `map_filter`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_filter)
 
-## `map_from_entries`
-
-#### Supported Signatures
 ```sql
-function map_from_entries(array<row(c0 $4, c1 $5)>) returns map<$4, $5>
+function map_filter(<map<$4, $5>, function($4, $5, boolean)>) returns map<$4, $5>
 ```
+
+
+## `map_from_entries`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_from_entries)
 
-## `map_keys`
-
-#### Supported Signatures
 ```sql
-function map_keys(map<$4, $5>) returns array<$4>
+function map_from_entries(<array<row(c0 $4, c1 $5)>>) returns map<$4, $5>
 ```
+
+
+## `map_keys`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_keys)
 
-## `map_union`
-
-#### Supported Signatures
 ```sql
-function map_union(map<$4, $5>) returns map<$4, $5>
+function map_keys(<map<$4, $5>>) returns array<$4>
 ```
+
+
+## `map_union`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#map_union)
 
-## `map_values`
-
-#### Supported Signatures
 ```sql
-function map_values(map<$4, $5>) returns array<$5>
+function map_union(<map<$4, $5>>) returns map<$4, $5>
 ```
+
+
+## `map_values`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_values)
 
-## `map_zip_with`
-
-#### Supported Signatures
 ```sql
-function map_zip_with(map<$4, $8>, map<$4, $7>, function($4, $8, $7, $6)) returns map<$4, $6>
+function map_values(<map<$4, $5>>) returns array<$5>
 ```
+
+
+## `map_zip_with`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_zip_with)
 
-## `max`
-
-#### Supported Signatures
 ```sql
-function max($3, bigint) returns array<$3>
-function max($1, ...) returns $1
+function map_zip_with(<map<$4, $8>, map<$4, $7>, function($4, $8, $7, $6)>) returns map<$4, $6>
 ```
+
+
+## `max`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#max)
 
-## `max_by`
-
-#### Supported Signatures
 ```sql
-function max_by($5, $4, bigint) returns array<$5>
-function max_by($5, $4) returns $5
+function max(<$3, bigint>) returns array<$3>
 ```
+
+
+```sql
+function max($1, ...) returns $1
+```
+
+
+## `max_by`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#max_by)
 
-## `md5`
-
-#### Supported Signatures
 ```sql
-function md5(varbinary) returns varbinary
+function max_by(<$5, $4, bigint>) returns array<$5>
 ```
+
+
+```sql
+function max_by(<$5, $4>) returns $5
+```
+
+
+## `md5`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#md5)
 
-## `merge`
-
-#### Supported Signatures
 ```sql
-function merge(hyperloglog) returns hyperloglog
-function merge(qdigest) returns qdigest
-function merge(tdigest) returns tdigest
+function md5(<varbinary>) returns varbinary
 ```
+
+
+## `merge`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#merge)
 
-## `merge_set_digest`
-
-#### Supported Signatures
 ```sql
-function merge_set_digest(setdigest) returns setdigest
+function merge(<hyperloglog>) returns hyperloglog
 ```
+
+
+```sql
+function merge(<qdigest>) returns qdigest
+```
+
+
+```sql
+function merge(<tdigest>) returns tdigest
+```
+
+
+## `merge_set_digest`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#merge_set_digest)
 
-## `millisecond`
-
-#### Supported Signatures
 ```sql
-function millisecond(interval day to second) returns bigint
-function millisecond(time(p)) returns bigint
-function millisecond(timestamp(p)) returns bigint
+function merge_set_digest(<setdigest>) returns setdigest
 ```
+
+
+## `millisecond`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#millisecond)
 
-## `min`
-
-#### Supported Signatures
 ```sql
-function min($3, bigint) returns array<$3>
-function min($1, ...) returns $1
+function millisecond(<interval day to second>) returns bigint
 ```
+
+
+```sql
+function millisecond(<time(p)>) returns bigint
+```
+
+
+```sql
+function millisecond(<timestamp(p)>) returns bigint
+```
+
+
+## `min`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#min)
 
-## `min_by`
-
-#### Supported Signatures
 ```sql
-function min_by($5, $4, bigint) returns array<$5>
-function min_by($5, $4) returns $5
+function min(<$3, bigint>) returns array<$3>
 ```
+
+
+```sql
+function min($1, ...) returns $1
+```
+
+
+## `min_by`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#min_by)
 
-## `minute`
-
-#### Supported Signatures
 ```sql
-function minute(interval day to second) returns bigint
-function minute(time(p)) returns bigint
-function minute(timestamp(p)) returns bigint
+function min_by(<$5, $4, bigint>) returns array<$5>
 ```
+
+
+```sql
+function min_by(<$5, $4>) returns $5
+```
+
+
+## `minute`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#minute)
 
-## `mod`
-
-#### Supported Signatures
 ```sql
-function mod(bigint, bigint) returns bigint
-function mod(decimal(a_precision, a_scale), decimal(b_precision, b_scale)) returns decimal(r_precision, r_scale)
-function mod(double, double) returns double
-function mod(integer, integer) returns integer
-function mod(real, real) returns real
-function mod(smallint, smallint) returns smallint
-function mod(tinyint, tinyint) returns tinyint
+function minute(<interval day to second>) returns bigint
 ```
+
+
+```sql
+function minute(<time(p)>) returns bigint
+```
+
+
+```sql
+function minute(<timestamp(p)>) returns bigint
+```
+
+
+## `mod`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#mod)
 
-## `month`
-
-#### Supported Signatures
 ```sql
-function month(date) returns bigint
-function month(interval year to month) returns bigint
-function month(timestamp(p)) returns bigint
+function mod(<bigint, bigint>) returns bigint
 ```
+
+
+```sql
+function mod(<decimal(a_precision, a_scale), decimal(b_precision, b_scale)>) returns decimal(r_precision, r_scale)
+```
+
+
+```sql
+function mod(<double, double>) returns double
+```
+
+
+```sql
+function mod(<integer, integer>) returns integer
+```
+
+
+```sql
+function mod(<real, real>) returns real
+```
+
+
+```sql
+function mod(<smallint, smallint>) returns smallint
+```
+
+
+```sql
+function mod(<tinyint, tinyint>) returns tinyint
+```
+
+
+## `month`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#month)
 
-## `multimap_agg`
-
-#### Supported Signatures
 ```sql
-function multimap_agg($4, $5) returns map<$4, array<$5>>
+function month([date]) returns bigint
 ```
+
+
+```sql
+function month(<interval year to month>) returns bigint
+```
+
+
+```sql
+function month(<timestamp(p)>) returns bigint
+```
+
+
+## `multimap_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#multimap_agg)
 
-## `multimap_from_entries`
-
-#### Supported Signatures
 ```sql
-function multimap_from_entries(array<row(c0 $4, c1 $5)>) returns map<$4, array<$5>>
+function multimap_agg(<$4, $5>) returns map<$4, array<$5>>
 ```
+
+
+## `multimap_from_entries`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#multimap_from_entries)
 
-## `murmur3`
-
-#### Supported Signatures
 ```sql
-function murmur3(varbinary) returns varbinary
+function multimap_from_entries(<array<row(c0 $4, c1 $5)>>) returns map<$4, array<$5>>
 ```
+
+
+## `murmur3`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#murmur3)
 
-## `nan`
-
-#### Supported Signatures
 ```sql
-function nan() returns double
+function murmur3(<varbinary>) returns varbinary
 ```
+
+
+## `nan`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#nan)
 
-## `ngrams`
-
-#### Supported Signatures
 ```sql
-function ngrams(array<$1>, bigint) returns array<array<$1>>
+function nan(<>) returns double
 ```
+
+
+## `ngrams`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#ngrams)
 
-## `none_match`
-
-#### Supported Signatures
 ```sql
-function none_match(array<$1>, function($1, boolean)) returns boolean
+function ngrams(<array<$1>, bigint>) returns array<array<$1>>
 ```
+
+
+## `none_match`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#none_match)
 
-## `normal_cdf`
-
-#### Supported Signatures
 ```sql
-function normal_cdf(double, double, double) returns double
+function none_match(<array<$1>, function($1, boolean)>) returns boolean
 ```
+
+
+## `normal_cdf`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#normal_cdf)
 
-## `normalize`
-
-#### Supported Signatures
 ```sql
-function normalize(varchar, varchar) returns varchar
+function normal_cdf(<double, double, double>) returns double
 ```
+
+
+## `normalize`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#normalize)
 
-## `now`
-
-#### Supported Signatures
 ```sql
-function now() returns timestamp
+function normalize(<varchar, varchar>) returns varchar
+```
+
+
+## `now`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#now)
+
+```sql
+function now(<>) returns timestamp
 ```
 *Note: now() is stable,  i.e. might return a
                 different value for a different query execution.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#now)
+
 
 ## `nth_value`
-
-#### Supported Signatures
-```sql
-function nth_value($1, bigint) returns $1
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#nth_value)
 
-## `ntile`
-
-#### Supported Signatures
 ```sql
-function ntile(bigint) returns bigint
+function nth_value(<$1, bigint>) returns $1
 ```
+
+
+## `ntile`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#ntile)
 
-## `nullif`
-
-#### Supported Signatures
 ```sql
-function nullif($1, $1) returns $1
+function ntile(<bigint>) returns bigint
 ```
+
+
+## `nullif`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#nullif-function)
 
-## `numeric_histogram`
-
-#### Supported Signatures
 ```sql
-function numeric_histogram(bigint, double) returns map<double, double>
-function numeric_histogram(bigint, double, double) returns map<double, double>
-function numeric_histogram(bigint, real) returns map<real, real>
-function numeric_histogram(bigint, real, double) returns map<real, real>
+function nullif(<$1, $1>) returns $1
 ```
+
+
+## `numeric_histogram`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#numeric_histogram)
 
-## `objectid`
-
-#### Supported Signatures
 ```sql
-function objectid() returns objectid
-function objectid(varchar) returns objectid
+function numeric_histogram(<bigint, double>) returns map<double, double>
 ```
+
+
+```sql
+function numeric_histogram(<bigint, double, double>) returns map<double, double>
+```
+
+
+```sql
+function numeric_histogram(<bigint, real>) returns map<real, real>
+```
+
+
+```sql
+function numeric_histogram(<bigint, real, double>) returns map<real, real>
+```
+
+
+## `objectid`
 [🔗 Official Documentation](https://trino.io/docs/current/connector/mongodb.html#objectid)
 
-## `objectid_timestamp`
-
-#### Supported Signatures
 ```sql
-function objectid_timestamp(objectid) returns timestamp
+function objectid(<>) returns objectid
 ```
+
+
+```sql
+function objectid(<varchar>) returns objectid
+```
+
+
+## `objectid_timestamp`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/../connector/mongodb.html#objectid_timestamp)
 
-## `parse_data_size`
-
-#### Supported Signatures
 ```sql
-function parse_data_size(varchar) returns decimal(38, 0)
+function objectid_timestamp(<objectid>) returns timestamp
 ```
+
+
+## `parse_data_size`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#parse_data_size)
+
+```sql
+function parse_data_size(<varchar>) returns decimal(38, 0)
+```
+
 
 ## `parse_datetime`
-
-#### Supported Signatures
-```sql
-function parse_datetime(varchar, varchar) returns timestamp
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#parse_datetime)
 
-## `parse_duration`
-
-#### Supported Signatures
 ```sql
-function parse_duration(varchar) returns interval day to second
+function parse_datetime(<varchar, varchar>) returns timestamp
 ```
+
+
+## `parse_duration`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#parse_duration)
 
-## `parse_presto_data_size`
-
-#### Supported Signatures
 ```sql
-function parse_presto_data_size(varchar) returns decimal(38, 0)
+function parse_duration(<varchar>) returns interval day to second
 ```
+
+
+## `parse_presto_data_size`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#parse_data_size)
 
-## `percent_rank`
-
-#### Supported Signatures
 ```sql
-function percent_rank() returns double
+function parse_presto_data_size(<varchar>) returns decimal(38, 0)
 ```
+
+
+## `percent_rank`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#percent_rank)
 
-## `pi`
-
-#### Supported Signatures
 ```sql
-function pi() returns double
+function percent_rank(<>) returns double
 ```
+
+
+## `pi`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#pi)
 
-## `pow`
-
-#### Supported Signatures
 ```sql
-function pow(double, double) returns double
+function pi(<>) returns double
 ```
+
+
+## `pow`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#pow)
 
-## `power`
-
-#### Supported Signatures
 ```sql
-function power(double, double) returns double
+function pow(<double, double>) returns double
 ```
+
+
+## `power`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#power)
 
-## `qdigest_agg`
-
-#### Supported Signatures
 ```sql
-function qdigest_agg(bigint) returns qdigest
-function qdigest_agg(bigint, bigint) returns qdigest
-function qdigest_agg(bigint, bigint, double) returns qdigest
-function qdigest_agg(double) returns qdigest
-function qdigest_agg(double, bigint) returns qdigest
-function qdigest_agg(double, bigint, double) returns qdigest
-function qdigest_agg(real) returns qdigest
-function qdigest_agg(real, bigint) returns qdigest
-function qdigest_agg(real, bigint, double) returns qdigest
+function power(<double, double>) returns double
 ```
+
+
+## `qdigest_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#qdigest_agg)
 
-## `quantile_at_value`
-
-#### Supported Signatures
 ```sql
-function quantile_at_value(qdigest, bigint) returns double
-function quantile_at_value(qdigest, double) returns double
-function quantile_at_value(qdigest, real) returns double
+function qdigest_agg(<bigint>) returns qdigest
 ```
+
+
+```sql
+function qdigest_agg(<bigint, bigint>) returns qdigest
+```
+
+
+```sql
+function qdigest_agg(<bigint, bigint, double>) returns qdigest
+```
+
+
+```sql
+function qdigest_agg(<double>) returns qdigest
+```
+
+
+```sql
+function qdigest_agg(<double, bigint>) returns qdigest
+```
+
+
+```sql
+function qdigest_agg(<double, bigint, double>) returns qdigest
+```
+
+
+```sql
+function qdigest_agg(<real>) returns qdigest
+```
+
+
+```sql
+function qdigest_agg(<real, bigint>) returns qdigest
+```
+
+
+```sql
+function qdigest_agg(<real, bigint, double>) returns qdigest
+```
+
+
+## `quantile_at_value`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#quantile_at_value)
 
-## `quarter`
-
-#### Supported Signatures
 ```sql
-function quarter(date) returns bigint
-function quarter(timestamp(p)) returns bigint
+function quantile_at_value(<qdigest, bigint>) returns double
 ```
+
+
+```sql
+function quantile_at_value(<qdigest, double>) returns double
+```
+
+
+```sql
+function quantile_at_value(<qdigest, real>) returns double
+```
+
+
+## `quarter`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#quarter)
 
-## `radians`
-
-#### Supported Signatures
 ```sql
-function radians(double) returns double
+function quarter([date]) returns bigint
 ```
+
+
+```sql
+function quarter(<timestamp(p)>) returns bigint
+```
+
+
+## `radians`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#radians)
 
-## `rand`
-
-#### Supported Signatures
 ```sql
-function rand(bigint) returns bigint
-function rand(bigint, bigint) returns bigint
-function rand() returns double
-function rand(integer) returns integer
-function rand(integer, integer) returns integer
-function rand(smallint) returns smallint
-function rand(smallint, smallint) returns smallint
-function rand(tinyint) returns tinyint
-function rand(tinyint, tinyint) returns tinyint
+function radians(<double>) returns double
+```
+
+
+## `rand`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#rand)
+
+```sql
+function rand(<bigint>) returns bigint
 ```
 *Note: rand() is volatile, i.e. might return a
                 different value for the same input.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#rand)
+
+
+```sql
+function rand(<bigint, bigint>) returns bigint
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function rand(<>) returns double
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function rand(<integer>) returns integer
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function rand(<integer, integer>) returns integer
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function rand(<smallint>) returns smallint
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function rand(<smallint, smallint>) returns smallint
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function rand(<tinyint>) returns tinyint
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function rand(<tinyint, tinyint>) returns tinyint
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+
 
 ## `random`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#random)
 
-#### Supported Signatures
 ```sql
-function random(bigint) returns bigint
-function random(bigint, bigint) returns bigint
-function random() returns double
-function random(integer) returns integer
-function random(integer, integer) returns integer
-function random(smallint) returns smallint
-function random(smallint, smallint) returns smallint
-function random(tinyint) returns tinyint
-function random(tinyint, tinyint) returns tinyint
+function random(<bigint>) returns bigint
 ```
 *Note: random() is volatile, i.e. might return a
                 different value for the same input.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#random)
+
+
+```sql
+function random(<bigint, bigint>) returns bigint
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function random(<>) returns double
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function random(<integer>) returns integer
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function random(<integer, integer>) returns integer
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function random(<smallint>) returns smallint
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function random(<smallint, smallint>) returns smallint
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function random(<tinyint>) returns tinyint
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
+
+```sql
+function random(<tinyint, tinyint>) returns tinyint
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+
 
 ## `rank`
-
-#### Supported Signatures
-```sql
-function rank() returns bigint
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#rank)
 
-## `reclassify`
-
-#### Description
-Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
-
-**Example/s:**
-```sql examples.sql
-select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345'
-```
-#### Supported Signatures
 ```sql
-function reclassify(T, varchar, varchar) returns T
-function reclassify(T, varchar) returns T
+function rank(<>) returns bigint
 ```
+
+
+## `reclassify`
 [🔗 Official Documentation]()
 
-## `reduce`
-
-#### Supported Signatures
 ```sql
-function reduce(array<$1>, $10, function($10, $1, $10), function($10, $9)) returns $9
+function reclassify(<T, varchar, varchar>) returns T
 ```
+Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
+
+```sql example.sql
+select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345' 
+```
+```sql
+function reclassify(<T, varchar>) returns T
+```
+Changes the classification label of the first argument to the desired classifier specified by the second argument. The first argument is expected to have one or more classifiers from the same classifier group as the desired classifier. All of these classifiers will be removed and replaced by the desired classifier. No other classifiers attached to the first argument will be impacted. The function will emit a warning if the first argument does not have a classifier from the expected classifier group
+
+```sql example.sql
+select reclassify(12345, 'pii.masked') as value; -- value '12345' 
+```
+## `reduce`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#reduce)
 
-## `reduce_agg`
-
-#### Supported Signatures
 ```sql
-function reduce_agg($1, $10, function($10, $1, $10), function($10, $10, $10)) returns $10
+function reduce(<array<$1>, $10, function($10, $1, $10), function($10, $9)>) returns $9
 ```
+
+
+## `reduce_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#reduce_agg)
 
-## `regexp_count`
-
-#### Supported Signatures
 ```sql
-function regexp_count(varchar, joniregexp) returns bigint
+function reduce_agg(<$1, $10, function($10, $1, $10), function($10, $10, $10)>) returns $10
 ```
+
+
+## `regexp_count`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_count)
 
-## `regexp_extract`
-
-#### Supported Signatures
 ```sql
-function regexp_extract(varchar, joniregexp) returns varchar
-function regexp_extract(varchar, joniregexp, bigint) returns varchar
+function regexp_count(<varchar, joniregexp>) returns bigint
 ```
+
+
+## `regexp_extract`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract)
 
-## `regexp_extract_all`
-
-#### Supported Signatures
 ```sql
-function regexp_extract_all(varchar, joniregexp) returns array<varchar>
-function regexp_extract_all(varchar, joniregexp, bigint) returns array<varchar>
+function regexp_extract(<varchar, joniregexp>) returns varchar
 ```
+
+
+```sql
+function regexp_extract(<varchar, joniregexp, bigint>) returns varchar
+```
+
+
+## `regexp_extract_all`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract_all)
 
-## `regexp_like`
-
-#### Supported Signatures
 ```sql
-function regexp_like(varchar, joniregexp) returns boolean
+function regexp_extract_all(<varchar, joniregexp>) returns array<varchar>
 ```
+
+
+```sql
+function regexp_extract_all(<varchar, joniregexp, bigint>) returns array<varchar>
+```
+
+
+## `regexp_like`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_like)
 
-## `regexp_position`
-
-#### Supported Signatures
 ```sql
-function regexp_position(varchar, joniregexp) returns bigint
-function regexp_position(varchar, joniregexp, bigint) returns bigint
-function regexp_position(varchar, joniregexp, bigint, bigint) returns bigint
+function regexp_like(<varchar, joniregexp>) returns boolean
 ```
+
+
+## `regexp_position`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_position)
 
-## `regexp_replace`
-
-#### Supported Signatures
 ```sql
-function regexp_replace(varchar, joniregexp, function(array<varchar>, varchar)) returns varchar
-function regexp_replace(varchar, joniregexp) returns varchar
-function regexp_replace(varchar, joniregexp, varchar) returns varchar
+function regexp_position(<varchar, joniregexp>) returns bigint
 ```
+
+
+```sql
+function regexp_position(<varchar, joniregexp, bigint>) returns bigint
+```
+
+
+```sql
+function regexp_position(<varchar, joniregexp, bigint, bigint>) returns bigint
+```
+
+
+## `regexp_replace`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_replace)
 
-## `regexp_split`
-
-#### Supported Signatures
 ```sql
-function regexp_split(varchar, joniregexp) returns array<varchar>
+function regexp_replace(<varchar, joniregexp, function(array<varchar>, varchar)>) returns varchar
 ```
+
+
+```sql
+function regexp_replace(<varchar, joniregexp>) returns varchar
+```
+
+
+```sql
+function regexp_replace(<varchar, joniregexp, varchar>) returns varchar
+```
+
+
+## `regexp_split`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_split)
 
-## `regr_intercept`
-
-#### Supported Signatures
 ```sql
-function regr_intercept(double, double) returns double
-function regr_intercept(real, real) returns real
+function regexp_split(<varchar, joniregexp>) returns array<varchar>
 ```
+
+
+## `regr_intercept`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#regr_intercept)
 
-## `regr_slope`
-
-#### Supported Signatures
 ```sql
-function regr_slope(double, double) returns double
-function regr_slope(real, real) returns real
+function regr_intercept(<double, double>) returns double
 ```
+
+
+```sql
+function regr_intercept(<real, real>) returns real
+```
+
+
+## `regr_slope`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#regr_slope)
 
-## `regress`
-
-#### Supported Signatures
 ```sql
-function regress(map<bigint, double>, regressor) returns double
+function regr_slope(<double, double>) returns double
 ```
+
+
+```sql
+function regr_slope(<real, real>) returns real
+```
+
+
+## `regress`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#regress)
 
-## `render`
-
-#### Supported Signatures
 ```sql
-function render(boolean) returns varchar
-function render(bigint, color) returns varchar
-function render(double, color) returns varchar
-function render(varchar, color) returns varchar
+function regress(<map<bigint, double>, regressor>) returns double
 ```
+
+
+## `render`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#render)
 
-## `repeat`
-
-#### Supported Signatures
 ```sql
-function repeat($1, bigint) returns array<$1>
+function render(<boolean>) returns varchar
 ```
+
+
+```sql
+function render(<bigint, color>) returns varchar
+```
+
+
+```sql
+function render(<double, color>) returns varchar
+```
+
+
+```sql
+function render(<varchar, color>) returns varchar
+```
+
+
+## `repeat`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#repeat)
 
-## `replace`
-
-#### Supported Signatures
 ```sql
-function replace(varchar, varchar, varchar) returns varchar
-function replace(varchar, varchar) returns varchar
+function repeat(<$1, bigint>) returns array<$1>
 ```
+
+
+## `replace`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#replace)
 
-## `reverse`
-
-#### Supported Signatures
 ```sql
-function reverse(array<$3>) returns array<$3>
-function reverse(varbinary) returns varbinary
-function reverse(varchar) returns varchar
+function replace(<varchar, varchar, varchar>) returns varchar
 ```
+
+
+```sql
+function replace(<varchar, varchar>) returns varchar
+```
+
+
+## `reverse`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#reverse)
 
-## `rgb`
-
-#### Supported Signatures
 ```sql
-function rgb(bigint, bigint, bigint) returns color
+function reverse(<array<$3>>) returns array<$3>
 ```
+
+
+```sql
+function reverse(<varbinary>) returns varbinary
+```
+
+
+```sql
+function reverse(<varchar>) returns varchar
+```
+
+
+## `rgb`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#rgb)
 
-## `round`
-
-#### Supported Signatures
 ```sql
-function round(double) returns double
-function round(double, bigint) returns double
-function round(real) returns real
-function round(real, bigint) returns real
-function round(integer) returns integer
-function round(integer, integer) returns integer
-function round(decimal(p, s)) returns decimal(rp, rs)
-function round(decimal(p, s), bigint) returns decimal(rp, s)
-function round(bigint) returns bigint
-function round(bigint, bigint) returns bigint
-function round(smallint) returns smallint
-function round(smallint, bigint) returns smallint
-function round(tinyint) returns tinyint
-function round(tinyint, bigint) returns tinyint
+function rgb(<bigint, bigint, bigint>) returns color
 ```
+
+
+## `round`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#round)
 
-## `row_number`
-
-#### Supported Signatures
 ```sql
-function row_number() returns bigint
+function round(<double>) returns double
 ```
+
+
+```sql
+function round(<double, bigint>) returns double
+```
+
+
+```sql
+function round(<real>) returns real
+```
+
+
+```sql
+function round(<real, bigint>) returns real
+```
+
+
+```sql
+function round(<integer>) returns integer
+```
+
+
+```sql
+function round(<integer, integer>) returns integer
+```
+
+
+```sql
+function round(<decimal(p, s)>) returns decimal(rp, rs)
+```
+
+
+```sql
+function round(<decimal(p, s), bigint>) returns decimal(rp, s)
+```
+
+
+```sql
+function round(<bigint>) returns bigint
+```
+
+
+```sql
+function round(<bigint, bigint>) returns bigint
+```
+
+
+```sql
+function round(<smallint>) returns smallint
+```
+
+
+```sql
+function round(<smallint, bigint>) returns smallint
+```
+
+
+```sql
+function round(<tinyint>) returns tinyint
+```
+
+
+```sql
+function round(<tinyint, bigint>) returns tinyint
+```
+
+
+## `row_number`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#row_number)
 
-## `rpad`
-
-#### Supported Signatures
 ```sql
-function rpad(varbinary, bigint, varbinary) returns varbinary
-function rpad(varchar, bigint, varchar) returns varchar
+function row_number(<>) returns bigint
 ```
+
+
+## `rpad`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#rpad)
 
-## `rtrim`
-
-#### Supported Signatures
 ```sql
-function rtrim(varchar) returns varchar
-function rtrim(varchar, codepoints) returns varchar
+function rpad(<varbinary, bigint, varbinary>) returns varbinary
 ```
+
+
+```sql
+function rpad(<varchar, bigint, varchar>) returns varchar
+```
+
+
+## `rtrim`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#rtrim)
 
-## `second`
-
-#### Supported Signatures
 ```sql
-function second(interval day to second) returns bigint
-function second(time(p)) returns bigint
-function second(timestamp(p)) returns bigint
+function rtrim(<varchar>) returns varchar
 ```
+
+
+```sql
+function rtrim(<varchar, codepoints>) returns varchar
+```
+
+
+## `second`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#second)
 
-## `sequence`
-
-#### Supported Signatures
 ```sql
-function sequence(bigint, bigint) returns array<bigint>
-function sequence(bigint, bigint, bigint) returns array<bigint>
-function sequence(date, date) returns array[date]
-function sequence(date, date, interval day to second) returns array[date]
-function sequence(date, date, interval year to month) returns array[date]
-function sequence(timestamp(p), timestamp(p), interval day to second) returns array<timestamp(p)>
+function second(<interval day to second>) returns bigint
 ```
+
+
+```sql
+function second(<time(p)>) returns bigint
+```
+
+
+```sql
+function second(<timestamp(p)>) returns bigint
+```
+
+
+## `sequence`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#sequence)
 
-## `sha1`
-
-#### Supported Signatures
 ```sql
-function sha1(varbinary) returns varbinary
+function sequence(<bigint, bigint>) returns array<bigint>
 ```
+
+
+```sql
+function sequence(<bigint, bigint, bigint>) returns array<bigint>
+```
+
+
+```sql
+function sequence(<date, date>) returns array[date]
+```
+
+
+```sql
+function sequence(<date, date, interval day to second>) returns array[date]
+```
+
+
+```sql
+function sequence(<date, date, interval year to month>) returns array[date]
+```
+
+
+```sql
+function sequence(<timestamp(p), timestamp(p), interval day to second>) returns array<timestamp(p)>
+```
+
+
+## `sha1`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha1)
 
-## `sha256`
-
-#### Supported Signatures
 ```sql
-function sha256(varbinary) returns varbinary
+function sha1(<varbinary>) returns varbinary
 ```
+
+
+## `sha256`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha256)
 
-## `sha512`
-
-#### Supported Signatures
 ```sql
-function sha512(varbinary) returns varbinary
+function sha256(<varbinary>) returns varbinary
 ```
+
+
+## `sha512`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha512)
 
-## `shuffle`
-
-#### Supported Signatures
 ```sql
-function shuffle(array<$3>) returns array<$3>
+function sha512(<varbinary>) returns varbinary
+```
+
+
+## `shuffle`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#shuffle)
+
+```sql
+function shuffle(<array<$3>>) returns array<$3>
 ```
 *Note: shuffle() is volatile, i.e. might return a
                 different value for the same input.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#shuffle)
+
 
 ## `sign`
-
-#### Supported Signatures
-```sql
-function sign(bigint) returns bigint
-function sign(decimal(p, s)) returns decimal(1, 0)
-function sign(double) returns double
-function sign(integer) returns integer
-function sign(real) returns real
-function sign(smallint) returns smallint
-function sign(tinyint) returns tinyint
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sign)
 
-## `simplify_geometry`
-
-#### Supported Signatures
 ```sql
-function simplify_geometry(geometry, double) returns geometry
+function sign(<bigint>) returns bigint
 ```
+
+
+```sql
+function sign(<decimal(p, s)>) returns decimal(1, 0)
+```
+
+
+```sql
+function sign(<double>) returns double
+```
+
+
+```sql
+function sign(<integer>) returns integer
+```
+
+
+```sql
+function sign(<real>) returns real
+```
+
+
+```sql
+function sign(<smallint>) returns smallint
+```
+
+
+```sql
+function sign(<tinyint>) returns tinyint
+```
+
+
+## `simplify_geometry`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#simplify_geometry)
 
-## `sin`
-
-#### Supported Signatures
 ```sql
-function sin(double) returns double
+function simplify_geometry(<geometry, double>) returns geometry
 ```
+
+
+## `sin`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sin)
 
-## `sinh`
-
-#### Supported Signatures
 ```sql
-function sinh(double) returns double
+function sin(<double>) returns double
 ```
+
+
+## `sinh`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sinh)
 
-## `skewness`
-
-#### Supported Signatures
 ```sql
-function skewness(bigint) returns double
-function skewness(double) returns double
+function sinh(<double>) returns double
 ```
+
+
+## `skewness`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#skewness)
 
-## `slice`
-
-#### Supported Signatures
 ```sql
-function slice(array<$3>, bigint, bigint) returns array<$3>
+function skewness(<bigint>) returns double
 ```
+
+
+```sql
+function skewness(<double>) returns double
+```
+
+
+## `slice`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#slice)
 
-## `soundex`
-
-#### Supported Signatures
 ```sql
-function soundex(varchar) returns varchar
+function slice(<array<$3>, bigint, bigint>) returns array<$3>
 ```
+
+
+## `soundex`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#soundex)
 
-## `spatial_partitioning`
-
-#### Supported Signatures
 ```sql
-function spatial_partitioning(geometry) returns varchar
+function soundex(<varchar>) returns varchar
 ```
+
+
+## `spatial_partitioning`
 [🔗 Official Documentation]()
+
+```sql
+function spatial_partitioning(<geometry>) returns varchar
+```
+
 
 ## `spatial_partitions`
-
-#### Supported Signatures
-```sql
-function spatial_partitions(kdbtree, geometry) returns array<bigint>
-function spatial_partitions(kdbtree, geometry, double) returns array<bigint>
-```
 [🔗 Official Documentation]()
+
+```sql
+function spatial_partitions(<kdbtree, geometry>) returns array<bigint>
+```
+
+
+```sql
+function spatial_partitions(<kdbtree, geometry, double>) returns array<bigint>
+```
+
 
 ## `split`
-
-#### Supported Signatures
-```sql
-function split(varchar, varchar) returns array<varchar>
-function split(varchar, varchar, bigint) returns array<varchar>
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#split)
 
-## `split_part`
-
-#### Supported Signatures
 ```sql
-function split_part(varchar, varchar, bigint) returns varchar
+function split(<varchar, varchar>) returns array<varchar>
 ```
+
+
+```sql
+function split(<varchar, varchar, bigint>) returns array<varchar>
+```
+
+
+## `split_part`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#split_part)
 
-## `split_to_map`
-
-#### Supported Signatures
 ```sql
-function split_to_map(varchar, varchar, varchar) returns map<varchar, varchar>
+function split_part(<varchar, varchar, bigint>) returns varchar
 ```
+
+
+## `split_to_map`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#split_to_map)
 
-## `split_to_multimap`
-
-#### Supported Signatures
 ```sql
-function split_to_multimap(varchar, varchar, varchar) returns map<varchar, array<varchar>>
+function split_to_map(<varchar, varchar, varchar>) returns map<varchar, varchar>
 ```
+
+
+## `split_to_multimap`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#split_to_multimap)
 
-## `spooky_hash_v2_32`
-
-#### Supported Signatures
 ```sql
-function spooky_hash_v2_32(varbinary) returns varbinary
+function split_to_multimap(<varchar, varchar, varchar>) returns map<varchar, array<varchar>>
 ```
+
+
+## `spooky_hash_v2_32`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#spooky_hash_v2_32)
 
-## `spooky_hash_v2_64`
-
-#### Supported Signatures
 ```sql
-function spooky_hash_v2_64(varbinary) returns varbinary
+function spooky_hash_v2_32(<varbinary>) returns varbinary
 ```
+
+
+## `spooky_hash_v2_64`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#spooky_hash_v2_64)
 
-## `sqrt`
-
-#### Supported Signatures
 ```sql
-function sqrt(double) returns double
+function spooky_hash_v2_64(<varbinary>) returns varbinary
 ```
+
+
+## `sqrt`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sqrt)
 
-## `st_area`
-
-#### Supported Signatures
 ```sql
-function st_area(geometry) returns double
-function st_area(sphericalgeography) returns double
+function sqrt(<double>) returns double
 ```
+
+
+## `st_area`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Area)
 
-## `st_asbinary`
-
-#### Supported Signatures
 ```sql
-function st_asbinary(geometry) returns varbinary
+function st_area(<geometry>) returns double
 ```
+
+
+```sql
+function st_area(<sphericalgeography>) returns double
+```
+
+
+## `st_asbinary`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_AsBinary)
 
-## `st_astext`
-
-#### Supported Signatures
 ```sql
-function st_astext(geometry) returns varchar
+function st_asbinary(<geometry>) returns varbinary
 ```
+
+
+## `st_astext`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_AsText)
 
-## `st_boundary`
-
-#### Supported Signatures
 ```sql
-function st_boundary(geometry) returns geometry
+function st_astext(<geometry>) returns varchar
 ```
+
+
+## `st_boundary`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Boundary)
 
-## `st_buffer`
-
-#### Supported Signatures
 ```sql
-function st_buffer(geometry, double) returns geometry
+function st_boundary(<geometry>) returns geometry
 ```
+
+
+## `st_buffer`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Buffer)
 
-## `st_centroid`
-
-#### Supported Signatures
 ```sql
-function st_centroid(geometry) returns geometry
+function st_buffer(<geometry, double>) returns geometry
 ```
+
+
+## `st_centroid`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Centroid)
 
-## `st_contains`
-
-#### Supported Signatures
 ```sql
-function st_contains(geometry, geometry) returns boolean
+function st_centroid(<geometry>) returns geometry
 ```
+
+
+## `st_contains`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Contains)
 
-## `st_convexhull`
-
-#### Supported Signatures
 ```sql
-function st_convexhull(geometry) returns geometry
+function st_contains(<geometry, geometry>) returns boolean
 ```
+
+
+## `st_convexhull`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_ConvexHull)
 
-## `st_coorddim`
-
-#### Supported Signatures
 ```sql
-function st_coorddim(geometry) returns tinyint
+function st_convexhull(<geometry>) returns geometry
 ```
+
+
+## `st_coorddim`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_CoordDim)
 
-## `st_crosses`
-
-#### Supported Signatures
 ```sql
-function st_crosses(geometry, geometry) returns boolean
+function st_coorddim(<geometry>) returns tinyint
 ```
+
+
+## `st_crosses`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Crosses)
 
-## `st_difference`
-
-#### Supported Signatures
 ```sql
-function st_difference(geometry, geometry) returns geometry
+function st_crosses(<geometry, geometry>) returns boolean
 ```
+
+
+## `st_difference`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Difference)
 
-## `st_dimension`
-
-#### Supported Signatures
 ```sql
-function st_dimension(geometry) returns tinyint
+function st_difference(<geometry, geometry>) returns geometry
 ```
+
+
+## `st_dimension`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Dimension)
 
-## `st_disjoint`
-
-#### Supported Signatures
 ```sql
-function st_disjoint(geometry, geometry) returns boolean
+function st_dimension(<geometry>) returns tinyint
 ```
+
+
+## `st_disjoint`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Disjoint)
 
-## `st_distance`
-
-#### Supported Signatures
 ```sql
-function st_distance(geometry, geometry) returns double
-function st_distance(sphericalgeography, sphericalgeography) returns double
+function st_disjoint(<geometry, geometry>) returns boolean
 ```
+
+
+## `st_distance`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Distance)
 
-## `st_endpoint`
-
-#### Supported Signatures
 ```sql
-function st_endpoint(geometry) returns geometry
+function st_distance(<geometry, geometry>) returns double
 ```
+
+
+```sql
+function st_distance(<sphericalgeography, sphericalgeography>) returns double
+```
+
+
+## `st_endpoint`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_EndPoint)
 
-## `st_envelope`
-
-#### Supported Signatures
 ```sql
-function st_envelope(geometry) returns geometry
+function st_endpoint(<geometry>) returns geometry
 ```
+
+
+## `st_envelope`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Envelope)
 
-## `st_envelopeaspts`
-
-#### Supported Signatures
 ```sql
-function st_envelopeaspts(geometry) returns array<geometry>
+function st_envelope(<geometry>) returns geometry
 ```
+
+
+## `st_envelopeaspts`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_EnvelopeAsPts)
 
-## `st_equals`
-
-#### Supported Signatures
 ```sql
-function st_equals(geometry, geometry) returns boolean
+function st_envelopeaspts(<geometry>) returns array<geometry>
 ```
+
+
+## `st_equals`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Equals)
 
-## `st_exteriorring`
-
-#### Supported Signatures
 ```sql
-function st_exteriorring(geometry) returns geometry
+function st_equals(<geometry, geometry>) returns boolean
 ```
+
+
+## `st_exteriorring`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_ExteriorRing)
 
-## `st_geometries`
-
-#### Supported Signatures
 ```sql
-function st_geometries(geometry) returns array<geometry>
+function st_exteriorring(<geometry>) returns geometry
 ```
+
+
+## `st_geometries`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Geometries)
 
-## `st_geometryfromtext`
-
-#### Supported Signatures
 ```sql
-function st_geometryfromtext(varchar) returns geometry
+function st_geometries(<geometry>) returns array<geometry>
 ```
+
+
+## `st_geometryfromtext`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryFromText)
 
-## `st_geometryn`
-
-#### Supported Signatures
 ```sql
-function st_geometryn(geometry, bigint) returns geometry
+function st_geometryfromtext(<varchar>) returns geometry
 ```
+
+
+## `st_geometryn`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryN)
 
-## `st_geometrytype`
-
-#### Supported Signatures
 ```sql
-function st_geometrytype(geometry) returns varchar
+function st_geometryn(<geometry, bigint>) returns geometry
 ```
+
+
+## `st_geometrytype`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryType)
 
-## `st_geomfrombinary`
-
-#### Supported Signatures
 ```sql
-function st_geomfrombinary(varbinary) returns geometry
+function st_geometrytype(<geometry>) returns varchar
 ```
+
+
+## `st_geomfrombinary`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeomFromBinary)
 
-## `st_interiorringn`
-
-#### Supported Signatures
 ```sql
-function st_interiorringn(geometry, bigint) returns geometry
+function st_geomfrombinary(<varbinary>) returns geometry
 ```
+
+
+## `st_interiorringn`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_InteriorRingN)
 
-## `st_interiorrings`
-
-#### Supported Signatures
 ```sql
-function st_interiorrings(geometry) returns array<geometry>
+function st_interiorringn(<geometry, bigint>) returns geometry
 ```
+
+
+## `st_interiorrings`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_InteriorRings)
 
-## `st_intersection`
-
-#### Supported Signatures
 ```sql
-function st_intersection(geometry, geometry) returns geometry
+function st_interiorrings(<geometry>) returns array<geometry>
 ```
+
+
+## `st_intersection`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Intersection)
 
-## `st_intersects`
-
-#### Supported Signatures
 ```sql
-function st_intersects(geometry, geometry) returns boolean
+function st_intersection(<geometry, geometry>) returns geometry
 ```
+
+
+## `st_intersects`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Intersects)
 
-## `st_isclosed`
-
-#### Supported Signatures
 ```sql
-function st_isclosed(geometry) returns boolean
+function st_intersects(<geometry, geometry>) returns boolean
 ```
+
+
+## `st_isclosed`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsClosed)
 
-## `st_isempty`
-
-#### Supported Signatures
 ```sql
-function st_isempty(geometry) returns boolean
+function st_isclosed(<geometry>) returns boolean
 ```
+
+
+## `st_isempty`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsEmpty)
 
-## `st_isring`
-
-#### Supported Signatures
 ```sql
-function st_isring(geometry) returns boolean
+function st_isempty(<geometry>) returns boolean
 ```
+
+
+## `st_isring`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsRing)
 
-## `st_issimple`
-
-#### Supported Signatures
 ```sql
-function st_issimple(geometry) returns boolean
+function st_isring(<geometry>) returns boolean
 ```
+
+
+## `st_issimple`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsSimple)
 
-## `st_isvalid`
-
-#### Supported Signatures
 ```sql
-function st_isvalid(geometry) returns boolean
+function st_issimple(<geometry>) returns boolean
 ```
+
+
+## `st_isvalid`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsValid)
 
-## `st_length`
-
-#### Supported Signatures
 ```sql
-function st_length(geometry) returns double
-function st_length(sphericalgeography) returns double
+function st_isvalid(<geometry>) returns boolean
 ```
+
+
+## `st_length`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Length)
 
-## `st_linefromtext`
-
-#### Supported Signatures
 ```sql
-function st_linefromtext(varchar) returns geometry
+function st_length(<geometry>) returns double
 ```
+
+
+```sql
+function st_length(<sphericalgeography>) returns double
+```
+
+
+## `st_linefromtext`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_LineFromText)
 
-## `st_linestring`
-
-#### Supported Signatures
 ```sql
-function st_linestring(array<geometry>) returns geometry
+function st_linefromtext(<varchar>) returns geometry
 ```
+
+
+## `st_linestring`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_LineString)
 
-## `st_multipoint`
-
-#### Supported Signatures
 ```sql
-function st_multipoint(array<geometry>) returns geometry
+function st_linestring(<array<geometry>>) returns geometry
 ```
+
+
+## `st_multipoint`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_MultiPoint)
 
-## `st_numgeometries`
-
-#### Supported Signatures
 ```sql
-function st_numgeometries(geometry) returns bigint
+function st_multipoint(<array<geometry>>) returns geometry
 ```
+
+
+## `st_numgeometries`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumGeometries)
 
-## `st_numinteriorring`
-
-#### Supported Signatures
 ```sql
-function st_numinteriorring(geometry) returns bigint
+function st_numgeometries(<geometry>) returns bigint
 ```
+
+
+## `st_numinteriorring`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumInteriorRing)
 
-## `st_numpoints`
-
-#### Supported Signatures
 ```sql
-function st_numpoints(geometry) returns bigint
+function st_numinteriorring(<geometry>) returns bigint
 ```
+
+
+## `st_numpoints`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumPoints)
 
-## `st_overlaps`
-
-#### Supported Signatures
 ```sql
-function st_overlaps(geometry, geometry) returns boolean
+function st_numpoints(<geometry>) returns bigint
 ```
+
+
+## `st_overlaps`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Overlaps)
 
-## `st_point`
-
-#### Supported Signatures
 ```sql
-function st_point(double, double) returns geometry
+function st_overlaps(<geometry, geometry>) returns boolean
 ```
+
+
+## `st_point`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Point)
 
-## `st_pointn`
-
-#### Supported Signatures
 ```sql
-function st_pointn(geometry, bigint) returns geometry
+function st_point(<double, double>) returns geometry
 ```
+
+
+## `st_pointn`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_PointN)
 
-## `st_points`
-
-#### Supported Signatures
 ```sql
-function st_points(geometry) returns array<geometry>
+function st_pointn(<geometry, bigint>) returns geometry
 ```
+
+
+## `st_points`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Points)
 
-## `st_polygon`
-
-#### Supported Signatures
 ```sql
-function st_polygon(varchar) returns geometry
+function st_points(<geometry>) returns array<geometry>
 ```
+
+
+## `st_polygon`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Polygon)
 
-## `st_relate`
-
-#### Supported Signatures
 ```sql
-function st_relate(geometry, geometry, varchar) returns boolean
+function st_polygon(<varchar>) returns geometry
 ```
+
+
+## `st_relate`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Relate)
 
-## `st_startpoint`
-
-#### Supported Signatures
 ```sql
-function st_startpoint(geometry) returns geometry
+function st_relate(<geometry, geometry, varchar>) returns boolean
 ```
+
+
+## `st_startpoint`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_StartPoint)
 
-## `st_symdifference`
-
-#### Supported Signatures
 ```sql
-function st_symdifference(geometry, geometry) returns geometry
+function st_startpoint(<geometry>) returns geometry
 ```
+
+
+## `st_symdifference`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_SymDifference)
 
-## `st_touches`
-
-#### Supported Signatures
 ```sql
-function st_touches(geometry, geometry) returns boolean
+function st_symdifference(<geometry, geometry>) returns geometry
 ```
+
+
+## `st_touches`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Touches)
 
-## `st_union`
-
-#### Supported Signatures
 ```sql
-function st_union(geometry, geometry) returns geometry
+function st_touches(<geometry, geometry>) returns boolean
 ```
+
+
+## `st_union`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Union)
 
-## `st_within`
-
-#### Supported Signatures
 ```sql
-function st_within(geometry, geometry) returns boolean
+function st_union(<geometry, geometry>) returns geometry
 ```
+
+
+## `st_within`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Within)
 
-## `st_x`
-
-#### Supported Signatures
 ```sql
-function st_x(geometry) returns double
+function st_within(<geometry, geometry>) returns boolean
 ```
+
+
+## `st_x`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_X)
 
-## `st_xmax`
-
-#### Supported Signatures
 ```sql
-function st_xmax(geometry) returns double
+function st_x(<geometry>) returns double
 ```
+
+
+## `st_xmax`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_XMax)
 
-## `st_xmin`
-
-#### Supported Signatures
 ```sql
-function st_xmin(geometry) returns double
+function st_xmax(<geometry>) returns double
 ```
+
+
+## `st_xmin`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_XMin)
 
-## `st_y`
-
-#### Supported Signatures
 ```sql
-function st_y(geometry) returns double
+function st_xmin(<geometry>) returns double
 ```
+
+
+## `st_y`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Y)
 
-## `st_ymax`
-
-#### Supported Signatures
 ```sql
-function st_ymax(geometry) returns double
+function st_y(<geometry>) returns double
 ```
+
+
+## `st_ymax`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_YMax)
 
-## `st_ymin`
-
-#### Supported Signatures
 ```sql
-function st_ymin(geometry) returns double
+function st_ymax(<geometry>) returns double
 ```
+
+
+## `st_ymin`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_YMin)
 
-## `starts_with`
-
-#### Supported Signatures
 ```sql
-function starts_with(varchar, varchar) returns boolean
+function st_ymin(<geometry>) returns double
 ```
+
+
+## `starts_with`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#starts_with)
 
-## `stddev`
-
-#### Supported Signatures
 ```sql
-function stddev(bigint) returns double
-function stddev(double) returns double
+function starts_with(<varchar, varchar>) returns boolean
 ```
+
+
+## `stddev`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev)
 
-## `stddev_pop`
-
-#### Supported Signatures
 ```sql
-function stddev_pop(bigint) returns double
-function stddev_pop(double) returns double
+function stddev(<bigint>) returns double
 ```
+
+
+```sql
+function stddev(<double>) returns double
+```
+
+
+## `stddev_pop`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev_pop)
 
-## `stddev_samp`
-
-#### Supported Signatures
 ```sql
-function stddev_samp(bigint) returns double
-function stddev_samp(double) returns double
+function stddev_pop(<bigint>) returns double
 ```
+
+
+```sql
+function stddev_pop(<double>) returns double
+```
+
+
+## `stddev_samp`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev_samp)
 
-## `strpos`
-
-#### Supported Signatures
 ```sql
-function strpos(varchar, varchar) returns bigint
-function strpos(varchar, varchar, bigint) returns bigint
+function stddev_samp(<bigint>) returns double
 ```
+
+
+```sql
+function stddev_samp(<double>) returns double
+```
+
+
+## `strpos`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#strpos)
 
-## `substr`
-
-#### Supported Signatures
 ```sql
-function substr(varchar, bigint) returns varchar
-function substr(varchar, bigint, bigint) returns varchar
-function substr(varbinary, bigint) returns varbinary
-function substr(varbinary, bigint, bigint) returns varbinary
+function strpos(<varchar, varchar>) returns bigint
 ```
+
+
+```sql
+function strpos(<varchar, varchar, bigint>) returns bigint
+```
+
+
+## `substr`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#substr)
 
-## `substring`
-
-#### Supported Signatures
 ```sql
-function substring(varchar, bigint) returns varchar
-function substring(varchar, bigint, bigint) returns varchar
+function substr(<varchar, bigint>) returns varchar
 ```
+
+
+```sql
+function substr(<varchar, bigint, bigint>) returns varchar
+```
+
+
+```sql
+function substr(<varbinary, bigint>) returns varbinary
+```
+
+
+```sql
+function substr(<varbinary, bigint, bigint>) returns varbinary
+```
+
+
+## `substring`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#substring)
 
-## `sum`
-
-#### Supported Signatures
 ```sql
-function sum(bigint) returns bigint
-function sum(double) returns double
-function sum(decimal(p, s)) returns decimal(38, s)
-function sum(real) returns real
-function sum(interval day to second) returns interval day to second
-function sum(interval year to month) returns interval year to month
+function substring(<varchar, bigint>) returns varchar
 ```
+
+
+```sql
+function substring(<varchar, bigint, bigint>) returns varchar
+```
+
+
+## `sum`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#sum)
 
-## `tan`
-
-#### Supported Signatures
 ```sql
-function tan(double) returns double
+function sum(<bigint>) returns bigint
 ```
+
+
+```sql
+function sum(<double>) returns double
+```
+
+
+```sql
+function sum(<decimal(p, s)>) returns decimal(38, s)
+```
+
+
+```sql
+function sum(<real>) returns real
+```
+
+
+```sql
+function sum(<interval day to second>) returns interval day to second
+```
+
+
+```sql
+function sum(<interval year to month>) returns interval year to month
+```
+
+
+## `tan`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#tan)
 
-## `tanh`
-
-#### Supported Signatures
 ```sql
-function tanh(double) returns double
+function tan(<double>) returns double
 ```
+
+
+## `tanh`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#tanh)
 
-## `tdigest_agg`
-
-#### Supported Signatures
 ```sql
-function tdigest_agg(double) returns tdigest
-function tdigest_agg(double, double) returns tdigest
+function tanh(<double>) returns double
 ```
+
+
+## `tdigest_agg`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/tdigest.html#tdigest_agg)
 
-## `timestamp_objectid`
-
-#### Supported Signatures
 ```sql
-function timestamp_objectid(timestamp(0)) returns objectid
+function tdigest_agg(<double>) returns tdigest
 ```
+
+
+```sql
+function tdigest_agg(<double, double>) returns tdigest
+```
+
+
+## `timestamp_objectid`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/../connector/mongodb.html#timestamp_objectid)
 
-## `timezone_hour`
-
-#### Supported Signatures
 ```sql
-function timezone_hour(time(p)) returns bigint
-function timezone_hour(timestamp(p)) returns bigint
+function timestamp_objectid(<timestamp(0)>) returns objectid
 ```
+
+
+## `timezone_hour`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#timezone_hour)
 
-## `timezone_minute`
-
-#### Supported Signatures
 ```sql
-function timezone_minute(time(p)) returns bigint
-function timezone_minute(timestamp(p)) returns bigint
+function timezone_hour(<time(p)>) returns bigint
 ```
+
+
+```sql
+function timezone_hour(<timestamp(p)>) returns bigint
+```
+
+
+## `timezone_minute`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#timezone_minute)
 
-## `to_base`
-
-#### Supported Signatures
 ```sql
-function to_base(bigint, bigint) returns varchar
+function timezone_minute(<time(p)>) returns bigint
 ```
+
+
+```sql
+function timezone_minute(<timestamp(p)>) returns bigint
+```
+
+
+## `to_base`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#to_base)
 
-## `to_base32`
-
-#### Supported Signatures
 ```sql
-function to_base32(varbinary) returns varchar
+function to_base(<bigint, bigint>) returns varchar
 ```
+
+
+## `to_base32`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base32)
 
-## `to_base64`
-
-#### Supported Signatures
 ```sql
-function to_base64(varbinary) returns varchar
+function to_base32(<varbinary>) returns varchar
 ```
+
+
+## `to_base64`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base64)
 
-## `to_base64url`
-
-#### Supported Signatures
 ```sql
-function to_base64url(varbinary) returns varchar
+function to_base64(<varbinary>) returns varchar
 ```
+
+
+## `to_base64url`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base64url)
 
-## `to_big_endian_32`
-
-#### Supported Signatures
 ```sql
-function to_big_endian_32(bigint) returns varbinary
+function to_base64url(<varbinary>) returns varchar
 ```
+
+
+## `to_big_endian_32`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_big_endian_32)
 
-## `to_big_endian_64`
-
-#### Supported Signatures
 ```sql
-function to_big_endian_64(bigint) returns varbinary
+function to_big_endian_32(<bigint>) returns varbinary
 ```
+
+
+## `to_big_endian_64`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_big_endian_64)
 
-## `to_char`
-
-#### Supported Signatures
 ```sql
-function to_char(timestamp(p), varchar) returns varchar
+function to_big_endian_64(<bigint>) returns varbinary
 ```
+
+
+## `to_char`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#to_char)
 
-## `to_date`
-
-#### Supported Signatures
 ```sql
-function to_date(varchar, varchar) returns date
+function to_char(<timestamp(p), varchar>) returns varchar
 ```
+
+
+## `to_date`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#to_date)
 
-## `to_encoded_polyline`
-
-#### Supported Signatures
 ```sql
-function to_encoded_polyline(geometry) returns varchar
+function to_date(<varchar, varchar>) returns date
 ```
+
+
+## `to_encoded_polyline`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_encoded_polyline)
 
-## `to_geojson_geometry`
-
-#### Supported Signatures
 ```sql
-function to_geojson_geometry(sphericalgeography) returns varchar
+function to_encoded_polyline(<geometry>) returns varchar
 ```
+
+
+## `to_geojson_geometry`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_geojson_geometry)
 
-## `to_geometry`
-
-#### Supported Signatures
 ```sql
-function to_geometry(sphericalgeography) returns geometry
+function to_geojson_geometry(<sphericalgeography>) returns varchar
 ```
+
+
+## `to_geometry`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_geometry)
 
-## `to_hex`
-
-#### Supported Signatures
 ```sql
-function to_hex(varbinary) returns varchar
+function to_geometry(<sphericalgeography>) returns geometry
 ```
+
+
+## `to_hex`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_hex)
 
-## `to_ieee754_32`
-
-#### Supported Signatures
 ```sql
-function to_ieee754_32(real) returns varbinary
+function to_hex(<varbinary>) returns varchar
 ```
+
+
+## `to_ieee754_32`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_ieee754_32)
 
-## `to_ieee754_64`
-
-#### Supported Signatures
 ```sql
-function to_ieee754_64(double) returns varbinary
+function to_ieee754_32(<real>) returns varbinary
 ```
+
+
+## `to_ieee754_64`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_ieee754_64)
 
-## `to_iso8601`
-
-#### Supported Signatures
 ```sql
-function to_iso8601(date) returns varchar
-function to_iso8601(timestamp(p)) returns varchar
+function to_ieee754_64(<double>) returns varbinary
 ```
+
+
+## `to_iso8601`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#to_iso8601)
 
-## `to_milliseconds`
-
-#### Supported Signatures
 ```sql
-function to_milliseconds(interval day to second) returns bigint
+function to_iso8601([date]) returns varchar
 ```
+
+
+```sql
+function to_iso8601(<timestamp(p)>) returns varchar
+```
+
+
+## `to_milliseconds`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#to_milliseconds)
 
-## `to_spherical_geography`
-
-#### Supported Signatures
 ```sql
-function to_spherical_geography(geometry) returns sphericalgeography
+function to_milliseconds(<interval day to second>) returns bigint
 ```
+
+
+## `to_spherical_geography`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_spherical_geography)
 
-## `to_timestamp`
-
-#### Supported Signatures
 ```sql
-function to_timestamp(varchar, varchar) returns timestamp
+function to_spherical_geography(<geometry>) returns sphericalgeography
 ```
+
+
+## `to_timestamp`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/teradata.html#to_timestamp)
 
-## `to_timestamp_seconds`
-
-#### Supported Signatures
 ```sql
-function to_timestamp_seconds($1) returns timestamp
+function to_timestamp(<varchar, varchar>) returns timestamp
 ```
+
+
+## `to_timestamp_seconds`
 [🔗 Official Documentation]()
 
-## `to_unixtime`
-
-#### Supported Signatures
 ```sql
-function to_unixtime(timestamp(p)) returns double
+function to_timestamp_seconds(<$1>) returns timestamp
 ```
+
+
+## `to_unixtime`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#to_unixtime)
 
-## `to_utf8`
-
-#### Supported Signatures
 ```sql
-function to_utf8(varchar) returns varbinary
+function to_unixtime(<timestamp(p)>) returns double
 ```
+
+
+## `to_utf8`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#to_utf8)
 
-## `transform`
-
-#### Supported Signatures
 ```sql
-function transform(array<$1>, function($1, $11)) returns array<$11>
+function to_utf8(<varchar>) returns varbinary
 ```
+
+
+## `transform`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#transform)
 
-## `transform_keys`
-
-#### Supported Signatures
 ```sql
-function transform_keys(map<$13, $5>, function($13, $5, $12)) returns map<$12, $5>
+function transform(<array<$1>, function($1, $11)>) returns array<$11>
 ```
+
+
+## `transform_keys`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#transform_keys)
 
-## `transform_values`
-
-#### Supported Signatures
 ```sql
-function transform_values(map<$4, $8>, function($4, $8, $7)) returns map<$4, $7>
+function transform_keys(<map<$13, $5>, function($13, $5, $12)>) returns map<$12, $5>
 ```
+
+
+## `transform_values`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#transform_values)
 
-## `translate`
-
-#### Supported Signatures
 ```sql
-function translate(varchar, varchar, varchar) returns varchar
+function transform_values(<map<$4, $8>, function($4, $8, $7)>) returns map<$4, $7>
 ```
+
+
+## `translate`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#translate)
 
-## `trim`
-
-#### Supported Signatures
 ```sql
-function trim(varchar) returns varchar
-function trim(varchar, codepoints) returns varchar
+function translate(<varchar, varchar, varchar>) returns varchar
 ```
+
+
+## `trim`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#trim)
 
-## `trim_array`
-
-#### Supported Signatures
 ```sql
-function trim_array(array<$3>, bigint) returns array<$3>
+function trim(<varchar>) returns varchar
 ```
+
+
+```sql
+function trim(<varchar, codepoints>) returns varchar
+```
+
+
+## `trim_array`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#trim_array)
 
-## `truncate`
-
-#### Supported Signatures
 ```sql
-function truncate(decimal(p, s), bigint) returns decimal(p, s)
-function truncate(decimal(p, s)) returns decimal(rp, 0)
-function truncate(double) returns double
-function truncate(real) returns real
+function trim_array(<array<$3>, bigint>) returns array<$3>
 ```
+
+
+## `truncate`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#truncate)
 
-## `try`
-
-#### Supported Signatures
 ```sql
-function try($1) returns $1
+function truncate(<decimal(p, s), bigint>) returns decimal(p, s)
 ```
+
+
+```sql
+function truncate(<decimal(p, s)>) returns decimal(rp, 0)
+```
+
+
+```sql
+function truncate(<double>) returns double
+```
+
+
+```sql
+function truncate(<real>) returns real
+```
+
+
+## `try`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#try-function)
 
-## `typeof`
-
-#### Supported Signatures
 ```sql
-function typeof($1) returns varchar
+function try(<$1>) returns $1
 ```
+
+
+## `typeof`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#typeof)
 
-## `upper`
-
-#### Supported Signatures
 ```sql
-function upper(varchar) returns varchar
+function typeof(<$1>) returns varchar
 ```
+
+
+## `upper`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#upper)
 
-## `url_decode`
-
-#### Supported Signatures
 ```sql
-function url_decode(varchar) returns varchar
+function upper(<varchar>) returns varchar
 ```
+
+
+## `url_decode`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_decode)
 
-## `url_encode`
-
-#### Supported Signatures
 ```sql
-function url_encode(varchar) returns varchar
+function url_decode(<varchar>) returns varchar
 ```
+
+
+## `url_encode`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_encode)
 
-## `url_extract_fragment`
-
-#### Supported Signatures
 ```sql
-function url_extract_fragment(varchar) returns varchar
+function url_encode(<varchar>) returns varchar
 ```
+
+
+## `url_extract_fragment`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_fragment)
 
-## `url_extract_host`
-
-#### Supported Signatures
 ```sql
-function url_extract_host(varchar) returns varchar
+function url_extract_fragment(<varchar>) returns varchar
 ```
+
+
+## `url_extract_host`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_host)
 
-## `url_extract_parameter`
-
-#### Supported Signatures
 ```sql
-function url_extract_parameter(varchar, varchar) returns varchar
+function url_extract_host(<varchar>) returns varchar
 ```
+
+
+## `url_extract_parameter`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_parameter)
 
-## `url_extract_path`
-
-#### Supported Signatures
 ```sql
-function url_extract_path(varchar) returns varchar
+function url_extract_parameter(<varchar, varchar>) returns varchar
 ```
+
+
+## `url_extract_path`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_path)
 
-## `url_extract_port`
-
-#### Supported Signatures
 ```sql
-function url_extract_port(varchar) returns bigint
+function url_extract_path(<varchar>) returns varchar
 ```
+
+
+## `url_extract_port`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_port)
 
-## `url_extract_protocol`
-
-#### Supported Signatures
 ```sql
-function url_extract_protocol(varchar) returns varchar
+function url_extract_port(<varchar>) returns bigint
 ```
+
+
+## `url_extract_protocol`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_protocol)
 
-## `url_extract_query`
-
-#### Supported Signatures
 ```sql
-function url_extract_query(varchar) returns varchar
+function url_extract_protocol(<varchar>) returns varchar
 ```
+
+
+## `url_extract_query`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_query)
 
-## `uuid`
-
-#### Supported Signatures
 ```sql
-function uuid() returns uuid
+function url_extract_query(<varchar>) returns varchar
+```
+
+
+## `uuid`
+[🔗 Official Documentation](https://trino.io/docs/current/functions/uuid.html#uuid)
+
+```sql
+function uuid(<>) returns uuid
 ```
 *Note: uuid() is volatile, i.e. might return a
                 different value for the same input.*
 
-[🔗 Official Documentation](https://trino.io/docs/current/functions/uuid.html#uuid)
+
 
 ## `value_at_quantile`
-
-#### Supported Signatures
-```sql
-function value_at_quantile(qdigest, double) returns bigint
-function value_at_quantile(tdigest, double) returns double
-```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#value_at_quantile)
 
-## `values_at_quantiles`
-
-#### Supported Signatures
 ```sql
-function values_at_quantiles(qdigest, array<double>) returns array<bigint>
-function values_at_quantiles(tdigest, array<double>) returns array<double>
+function value_at_quantile(<qdigest, double>) returns bigint
 ```
+
+
+```sql
+function value_at_quantile(<tdigest, double>) returns double
+```
+
+
+## `values_at_quantiles`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#values_at_quantiles)
 
-## `var_pop`
-
-#### Supported Signatures
 ```sql
-function var_pop(bigint) returns double
-function var_pop(double) returns double
+function values_at_quantiles(<qdigest, array<double>>) returns array<bigint>
 ```
+
+
+```sql
+function values_at_quantiles(<tdigest, array<double>>) returns array<double>
+```
+
+
+## `var_pop`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#var_pop)
 
-## `var_samp`
-
-#### Supported Signatures
 ```sql
-function var_samp(bigint) returns double
-function var_samp(double) returns double
+function var_pop(<bigint>) returns double
 ```
+
+
+```sql
+function var_pop(<double>) returns double
+```
+
+
+## `var_samp`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#var_samp)
 
-## `variance`
-
-#### Supported Signatures
 ```sql
-function variance(bigint) returns double
-function variance(double) returns double
+function var_samp(<bigint>) returns double
 ```
+
+
+```sql
+function var_samp(<double>) returns double
+```
+
+
+## `variance`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#variance)
 
-## `week`
-
-#### Supported Signatures
 ```sql
-function week(date) returns bigint
-function week(timestamp(p)) returns bigint
+function variance(<bigint>) returns double
 ```
+
+
+```sql
+function variance(<double>) returns double
+```
+
+
+## `week`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#week)
 
-## `week_of_year`
-
-#### Supported Signatures
 ```sql
-function week_of_year(date) returns bigint
-function week_of_year(timestamp(p)) returns bigint
+function week([date]) returns bigint
 ```
+
+
+```sql
+function week(<timestamp(p)>) returns bigint
+```
+
+
+## `week_of_year`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#week_of_year)
 
-## `width_bucket`
-
-#### Supported Signatures
 ```sql
-function width_bucket(double, array<double>) returns bigint
-function width_bucket(double, double, double, bigint) returns bigint
+function week_of_year([date]) returns bigint
 ```
+
+
+```sql
+function week_of_year(<timestamp(p)>) returns bigint
+```
+
+
+## `width_bucket`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#width_bucket)
 
-## `wilson_interval_lower`
-
-#### Supported Signatures
 ```sql
-function wilson_interval_lower(bigint, bigint, double) returns double
+function width_bucket(<double, array<double>>) returns bigint
 ```
+
+
+```sql
+function width_bucket(<double, double, double, bigint>) returns bigint
+```
+
+
+## `wilson_interval_lower`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#wilson_interval_lower)
 
-## `wilson_interval_upper`
-
-#### Supported Signatures
 ```sql
-function wilson_interval_upper(bigint, bigint, double) returns double
+function wilson_interval_lower(<bigint, bigint, double>) returns double
 ```
+
+
+## `wilson_interval_upper`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#wilson_interval_upper)
 
-## `with_timezone`
-
-#### Supported Signatures
 ```sql
-function with_timezone(timestamp(p), varchar) returns timestamp(p)
+function wilson_interval_upper(<bigint, bigint, double>) returns double
 ```
+
+
+## `with_timezone`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#with_timezone)
 
-## `word_stem`
-
-#### Supported Signatures
 ```sql
-function word_stem(varchar) returns varchar
-function word_stem(varchar, varchar) returns varchar
+function with_timezone(<timestamp(p), varchar>) returns timestamp(p)
 ```
+
+
+## `word_stem`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#word_stem)
 
-## `xxhash64`
-
-#### Supported Signatures
 ```sql
-function xxhash64(varbinary) returns varbinary
+function word_stem(<varchar>) returns varchar
 ```
+
+
+```sql
+function word_stem(<varchar, varchar>) returns varchar
+```
+
+
+## `xxhash64`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#xxhash64)
 
-## `year`
-
-#### Supported Signatures
 ```sql
-function year(date) returns bigint
-function year(interval year to month) returns bigint
-function year(timestamp(p)) returns bigint
+function xxhash64(<varbinary>) returns varbinary
 ```
+
+
+## `year`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#year)
 
-## `year_of_week`
-
-#### Supported Signatures
 ```sql
-function year_of_week(date) returns bigint
-function year_of_week(timestamp(p)) returns bigint
+function year([date]) returns bigint
 ```
+
+
+```sql
+function year(<interval year to month>) returns bigint
+```
+
+
+```sql
+function year(<timestamp(p)>) returns bigint
+```
+
+
+## `year_of_week`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#year_of_week)
 
-## `yow`
-
-#### Supported Signatures
 ```sql
-function yow(date) returns bigint
-function yow(timestamp(p)) returns bigint
+function year_of_week([date]) returns bigint
 ```
+
+
+```sql
+function year_of_week(<timestamp(p)>) returns bigint
+```
+
+
+## `yow`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#yow)
 
-## `zip`
-
-#### Supported Signatures
 ```sql
-function zip(array<$14>, array<$15>) returns array<row(c0 $14, c1 $15)>
-function zip(array<$14>, array<$15>, array<$16>) returns array<row(c0 $14, c1 $15, c2 $16)>
-function zip(array<$14>, array<$15>, array<$16>, array<$17>) returns array<row(c0 $14, c1 $15, c2 $16, c3 $17)>
-function zip(array<$14>, array<$15>, array<$16>, array<$17>, array<$18>) returns array<row(c0 $14, c1 $15, c2 $16, c3 $17, c4 $18)>
+function yow([date]) returns bigint
 ```
+
+
+```sql
+function yow(<timestamp(p)>) returns bigint
+```
+
+
+## `zip`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#zip)
 
-## `zip_with`
-
-#### Supported Signatures
 ```sql
-function zip_with(array<$1>, array<$11>, function($1, $11, $9)) returns array<$9>
+function zip(<array<$14>, array<$15>>) returns array<row(c0 $14, c1 $15)>
 ```
+
+
+```sql
+function zip(<array<$14>, array<$15>, array<$16>>) returns array<row(c0 $14, c1 $15, c2 $16)>
+```
+
+
+```sql
+function zip(<array<$14>, array<$15>, array<$16>, array<$17>>) returns array<row(c0 $14, c1 $15, c2 $16, c3 $17)>
+```
+
+
+```sql
+function zip(<array<$14>, array<$15>, array<$16>, array<$17>, array<$18>>) returns array<row(c0 $14, c1 $15, c2 $16, c3 $17, c4 $18)>
+```
+
+
+## `zip_with`
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#zip_with)
+
+```sql
+function zip_with(<array<$1>, array<$11>, function($1, $11, $9)>) returns array<$9>
+```
+
 
 

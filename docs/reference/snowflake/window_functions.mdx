@@ -4,151 +4,155 @@ title: "Window Functions"
 
 
 ## `conditional_change_event`
-
-#### Description
-Returns the event window number of this row in the window based on whether the argument expression on the current row differs from that on the previous row 
-#### Supported Signatures
-```sql
-function conditional_change_event($1) returns decimal(38, 0)
-```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/conditional_change_event)
 
-## `conditional_true_event`
-
-#### Description
-Returns the event window number of this row in the window based on the result of the boolean argument expression 
-#### Supported Signatures
 ```sql
-function conditional_true_event(boolean) returns decimal(38, 0)
-function conditional_true_event(decimal(38, 0)) returns decimal(38, 0)
+function conditional_change_event(<$1>) returns decimal(38, 0)
 ```
+Returns the event window number of this row in the window based on whether the argument expression on the current row differs from that on the previous row 
+
+## `conditional_true_event`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/conditional_true_event)
 
-## `cume_dist`
-
-#### Description
-Returns the cumulative distribution of a row in the window
-#### Supported Signatures
 ```sql
-function cume_dist() returns double
+function conditional_true_event(<boolean>) returns decimal(38, 0)
 ```
+Returns the event window number of this row in the window based on the result of the boolean argument expression 
+
+```sql
+function conditional_true_event(<decimal(38, 0)>) returns decimal(38, 0)
+```
+
+
+## `cume_dist`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/cume_dist)
 
-## `dense_rank`
-
-#### Description
-Returns the dense rank of a row in the window
-#### Supported Signatures
 ```sql
-function dense_rank() returns decimal(38, 0)
+function cume_dist(<>) returns double
 ```
+Returns the cumulative distribution of a row in the window
+
+## `dense_rank`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/dense_rank)
 
-## `first_value`
-
-#### Description
-Returns the first value of a column
-#### Supported Signatures
 ```sql
-function first_value($1) returns $1
+function dense_rank(<>) returns decimal(38, 0)
 ```
+Returns the dense rank of a row in the window
+
+## `first_value`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/first_value)
 
-## `lag`
-
-#### Description
-Returns the value of an expression at the specified offset row
-#### Supported Signatures
 ```sql
-function lag($1) returns $1
-function lag($1, decimal(38, 0)) returns $1
-function lag($1, decimal(38, 0), $1) returns $1
+function first_value(<$1>) returns $1
 ```
+Returns the first value of a column
+
+## `lag`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/lag)
 
-## `last_value`
-
-#### Description
-Returns the last value of a column
-#### Supported Signatures
 ```sql
-function last_value($1) returns $1
+function lag(<$1>) returns $1
 ```
+Returns the value of an expression at the specified offset row
+
+```sql
+function lag(<$1, decimal(38, 0)>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+```sql
+function lag(<$1, decimal(38, 0), $1>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+## `last_value`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/last_value)
 
-## `lead`
-
-#### Description
-Returns the value of an expression at the specified offset row
-#### Supported Signatures
 ```sql
-function lead($1) returns $1
-function lead($1, decimal(38, 0)) returns $1
-function lead($1, decimal(38, 0), $1) returns $1
+function last_value(<$1>) returns $1
 ```
+Returns the last value of a column
+
+## `lead`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/lead)
 
-## `nth_value`
-
-#### Description
-Returns the first value of a column
-#### Supported Signatures
 ```sql
-function nth_value($1, decimal(38, 0)) returns $1
+function lead(<$1>) returns $1
 ```
+Returns the value of an expression at the specified offset row
+
+```sql
+function lead(<$1, decimal(38, 0)>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+```sql
+function lead(<$1, decimal(38, 0), $1>) returns $1
+```
+Returns the value of an expression at the specified offset row
+
+## `nth_value`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/nth_value)
 
-## `ntile`
-
-#### Description
-Number of groups (ntiles) per window
-#### Supported Signatures
 ```sql
-function ntile(decimal(38, 0)) returns decimal(38, 0)
+function nth_value(<$1, decimal(38, 0)>) returns $1
 ```
+Returns the first value of a column
+
+## `ntile`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/ntile)
 
-## `percent_rank`
-
-#### Description
-Returns the percent rank of a row in the window
-#### Supported Signatures
 ```sql
-function percent_rank() returns double
+function ntile(<decimal(38, 0)>) returns decimal(38, 0)
 ```
+Number of groups (ntiles) per window
+
+## `percent_rank`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/percent_rank)
 
-## `rank`
-
-#### Description
-Returns the rank of a row in the window
-#### Supported Signatures
 ```sql
-function rank() returns decimal(38, 0)
+function percent_rank(<>) returns double
 ```
+Returns the percent rank of a row in the window
+
+## `rank`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/rank)
 
-## `ratio_to_report`
-
-#### Description
-Returns a cumulative ratio_to_report of a column
-#### Supported Signatures
 ```sql
-function ratio_to_report(decimal(38, 0)) returns decimal(38, 0)
-function ratio_to_report(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
-function ratio_to_report(double) returns double
-function ratio_to_report(double, decimal(38, 0)) returns double
+function rank(<>) returns decimal(38, 0)
 ```
+Returns the rank of a row in the window
+
+## `ratio_to_report`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/ratio_to_report)
 
-## `row_number`
-
-#### Description
-Returns the position of this row in the window
-#### Supported Signatures
 ```sql
-function row_number() returns decimal(38, 0)
+function ratio_to_report(<decimal(38, 0)>) returns decimal(38, 0)
 ```
+Returns a cumulative ratio_to_report of a column
+
+```sql
+function ratio_to_report(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
+```
+Returns a cumulative ratio_to_report of a column
+
+```sql
+function ratio_to_report(<double>) returns double
+```
+Returns a cumulative ratio_to_report of a column
+
+```sql
+function ratio_to_report(<double, decimal(38, 0)>) returns double
+```
+Returns a cumulative ratio_to_report of a column
+
+## `row_number`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/row_number)
+
+```sql
+function row_number(<>) returns decimal(38, 0)
+```
+Returns the position of this row in the window
 
 

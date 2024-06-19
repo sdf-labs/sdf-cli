@@ -67,18 +67,20 @@ Let's try these options. Start by creating a new SDF workspace with a sample pro
 		```
     After running the command, you will see the following output:
     
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-    Created lineage/checks/check_sink_phone_is_pii.sql
-    Created lineage/src/knis.sql
-    Created lineage/src/middle.sql
-    Created lineage/src/sink.sql
-    Created lineage/src/source.sql
-    Created lineage/workspace.sdf.yml
-   Finished new in 0.105 secs
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/checks/check_sink_phone_is_pii.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/src/knis.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/src/middle.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/src/sink.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/src/source.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/workspace.sdf.yml
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.093&nbsp;secs
 
 </code>
 </pre>
+</div>
   </Step>
 
   <Step title="Change Directory">
@@ -97,17 +99,19 @@ sdf compile
 ```
     Reviewing this output, multiple files have been compiled and SDF has statically analyzed the queries.
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 4 model files, 1 .sdf file
-  Compiling lineage.pub.source (./src/source.sql)
-  Compiling lineage.pub.middle (./src/middle.sql)
-  Compiling lineage.pub.knis (./src/knis.sql)
-  Compiling lineage.pub.sink (./src/sink.sql)
-   Finished 4 models [4 succeeded] in 0.602 secs
+Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.source&nbsp;(./src/source.sql)
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.middle&nbsp;(./src/middle.sql)
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.knis&nbsp;(./src/knis.sql)
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.sink&nbsp;(./src/sink.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;4&nbsp;models&nbsp;[4&nbsp;succeeded]&nbsp;in&nbsp;0.197&nbsp;secs
 
 </code>
 </pre>
+</div>
 
     Add the `--show all` command to display all information after compile
 

@@ -3,539 +3,931 @@ title: "Math Functions"
 ---
 
 ## `abs`
-
-#### Supported Signatures
-```sql
-function abs $1($1) returns $1
-	where $1 in (bigint, float64)
-```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#abs)
 
-## `acos`
-
-#### Supported Signatures
 ```sql
-function acos $1($1) returns double
-	where $1 in (double, bigint)
+function abs<$1> (<$1>) returns $1
+	where $1 in (bigint, float64)
 ```
+
+
+## `acos`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#acos)
 
-## `acosh`
-
-#### Supported Signatures
 ```sql
-function acosh $1($1) returns double
+function acos<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
+
+
+## `acosh`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#acosh)
 
-## `asin`
-
-#### Supported Signatures
 ```sql
-function asin $1($1) returns double
+function acosh<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
+
+
+## `asin`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#asin)
 
-## `asinh`
-
-#### Supported Signatures
 ```sql
-function asinh $1($1) returns double
+function asin<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
+
+
+## `asinh`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#asinh)
 
-## `atan`
-
-#### Supported Signatures
 ```sql
-function atan $1($1) returns double
+function asinh<$1> (<$1>) returns double
 	where $1 in (double, bigint)
 ```
+
+
+## `atan`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#atan)
 
-## `atan2`
-
-#### Supported Signatures
 ```sql
-function atan2 $1, $2($1, $2) returns double
-	where $1 in (bigint, double)
-	and $2 in (bigint, double)
+function atan<$1> (<$1>) returns double
+	where $1 in (double, bigint)
 ```
+
+
+## `atan2`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#atan2)
 
-## `atanh`
-
-#### Supported Signatures
 ```sql
-function atanh $1($1) returns double
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#atanh)
-
-## `cbrt`
-
-#### Supported Signatures
-```sql
-function cbrt $1($1) returns double
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cbrt)
-
-## `ceil`
-
-#### Supported Signatures
-```sql
-function ceil(bigint) returns double
-function ceil $1($1) returns $1
-	where $1 in (double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ceil)
-
-## `ceiling`
-
-#### Supported Signatures
-```sql
-function ceiling(bigint) returns double
-function ceiling $1($1) returns $1
-	where $1 in (double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ceiling)
-
-## `cos`
-
-#### Supported Signatures
-```sql
-function cos $1($1) returns double
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cos)
-
-## `cosh`
-
-#### Supported Signatures
-```sql
-function cosh $1($1) returns double
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cosh)
-
-## `cot`
-
-#### Supported Signatures
-```sql
-function cot $1($1) returns double
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cot)
-
-## `coth`
-
-#### Supported Signatures
-```sql
-function coth $1($1) returns double
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#coth)
-
-## `csc`
-
-#### Supported Signatures
-```sql
-function csc $1($1) returns double
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#csc)
-
-## `csch`
-
-#### Supported Signatures
-```sql
-function csch $1($1) returns double
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#csch)
-
-## `div`
-
-#### Supported Signatures
-```sql
-function div $1($1, $1) returns $1
-	where $1 in (bigint)
-function div(bigint, decimal(p,s)) returns decimal(p,s)
-function div(decimal(p,s), bigint) returns decimal(p,s)
-function div(decimal(p,s), bigint) returns decimal(p,s)
-function div(bigint, decimal(p,s)) returns decimal(p,s)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#div)
-
-## `exp`
-
-#### Supported Signatures
-```sql
-function exp(bigint) returns double
-function exp $1($1) returns $1
-	where $1 in (double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#exp)
-
-## `floor`
-
-#### Supported Signatures
-```sql
-function floor $1($1) returns $1
-	where $1 in (double)
-function floor(bigint) returns double
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#floor)
-
-## `greatest`
-
-#### Supported Signatures
-```sql
-function greatest $1($1, ...) returns $1
-	where $1 in (bigint, double)
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#greatest)
-
-## `ieee_divide`
-
-#### Supported Signatures
-```sql
-function ieee_divide $1, $2($1, $2) returns double
+function atan2<$1, $2> (<$1, $2>) returns double
 	where $1 in (bigint, double)
 	and $2 in (bigint, double)
 ```
+
+
+## `atanh`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#atanh)
+
+```sql
+function atanh<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `cbrt`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cbrt)
+
+```sql
+function cbrt<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `ceil`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ceil)
+
+```sql
+function ceil(<bigint>) returns double
+```
+
+
+```sql
+function ceil<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## `ceiling`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ceiling)
+
+```sql
+function ceiling(<bigint>) returns double
+```
+
+
+```sql
+function ceiling<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## `cos`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cos)
+
+```sql
+function cos<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `cosh`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cosh)
+
+```sql
+function cosh<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `cot`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#cot)
+
+```sql
+function cot<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `coth`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#coth)
+
+```sql
+function coth<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `csc`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#csc)
+
+```sql
+function csc<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `csch`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#csch)
+
+```sql
+function csch<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `div`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#div)
+
+```sql
+function div<$1> (<$1, $1>) returns $1
+	where $1 in (bigint)
+```
+
+
+```sql
+function div(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function div(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function div(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function div(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+## `exp`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#exp)
+
+```sql
+function exp(<bigint>) returns double
+```
+
+
+```sql
+function exp<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## `floor`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#floor)
+
+```sql
+function floor<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function floor(<bigint>) returns double
+```
+
+
+## `greatest`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#greatest)
+
+```sql
+function greatest<$1> ($1, ...) returns $1
+	where $1 in (bigint, double)
+```
+
+
+## `ieee_divide`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ieee_divide)
 
-## `is_inf`
-
-#### Supported Signatures
 ```sql
-function is_inf $1($1) returns bool
+function ieee_divide<$1, $2> (<$1, $2>) returns double
 	where $1 in (bigint, double)
+	and $2 in (bigint, double)
 ```
+
+
+## `is_inf`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#is_inf)
 
-## `is_nan`
-
-#### Supported Signatures
 ```sql
-function is_nan $1($1) returns bool
+function is_inf<$1> (<$1>) returns bool
 	where $1 in (bigint, double)
 ```
+
+
+## `is_nan`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#is_nan)
 
-## `least`
-
-#### Supported Signatures
 ```sql
-function least $1($1, ...) returns $1
+function is_nan<$1> (<$1>) returns bool
 	where $1 in (bigint, double)
 ```
+
+
+## `least`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#least)
 
-## `ln`
-
-#### Supported Signatures
 ```sql
-function ln(bigint) returns double
-function ln $1($1) returns double
-	where $1 in (double)
+function least<$1> ($1, ...) returns $1
+	where $1 in (bigint, double)
 ```
+
+
+## `ln`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#ln)
 
-## `log`
-
-#### Supported Signatures
 ```sql
-function log(bigint) returns double
-function log $1($1) returns double
-	where $1 in (double)
-function log $1($1, $1) returns $1
-	where $1 in (double)
-function log(bigint, bigint) returns double
-function log(bigint, decimal(p,s)) returns decimal(p,s)
-function log(decimal(p,s), bigint) returns decimal(p,s)
-function log(decimal(p,s), bigint) returns decimal(p,s)
-function log(bigint, decimal(p,s)) returns decimal(p,s)
-function log(double, bigint) returns double
-function log(bigint, double) returns double
-function log(decimal(p,s), double) returns double
-function log(double, decimal(p,s)) returns double
-function log(double, decimal(p,s)) returns double
-function log(decimal(p,s), double) returns double
+function ln(<bigint>) returns double
 ```
+
+
+```sql
+function ln<$1> (<$1>) returns double
+	where $1 in (double)
+```
+
+
+## `log`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#log)
 
-## `log10`
-
-#### Supported Signatures
 ```sql
-function log10(bigint) returns double
-function log10 $1($1) returns $1
+function log(<bigint>) returns double
+```
+
+
+```sql
+function log<$1> (<$1>) returns double
 	where $1 in (double)
 ```
+
+
+```sql
+function log<$1> (<$1, $1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function log(<bigint, bigint>) returns double
+```
+
+
+```sql
+function log(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function log(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function log(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function log(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function log(<double, bigint>) returns double
+```
+
+
+```sql
+function log(<bigint, double>) returns double
+```
+
+
+```sql
+function log(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function log(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function log(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function log(<decimal(p,s), double>) returns double
+```
+
+
+## `log10`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#log10)
 
-## `mod`
-
-#### Supported Signatures
 ```sql
-function mod $1($1, $1) returns $1
-	where $1 in (bigint)
-function mod(bigint, decimal(p,s)) returns decimal(p,s)
-function mod(decimal(p,s), bigint) returns decimal(p,s)
-function mod(decimal(p,s), bigint) returns decimal(p,s)
-function mod(bigint, decimal(p,s)) returns decimal(p,s)
+function log10(<bigint>) returns double
 ```
+
+
+```sql
+function log10<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## `mod`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#mod)
 
-## `pow`
-
-#### Supported Signatures
 ```sql
-function pow $1($1, $1) returns $1
-	where $1 in (double)
-function pow(bigint, bigint) returns double
-function pow(bigint, decimal(p,s)) returns decimal(p,s)
-function pow(decimal(p,s), bigint) returns decimal(p,s)
-function pow(decimal(p,s), bigint) returns decimal(p,s)
-function pow(bigint, decimal(p,s)) returns decimal(p,s)
-function pow(double, bigint) returns double
-function pow(bigint, double) returns double
-function pow(double, decimal(p,s)) returns double
-function pow(decimal(p,s), double) returns double
-function pow(double, decimal(p,s)) returns double
-function pow(decimal(p,s), double) returns double
+function mod<$1> (<$1, $1>) returns $1
+	where $1 in (bigint)
 ```
+
+
+```sql
+function mod(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function mod(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function mod(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function mod(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+## `pow`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#pow)
 
-## `power`
-
-#### Supported Signatures
 ```sql
-function power $1($1, $1) returns $1
+function pow<$1> (<$1, $1>) returns $1
 	where $1 in (double)
-function power(bigint, bigint) returns double
-function power(bigint, decimal(p,s)) returns decimal(p,s)
-function power(decimal(p,s), bigint) returns decimal(p,s)
-function power(decimal(p,s), bigint) returns decimal(p,s)
-function power(bigint, decimal(p,s)) returns decimal(p,s)
-function power(double, bigint) returns double
-function power(bigint, double) returns double
-function power(double, decimal(p,s)) returns double
-function power(decimal(p,s), double) returns double
-function power(double, decimal(p,s)) returns double
-function power(decimal(p,s), double) returns double
 ```
+
+
+```sql
+function pow(<bigint, bigint>) returns double
+```
+
+
+```sql
+function pow(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function pow(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function pow(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function pow(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function pow(<double, bigint>) returns double
+```
+
+
+```sql
+function pow(<bigint, double>) returns double
+```
+
+
+```sql
+function pow(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function pow(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function pow(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function pow(<decimal(p,s), double>) returns double
+```
+
+
+## `power`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#power)
 
-## `rand`
-
-#### Supported Signatures
 ```sql
-function rand() returns double
+function power<$1> (<$1, $1>) returns $1
+	where $1 in (double)
 ```
+
+
+```sql
+function power(<bigint, bigint>) returns double
+```
+
+
+```sql
+function power(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function power(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function power(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function power(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function power(<double, bigint>) returns double
+```
+
+
+```sql
+function power(<bigint, double>) returns double
+```
+
+
+```sql
+function power(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function power(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function power(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function power(<decimal(p,s), double>) returns double
+```
+
+
+## `rand`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#rand)
 
-## `range_bucket`
-
-#### Supported Signatures
 ```sql
-function range_bucket($1, array<$1>) returns int64
+function rand(<>) returns double
 ```
+
+
+## `range_bucket`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#range_bucket)
 
-## `round`
-
-#### Supported Signatures
 ```sql
-function round(bigint) returns double
-function round $1($1) returns $1
-	where $1 in (double)
-function round(bigint, bigint) returns double
-function round $1($1, bigint) returns $1
-	where $1 in (double)
-function round(bigint, bigint, rounding_mode string) returns double
-	where rounding_mode in (round_half_even, round_half_away_from_zero)
-function round $1($1, bigint, rounding_mode string) returns $1
-	where rounding_mode in (round_half_even, round_half_away_from_zero)
-	where $1 in (double)
+function range_bucket(<$1, array<$1>>) returns int64
 ```
+
+
+## `round`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#round)
 
-## `safe_add`
-
-#### Supported Signatures
 ```sql
-function safe_add $1($1, $1) returns $1
-	where $1 in (bigint, double)
-function safe_add(bigint, decimal(p,s)) returns decimal(p,s)
-function safe_add(decimal(p,s), bigint) returns decimal(p,s)
-function safe_add(decimal(p,s), bigint) returns decimal(p,s)
-function safe_add(bigint, decimal(p,s)) returns decimal(p,s)
-function safe_add(double, bigint) returns double
-function safe_add(bigint, double) returns double
-function safe_add(double, decimal(p,s)) returns double
-function safe_add(decimal(p,s), double) returns double
-function safe_add(double, decimal(p,s)) returns double
-function safe_add(decimal(p,s), double) returns double
+function round(<bigint>) returns double
 ```
+
+
+```sql
+function round<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function round(<bigint, bigint>) returns double
+```
+
+
+```sql
+function round<$1> (<$1, bigint>) returns $1
+	where $1 in (double)
+```
+
+
+```sql
+function round(<bigint, bigint, rounding_mode string>) returns double
+	where rounding_mode in (round_half_even, round_half_away_from_zero)
+```
+
+
+```sql
+function round<$1> (<$1, bigint, rounding_mode string>) returns $1
+	where rounding_mode in (round_half_even, round_half_away_from_zero)
+	where $1 in (double)
+```
+
+
+## `safe_add`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_add)
 
-## `safe_divide`
-
-#### Supported Signatures
 ```sql
-function safe_divide $1($1, $1) returns double
+function safe_add<$1> (<$1, $1>) returns $1
 	where $1 in (bigint, double)
-function safe_divide(bigint, decimal(p,s)) returns decimal(p,s)
-function safe_divide(decimal(p,s), bigint) returns decimal(p,s)
-function safe_divide(decimal(p,s), bigint) returns decimal(p,s)
-function safe_divide(bigint, decimal(p,s)) returns decimal(p,s)
-function safe_divide(double, bigint) returns double
-function safe_divide(bigint, double) returns double
-function safe_divide(double, decimal(p,s)) returns double
-function safe_divide(decimal(p,s), double) returns double
-function safe_divide(double, decimal(p,s)) returns double
-function safe_divide(decimal(p,s), double) returns double
 ```
+
+
+```sql
+function safe_add(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_add(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_add(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_add(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_add(<double, bigint>) returns double
+```
+
+
+```sql
+function safe_add(<bigint, double>) returns double
+```
+
+
+```sql
+function safe_add(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_add(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function safe_add(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_add(<decimal(p,s), double>) returns double
+```
+
+
+## `safe_divide`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_divide)
 
-## `safe_multiply`
-
-#### Supported Signatures
 ```sql
-function safe_multiply $1($1, $1) returns $1
+function safe_divide<$1> (<$1, $1>) returns double
 	where $1 in (bigint, double)
-function safe_multiply(bigint, decimal(p,s)) returns decimal(p,s)
-function safe_multiply(decimal(p,s), bigint) returns decimal(p,s)
-function safe_multiply(decimal(p,s), bigint) returns decimal(p,s)
-function safe_multiply(bigint, decimal(p,s)) returns decimal(p,s)
-function safe_multiply(double, bigint) returns double
-function safe_multiply(bigint, double) returns double
-function safe_multiply(double, decimal(p,s)) returns double
-function safe_multiply(decimal(p,s), double) returns double
-function safe_multiply(double, decimal(p,s)) returns double
-function safe_multiply(decimal(p,s), double) returns double
 ```
+
+
+```sql
+function safe_divide(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_divide(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_divide(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_divide(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_divide(<double, bigint>) returns double
+```
+
+
+```sql
+function safe_divide(<bigint, double>) returns double
+```
+
+
+```sql
+function safe_divide(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_divide(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function safe_divide(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_divide(<decimal(p,s), double>) returns double
+```
+
+
+## `safe_multiply`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_multiply)
 
-## `safe_negate`
-
-#### Supported Signatures
 ```sql
-function safe_negate $1($1) returns $1
+function safe_multiply<$1> (<$1, $1>) returns $1
 	where $1 in (bigint, double)
 ```
+
+
+```sql
+function safe_multiply(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_multiply(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_multiply(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_multiply(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_multiply(<double, bigint>) returns double
+```
+
+
+```sql
+function safe_multiply(<bigint, double>) returns double
+```
+
+
+```sql
+function safe_multiply(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_multiply(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function safe_multiply(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_multiply(<decimal(p,s), double>) returns double
+```
+
+
+## `safe_negate`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_negate)
 
-## `safe_subtract`
-
-#### Supported Signatures
 ```sql
-function safe_subtract $1($1, $1) returns $1
+function safe_negate<$1> (<$1>) returns $1
 	where $1 in (bigint, double)
-function safe_subtract(bigint, decimal(p,s)) returns decimal(p,s)
-function safe_subtract(decimal(p,s), bigint) returns decimal(p,s)
-function safe_subtract(decimal(p,s), bigint) returns decimal(p,s)
-function safe_subtract(bigint, decimal(p,s)) returns decimal(p,s)
-function safe_subtract(double, bigint) returns double
-function safe_subtract(bigint, double) returns double
-function safe_subtract(double, decimal(p,s)) returns double
-function safe_subtract(decimal(p,s), double) returns double
-function safe_subtract(double, decimal(p,s)) returns double
-function safe_subtract(decimal(p,s), double) returns double
 ```
+
+
+## `safe_subtract`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#safe_subtract)
 
-## `sec`
-
-#### Supported Signatures
 ```sql
-function sec $1($1) returns double
+function safe_subtract<$1> (<$1, $1>) returns $1
 	where $1 in (bigint, double)
 ```
+
+
+```sql
+function safe_subtract(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_subtract(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_subtract(<decimal(p,s), bigint>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_subtract(<bigint, decimal(p,s)>) returns decimal(p,s)
+```
+
+
+```sql
+function safe_subtract(<double, bigint>) returns double
+```
+
+
+```sql
+function safe_subtract(<bigint, double>) returns double
+```
+
+
+```sql
+function safe_subtract(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_subtract(<decimal(p,s), double>) returns double
+```
+
+
+```sql
+function safe_subtract(<double, decimal(p,s)>) returns double
+```
+
+
+```sql
+function safe_subtract(<decimal(p,s), double>) returns double
+```
+
+
+## `sec`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sec)
 
-## `sech`
-
-#### Supported Signatures
 ```sql
-function sech $1($1) returns double
+function sec<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
+
+
+## `sech`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sech)
 
-## `sign`
-
-#### Supported Signatures
 ```sql
-function sign $1($1) returns $1
+function sech<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
+
+
+## `sign`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sign)
 
-## `sin`
-
-#### Supported Signatures
 ```sql
-function sin $1($1) returns double
+function sign<$1> (<$1>) returns $1
 	where $1 in (bigint, double)
 ```
+
+
+## `sin`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sin)
 
-## `sinh`
-
-#### Supported Signatures
 ```sql
-function sinh $1($1) returns double
+function sin<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
+
+
+## `sinh`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sinh)
 
-## `sqrt`
-
-#### Supported Signatures
 ```sql
-function sqrt(bigint) returns double
-function sqrt $1($1) returns $1
-	where $1 in (double)
+function sinh<$1> (<$1>) returns double
+	where $1 in (bigint, double)
 ```
+
+
+## `sqrt`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#sqrt)
 
-## `tan`
-
-#### Supported Signatures
 ```sql
-function tan $1($1) returns double
-	where $1 in (bigint, double)
+function sqrt(<bigint>) returns double
 ```
+
+
+```sql
+function sqrt<$1> (<$1>) returns $1
+	where $1 in (double)
+```
+
+
+## `tan`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#tan)
 
-## `tanh`
-
-#### Supported Signatures
 ```sql
-function tanh $1($1) returns double
+function tan<$1> (<$1>) returns double
 	where $1 in (bigint, double)
 ```
+
+
+## `tanh`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#tanh)
 
-## `trunc`
-
-#### Supported Signatures
 ```sql
-function trunc(bigint) returns double
-function trunc $1($1) returns $1
-	where $1 in (double)
-function trunc(bigint, bigint) returns double
-function trunc $1($1, bigint) returns $1
+function tanh<$1> (<$1>) returns double
+	where $1 in (bigint, double)
+```
+
+
+## `trunc`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#trunc)
+
+```sql
+function trunc(<bigint>) returns double
+```
+
+
+```sql
+function trunc<$1> (<$1>) returns $1
 	where $1 in (double)
 ```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#trunc)
+
+
+```sql
+function trunc(<bigint, bigint>) returns double
+```
+
+
+```sql
+function trunc<$1> (<$1, bigint>) returns $1
+	where $1 in (double)
+```
+
 
 

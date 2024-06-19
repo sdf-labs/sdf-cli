@@ -3,223 +3,239 @@ title: "Temporal Functions"
 ---
 
 ## `add_months`
-
-#### Supported Signatures
-```sql
-function add_months(date, bigint) returns timestamp
-function add_months(timestamp, bigint) returns timestamp
-```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_ADD_MONTHS.html)
 
-## `convert_timezone`
-
-#### Supported Signatures
 ```sql
-function convert_timezone(varchar, varchar) returns timestamp
-function convert_timezone(varchar, varchar, varchar) returns timestamp
+function add_months(<date, bigint>) returns timestamp
 ```
+
+
+```sql
+function add_months(<timestamp, bigint>) returns timestamp
+```
+
+
+## `convert_timezone`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/CONVERT_TIMEZONE.html)
 
-## `current_date`
-
-#### Supported Signatures
 ```sql
-function current_date() returns date
+function convert_timezone(<varchar, varchar>) returns timestamp
 ```
+
+
+```sql
+function convert_timezone(<varchar, varchar, varchar>) returns timestamp
+```
+
+
+## `current_date`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_CURRENT_DATE_function.html)
 
-## `current_datetime`
-
-#### Supported Signatures
 ```sql
-function current_datetime() returns timestamp
+function current_date(<>) returns date
 ```
+
+
+## `current_datetime`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
+
+```sql
+function current_datetime(<>) returns timestamp
+```
+
 
 ## `current_time`
-
-#### Supported Signatures
-```sql
-function current_time() returns time
-```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
+
+```sql
+function current_time(<>) returns time
+```
+
 
 ## `date`
-
-#### Supported Signatures
-```sql
-function date($1) returns date
-```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
+
+```sql
+function date(<$1>) returns date
+```
+
 
 ## `date_add`
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
-#### Supported Signatures
 ```sql
-function date_add $1(varchar, bigint, $1) returns date
+function date_add<$1> (<varchar, bigint, $1>) returns date
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
 	where $1 in (date, timestamp, time, varchar)
 ```
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
+
 
 ## `date_cmp`
-
-#### Supported Signatures
-```sql
-function date_cmp(varchar, varchar) returns bigint
-```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATE_CMP.html)
 
-## `date_cmp_timestamp`
-
-#### Supported Signatures
 ```sql
-function date_cmp_timestamp(varchar, varchar) returns bigint
+function date_cmp(<varchar, varchar>) returns bigint
 ```
+
+
+## `date_cmp_timestamp`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATE_CMP_TIMESTAMP.html)
 
-## `date_cmp_timestampz`
-
-#### Supported Signatures
 ```sql
-function date_cmp_timestampz(varchar, varchar) returns bigint
+function date_cmp_timestamp(<varchar, varchar>) returns bigint
 ```
+
+
+## `date_cmp_timestampz`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
-## `date_part`
-
-#### Supported Signatures
 ```sql
-function date_part(varchar, varchar) returns float
-	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, dayofweek, dow, dw, weekday, dayofyear, doy, dy, yearday, days, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
+function date_cmp_timestampz(<varchar, varchar>) returns bigint
 ```
+
+
+## `date_part`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATE_PART_function.html)
 
-## `date_part_year`
-
-#### Supported Signatures
 ```sql
-function date_part_year(varchar) returns bigint
+function date_part(<varchar, varchar>) returns float
+	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, dayofweek, dow, dw, weekday, dayofyear, doy, dy, yearday, days, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
 ```
+
+
+## `date_part_year`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATE_PART_YEAR.html)
 
-## `dateadd`
-
-#### Supported Signatures
 ```sql
-function dateadd $1(varchar, bigint, $1) returns date
+function date_part_year(<varchar>) returns bigint
+```
+
+
+## `dateadd`
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATEADD_function.html)
+
+```sql
+function dateadd<$1> (<varchar, bigint, $1>) returns date
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
 	where $1 in (date, timestamp, time, varchar)
 ```
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATEADD_function.html)
+
 
 ## `datediff`
+[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATEDIFF_function.html)
 
-#### Supported Signatures
 ```sql
-function datediff $1, $2(varchar, $1, $2) returns bigint
+function datediff<$1, $2> (<varchar, $1, $2>) returns bigint
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
 	where $1 in (date, timestamp, time with time zone, time, varchar)
 	and $2 in (date, timestamp, time with time zone, time, varchar)
 ```
-[🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_DATEDIFF_function.html)
+
 
 ## `getdate`
-
-#### Supported Signatures
-```sql
-function getdate() returns timestamp
-```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_GETDATE.html)
 
-## `sysdate`
-
-#### Supported Signatures
 ```sql
-function sysdate() returns date
+function getdate(<>) returns timestamp
 ```
+
+
+## `sysdate`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_SYSDATE.html)
 
-## `timeofday`
-
-#### Supported Signatures
 ```sql
-function timeofday() returns varchar
+function sysdate(<>) returns date
 ```
+
+
+## `timeofday`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TIMEOFDAY_function.html)
 
-## `timestamp_cmp`
-
-#### Supported Signatures
 ```sql
-function timestamp_cmp(varchar, varchar) returns bigint
+function timeofday(<>) returns varchar
 ```
+
+
+## `timestamp_cmp`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TIMESTAMP_CMP.html)
 
-## `timestamp_cmp_date`
-
-#### Supported Signatures
 ```sql
-function timestamp_cmp_date(varchar, varchar) returns bigint
+function timestamp_cmp(<varchar, varchar>) returns bigint
 ```
+
+
+## `timestamp_cmp_date`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TIMESTAMP_CMP_DATE.html)
 
-## `timestamp_cmp_timestampz`
-
-#### Supported Signatures
 ```sql
-function timestamp_cmp_timestampz(varchar, varchar) returns bigint
+function timestamp_cmp_date(<varchar, varchar>) returns bigint
 ```
+
+
+## `timestamp_cmp_timestampz`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
+
+```sql
+function timestamp_cmp_timestampz(<varchar, varchar>) returns bigint
+```
+
 
 ## `timestampz_cmp`
-
-#### Supported Signatures
-```sql
-function timestampz_cmp(varchar, varchar) returns bigint
-```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
+
+```sql
+function timestampz_cmp(<varchar, varchar>) returns bigint
+```
+
 
 ## `timestampz_cmp_date`
-
-#### Supported Signatures
-```sql
-function timestampz_cmp_date(varchar, varchar) returns bigint
-```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
+
+```sql
+function timestampz_cmp_date(<varchar, varchar>) returns bigint
+```
+
 
 ## `timestampz_cmp_timestamp`
-
-#### Supported Signatures
-```sql
-function timestampz_cmp_timestamp(varchar, varchar) returns bigint
-```
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions.html)
 
-## `timezone`
-
-#### Supported Signatures
 ```sql
-function timezone(varchar, varchar) returns timestamp
+function timestampz_cmp_timestamp(<varchar, varchar>) returns bigint
 ```
+
+
+## `timezone`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TIMEZONE.html)
 
-## `to_date`
-
-#### Supported Signatures
 ```sql
-function to_date(varchar, varchar) returns date
-function to_date(varchar, varchar, boolean) returns date
+function timezone(<varchar, varchar>) returns timestamp
 ```
+
+
+## `to_date`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_DATE_function.html)
 
-## `to_timestamp`
-
-#### Supported Signatures
 ```sql
-function to_timestamp(varchar, varchar) returns timestamp
-function to_timestamp(varchar, varchar, boolean) returns timestamp
+function to_date(<varchar, varchar>) returns date
 ```
+
+
+```sql
+function to_date(<varchar, varchar, boolean>) returns date
+```
+
+
+## `to_timestamp`
 [🔗 Official Documentation](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_TIMESTAMP.html)
+
+```sql
+function to_timestamp(<varchar, varchar>) returns timestamp
+```
+
+
+```sql
+function to_timestamp(<varchar, varchar, boolean>) returns timestamp
+```
+
 
 

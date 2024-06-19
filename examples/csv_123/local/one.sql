@@ -1,1 +1,0 @@
-create table one with (format='CSV', location='data/a.csv');

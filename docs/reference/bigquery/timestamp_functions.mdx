@@ -3,131 +3,163 @@ title: "Timestamp Functions"
 ---
 
 ## `current_timestamp`
-
-#### Supported Signatures
-```sql
-function current_timestamp() returns timestamp
-```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#current_timestamp)
 
-## `format_timestamp`
-
-#### Supported Signatures
 ```sql
-function format_timestamp $1(string, $1) returns string
-	where $1 in (timestamp, datetime)
-function format_timestamp(string, timestamp, time_zone string) returns string
+function current_timestamp(<>) returns timestamp
 ```
+
+
+## `format_timestamp`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#format_timestamp)
 
-## `parse_timestamp`
-
-#### Supported Signatures
 ```sql
-function parse_timestamp(string, string) returns timestamp
-function parse_timestamp(string, string, time_zone string) returns timestamp
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#parse_timestamp)
-
-## `timestamp`
-
-#### Supported Signatures
-```sql
-function timestamp(string) returns timestamp
-function timestamp(string, time_zone string) returns timestamp
-function timestamp(date) returns timestamp
-function timestamp(date, time_zone string) returns timestamp
-function timestamp(datetime) returns timestamp
-function timestamp(datetime, time_zone string) returns timestamp
-```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp)
-
-## `timestamp_add`
-
-#### Supported Signatures
-```sql
-function timestamp_add $1($1, interval) returns $1
+function format_timestamp<$1> (<string, $1>) returns string
 	where $1 in (timestamp, datetime)
 ```
+
+
+```sql
+function format_timestamp(<string, timestamp, time_zone string>) returns string
+```
+
+
+## `parse_timestamp`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#parse_timestamp)
+
+```sql
+function parse_timestamp(<string, string>) returns timestamp
+```
+
+
+```sql
+function parse_timestamp(<string, string, time_zone string>) returns timestamp
+```
+
+
+## `timestamp`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp)
+
+```sql
+function timestamp(<string>) returns timestamp
+```
+
+
+```sql
+function timestamp(<string, time_zone string>) returns timestamp
+```
+
+
+```sql
+function timestamp([date]) returns timestamp
+```
+
+
+```sql
+function timestamp(<date, time_zone string>) returns timestamp
+```
+
+
+```sql
+function timestamp(<datetime>) returns timestamp
+```
+
+
+```sql
+function timestamp(<datetime, time_zone string>) returns timestamp
+```
+
+
+## `timestamp_add`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp_add)
 
-## `timestamp_diff`
-
-#### Supported Signatures
 ```sql
-function timestamp_diff $1($1, $1, date_part string) returns bigint
+function timestamp_add<$1> (<$1, interval>) returns $1
+	where $1 in (timestamp, datetime)
+```
+
+
+## `timestamp_diff`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp_diff)
+
+```sql
+function timestamp_diff<$1> (<$1, $1, date_part string>) returns bigint
 	where date_part in (microsecond, millisecond, second, minute, hour, day, week, month, quarter, year)
 	where $1 in (timestamp, datetime)
 ```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp_diff)
+
 
 ## `timestamp_micros`
-
-#### Supported Signatures
-```sql
-function timestamp_micros(int64) returns timestamp
-```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp_micros)
 
-## `timestamp_millis`
-
-#### Supported Signatures
 ```sql
-function timestamp_millis(int64) returns timestamp
+function timestamp_micros(<int64>) returns timestamp
 ```
+
+
+## `timestamp_millis`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp_millis)
 
-## `timestamp_seconds`
-
-#### Supported Signatures
 ```sql
-function timestamp_seconds(int64) returns timestamp
+function timestamp_millis(<int64>) returns timestamp
 ```
+
+
+## `timestamp_seconds`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp_seconds)
 
-## `timestamp_sub`
-
-#### Supported Signatures
 ```sql
-function timestamp_sub $1($1, interval) returns $1
-	where $1 in (timestamp, datetime)
+function timestamp_seconds(<int64>) returns timestamp
 ```
+
+
+## `timestamp_sub`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp_sub)
 
-## `timestamp_trunc`
-
-#### Supported Signatures
 ```sql
-function timestamp_trunc $1($1, date_time_part string) returns $1
-	where date_time_part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+function timestamp_sub<$1> (<$1, interval>) returns $1
 	where $1 in (timestamp, datetime)
-function timestamp_trunc(timestamp, date_time_part string, time_zone string) returns timestamp
-	where date_time_part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
 ```
+
+
+## `timestamp_trunc`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#timestamp_trunc)
 
-## `unix_micros`
-
-#### Supported Signatures
 ```sql
-function unix_micros(timestamp) returns int64
+function timestamp_trunc<$1> (<$1, date_time_part string>) returns $1
+	where date_time_part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+	where $1 in (timestamp, datetime)
 ```
+
+
+```sql
+function timestamp_trunc(<timestamp, date_time_part string, time_zone string>) returns timestamp
+	where date_time_part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
+```
+
+
+## `unix_micros`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#unix_micros)
 
-## `unix_millis`
-
-#### Supported Signatures
 ```sql
-function unix_millis(timestamp) returns int64
+function unix_micros(<timestamp>) returns int64
 ```
+
+
+## `unix_millis`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#unix_millis)
 
-## `unix_seconds`
-
-#### Supported Signatures
 ```sql
-function unix_seconds(timestamp) returns int64
+function unix_millis(<timestamp>) returns int64
 ```
+
+
+## `unix_seconds`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#unix_seconds)
+
+```sql
+function unix_seconds(<timestamp>) returns int64
+```
+
 
 

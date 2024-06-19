@@ -3,35 +3,35 @@ title: "Approximate Aggregate Functions"
 ---
 
 ## `approx_count_distinct`
-
-#### Supported Signatures
-```sql
-function approx_count_distinct($1) returns bigint
-```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#approx_count_distinct)
 
-## `approx_quantiles`
-
-#### Supported Signatures
 ```sql
-function approx_quantiles($1, bigint) returns array<$1>
+function approx_count_distinct(<$1>) returns bigint
 ```
+
+
+## `approx_quantiles`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#approx_quantiles)
 
-## `approx_top_count`
-
-#### Supported Signatures
 ```sql
-function approx_top_count($1, bigint) returns array<struct<value $1, count bigint>>
+function approx_quantiles(<$1, bigint>) returns array<$1>
 ```
+
+
+## `approx_top_count`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#approx_top_count)
 
-## `approx_top_sum`
-
-#### Supported Signatures
 ```sql
-function approx_top_sum($1, bigint, bigint) returns array<struct<value $1, sum $1>>
+function approx_top_count(<$1, bigint>) returns array<struct<value $1, count bigint>>
 ```
+
+
+## `approx_top_sum`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#approx_top_sum)
+
+```sql
+function approx_top_sum(<$1, bigint, bigint>) returns array<struct<value $1, sum $1>>
+```
+
 
 

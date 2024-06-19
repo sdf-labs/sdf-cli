@@ -3,6 +3,7 @@ workspace:
   edition: "1.2"
   defaults:
     dialect: presto
+    environment: local
   description: >
     Hello World! Let's analyze the world population.
 
@@ -13,15 +14,12 @@ workspace:
     (Note: You may need to log into your aws cli before building from remote. Use 'sdf auth aws --profile <PROFILE-NAME>')
 
     Type 'sdf compile' to view schema information
-
-    Type 'sdf auth login' and 'sdf deploy --profile <local|remote>' to deploy the workspace to the sdf console
-
-    To follow along: https://docs.sdf.com/examples/hello-world
 ---
 environment:
   name: local
   includes:
     - path: local
+      type: model
     - path: local/pop.csv
       type: resource
 ---

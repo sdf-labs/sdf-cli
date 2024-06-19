@@ -3,12 +3,12 @@ title: "Temporal Functions"
 ---
 
 ## `date_sub`
+[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_sub)
 
-#### Supported Signatures
 ```sql
-function date_sub $1($1, interval) returns $1
+function date_sub<$1> (<$1, interval>) returns $1
 	where $1 in (date, datetime, timestamp)
 ```
-[🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_sub)
+
 
 

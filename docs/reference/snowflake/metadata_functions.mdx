@@ -4,26 +4,34 @@ title: "Metadata Functions"
 
 
 ## `generate_column_description`
-
-#### Description
-parse the result from INFER_SCHEMA and generate a copy-able column description
-#### Supported Signatures
-```sql
-function generate_column_description(array, varchar) returns varchar
-```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/generate_column_description)
 
-## `get_ddl`
-
-#### Description
-DDL used to create the object
-#### Supported Signatures
 ```sql
-function get_ddl(varchar, varchar) returns varchar
-function get_ddl(varchar, varchar, boolean) returns varchar
-function get_ddl(varchar, decimal(38, 0)) returns varchar
-function get_ddl(varchar, decimal(38, 0), boolean) returns varchar
+function generate_column_description(<array, varchar>) returns varchar
 ```
+parse the result from INFER_SCHEMA and generate a copy-able column description
+
+## `get_ddl`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get_ddl)
+
+```sql
+function get_ddl(<varchar, varchar>) returns varchar
+```
+DDL used to create the object
+
+```sql
+function get_ddl(<varchar, varchar, boolean>) returns varchar
+```
+DDL used to create the object
+
+```sql
+function get_ddl(<varchar, decimal(38, 0)>) returns varchar
+```
+DDL used to create the object
+
+```sql
+function get_ddl(<varchar, decimal(38, 0), boolean>) returns varchar
+```
+DDL used to create the object
 
 

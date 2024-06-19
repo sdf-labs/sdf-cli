@@ -4,952 +4,1262 @@ title: "Geospatial Functions"
 
 
 ## `h3_cell_to_boundary`
-
-#### Description
-Returns a polygon containing the h3 integer cell boundaries
-#### Supported Signatures
-```sql
-function h3_cell_to_boundary(decimal(38, 0)) returns geography
-function h3_cell_to_boundary(varchar) returns geography
-```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_cell_to_boundary)
 
-## `h3_cell_to_children`
-
-#### Description
-Returns the H3 children cells as integers for a given H3 index
-#### Supported Signatures
 ```sql
-function h3_cell_to_children(decimal(38, 0), decimal(38, 0)) returns array
+function h3_cell_to_boundary(<decimal(38, 0)>) returns geography
 ```
+Returns a polygon containing the h3 integer cell boundaries
+
+```sql
+function h3_cell_to_boundary(<varchar>) returns geography
+```
+Returns a polygon containing the h3 string cell boundaries
+
+## `h3_cell_to_children`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_cell_to_children)
 
-## `h3_cell_to_children_string`
-
-#### Description
-Returns the H3 children cells as strings for a given H3 index
-#### Supported Signatures
 ```sql
-function h3_cell_to_children_string(varchar, decimal(38, 0)) returns array
+function h3_cell_to_children(<decimal(38, 0), decimal(38, 0)>) returns array
 ```
+Returns the H3 children cells as integers for a given H3 index
+
+## `h3_cell_to_children_string`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_cell_to_children_string)
 
-## `h3_cell_to_parent`
-
-#### Description
-Returns the H3 parent cell as an integer for a given H3 index
-#### Supported Signatures
 ```sql
-function h3_cell_to_parent(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
-function h3_cell_to_parent(varchar, decimal(38, 0)) returns varchar
+function h3_cell_to_children_string(<varchar, decimal(38, 0)>) returns array
 ```
+Returns the H3 children cells as strings for a given H3 index
+
+## `h3_cell_to_parent`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_cell_to_parent)
 
-## `h3_cell_to_point`
-
-#### Description
-Returns a point (geography) corresponding to the center of the h3 integer cell passed
-#### Supported Signatures
 ```sql
-function h3_cell_to_point(decimal(38, 0)) returns geography
-function h3_cell_to_point(varchar) returns geography
+function h3_cell_to_parent(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
+Returns the H3 parent cell as an integer for a given H3 index
+
+```sql
+function h3_cell_to_parent(<varchar, decimal(38, 0)>) returns varchar
+```
+Returns the H3 parent cell as a string for a given H3 index
+
+## `h3_cell_to_point`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_cell_to_point)
 
-## `h3_coverage`
-
-#### Description
-Returns the full spherical based covering of H3 cells as integers for any geography type
-#### Supported Signatures
 ```sql
-function h3_coverage(geography, decimal(38, 0)) returns array
+function h3_cell_to_point(<decimal(38, 0)>) returns geography
 ```
+Returns a point (geography) corresponding to the center of the h3 integer cell passed
+
+```sql
+function h3_cell_to_point(<varchar>) returns geography
+```
+Returns a point (geography) corresponding to the center of the h3 string cell passed
+
+## `h3_coverage`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_coverage)
 
-## `h3_coverage_strings`
-
-#### Description
-Returns the full spherical based covering of H3 cells as strings for any geography type
-#### Supported Signatures
 ```sql
-function h3_coverage_strings(geography, decimal(38, 0)) returns array
+function h3_coverage(<geography, decimal(38, 0)>) returns array
 ```
+Returns the full spherical based covering of H3 cells as integers for any geography type
+
+## `h3_coverage_strings`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_coverage_strings)
 
-## `h3_get_resolution`
-
-#### Description
-Returns the cell resolution for a given H3 integer cell
-#### Supported Signatures
 ```sql
-function h3_get_resolution(decimal(38, 0)) returns decimal(38, 0)
-function h3_get_resolution(varchar) returns decimal(38, 0)
+function h3_coverage_strings(<geography, decimal(38, 0)>) returns array
 ```
+Returns the full spherical based covering of H3 cells as strings for any geography type
+
+## `h3_get_resolution`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_get_resolution)
 
-## `h3_grid_disk`
-
-#### Description
-Returns all H3 cells that are at most k steps away from the input cell
-#### Supported Signatures
 ```sql
-function h3_grid_disk(decimal(38, 0), decimal(38, 0)) returns array
-function h3_grid_disk(varchar, decimal(38, 0)) returns array
+function h3_get_resolution(<decimal(38, 0)>) returns decimal(38, 0)
 ```
+Returns the cell resolution for a given H3 integer cell
+
+```sql
+function h3_get_resolution(<varchar>) returns decimal(38, 0)
+```
+Returns the cell resolution for a given H3 string cell
+
+## `h3_grid_disk`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_grid_disk)
 
-## `h3_grid_distance`
-
-#### Description
-Returns the number of H3 cells that are betweem two input cells
-#### Supported Signatures
 ```sql
-function h3_grid_distance(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
-function h3_grid_distance(varchar, varchar) returns decimal(38, 0)
+function h3_grid_disk(<decimal(38, 0), decimal(38, 0)>) returns array
 ```
+Returns all H3 cells that are at most k steps away from the input cell
+
+```sql
+function h3_grid_disk(<varchar, decimal(38, 0)>) returns array
+```
+Returns all H3 cells that are at most k steps away from the input cell
+
+## `h3_grid_distance`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_grid_distance)
 
-## `h3_grid_path`
-
-#### Description
-Returns all H3 cells that are along the straight line connecting both cells
-#### Supported Signatures
 ```sql
-function h3_grid_path(decimal(38, 0), decimal(38, 0)) returns array
-function h3_grid_path(varchar, varchar) returns array
+function h3_grid_distance(<decimal(38, 0), decimal(38, 0)>) returns decimal(38, 0)
 ```
+Returns the number of H3 cells that are betweem two input cells
+
+```sql
+function h3_grid_distance(<varchar, varchar>) returns decimal(38, 0)
+```
+Returns the number of H3 cells that are betweem two input cells
+
+## `h3_grid_path`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_grid_path)
 
-## `h3_int_to_string`
-
-#### Description
-Returns the H3 cell formatted as a string given its integer representation
-#### Supported Signatures
 ```sql
-function h3_int_to_string(decimal(38, 0)) returns varchar
+function h3_grid_path(<decimal(38, 0), decimal(38, 0)>) returns array
 ```
+Returns all H3 cells that are along the straight line connecting both cells
+
+```sql
+function h3_grid_path(<varchar, varchar>) returns array
+```
+Returns all H3 cells that are along the straight line connecting both cells
+
+## `h3_int_to_string`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_int_to_string)
 
-## `h3_latlng_to_cell`
-
-#### Description
-Returns an H3 index as an integer that corresponds to a given point (lat/lng) and resolution
-#### Supported Signatures
 ```sql
-function h3_latlng_to_cell(double, double, decimal(38, 0)) returns decimal(38, 0)
+function h3_int_to_string(<decimal(38, 0)>) returns varchar
 ```
+Returns the H3 cell formatted as a string given its integer representation
+
+## `h3_latlng_to_cell`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_latlng_to_cell)
 
-## `h3_latlng_to_cell_string`
-
-#### Description
-Returns an H3 index as a string that corresponds to a given point (lat/lng) and resolution
-#### Supported Signatures
 ```sql
-function h3_latlng_to_cell_string(double, double, decimal(38, 0)) returns varchar
+function h3_latlng_to_cell(<double, double, decimal(38, 0)>) returns decimal(38, 0)
 ```
+Returns an H3 index as an integer that corresponds to a given point (lat/lng) and resolution
+
+## `h3_latlng_to_cell_string`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_latlng_to_cell_string)
 
-## `h3_point_to_cell`
-
-#### Description
-Returns an H3 integer cell that corresponds to a given point (geography) and resolution
-#### Supported Signatures
 ```sql
-function h3_point_to_cell(geography, decimal(38, 0)) returns decimal(38, 0)
+function h3_latlng_to_cell_string(<double, double, decimal(38, 0)>) returns varchar
 ```
+Returns an H3 index as a string that corresponds to a given point (lat/lng) and resolution
+
+## `h3_point_to_cell`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_point_to_cell)
 
-## `h3_point_to_cell_string`
-
-#### Description
-Returns an H3 string cell that corresponds to a given point (geography) and resolution
-#### Supported Signatures
 ```sql
-function h3_point_to_cell_string(geography, decimal(38, 0)) returns varchar
+function h3_point_to_cell(<geography, decimal(38, 0)>) returns decimal(38, 0)
 ```
+Returns an H3 integer cell that corresponds to a given point (geography) and resolution
+
+## `h3_point_to_cell_string`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_point_to_cell_string)
 
-## `h3_polygon_to_cells`
-
-#### Description
-Returns the planar centroid based covering of H3 cells as integers for a polygon/multipolygon
-#### Supported Signatures
 ```sql
-function h3_polygon_to_cells(geography, decimal(38, 0)) returns array
+function h3_point_to_cell_string(<geography, decimal(38, 0)>) returns varchar
 ```
+Returns an H3 string cell that corresponds to a given point (geography) and resolution
+
+## `h3_polygon_to_cells`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_polygon_to_cells)
 
-## `h3_polygon_to_cells_strings`
-
-#### Description
-Returns the planar centroid based covering of H3 cells as strings for a polygon/multipolygon
-#### Supported Signatures
 ```sql
-function h3_polygon_to_cells_strings(geography, decimal(38, 0)) returns array
+function h3_polygon_to_cells(<geography, decimal(38, 0)>) returns array
 ```
+Returns the planar centroid based covering of H3 cells as integers for a polygon/multipolygon
+
+## `h3_polygon_to_cells_strings`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_polygon_to_cells_strings)
 
-## `h3_string_to_int`
-
-#### Description
-Returns the H3 cell formatted as an integer given its string representation
-#### Supported Signatures
 ```sql
-function h3_string_to_int(varchar) returns decimal(38, 0)
+function h3_polygon_to_cells_strings(<geography, decimal(38, 0)>) returns array
 ```
+Returns the planar centroid based covering of H3 cells as strings for a polygon/multipolygon
+
+## `h3_string_to_int`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/h3_string_to_int)
 
-## `haversine`
-
-#### Description
-Calculate great circle distance (in km) from two (lat, lon) locations (degrees).
-#### Supported Signatures
 ```sql
-function haversine(double, double, double, double) returns double
+function h3_string_to_int(<varchar>) returns decimal(38, 0)
 ```
+Returns the H3 cell formatted as an integer given its string representation
+
+## `haversine`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/haversine)
 
-## `st_area`
-
-#### Description
-Area of the object in square meters
-#### Supported Signatures
 ```sql
-function st_area(geography) returns double
-function st_area(geometry) returns double
+function haversine(<double, double, double, double>) returns double
 ```
+Calculate great circle distance (in km) from two (lat, lon) locations (degrees).
+
+## `st_area`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_area)
 
-## `st_asbinary`
-
-#### Description
-Return the WKB representation of the GEOGRAPHY object
-#### Supported Signatures
 ```sql
-function st_asbinary(geography) returns binary
-function st_asbinary(geometry) returns binary
+function st_area(<geography>) returns double
 ```
+Area of the object in square meters
+
+```sql
+function st_area(<geometry>) returns double
+```
+Area of the object in the same units as the input coordinates
+
+## `st_asbinary`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_asbinary)
 
-## `st_asewkb`
-
-#### Description
-Return the EWKB representation of the GEOGRAPHY object
-#### Supported Signatures
 ```sql
-function st_asewkb(geography) returns binary
-function st_asewkb(geometry) returns binary
+function st_asbinary(<geography>) returns binary
 ```
+Return the WKB representation of the GEOGRAPHY object
+
+```sql
+function st_asbinary(<geometry>) returns binary
+```
+Return the WKB representation of the GEOMETRY object
+
+## `st_asewkb`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_asewkb)
 
-## `st_asewkt`
-
-#### Description
-Return the WKB representation of the GEOGRAPHY object
-#### Supported Signatures
 ```sql
-function st_asewkt(geography) returns varchar
-function st_asewkt(geometry) returns varchar
+function st_asewkb(<geography>) returns binary
 ```
+Return the EWKB representation of the GEOGRAPHY object
+
+```sql
+function st_asewkb(<geometry>) returns binary
+```
+Return the EWKB representation of the GEOMETRY object
+
+## `st_asewkt`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_asewkt)
 
-## `st_asgeojson`
-
-#### Description
-Return the GeoJSON representation of the GEOGRAPHY object
-#### Supported Signatures
 ```sql
-function st_asgeojson(geography) returns object
-function st_asgeojson(geometry) returns object
+function st_asewkt(<geography>) returns varchar
 ```
+Return the WKB representation of the GEOGRAPHY object
+
+```sql
+function st_asewkt(<geometry>) returns varchar
+```
+Return the WKB representation of the GEOMETRY object
+
+## `st_asgeojson`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_asgeojson)
 
-## `st_astext`
-
-#### Description
-Return the WKT representation of the GEOGRAPHY object
-#### Supported Signatures
 ```sql
-function st_astext(geography) returns varchar
-function st_astext(geometry) returns varchar
+function st_asgeojson(<geography>) returns object
 ```
+Return the GeoJSON representation of the GEOGRAPHY object
+
+```sql
+function st_asgeojson(<geometry>) returns object
+```
+Return the GeoJSON representation of the GEOMETRY object
+
+## `st_astext`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_astext)
 
-## `st_aswkb`
-
-#### Description
-Return the WKB representation of the GEOGRAPHY object
-#### Supported Signatures
 ```sql
-function st_aswkb(geography) returns binary
-function st_aswkb(geometry) returns binary
+function st_astext(<geography>) returns varchar
 ```
+Return the WKT representation of the GEOGRAPHY object
+
+```sql
+function st_astext(<geometry>) returns varchar
+```
+Return the WKT representation of the GEOMETRY object
+
+## `st_aswkb`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_aswkb)
 
-## `st_aswkt`
-
-#### Description
-Return the WKB representation of the GEOGRAPHY object
-#### Supported Signatures
 ```sql
-function st_aswkt(geography) returns varchar
-function st_aswkt(geometry) returns varchar
+function st_aswkb(<geography>) returns binary
 ```
+Return the WKB representation of the GEOGRAPHY object
+
+```sql
+function st_aswkb(<geometry>) returns binary
+```
+Return the WKB representation of the GEOMETRY object
+
+## `st_aswkt`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_aswkt)
 
-## `st_azimuth`
-
-#### Description
-Returns the azimuth in radians of the segment defined by the given point
-#### Supported Signatures
 ```sql
-function st_azimuth(geography, geography) returns double
-function st_azimuth(geometry, geometry) returns double
+function st_aswkt(<geography>) returns varchar
 ```
+Return the WKB representation of the GEOGRAPHY object
+
+```sql
+function st_aswkt(<geometry>) returns varchar
+```
+Return the WKB representation of the GEOMETRY object
+
+## `st_azimuth`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_azimuth)
 
-## `st_buffer`
-
-#### Description
-Returns the geometry generated by the buffer operation upon the given input geometry using the diven distance
-#### Supported Signatures
 ```sql
-function st_buffer(geometry, double) returns geometry
+function st_azimuth(<geography, geography>) returns double
 ```
+Returns the azimuth in radians of the segment defined by the given point
+
+```sql
+function st_azimuth(<geometry, geometry>) returns double
+```
+Returns the azimuth in radians of the segment defined by the given point
+
+## `st_buffer`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_buffer)
 
-## `st_centroid`
-
-#### Description
-The centroid of geography
-#### Supported Signatures
 ```sql
-function st_centroid(geography) returns geography
-function st_centroid(geometry) returns geometry
+function st_buffer(<geometry, double>) returns geometry
 ```
+Returns the geometry generated by the buffer operation upon the given input geometry using the diven distance
+
+## `st_centroid`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_centroid)
 
-## `st_collect`
-
-#### Description
-Aggregates all geographies into a GeometryCollection or Multi* geography if they are all of the same single element type (e.g. Point)
-#### Supported Signatures
 ```sql
-function st_collect(geography) returns geography
-function st_collect(geography, geography) returns geography
+function st_centroid(<geography>) returns geography
 ```
+The centroid of geography
+
+```sql
+function st_centroid(<geometry>) returns geometry
+```
+The centroid of geometry
+
+## `st_collect`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_collect)
 
-## `st_contains`
-
-#### Description
-True if the first object fully contains the second
-#### Supported Signatures
 ```sql
-function st_contains(geography, geography) returns boolean
-function st_contains(geometry, geometry) returns boolean
+function st_collect(<geography>) returns geography
 ```
+Aggregates all geographies into a GeometryCollection or Multi* geography if they are all of the same single element type (e.g. Point)
+
+```sql
+function st_collect(<geography, geography>) returns geography
+```
+Version of ST_COLLECT that merges the two input geographies into one
+
+## `st_contains`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_contains)
 
-## `st_coveredby`
-
-#### Description
-True if the second object covers the first
-#### Supported Signatures
 ```sql
-function st_coveredby(geography, geography) returns boolean
-function st_coveredby(geometry, geometry) returns boolean
+function st_contains(<geography, geography>) returns boolean
 ```
+True if the first object fully contains the second
+
+```sql
+function st_contains(<geometry, geometry>) returns boolean
+```
+True if the first object fully contains the second
+
+## `st_coveredby`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_coveredby)
 
-## `st_covers`
-
-#### Description
-True if the first object covers the second
-#### Supported Signatures
 ```sql
-function st_covers(geography, geography) returns boolean
-function st_covers(geometry, geometry) returns boolean
+function st_coveredby(<geography, geography>) returns boolean
 ```
+True if the second object covers the first
+
+```sql
+function st_coveredby(<geometry, geometry>) returns boolean
+```
+True if the second object covers the first
+
+## `st_covers`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_covers)
 
-## `st_difference`
-
-#### Description
-Geometry representing the set difference a minus b
-#### Supported Signatures
 ```sql
-function st_difference(geography, geography) returns geography
+function st_covers(<geography, geography>) returns boolean
 ```
+True if the first object covers the second
+
+```sql
+function st_covers(<geometry, geometry>) returns boolean
+```
+True if the first object covers the second
+
+## `st_difference`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_difference)
 
-## `st_dimension`
-
-#### Description
-The dimension of the input geography
-#### Supported Signatures
 ```sql
-function st_dimension(geography) returns decimal(38, 0)
-function st_dimension(geometry) returns decimal(38, 0)
+function st_difference(<geography, geography>) returns geography
 ```
+Geometry representing the set difference a minus b
+
+## `st_dimension`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_dimension)
 
-## `st_disjoint`
-
-#### Description
-True if the two objects not intersect
-#### Supported Signatures
 ```sql
-function st_disjoint(geography, geography) returns boolean
-function st_disjoint(geometry, geometry) returns boolean
+function st_dimension(<geography>) returns decimal(38, 0)
 ```
+The dimension of the input geography
+
+```sql
+function st_dimension(<geometry>) returns decimal(38, 0)
+```
+The dimension of the input geometry
+
+## `st_disjoint`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_disjoint)
 
-## `st_distance`
-
-#### Description
-Distance between two geography objects in meters
-#### Supported Signatures
 ```sql
-function st_distance(geography, geography) returns double
-function st_distance(geometry, geometry) returns double
+function st_disjoint(<geography, geography>) returns boolean
 ```
+True if the two objects not intersect
+
+```sql
+function st_disjoint(<geometry, geometry>) returns boolean
+```
+True if the two objects not intersect
+
+## `st_distance`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_distance)
 
-## `st_dwithin`
-
-#### Description
-True if the minimum distance between two objects is smaller than or equal to the specified distance in meters
-#### Supported Signatures
 ```sql
-function st_dwithin(geography, geography, double) returns boolean
+function st_distance(<geography, geography>) returns double
 ```
+Distance between two geography objects in meters
+
+```sql
+function st_distance(<geometry, geometry>) returns double
+```
+Distance between two geometries in the same units as the input coordinates
+
+## `st_dwithin`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_dwithin)
 
-## `st_endpoint`
-
-#### Description
-The last point in the geography, only supports LineStrings
-#### Supported Signatures
 ```sql
-function st_endpoint(geography) returns geography
-function st_endpoint(geometry) returns geometry
+function st_dwithin(<geography, geography, double>) returns boolean
 ```
+True if the minimum distance between two objects is smaller than or equal to the specified distance in meters
+
+## `st_endpoint`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_endpoint)
 
-## `st_envelope`
-
-#### Description
-the double-precision (float8) minimum bounding box for the supplied geometry
-#### Supported Signatures
 ```sql
-function st_envelope(geography) returns geography
-function st_envelope(geometry) returns geometry
+function st_endpoint(<geography>) returns geography
 ```
+The last point in the geography, only supports LineStrings
+
+```sql
+function st_endpoint(<geometry>) returns geometry
+```
+The last point in the geometry, only supports LineStrings
+
+## `st_envelope`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_envelope)
 
-## `st_geogfromgeohash`
-
-#### Description
-The geography represented by the geohash
-#### Supported Signatures
 ```sql
-function st_geogfromgeohash(varchar, decimal(38, 0)) returns geography
-function st_geogfromgeohash(varchar) returns geography
+function st_envelope(<geography>) returns geography
 ```
+the double-precision (float8) minimum bounding box for the supplied geometry
+
+```sql
+function st_envelope(<geometry>) returns geometry
+```
+the shape of the minimum bounding box of the supplied geometry
+
+## `st_geogfromgeohash`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_geogfromgeohash)
 
-## `st_geogpointfromgeohash`
-
-#### Description
-The point represented by the geohash
-#### Supported Signatures
 ```sql
-function st_geogpointfromgeohash(varchar) returns geography
+function st_geogfromgeohash(<varchar, decimal(38, 0)>) returns geography
 ```
+The geography represented by the geohash
+
+```sql
+function st_geogfromgeohash(<varchar>) returns geography
+```
+The geography represented by the geohash
+
+## `st_geogpointfromgeohash`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_geogpointfromgeohash)
 
-## `st_geographyfromwkb`
-
-#### Description
-Parse WKB or EWKB
-#### Supported Signatures
 ```sql
-function st_geographyfromwkb(varchar) returns geography
-function st_geographyfromwkb(varchar, boolean) returns geography
-function st_geographyfromwkb(binary) returns geography
-function st_geographyfromwkb(binary, boolean) returns geography
+function st_geogpointfromgeohash(<varchar>) returns geography
 ```
+The point represented by the geohash
+
+## `st_geographyfromwkb`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_geographyfromwkb)
 
-## `st_geographyfromwkt`
-
-#### Description
-Alias of ST_GEOGRAPHYFROMTEXT
-#### Supported Signatures
 ```sql
-function st_geographyfromwkt(varchar) returns geography
-function st_geographyfromwkt(varchar, boolean) returns geography
+function st_geographyfromwkb(<varchar>) returns geography
 ```
+Parse WKB or EWKB
+
+```sql
+function st_geographyfromwkb(<varchar, boolean>) returns geography
+```
+Parse WKB or EWKB
+
+```sql
+function st_geographyfromwkb(<binary>) returns geography
+```
+Parse WKB or EWKB
+
+```sql
+function st_geographyfromwkb(<binary, boolean>) returns geography
+```
+Parse WKB or EWKB
+
+## `st_geographyfromwkt`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_geographyfromwkt)
 
-## `st_geohash`
-
-#### Description
-The geohash of a geography
-#### Supported Signatures
 ```sql
-function st_geohash(geography, decimal(38, 0)) returns varchar
-function st_geohash(geography) returns varchar
+function st_geographyfromwkt(<varchar>) returns geography
 ```
+Alias of ST_GEOGRAPHYFROMTEXT
+
+```sql
+function st_geographyfromwkt(<varchar, boolean>) returns geography
+```
+Alias of ST_GEOGRAPHYFROMTEXT
+
+## `st_geohash`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_geohash)
 
-## `st_geometryfromwkb`
-
-#### Description
-Parse WKB or EWKB from binary
-#### Supported Signatures
 ```sql
-function st_geometryfromwkb(binary, decimal(38, 0)) returns geometry
-function st_geometryfromwkb(binary) returns geometry
-function st_geometryfromwkb(varchar, decimal(38, 0)) returns geometry
-function st_geometryfromwkb(varchar) returns geometry
-function st_geometryfromwkb(binary, decimal(38, 0), boolean, boolean) returns geometry
-function st_geometryfromwkb(binary, boolean, boolean) returns geometry
-function st_geometryfromwkb(varchar, decimal(38, 0), boolean, boolean) returns geometry
-function st_geometryfromwkb(varchar, boolean, boolean) returns geometry
-function st_geometryfromwkb(varchar, decimal(38, 0), boolean) returns geometry
-function st_geometryfromwkb(varchar, boolean) returns geometry
-function st_geometryfromwkb(binary, decimal(38, 0), boolean) returns geometry
-function st_geometryfromwkb(binary, boolean) returns geometry
+function st_geohash(<geography, decimal(38, 0)>) returns varchar
 ```
+The geohash of a geography
+
+```sql
+function st_geohash(<geography>) returns varchar
+```
+The geohash of a geography
+
+## `st_geometryfromwkb`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_geometryfromwkb)
 
-## `st_geometryfromwkt`
-
-#### Description
-Alias of ST_GEOMETRYFROMTEXT
-#### Supported Signatures
 ```sql
-function st_geometryfromwkt(varchar) returns geometry
-function st_geometryfromwkt(varchar, decimal(38, 0)) returns geometry
-function st_geometryfromwkt(varchar, decimal(38, 0), boolean) returns geometry
-function st_geometryfromwkt(varchar, boolean) returns geometry
+function st_geometryfromwkb(<binary, decimal(38, 0)>) returns geometry
 ```
+Parse WKB or EWKB from binary
+
+```sql
+function st_geometryfromwkb(<binary>) returns geometry
+```
+Parse WKB or EWKB from binary
+
+```sql
+function st_geometryfromwkb(<varchar, decimal(38, 0)>) returns geometry
+```
+Parse WKB or EWKB
+
+```sql
+function st_geometryfromwkb(<varchar>) returns geometry
+```
+Parse WKB or EWKB
+
+```sql
+function st_geometryfromwkb(<binary, decimal(38, 0), boolean, boolean>) returns geometry
+```
+Parse WKB or EWKB from binary
+
+```sql
+function st_geometryfromwkb(<binary, boolean, boolean>) returns geometry
+```
+Parse WKB or EWKB from binary
+
+```sql
+function st_geometryfromwkb(<varchar, decimal(38, 0), boolean, boolean>) returns geometry
+```
+Parse WKB or EWKB
+
+```sql
+function st_geometryfromwkb(<varchar, boolean, boolean>) returns geometry
+```
+Parse WKB or EWKB
+
+```sql
+function st_geometryfromwkb(<varchar, decimal(38, 0), boolean>) returns geometry
+```
+Alias of ST_GEOMETRYFROMWKB
+
+```sql
+function st_geometryfromwkb(<varchar, boolean>) returns geometry
+```
+Alias of ST_GEOMETRYFROMWKB
+
+```sql
+function st_geometryfromwkb(<binary, decimal(38, 0), boolean>) returns geometry
+```
+Alias of ST_GEOMETRYFROMTEXT
+
+```sql
+function st_geometryfromwkb(<binary, boolean>) returns geometry
+```
+Alias of ST_GEOMETRYFROMTEXT
+
+## `st_geometryfromwkt`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_geometryfromwkt)
 
-## `st_hausdorffdistance`
-
-#### Description
-the Hausdorff distance between two geometries
-#### Supported Signatures
 ```sql
-function st_hausdorffdistance(geography, geography) returns double
+function st_geometryfromwkt(<varchar>) returns geometry
 ```
+Alias of ST_GEOMETRYFROMTEXT
+
+```sql
+function st_geometryfromwkt(<varchar, decimal(38, 0)>) returns geometry
+```
+Alias of ST_GEOMETRYFROMTEXT
+
+```sql
+function st_geometryfromwkt(<varchar, decimal(38, 0), boolean>) returns geometry
+```
+Alias of ST_GEOMETRYFROMTEXT
+
+```sql
+function st_geometryfromwkt(<varchar, boolean>) returns geometry
+```
+Alias of ST_GEOMETRYFROMTEXT
+
+## `st_hausdorffdistance`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_hausdorffdistance)
 
-## `st_intersection`
-
-#### Description
-Geometry representing the intersection of a and b
-#### Supported Signatures
 ```sql
-function st_intersection(geography, geography) returns geography
+function st_hausdorffdistance(<geography, geography>) returns double
 ```
+the Hausdorff distance between two geometries
+
+## `st_intersection`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_intersection)
 
-## `st_intersects`
-
-#### Description
-True if the two objects intersect
-#### Supported Signatures
 ```sql
-function st_intersects(geography, geography) returns boolean
-function st_intersects(geometry, geometry) returns boolean
+function st_intersection(<geography, geography>) returns geography
 ```
+Geometry representing the intersection of a and b
+
+## `st_intersects`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_intersects)
 
-## `st_isvalid`
-
-#### Description
-True if g has an internal representation
-#### Supported Signatures
 ```sql
-function st_isvalid(geography) returns boolean
-function st_isvalid(geometry) returns boolean
+function st_intersects(<geography, geography>) returns boolean
 ```
+True if the two objects intersect
+
+```sql
+function st_intersects(<geometry, geometry>) returns boolean
+```
+True if the two objects intersect
+
+## `st_isvalid`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_isvalid)
 
-## `st_length`
-
-#### Description
-Length or perimeter of the object in meters
-#### Supported Signatures
 ```sql
-function st_length(geography) returns double
-function st_length(geometry) returns double
+function st_isvalid(<geography>) returns boolean
 ```
+True if g has an internal representation
+
+```sql
+function st_isvalid(<geometry>) returns boolean
+```
+Return true if geometry is valid
+
+## `st_length`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_length)
 
-## `st_makegeompoint`
-
-#### Description
-Creates a point with the given x and y
-#### Supported Signatures
 ```sql
-function st_makegeompoint(double, double) returns geometry
+function st_length(<geography>) returns double
 ```
+Length or perimeter of the object in meters
+
+```sql
+function st_length(<geometry>) returns double
+```
+Length of the geometry in the same units as the input coordinates
+
+## `st_makegeompoint`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_makegeompoint)
 
-## `st_makeline`
-
-#### Description
-Create a Line out of the points in the input geographies
-#### Supported Signatures
 ```sql
-function st_makeline(geography, geography) returns geography
-function st_makeline(geometry, geometry) returns geometry
+function st_makegeompoint(<double, double>) returns geometry
 ```
+Creates a point with the given x and y
+
+## `st_makeline`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_makeline)
 
-## `st_makepoint`
-
-#### Description
-Creates a point with the given longitude and latitude
-#### Supported Signatures
 ```sql
-function st_makepoint(double, double) returns geography
+function st_makeline(<geography, geography>) returns geography
 ```
+Create a Line out of the points in the input geographies
+
+```sql
+function st_makeline(<geometry, geometry>) returns geometry
+```
+Create a LineString out of the points in the input geographies
+
+## `st_makepoint`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_makepoint)
 
-## `st_makepolygon`
-
-#### Description
-The Polygon consisting of the LineString as outer shell
-#### Supported Signatures
 ```sql
-function st_makepolygon(geography) returns geography
-function st_makepolygon(geometry) returns geometry
+function st_makepoint(<double, double>) returns geography
 ```
+Creates a point with the given longitude and latitude
+
+## `st_makepolygon`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_makepolygon)
 
-## `st_makepolygonoriented`
-
-#### Description
-The Polygon consisting of the LineString as outer shell, with unmodified orientation
-#### Supported Signatures
 ```sql
-function st_makepolygonoriented(geography) returns geography
+function st_makepolygon(<geography>) returns geography
 ```
+The Polygon consisting of the LineString as outer shell
+
+```sql
+function st_makepolygon(<geometry>) returns geometry
+```
+The Polygon consisting of the LineString as outer shell
+
+## `st_makepolygonoriented`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_makepolygonoriented)
 
-## `st_npoints`
-
-#### Description
-The number of points in the object's definition
-#### Supported Signatures
 ```sql
-function st_npoints(geography) returns decimal(38, 0)
-function st_npoints(geometry) returns decimal(38, 0)
+function st_makepolygonoriented(<geography>) returns geography
 ```
+The Polygon consisting of the LineString as outer shell, with unmodified orientation
+
+## `st_npoints`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_npoints)
 
-## `st_numpoints`
-
-#### Description
-Alias for ST_NPOINTS
-#### Supported Signatures
 ```sql
-function st_numpoints(geography) returns decimal(38, 0)
-function st_numpoints(geometry) returns decimal(38, 0)
+function st_npoints(<geography>) returns decimal(38, 0)
 ```
+The number of points in the object's definition
+
+```sql
+function st_npoints(<geometry>) returns decimal(38, 0)
+```
+The number of points in the geometry
+
+## `st_numpoints`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_numpoints)
 
-## `st_perimeter`
-
-#### Description
-Perimeter of the object in meters
-#### Supported Signatures
 ```sql
-function st_perimeter(geography) returns double
-function st_perimeter(geometry) returns double
+function st_numpoints(<geography>) returns decimal(38, 0)
 ```
+Alias for ST_NPOINTS
+
+```sql
+function st_numpoints(<geometry>) returns decimal(38, 0)
+```
+Alias for ST_NPOINTS
+
+## `st_perimeter`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_perimeter)
 
-## `st_point`
-
-#### Description
-Creates a point with the given longitude and latitude
-#### Supported Signatures
 ```sql
-function st_point(double, double) returns geography
+function st_perimeter(<geography>) returns double
 ```
+Perimeter of the object in meters
+
+```sql
+function st_perimeter(<geometry>) returns double
+```
+Perimeter of the geometry in the same units as the input coordinates
+
+## `st_point`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_point)
 
-## `st_pointn`
-
-#### Description
-The nth point in the geography, only supports LineStrings
-#### Supported Signatures
 ```sql
-function st_pointn(geography, decimal(38, 0)) returns geography
-function st_pointn(geometry, decimal(38, 0)) returns geometry
+function st_point(<double, double>) returns geography
 ```
+Creates a point with the given longitude and latitude
+
+## `st_pointn`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_pointn)
 
-## `st_polygon`
-
-#### Description
-Alias for ST_MAKEPOLYGON
-#### Supported Signatures
 ```sql
-function st_polygon(geography) returns geography
-function st_polygon(geometry) returns geometry
+function st_pointn(<geography, decimal(38, 0)>) returns geography
 ```
+The nth point in the geography, only supports LineStrings
+
+```sql
+function st_pointn(<geometry, decimal(38, 0)>) returns geometry
+```
+The nth point in the geometry, only supports LineStrings
+
+## `st_polygon`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_polygon)
 
-## `st_setsrid`
-
-#### Description
-Returns a geometry same as input geometry but with SRID set to the given value
-#### Supported Signatures
 ```sql
-function st_setsrid(geometry, decimal(38, 0)) returns geometry
+function st_polygon(<geography>) returns geography
 ```
+Alias for ST_MAKEPOLYGON
+
+```sql
+function st_polygon(<geometry>) returns geometry
+```
+Alias for ST_MAKEPOLYGON
+
+## `st_setsrid`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_setsrid)
 
-## `st_simplify`
-
-#### Description
-Simplified version of the given geometry
-#### Supported Signatures
 ```sql
-function st_simplify(geography, double, boolean) returns geography
-function st_simplify(geography, double) returns geography
-function st_simplify(geometry, double) returns geometry
+function st_setsrid(<geometry, decimal(38, 0)>) returns geometry
 ```
+Returns a geometry same as input geometry but with SRID set to the given value
+
+## `st_simplify`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_simplify)
 
-## `st_srid`
-
-#### Description
-Returns the SRID of a geography if present. Otherwise 4326
-#### Supported Signatures
 ```sql
-function st_srid(geography) returns decimal(38, 0)
-function st_srid(geometry) returns decimal(38, 0)
+function st_simplify(<geography, double, boolean>) returns geography
 ```
+Simplified version of the given geometry
+
+```sql
+function st_simplify(<geography, double>) returns geography
+```
+Simplified version of the given geometry
+
+```sql
+function st_simplify(<geometry, double>) returns geometry
+```
+Returns the geometry generated by the simplify operation upon the given input geometry using the given distance, or NULL if the resulting geometry is invalid
+
+## `st_srid`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_srid)
 
-## `st_startpoint`
-
-#### Description
-The first point in the geography, only supports LineStrings
-#### Supported Signatures
 ```sql
-function st_startpoint(geography) returns geography
-function st_startpoint(geometry) returns geometry
+function st_srid(<geography>) returns decimal(38, 0)
 ```
+Returns the SRID of a geography if present. Otherwise 4326
+
+```sql
+function st_srid(<geometry>) returns decimal(38, 0)
+```
+Returns the SRID of a geometry if present. Otherwise 0
+
+## `st_startpoint`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_startpoint)
 
-## `st_symdifference`
-
-#### Description
-Geometry representing the set symmetric difference a minus b
-#### Supported Signatures
 ```sql
-function st_symdifference(geography, geography) returns geography
+function st_startpoint(<geography>) returns geography
 ```
+The first point in the geography, only supports LineStrings
+
+```sql
+function st_startpoint(<geometry>) returns geometry
+```
+The first point in the geometry, only supports LineStrings
+
+## `st_symdifference`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_symdifference)
 
-## `st_transform`
-
-#### Description
-Returns the geometry transformed from one SRID to another SRID.
-#### Supported Signatures
 ```sql
-function st_transform(geometry, decimal(38, 0), decimal(38, 0)) returns geometry
-function st_transform(geometry, decimal(38, 0)) returns geometry
+function st_symdifference(<geography, geography>) returns geography
 ```
+Geometry representing the set symmetric difference a minus b
+
+## `st_transform`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_transform)
 
-## `st_union`
-
-#### Description
-Geometry representing the union of a and b
-#### Supported Signatures
 ```sql
-function st_union(geography, geography) returns geography
+function st_transform(<geometry, decimal(38, 0), decimal(38, 0)>) returns geometry
 ```
+Returns the geometry transformed from one SRID to another SRID.
+
+```sql
+function st_transform(<geometry, decimal(38, 0)>) returns geometry
+```
+Returns the geometry transformed to another SRID.
+
+## `st_union`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_union)
 
-## `st_within`
-
-#### Description
-True if the second object fully contains the first
-#### Supported Signatures
 ```sql
-function st_within(geography, geography) returns boolean
-function st_within(geometry, geometry) returns boolean
+function st_union(<geography, geography>) returns geography
 ```
+Geometry representing the union of a and b
+
+## `st_within`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_within)
 
-## `st_x`
-
-#### Description
-The longitude of a point
-#### Supported Signatures
 ```sql
-function st_x(geography) returns double
-function st_x(geometry) returns double
+function st_within(<geography, geography>) returns boolean
 ```
+True if the second object fully contains the first
+
+```sql
+function st_within(<geometry, geometry>) returns boolean
+```
+True if the second object fully contains the first
+
+## `st_x`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_x)
 
-## `st_xmax`
-
-#### Description
-The maximum longitude
-#### Supported Signatures
 ```sql
-function st_xmax(geography) returns double
-function st_xmax(geometry) returns double
+function st_x(<geography>) returns double
 ```
+The longitude of a point
+
+```sql
+function st_x(<geometry>) returns double
+```
+The X coordinate of a point
+
+## `st_xmax`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_xmax)
 
-## `st_xmin`
-
-#### Description
-The minimum longitude
-#### Supported Signatures
 ```sql
-function st_xmin(geography) returns double
-function st_xmin(geometry) returns double
+function st_xmax(<geography>) returns double
 ```
+The maximum longitude
+
+```sql
+function st_xmax(<geometry>) returns double
+```
+The maximum X coordinate
+
+## `st_xmin`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_xmin)
 
-## `st_y`
-
-#### Description
-The latitude of a point
-#### Supported Signatures
 ```sql
-function st_y(geography) returns double
-function st_y(geometry) returns double
+function st_xmin(<geography>) returns double
 ```
+The minimum longitude
+
+```sql
+function st_xmin(<geometry>) returns double
+```
+The minimum X coordinate
+
+## `st_y`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_y)
 
-## `st_ymax`
-
-#### Description
-The maximum latitude
-#### Supported Signatures
 ```sql
-function st_ymax(geography) returns double
-function st_ymax(geometry) returns double
+function st_y(<geography>) returns double
 ```
+The latitude of a point
+
+```sql
+function st_y(<geometry>) returns double
+```
+The Y coordinate of a point
+
+## `st_ymax`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_ymax)
 
-## `st_ymin`
-
-#### Description
-The minimum latitude
-#### Supported Signatures
 ```sql
-function st_ymin(geography) returns double
-function st_ymin(geometry) returns double
+function st_ymax(<geography>) returns double
 ```
+The maximum latitude
+
+```sql
+function st_ymax(<geometry>) returns double
+```
+The maximum Y coordinate
+
+## `st_ymin`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/st_ymin)
 
-## `to_geography`
-
-#### Description
-No-op; prevents us from re-packaging GEOGRAPHY during input
-#### Supported Signatures
 ```sql
-function to_geography(geography) returns geography
-function to_geography(geography, boolean) returns geography
-function to_geography(variant) returns geography
-function to_geography(variant, boolean) returns geography
-function to_geography(varchar) returns geography
-function to_geography(varchar, boolean) returns geography
-function to_geography(binary) returns geography
-function to_geography(binary, boolean) returns geography
-function to_geography($1) returns geography
+function st_ymin(<geography>) returns double
 ```
+The minimum latitude
+
+```sql
+function st_ymin(<geometry>) returns double
+```
+The minimum Y coordinate
+
+## `to_geography`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_geography)
 
-## `to_geometry`
-
-#### Description
-No-op; prevents us from re-packaging GEOMETRY during input
-#### Supported Signatures
 ```sql
-function to_geometry(geometry) returns geometry
-function to_geometry(variant, decimal(38, 0)) returns geometry
-function to_geometry(variant) returns geometry
-function to_geometry(varchar, decimal(38, 0)) returns geometry
-function to_geometry(varchar) returns geometry
-function to_geometry(binary, decimal(38, 0)) returns geometry
-function to_geometry(binary) returns geometry
-function to_geometry(variant, decimal(38, 0), boolean, boolean) returns geometry
-function to_geometry(variant, boolean, boolean) returns geometry
-function to_geometry(variant, decimal(38, 0), boolean) returns geometry
-function to_geometry(variant, boolean) returns geometry
-function to_geometry(varchar, decimal(38, 0), boolean, boolean) returns geometry
-function to_geometry(varchar, boolean, boolean) returns geometry
-function to_geometry(varchar, decimal(38, 0), boolean) returns geometry
-function to_geometry(varchar, boolean) returns geometry
-function to_geometry(binary, decimal(38, 0), boolean, boolean) returns geometry
-function to_geometry(binary, boolean, boolean) returns geometry
-function to_geometry(binary, decimal(38, 0), boolean) returns geometry
-function to_geometry(binary, boolean) returns geometry
+function to_geography(<geography>) returns geography
 ```
+No-op; prevents us from re-packaging GEOGRAPHY during input
+
+```sql
+function to_geography(<geography, boolean>) returns geography
+```
+No-op; prevents us from re-packaging GEOGRAPHY during input
+
+```sql
+function to_geography(<variant>) returns geography
+```
+Parses a variant as a GEOGRAPHY object; supported format is GeoJSON
+
+```sql
+function to_geography(<variant, boolean>) returns geography
+```
+Parses a variant as a GEOGRAPHY object; supported format is GeoJSON
+
+```sql
+function to_geography(<varchar>) returns geography
+```
+Parses a string as a GEOGRAPHY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geography(<varchar, boolean>) returns geography
+```
+Parses a string as a GEOGRAPHY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geography(<binary>) returns geography
+```
+Parses binary input in WKB format into a GEOGRAPHY object
+
+```sql
+function to_geography(<binary, boolean>) returns geography
+```
+Parses binary input in WKB format into a GEOGRAPHY object
+
+```sql
+function to_geography(<$1>) returns geography
+```
+
+
+## `to_geometry`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_geometry)
 
-## `try_to_geography`
-
-#### Description
-No-op; prevents us from re-packaging GEOGRAPHY during input
-#### Supported Signatures
 ```sql
-function try_to_geography(geography) returns geography
-function try_to_geography(geography, boolean) returns geography
-function try_to_geography(variant) returns geography
-function try_to_geography(variant, boolean) returns geography
-function try_to_geography(varchar) returns geography
-function try_to_geography(varchar, boolean) returns geography
-function try_to_geography(binary) returns geography
-function try_to_geography(binary, boolean) returns geography
+function to_geometry(<geometry>) returns geometry
 ```
+No-op; prevents us from re-packaging GEOMETRY during input
+
+```sql
+function to_geometry(<variant, decimal(38, 0)>) returns geometry
+```
+Parses a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function to_geometry(<variant>) returns geometry
+```
+Parses a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function to_geometry(<varchar, decimal(38, 0)>) returns geometry
+```
+Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geometry(<varchar>) returns geometry
+```
+Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geometry(<binary, decimal(38, 0)>) returns geometry
+```
+Parses binary input in WKB format into a GEOMETRY object
+
+```sql
+function to_geometry(<binary>) returns geometry
+```
+Parses binary input in WKB format into a GEOMETRY object
+
+```sql
+function to_geometry(<variant, decimal(38, 0), boolean, boolean>) returns geometry
+```
+Parses a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function to_geometry(<variant, boolean, boolean>) returns geometry
+```
+Parses a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function to_geometry(<variant, decimal(38, 0), boolean>) returns geometry
+```
+
+
+```sql
+function to_geometry(<variant, boolean>) returns geometry
+```
+
+
+```sql
+function to_geometry(<varchar, decimal(38, 0), boolean, boolean>) returns geometry
+```
+Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geometry(<varchar, boolean, boolean>) returns geometry
+```
+Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geometry(<varchar, decimal(38, 0), boolean>) returns geometry
+```
+Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geometry(<varchar, boolean>) returns geometry
+```
+Parses a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function to_geometry(<binary, decimal(38, 0), boolean, boolean>) returns geometry
+```
+Parses binary input in WKB format into a GEOMETRY object
+
+```sql
+function to_geometry(<binary, boolean, boolean>) returns geometry
+```
+Parses binary input in WKB format into a GEOMETRY object
+
+```sql
+function to_geometry(<binary, decimal(38, 0), boolean>) returns geometry
+```
+Parses binary input in WKB format into a GEOMETRY object
+
+```sql
+function to_geometry(<binary, boolean>) returns geometry
+```
+Parses binary input in WKB format into a GEOMETRY object
+
+## `try_to_geography`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_geography)
 
-## `try_to_geometry`
-
-#### Description
-No-op; prevents us from re-packaging GEOMETRY during input
-#### Supported Signatures
 ```sql
-function try_to_geometry(geometry) returns geometry
-function try_to_geometry(variant, decimal(38, 0)) returns geometry
-function try_to_geometry(variant) returns geometry
-function try_to_geometry(varchar, decimal(38, 0)) returns geometry
-function try_to_geometry(varchar) returns geometry
-function try_to_geometry(binary, decimal(38, 0)) returns geometry
-function try_to_geometry(binary) returns geometry
-function try_to_geometry(variant, decimal(38, 0), boolean, boolean) returns geometry
-function try_to_geometry(variant, boolean, boolean) returns geometry
-function try_to_geometry(variant, decimal(38, 0), boolean) returns geometry
-function try_to_geometry(variant, boolean) returns geometry
-function try_to_geometry(varchar, decimal(38, 0), boolean, boolean) returns geometry
-function try_to_geometry(varchar, boolean, boolean) returns geometry
-function try_to_geometry(varchar, decimal(38, 0), boolean) returns geometry
-function try_to_geometry(varchar, boolean) returns geometry
-function try_to_geometry(binary, decimal(38, 0), boolean, boolean) returns geometry
-function try_to_geometry(binary, boolean, boolean) returns geometry
-function try_to_geometry(binary, decimal(38, 0), boolean) returns geometry
-function try_to_geometry(binary, boolean) returns geometry
+function try_to_geography(<geography>) returns geography
 ```
+No-op; prevents us from re-packaging GEOGRAPHY during input
+
+```sql
+function try_to_geography(<geography, boolean>) returns geography
+```
+No-op; prevents us from re-packaging GEOGRAPHY during input
+
+```sql
+function try_to_geography(<variant>) returns geography
+```
+Tries to parse a variant as a GEOGRAPHY object; supported format is GeoJSON
+
+```sql
+function try_to_geography(<variant, boolean>) returns geography
+```
+Tries to parse a variant as a GEOGRAPHY object; supported format is GeoJSON
+
+```sql
+function try_to_geography(<varchar>) returns geography
+```
+Tries to parse a string as a GEOGRAPHY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function try_to_geography(<varchar, boolean>) returns geography
+```
+Tries to parse a string as a GEOGRAPHY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function try_to_geography(<binary>) returns geography
+```
+Tries to parse binary input in WKB format into a GEOGRAPHY object
+
+```sql
+function try_to_geography(<binary, boolean>) returns geography
+```
+Tries to parse binary input in WKB format into a GEOGRAPHY object
+
+## `try_to_geometry`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_geometry)
+
+```sql
+function try_to_geometry(<geometry>) returns geometry
+```
+No-op; prevents us from re-packaging GEOMETRY during input
+
+```sql
+function try_to_geometry(<variant, decimal(38, 0)>) returns geometry
+```
+Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function try_to_geometry(<variant>) returns geometry
+```
+Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function try_to_geometry(<varchar, decimal(38, 0)>) returns geometry
+```
+Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function try_to_geometry(<varchar>) returns geometry
+```
+Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function try_to_geometry(<binary, decimal(38, 0)>) returns geometry
+```
+Tries to parse binary input in WKB format into a GEOMETRY object
+
+```sql
+function try_to_geometry(<binary>) returns geometry
+```
+Tries to parse binary input in WKB format into a GEOMETRY object
+
+```sql
+function try_to_geometry(<variant, decimal(38, 0), boolean, boolean>) returns geometry
+```
+Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function try_to_geometry(<variant, boolean, boolean>) returns geometry
+```
+Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function try_to_geometry(<variant, decimal(38, 0), boolean>) returns geometry
+```
+Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function try_to_geometry(<variant, boolean>) returns geometry
+```
+Tries to parse a variant as a GEOMETRY object; supported format is GeoJSON
+
+```sql
+function try_to_geometry(<varchar, decimal(38, 0), boolean, boolean>) returns geometry
+```
+Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function try_to_geometry(<varchar, boolean, boolean>) returns geometry
+```
+Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function try_to_geometry(<varchar, decimal(38, 0), boolean>) returns geometry
+```
+Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function try_to_geometry(<varchar, boolean>) returns geometry
+```
+Tries to parse a string as a GEOMETRY object; supported formats are GeoJSON, WKT, and WKB
+
+```sql
+function try_to_geometry(<binary, decimal(38, 0), boolean, boolean>) returns geometry
+```
+Tries to parse binary input in WKB format into a GEOMETRY object
+
+```sql
+function try_to_geometry(<binary, boolean, boolean>) returns geometry
+```
+Tries to parse binary input in WKB format into a GEOMETRY object
+
+```sql
+function try_to_geometry(<binary, decimal(38, 0), boolean>) returns geometry
+```
+Tries to parse binary input in WKB format into a GEOMETRY object
+
+```sql
+function try_to_geometry(<binary, boolean>) returns geometry
+```
+Tries to parse binary input in WKB format into a GEOMETRY object
 
 

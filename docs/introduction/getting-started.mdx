@@ -14,35 +14,37 @@ To verify that SDF is installed correctly, run the following command:
 sdf --help
 ```
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-SDF: A fast SQL compiler, local development framework, and in-memory analytical database
+SDF&#39;s&nbsp;modular&nbsp;SQL
 
-Usage: sdf &lt;COMMAND&gt;
+Usage:&nbsp;sdf&nbsp;&lt;COMMAND&gt;
 
 Commands:
-  new      Create a new sdf workspace
-  clean    Remove artifacts that sdf has generated in the past
-  compile  Compile models
-  run      Run models
-  test     Test your models
-  stats    Statistics for your data
-  report   Report code quality
-  check    Check code quality
-  lineage  Display lineage for a given table and/or column
-  push     Push a local workspace to the SDF Service
-  system   System maintenance, install and update
-  auth     Authenticate CLI to services like SDF, AWS, OpenAI, etc
-  man      Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
-  dbt      Initialize an sdf workspace from an existing dbt project
-  help     Print this message or the help of the given subcommand(s)
+&nbsp;&nbsp;new&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create&nbsp;a&nbsp;new&nbsp;sdf&nbsp;workspace
+&nbsp;&nbsp;clean&nbsp;&nbsp;&nbsp;&nbsp;Remove&nbsp;artifacts&nbsp;that&nbsp;sdf&nbsp;has&nbsp;generated&nbsp;in&nbsp;the&nbsp;past
+&nbsp;&nbsp;compile&nbsp;&nbsp;Compile&nbsp;models
+&nbsp;&nbsp;run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run&nbsp;models
+&nbsp;&nbsp;test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;your&nbsp;models
+&nbsp;&nbsp;stats&nbsp;&nbsp;&nbsp;&nbsp;Statistics&nbsp;for&nbsp;your&nbsp;data
+&nbsp;&nbsp;report&nbsp;&nbsp;&nbsp;Report&nbsp;code&nbsp;quality
+&nbsp;&nbsp;check&nbsp;&nbsp;&nbsp;&nbsp;Check&nbsp;code&nbsp;quality
+&nbsp;&nbsp;lineage&nbsp;&nbsp;Display&nbsp;lineage&nbsp;for&nbsp;a&nbsp;given&nbsp;table&nbsp;and/or&nbsp;column
+&nbsp;&nbsp;push&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Push&nbsp;a&nbsp;local&nbsp;workspace&nbsp;to&nbsp;the&nbsp;SDF&nbsp;Service
+&nbsp;&nbsp;system&nbsp;&nbsp;&nbsp;System&nbsp;maintenance,&nbsp;install&nbsp;and&nbsp;update
+&nbsp;&nbsp;auth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Authenticate&nbsp;CLI&nbsp;to&nbsp;services&nbsp;like&nbsp;SDF,&nbsp;AWS,&nbsp;OpenAI,&nbsp;etc
+&nbsp;&nbsp;man&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display&nbsp;reference&nbsp;material,&nbsp;like&nbsp;the&nbsp;CLI,&nbsp;dialect&nbsp;specific&nbsp;functions,&nbsp;schemas&nbsp;for&nbsp;authoring&nbsp;and&nbsp;interchange
+&nbsp;&nbsp;dbt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Initialize&nbsp;an&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;an&nbsp;existing&nbsp;dbt&nbsp;project
+&nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;this&nbsp;message&nbsp;or&nbsp;the&nbsp;help&nbsp;of&nbsp;the&nbsp;given&nbsp;subcommand(s)
 
 Options:
-  -h, --help     Print help
-  -V, --version  Print version
+&nbsp;&nbsp;-h,&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help
+&nbsp;&nbsp;-V,&nbsp;--version&nbsp;&nbsp;Print&nbsp;version
 
 </code>
 </pre>
+</div>
 
 ## Creating a Workspace
 
@@ -53,15 +55,17 @@ sdf new --sample hello && cd hello
 ```
 After running the command, you will see the following output: 
  
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-    Created hello/.gitignore
-    Created hello/src/main.sql
-    Created hello/workspace.sdf.yml
-   Finished new in 0.105 secs
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/.gitignore
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/src/main.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/workspace.sdf.yml
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.097&nbsp;secs
 
 </code>
 </pre>
+</div>
 
 <Tip>
     You can view and modify the source code for all our examples directly in our [GitHub repository](https://github.com/sdf-labs/sdf-cli/tree/main/examples).
@@ -99,22 +103,24 @@ Let's see just how easy it is to set up SDF and run your first query.
         ```
          
         Your output should look like:
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 1 model file, 1 .sdf file
-  Compiling hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.638 secs
+Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./src/main.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.165&nbsp;secs
 
-Schema hello.pub.main
+Schema&nbsp;hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
-│ column_name ┆ data_type        ┆ classifier ┆ description │
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
 ╞═════════════╪══════════════════╪════════════╪═════════════╡
-│ column_1    ┆ varchar not null ┆            ┆             │
-│ column_2    ┆ varchar not null ┆            ┆             │
+│&nbsp;column_1&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;not&nbsp;null&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;column_2&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;not&nbsp;null&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 └─────────────┴──────────────────┴────────────┴─────────────┘
 
 </code>
 </pre>
+</div>
 
         As you can see from the output, SDF has statically analyzed the query and determined there's a single non-nullable column named `column` and it's of type `varchar`. 
         You'll also see an empty `classifier` block in the output. This is for metadata we'll attach to columns, but we'll get to that later.
@@ -127,22 +133,24 @@ Schema hello.pub.main
         ```
 
         Your output should look like:
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 1 model file, 1 .sdf file
-    Running hello.pub.main (./src/main.sql)
-   Finished 1 model [1 succeeded] in 0.561 secs
+Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./src/main.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.163&nbsp;secs
 
-Table hello.pub.main
+Table&nbsp;hello.pub.main
 ┌──────────┬─────────────────┐
-│ column_1 ┆ column_2        │
+│&nbsp;column_1&nbsp;┆&nbsp;column_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 ╞══════════╪═════════════════╡
-│ hello    ┆ Jeffrey Walters │
+│&nbsp;hello&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Jeffrey&nbsp;Walters&nbsp;│
 └──────────┴─────────────────┘
-1 rows.
+1&nbsp;rows.
 
 </code>
 </pre>
+</div>
     </Step>
     <Step title="Create a New Model">
         Now, create a new file in the source directory called `main2.sql` with the query:
@@ -159,20 +167,22 @@ Table hello.pub.main
         ```
 
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 2 model files, 1 .sdf file
-  Compiling hello.pub.main (./src/main.sql)
-  Compiling hello.pub.main2 (./src/main2.sql)
-   Finished 2 models [2 succeeded] in 0.592 secs
+Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./src/main.sql)
+&nbsp;&nbsp;Compiling&nbsp;hello.pub.main2&nbsp;(./src/main2.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.171&nbsp;secs
 main2.column_1
 │
-│ copy
+│&nbsp;copy
 └──────┐
-       main.column_1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;main.column_1
 
 </code>
 </pre>
+</div>
     </Step>
 </Steps>
 

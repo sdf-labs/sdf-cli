@@ -4,23 +4,19 @@ title: "Vector Similarity Functions"
 
 
 ## `vector_inner_product`
-
-#### Description
-Inner product between vectors
-#### Supported Signatures
-```sql
-function vector_inner_product(array, array) returns double
-```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/vector_inner_product)
 
-## `vector_l2_distance`
-
-#### Description
-L2 distance between vectors
-#### Supported Signatures
 ```sql
-function vector_l2_distance(array, array) returns double
+function vector_inner_product(<array, array>) returns double
 ```
+Inner product between vectors
+
+## `vector_l2_distance`
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/vector_l2_distance)
+
+```sql
+function vector_l2_distance(<array, array>) returns double
+```
+L2 distance between vectors
 
 

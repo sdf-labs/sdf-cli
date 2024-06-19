@@ -3,537 +3,593 @@ title: "Geography Functions"
 ---
 
 ## `s2_cellidfrompoint`
-
-#### Supported Signatures
-```sql
-function s2_cellidfrompoint(geography) returns bigint
-```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#s2_cellidfrompoint)
 
-## `s2_coveringcellids`
-
-#### Supported Signatures
 ```sql
-function s2_coveringcellids(geography) returns array<bigint>
+function s2_cellidfrompoint(<geography>) returns bigint
 ```
+
+
+## `s2_coveringcellids`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#s2_coveringcellids)
 
-## `st_angle`
-
-#### Supported Signatures
 ```sql
-function st_angle(geography, geography, geography) returns double
+function s2_coveringcellids(<geography>) returns array<bigint>
 ```
+
+
+## `st_angle`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_angle)
 
-## `st_area`
-
-#### Supported Signatures
 ```sql
-function st_area(geography) returns double
-function st_area(geography, bool) returns double
+function st_angle(<geography, geography, geography>) returns double
 ```
+
+
+## `st_area`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_area)
 
-## `st_asbinary`
-
-#### Supported Signatures
 ```sql
-function st_asbinary(geography) returns bytes
+function st_area(<geography>) returns double
 ```
+
+
+```sql
+function st_area(<geography, bool>) returns double
+```
+
+
+## `st_asbinary`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_asbinary)
 
-## `st_asgeojson`
-
-#### Supported Signatures
 ```sql
-function st_asgeojson(geography) returns string
+function st_asbinary(<geography>) returns bytes
 ```
+
+
+## `st_asgeojson`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_asgeojson)
 
-## `st_astext`
-
-#### Supported Signatures
 ```sql
-function st_astext(geography) returns string
+function st_asgeojson(<geography>) returns string
 ```
+
+
+## `st_astext`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_astext)
 
-## `st_azimuth`
-
-#### Supported Signatures
 ```sql
-function st_azimuth(geography, geography) returns double
+function st_astext(<geography>) returns string
 ```
+
+
+## `st_azimuth`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_azimuth)
 
-## `st_boundary`
-
-#### Supported Signatures
 ```sql
-function st_boundary(geography) returns geography
+function st_azimuth(<geography, geography>) returns double
 ```
+
+
+## `st_boundary`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_boundary)
 
-## `st_boundingbox`
-
-#### Supported Signatures
 ```sql
-function st_boundingbox(geography) returns geography
+function st_boundary(<geography>) returns geography
 ```
+
+
+## `st_boundingbox`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_boundingbox)
 
-## `st_buffer`
-
-#### Supported Signatures
 ```sql
-function st_buffer(geography, double) returns geography
-function st_buffer(geography, double, double) returns geography
+function st_boundingbox(<geography>) returns geography
 ```
+
+
+## `st_buffer`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_buffer)
 
-## `st_bufferwithtolerance`
-
-#### Supported Signatures
 ```sql
-function st_bufferwithtolerance(geography, double, double) returns 
+function st_buffer(<geography, double>) returns geography
 ```
+
+
+```sql
+function st_buffer(<geography, double, double>) returns geography
+```
+
+
+## `st_bufferwithtolerance`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_bufferwithtolerance)
 
-## `st_centroid`
-
-#### Supported Signatures
 ```sql
-function st_centroid(geography) returns geography
+function st_bufferwithtolerance(<geography, double, double>) returns 
 ```
+
+
+## `st_centroid`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_centroid)
 
-## `st_centroid_agg`
-
-#### Supported Signatures
 ```sql
-function st_centroid_agg(geography) returns geography
+function st_centroid(<geography>) returns geography
 ```
+
+
+## `st_centroid_agg`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_centroid_agg)
 
-## `st_closestpoint`
-
-#### Supported Signatures
 ```sql
-function st_closestpoint(geography, geography) returns geography
-function st_closestpoint(geography, geography, bool) returns geography
+function st_centroid_agg(<geography>) returns geography
 ```
+
+
+## `st_closestpoint`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_closestpoint)
 
-## `st_clusterdbscan`
-
-#### Supported Signatures
 ```sql
-function st_clusterdbscan(geography, double, bigint) returns bigint
+function st_closestpoint(<geography, geography>) returns geography
 ```
+
+
+```sql
+function st_closestpoint(<geography, geography, bool>) returns geography
+```
+
+
+## `st_clusterdbscan`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_clusterdbscan)
 
-## `st_contains`
-
-#### Supported Signatures
 ```sql
-function st_contains(geography, geography) returns bool
+function st_clusterdbscan(<geography, double, bigint>) returns bigint
 ```
+
+
+## `st_contains`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_contains)
 
-## `st_convexhull`
-
-#### Supported Signatures
 ```sql
-function st_convexhull(geography) returns geography
+function st_contains(<geography, geography>) returns bool
 ```
+
+
+## `st_convexhull`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_convexhull)
 
-## `st_coveredby`
-
-#### Supported Signatures
 ```sql
-function st_coveredby(geography, geography) returns bool
+function st_convexhull(<geography>) returns geography
 ```
+
+
+## `st_coveredby`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_coveredby)
 
-## `st_covers`
-
-#### Supported Signatures
 ```sql
-function st_covers(geography, geography) returns bool
+function st_coveredby(<geography, geography>) returns bool
 ```
+
+
+## `st_covers`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_covers)
 
-## `st_difference`
-
-#### Supported Signatures
 ```sql
-function st_difference(geography, geography) returns geography
+function st_covers(<geography, geography>) returns bool
 ```
+
+
+## `st_difference`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_difference)
 
-## `st_dimension`
-
-#### Supported Signatures
 ```sql
-function st_dimension(geography) returns bigint
+function st_difference(<geography, geography>) returns geography
 ```
+
+
+## `st_dimension`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_dimension)
 
-## `st_disjoint`
-
-#### Supported Signatures
 ```sql
-function st_disjoint(geography, geography) returns bool
+function st_dimension(<geography>) returns bigint
 ```
+
+
+## `st_disjoint`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_disjoint)
 
-## `st_distance`
-
-#### Supported Signatures
 ```sql
-function st_distance(geography, geography) returns double
-function st_distance(geography, geography, bool) returns double
+function st_disjoint(<geography, geography>) returns bool
 ```
+
+
+## `st_distance`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_distance)
 
-## `st_dump`
-
-#### Supported Signatures
 ```sql
-function st_dump(geography) returns geography
-function st_dump(geography, bigint) returns geography
+function st_distance(<geography, geography>) returns double
 ```
+
+
+```sql
+function st_distance(<geography, geography, bool>) returns double
+```
+
+
+## `st_dump`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_dump)
 
-## `st_dwithin`
-
-#### Supported Signatures
 ```sql
-function st_dwithin(geography, geography, double) returns bool
+function st_dump(<geography>) returns geography
 ```
+
+
+```sql
+function st_dump(<geography, bigint>) returns geography
+```
+
+
+## `st_dwithin`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_dwithin)
 
-## `st_endpoint`
-
-#### Supported Signatures
 ```sql
-function st_endpoint(geography) returns geography
+function st_dwithin(<geography, geography, double>) returns bool
 ```
+
+
+## `st_endpoint`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_endpoint)
 
-## `st_equals`
-
-#### Supported Signatures
 ```sql
-function st_equals(geography, geography) returns bool
+function st_endpoint(<geography>) returns geography
 ```
+
+
+## `st_equals`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_equals)
 
-## `st_exteriorring`
-
-#### Supported Signatures
 ```sql
-function st_exteriorring(geography) returns geography
+function st_equals(<geography, geography>) returns bool
 ```
+
+
+## `st_exteriorring`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_exteriorring)
 
-## `st_geogfrom`
-
-#### Supported Signatures
 ```sql
-function st_geogfrom(string) returns geography
-function st_geogfrom(bytes) returns geography
+function st_exteriorring(<geography>) returns geography
 ```
+
+
+## `st_geogfrom`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_geogfrom)
 
-## `st_geogfromgeojson`
-
-#### Supported Signatures
 ```sql
-function st_geogfromgeojson(string) returns geography
+function st_geogfrom(<string>) returns geography
 ```
+
+
+```sql
+function st_geogfrom(<bytes>) returns geography
+```
+
+
+## `st_geogfromgeojson`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_geogfromgeojson)
 
-## `st_geogfromtext`
-
-#### Supported Signatures
 ```sql
-function st_geogfromtext(string, bool) returns geography
-function st_geogfromtext(string) returns geography
+function st_geogfromgeojson(<string>) returns geography
 ```
+
+
+## `st_geogfromtext`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_geogfromtext)
 
-## `st_geogfromwkb`
-
-#### Supported Signatures
 ```sql
-function st_geogfromwkb(bytes) returns geography
-function st_geogfromwkb(string) returns geography
+function st_geogfromtext(<string, bool>) returns geography
 ```
+
+
+```sql
+function st_geogfromtext(<string>) returns geography
+```
+
+
+## `st_geogfromwkb`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_geogfromwkb)
 
-## `st_geogpoint`
-
-#### Supported Signatures
 ```sql
-function st_geogpoint(double, double) returns geography
+function st_geogfromwkb(<bytes>) returns geography
 ```
+
+
+```sql
+function st_geogfromwkb(<string>) returns geography
+```
+
+
+## `st_geogpoint`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_geogpoint)
 
-## `st_geogpointfromgeohash`
-
-#### Supported Signatures
 ```sql
-function st_geogpointfromgeohash(string) returns geography
-function st_geogpointfromgeohash(string, double, double) returns geography
+function st_geogpoint(<double, double>) returns geography
 ```
+
+
+## `st_geogpointfromgeohash`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_geogpointfromgeohash)
 
-## `st_geohash`
-
-#### Supported Signatures
 ```sql
-function st_geohash(geography) returns string
-function st_geohash(geography, bigint) returns string
+function st_geogpointfromgeohash(<string>) returns geography
 ```
+
+
+```sql
+function st_geogpointfromgeohash(<string, double, double>) returns geography
+```
+
+
+## `st_geohash`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_geohash)
 
-## `st_geometrytype`
-
-#### Supported Signatures
 ```sql
-function st_geometrytype(geography) returns string
+function st_geohash(<geography>) returns string
 ```
+
+
+```sql
+function st_geohash(<geography, bigint>) returns string
+```
+
+
+## `st_geometrytype`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_geometrytype)
 
-## `st_interiorrings`
-
-#### Supported Signatures
 ```sql
-function st_interiorrings(geography) returns array<geography>
+function st_geometrytype(<geography>) returns string
 ```
+
+
+## `st_interiorrings`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_interiorrings)
 
-## `st_intersection`
-
-#### Supported Signatures
 ```sql
-function st_intersection(geography, geography) returns geography
+function st_interiorrings(<geography>) returns array<geography>
 ```
+
+
+## `st_intersection`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_intersection)
 
-## `st_intersects`
-
-#### Supported Signatures
 ```sql
-function st_intersects(geography, geography) returns bool
+function st_intersection(<geography, geography>) returns geography
 ```
+
+
+## `st_intersects`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_intersects)
 
-## `st_intersectsbox`
-
-#### Supported Signatures
 ```sql
-function st_intersectsbox(geography, double, double, double, double) returns bool
+function st_intersects(<geography, geography>) returns bool
 ```
+
+
+## `st_intersectsbox`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_intersectsbox)
 
-## `st_isclosed`
-
-#### Supported Signatures
 ```sql
-function st_isclosed(geography) returns bool
+function st_intersectsbox(<geography, double, double, double, double>) returns bool
 ```
+
+
+## `st_isclosed`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_isclosed)
 
-## `st_iscollection`
-
-#### Supported Signatures
 ```sql
-function st_iscollection(geography) returns bool
+function st_isclosed(<geography>) returns bool
 ```
+
+
+## `st_iscollection`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_iscollection)
 
-## `st_isempty`
-
-#### Supported Signatures
 ```sql
-function st_isempty(geography) returns bool
+function st_iscollection(<geography>) returns bool
 ```
+
+
+## `st_isempty`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_isempty)
 
-## `st_isring`
-
-#### Supported Signatures
 ```sql
-function st_isring(geography) returns bool
+function st_isempty(<geography>) returns bool
 ```
+
+
+## `st_isring`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_isring)
 
-## `st_length`
-
-#### Supported Signatures
 ```sql
-function st_length(geography) returns double
-function st_length(geography, bool) returns double
+function st_isring(<geography>) returns bool
 ```
+
+
+## `st_length`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_length)
 
-## `st_linelocatepoint`
-
-#### Supported Signatures
 ```sql
-function st_linelocatepoint(geography, geography) returns double
+function st_length(<geography>) returns double
 ```
+
+
+```sql
+function st_length(<geography, bool>) returns double
+```
+
+
+## `st_linelocatepoint`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_linelocatepoint)
 
-## `st_makeline`
-
-#### Supported Signatures
 ```sql
-function st_makeline(geography, geography) returns geography
+function st_linelocatepoint(<geography, geography>) returns double
 ```
+
+
+## `st_makeline`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_makeline)
 
-## `st_makepolygon`
-
-#### Supported Signatures
 ```sql
-function st_makepolygon(geography) returns geography
-function st_makepolygon(geography, array<geography>) returns geography
+function st_makeline(<geography, geography>) returns geography
 ```
+
+
+## `st_makepolygon`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_makepolygon)
 
-## `st_makepolygonoriented`
-
-#### Supported Signatures
 ```sql
-function st_makepolygonoriented(array<geography>) returns geography
+function st_makepolygon(<geography>) returns geography
 ```
+
+
+```sql
+function st_makepolygon(<geography, array<geography>>) returns geography
+```
+
+
+## `st_makepolygonoriented`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_makepolygonoriented)
 
-## `st_maxdistance`
-
-#### Supported Signatures
 ```sql
-function st_maxdistance(geography, geography) returns double
-function st_maxdistance(geography, geography, bool) returns double
+function st_makepolygonoriented(<array<geography>>) returns geography
 ```
+
+
+## `st_maxdistance`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_maxdistance)
 
-## `st_npoints`
-
-#### Supported Signatures
 ```sql
-function st_npoints(geography) returns bigint
+function st_maxdistance(<geography, geography>) returns double
 ```
+
+
+```sql
+function st_maxdistance(<geography, geography, bool>) returns double
+```
+
+
+## `st_npoints`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_npoints)
 
-## `st_numgeometries`
-
-#### Supported Signatures
 ```sql
-function st_numgeometries(geography) returns bigint
+function st_npoints(<geography>) returns bigint
 ```
+
+
+## `st_numgeometries`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_numgeometries)
 
-## `st_numpoints`
-
-#### Supported Signatures
 ```sql
-function st_numpoints(geography) returns bigint
+function st_numgeometries(<geography>) returns bigint
 ```
+
+
+## `st_numpoints`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_numpoints)
 
-## `st_perimeter`
-
-#### Supported Signatures
 ```sql
-function st_perimeter(geography) returns double
-function st_perimeter(geography, bool) returns double
+function st_numpoints(<geography>) returns bigint
 ```
+
+
+## `st_perimeter`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_perimeter)
 
-## `st_pointn`
-
-#### Supported Signatures
 ```sql
-function st_pointn(geography, bigint) returns geography
+function st_perimeter(<geography>) returns double
 ```
+
+
+```sql
+function st_perimeter(<geography, bool>) returns double
+```
+
+
+## `st_pointn`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_pointn)
 
-## `st_simplify`
-
-#### Supported Signatures
 ```sql
-function st_simplify(geography, bigint) returns geography
+function st_pointn(<geography, bigint>) returns geography
 ```
+
+
+## `st_simplify`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_simplify)
 
-## `st_snaptogrid`
-
-#### Supported Signatures
 ```sql
-function st_snaptogrid(geography, double) returns 
+function st_simplify(<geography, bigint>) returns geography
 ```
+
+
+## `st_snaptogrid`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_snaptogrid)
 
-## `st_startpoint`
-
-#### Supported Signatures
 ```sql
-function st_startpoint(geography) returns geography
+function st_snaptogrid(<geography, double>) returns 
 ```
+
+
+## `st_startpoint`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_startpoint)
 
-## `st_touches`
-
-#### Supported Signatures
 ```sql
-function st_touches(geography, geography) returns bool
+function st_startpoint(<geography>) returns geography
 ```
+
+
+## `st_touches`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_touches)
 
-## `st_union`
-
-#### Supported Signatures
 ```sql
-function st_union(geography, geography) returns geography
+function st_touches(<geography, geography>) returns bool
 ```
+
+
+## `st_union`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_union)
 
-## `st_union_agg`
-
-#### Supported Signatures
 ```sql
-function st_union_agg(geography) returns geography
+function st_union(<geography, geography>) returns geography
 ```
+
+
+## `st_union_agg`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_union_agg)
 
-## `st_within`
-
-#### Supported Signatures
 ```sql
-function st_within(geography, geography) returns bool
+function st_union_agg(<geography>) returns geography
 ```
+
+
+## `st_within`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_within)
 
-## `st_x`
-
-#### Supported Signatures
 ```sql
-function st_x(geography) returns double
+function st_within(<geography, geography>) returns bool
 ```
+
+
+## `st_x`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_x)
 
-## `st_y`
-
-#### Supported Signatures
 ```sql
-function st_y(geography) returns double
+function st_x(<geography>) returns double
 ```
+
+
+## `st_y`
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#st_y)
+
+```sql
+function st_y(<geography>) returns double
+```
+
 
 

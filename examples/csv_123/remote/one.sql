@@ -1,1 +1,0 @@
-create external table one stored as CSV location 's3://sdfdatasets/csv_123/a.csv';
