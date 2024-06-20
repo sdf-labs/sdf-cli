@@ -46,7 +46,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working set 3 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 1.977 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.719 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -164,7 +164,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 Working set 4 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
   Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.851 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.981 secs
 
 Schema sdf_snowflake.staging.latest_repo_name
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -206,23 +206,23 @@ Schema sdf_snowflake.staging.latest_repo_name
 Working set 4 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
     Running sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 7.625 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 9.615 secs
 
 Table sdf_snowflake.staging.latest_repo_name
-┌─────────────────────────────────────────────┬───────────┐
-│ repo_name                                   ┆ repo_id   │
-╞═════════════════════════════════════════════╪═══════════╡
-│ IdrissNAMEN/Hotel-Java-Spring-MVC           ┆ 816951067 │
-│ NjokiFlo/ecommerce                          ┆ 816909474 │
-│ TaoWenting/myReactPractice                  ┆ 816668578 │
-│ sethupathipalanisamyt/PublicCustomerDetails ┆ 816814663 │
-│ lalit774/test                               ┆ 816974881 │
-│ slskopytko/oicmjootmh                       ┆ 817054451 │
-│ diogohr01/doacao-roupas                     ┆ 817050010 │
-│ DanuFirmansyah99/kampus-klik                ┆ 816551273 │
-│ SandeshNarute/RestFullWeb1proj              ┆ 816897865 │
-│ JosueLore/nuevo-                            ┆ 816969980 │
-└─────────────────────────────────────────────┴───────────┘
+┌────────────────────────────────────────┬───────────┐
+│ repo_name                              ┆ repo_id   │
+╞════════════════════════════════════════╪═══════════╡
+│ QzQz-2000/case-study                   ┆ 817368000 │
+│ mequann/Task_managemetApp              ┆ 817356053 │
+│ TGAC/COPO-documentation                ┆ 116268560 │
+│ Manodoss14/maven                       ┆ 817392589 │
+│ Sarvar0/radarDoctor                    ┆ 817126388 │
+│ praveenkumarS42a/Auto_correct_keyboard ┆ 817305350 │
+│ isaacambi/Aws-cost-optimization        ┆ 817399738 │
+│ jaybhuva30/devopsmaster                ┆ 817305269 │
+│ makssmeinart/doodle                    ┆ 817511647 │
+│ RianDelou/GitPlus                      ┆ 806749377 │
+└────────────────────────────────────────┴───────────┘
 10 rows.
 
 </code>
@@ -270,7 +270,7 @@ Table sdf_snowflake.staging.latest_repo_name
 Working set 5 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.071 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 2.693 secs
 
 Schema sdf_snowflake.staging.push_events
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -334,20 +334,20 @@ Schema sdf_snowflake.staging.push_events
 <pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
 Working set 6 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
-Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
-Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
+Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
-Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (./src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (./src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
+Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
   Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (./src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
+  Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (./src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
   Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (./src/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-   Finished 13 models [6 succeeded, 7 downloaded] in 2.332 secs
+   Finished 13 models [6 succeeded, 7 downloaded] in 3.403 secs
 
 </code>
 </pre>
