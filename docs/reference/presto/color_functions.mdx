@@ -1,0 +1,43 @@
+---
+title: "Color Functions"
+---
+
+## `bar`
+
+#### Supported Signatures
+```sql
+function bar(double, bigint) returns varchar
+function bar(double, bigint, color, color) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#bar)
+
+## `color`
+
+#### Supported Signatures
+```sql
+function color(double, color, color) returns color
+function color(double, double, double, color, color) returns color
+function color(varchar) returns color
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#color)
+
+## `render`
+
+#### Supported Signatures
+```sql
+function render(boolean) returns varchar
+function render(bigint, color) returns varchar
+function render(double, color) returns varchar
+function render(varchar, color) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#render)
+
+## `rgb`
+
+#### Supported Signatures
+```sql
+function rgb(bigint, bigint, bigint) returns color
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/color.html#rgb)
+
+

@@ -243,19 +243,41 @@
 					]
 				},
 				{
-					"group": "Presto Functions",
+					"group": "Trino Functions",
 					"pages": [
-						"reference/presto/all_functions",
 						{
 							"group": "SDF Execution Support",
 							"pages": [
-								"reference/presto/sdf_execution_support/aggregate_functions",
-								"reference/presto/sdf_execution_support/math_functions",
-								"reference/presto/sdf_execution_support/other_expressions",
-								"reference/presto/sdf_execution_support/string_functions",
-								"reference/presto/sdf_execution_support/time_functions"
+								"reference/presto/sdf_execution_support/all_functions"
 							]
-						}
+						},
+						"reference/presto/aggregate_functions",
+						"reference/presto/array_functions",
+						"reference/presto/binary_functions",
+						"reference/presto/bitwise_functions",
+						"reference/presto/color_functions",
+						"reference/presto/comparison_functions",
+						"reference/presto/conditional_functions",
+						"reference/presto/conversion_functions",
+						"reference/presto/datetime_functions",
+						"reference/presto/geospatial_functions",
+						"reference/presto/hyperloglog_functions",
+						"reference/presto/json_functions",
+						"reference/presto/lambda_functions",
+						"reference/presto/map_functions",
+						"reference/presto/math_functions",
+						"reference/presto/ml_functions",
+						"reference/presto/mongodb_functions",
+						"reference/presto/qdigest_functions",
+						"reference/presto/regexp_functions",
+						"reference/presto/session_functions",
+						"reference/presto/setdigest_functions",
+						"reference/presto/string_functions",
+						"reference/presto/t-digest_functions",
+						"reference/presto/teradata_functions",
+						"reference/presto/url_functions",
+						"reference/presto/uuid_functions",
+						"reference/presto/window_functions"
 					]
 				},
 				{
@@ -298,11 +320,7 @@
 				{
 					"group": "Supported Functions",
 					"pages": [
-						"database/supported-functions/aggregate_functions",
-						"database/supported-functions/math_functions",
-						"database/supported-functions/other_expressions",
-						"database/supported-functions/string_functions",
-						"database/supported-functions/temporal_functions"
+						"database/supported-functions/all_functions"
 					]
 				},
 				"database/benchmarks"

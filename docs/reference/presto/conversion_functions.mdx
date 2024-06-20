@@ -1,0 +1,50 @@
+---
+title: "Conversion Functions"
+---
+
+## `format`
+
+#### Supported Signatures
+```sql
+function format(varchar, $1) returns varchar
+function format(varchar, $1, $2) returns varchar
+function format(varchar, $1, $2, $3) returns varchar
+function format(varchar, $1, $2, $3, $4) returns varchar
+function format(varchar, $1, $2, $3, $4, $5) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#format)
+
+## `format_number`
+
+#### Supported Signatures
+```sql
+function format_number(bigint) returns varchar
+function format_number(double) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#format_number)
+
+## `parse_data_size`
+
+#### Supported Signatures
+```sql
+function parse_data_size(varchar) returns decimal(38, 0)
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#parse_data_size)
+
+## `parse_presto_data_size`
+
+#### Supported Signatures
+```sql
+function parse_presto_data_size(varchar) returns decimal(38, 0)
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#parse_data_size)
+
+## `typeof`
+
+#### Supported Signatures
+```sql
+function typeof($1) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/conversion.html#typeof)
+
+

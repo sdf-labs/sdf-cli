@@ -1,0 +1,97 @@
+---
+title: "Window Functions"
+---
+
+## `cume_dist`
+
+#### Supported Signatures
+```sql
+function cume_dist() returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#cume_dist)
+
+## `dense_rank`
+
+#### Supported Signatures
+```sql
+function dense_rank() returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#dense_rank)
+
+## `first_value`
+
+#### Supported Signatures
+```sql
+function first_value($1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#first_value)
+
+## `lag`
+
+#### Supported Signatures
+```sql
+function lag($1) returns $1
+function lag($1, bigint) returns $1
+function lag($1, bigint, $1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#lag)
+
+## `last_value`
+
+#### Supported Signatures
+```sql
+function last_value($1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#last_value)
+
+## `lead`
+
+#### Supported Signatures
+```sql
+function lead($1) returns $1
+function lead($1, bigint) returns $1
+function lead($1, bigint, $1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#lead)
+
+## `nth_value`
+
+#### Supported Signatures
+```sql
+function nth_value($1, bigint) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#nth_value)
+
+## `ntile`
+
+#### Supported Signatures
+```sql
+function ntile(bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#ntile)
+
+## `percent_rank`
+
+#### Supported Signatures
+```sql
+function percent_rank() returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#percent_rank)
+
+## `rank`
+
+#### Supported Signatures
+```sql
+function rank() returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#rank)
+
+## `row_number`
+
+#### Supported Signatures
+```sql
+function row_number() returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#row_number)
+
+

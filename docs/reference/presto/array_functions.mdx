@@ -1,0 +1,271 @@
+---
+title: "Array Functions"
+---
+
+## `all_match`
+
+#### Supported Signatures
+```sql
+function all_match(array<$1>, function($1, boolean)) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#all_match)
+
+## `any_match`
+
+#### Supported Signatures
+```sql
+function any_match(array<$1>, function($1, boolean)) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#any_match)
+
+## `array_distinct`
+
+#### Supported Signatures
+```sql
+function array_distinct(array<$3>) returns array<$3>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_distinct)
+
+## `array_except`
+
+#### Supported Signatures
+```sql
+function array_except(array<$3>, array<$3>) returns array<$3>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_except)
+
+## `array_intersect`
+
+#### Supported Signatures
+```sql
+function array_intersect(array<$3>, array<$3>) returns array<$3>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_intersect)
+
+## `array_join`
+
+#### Supported Signatures
+```sql
+function array_join(array<$1>, varchar) returns varchar
+function array_join(array<$1>, varchar, varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_join)
+
+## `array_max`
+
+#### Supported Signatures
+```sql
+function array_max(array<$1>) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_max)
+
+## `array_min`
+
+#### Supported Signatures
+```sql
+function array_min(array<$1>) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_min)
+
+## `array_position`
+
+#### Supported Signatures
+```sql
+function array_position(array<$1>, $1) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_position)
+
+## `array_remove`
+
+#### Supported Signatures
+```sql
+function array_remove(array<$3>, $3) returns array<$3>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_remove)
+
+## `array_sort`
+
+#### Supported Signatures
+```sql
+function array_sort(array<$3>) returns array<$3>
+function array_sort(array<$1>, function($1, $1, bigint)) returns array<$1>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_sort)
+
+## `array_union`
+
+#### Supported Signatures
+```sql
+function array_union(array<$3>, array<$3>) returns array<$3>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_union)
+
+## `arrays_overlap`
+
+#### Supported Signatures
+```sql
+function arrays_overlap(array<$3>, array<$3>) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#arrays_overlap)
+
+## `cardinality`
+
+#### Supported Signatures
+```sql
+function cardinality(array<$3>) returns bigint
+function cardinality(hyperloglog) returns bigint
+function cardinality(map<$4, $5>) returns bigint
+function cardinality(setdigest) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#cardinality)
+
+## `combinations`
+
+#### Supported Signatures
+```sql
+function combinations(array<$1>, bigint) returns array<array<$1>>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#combinations)
+
+## `contains`
+
+#### Supported Signatures
+```sql
+function contains(array<$1>, $1) returns boolean
+function contains(varchar, ipaddress) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#contains)
+
+## `contains_sequence`
+
+#### Supported Signatures
+```sql
+function contains_sequence(array<$1>, array<$1>) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#contains_sequence)
+
+## `element_at`
+
+#### Supported Signatures
+```sql
+function element_at(map<$4, $5>, $4) returns $5
+function element_at(array<$3>, bigint) returns $3
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#element_at)
+
+## `filter`
+
+#### Supported Signatures
+```sql
+function filter(array<$1>, function($1, boolean)) returns array<$1>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#filter)
+
+## `flatten`
+
+#### Supported Signatures
+```sql
+function flatten(array<array<$3>>) returns array<$3>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#flatten)
+
+## `ngrams`
+
+#### Supported Signatures
+```sql
+function ngrams(array<$1>, bigint) returns array<array<$1>>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#ngrams)
+
+## `none_match`
+
+#### Supported Signatures
+```sql
+function none_match(array<$1>, function($1, boolean)) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#none_match)
+
+## `reduce`
+
+#### Supported Signatures
+```sql
+function reduce(array<$1>, $10, function($10, $1, $10), function($10, $9)) returns $9
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#reduce)
+
+## `repeat`
+
+#### Supported Signatures
+```sql
+function repeat($1, bigint) returns array<$1>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#repeat)
+
+## `sequence`
+
+#### Supported Signatures
+```sql
+function sequence(bigint, bigint) returns array<bigint>
+function sequence(bigint, bigint, bigint) returns array<bigint>
+function sequence(date, date) returns array[date]
+function sequence(date, date, interval day to second) returns array[date]
+function sequence(date, date, interval year to month) returns array[date]
+function sequence(timestamp(p), timestamp(p), interval day to second) returns array<timestamp(p)>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#sequence)
+
+## `shuffle`
+
+#### Supported Signatures
+```sql
+function shuffle(array<$3>) returns array<$3>
+```
+*Note: shuffle() is volatile, i.e. might return a
+                different value for the same input.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#shuffle)
+
+## `slice`
+
+#### Supported Signatures
+```sql
+function slice(array<$3>, bigint, bigint) returns array<$3>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#slice)
+
+## `transform`
+
+#### Supported Signatures
+```sql
+function transform(array<$1>, function($1, $11)) returns array<$11>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#transform)
+
+## `trim_array`
+
+#### Supported Signatures
+```sql
+function trim_array(array<$3>, bigint) returns array<$3>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#trim_array)
+
+## `zip`
+
+#### Supported Signatures
+```sql
+function zip(array<$14>, array<$15>) returns array<row(c0 $14, c1 $15)>
+function zip(array<$14>, array<$15>, array<$16>) returns array<row(c0 $14, c1 $15, c2 $16)>
+function zip(array<$14>, array<$15>, array<$16>, array<$17>) returns array<row(c0 $14, c1 $15, c2 $16, c3 $17)>
+function zip(array<$14>, array<$15>, array<$16>, array<$17>, array<$18>) returns array<row(c0 $14, c1 $15, c2 $16, c3 $17, c4 $18)>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#zip)
+
+## `zip_with`
+
+#### Supported Signatures
+```sql
+function zip_with(array<$1>, array<$11>, function($1, $11, $9)) returns array<$9>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#zip_with)
+
+

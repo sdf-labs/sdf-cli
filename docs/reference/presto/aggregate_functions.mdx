@@ -1,0 +1,369 @@
+---
+title: "Aggregate Functions"
+---
+
+## `approx_distinct`
+
+#### Supported Signatures
+```sql
+function approx_distinct(boolean) returns bigint
+function approx_distinct(boolean, double) returns bigint
+function approx_distinct($1) returns bigint
+function approx_distinct($1, double) returns bigint
+function approx_distinct(unknown) returns bigint
+function approx_distinct(unknown, double) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_distinct)
+
+## `approx_most_frequent`
+
+#### Supported Signatures
+```sql
+function approx_most_frequent(bigint, bigint, bigint) returns map<bigint, bigint>
+function approx_most_frequent(bigint, varchar, bigint) returns map<varchar, bigint>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_most_frequent)
+
+## `approx_percentile`
+
+#### Supported Signatures
+```sql
+function approx_percentile(bigint, array<double>) returns array<bigint>
+function approx_percentile(bigint, double, array<double>) returns array<bigint>
+function approx_percentile(double, array<double>) returns array<double>
+function approx_percentile(double, double, array<double>) returns array<double>
+function approx_percentile(real, array<double>) returns array<real>
+function approx_percentile(real, double, array<double>) returns array<real>
+function approx_percentile(bigint, double) returns bigint
+function approx_percentile(bigint, double, double) returns bigint
+function approx_percentile(bigint, double, double, double) returns bigint
+function approx_percentile(double, double) returns double
+function approx_percentile(double, double, double) returns double
+function approx_percentile(double, double, double, double) returns double
+function approx_percentile(real, double) returns real
+function approx_percentile(real, double, double) returns real
+function approx_percentile(real, double, double, double) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#approx_percentile)
+
+## `arbitrary`
+
+#### Supported Signatures
+```sql
+function arbitrary($1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#arbitrary)
+
+## `array_agg`
+
+#### Supported Signatures
+```sql
+function array_agg($1) returns array<$1>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#array_agg)
+
+## `avg`
+
+#### Supported Signatures
+```sql
+function avg(double) returns double
+function avg(decimal(p, s)) returns decimal(p, s)
+function avg(interval day to second) returns interval day to second
+function avg(interval year to month) returns interval year to month
+function avg(real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#avg)
+
+## `bitwise_and_agg`
+
+#### Supported Signatures
+```sql
+function bitwise_and_agg(bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bitwise_and_agg)
+
+## `bitwise_or_agg`
+
+#### Supported Signatures
+```sql
+function bitwise_or_agg(bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bitwise_or_agg)
+
+## `bool_and`
+
+#### Supported Signatures
+```sql
+function bool_and(boolean) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bool_and)
+
+## `bool_or`
+
+#### Supported Signatures
+```sql
+function bool_or(boolean) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#bool_or)
+
+## `checksum`
+
+#### Supported Signatures
+```sql
+function checksum($1) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#checksum)
+
+## `corr`
+
+#### Supported Signatures
+```sql
+function corr(double, double) returns double
+function corr(real, real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#corr)
+
+## `count`
+
+#### Supported Signatures
+```sql
+function count() returns bigint
+function count($1) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#count)
+
+## `count_if`
+
+#### Supported Signatures
+```sql
+function count_if(boolean) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#count_if)
+
+## `covar_pop`
+
+#### Supported Signatures
+```sql
+function covar_pop(double, double) returns double
+function covar_pop(real, real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#covar_pop)
+
+## `covar_samp`
+
+#### Supported Signatures
+```sql
+function covar_samp(double, double) returns double
+function covar_samp(real, real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#covar_samp)
+
+## `every`
+
+#### Supported Signatures
+```sql
+function every(boolean) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#every)
+
+## `geometric_mean`
+
+#### Supported Signatures
+```sql
+function geometric_mean(bigint) returns double
+function geometric_mean(double) returns double
+function geometric_mean(real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#geometric_mean)
+
+## `histogram`
+
+#### Supported Signatures
+```sql
+function histogram($1) returns map<$1, bigint>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#histogram)
+
+## `kurtosis`
+
+#### Supported Signatures
+```sql
+function kurtosis(bigint) returns double
+function kurtosis(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#kurtosis)
+
+## `listagg`
+
+#### Supported Signatures
+```sql
+function listagg(varchar, varchar, boolean, varchar, boolean) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#listagg)
+
+## `map_agg`
+
+#### Supported Signatures
+```sql
+function map_agg($4, $5) returns map<$4, $5>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#map_agg)
+
+## `map_union`
+
+#### Supported Signatures
+```sql
+function map_union(map<$4, $5>) returns map<$4, $5>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#map_union)
+
+## `max`
+
+#### Supported Signatures
+```sql
+function max($3, bigint) returns array<$3>
+function max($1, ...) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#max)
+
+## `max_by`
+
+#### Supported Signatures
+```sql
+function max_by($5, $4, bigint) returns array<$5>
+function max_by($5, $4) returns $5
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#max_by)
+
+## `min`
+
+#### Supported Signatures
+```sql
+function min($3, bigint) returns array<$3>
+function min($1, ...) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#min)
+
+## `min_by`
+
+#### Supported Signatures
+```sql
+function min_by($5, $4, bigint) returns array<$5>
+function min_by($5, $4) returns $5
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#min_by)
+
+## `multimap_agg`
+
+#### Supported Signatures
+```sql
+function multimap_agg($4, $5) returns map<$4, array<$5>>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#multimap_agg)
+
+## `numeric_histogram`
+
+#### Supported Signatures
+```sql
+function numeric_histogram(bigint, double) returns map<double, double>
+function numeric_histogram(bigint, double, double) returns map<double, double>
+function numeric_histogram(bigint, real) returns map<real, real>
+function numeric_histogram(bigint, real, double) returns map<real, real>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#numeric_histogram)
+
+## `regr_intercept`
+
+#### Supported Signatures
+```sql
+function regr_intercept(double, double) returns double
+function regr_intercept(real, real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#regr_intercept)
+
+## `regr_slope`
+
+#### Supported Signatures
+```sql
+function regr_slope(double, double) returns double
+function regr_slope(real, real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#regr_slope)
+
+## `skewness`
+
+#### Supported Signatures
+```sql
+function skewness(bigint) returns double
+function skewness(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#skewness)
+
+## `stddev`
+
+#### Supported Signatures
+```sql
+function stddev(bigint) returns double
+function stddev(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev)
+
+## `stddev_pop`
+
+#### Supported Signatures
+```sql
+function stddev_pop(bigint) returns double
+function stddev_pop(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev_pop)
+
+## `stddev_samp`
+
+#### Supported Signatures
+```sql
+function stddev_samp(bigint) returns double
+function stddev_samp(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev_samp)
+
+## `sum`
+
+#### Supported Signatures
+```sql
+function sum(bigint) returns bigint
+function sum(double) returns double
+function sum(decimal(p, s)) returns decimal(38, s)
+function sum(real) returns real
+function sum(interval day to second) returns interval day to second
+function sum(interval year to month) returns interval year to month
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#sum)
+
+## `var_pop`
+
+#### Supported Signatures
+```sql
+function var_pop(bigint) returns double
+function var_pop(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#var_pop)
+
+## `var_samp`
+
+#### Supported Signatures
+```sql
+function var_samp(bigint) returns double
+function var_samp(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#var_samp)
+
+## `variance`
+
+#### Supported Signatures
+```sql
+function variance(bigint) returns double
+function variance(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#variance)
+
+
