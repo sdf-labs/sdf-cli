@@ -46,7 +46,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working set 3 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.607 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 1.975 secs
 
 Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -164,7 +164,7 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 Working set 4 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
   Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.556 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 1.924 secs
 
 Schema sdf_snowflake.staging.latest_repo_name
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -206,23 +206,23 @@ Schema sdf_snowflake.staging.latest_repo_name
 Working set 4 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
     Running sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 6.345 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 5.642 secs
 
 Table sdf_snowflake.staging.latest_repo_name
-┌──────────────────────────────────────────────────────────────────────────┬───────────┐
-│ repo_name                                                                ┆ repo_id   │
-╞══════════════════════════════════════════════════════════════════════════╪═══════════╡
-│ static-web-apps-testing-org/swa639792a7561f4599abc6041abbafc366          ┆ 818022085 │
-│ QuixThe2nd/trackerslist                                                  ┆ 359384188 │
-│ Saienagaluru22/Treasure-Island                                           ┆ 817726694 │
-│ ZCW-J101D51/Ollama-1                                                     ┆ 817924285 │
-│ boomikavijayakumar/front-end                                             ┆ 817638275 │
-│ direwolf-github/ephemeral-ci-3b737836                                    ┆ 817599505 │
-│ ItzelDoroteo/Skill-Calculadora                                           ┆ 818014704 │
-│ nithin127/nextjs-with-supabase                                           ┆ 817846919 │
-│ bienvoakp/projet_vehicule                                                ┆ 817681621 │
-│ overleaf-github-sync-acceptance-tests/test-repo-6673dff53e1c1b096d1ca771 ┆ 817671488 │
-└──────────────────────────────────────────────────────────────────────────┴───────────┘
+┌───────────────────────────────────────────────────────┬───────────┐
+│ repo_name                                             ┆ repo_id   │
+╞═══════════════════════════════════════════════════════╪═══════════╡
+│ aarush-30/crypto-tracker                              ┆ 817715306 │
+│ RehanAdilAbbasiRAA/Machine-Learning-and-Model-traning ┆ 817734603 │
+│ PauloCesar-Souza/dio-bd-relacional                    ┆ 817546330 │
+│ eryk-fernandes/eryk-fernandes                         ┆ 817994287 │
+│ KEIO-SLC-SOFTTENNIS/keio_slc_softtennis.github.io     ┆ 816542708 │
+│ Gabrielam0305/Examen2_RolandoyGabriela                ┆ 817610950 │
+│ TxmMinh/App-stock-prediction                          ┆ 817829886 │
+│ chrisfullpw/sistema-de-registro                       ┆ 817615932 │
+│ BilvikaMellamputi/chatbot                             ┆ 817556818 │
+│ Eamanisrilakshmi/Srilakshmi06                         ┆ 817733564 │
+└───────────────────────────────────────────────────────┴───────────┘
 10 rows.
 
 </code>
@@ -270,7 +270,7 @@ Table sdf_snowflake.staging.latest_repo_name
 Working set 5 model files, 1 .sdf file
 Downloading tech__innovation_essentials.cybersyn.github_events (schema)
   Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 2.474 secs
+   Finished 2 models [1 succeeded, 1 downloaded] in 1.958 secs
 
 Schema sdf_snowflake.staging.push_events
 ┌─────────────┬────────────────┬────────────┬─────────────┐
@@ -334,20 +334,20 @@ Schema sdf_snowflake.staging.push_events
 <pre style={{ fontFamily: 'monospace' }} className='language-shell'>
 <code className='language-shell'>
 Working set 6 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
-Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
-Downloading tech__innovation_essentials.cybersyn.github_events (schema)
+Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
+Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
 Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
+Downloading tech__innovation_essentials.cybersyn.github_events (schema)
 Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
-  Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
+  Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (./src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
+  Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (./src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
-  Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
   Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (./src/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-   Finished 13 models [6 succeeded, 7 downloaded] in 3.296 secs
+   Finished 13 models [6 succeeded, 7 downloaded] in 2.634 secs
 
 </code>
 </pre>

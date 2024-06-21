@@ -33,3 +33,6 @@ environment:
    includes:
       - path: remote
       - path: src
+   integrations:
+      - type: data
+        provider: s3
