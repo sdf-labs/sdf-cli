@@ -1,0 +1,88 @@
+---
+title: "Aggregate Functions"
+---
+
+
+## `array_agg`
+
+#### Supported Signatures
+```sql
+function array_agg($1) returns array<$1>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#array_agg)
+
+## `avg`
+
+#### Supported Signatures
+```sql
+function avg(double) returns double
+function avg(decimal(p, s)) returns decimal(p, s)
+function avg(real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#avg)
+
+## `count`
+
+#### Supported Signatures
+```sql
+function count() returns bigint
+function count($1) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#count)
+
+## `max`
+
+#### Supported Signatures
+```sql
+function max($1, ...) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#max)
+
+## `min`
+
+#### Supported Signatures
+```sql
+function min($1, ...) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#min)
+
+## `stddev`
+
+#### Supported Signatures
+```sql
+function stddev(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev)
+
+## `stddev_pop`
+
+#### Supported Signatures
+```sql
+function stddev_pop(bigint) returns double
+function stddev_pop(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev_pop)
+
+## `stddev_samp`
+
+#### Supported Signatures
+```sql
+function stddev_samp(bigint) returns double
+function stddev_samp(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#stddev_samp)
+
+## `sum`
+
+#### Supported Signatures
+```sql
+function sum(bigint) returns bigint
+function sum(double) returns double
+function sum(decimal(p, s)) returns decimal(38, s)
+function sum(real) returns real
+function sum(interval day to second) returns interval day to second
+function sum(interval year to month) returns interval year to month
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#sum)
+
+

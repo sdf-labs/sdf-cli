@@ -1,0 +1,287 @@
+---
+title: "Math Functions"
+---
+
+
+## `abs`
+
+#### Supported Signatures
+```sql
+function abs(tinyint) returns tinyint
+function abs(smallint) returns smallint
+function abs(bigint) returns bigint
+function abs(double) returns double
+function abs(decimal(p, s)) returns decimal(p, s)
+function abs(real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#abs)
+
+## `acos`
+
+#### Supported Signatures
+```sql
+function acos(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#acos)
+
+## `asin`
+
+#### Supported Signatures
+```sql
+function asin(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#asin)
+
+## `atan`
+
+#### Supported Signatures
+```sql
+function atan(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#atan)
+
+## `atan2`
+
+#### Supported Signatures
+```sql
+function atan2(double, double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#atan2)
+
+## `cbrt`
+
+#### Supported Signatures
+```sql
+function cbrt(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cbrt)
+
+## `ceil`
+
+#### Supported Signatures
+```sql
+function ceil(double) returns double
+function ceil(real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ceil)
+
+## `ceiling`
+
+#### Supported Signatures
+```sql
+function ceiling(double) returns double
+function ceiling(real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ceiling)
+
+## `cos`
+
+#### Supported Signatures
+```sql
+function cos(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cos)
+
+## `cosh`
+
+#### Supported Signatures
+```sql
+function cosh(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#cosh)
+
+## `degrees`
+
+#### Supported Signatures
+```sql
+function degrees(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#degrees)
+
+## `exp`
+
+#### Supported Signatures
+```sql
+function exp(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#exp)
+
+## `floor`
+
+#### Supported Signatures
+```sql
+function floor(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#floor)
+
+## `is_nan`
+
+#### Supported Signatures
+```sql
+function is_nan(double) returns boolean
+function is_nan(real) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#is_nan)
+
+## `ln`
+
+#### Supported Signatures
+```sql
+function ln(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#ln)
+
+## `log`
+
+#### Supported Signatures
+```sql
+function log(double, double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log)
+
+## `log10`
+
+#### Supported Signatures
+```sql
+function log10(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log10)
+
+## `log2`
+
+#### Supported Signatures
+```sql
+function log2(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#log2)
+
+## `pi`
+
+#### Supported Signatures
+```sql
+function pi() returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#pi)
+
+## `pow`
+
+#### Supported Signatures
+```sql
+function pow(double, double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#pow)
+
+## `power`
+
+#### Supported Signatures
+```sql
+function power(double, double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#power)
+
+## `radians`
+
+#### Supported Signatures
+```sql
+function radians(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#radians)
+
+## `rand`
+
+#### Supported Signatures
+```sql
+function rand() returns double
+```
+*Note: rand() is volatile, i.e. might return a
+                different value for the same input.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#rand)
+
+## `random`
+
+#### Supported Signatures
+```sql
+function random() returns double
+```
+*Note: random() is volatile, i.e. might return a
+                different value for the same input.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#random)
+
+## `round`
+
+#### Supported Signatures
+```sql
+function round(double) returns double
+function round(double, bigint) returns double
+function round(real) returns real
+function round(real, bigint) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#round)
+
+## `sign`
+
+#### Supported Signatures
+```sql
+function sign(decimal(p, s)) returns decimal(1, 0)
+function sign(double) returns double
+function sign(integer) returns integer
+function sign(real) returns real
+function sign(smallint) returns smallint
+function sign(tinyint) returns tinyint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sign)
+
+## `sin`
+
+#### Supported Signatures
+```sql
+function sin(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sin)
+
+## `sinh`
+
+#### Supported Signatures
+```sql
+function sinh(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sinh)
+
+## `sqrt`
+
+#### Supported Signatures
+```sql
+function sqrt(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sqrt)
+
+## `tan`
+
+#### Supported Signatures
+```sql
+function tan(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#tan)
+
+## `tanh`
+
+#### Supported Signatures
+```sql
+function tanh(double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#tanh)
+
+## `truncate`
+
+#### Supported Signatures
+```sql
+function truncate(decimal(p, s), bigint) returns decimal(p, s)
+function truncate(decimal(p, s)) returns decimal(rp, 0)
+function truncate(double) returns double
+function truncate(real) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#truncate)
+
+

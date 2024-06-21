@@ -1,0 +1,30 @@
+---
+title: "Overview of Function Execution"
+---
+
+SDF DB is currently designed to model Trino in semantics and execution. All functions are currently designed for 
+1:1 compatiblity with the functions in the Trino Dialect. Function implementation is in Rust, providing for fast execution. 
+
+SDF DB natively uses the Arrow data format for vectorized computation. There are many built-in functions for common operations. 
+These functions include, but are not limited to:
+- String Functions: UPPER(), LOWER(), CONCAT(), SUBSTRING(), etc.
+- Numeric Functions: ABS(), ROUND(), CEIL(), FLOOR(), etc.
+- Date and Time Functions: NOW(), DATEADD(), DATEDIFF(), FORMAT(), etc.
+- Aggregate Functions: COUNT(), SUM(), AVG(), MIN(), MAX(), etc.
+
+
+### Adding New SQL Functions
+SDF DB does not yet support all Trino functions. There are many after all. Functions are implemented on a first-come first-serve basis in the open source 
+[sql-functions](https://github.com/sdf-labs/sql-functions) repository.
+
+If you would like a new function, please [Open an Issue](https://github.com/sdf-labs/sql-functions/issues) or contribute the function yourself. 
+
+And, if you'd like to use these functions yourself, they are available as a [rust crate](https://crates.io/crates/sql-functions).
+
+### Known Limitations
+SDF DB is in Alpha with many popular Trino features coming soon.
+
+Currently SDF DB is Missing Support For:
+* User Defined Functions
+* Lambdas
+

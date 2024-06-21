@@ -318,9 +318,18 @@
 				"database/file-formats",
 				"database/partitioning",
 				{
-					"group": "Supported Functions",
+					"group": "Trino Supported Functions",
 					"pages": [
-						"database/supported-functions/all_functions"
+						"database/supported-functions/overview",
+						"database/supported-functions/trino/string-functions",
+						"database/supported-functions/trino/math-functions",
+						"database/supported-functions/trino/datetime-functions",
+						"database/supported-functions/trino/aggregate-functions",
+						"database/supported-functions/trino/regexp-functions",
+						"database/supported-functions/trino/comparison-functions",
+						"database/supported-functions/trino/binary-functions",
+						"database/supported-functions/trino/conditional-functions",
+						"database/supported-functions/trino/array-functions"
 					]
 				},
 				"database/benchmarks"

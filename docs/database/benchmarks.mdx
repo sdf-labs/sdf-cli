@@ -10,7 +10,7 @@ Crucially, SDF execution semantics are built on top of [Apache Datafusion](https
 
 Configuration is minimal since all dependency management of when to load which tables, what to keep in memory, and in what order to execute queries is handled automatically by SDF.
 
-For each benchmark, simply download the data and write `sdf run` on your terminal. No configuration necessary.
+For each benchmark, simply download the data with the provided `hydrate.sh` script and execute `sdf run` on your terminal. No configuration necessary.
 
 ## Presto / Trino  / AWS Athena
 There are many SQL engine products that have their root in the Facebook developed [Presto](https://prestodb.io/) engine. The [Trino](https://trino.io/) dialect (a fork off of Presto) is the default execution dialect of SDF. Trino is the engine powering [AWS Athena](https://aws.amazon.com/athena/).
