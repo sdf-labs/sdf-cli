@@ -24,6 +24,25 @@ SDF writes progress or results on stdout. It provides the developer with a varie
 
 ### Command-line options 
 
+#### Inputs / Selectors
+
+All SDF SQL processing commands take a list of targets as input.
+
+For example, the `compile` and `run` commands can take targets in multiple formats:
+  * `sdf compile catalog.schema.table_name` *using fully qualified name*
+  * `sdf compile table_name` *using table name and inferred fully qualified name from the default catalog and schema*
+  * `sdf compile /path/to/table_name.sql` *using file path*
+  * `sdf compile catalog.*.*`  *using glob pattern to compile multiple targets*
+  * `sdf compile [No params]` *using no params compiles the whole workspace*
+  * `sdf compile /path/to/workspace` *enables compiling a workspace from outside the workspace directory*
+  * `sdf run -q "SELECT * FROM table_name"` *using a query string*
+
+<Tip>
+  Running SDF commands from the workspace directory, adjacent to the `workspace.sdf.yml` file, is best practice as error messages and logs will use the relative path from the workspace root in their output.
+</Tip>
+
+#### Outputs
+
 There are 4 commandline options to control the output.
 
 - `--show (all | progress | result | none)` - Print desired amount of information, i.e., produced tables.
@@ -33,15 +52,6 @@ There are 4 commandline options to control the output.
   - `result` prints the tables parsed and the schema assocaited
   - `none` prints nothing. This will also prevent the `Finished in [n] seconds` message from displaying at the end of stdout.
 
-- `--log-level (trace | debug | info | warn | error)` - Print logs in various degrees.
-
-  - `trace` prints internal state changes
-  - `debug` prints more of the above, cache hits, etc
-  - `info` prints internal progress, SQL statements being processed, logical
-    plan being produced
-  - `warn` prints warnings associated with the compile
-  - `error` prints errors assocaited with the compile 
-
 - `--format (table | csv | tsv | json | nd-json | yml)` - Specifies the table representation
   on stdout.
 
@@ -50,7 +60,7 @@ There are 4 commandline options to control the output.
   - `tsv` is a TSV representation
   - `json` is a JSON representation
   - `nd-json` is an ndJSON representation
-  - `yml`, only available for `sdf compile`, is YAML representation
+  - `yml`, is YML representation
 
 - `--limit <number>` - Limits the number of shown rows. Run with `--limit 0` to show all rows.
 
@@ -67,18 +77,20 @@ Let's try these options. Start by creating a new SDF workspace with a sample pro
 		```
     After running the command, you will see the following output:
     
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-    Created lineage/checks/check_sink_phone_is_pii.sql
-    Created lineage/src/knis.sql
-    Created lineage/src/middle.sql
-    Created lineage/src/sink.sql
-    Created lineage/src/source.sql
-    Created lineage/workspace.sdf.yml
-   Finished new in 0.104 secs
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/checks/check_sink_phone_is_pii.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/models/knis.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/models/middle.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/models/sink.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/models/source.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;lineage/workspace.sdf.yml
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.297&nbsp;secs
 
 </code>
 </pre>
+</div>
   </Step>
 
   <Step title="Change Directory">
@@ -97,17 +109,20 @@ sdf compile
 ```
     Reviewing this output, multiple files have been compiled and SDF has statically analyzed the queries.
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 4 model files, 1 .sdf file
-  Compiling lineage.pub.source (./src/source.sql)
-  Compiling lineage.pub.middle (./src/middle.sql)
-  Compiling lineage.pub.knis (./src/knis.sql)
-  Compiling lineage.pub.sink (./src/sink.sql)
-   Finished 4 models [4 succeeded] in 0.608 secs
+Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.source&nbsp;(./models/source.sql)
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.check_sink_phone_is_pii&nbsp;(./checks/check_sink_phone_is_pii.sql)
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.middle&nbsp;(./models/middle.sql)
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.sink&nbsp;(./models/sink.sql)
+&nbsp;&nbsp;Compiling&nbsp;lineage.pub.knis&nbsp;(./models/knis.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;0.795&nbsp;secs
 
 </code>
 </pre>
+</div>
 
     Add the `--show all` command to display all information after compile
 
@@ -131,7 +146,7 @@ sdf compile --show all
   To select the output of only one table, use the table name directly after the `compile` command.
 
   ```shell
-  sdf compile src/sink.sql
+  sdf compile models/sink.sql
   ```
 
   <Note>

@@ -7,4 +7,4 @@ SELECT
     additional_details,
     platform,
     campaign_id
-FROM raw_inapp_events
+FROM raw.raw_inapp_events

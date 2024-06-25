@@ -28,7 +28,7 @@ table:
       # <<<<<
 
     - name: email
-      description: The emial of the customer
+      description: The email of the customer
       # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
       # classifiers:
       #   - PII.email

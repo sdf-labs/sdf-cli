@@ -1,0 +1,57 @@
+---
+title: "Qdigest Functions"
+---
+
+## `qdigest_agg`
+
+Returns the qdigest which is composed of  all input values of x.
+
+*Supported Signatures*
+```sql
+function qdigest_agg(bigint) returns qdigest
+function qdigest_agg(bigint, bigint) returns qdigest
+function qdigest_agg(bigint, bigint, double) returns qdigest
+function qdigest_agg(double) returns qdigest
+function qdigest_agg(double, bigint) returns qdigest
+function qdigest_agg(double, bigint, double) returns qdigest
+function qdigest_agg(real) returns qdigest
+function qdigest_agg(real, bigint) returns qdigest
+function qdigest_agg(real, bigint, double) returns qdigest
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#qdigest_agg)
+
+## `quantile_at_value`
+
+Returns the approximate quantile number between 0 and 1 from the quantile digest given an input value. Null is returned if the quantile digest is empty or the input value is outside of the range of the quantile digest.
+
+*Supported Signatures*
+```sql
+function quantile_at_value(qdigest, bigint) returns double
+function quantile_at_value(qdigest, double) returns double
+function quantile_at_value(qdigest, real) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#quantile_at_value)
+
+## `value_at_quantile`
+
+Returns the approximate percentile value from the quantile digest given the number quantile between 0 and 1.
+
+*Supported Signatures*
+```sql
+function value_at_quantile(qdigest, double) returns bigint
+function value_at_quantile(tdigest, double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#value_at_quantile)
+
+## `values_at_quantiles`
+
+Returns the approximate percentile values as an array given the input quantile digest and array of values between 0 and 1 which represent the quantiles to return.
+
+*Supported Signatures*
+```sql
+function values_at_quantiles(qdigest, array<double>) returns array<bigint>
+function values_at_quantiles(tdigest, array<double>) returns array<double>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/qdigest.html#values_at_quantiles)
+
+

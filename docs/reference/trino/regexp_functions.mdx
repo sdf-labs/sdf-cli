@@ -1,0 +1,94 @@
+---
+title: "Regexp Functions"
+---
+
+## `regexp_count`
+
+Returns the number of occurrence of pattern in string.
+
+*Supported Signatures*
+```sql
+function regexp_count(varchar, joniregexp) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_count)
+
+## `regexp_extract`
+
+Returns the first substring matched by the regular expression pattern in string.
+
+
+*Examples:*
+```sql examples.sql
+SELECT REGEXP_EXTRACT('email_address@gmail.com', '@(.*?)\.' -- value 'gmail'
+```
+*Supported Signatures*
+```sql
+function regexp_extract(varchar, joniregexp) returns varchar
+function regexp_extract(varchar, joniregexp, bigint) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract)
+
+## `regexp_extract_all`
+
+Returns the substring(s) matched by the regular expression pattern in string.
+
+*Supported Signatures*
+```sql
+function regexp_extract_all(varchar, joniregexp) returns array<varchar>
+function regexp_extract_all(varchar, joniregexp, bigint) returns array<varchar>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract_all)
+
+## `regexp_like`
+
+Evaluates the regular expression pattern and determines if it is contained within string.
+
+
+*Examples:*
+```sql examples.sql
+SELECT REGEXP_like('email_address@gmail.com', '.*@.*\..*') AS is_valid_email -- value 'TRUE'
+```
+*Supported Signatures*
+```sql
+function regexp_like(varchar, joniregexp) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_like)
+
+## `regexp_position`
+
+Returns the index of the first occurrence (counting from 1) of pattern in string. Returns -1 if not found.
+
+*Supported Signatures*
+```sql
+function regexp_position(varchar, joniregexp) returns bigint
+function regexp_position(varchar, joniregexp, bigint) returns bigint
+function regexp_position(varchar, joniregexp, bigint, bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_position)
+
+## `regexp_replace`
+
+Removes every instance of the substring matched by the regular expression pattern from string.
+
+
+*Examples:*
+```sql examples.sql
+SELECT REGEXP_REPLACE('text foo another text', 'foo', 'bar') -- value 'text bar another text'
+```
+*Supported Signatures*
+```sql
+function regexp_replace(varchar, joniregexp, function(array<varchar>, varchar)) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_replace)
+
+## `regexp_split`
+
+Splits string using the regular expression pattern and returns an array. Trailing empty strings are preserved.
+
+*Supported Signatures*
+```sql
+function regexp_split(varchar, joniregexp) returns array<varchar>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_split)
+
+

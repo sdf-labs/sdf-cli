@@ -5,9 +5,8 @@ title: "String Functions"
 
 ## `regexp_count`
 
-#### Description
 returns number of matches of regular expression pattern in subject
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_count(varchar, varchar) returns decimal(38, 0)
 function regexp_count(varchar, varchar, decimal(38, 0)) returns decimal(38, 0)
@@ -17,9 +16,8 @@ function regexp_count(varchar, varchar, decimal(38, 0), varchar) returns decimal
 
 ## `regexp_instr`
 
-#### Description
 returns position at which the subject matches the regular expression pattern
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_instr(varchar, varchar) returns decimal(38, 0)
 function regexp_instr(varchar, varchar, decimal(38, 0)) returns decimal(38, 0)
@@ -32,9 +30,8 @@ function regexp_instr(varchar, varchar, decimal(38, 0), decimal(38, 0), decimal(
 
 ## `regexp_like`
 
-#### Description
 returns TRUE if subject RLIKE pattern
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_like(varchar, varchar) returns boolean
 function regexp_like(varchar, varchar, varchar) returns boolean
@@ -43,9 +40,8 @@ function regexp_like(varchar, varchar, varchar) returns boolean
 
 ## `regexp_replace`
 
-#### Description
 replaces substring in subject matching a regular expression pattern
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_replace(varchar, varchar) returns varchar
 function regexp_replace(varchar, varchar, varchar) returns varchar
@@ -57,9 +53,8 @@ function regexp_replace(varchar, varchar, varchar, decimal(38, 0), decimal(38, 0
 
 ## `regexp_substr`
 
-#### Description
 returns substring in subject which matches the regular expression pattern
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_substr(varchar, varchar) returns varchar
 function regexp_substr(varchar, varchar, decimal(38, 0)) returns varchar
@@ -71,9 +66,8 @@ function regexp_substr(varchar, varchar, decimal(38, 0), decimal(38, 0), varchar
 
 ## `regexp_substr_all`
 
-#### Description
 returns all substring in subject which matches the regular expression pattern
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_substr_all(varchar, varchar) returns array
 function regexp_substr_all(varchar, varchar, decimal(38, 0)) returns array

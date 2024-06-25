@@ -4,7 +4,7 @@ title: "Temporal Functions"
 
 ## `add_months`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function add_months(date, bigint) returns timestamp
 function add_months(timestamp, bigint) returns timestamp
@@ -13,7 +13,7 @@ function add_months(timestamp, bigint) returns timestamp
 
 ## `convert_timezone`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function convert_timezone(varchar, varchar) returns timestamp
 function convert_timezone(varchar, varchar, varchar) returns timestamp
@@ -22,7 +22,7 @@ function convert_timezone(varchar, varchar, varchar) returns timestamp
 
 ## `current_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_date() returns date
 ```
@@ -30,7 +30,7 @@ function current_date() returns date
 
 ## `current_datetime`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_datetime() returns timestamp
 ```
@@ -38,7 +38,7 @@ function current_datetime() returns timestamp
 
 ## `current_time`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_time() returns time
 ```
@@ -46,7 +46,7 @@ function current_time() returns time
 
 ## `date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date($1) returns date
 ```
@@ -54,7 +54,7 @@ function date($1) returns date
 
 ## `date_add`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_add $1(varchar, bigint, $1) returns date
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
@@ -64,7 +64,7 @@ function date_add $1(varchar, bigint, $1) returns date
 
 ## `date_cmp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_cmp(varchar, varchar) returns bigint
 ```
@@ -72,7 +72,7 @@ function date_cmp(varchar, varchar) returns bigint
 
 ## `date_cmp_timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_cmp_timestamp(varchar, varchar) returns bigint
 ```
@@ -80,7 +80,7 @@ function date_cmp_timestamp(varchar, varchar) returns bigint
 
 ## `date_cmp_timestampz`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_cmp_timestampz(varchar, varchar) returns bigint
 ```
@@ -88,7 +88,7 @@ function date_cmp_timestampz(varchar, varchar) returns bigint
 
 ## `date_part`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_part(varchar, varchar) returns float
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, dayofweek, dow, dw, weekday, dayofyear, doy, dy, yearday, days, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
@@ -97,7 +97,7 @@ function date_part(varchar, varchar) returns float
 
 ## `date_part_year`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_part_year(varchar) returns bigint
 ```
@@ -105,7 +105,7 @@ function date_part_year(varchar) returns bigint
 
 ## `dateadd`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dateadd $1(varchar, bigint, $1) returns date
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
@@ -115,7 +115,7 @@ function dateadd $1(varchar, bigint, $1) returns date
 
 ## `datediff`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function datediff $1, $2(varchar, $1, $2) returns bigint
 	where varchar in (millennium, millennia, mil, mils, century, centuries, c, cent, cents, decade, decades, dec, decs, year, years, y, yr, yrs, quarter, quarters, qtr, qtrs, month, months, mon, mons, week, weeks, w, day, days, d, hour, hours, h, hr, hrs, minute, minutes, m, min, mins, second, seconds, s, sec, secs, millisecond, milliseconds, ms, msec, msecs, msecond, mseconds, millisec, millisecs, millisecon, microsecond, microseconds, microsec, microsecs, microsecond, usecond, useconds, us, usec, usecs)
@@ -126,7 +126,7 @@ function datediff $1, $2(varchar, $1, $2) returns bigint
 
 ## `getdate`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function getdate() returns timestamp
 ```
@@ -134,7 +134,7 @@ function getdate() returns timestamp
 
 ## `sysdate`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sysdate() returns date
 ```
@@ -142,7 +142,7 @@ function sysdate() returns date
 
 ## `timeofday`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timeofday() returns varchar
 ```
@@ -150,7 +150,7 @@ function timeofday() returns varchar
 
 ## `timestamp_cmp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_cmp(varchar, varchar) returns bigint
 ```
@@ -158,7 +158,7 @@ function timestamp_cmp(varchar, varchar) returns bigint
 
 ## `timestamp_cmp_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_cmp_date(varchar, varchar) returns bigint
 ```
@@ -166,7 +166,7 @@ function timestamp_cmp_date(varchar, varchar) returns bigint
 
 ## `timestamp_cmp_timestampz`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_cmp_timestampz(varchar, varchar) returns bigint
 ```
@@ -174,7 +174,7 @@ function timestamp_cmp_timestampz(varchar, varchar) returns bigint
 
 ## `timestampz_cmp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestampz_cmp(varchar, varchar) returns bigint
 ```
@@ -182,7 +182,7 @@ function timestampz_cmp(varchar, varchar) returns bigint
 
 ## `timestampz_cmp_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestampz_cmp_date(varchar, varchar) returns bigint
 ```
@@ -190,7 +190,7 @@ function timestampz_cmp_date(varchar, varchar) returns bigint
 
 ## `timestampz_cmp_timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestampz_cmp_timestamp(varchar, varchar) returns bigint
 ```
@@ -198,7 +198,7 @@ function timestampz_cmp_timestamp(varchar, varchar) returns bigint
 
 ## `timezone`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timezone(varchar, varchar) returns timestamp
 ```
@@ -206,7 +206,7 @@ function timezone(varchar, varchar) returns timestamp
 
 ## `to_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_date(varchar, varchar) returns date
 function to_date(varchar, varchar, boolean) returns date
@@ -215,7 +215,7 @@ function to_date(varchar, varchar, boolean) returns date
 
 ## `to_timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_timestamp(varchar, varchar) returns timestamp
 function to_timestamp(varchar, varchar, boolean) returns timestamp

@@ -6,71 +6,66 @@ Init for run commands:
 */}
 
 Not an error:
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 12 model files, 10 .sdf files
-    Running moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
-    Running moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
-    Running moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
-    Running moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
-    Running moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
-    Running moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
-    Running moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
-    Running moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
-    Running moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
-    Running moms_flower_shop.pub.customers (./models/staging/customers.sql)
-    Running moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-    Running moms_flower_shop.pub.dim_marketing_campaigns (./models/analytics/dim_marketing_campaigns.sql)
-   Finished 12 models [12 succeeded] in 0.798 secs
+Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded]&nbsp;in&nbsp;1.021&nbsp;secs
 
 </code>
 </pre>
+</div>
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-
-Schema moms_flower_shop.pub.dim_marketing_campaigns
-┌───────────────────────────────┬───────────┬────────────┬─────────────┐
-│ column_name                   ┆ data_type ┆ classifier ┆ description │
-╞═══════════════════════════════╪═══════════╪════════════╪═════════════╡
-│ campaign_id                   ┆ bigint    ┆            ┆             │
-│ campaign_name                 ┆ varchar   ┆            ┆             │
-│ total_num_installs            ┆ bigint    ┆            ┆             │
-│ avg_customer_acquisition_cost ┆ double    ┆            ┆             │
-│ install_duration_ratio        ┆ bigint    ┆            ┆             │
-└───────────────────────────────┴───────────┴────────────┴─────────────┘
 
 </code>
 </pre>
+</div>
 
 Checks:
-<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
 
-Report moms_flower_shop.pub.deprecated_table_reference
-┌─────────────────────────────────────────────────┬───────────────────────────────────┐
-│ table_id                                        ┆ upstream_deprecated_table_id      │
-╞═════════════════════════════════════════════════╪═══════════════════════════════════╡
-│ moms_flower_shop.pub.agg_installs_and_campaigns ┆ moms_flower_shop.pub.app_installs │
-└─────────────────────────────────────────────────┴───────────────────────────────────┘
-1 rows.
+Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
+┌──────────┬──────────────────────────────┐
+│&nbsp;table_id&nbsp;┆&nbsp;upstream_deprecated_table_id&nbsp;│
+╞══════════╪══════════════════════════════╡
+└──────────┴──────────────────────────────┘
+0&nbsp;rows.
 
 </code>
 </pre>
+</div>
 
-<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
 
-Report moms_flower_shop.pub.deprecated_table_reference
-┌─────────────────────────────────────────────────┬───────────────────────────────────┐
-│ table_id                                        ┆ upstream_deprecated_table_id      │
-╞═════════════════════════════════════════════════╪═══════════════════════════════════╡
-│ moms_flower_shop.pub.agg_installs_and_campaigns ┆ moms_flower_shop.pub.app_installs │
-└─────────────────────────────────────────────────┴───────────────────────────────────┘
-1 rows.
+Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
+┌──────────┬──────────────────────────────┐
+│&nbsp;table_id&nbsp;┆&nbsp;upstream_deprecated_table_id&nbsp;│
+╞══════════╪══════════════════════════════╡
+└──────────┴──────────────────────────────┘
+0&nbsp;rows.
 
 </code>
 </pre>
+</div>
 
 
 
@@ -79,37 +74,40 @@ Report moms_flower_shop.pub.deprecated_table_reference
         
         The run will fail and the error message will look like this:
 
-<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error: SDF227: No column 'non_existing_column' found, available are 'app_installs.install_time', 'app_installs.campaign_name', 'app_installs.campaign_type', 'app_installs.campaign_id', 'app_installs.customer_id', ...
-  --> models/staging/stg_installs_per_campaign.sql:2:5
+No error found, but command cd tmp/moms_flower_shop/ && $sdf compile staging.stg_installs_per_campaign --show result failed. Please check the command and try again.
 
 </code>
 </pre>
+</div>
 
     </Step>
     <Step title="Error: Function Arguments Do Not Match">
         
         The run will fail and the error message will look like this:
 
-<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error: SDF209: Function ABS arguments do not match, actual varchar, candidates tinyint; smallint; bigint; double; decimal(p, s); real
-  --> models/staging/stg_installs_per_campaign.sql:2:5
+No error found, but command cd tmp/moms_flower_shop && $sdf compile staging.stg_installs_per_campaign failed. Please check the command and try again.
 
 </code>
 </pre>
+</div>
     </Step>
     <Step title="Error: Un-aggregated columns in aggregation context">
         
         The run will fail and the error message will look like this:
-<pre style={{ fontFamily: 'monospace' }} className='language-error'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error: SDF209: Function ABS arguments do not match, actual varchar, candidates tinyint; smallint; bigint; double; decimal(p, s); real
-  --> models/staging/stg_installs_per_campaign.sql:2:5
+No error found, but command cd tmp/moms_flower_shop && $sdf compile staging.stg_installs_per_campaign failed. Please check the command and try again.
 
 </code>
 </pre>
+</div>
     </Step>
     <Step title="Try it Yourself">
         What is that one syntax mistake you always forget about until you see that 

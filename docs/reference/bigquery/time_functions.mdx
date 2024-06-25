@@ -4,7 +4,7 @@ title: "Time Functions"
 
 ## `current_time`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_time() returns time
 function current_time(time_zone string) returns time
@@ -13,7 +13,7 @@ function current_time(time_zone string) returns time
 
 ## `format_time`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function format_time(string, time) returns string
 ```
@@ -21,7 +21,7 @@ function format_time(string, time) returns string
 
 ## `parse_time`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function parse_time(string, string) returns time
 ```
@@ -29,7 +29,7 @@ function parse_time(string, string) returns time
 
 ## `time`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function time(int64, int64, int64) returns time
 function time(timestamp) returns time
@@ -40,7 +40,7 @@ function time(datetime) returns time
 
 ## `time_add`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function time_add(time, interval microsecond to hour) returns time
 ```
@@ -48,7 +48,7 @@ function time_add(time, interval microsecond to hour) returns time
 
 ## `time_diff`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function time_diff(time, time, date_time_part string) returns bigint
 	where date_time_part in (microsecond, millisecond, second, minute, hour)
@@ -57,7 +57,7 @@ function time_diff(time, time, date_time_part string) returns bigint
 
 ## `time_sub`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function time_sub(time, interval microsecond to hour) returns time
 ```
@@ -65,7 +65,7 @@ function time_sub(time, interval microsecond to hour) returns time
 
 ## `time_trunc`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function time_trunc(time, time_part string) returns time
 	where time_part in (microsecond, millisecond, second, minute, hour)

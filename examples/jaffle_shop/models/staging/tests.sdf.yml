@@ -1,0 +1,29 @@
+table:
+  name: stg_customers
+  columns:
+    - name: customer_id
+      tests:
+        - expect: unique()
+        - expect: not_null()
+---
+table:
+  name: stg_orders
+  columns:
+    - name: order_id
+      tests:
+        - expect: unique()
+        - expect: not_null()
+    - name: status
+      tests:
+        - expect: in_accepted_values(['placed', 'shipped', 'completed', 'return_pending', 'returned'])
+---
+table:
+  name: stg_payments
+  columns:
+    - name: payment_id
+      tests:
+        - expect: unique()
+        - expect: not_null()
+    - name: payment_method
+      tests:
+        - expect: in_accepted_values(['credit_card', 'coupon', 'bank_transfer', 'gift_card'])

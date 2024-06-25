@@ -19,7 +19,7 @@ boutique floral design studio located in Los Angeles, CA.
 
 Let's get started!
 
-## Prerequisits
+## Prerequisites
 * A Mac or Linux with a [valid installation](/guide/install) of the latest SDF version running locally.
 * (Recommended) Having gone through our [Getting Started Guide](/introduction/getting-started).
 
@@ -43,53 +43,9 @@ For the sake of the tutorials, there is no need to connect to a database or to l
     ```
 
     After running the command, you will see the following output: 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
-<code className='language-shell'>
-
-                   _
-                 _(_)_                          wWWWw   _
-     @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_
-    @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)
-     @@@@  (___)     `|/    Y    (_)@(_)  @@@@   \|/   (_)\
-      /      Y       \|    \|/    /(_)    \|      |/      |
-   \ |     \ |/       | / \ | /  \|/       |/    \|      \|/
-    \\|//   \\|///  \\\|//\\\|/// \|///  \\\|//  \\|//  \\\|// 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     
-    Created moms_flower_shop/.gitignore
-    Created moms_flower_shop/checks/README.txt
-    Created moms_flower_shop/classifications/column_classifiers.sdf.yml
-    Created moms_flower_shop/classifications/table_classifiers.sdf.yml
-    Created moms_flower_shop/metadata/analytics/agg_installs_and_campaigns.sdf.yml
-    Created moms_flower_shop/metadata/analytics/dim_marketing_campaigns.sdf.yml
-    Created moms_flower_shop/metadata/raw/raw_addresses.sdf.yml
-    Created moms_flower_shop/metadata/raw/raw_customers.sdf.yml
-    Created moms_flower_shop/metadata/raw/raw_inapp_events.sdf.yml
-    Created moms_flower_shop/metadata/raw/raw_marketing_campaign_events.sdf.yml
-    Created moms_flower_shop/metadata/staging/app_installs.sdf.yml
-    Created moms_flower_shop/models/analytics/agg_installs_and_campaigns.sql
-    Created moms_flower_shop/models/raw/raw_addresses.sql
-    Created moms_flower_shop/models/raw/raw_customers.sql
-    Created moms_flower_shop/models/raw/raw_inapp_events.sql
-    Created moms_flower_shop/models/raw/raw_marketing_campaign_events.sql
-    Created moms_flower_shop/models/staging/app_installs.sql
-    Created moms_flower_shop/models/staging/app_installs_v2.sql
-    Created moms_flower_shop/models/staging/customers.sql
-    Created moms_flower_shop/models/staging/inapp_events.sql
-    Created moms_flower_shop/models/staging/marketing_campaigns.sql
-    Created moms_flower_shop/models/staging/stg_installs_per_campaign.sql
-    Created moms_flower_shop/reports/README.txt
-    Created moms_flower_shop/seeds/csv/README.txt
-    Created moms_flower_shop/seeds/parquet/addresses.parquet
-    Created moms_flower_shop/seeds/parquet/customers.parquet
-    Created moms_flower_shop/seeds/parquet/inapp_events.parquet
-    Created moms_flower_shop/seeds/parquet/marketing_campaign_events.parquet
-    Created moms_flower_shop/workspace.sdf.yml
-   Finished new in 0.111 secs
-
-</code>
-</pre>
-
+    <img src="https://cdn.sdf.com/docs/flower_shop_ascii.png"/>    
+    
     That's it!
   </Step>
   <Step title="Workspace Overview">
@@ -100,24 +56,72 @@ For the sake of the tutorials, there is no need to connect to a database or to l
     cd moms_flower_shop
     ```
 
-    Now, we can list all the folders in our workspace:
-    ```shell
-    ls
-    ```
+    Let's review the files and folders in the directory:
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-checks
-classifications
-metadata
-models
-reports
-seeds
-workspace.sdf.yml
+.
+├──&nbsp;checks
+│  &nbsp;└──&nbsp;README.txt
+├──&nbsp;classifications
+│  &nbsp;├──&nbsp;column_classifiers.sdf.yml
+│  &nbsp;└──&nbsp;table_classifiers.sdf.yml
+├──&nbsp;metadata
+│  &nbsp;├──&nbsp;analytics
+│  &nbsp;│  &nbsp;├──&nbsp;agg_installs_and_campaigns.sdf.yml
+│  &nbsp;│  &nbsp;└──&nbsp;dim_marketing_campaigns.sdf.yml
+│  &nbsp;├──&nbsp;raw
+│  &nbsp;│  &nbsp;├──&nbsp;raw_addresses.sdf.yml
+│  &nbsp;│  &nbsp;├──&nbsp;raw_customers.sdf.yml
+│  &nbsp;│  &nbsp;├──&nbsp;raw_inapp_events.sdf.yml
+│  &nbsp;│  &nbsp;└──&nbsp;raw_marketing_campaign_events.sdf.yml
+│  &nbsp;└──&nbsp;staging
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;app_installs.sdf.yml
+├──&nbsp;models
+│  &nbsp;├──&nbsp;analytics
+│  &nbsp;│  &nbsp;└──&nbsp;agg_installs_and_campaigns.sql
+│  &nbsp;├──&nbsp;raw
+│  &nbsp;│  &nbsp;├──&nbsp;raw_addresses.sql
+│  &nbsp;│  &nbsp;├──&nbsp;raw_customers.sql
+│  &nbsp;│  &nbsp;├──&nbsp;raw_inapp_events.sql
+│  &nbsp;│  &nbsp;└──&nbsp;raw_marketing_campaign_events.sql
+│  &nbsp;└──&nbsp;staging
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;app_installs.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;app_installs_v2.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;customers.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;inapp_events.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;marketing_campaigns.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;stg_installs_per_campaign.sql
+├──&nbsp;reports
+│  &nbsp;└──&nbsp;README.txt
+├──&nbsp;seeds
+│  &nbsp;├──&nbsp;csv
+│  &nbsp;│  &nbsp;└──&nbsp;README.txt
+│  &nbsp;└──&nbsp;parquet
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;addresses.parquet
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;customers.parquet
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;inapp_events.parquet
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;marketing_campaign_events.parquet
+└──&nbsp;workspace.sdf.yml
+
+14&nbsp;directories,&nbsp;28&nbsp;files
 
 </code>
 </pre>
-
+</div>
+    <Tip>
+    To follow along, run `ls` or `tree`
+    in your terminal.
+    <CodeGroup>
+    ```shell ls
+    ls
+    ```
+    ```shell tree
+    tree .
+    ```
+    </CodeGroup>
+    </Tip>
     * Raw data seeds are available in the `seeds` folder. 
     * Models (SQL files) are available in the `models` folder.
     * The workspace is defined in the `workspace.sdf.yml` configuration file.
@@ -145,25 +149,13 @@ workspace.sdf.yml
 
     For example, the results for `raw_customers` look like this:
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-
-Schema moms_flower_shop.pub.raw_customers
-       All relevant information related to customers known to mom s flower shop.  This information comes from the user input into the mobile app.
-
-┌─────────────┬───────────┬────────────┬────────────────────────────────────────────────────────────┐
-│ column_name ┆ data_type ┆ classifier ┆ description                                                │
-╞═════════════╪═══════════╪════════════╪════════════════════════════════════════════════════════════╡
-│ id          ┆ bigint    ┆            ┆ A unique identifier of a mom s floewr shop customer        │
-│ first_name  ┆ varchar   ┆            ┆ The first name of the customer                             │
-│ last_name   ┆ varchar   ┆            ┆ The last name of the customer                              │
-│ email       ┆ varchar   ┆            ┆ The emial of the customer                                  │
-│ gender      ┆ varchar   ┆            ┆ The gender of the customer                                 │
-│ address_id  ┆ bigint    ┆            ┆ The address_id of the address associated with the customer │
-└─────────────┴───────────┴────────────┴────────────────────────────────────────────────────────────┘
 
 </code>
 </pre>
+</div>
 
     We can also get a sample of each table if we run the command:
     ```shell
@@ -172,38 +164,22 @@ Schema moms_flower_shop.pub.raw_customers
     
     For example, the results for `raw_customers` look like this:
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-
-Table moms_flower_shop.pub.raw_customers
-┌────┬────────────┬─────────────┬─────────────────────────────┬─────────────┬────────────┐
-│ id ┆ first_name ┆ last_name   ┆ email                       ┆ gender      ┆ address_id │
-╞════╪════════════╪═════════════╪═════════════════════════════╪═════════════╪════════════╡
-│ 1  ┆ Willi      ┆ Vannuchi    ┆ wvannuchi0@engadget.com     ┆ Male        ┆ 73         │
-│ 2  ┆ Opalina    ┆ Christophle ┆ ochristophle1@sina.com.cn   ┆ Female      ┆ 17         │
-│ 3  ┆ Parke      ┆ Tackley     ┆ ptackley2@deliciousdays.com ┆ Male        ┆ 89         │
-│ 4  ┆ Berton     ┆ Klamp       ┆ bklamp3@desdev.cn           ┆ Male        ┆ 99         │
-│ 5  ┆ Taryn      ┆ Brook       ┆ tbrook4@flavors.me          ┆ Female      ┆ 86         │
-│ 6  ┆ Moina      ┆ Crake       ┆ mcrake5@uol.com.br          ┆ Female      ┆ 38         │
-│ 7  ┆ Robbyn     ┆ Chezelle    ┆ rchezelle6@themeforest.net  ┆ Female      ┆ 92         │
-│ 8  ┆ Carce      ┆ Clendening  ┆ cclendening7@chron.com      ┆ Male        ┆ 64         │
-│ 9  ┆ Pennie     ┆ Shilton     ┆ pshilton8@mapy.cz           ┆ Genderqueer ┆ 13         │
-│ 10 ┆ Brig       ┆ Graal       ┆ bgraal9@microsoft.com       ┆ Male        ┆ 38         │
-└────┴────────────┴─────────────┴─────────────────────────────┴─────────────┴────────────┘
-1000 rows, showing only 10 rows.
-  Run with --limit 0 to show all rows.
 
 </code>
 </pre>
+</div>
     ** Note that these files are randomly generated and do not contain any real data
 
     <Tip>
       In this workspace we are using sample data stored locally for ease of use. 
       
       When setting up your own workspace, you can connect existing data providers to SDF.
-      Follow the relevant [provider's guide](/integrations/snowflake) to get started.
+      Follow the relevant [provider's guide](/integrations/overview) to get started.
     </Tip>
-  </Step>
+  </Step> 
   <Step title="Other Models">
     We can also explore the other models that are found under the `models` directory.
 
@@ -213,22 +189,24 @@ Table moms_flower_shop.pub.raw_customers
     ```
     
     The output should look like this:
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 11 model files, 8 .sdf files
-  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
-  Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
-  Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
-  Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
-  Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
-  Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
-  Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-   Finished 11 models [7 succeeded, 4 reused] in 0.656 secs
+Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.831&nbsp;secs
 
 </code>
 </pre>
+</div>
 
-    <Tip>
+    <Tip> 
     SDF intelligently caches previous compilations. Since we compiled the source models 
     under `models/raw` in previous steps, those will not be re-compiled in this run. 
     </Tip>
@@ -244,24 +222,26 @@ Working set 11 model files, 8 .sdf files
     ```
     
     Notice the difference? Imagine running unoptimized compilations on a warehouse of your magnitude.
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 11 model files, 8 .sdf files
-  Compiling moms_flower_shop.pub.raw_inapp_events (./models/raw/raw_inapp_events.sql)
-  Compiling moms_flower_shop.pub.raw_marketing_campaign_events (./models/raw/raw_marketing_campaign_events.sql)
-  Compiling moms_flower_shop.pub.raw_addresses (./models/raw/raw_addresses.sql)
-  Compiling moms_flower_shop.pub.raw_customers (./models/raw/raw_customers.sql)
-  Compiling moms_flower_shop.pub.inapp_events (./models/staging/inapp_events.sql)
-  Compiling moms_flower_shop.pub.marketing_campaigns (./models/staging/marketing_campaigns.sql)
-  Compiling moms_flower_shop.pub.app_installs (./models/staging/app_installs.sql)
-  Compiling moms_flower_shop.pub.app_installs_v2 (./models/staging/app_installs_v2.sql)
-  Compiling moms_flower_shop.pub.agg_installs_and_campaigns (./models/analytics/agg_installs_and_campaigns.sql)
-  Compiling moms_flower_shop.pub.customers (./models/staging/customers.sql)
-  Compiling moms_flower_shop.pub.stg_installs_per_campaign (./models/staging/stg_installs_per_campaign.sql)
-   Finished 11 models [11 succeeded] in 0.759 secs
+Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.841&nbsp;secs
 
 </code>
 </pre>
+</div>
     
     To see the schema of each table, similarly to the source tables in the previous step, 
     simply add the flag `--show all` to the command:

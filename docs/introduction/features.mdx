@@ -23,13 +23,13 @@ Use the below feature matrix to determine if SDF is right for you
 ### Database Support
 SDF is working to build parity with common data warehouse developemnt patterns including Jinja macro pre-processing, materialization strategies, multiple environment support, and more.
 
-| Feature        | SDF DB | Redshift | Snowflake | BigQuery | Presto | Trino | Spark |
+| Feature        | SDF DB | Redshift | Snowflake | BigQuery | Trino | Trino | Spark |
 |----------------|:------:|:--------:|:---------:|:--------:|:------:|:-----:|:-----:|
 | SQL Dialect Support | 🟢|   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟡  |
 | Column-level Lineage |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟢  |
 | Impact Analysis |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟡  |
-| Macros & Jinja |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟢  |
-| Zero-Copy Environments |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟢  |
+| Macros & Jinja |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🔴  |
+| Zero-Copy Environments |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🔴  |
 | Table Provider |   🟡   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
 | Run & Execution|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
 | Materialization|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
@@ -41,7 +41,7 @@ SDF is working to build parity with common data warehouse developemnt patterns i
 </Note>
 
 ### Authentication Support
-SDF Supports authentication to one or more databases simultaneously through providers & credentials.
+SDF Supports authentication to one or more databases simultaneously through integrations & credentials.
 
 To check the current status of all credentials held by SDF, run `sdf auth status`.
 
@@ -54,7 +54,7 @@ To check the current status of all credentials held by SDF, run `sdf auth status
 | Snowflake SSO         | 🟡        |
 | BigQuery              | 🟡        |
 | Redshift JDBC         | 🔴        |
-| Presto JDBC           | 🔴        |
+| Trino JDBC           | 🔴        |
 | Trino JDBC            | 🔴        |
 | Spark JDBC            | 🔴        |
 

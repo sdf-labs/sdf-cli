@@ -1,0 +1,171 @@
+---
+title: "1.1 ➡️ 1.2"
+description: Workspace edition 1.2 brings new features, improvements to the SDF CLI, and a major cleanup of the workspace configuration file. This guide will help you migrate your workspace from edition 1.1 to 1.2.
+---
+
+## Breaking Changes
+
+### New Defaults
+
+Previously, defaults like schema and catalog were set at the workspace level or at the includes path level like so:
+
+```yaml
+workspace:
+  ...
+  dialect: snowflake
+  preprocessor: all
+  default-schema: public
+  default-catalog: analytics
+  includes:
+    ...
+    - path: models/raw/
+      default-schema: raw-schema
+      default-catalog: raw
+```
+
+Now, all defaults are set under a `defaults` block. The above configuration would now look like this:
+
+```yaml
+workspace:
+  ...
+  defaults:
+    schema: public
+    catalog: analytics
+    dialect: snowflake
+    preprocessor: all
+  includes:
+    ...
+    - path: models/raw/
+      defaults:
+        schema: raw-schema
+        catalog: raw
+```
+
+<Note>
+The `dialect` and `preprocessor` properties, which were previously set at the workspace level, should now be set under `defaults` as well.
+</Note>
+
+For a full list of new defaults available, see the [YML reference](/reference/sdf-yml#nested-element-defaults) 
+
+### New Authentication Paradigm
+
+SDF YML now supports a [Credential Block](/reference/sdf-yml#block-credential). This block is used to define credentials for various providers and various compute platforms. 
+
+Just like before, you'll still be able to authenticate to your compute provider with the `sdf auth login <provider>` command, however now a credential SDF YML block will be created upon successful login. This will
+store the credentials in `~/.sdf/credentials/`. By default, they will be stored in a file named `<provider>-default.sdf.yml`. However, `sdf auth login <provider>` now support a `name` parameter which will allow you to name the credential file. This
+will become important for referencing the credential from provider blocks (see below).
+
+**Due to this update, you will need to re-authenticate to your compute provider after upgrading to 1.2.**
+
+* If on snowflake, follow the steps [here](/integrations/snowflake)
+* If on Redshift, follow the steps [here](/integrations/redshift)
+
+
+### New Provider Configuration
+
+Providers are now more powerful than ever! With new features like systematic renaming per source and the ability to use different credentials for different providers, the provider configuration has undergone a serious upgrade.
+
+The provider block now supports a `credential` field which allows you to specify which credential to use for a given provider. After logging in with the command above, you can reference the credential by name in the provider block. If you logged in above and did not pass a name,
+the credential will be named `<provider>-default` and it will be used by default in the provider block if the provider's type (i.e. snowflake, redshift, etc.) matches the credential's type. 
+
+In terms of breaking changes, the provider configuration is now a sub property of the workspace block. Previously, it was a top level property. 
+
+If you have a provider block like this:
+```yaml
+provider:
+  type: snowflake
+  sources: 
+    - apress
+```
+
+Assuming the credential this provider requires was created without a name, it should now look like this:
+```yaml
+workspace:
+  ...
+  providers:
+    - type: snowflake
+      sources: 
+        - pattern: apress.*.*
+```
+
+If you gave the credential a name, let's say `snowflake-creds`, it should look like this:
+```yaml
+workspace:
+  ...
+  providers:
+    - type: snowflake
+      credential: snowflake-creds
+      sources: 
+        - pattern: apress.*.*
+```
+
+<Warning>
+  Specifying the database name alone **no longer works** as shorthand. In order to fetch all schemas and tables from a database, you must use the wildcard syntax `<database-name>.*.*`.
+</Warning>
+
+### Goodbye Code Contracts and Code Reports
+
+In an effort to simplify our nomenclature, we've renamed `Code Contracts` to `Checks` and `Code Reports` to `Reports`. In terms of breaking changes, the `code-contracts` and `code-reports` include types have now been replaced with `checks` and `reports` respectively.
+
+If you currently have a workspace with includes paths like so:
+```yaml 
+workspace:
+  ...
+  includes:
+    ...
+  - path: reports
+    type: code-report
+  - path: checks 
+    type: code-contract
+```
+
+You'll now need to update your workspace to look like this:
+```yaml
+workspace:
+  ...
+  includes:
+    ...
+  - path: reports
+    type: report
+  - path: checks 
+    type: check
+```
+
+### No More Seeds for Compilation
+
+Since we now have the table providers, the schema for seeds will be hydrated by the provider, and does not need to be inferred from the data by SDF.
+
+If you currently have seeds in your workspace like so:
+```yaml
+---
+table:
+  name: apress.public.raw_customers
+  location: seeds/raw_customers.csv
+  file-format: csv
+  with-header: true
+
+---
+table:
+  name: apress.public.raw_orderitems
+  location: seeds/raw_orderitems.csv
+  file-format: csv
+  with-header: true
+
+---
+table:
+  name: apress.public.raw_orders
+  location: seeds/raw_orders.csv
+  file-format: csv
+  with-header: true
+```
+
+You can remove them as long as the database they are materialized to is included in one of your provider blocks.
+
+<Warning>
+  SDF improved its type inference for data directly, and this creates some discrepancies between compute types in Snowflake, Redshift, and locally inferred. If you have a seed that is not being hydrated by the provider, you can add it back to the workspace as a table, but it may run into type coercion errors in rare cases. 
+  As such, we recommend pulling schemas for seeds directly from the provider for static use cases.
+</Warning>
+
+<Tip>
+  `sdf seed` is coming soon which will enable you to materialize data locally as a seed in your remote compute provider.
+</Tip>

@@ -56,9 +56,9 @@ defined in a separate section of the global `workspace.sdf.yml` config file.
 
 ```yaml workspace.sdf.yml
 workspace:
-  edition: "1.2"
+  edition: "1.3"
   includes:
-    - path: src/
+    - path: models/
 ---
 classifier:
   name: PII
@@ -86,9 +86,9 @@ Once a classifier domain is defined, we can manually attach classifiers to
 tables. Once root tables are annotated with the relevant classifiers, SDF
 automatically propagates classifiers downstream.
 
-Let's start by labeling our `source`. We add a new file (`src/source.sdf.yml`) containing our type:
+Let's start by labeling our `source`. We add a new file (`models/source.sdf.yml`) containing our type:
 
-```yaml src/source.sdf.yml
+```yaml models/source.sdf.yml
 table:
   name: source
   columns:
@@ -100,14 +100,14 @@ table:
         - PII.Phone
 ```
 
-This file will automatically be picked up by SDF because the workspace already includes the `/src` directory. Alternatively, the same configuratin can be included
+This file will automatically be picked up by SDF because the workspace already includes the `/models` directory. Alternatively, the same configuratin can be included
 directly into the workspace.sdf.yml file as follows:
 
 ```yaml workspace.sdf.yml
 workspace:
-  edition: "1.2"
+  edition: "1.3"
   includes:
-    - path : src/
+    - path : models/
 ---
 classifier:
   name: PII
@@ -226,7 +226,7 @@ Function reclassifications work across all queries by default. In this way, deve
 
 Lastly, this same reclassification mechanism can be used on a single column or table using the same `reclassify` block. Here's an example below:
 
-```yaml src/phone_trimmed.sdf.yml
+```yaml models/phone_trimmed.sdf.yml
 table:
 	name: phone_trimmed
 	columns:

@@ -1,5 +1,1009 @@
 ---
 title: "Migrating from DBT"
 description:
-  "SDF can replace DBT as your transformation layer of choice. This guide will help you."
+  "SDF is best used as an entire transformation layer in itself, effectively replacing DBT and adding all the benefits of SDF."
 ---
+
+## Overview
+
+Migrating from DBT to SDF is a straightforward process. The migration process involves:
+
+1. **Converting your DBT models to SDF models** - This is a simple process of copying your SQL files into the SDF workspace and removing any `ref`, `source` or `config` jinja macro references.
+2. **Mimicking DBT Configuration in SDF** - Take any specific YML configurations from your DBT project and add them in `.sdf.yml` files. See more details in [our YML reference](/reference/sdf-yml).
+<Tip>
+  SDF's open source DBT migration tool will be available soon to automate this process.
+</Tip>
+
+This guide will walk through migrating DBT's `jaffle_shop` example to SDF. It will also migrate away from the DuckDB usage in DBT and use SDF's built-in database, [SDF DB](/database/introduction), instead.
+
+<Note>
+  The result of this guide, i.e. a fully migrated DBT / DuckDB jaffle_shop is available as an SDF sample. Use `sdf new --sample jaffle_shop` to create it locally, or
+  check out the public source code for the workspace [here](https://github.com/sdf-labs/sdf-cli/tree/main/examples/jaffle_shop).
+</Note>
+
+## Prerequisites
+
+The DBT DuckDB `jaffle_shop` example project should be setup locally. You can clone it from [here](https://github.com/dbt-labs/jaffle_shop_duckdb?tab=readme-ov-file#what-is-this-repo).
+
+## Guide
+<Steps>
+  <Step title="Analyze the DBT Project">
+    Upon first inspection of the `dbt_project.yml`, you'll notice a few things:
+
+    1. All models are materialized to the `jaffle_shop` database
+    2. By default, models are materialized as tables, but all models in the staging folde are materialized as views.
+    3. The `jaffle_shop` project uses data locally via seeds. These are therefore required to build and run the project.
+
+    With this in mind, this guide will first migrate over the data seeds, then the models. 
+
+    The end result will be a successul `sdf compile` and `sdf run` all locally.
+  </Step>
+  <Step title="Create a New SDF Workspace">
+    Let's start by creating a simple SDF workspace to provide us with the skaffolding for the migration. We provide a sample called `hello_from_dbt` which skaffolds some of the basic configuration to match a DBT project.
+
+    To do so, run the following command:
+
+    ```shell
+    sdf new jaffle_shop --sample hello_from_dbt && cd jaffle_shop/
+    ```
+
+    This will create a new SDF workspace with the name `jaffle_shop` in a subdirectory. The `cd` places us into this directory so that we're ready to start migrating.
+
+
+    <Note>
+      This sample sets `preprocessor` to `jinja` and adds a seeds directory to match a DBT project structure. This is represented by the following yml block:
+      ```yaml
+        defaults:
+          preprocessor: jinja
+      ```
+    </Note>
+  </Step>
+  <Step title="Migrate Over the Data">
+    Next, we'll migrate over the seeds to make sure SDF can interpret the schemas from the data.
+
+    To do so, copy the files in the `seeds` directory from the DBT project to the SDF workspace.
+
+
+    
+
+    The resulting workspace should look like this:
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+tmp/jaffle_shop/
+├──&nbsp;models
+│  &nbsp;└──&nbsp;main.sql
+├──&nbsp;seeds
+│  &nbsp;├──&nbsp;raw_customers.csv
+│  &nbsp;├──&nbsp;raw_orders.csv
+│  &nbsp;└──&nbsp;raw_payments.csv
+└──&nbsp;workspace.sdf.yml
+
+2&nbsp;directories,&nbsp;5&nbsp;files
+
+</code>
+</pre>
+</div>
+
+    Next, let's tell SDF to materialize these seeds as tables for use in the workspace.
+
+    Add the following file in the directory `models/raw` and call it `seeds.sdf.yml`.
+
+
+    ```yaml models/raw/seeds.sdf.yml
+    table:
+      name: raw_customers
+      location: seeds/raw_customers.csv
+      with-header: true
+      file-format: csv
+    ---
+    table:
+      name: raw_orders
+      location: seeds/raw_orders.csv
+      with-header: true
+      file-format: csv
+    ---
+    table:
+      name: raw_payments
+      location: seeds/raw_payments.csv
+      with-header: true
+      file-format: csv
+    ```
+
+    <Note>
+      Note that since we put this yml in the `raw` directory, we intend to materialize these tables into the `raw` schema. This is merely an organizational choice. Seed tables can be materialized to any database or schema, and will default to the default database and schema if only the table name is specified.
+    </Note>
+    <Info>
+      `Location` specification for seeds is relative to the root of the SDF workspace.
+    </Info>
+
+    The resulting SDF YML should like like this:
+
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+workspace:
+&nbsp;&nbsp;name:&nbsp;jaffle_shop
+&nbsp;&nbsp;edition:&nbsp;&quot;1.3&quot;
+
+&nbsp;&nbsp;defaults:
+&nbsp;&nbsp;&nbsp;&nbsp;preprocessor:&nbsp;jinja
+&nbsp;&nbsp;&nbsp;&nbsp;materialization:&nbsp;table
+
+&nbsp;&nbsp;includes:
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;models&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema-table-name
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;seeds
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;resource
+
+
+</code>
+</pre>
+</div>
+
+    Lastly, let's run a compile to make sure SDF can successfully process the data.
+
+    ```shell
+    sdf compile --show all
+    ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;3&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;Finished&nbsp;3&nbsp;models&nbsp;[3&nbsp;succeeded]&nbsp;in&nbsp;0.784&nbsp;secs
+
+Schema&nbsp;jaffle_shop.raw.raw_customers
+┌─────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;first_name&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;last_name&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴───────────┴────────────┴─────────────┘
+
+Schema&nbsp;jaffle_shop.raw.raw_orders
+┌─────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;user_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;order_date&nbsp;&nbsp;┆&nbsp;date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴───────────┴────────────┴─────────────┘
+
+Schema&nbsp;jaffle_shop.raw.raw_payments
+┌────────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞════════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;order_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;payment_method&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└────────────────┴───────────┴────────────┴─────────────┘
+
+</code>
+</pre>
+</div>
+
+    Great! Our workspace compiled, and SDF successfully interpreted the table schemas from the data.
+  </Step>
+  <Step title="Migrate the First Models">
+    Now that we've migrated our seed data over, let's migrate a model that selects from these tables. 
+
+    Let's start with the staging layer. Copy the `stg_orders.sql`, `stg_payments.sql`, and `stg_customers.sql` files from the DBT project to the SDF workspace, and place them into a directory called `staging`, we'll touch on why later.
+
+
+
+
+    Your workspace should now look like this:
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+tmp/jaffle_shop/
+├──&nbsp;models
+│  &nbsp;├──&nbsp;main.sql
+│  &nbsp;├──&nbsp;raw
+│  &nbsp;│  &nbsp;└──&nbsp;seeds.sdf.yml
+│  &nbsp;└──&nbsp;staging
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;stg_customers.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;stg_orders.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;stg_payments.sql
+├──&nbsp;seeds
+│  &nbsp;├──&nbsp;raw_customers.csv
+│  &nbsp;├──&nbsp;raw_orders.csv
+│  &nbsp;└──&nbsp;raw_payments.csv
+└──&nbsp;workspace.sdf.yml
+
+4&nbsp;directories,&nbsp;9&nbsp;files
+
+</code>
+</pre>
+</div>
+
+    Currently, SDF is including all models in the model directory without an index. However, for organization purposes, it's best practice to have SDF interpret the schema name from the directory structure. This is why we placed the model into the `staging` directory. For more on this, see our [Indexing Guide](/guide/advanced/index).
+
+    To enable this indexing, let's slightly modify the workspace YML includes path to have it interpret the schema from the directory name and the table from the file name.
+
+    ```yaml workspace.sdf.yml
+    includes:
+      - path: models 
+        index: schema-table-name
+    ```
+    
+    Lastly, since this model is using a DBT-native feature, `ref()`, we'll need to replace this with a simple table selection. **This is the only modification required!**
+
+    <Tip>
+      Since SDF understands SQL natively, we can simply select from the table directly by its name. SDF still supports systematic renaming, lineage, and dependency analysis without the requirement for DBT refs in Jinja.
+    </Tip>
+
+    Below are the before and after SQL files for the `stg_orders.sql`, `stg_payments.sql`, and `stg_customers.sql` models. Scroll right within the filename section to see all files and changes.
+
+    <CodeGroup>
+
+    ```sql models/staging/stg_orders.sql (Before Migration)
+      with source as (
+
+          {#-
+          Normally we would select from the table here, but we are using seeds to load
+          our data in this project
+          #}
+          select * from {{ ref('raw_orders') }}
+
+      ),
+
+      renamed as (
+
+          select
+              id as order_id,
+              user_id as customer_id,
+              order_date,
+              status
+
+          from source
+
+      )
+
+      select * from renamed
+    ```
+    ```sql models/staging/stg_orders.sql (After Migration)
+      with source as (
+          
+          {#-
+          Normally we would select from the table here, but we are using seeds to load
+          our data in this project
+          #}
+          select * from raw.raw_orders
+
+      ),
+
+      renamed as (
+
+          select
+              id as order_id,
+              user_id as customer_id,
+              order_date,
+              status
+
+          from source
+
+      )
+
+      select * from renamed
+    ```
+    ```sql models/staging/stg_payments.sql (Before Migration)
+      with source as (
+    
+          {#-
+          Normally we would select from the table here, but we are using seeds to load
+          our data in this project
+          #}
+          select * from {{ ref('raw_payments') }}
+
+      ),
+
+      renamed as (
+
+          select
+              id as payment_id,
+              order_id,
+              payment_method,
+
+              -- `amount` is currently stored in cents, so we convert it to dollars
+              amount / 100 as amount
+
+          from source
+
+      )
+
+      select * from renamed
+
+    ```
+    ```sql models/staging/stg_payments.sql (After Migration)
+      with source as (
+
+          {#-
+          Normally we would select from the table here, but we are using seeds to load
+          our data in this project
+          #}
+          select * from raw.raw_payments
+
+      ),
+
+      renamed as (
+
+          select
+              id as payment_id,
+              order_id,
+              payment_method,
+
+              -- `amount` is currently stored in cents, so we convert it to dollars
+              amount / 100 as amount
+
+          from source
+
+      )
+
+      select * from renamed
+
+    ```
+    ```sql models/staging/stg_customers.sql (Before Migration)
+      with source as (
+
+          {#-
+          Normally we would select from the table here, but we are using seeds to load
+          our data in this project
+          #}
+          select * from {{ ref('raw_customers') }}
+
+      ),
+
+      renamed as (
+
+          select
+              id as customer_id,
+              name,
+              email
+
+          from source
+
+      )
+
+      select * from renamed
+    ```
+    ```sql models/staging/stg_customers.sql (After Migration)
+      with source as (
+          
+          {#-
+          Normally we would select from the table here, but we are using seeds to load
+          our data in this project
+          #}
+          select * from raw.raw_customers
+
+      ),
+
+      renamed as (
+
+          select
+              id as customer_id,
+              name,
+              email
+
+          from source
+
+      )
+
+      select * from renamed
+    ```
+    </CodeGroup>
+    <Info>
+      Why select `raw.raw_orders`? Since we set an index to `schema-table-name`, the default schema for models in the `staging` folder is `staging`. Therefore, we need to tell SDF to look in the `raw` schema for this table.
+    </Info>
+
+    Let's run a compile to make sure SDF can successfully process the model.
+
+    ```shell
+    sdf compile
+    ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;6&nbsp;models&nbsp;[6&nbsp;succeeded]&nbsp;in&nbsp;0.833&nbsp;secs
+
+</code>
+</pre>
+</div>
+
+    Fantastic! We've just compiled two models selecting from our data. 
+
+    If we want to take this one step further, we can **run** these models entirely locally with SDF DB. 
+    
+    Let's try running our staging models with the following command:
+
+    ```shell  
+    sdf run "staging.*"
+    ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;2&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;6&nbsp;models&nbsp;[6&nbsp;succeeded]&nbsp;in&nbsp;0.761&nbsp;secs
+
+Table&nbsp;jaffle_shop.staging.stg_orders
+┌──────────┬─────────────┬────────────┬───────────┐
+│&nbsp;order_id&nbsp;┆&nbsp;customer_id&nbsp;┆&nbsp;order_date&nbsp;┆&nbsp;status&nbsp;&nbsp;&nbsp;&nbsp;│
+╞══════════╪═════════════╪════════════╪═══════════╡
+│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-01&nbsp;┆&nbsp;returned&nbsp;&nbsp;│
+│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-02&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-04&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-05&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-05&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-07&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;88&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-09&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-11&nbsp;┆&nbsp;returned&nbsp;&nbsp;│
+│&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;53&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-12&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-14&nbsp;┆&nbsp;completed&nbsp;│
+└──────────┴─────────────┴────────────┴───────────┘
+99&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;--limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+Table&nbsp;jaffle_shop.staging.stg_payments
+┌────────────┬──────────┬────────────────┬────────┐
+│&nbsp;payment_id&nbsp;┆&nbsp;order_id&nbsp;┆&nbsp;payment_method&nbsp;┆&nbsp;amount&nbsp;│
+╞════════════╪══════════╪════════════════╪════════╡
+│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;credit_card&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;credit_card&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;coupon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;coupon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bank_transfer&nbsp;&nbsp;┆&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;credit_card&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;credit_card&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;credit_card&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;gift_card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bank_transfer&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└────────────┴──────────┴────────────────┴────────┘
+113&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;--limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+Table&nbsp;jaffle_shop.staging.stg_customers
+┌─────────────┬────────────┬───────────┐
+│&nbsp;customer_id&nbsp;┆&nbsp;first_name&nbsp;┆&nbsp;last_name&nbsp;│
+╞═════════════╪════════════╪═══════════╡
+│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Michael&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;P.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Shawn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;M.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Kathleen&nbsp;&nbsp;&nbsp;┆&nbsp;P.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Jimmy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;C.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Katherine&nbsp;&nbsp;┆&nbsp;R.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Sarah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;R.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Martin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;M.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Frank&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;R.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Jennifer&nbsp;&nbsp;&nbsp;┆&nbsp;F.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Henry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;W.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴────────────┴───────────┘
+100&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;--limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+</code>
+</pre>
+</div>
+
+    Great! We've successfully migrated our first models and run them locally with SDF DB.
+  </Step>
+  <Step title="Migrate Complex Jinja">
+  Moving on, let's try migrating a model that uses more complex Jinja. SDF supports Jinja natively via the open source [MiniJinja](https://docs.rs/minijinja/latest/minijinja/) processor. 
+  As such, even with complex jinja the only thing we need to change is the `ref()` macro. 
+
+  Let's migrate the `orders` model to demonstrate this. Let's imagine we want to materialize the layer that selects from `staging` into the `analytics` schema.
+  
+  Since we are using the `schema-table-name` index, we can move the `orders.sql` file from the DBT project into a directory called `orders` in the SDF workspace.
+
+
+  Just like before, we'll need to modify the SQL to remove the `ref()` macro. See below for the before and after.
+  <CodeGroup>
+    ```sql models/analytics/orders.sql (After Migration)
+    {% set payment_methods = ['credit_card', 'coupon', 'bank_transfer', 'gift_card'] %}
+
+    with orders as (
+
+        select * from staging.stg_orders
+
+    ),
+
+    payments as (
+
+        select * from staging.stg_payments
+
+    ),
+
+    order_payments as (
+
+        select
+            order_id,
+
+            {% for payment_method in payment_methods -%}
+            sum(case when payment_method = '{{ payment_method }}' then amount else 0 end) as {{ payment_method }}_amount,
+            {% endfor -%}
+
+            sum(amount) as total_amount
+
+        from payments
+
+        group by order_id
+
+    ),
+
+    final as (
+
+        select
+            orders.order_id,
+            orders.customer_id,
+            orders.order_date,
+            orders.status,
+
+            {% for payment_method in payment_methods -%}
+
+            order_payments.{{ payment_method }}_amount,
+
+            {% endfor -%}
+
+            order_payments.total_amount as amount
+
+        from orders
+
+
+        left join order_payments
+            on orders.order_id = order_payments.order_id
+
+    )
+
+    select * from final
+    ```
+    ```sql models/analytics/orders.sql (Before Migration)
+    {% set payment_methods = ['credit_card', 'coupon', 'bank_transfer', 'gift_card'] %}
+
+    with orders as (
+
+        select * from {{ ref('stg_orders') }}
+
+    ),
+
+    payments as (
+
+        select * from {{ ref('stg_payments') }}
+
+    ),
+
+    order_payments as (
+
+        select
+            order_id,
+
+            {% for payment_method in payment_methods -%}
+            sum(case when payment_method = '{{ payment_method }}' then amount else 0 end) as {{ payment_method }}_amount,
+            {% endfor -%}
+
+            sum(amount) as total_amount
+
+        from payments
+
+        group by order_id
+
+    ),
+
+    final as (
+
+        select
+            orders.order_id,
+            orders.customer_id,
+            orders.order_date,
+            orders.status,
+
+            {% for payment_method in payment_methods -%}
+
+            order_payments.{{ payment_method }}_amount,
+
+            {% endfor -%}
+
+            order_payments.total_amount as amount
+
+        from orders
+
+
+        left join order_payments
+            on orders.order_id = order_payments.order_id
+
+    )
+
+    select * from final
+    ```
+  </CodeGroup>
+
+  Let's run a compile to make sure SDF can successfully process the model.
+
+  ```shell
+  sdf compile
+  ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.809&nbsp;secs
+
+</code>
+</pre>
+</div>
+
+  And lastly, let's run our new model with the following command:
+
+  ```shell
+  sdf run analytics.orders
+  ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;2&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;0.811&nbsp;secs
+
+Table&nbsp;jaffle_shop.analytics.orders
+┌──────────┬─────────────┬────────────┬───────────┬────────────────────┬───────────────┬──────────────────────┬──────────────────┬────────┐
+│&nbsp;order_id&nbsp;┆&nbsp;customer_id&nbsp;┆&nbsp;order_date&nbsp;┆&nbsp;status&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;credit_card_amount&nbsp;┆&nbsp;coupon_amount&nbsp;┆&nbsp;bank_transfer_amount&nbsp;┆&nbsp;gift_card_amount&nbsp;┆&nbsp;amount&nbsp;│
+╞══════════╪═════════════╪════════════╪═══════════╪════════════════════╪═══════════════╪══════════════════════╪══════════════════╪════════╡
+│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-01&nbsp;┆&nbsp;returned&nbsp;&nbsp;┆&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-02&nbsp;┆&nbsp;completed&nbsp;┆&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-05&nbsp;┆&nbsp;completed&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-07&nbsp;┆&nbsp;completed&nbsp;┆&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-11&nbsp;┆&nbsp;returned&nbsp;&nbsp;┆&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;53&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-12&nbsp;┆&nbsp;completed&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;99&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-14&nbsp;┆&nbsp;completed&nbsp;┆&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;84&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-17&nbsp;┆&nbsp;completed&nbsp;┆&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-17&nbsp;┆&nbsp;completed&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;71&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018-01-18&nbsp;┆&nbsp;completed&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└──────────┴─────────────┴────────────┴───────────┴────────────────────┴───────────────┴──────────────────────┴──────────────────┴────────┘
+99&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;--limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+</code>
+</pre>
+</div>
+
+  Nice! We just migrated a more complex model to compile and run entirely with SDF.
+  </Step>
+  <Step title="Configure Materialization">
+    Next, let's ensure our new models match the materialization patterns from DBT. For more on configuring materialization, see our [Materialization Guide](/guide/setup/materialization).
+
+    Firstly, let's set the default materialization for all models to `table`. To do so, add the following to your workspace YML:
+
+    ```yaml workspace.sdf.yml
+    defaults:
+      ...
+      materialization: table
+    ```
+
+    Next, let's set the materialization for the staging models to `view`. 
+    To do so, we'll add one more includes block that overwrites the default materialization for any models in the `staging` directory:
+
+    ```yaml workspace.sdf.yml
+    includes:
+      ...
+      - path: models/staging
+        defaults:
+          materialization: view
+    ```
+  
+    Lastly, let's run a compile to make sure SDF can successfully process the model.
+
+    ```shell
+    sdf compile
+    ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;4&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.806&nbsp;secs
+
+</code>
+</pre>
+</div>
+
+    Sweet! Our models are now materialized as views in the staging layer and as tables everywhere else.
+  </Step>
+  <Step title="Migrate Tests">
+  As a final step, let's migrate the tests from the DBT project to the SDF. For this example, we'll migrate all the tests that run on the staging layer in DBT's Jaffle Shop.
+
+  Let's start by moving the `schema.yml` file within the `staging/` directory in the DBT project to the `staging/` directory in the SDF workspace. Next, let's rename it to `tests.sdf.yml`.
+
+
+  The resulting workspace should look like this:
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+tmp/jaffle_shop/
+├──&nbsp;models
+│  &nbsp;├──&nbsp;analytics
+│  &nbsp;│  &nbsp;└──&nbsp;orders.sql
+│  &nbsp;├──&nbsp;main.sql
+│  &nbsp;├──&nbsp;raw
+│  &nbsp;│  &nbsp;└──&nbsp;seeds.sdf.yml
+│  &nbsp;└──&nbsp;staging
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;stg_customers.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;stg_orders.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;stg_payments.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;tests.sdf.yml
+├──&nbsp;seeds
+│  &nbsp;├──&nbsp;raw_customers.csv
+│  &nbsp;├──&nbsp;raw_orders.csv
+│  &nbsp;└──&nbsp;raw_payments.csv
+└──&nbsp;workspace.sdf.yml
+
+5&nbsp;directories,&nbsp;11&nbsp;files
+
+</code>
+</pre>
+</div>
+
+  Next, let's migrate the DBT test YML to SDF test YML. The steps look like this:
+
+  1. Remove the `version: 2` at the top of the file.
+  2. Make each one of the listed models its own table block. Add `---` in between each block.
+  3. Migrate the tests to the [SDF test](/guide/data-quality/tests) syntax.
+
+  <Tip>
+    Unlike DBT tests, SDF tests are functions that accept parameters and a severity property. This increases the flexibility of the tests and allows for more complex testing scenarios. For more on tests, see the [SDF Test Guide](/guide/data-quality/tests).
+  </Tip>
+
+  After going through these steps, the resulting `tests.sdf.yml` should look like this:
+  
+  <CodeGroup>
+  ```yaml schema.yml (From DBT)
+  version: 2
+
+  models:
+    - name: stg_customers
+      columns:
+        - name: customer_id
+          tests:
+            - unique
+            - not_null
+
+    - name: stg_orders
+      columns:
+        - name: order_id
+          tests:
+            - unique
+            - not_null
+        - name: status
+          tests:
+            - accepted_values:
+                values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+
+    - name: stg_payments
+      columns:
+        - name: payment_id
+          tests:
+            - unique
+            - not_null
+        - name: payment_method
+          tests:
+            - accepted_values:
+                values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+  ```
+  ```yaml models/staging/tests.sdf.yml
+  table:
+    name: stg_customers
+    columns:
+      - name: customer_id
+        tests:
+          - expect: unique()
+          - expect: not_null()
+  ---
+  table:
+    name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - expect: unique()
+          - expect: not_null()
+      - name: status
+        tests:
+          - expect: in_accepted_values(['placed', 'shipped', 'completed', 'return_pending', 'returned'])
+  ---
+  table:
+    name: stg_payments
+    columns:
+      - name: payment_id
+        tests:
+          - expect: unique()
+          - expect: not_null()
+      - name: payment_method
+        tests:
+          - expect: in_accepted_values(['credit_card', 'coupon', 'bank_transfer', 'gift_card'])
+  ```
+  </CodeGroup>
+
+  To run the tests, simply run the following command:
+
+  ```shell
+  sdf test
+  ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;3&nbsp;test&nbsp;files,&nbsp;7&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_payments&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_customers&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_orders&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_orders.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded],&nbsp;3&nbsp;tests&nbsp;[3&nbsp;passed]&nbsp;in&nbsp;0.895&nbsp;secs
+[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_customers
+[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_payments
+[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_orders
+
+</code>
+</pre>
+</div>
+
+  Woohoo! The tests ran locally again the data with the SDF DB, and they are passing.
+  </Step>
+  <Step title="(Optional) Migrate the Rest">
+  If the steps above are followed for the rest of the models and tests, you'll see that the entire DBT project can be migrated to SDF with ease. 
+
+  The result is a workspace that looks like this:
+
+  
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+tmp/jaffle_shop_complete/
+├──&nbsp;models
+│  &nbsp;├──&nbsp;analytics
+│  &nbsp;│  &nbsp;├──&nbsp;customers.sql
+│  &nbsp;│  &nbsp;├──&nbsp;meta.sdf.yml
+│  &nbsp;│  &nbsp;└──&nbsp;orders.sql
+│  &nbsp;├──&nbsp;raw
+│  &nbsp;│  &nbsp;└──&nbsp;seeds.sdf.yml
+│  &nbsp;└──&nbsp;staging
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;stg_customers.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;stg_orders.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;stg_payments.sql
+│  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;tests.sdf.yml
+├──&nbsp;seeds
+│  &nbsp;├──&nbsp;raw_customers.csv
+│  &nbsp;├──&nbsp;raw_orders.csv
+│  &nbsp;└──&nbsp;raw_payments.csv
+└──&nbsp;workspace.sdf.yml
+
+5&nbsp;directories,&nbsp;12&nbsp;files
+
+</code>
+</pre>
+</div>
+
+  Then compiles:
+
+  ```shell
+  sdf compile
+  ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.analytics.customers&nbsp;(./models/analytics/customers.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded]&nbsp;in&nbsp;0.830&nbsp;secs
+
+</code>
+</pre>
+</div>
+
+  Runs:
+
+  ```shell
+  sdf run
+  ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.customers&nbsp;(./models/analytics/customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded]&nbsp;in&nbsp;0.859&nbsp;secs
+
+</code>
+</pre>
+</div>
+
+  and tests:
+  
+  ```shell
+  sdf test
+  ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;5&nbsp;test&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_orders&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_customers&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_payments&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.customers&nbsp;(./models/analytics/customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.analytics.test_customers&nbsp;(./sdftarget/dbg/tests/jaffle_shop/analytics/test_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.analytics.test_orders&nbsp;(./sdftarget/dbg/tests/jaffle_shop/analytics/test_orders.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded],&nbsp;5&nbsp;tests&nbsp;[5&nbsp;passed]&nbsp;in&nbsp;1.017&nbsp;secs
+[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_customers
+[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_orders
+[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_payments
+[Pass]&nbsp;Test&nbsp;jaffle_shop.analytics.test_customers
+[Pass]&nbsp;Test&nbsp;jaffle_shop.analytics.test_orders
+
+</code>
+</pre>
+</div>
+  
+  all locally with SDF.
+  </Step>
+</Steps>
+
+## Known Jinja Differences
+
+Due to SDF using a slightly different Jinja processor, there are a few differences in how Jinja is processed. Below are some of the key differences:
+
+1. **Iterating over Dictionaries** - Use `|items` instead of `.items()`
+
+    ```jinja
+    {% for key, value in my_dict.items() %}
+    ```
+
+    becomes
+
+    ```jinja
+    {% for key, value in my_dict|items() %}
+    ```
+
+    For more on this, see the section about iteration in our [Jinja Docs](/guide/macro-processing/intro-to-jinja#for-loops).
+
+<Tip>
+  If you find any others, please let us know via our [Slack Community]() or [GitHub Issues](https://github.com/sdf-labs/sdf-cli/issues).
+</Tip>

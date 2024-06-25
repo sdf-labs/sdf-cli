@@ -5,9 +5,8 @@ title: "Semi-Structured and Structured Data Functions"
 
 ## `array_append`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_append(array, $1) returns array
 function array_append(array, $1) returns array
@@ -16,9 +15,8 @@ function array_append(array, $1) returns array
 
 ## `array_cat`
 
-#### Description
 Concatenate two arrays
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_cat(array, array) returns array
 function array_cat(variant, variant) returns array
@@ -30,9 +28,8 @@ function array_cat(array, array) returns array
 
 ## `array_compact`
 
-#### Description
 Compact array by removing nulls
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_compact(array) returns array
 function array_compact(variant) returns array
@@ -42,9 +39,8 @@ function array_compact(array) returns array
 
 ## `array_construct`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_construct($1, ...) returns array
 function array_construct($1, $2) returns array
@@ -56,9 +52,8 @@ function array_construct($1, $2, $3, $4, $5) returns array
 
 ## `array_construct_compact`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_construct_compact($1, ...) returns array
 ```
@@ -66,9 +61,8 @@ function array_construct_compact($1, ...) returns array
 
 ## `array_contains`
 
-#### Description
 Returns true if array contains value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_contains(variant, array) returns boolean
 function array_contains($1, array) returns boolean
@@ -77,9 +71,8 @@ function array_contains($1, array) returns boolean
 
 ## `array_distinct`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_distinct(array) returns array
 function array_distinct(array) returns array
@@ -88,9 +81,8 @@ function array_distinct(array) returns array
 
 ## `array_except`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_except(array, array) returns array
 function array_except(array, array) returns array
@@ -99,9 +91,8 @@ function array_except(array, array) returns array
 
 ## `array_flatten`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_flatten(array) returns array
 ```
@@ -109,9 +100,8 @@ function array_flatten(array) returns array
 
 ## `array_generate_range`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_generate_range(decimal(38, 0), decimal(38, 0)) returns array
 function array_generate_range(decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns array
@@ -120,9 +110,8 @@ function array_generate_range(decimal(38, 0), decimal(38, 0), decimal(38, 0)) re
 
 ## `array_insert`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_insert(array, decimal(38, 0), $1) returns array
 function array_insert(array, decimal(38, 0), $1) returns array
@@ -131,9 +120,8 @@ function array_insert(array, decimal(38, 0), $1) returns array
 
 ## `array_intersection`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_intersection(array, array) returns array
 function array_intersection(array, array) returns array
@@ -142,9 +130,8 @@ function array_intersection(array, array) returns array
 
 ## `array_max`
 
-#### Description
 the maximum defined element in the array, or NULL
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_max(array) returns variant
 function array_max(array) returns $1
@@ -153,9 +140,8 @@ function array_max(array) returns $1
 
 ## `array_min`
 
-#### Description
 the minimum defined element in the array, or NULL
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_min(array) returns variant
 function array_min(array) returns $1
@@ -164,9 +150,8 @@ function array_min(array) returns $1
 
 ## `array_position`
 
-#### Description
 Returns the first index position of the element in the array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_position(variant, array) returns decimal(38, 0)
 function array_position($1, array) returns decimal(38, 0)
@@ -175,9 +160,8 @@ function array_position($1, array) returns decimal(38, 0)
 
 ## `array_prepend`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_prepend(array, $1) returns array
 function array_prepend(array, $1) returns array
@@ -186,9 +170,8 @@ function array_prepend(array, $1) returns array
 
 ## `array_remove`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_remove(array, variant) returns array
 function array_remove(array, $1) returns array
@@ -197,9 +180,8 @@ function array_remove(array, $1) returns array
 
 ## `array_remove_at`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_remove_at(array, decimal(38, 0)) returns array
 function array_remove_at(array, decimal(38, 0)) returns array
@@ -208,9 +190,8 @@ function array_remove_at(array, decimal(38, 0)) returns array
 
 ## `array_size`
 
-#### Description
 Returns array size
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_size(array) returns decimal(38, 0)
 function array_size(array) returns decimal(38, 0)
@@ -220,9 +201,8 @@ function array_size(variant) returns decimal(38, 0)
 
 ## `array_slice`
 
-#### Description
 the resulting array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_slice(array, decimal(38, 0), decimal(38, 0)) returns array
 function array_slice(array, decimal(38, 0), decimal(38, 0)) returns array
@@ -231,9 +211,8 @@ function array_slice(array, decimal(38, 0), decimal(38, 0)) returns array
 
 ## `array_sort`
 
-#### Description
 the sorted array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_sort(array) returns array
 function array_sort(array, boolean) returns array
@@ -243,9 +222,8 @@ function array_sort(array, boolean, boolean) returns array
 
 ## `array_to_string`
 
-#### Description
 Convert array to a string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_to_string(array, varchar) returns varchar
 function array_to_string(variant, varchar) returns varchar
@@ -254,9 +232,8 @@ function array_to_string(variant, varchar) returns varchar
 
 ## `arrays_overlap`
 
-#### Description
 Returns true if two arrays have elements in common
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function arrays_overlap(array, array) returns boolean
 function arrays_overlap(array, array) returns boolean
@@ -265,9 +242,8 @@ function arrays_overlap(array, array) returns boolean
 
 ## `arrays_to_object`
 
-#### Description
 the resulting object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function arrays_to_object(array, array) returns object
 ```
@@ -275,9 +251,8 @@ function arrays_to_object(array, array) returns object
 
 ## `as_array`
 
-#### Description
 Use VARIANT value as ARRAY
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_array(variant) returns array
 ```
@@ -285,9 +260,8 @@ function as_array(variant) returns array
 
 ## `as_binary`
 
-#### Description
 Use VARIANT value as binary string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_binary(variant) returns binary
 ```
@@ -295,9 +269,8 @@ function as_binary(variant) returns binary
 
 ## `as_boolean`
 
-#### Description
 Use VARIANT value as Boolean
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_boolean(variant) returns boolean
 ```
@@ -305,9 +278,8 @@ function as_boolean(variant) returns boolean
 
 ## `as_char`
 
-#### Description
 Use VARIANT value as text string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_char(variant) returns varchar
 ```
@@ -315,9 +287,8 @@ function as_char(variant) returns varchar
 
 ## `as_date`
 
-#### Description
 Use VARIANT value as DATE
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_date(variant) returns date
 ```
@@ -325,9 +296,8 @@ function as_date(variant) returns date
 
 ## `as_decimal`
 
-#### Description
 Use VARIANT value as decimal fixed-point
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_decimal(variant) returns decimal(38, 0)
 function as_decimal(variant, decimal(38, 0)) returns decimal(38, 0)
@@ -337,9 +307,8 @@ function as_decimal(variant, decimal(38, 0), decimal(38, 0)) returns decimal(38,
 
 ## `as_double`
 
-#### Description
 Use VARIANT value as real
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_double(variant) returns double
 ```
@@ -347,9 +316,8 @@ function as_double(variant) returns double
 
 ## `as_integer`
 
-#### Description
 Use VARIANT value as integer
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_integer(variant) returns decimal(38, 0)
 function as_integer(variant, decimal(38, 0)) returns decimal(38, 0)
@@ -358,9 +326,8 @@ function as_integer(variant, decimal(38, 0)) returns decimal(38, 0)
 
 ## `as_number`
 
-#### Description
 Use VARIANT value as as decimal fixed-point
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_number(variant) returns decimal(38, 0)
 function as_number(variant, decimal(38, 0)) returns decimal(38, 0)
@@ -370,9 +337,8 @@ function as_number(variant, decimal(38, 0), decimal(38, 0)) returns decimal(38, 
 
 ## `as_object`
 
-#### Description
 Use VARIANT value as OBJECT
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_object(variant) returns object
 ```
@@ -380,9 +346,8 @@ function as_object(variant) returns object
 
 ## `as_real`
 
-#### Description
 Use VARIANT value as real
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_real(variant) returns double
 ```
@@ -390,9 +355,8 @@ function as_real(variant) returns double
 
 ## `as_time`
 
-#### Description
 Use VARIANT value as TIME
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_time(variant) returns time
 ```
@@ -400,9 +364,8 @@ function as_time(variant) returns time
 
 ## `as_timestamp_ltz`
 
-#### Description
 Use VARIANT value as TIMESTAMP_LTZ
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_timestamp_ltz(variant) returns timestamp
 function as_timestamp_ltz(variant, decimal(38, 0)) returns timestamp
@@ -411,9 +374,8 @@ function as_timestamp_ltz(variant, decimal(38, 0)) returns timestamp
 
 ## `as_timestamp_ntz`
 
-#### Description
 Use VARIANT value as TIMESTAMP_NTZ
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_timestamp_ntz(variant) returns timestamp
 function as_timestamp_ntz(variant, decimal(38, 0)) returns timestamp
@@ -422,9 +384,8 @@ function as_timestamp_ntz(variant, decimal(38, 0)) returns timestamp
 
 ## `as_timestamp_tz`
 
-#### Description
 Use VARIANT value as TIMESTAMP_TZ
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_timestamp_tz(variant) returns timestamp
 function as_timestamp_tz(variant, decimal(38, 0)) returns timestamp
@@ -433,9 +394,8 @@ function as_timestamp_tz(variant, decimal(38, 0)) returns timestamp
 
 ## `as_varchar`
 
-#### Description
 Use VARIANT value as text sting
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function as_varchar(variant) returns varchar
 ```
@@ -443,9 +403,8 @@ function as_varchar(variant) returns varchar
 
 ## `check_json`
 
-#### Description
 Checks JSON for errors
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function check_json(varchar) returns varchar
 ```
@@ -453,9 +412,8 @@ function check_json(varchar) returns varchar
 
 ## `check_xml`
 
-#### Description
 Checks XML for errors
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function check_xml(varchar) returns varchar
 function check_xml(varchar, boolean) returns varchar
@@ -464,9 +422,8 @@ function check_xml(varchar, boolean) returns varchar
 
 ## `get`
 
-#### Description
 Get VARIANT element value from an array or object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function get(variant, varchar) returns variant
 function get(variant, decimal(38, 0)) returns variant
@@ -478,9 +435,8 @@ function get(object, $1) returns variant
 
 ## `get_ignore_case`
 
-#### Description
 Get VARIANT element value from an array or object with path name
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function get_ignore_case(variant, varchar) returns variant
 function get_ignore_case(variant, varchar) returns object
@@ -491,9 +447,8 @@ function get_ignore_case(object, $1) returns $1
 
 ## `get_path`
 
-#### Description
 Get VARIANT element value from an array or object with path name
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function get_path(variant, varchar) returns variant
 function get_path(object, varchar) returns variant
@@ -506,9 +461,8 @@ function get_path(object, varchar) returns $1
 
 ## `is_array`
 
-#### Description
 Returns true if VARIANT value is an array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_array(variant) returns boolean
 ```
@@ -516,9 +470,8 @@ function is_array(variant) returns boolean
 
 ## `is_binary`
 
-#### Description
 Returns true if VARIANT value is a binary string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_binary(variant) returns boolean
 ```
@@ -526,9 +479,8 @@ function is_binary(variant) returns boolean
 
 ## `is_boolean`
 
-#### Description
 Returns true if VARIANT value is Boolean
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_boolean(variant) returns boolean
 ```
@@ -536,9 +488,8 @@ function is_boolean(variant) returns boolean
 
 ## `is_char`
 
-#### Description
 Returns true if VARIANT value is a text string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_char(variant) returns boolean
 ```
@@ -546,9 +497,8 @@ function is_char(variant) returns boolean
 
 ## `is_date`
 
-#### Description
 Returns true if VARIANT value is a DATE
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_date(variant) returns boolean
 ```
@@ -556,9 +506,8 @@ function is_date(variant) returns boolean
 
 ## `is_date_value`
 
-#### Description
 Returns true if VARIANT value is a DATE
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_date_value(variant) returns boolean
 ```
@@ -566,9 +515,8 @@ function is_date_value(variant) returns boolean
 
 ## `is_decimal`
 
-#### Description
 Returns true if VARIANT value is a decimal fixed-point number
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_decimal(variant) returns boolean
 ```
@@ -576,9 +524,8 @@ function is_decimal(variant) returns boolean
 
 ## `is_double`
 
-#### Description
 Returns true if VARIANT value is a real number
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_double(variant) returns boolean
 ```
@@ -586,9 +533,8 @@ function is_double(variant) returns boolean
 
 ## `is_integer`
 
-#### Description
 Returns true if VARIANT value is integer
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_integer(variant) returns boolean
 ```
@@ -596,9 +542,8 @@ function is_integer(variant) returns boolean
 
 ## `is_object`
 
-#### Description
 Returns true if VARIANT value is an object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_object(variant) returns boolean
 ```
@@ -606,9 +551,8 @@ function is_object(variant) returns boolean
 
 ## `is_real`
 
-#### Description
 Returns true if VARIANT value is a real number
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_real(variant) returns boolean
 ```
@@ -616,9 +560,8 @@ function is_real(variant) returns boolean
 
 ## `is_time`
 
-#### Description
 Returns true if VARIANT value is a TIME
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_time(variant) returns boolean
 ```
@@ -626,9 +569,8 @@ function is_time(variant) returns boolean
 
 ## `is_timestamp_ltz`
 
-#### Description
 Returns true if VARIANT value is a TIMESTAMP_LTZ
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_timestamp_ltz(variant) returns boolean
 ```
@@ -636,9 +578,8 @@ function is_timestamp_ltz(variant) returns boolean
 
 ## `is_timestamp_ntz`
 
-#### Description
 Returns true if VARIANT value is a TIMESTAMP_NTZ
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_timestamp_ntz(variant) returns boolean
 ```
@@ -646,9 +587,8 @@ function is_timestamp_ntz(variant) returns boolean
 
 ## `is_timestamp_tz`
 
-#### Description
 Returns true if VARIANT value is a TIMESTAMP_TZ
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_timestamp_tz(variant) returns boolean
 ```
@@ -656,9 +596,8 @@ function is_timestamp_tz(variant) returns boolean
 
 ## `is_varchar`
 
-#### Description
 Returns true if VARIANT value is a text string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_varchar(variant) returns boolean
 ```
@@ -666,9 +605,8 @@ function is_varchar(variant) returns boolean
 
 ## `json_extract_path_text`
 
-#### Description
 Parses the first argument as a JSON and returns the value of the element pointed to by the second argument
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function json_extract_path_text(varchar, varchar) returns varchar
 ```
@@ -676,7 +614,7 @@ function json_extract_path_text(varchar, varchar) returns varchar
 
 ## `map_cat`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function map_cat(object, object) returns object
 ```
@@ -684,7 +622,7 @@ function map_cat(object, object) returns object
 
 ## `map_contains_key`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function map_contains_key(varchar, object) returns boolean
 ```
@@ -692,7 +630,7 @@ function map_contains_key(varchar, object) returns boolean
 
 ## `map_delete`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function map_delete(object, varchar) returns object
 function map_delete(object, varchar, varchar) returns object
@@ -704,7 +642,7 @@ function map_delete(object, varchar, varchar, varchar, varchar, varchar) returns
 
 ## `map_insert`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function map_insert(object, $1, $2) returns object
 function map_insert(object, $1, $2, boolean) returns object
@@ -713,7 +651,7 @@ function map_insert(object, $1, $2, boolean) returns object
 
 ## `map_keys`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function map_keys(object) returns array
 ```
@@ -721,7 +659,7 @@ function map_keys(object) returns array
 
 ## `map_pick`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function map_pick(object, string) returns object
 function map_pick(object, string, string) returns object
@@ -734,7 +672,7 @@ function map_pick(object, array) returns object
 
 ## `map_size`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function map_size(object) returns bigint
 ```
@@ -742,7 +680,7 @@ function map_size(object) returns bigint
 
 ## `object_construct`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function object_construct(...) returns object
 ```
@@ -750,9 +688,8 @@ function object_construct(...) returns object
 
 ## `object_construct_keep_null`
 
-#### Description
 the resulting object with null value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function object_construct_keep_null($1, ...) returns object
 ```
@@ -760,9 +697,8 @@ function object_construct_keep_null($1, ...) returns object
 
 ## `object_delete`
 
-#### Description
 the resulting OBJECT
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function object_delete(object, varchar, ...) returns object
 function object_delete(object, varchar, ...) returns object
@@ -771,9 +707,8 @@ function object_delete(object, varchar, ...) returns object
 
 ## `object_insert`
 
-#### Description
 the resulting OBJECT
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function object_insert(object, varchar, $1) returns object
 function object_insert(object, varchar, $1, boolean) returns object
@@ -784,9 +719,8 @@ function object_insert(object, varchar, $1, boolean) returns object
 
 ## `object_keys`
 
-#### Description
 the resulting ARRAY
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function object_keys(object) returns array
 function object_keys(object) returns array
@@ -795,9 +729,8 @@ function object_keys(object) returns array
 
 ## `object_pick`
 
-#### Description
 the resulting OBJECT
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function object_pick(object, varchar, ...) returns object
 function object_pick(object, array, ...) returns object
@@ -807,9 +740,8 @@ function object_pick(object, varchar, ...) returns object
 
 ## `parse_json`
 
-#### Description
 Parses string as a JSON document
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function parse_json(varchar) returns variant
 ```
@@ -817,9 +749,8 @@ function parse_json(varchar) returns variant
 
 ## `parse_xml`
 
-#### Description
 Parses string as an XML document
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function parse_xml(varchar) returns object
 function parse_xml(varchar, boolean) returns object
@@ -829,9 +760,8 @@ function parse_xml() returns variant
 
 ## `strip_null_value`
 
-#### Description
 Converts null values to SQL NULLs
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function strip_null_value(variant) returns variant
 ```
@@ -839,9 +769,8 @@ function strip_null_value(variant) returns variant
 
 ## `try_parse_json`
 
-#### Description
 Parses string as a JSON document
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_parse_json(varchar) returns variant
 ```
@@ -849,9 +778,8 @@ function try_parse_json(varchar) returns variant
 
 ## `typeof`
 
-#### Description
 Returns SQL type word of a variant value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function typeof(variant) returns varchar
 ```
@@ -859,9 +787,8 @@ function typeof(variant) returns varchar
 
 ## `xmlget`
 
-#### Description
 Get XML element object by XML tag name
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function xmlget(variant, varchar, decimal(38, 0)) returns object
 function xmlget(object, varchar, decimal(38, 0)) returns object

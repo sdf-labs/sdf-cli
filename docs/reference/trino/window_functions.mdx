@@ -1,0 +1,175 @@
+---
+title: "Window Functions"
+---
+
+## `cume_dist`
+
+Returns the cumulative distribution of a value in a group of values.  The result is the number of rows preceding or peer with the row in the window ordering  of the window partition divided by the total number of rows in the window partition.  Thus, any tie values in the ordering will evaluate to the same distribution value.
+
+*Supported Signatures*
+```sql
+function cume_dist() returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#cume_dist)
+
+## `dense_rank`
+
+Returns the rank of a value in a group of values. This is similar to rank(), except that tie values do not produce gaps in the sequence.
+
+
+*Examples:*
+```sql examples.sql
+SELECT name, DENSE_RANK() OVER (ORDER BY score) AS dense_rank_col FROM (
+    VALUES ('A', 10), ('B', 20), ('C', 20), ('D', 30)
+) AS t (name, score)
+ -- value '('A', 1), ('B', 2), ('C', 2), ('D', 3)'
+```
+*Supported Signatures*
+```sql
+function dense_rank() returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#dense_rank)
+
+## `first_value`
+
+Returns the first value of the window.
+
+*Supported Signatures*
+```sql
+function first_value($1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#first_value)
+
+## `lag`
+
+Returns the value at offset rows before the current row in the window partition. Offsets start at 0, which is the current row. The offset can be any scalar expression.  The default offset is 1. If the offset is null, an error is raised. If the offset refers to a row that is not within the partition, the default_value is returned, or if it is not specified null is returned. The lag() function requires that the window ordering be specified. Window frame must not be specified.
+
+
+*Examples:*
+```sql examples.sql
+SELECT name, score, LAG(score) OVER (PARTITION BY name) AS lead_score FROM (
+    VALUES ('A', 10), ('A', 20), ('D', 20), ('D', 30)
+) AS t (name, score)
+ -- value '('A', 10, ), ('A', 20, 10), ('D', 20, ), ('D', 30, 20)'
+```
+*Supported Signatures*
+```sql
+function lag($1) returns $1
+function lag($1, bigint) returns $1
+function lag($1, bigint, $1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#lag)
+
+## `last_value`
+
+Returns the last value of the window.
+
+*Supported Signatures*
+```sql
+function last_value($1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#last_value)
+
+## `lead`
+
+Returns the value at offset rows after the current row in the window partition. Offsets start at 0, which is the current row. The offset can be any scalar expression.  The default offset is 1. If the offset is null, an error is raised. If the offset refers to a row that is not within the partition, the default_value is returned, or if it is not specified null is returned. The lead() function requires that the window ordering be specified. Window frame must not be specified.
+
+
+*Examples:*
+```sql examples.sql
+SELECT name, score, LEAD(score) OVER (PARTITION BY name) AS lead_score FROM (
+    VALUES ('A', 10), ('A', 20), ('D', 20), ('D', 30)
+) AS t (name, score)
+ -- value '('A', 10, 20), ('A', 20, ), ('D', 20, 30), ('D', 30, )'
+```
+*Supported Signatures*
+```sql
+function lead($1) returns $1
+function lead($1, bigint) returns $1
+function lead($1, bigint, $1) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#lead)
+
+## `nth_value`
+
+Returns the value at the specified offset from the beginning of the window. Offsets start at 1. The offset can be any scalar expression.  If the offset is null or greater than the number of values in the window, null is returned.  It is an error for the offset to be zero or negative.
+
+*Supported Signatures*
+```sql
+function nth_value($1, bigint) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#nth_value)
+
+## `ntile`
+
+Divides the rows for each window partition into n buckets ranging from 1 to at most n. Bucket values will differ by at most 1. If the number of rows in the partition does not divide evenly into the number of buckets, then the remainder values are distributed one per bucket, starting with the first bucket.
+
+
+*Examples:*
+```sql examples.sql
+SELECT name, NTILE(5) OVER (ORDER BY score) AS ntile_col FROM (
+    VALUES ('A', 10), ('A', 20), ('A', 30), ('A', 40)
+) AS t (name, score)
+ -- value '('A', 1), ('A', 2), ('D', 3), ('D', 4)'
+```
+*Supported Signatures*
+```sql
+function ntile(bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#ntile)
+
+## `percent_rank`
+
+Returns the percentage ranking of a value in group of values. The result is (r - 1) / (n - 1) where r is the rank() of the row and n is the total number of rows in the window partition.
+
+
+*Examples:*
+```sql examples.sql
+SELECT name, PERCENT_RANK() OVER (ORDER BY score) AS percent_rank_col FROM (
+    VALUES ('A', 10), ('B', 20), ('C', 20), ('D', 30)
+) AS t (name, score)
+ -- value '('A', 0.0), ('B', 0.33333333), ('C', 0.33333333), ('D', 1.0)'
+```
+*Supported Signatures*
+```sql
+function percent_rank() returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#percent_rank)
+
+## `rank`
+
+Returns the rank of a value in a group of values. The rank is one plus the number of rows preceding the row that are not peer with the row. Thus, tie values in the ordering will produce gaps in the sequence. The ranking is performed for each window partition.
+
+
+*Examples:*
+```sql examples.sql
+SELECT name, RANK() OVER (ORDER BY score) AS rank_col FROM (
+    VALUES ('A', 10), ('B', 20), ('C', 20), ('D', 30)
+) AS t (name, score)
+ -- value '('A', 1), ('B', 2), ('C', 2), ('D', 4)'
+```
+*Supported Signatures*
+```sql
+function rank() returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#rank)
+
+## `row_number`
+
+Returns a unique, sequential number for each row, starting with one, according to the ordering of rows within the window partition.
+
+
+*Examples:*
+```sql examples.sql
+SELECT name, ROW_NUMBER() OVER (ORDER BY score) AS row_number_col FROM (
+    VALUES ('A', 10), ('B', 20), ('C', 20), ('D', 30)
+) AS t (name, score)
+ -- value '('A', 1), ('B', 2), ('C', 3), ('D', 4)'
+```
+*Supported Signatures*
+```sql
+function row_number() returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#row_number)
+
+

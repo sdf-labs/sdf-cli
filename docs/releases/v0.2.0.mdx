@@ -14,7 +14,7 @@ With the new minor release multiple breaking changes have been applied with work
 Detailed documentation on each specific feature is coming soon. To migrate and take advantage of these
 new features, follow these instructions to update your `workspace.sdf.yml` and other workspace YML files 
 as needed:
-- [Migrate from 0.1.x to 0.2.x](../releases/migrations/1.1-1.2)
+- [Migrate from 0.1.x to 0.2.x](/releases/migrations/11-12)
 
 #### Breaking Change: New Provider Block Configuration
 
@@ -23,16 +23,17 @@ We've updated our provider blocks in the `.sdf.yml` to more explicitly separate 
 for read only access to production databases and read/write to sandbox databases. 
 
 Versions v0.2.5 and above will require the following update to your provider block. For more information
-reference the [New Provider Configuration](../releases/migrations/1.1-1.2#new-provider-configuration).
+reference the [New Provider Configuration](/releases/migrations/11-12#new-provider-configuration).
 ``` yml workspace.sdf.yml
-providers:
-    - type: snowflake
-      credential: snowflake_credentials
-      sources: 
-        - pattern: prod_db.priv.*
-      targets:
-        - pattern: prod_db.pub.*
-          rename-as: dev_db.pub.$1
+integrations:
+  - provider: snowflake
+    type: database
+    credential: snowflake_credentials
+    sources: 
+      - pattern: prod_db.priv.*
+    targets:
+      - pattern: prod_db.pub.*
+        rename-as: dev_db.pub.$1
 ```
 
 #### Specify Compile Environments and Systematic Renaming
@@ -42,14 +43,14 @@ your developer schemas and production schemas within the same CLI by simply spec
 <Note>
 You'll need to define the renaming scheme and environment details in an SDF YML environment block. 
 
-We recommended checking out the [SDF YML Reference Guide](../reference/sdf-yml)
+We recommended checking out the [SDF YML Reference Guide](/reference/sdf-yml)
 </Note>
 
 
 #### Materialization 
 SDF now supports materialization! This can be set with the materialization parameter. Valid 
 materializations include table, view, temporary table, materialized view, and more. Support for 
-incremental materialization is coming soon. [Materialization Reference](../reference/sdf-yml#enum-materialization)
+incremental materialization is coming soon. [Materialization Reference](/reference/sdf-yml#enum-materialization)
 
 #### Credential Blocks within SDF YML
 SDF now supports a credential block in SDF YML. This enables you to manage multiple credentials 

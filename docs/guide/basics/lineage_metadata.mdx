@@ -22,7 +22,7 @@ set up, it can be created with an `sdf new --sample lineage` command.
 </Note>
 
 <CodeGroup>
-```sql src/source.sql
+```sql models/source.sql
 select column1 as user_id,
        column2 as phone,
        column3 as txn_date,
@@ -36,19 +36,19 @@ select column1 as user_id,
   (3, '333-1414', '2022-03-01', 300))
 ```
 
-```sql src/middle.sql
+```sql models/middle.sql
 select user_id, max(phone) as phone, txn_date, sum(qty) as qty
 from source
 group by user_id, txn_date
 ```
 
-```sql src/sink.sql
+```sql models/sink.sql
 select user_id as uid, phone, txn_date, qty
 from middle
 where qty > 180
 ```
 
-```sql src/knis.sql
+```sql models/knis.sql
 select txn_date, sum(qty) as qty
 from middle
 ```
@@ -61,9 +61,9 @@ file:
 ```yaml workspace.sdf.yml
 workspace:
   name: lineage
-  edition: "1.2"
+  edition: "1.3"
   includes:
-    - path: src/
+    - path: models/
 ```
 
 To use these SQL files locally and follow along, create a new SDF workspace from the `lineage` sample with the following command:
@@ -159,11 +159,11 @@ sink.phone
 │
 │ copy
 └──────┐
-        middle.phone
-        │
-        │ copy
-        └──────┐
-                source.phone
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;middle.phone
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ copy
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source.phone
 </pre>
 </div>
 
@@ -192,11 +192,11 @@ knis.qty
 │
 │ mod
 └──────┐
-        middle.qty
-        │
-        │ mod
-        └──────┐
-                source.qty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;middle.qty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ mod
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source.qty
 </pre>
 </div>
 
@@ -229,15 +229,15 @@ sink.phone
 │             source.user_id
 │ scan
 └──────┐
-       middle.qty
-       │
-       │ mod
-       ├──────┐
-       │      source.qty
-       │ scan
-       └──────┐
-              source.txn_date
-              source.user_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;middle.qty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ mod
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│      source.qty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ scan
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source.txn_date
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source.user_id
 </pre>
 </div>
 
@@ -247,7 +247,7 @@ SDF provides two interfaces for accessing lineage information. This interface di
 level of upstream dependencies. Here is an example:
 
 ```bash
-sdf lineage src/sink.sql
+sdf lineage models/sink.sql
 ```
 
 ```yaml
@@ -298,15 +298,15 @@ sink.phone
 │             source.user_id
 │ scan
 └──────┐
-       middle.qty
-       │
-       │ mod
-       ├──────┐
-       │      source.qty
-       │ scan
-       └──────┐
-              source.txn_date
-              source.user_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;middle.qty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ mod
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│      source.qty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ scan
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source.txn_date
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source.user_id
 </pre>
 </div>
 
@@ -325,12 +325,12 @@ this updated `workspace.sdf.yml` file where we added an instruction to track the
 
 ```yaml workspace.sdf.yml
 workspace:
-  edition: "1.2"
+  edition: "1.3"
   lineage:
     functions:
       - sum
   includes:
-    - path: src/
+    - path: models/
 ```
 
 Now, the lineage for the `knis.qty` column will be as follows:
@@ -341,11 +341,11 @@ knis.qty
 │
 │ sum
 └──────┐
-        middle.qty
-        │
-        │ sum
-        └──────┐
-                source.qty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;middle.qty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ sum
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source.qty
 </pre>
 </div>
 

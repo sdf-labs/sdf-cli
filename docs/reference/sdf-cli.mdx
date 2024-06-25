@@ -77,7 +77,7 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -101,7 +101,7 @@ Create a new sdf workspace
   Possible values: `true`, `false`
 
 * `--sample  SAMPLE ` — Create a workspace with the sample content at  path 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `-s`, `--show  SHOW ` — Display progress messages
 
@@ -128,7 +128,7 @@ Remove artifacts that sdf has generated in the past
 
   Possible values: `progress`, `none`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -185,7 +185,7 @@ Compile models
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -235,7 +235,7 @@ Compile models
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -286,7 +286,7 @@ Run models
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -345,7 +345,7 @@ Run models
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -390,7 +390,7 @@ Test your models
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -446,7 +446,7 @@ Test your models
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -491,7 +491,7 @@ Statistics for your data
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -541,7 +541,7 @@ Statistics for your data
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -586,7 +586,7 @@ Report code quality
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -636,7 +636,7 @@ Report code quality
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -681,7 +681,7 @@ Check code quality
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -731,7 +731,7 @@ Check code quality
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -792,7 +792,7 @@ Display lineage for a given table and/or column
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -842,7 +842,7 @@ Display lineage for a given table and/or column
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -905,7 +905,7 @@ Push a local workspace to the SDF Service
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -955,7 +955,7 @@ Push a local workspace to the SDF Service
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -1044,7 +1044,7 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
   Possible values: `true`, `false`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdfcache/profile/...
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
 
   Default value: `false`
 
@@ -1094,7 +1094,7 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
   Possible values: `true`, `false`
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
@@ -1289,9 +1289,9 @@ Display SDF's functions definitions
 
 * `--dialect  DIALECT ` — Dialect for all functions
 
-  Default value: `presto`
+  Default value: `trino`
 
-  Possible values: `snowflake`, `presto`, `bigquery`, `redshift`, `spark-lp`
+  Possible values: `snowflake`, `trino`, `bigquery`, `redshift`, `spark-lp`
 
 * `--section  SECTION ` — Section to display [ section  value must appear in the function registry]
 
@@ -1365,7 +1365,7 @@ Initialize an sdf workspace from an existing dbt project
 
 ###### **Options:**
 
-* `--cache-dir  CACHE_DIR ` — Set the  cache-dir  for this session
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `-s`, `--show  SHOW ` — Display messages
 
@@ -1430,5 +1430,5 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 
 
 
-   Finished man in 0.108 secs
+   Finished man in 0.297 secs
 

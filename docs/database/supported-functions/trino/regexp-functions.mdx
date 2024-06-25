@@ -3,4 +3,34 @@ title: "Regexp Functions"
 ---
 
 
+## `regexp_extract`
+
+Returns the first substring matched by the regular expression pattern in string.
+
+
+*Examples:*
+```sql examples.sql
+SELECT REGEXP_EXTRACT('email_address@gmail.com', '@(.*?)\.' -- value 'gmail'
+```
+*Supported Signatures*
+```sql
+function regexp_extract(varchar, joniregexp) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract)
+
+## `regexp_like`
+
+Evaluates the regular expression pattern and determines if it is contained within string.
+
+
+*Examples:*
+```sql examples.sql
+SELECT REGEXP_like('email_address@gmail.com', '.*@.*\..*') AS is_valid_email -- value 'TRUE'
+```
+*Supported Signatures*
+```sql
+function regexp_like(varchar, joniregexp) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_like)
+
 

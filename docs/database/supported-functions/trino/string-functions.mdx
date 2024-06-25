@@ -5,7 +5,14 @@ title: "String Functions"
 
 ## `chr`
 
-#### Supported Signatures
+Returns the Unicode code point n as a single character string.
+
+
+*Examples:*
+```sql examples.sql
+select chr(61) as value; -- value '='
+```
+*Supported Signatures*
 ```sql
 function chr(bigint) returns varchar
 ```
@@ -13,7 +20,14 @@ function chr(bigint) returns varchar
 
 ## `codepoint`
 
-#### Supported Signatures
+Returns the Unicode code point of the only character of `string`.
+
+
+*Examples:*
+```sql examples.sql
+SELECT codepoint('😊') AS value; -- value '128522'
+```
+*Supported Signatures*
 ```sql
 function codepoint(varchar) returns bigint
 ```
@@ -21,7 +35,14 @@ function codepoint(varchar) returns bigint
 
 ## `concat`
 
-#### Supported Signatures
+Returns the concatenation of string1, string2, ..., stringN. This function provides the same functionality as the SQL-standard concatenation operator (||).
+
+
+*Examples:*
+```sql examples.sql
+select concat('hello ', 'world!') as value; -- value 'hello world!'
+```
+*Supported Signatures*
 ```sql
 function concat($3, array<$3>) returns array<$3>
 function concat(array<$3>, ...) returns array<$3>
@@ -33,7 +54,14 @@ function concat(varchar, ...) returns varchar
 
 ## `concat_ws`
 
-#### Supported Signatures
+Using the first array `string0` element as separator, returns the concatenation of all subsequent strings string1, string2, ... If `string0`` is null, then the return value is null. Any null values provided in the arguments  after the separator are skipped.
+
+
+*Examples:*
+```sql examples.sql
+SELECT concat_ws('😊', 'hey', 'there', 'people') AS value; -- value 'hey😊there😊people'
+```
+*Supported Signatures*
 ```sql
 function concat_ws(varchar, array<varchar>) returns varchar
 function concat_ws(varchar, ...) returns varchar
@@ -42,16 +70,24 @@ function concat_ws(varchar, ...) returns varchar
 
 ## `length`
 
-#### Supported Signatures
+Returns the length of string in characters.
+
+
+*Examples:*
+```sql examples.sql
+select length('Hello World!') as value; -- value '12'
+```
+*Supported Signatures*
 ```sql
 function length(varchar) returns bigint
-function length(array<$1>) returns bigint
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#length)
 
 ## `levenshtein_distance`
 
-#### Supported Signatures
+Returns the Levenshtein edit distance of string1 and string2, i.e. the minimum number of single-character edits (insertions, deletions or substitutions) needed to change string1 into string2.
+
+*Supported Signatures*
 ```sql
 function levenshtein_distance(varchar, varchar) returns bigint
 ```
@@ -59,7 +95,14 @@ function levenshtein_distance(varchar, varchar) returns bigint
 
 ## `lower`
 
-#### Supported Signatures
+Converts string to lowercase.
+
+
+*Examples:*
+```sql examples.sql
+select lower('Hello World!') as value; -- value 'hello world!'
+```
+*Supported Signatures*
 ```sql
 function lower(varchar) returns varchar
 ```
@@ -67,7 +110,14 @@ function lower(varchar) returns varchar
 
 ## `lpad`
 
-#### Supported Signatures
+Left pads string to size characters with padstring. If size is less than the length of string, the result is truncated to size characters. size must not be negative and padstring must be non-empty.
+
+
+*Examples:*
+```sql examples.sql
+select lpad('😉', 5, '*') as value; -- value '****😉'
+```
+*Supported Signatures*
 ```sql
 function lpad(varchar, bigint, varchar) returns varchar
 ```
@@ -75,7 +125,14 @@ function lpad(varchar, bigint, varchar) returns varchar
 
 ## `ltrim`
 
-#### Supported Signatures
+Removes leading whitespace from string.
+
+
+*Examples:*
+```sql examples.sql
+select ltrim('   😉') as value; -- value '😉'
+```
+*Supported Signatures*
 ```sql
 function ltrim(varchar) returns varchar
 ```
@@ -83,7 +140,14 @@ function ltrim(varchar) returns varchar
 
 ## `replace`
 
-#### Supported Signatures
+Removes all instances of search from string.
+
+
+*Examples:*
+```sql examples.sql
+select replace('Hello There', 'There') as value; -- value 'Hello '
+```
+*Supported Signatures*
 ```sql
 function replace(varchar, varchar, varchar) returns varchar
 ```
@@ -91,7 +155,14 @@ function replace(varchar, varchar, varchar) returns varchar
 
 ## `reverse`
 
-#### Supported Signatures
+Returns string with the characters in reverse order.
+
+
+*Examples:*
+```sql examples.sql
+select reverse('Hello There') as value; -- value 'ereht olleH'
+```
+*Supported Signatures*
 ```sql
 function reverse(array<$3>) returns array<$3>
 function reverse(varchar) returns varchar
@@ -100,7 +171,14 @@ function reverse(varchar) returns varchar
 
 ## `rpad`
 
-#### Supported Signatures
+Right pads string to size characters with padstring. If size is less than the length of string, the result is truncated to size characters. size must not be negative and padstring must be non-empty.
+
+
+*Examples:*
+```sql examples.sql
+select rpad('😉', 5, '*') as value; -- value '😉****'
+```
+*Supported Signatures*
 ```sql
 function rpad(varchar, bigint, varchar) returns varchar
 ```
@@ -108,7 +186,14 @@ function rpad(varchar, bigint, varchar) returns varchar
 
 ## `rtrim`
 
-#### Supported Signatures
+Removes trailing whitespace from string.
+
+
+*Examples:*
+```sql examples.sql
+select rtrim('😉   ') as value; -- value '😉'
+```
+*Supported Signatures*
 ```sql
 function rtrim(varchar) returns varchar
 ```
@@ -116,7 +201,14 @@ function rtrim(varchar) returns varchar
 
 ## `split`
 
-#### Supported Signatures
+Splits string on delimiter and returns an array.
+
+
+*Examples:*
+```sql examples.sql
+SELECT split('hello+world', '+') as value; -- value '[hello, world]'
+```
+*Supported Signatures*
 ```sql
 function split(varchar, varchar) returns array<varchar>
 function split(varchar, varchar, bigint) returns array<varchar>
@@ -125,7 +217,14 @@ function split(varchar, varchar, bigint) returns array<varchar>
 
 ## `split_part`
 
-#### Supported Signatures
+Splits string on delimiter and returns the field index. Field indexes start with 1. If the index is larger than the number of fields, then null is returned.
+
+
+*Examples:*
+```sql examples.sql
+SELECT split_part('hello world', 'world', 1) as value; -- value 'hello'
+```
+*Supported Signatures*
 ```sql
 function split_part(varchar, varchar, bigint) returns varchar
 ```
@@ -133,7 +232,15 @@ function split_part(varchar, varchar, bigint) returns varchar
 
 ## `starts_with`
 
-#### Supported Signatures
+Tests whether substring is a prefix of string.
+
+
+*Examples:*
+```sql examples.sql
+SELECT starts_with('hello world', 'world') -- value 'false'
+SELECT starts_with('hello world', 'hello') ; -- value 'true'
+```
+*Supported Signatures*
 ```sql
 function starts_with(varchar, varchar) returns boolean
 ```
@@ -141,7 +248,14 @@ function starts_with(varchar, varchar) returns boolean
 
 ## `strpos`
 
-#### Supported Signatures
+Returns the starting position of the first instance of substring in string. Positions start with 1. If not found, 0 is returned.
+
+
+*Examples:*
+```sql examples.sql
+select strpos('Hello World', 'World') as value; -- value '7'
+```
+*Supported Signatures*
 ```sql
 function strpos(varchar, varchar) returns bigint
 ```
@@ -149,7 +263,14 @@ function strpos(varchar, varchar) returns bigint
 
 ## `substr`
 
-#### Supported Signatures
+This is an alias for substring().
+
+
+*Examples:*
+```sql examples.sql
+select substr('Hello World', 6) as value; -- value ' World'
+```
+*Supported Signatures*
 ```sql
 function substr(varchar, bigint) returns varchar
 function substr(varchar, bigint, bigint) returns varchar
@@ -158,7 +279,14 @@ function substr(varchar, bigint, bigint) returns varchar
 
 ## `substring`
 
-#### Supported Signatures
+Returns the rest of string from the starting position start. Positions start with 1. A negative starting position is interpreted as being relative to the end of the string.
+
+
+*Examples:*
+```sql examples.sql
+select substring('Hello World', 6) as value; -- value ' World'
+```
+*Supported Signatures*
 ```sql
 function substring(varchar, bigint) returns varchar
 function substring(varchar, bigint, bigint) returns varchar
@@ -167,7 +295,14 @@ function substring(varchar, bigint, bigint) returns varchar
 
 ## `translate`
 
-#### Supported Signatures
+Returns the source string translated by replacing characters found in the from string with the corresponding characters in the to string.  If the from string contains duplicates, only the first is used.  If the source character does not exist in the from string, the source character will be copied without translation.  If the index of the matching character in the from string is beyond the length of the to string, the source character will be omitted from the resulting string.
+
+
+*Examples:*
+```sql examples.sql
+select translate('Hello World', 'Hell', 'N') as value; -- value 'No Word'
+```
+*Supported Signatures*
 ```sql
 function translate(varchar, varchar, varchar) returns varchar
 ```
@@ -175,7 +310,14 @@ function translate(varchar, varchar, varchar) returns varchar
 
 ## `trim`
 
-#### Supported Signatures
+Removes any leading and/or trailing characters as specified up to and including string from source.
+
+
+*Examples:*
+```sql examples.sql
+select trim('  😉  ') as value; -- value '😉'
+```
+*Supported Signatures*
 ```sql
 function trim(varchar) returns varchar
 ```
@@ -183,7 +325,14 @@ function trim(varchar) returns varchar
 
 ## `upper`
 
-#### Supported Signatures
+Converts string to uppercase.
+
+
+*Examples:*
+```sql examples.sql
+select upper('Hello World!') as value; -- value 'HELLO WORLD!'
+```
+*Supported Signatures*
 ```sql
 function upper(varchar) returns varchar
 ```

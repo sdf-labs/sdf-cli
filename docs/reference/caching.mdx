@@ -2,14 +2,14 @@
 title: "SDF Cache"
 ---
 
-## `.sdfcache`
+## `sdftarget`
 
 When we say that SDF is a build system, we mean that it builds data like a build system builds binaries. 
 This means the best parts of build systems, like dependency tracking, caching, and reuse of artifacts are all encompassed in the SDF vision.
 In this section we'll discuss the caching strategy of SDF and how it will save you time, compute, and resources as a data developer.
 
 <Info>
-If you take a look in your SDF workspace, you'll likely find a directory called `.sdfcache` (i.e. the name of this reference). This is where SDF caches the data it builds and much more...
+If you take a look in your SDF workspace, you'll likely find a directory called `sdftarget` (i.e. the name of this reference). This is where SDF caches the data it builds and much more...
 </Info>
 
 ## SDF & Build Tools
@@ -23,7 +23,7 @@ While this represents the main idea, tracking dependencies is actually more invo
 ### Features
 **Dependency Tracking.** SDF analyzes all dependencies that are established through table definitions and table uses. *Tables* are defined via `select` and `create table` statements while *table uses* are defined via `from` clauses. SDF uses the Table definition and use relationships to build a dependency graph. A partial order of dependencies is established due to the fact that analytical queries typically can't be recursive. SDF schedules the dependency graphs in definition before use order. 
 
-**SDF cache.** When SDF builds the dependencies in order, it does not only display the results but materializes all tables in its data cache, called `.sdfcache`. You can find this folder withinin your SDF workspace directory after running any command. 
+**SDF cache.** When SDF builds the dependencies in order, it does not only display the results but materializes all tables in its data cache, called `sdftarget`. You can find this folder withinin your SDF workspace directory after running any command. 
 
 **SDF reuse.** Users and bots constantly build data. But data that is up-to-date doesn't need to be rebuilt. To decide whether a query needs to be re-executed or whether a past materialization can be reused, SDF uses file modification times of source files as well as of data files, the latter all located in its cache. We will amend this section later with the handling of data that is located in the cloud.
 
@@ -34,18 +34,18 @@ Let's see this in practice. Let's simply run a pipeline having three stages wher
 > `sdf new --sample csv123 .`
 ```
    Building csv_123.pub.one (./src/one.sql)
-    Written .sdfcache/csv_123/pub/one
+    Written sdftarget/csv_123/pub/one
    Building csv_123.pub.two (./src/two.sql)
-    Written .sdfcache/csv_123/pub/two
+    Written sdftarget/csv_123/pub/two
    Building csv_123.pub.three (./src/three.sql)
-    Written .sdfcache/csv_123/pub/three
+    Written sdftarget/csv_123/pub/three
 ```
 
 (2) After we change into part123, we can run
 > `sdf build --no-show`
 ```
 ```
-Stdout shows that all tables are written into `.sdfcache` under the respective date/hr paths. 
+Stdout shows that all tables are written into `sdftarget` under the respective date/hr paths. 
 
 (3) Let's rerun the query again.
 > `sdf build --no-show`
@@ -64,7 +64,7 @@ This has the effect that three.sql is now newer than any of the derived artifact
 ```
     Reusing csv_123.pub.one, csv_123.pub.two
    Building csv_123.pub.three (./src/three.sql)
-    Written .sdfcache/csv_123/pub/three
+    Written sdftarget/csv_123/pub/three
 ```
 
 (6) This is great, but what happens when the original data changes. Let's touch the original data to find out
@@ -74,11 +74,11 @@ This has the effect that three.sql is now newer than any of the derived artifact
 > `sdf build`
 ```
    Building csv_123.pub.one (./src/one.sql)
-    Written .sdfcache/csv_123/pub/one
+    Written sdftarget/csv_123/pub/one
    Building csv_123.pub.two (./src/two.sql)
-    Written .sdfcache/csv_123/pub/two
+    Written sdftarget/csv_123/pub/two
    Building csv_123.pub.three (./src/three.sql)
-    Written .sdfcache/csv_123/pub/three
+    Written sdftarget/csv_123/pub/three
 ```
 
 ## Caching partitioned data
@@ -145,11 +145,11 @@ create external table one stored as CSV location  's3://wolfram-test-s3/data/a.c
 ```yaml
    Building s3_123.pub.one (./src/one.sql)
 Downloading s3_123.pub.one (s3://wolfram-test-s3/data/a.csv)
-    Written .sdfcache/s3_123/pub/one
+    Written sdftarget/s3_123/pub/one
    Building s3_123.pub.two (./src/two.sql)
-    Written .sdfcache/s3_123/pub/two
+    Written sdftarget/s3_123/pub/two
    Building s3_123.pub.three (./src/three.sql)
-    Written .sdfcache/s3_123/pub/three
+    Written sdftarget/s3_123/pub/three
 ```
 We see that `one` is downloaded on first active use.
 (2) Rebuilding is very fast, since no cloud is being consulted.
@@ -172,9 +172,9 @@ To do so, provide the s3 location as a field value to the remote location field 
 **Example.** We continue the `s3_123` example. To support upload we have emnriched teh workspace with an upload location like so:
 ```yaml
 workspace:
-  edition: "1.2"
+  edition: "1.3"
   includes:
-     - path: src
+     - path: models
 
 ```
 (1) Calling sdf build with the upload flag show the following progress (assumimg that the data is not yet uploaded):

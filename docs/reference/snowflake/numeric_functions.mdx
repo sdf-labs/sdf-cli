@@ -5,9 +5,8 @@ title: "Numeric Functions"
 
 ## `acos`
 
-#### Description
 Compute the arccosine of the input expression (returned as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function acos(double) returns double
 ```
@@ -15,9 +14,8 @@ function acos(double) returns double
 
 ## `acosh`
 
-#### Description
 Compute the inverse hyperbolic cosine of the input expression.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function acosh(double) returns double
 ```
@@ -25,9 +23,8 @@ function acosh(double) returns double
 
 ## `asin`
 
-#### Description
 Compute the arcsine of the input expression (returned as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function asin(double) returns double
 ```
@@ -35,9 +32,8 @@ function asin(double) returns double
 
 ## `asinh`
 
-#### Description
 Compute the inverse hyperbolic sine of the input expression.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function asinh(double) returns double
 ```
@@ -45,9 +41,8 @@ function asinh(double) returns double
 
 ## `atan`
 
-#### Description
 Compute the arctangent of the input expression (returned as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function atan(double) returns double
 ```
@@ -55,9 +50,8 @@ function atan(double) returns double
 
 ## `atan2`
 
-#### Description
 Compute the angle (in radians) between the x-axis and point (x, y).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function atan2(double, double) returns double
 ```
@@ -65,9 +59,8 @@ function atan2(double, double) returns double
 
 ## `atanh`
 
-#### Description
 Compute the inverse hyperbolic tangent of the input expression (as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function atanh(double) returns double
 ```
@@ -75,9 +68,8 @@ function atanh(double) returns double
 
 ## `cbrt`
 
-#### Description
 Compute the cubic root of the input expression.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function cbrt(double) returns double
 ```
@@ -85,9 +77,8 @@ function cbrt(double) returns double
 
 ## `ceil`
 
-#### Description
 round to the nearest integer not smaller than input
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ceil(decimal(38, 0)) returns decimal(38, 0)
 function ceil(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
@@ -98,9 +89,8 @@ function ceil(double, double) returns double
 
 ## `cos`
 
-#### Description
 Compute the cosine of the input expression (as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function cos(double) returns double
 ```
@@ -108,9 +98,8 @@ function cos(double) returns double
 
 ## `cosh`
 
-#### Description
 Compute the hyperbolic cosine of the input expression.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function cosh(double) returns double
 ```
@@ -118,9 +107,8 @@ function cosh(double) returns double
 
 ## `cot`
 
-#### Description
 Compute the cotangent of the input expression (as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function cot(double) returns double
 ```
@@ -128,9 +116,8 @@ function cot(double) returns double
 
 ## `degrees`
 
-#### Description
 convert r (radians) to degrees.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function degrees(double) returns double
 ```
@@ -138,9 +125,8 @@ function degrees(double) returns double
 
 ## `div0`
 
-#### Description
 Divides two numbers; returns 0 if divisor is 0
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function div0(decimal(38, 0), decimal(38, 0), ...) returns decimal(38, 0)
 function div0(double, double, ...) returns double
@@ -149,9 +135,8 @@ function div0(double, double, ...) returns double
 
 ## `div0null`
 
-#### Description
 Divides two numbers; returns 0 if divisor is 0 or null
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function div0null(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 function div0null(double, double) returns double
@@ -160,9 +145,8 @@ function div0null(double, double) returns double
 
 ## `exp`
 
-#### Description
-returns e raised to the x'th power
-#### Supported Signatures
+returns e raised to the x&#39;th power
+*Supported Signatures*
 ```sql
 function exp(double) returns double
 ```
@@ -170,9 +154,8 @@ function exp(double) returns double
 
 ## `factorial`
 
-#### Description
 Factorial of f
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function factorial(decimal(38, 0)) returns decimal(38, 0)
 ```
@@ -180,9 +163,8 @@ function factorial(decimal(38, 0)) returns decimal(38, 0)
 
 ## `floor`
 
-#### Description
 round to the nearest integer not greater than input
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function floor(decimal(38, 0)) returns decimal(38, 0)
 function floor(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
@@ -193,9 +175,8 @@ function floor(double, double) returns double
 
 ## `ln`
 
-#### Description
 returns the natural logarithm of a
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ln(double) returns double
 ```
@@ -203,9 +184,8 @@ function ln(double) returns double
 
 ## `log`
 
-#### Description
 returns the logarithm base b of a
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function log(double, double) returns double
 ```
@@ -213,9 +193,8 @@ function log(double, double) returns double
 
 ## `mod`
 
-#### Description
 Computes modulo of two numbers
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function mod(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 function mod(double, double) returns double
@@ -224,9 +203,8 @@ function mod(double, double) returns double
 
 ## `pi`
 
-#### Description
 Returns the constant pi.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function pi() returns double
 ```
@@ -234,9 +212,8 @@ function pi() returns double
 
 ## `pow`
 
-#### Description
-returns x raised to the y'th power
-#### Supported Signatures
+returns x raised to the y&#39;th power
+*Supported Signatures*
 ```sql
 function pow(double, double) returns double
 ```
@@ -244,9 +221,8 @@ function pow(double, double) returns double
 
 ## `power`
 
-#### Description
-returns x raised to the y'th power
-#### Supported Signatures
+returns x raised to the y&#39;th power
+*Supported Signatures*
 ```sql
 function power(double, double) returns double
 ```
@@ -254,9 +230,8 @@ function power(double, double) returns double
 
 ## `radians`
 
-#### Description
 convert d (degrees) to radians.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function radians(double) returns double
 ```
@@ -264,9 +239,8 @@ function radians(double) returns double
 
 ## `round`
 
-#### Description
 round to the nearest integer, with .5 rounded away from 0
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function round(double) returns double
 function round(double, double) returns double
@@ -282,9 +256,8 @@ function round() returns bigint
 
 ## `sign`
 
-#### Description
 returns sign of x
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sign(decimal(38, 0)) returns decimal(38, 0)
 function sign(double) returns double
@@ -293,9 +266,8 @@ function sign(double) returns double
 
 ## `sin`
 
-#### Description
 Compute the sine of the input expression (as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sin(double) returns double
 ```
@@ -303,9 +275,8 @@ function sin(double) returns double
 
 ## `sinh`
 
-#### Description
 Compute the hyperbolic sine of the input expression.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sinh(double) returns double
 ```
@@ -313,9 +284,8 @@ function sinh(double) returns double
 
 ## `sqrt`
 
-#### Description
 Compute the square root of the input expression.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sqrt(double) returns double
 ```
@@ -323,9 +293,8 @@ function sqrt(double) returns double
 
 ## `square`
 
-#### Description
 Compute the square of the input expression.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function square(double) returns double
 ```
@@ -333,9 +302,8 @@ function square(double) returns double
 
 ## `tan`
 
-#### Description
 Compute the tangent of the input expression (as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function tan(double) returns double
 ```
@@ -343,9 +311,8 @@ function tan(double) returns double
 
 ## `tanh`
 
-#### Description
 Compute the hyperbolic tangent of the input expression (as radians).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function tanh(double) returns double
 ```
@@ -353,9 +320,8 @@ function tanh(double) returns double
 
 ## `truncate`
 
-#### Description
 truncate the fractional or date part
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function truncate(decimal(38, 0)) returns decimal(38, 0)
 function truncate(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
@@ -369,9 +335,8 @@ function truncate(timestamp, varchar) returns timestamp
 
 ## `width_bucket`
 
-#### Description
 returns the bucket a value falls into in an equiwidth histogram
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function width_bucket(decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 function width_bucket(double, double, double, decimal(38, 0)) returns decimal(38, 0)

@@ -1,0 +1,11 @@
+workspace:
+  name: hello
+  edition: "1.3"
+
+  defaults:
+    preprocessor: jinja
+
+  includes:
+    - path: models 
+    - path: seeds
+      type: resource

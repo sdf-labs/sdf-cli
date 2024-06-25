@@ -5,7 +5,7 @@ title: "Information Schema"
 
 ## `alert_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function alert_history() returns struct<
   name string,
@@ -27,7 +27,7 @@ function alert_history() returns struct<
 
 ## `auto_refresh_registration_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function auto_refresh_registration_history() returns struct<
   start_time timestamp,
@@ -43,7 +43,7 @@ function auto_refresh_registration_history() returns struct<
 
 ## `automatic_clustering_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function automatic_clustering_history $1, $2() returns struct<
   start_time timestamp,
@@ -61,7 +61,7 @@ function automatic_clustering_history $1, $2() returns struct<
 
 ## `complete_task_graphs`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function complete_task_graphs() returns struct<
   root_task_name string,
@@ -89,7 +89,7 @@ function complete_task_graphs() returns struct<
 
 ## `copy_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function copy_history(table_name string, start_time timestamp) returns struct<
   file_name string,
@@ -119,7 +119,7 @@ function copy_history(table_name string, start_time timestamp) returns struct<
 
 ## `current_task_graphs`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_task_graphs() returns struct<
   root_task_name string,
@@ -147,7 +147,7 @@ function current_task_graphs() returns struct<
 
 ## `data_transfer_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function data_transfer_history() returns struct<
   start_time timestamp,
@@ -165,7 +165,7 @@ function data_transfer_history() returns struct<
 
 ## `database_refresh_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function database_refresh_history(string) returns struct<
   current_phase string,
@@ -190,7 +190,7 @@ function database_refresh_history() returns struct<
 
 ## `database_refresh_progress`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function database_refresh_progress(string) returns struct<
   phase_name string,
@@ -213,7 +213,7 @@ function database_refresh_progress() returns struct<
 
 ## `database_refresh_progress_by_job`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function database_refresh_progress_by_job(string) returns struct<
   phase_name string,
@@ -228,7 +228,7 @@ function database_refresh_progress_by_job(string) returns struct<
 
 ## `database_replication_usage_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function database_replication_usage_history $1, $2() returns struct<
   start_time timestamp,
@@ -245,7 +245,7 @@ function database_replication_usage_history $1, $2() returns struct<
 
 ## `database_storage_usage_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function database_storage_usage_history $1, $2() returns struct<usage_date date,
   database_name string,
@@ -260,7 +260,7 @@ function database_storage_usage_history $1, $2() returns struct<usage_date date,
 
 ## `dynamic_table_graph_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dynamic_table_graph_history() returns struct<
   name string,
@@ -281,7 +281,7 @@ function dynamic_table_graph_history() returns struct<
 
 ## `dynamic_table_refresh_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dynamic_table_refresh_history() returns struct<
   name string,
@@ -307,7 +307,7 @@ function dynamic_table_refresh_history() returns struct<
 
 ## `external_functions_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function external_functions_history() returns struct<
   start_time timestamp,
@@ -331,7 +331,7 @@ function external_functions_history() returns struct<
 
 ## `external_table_file_registration_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function external_table_file_registration_history(table_name string) returns struct<
   job_created_time timestamp,
@@ -347,7 +347,7 @@ function external_table_file_registration_history(table_name string) returns str
 
 ## `external_table_files`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function external_table_files(table_name string) returns struct<
   file_name string,
@@ -363,7 +363,7 @@ function external_table_files(table_name string) returns struct<
 
 ## `login_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function login_history $1, $2() returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
 	where $1 in (timestamp, string)
@@ -373,7 +373,7 @@ function login_history $1, $2() returns struct<event_timestamp timestamp, event_
 
 ## `login_history_by_user`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function login_history_by_user $1, $2() returns struct<event_timestamp timestamp, event_id bigint, event_type string, user_name string, client_ip string, reported_client_type string, reported_client_version string, first_authentication_factor string, second_authentication_factor string, is_success string, error_code bigint, error_message string, related_event_id bigint, "connection" string>
 	where $1 in (timestamp, string)
@@ -383,7 +383,7 @@ function login_history_by_user $1, $2() returns struct<event_timestamp timestamp
 
 ## `materialized_view_refresh_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function materialized_view_refresh_history $1, $2() returns struct< start_time timestamp, end_time timestamp, credits_used string, materialized_view_name string >
 	where $1 in (date, string)
@@ -393,7 +393,7 @@ function materialized_view_refresh_history $1, $2() returns struct< start_time t
 
 ## `notification_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function notification_history() returns struct<
   created timestamp,
@@ -409,7 +409,7 @@ function notification_history() returns struct<
 
 ## `pipe_usage_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function pipe_usage_history() returns struct<
   start_time timestamp,
@@ -425,7 +425,7 @@ function pipe_usage_history() returns struct<
 
 ## `policy_references`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function policy_references() returns struct<
   policy_db string,
@@ -449,7 +449,7 @@ function policy_references() returns struct<
 
 ## `query_acceleration_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function query_acceleration_history $1, $2() returns struct<start_time timestamp,
   end_time timestamp,
@@ -466,7 +466,7 @@ function query_acceleration_history $1, $2() returns struct<start_time timestamp
 
 ## `query_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function query_history $1, $2() returns struct<query_id string,
   query_text string,
@@ -522,7 +522,7 @@ function query_history $1, $2() returns struct<query_id string,
 
 ## `query_history_by_session`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function query_history_by_session $1, $2() returns struct<query_id string,
   query_text string,
@@ -578,7 +578,7 @@ function query_history_by_session $1, $2() returns struct<query_id string,
 
 ## `query_history_by_user`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function query_history_by_user $1, $2() returns struct<query_id string,
   query_text string,
@@ -634,7 +634,7 @@ function query_history_by_user $1, $2() returns struct<query_id string,
 
 ## `query_history_by_warehouse`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function query_history_by_warehouse $1, $2() returns struct<query_id string,
   query_text string,
@@ -690,7 +690,7 @@ function query_history_by_warehouse $1, $2() returns struct<query_id string,
 
 ## `replication_group_refresh_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function replication_group_refresh_history(string) returns struct<
   phase_name string,
@@ -708,7 +708,7 @@ function replication_group_refresh_history(string) returns struct<
 
 ## `replication_group_refresh_progress`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function replication_group_refresh_progress(string) returns struct<
   phase_name string,
@@ -723,7 +723,7 @@ function replication_group_refresh_progress(string) returns struct<
 
 ## `replication_group_refresh_progress_by_job`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function replication_group_refresh_progress_by_job(string) returns struct<
   phase_name string,
@@ -738,7 +738,7 @@ function replication_group_refresh_progress_by_job(string) returns struct<
 
 ## `replication_group_usage_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function replication_group_usage_history() returns struct<
   start_time timestamp,
@@ -753,7 +753,7 @@ function replication_group_usage_history() returns struct<
 
 ## `replication_usage_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function replication_usage_history $1, $2() returns struct<
   start_time timestamp,
@@ -770,7 +770,7 @@ function replication_usage_history $1, $2() returns struct<
 
 ## `search_optimization_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function search_optimization_history $1, $2() returns struct<
   start_time timestamp,
@@ -786,7 +786,7 @@ function search_optimization_history $1, $2() returns struct<
 
 ## `serverless_task_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function serverless_task_history $1, $2() returns struct<
   start_time timestamp,
@@ -802,7 +802,7 @@ function serverless_task_history $1, $2() returns struct<
 
 ## `stage_directory_file_registration_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function stage_directory_file_registration_history $1(stage_name string) returns struct<
   job_created_time timestamp,
@@ -819,7 +819,7 @@ function stage_directory_file_registration_history $1(stage_name string) returns
 
 ## `stage_storage_usage_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function stage_storage_usage_history $1, $2() returns struct<usage_date date, average_stage_bytes bigint>
 
@@ -830,7 +830,7 @@ function stage_storage_usage_history $1, $2() returns struct<usage_date date, av
 
 ## `tag_references`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function tag_references(string, string) returns struct<
   tag_database string,
@@ -850,7 +850,7 @@ function tag_references(string, string) returns struct<
 
 ## `tag_references_all_columns`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function tag_references_all_columns(string, string) returns struct<
   tag_database string,
@@ -870,7 +870,7 @@ function tag_references_all_columns(string, string) returns struct<
 
 ## `task_dependents`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function task_dependents(task_name string) returns struct<
   created_on timestamp,
@@ -892,7 +892,7 @@ function task_dependents(task_name string) returns struct<
 
 ## `task_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function task_history() returns struct<
   query_id string,
@@ -925,7 +925,7 @@ function task_history() returns struct<
 
 ## `validate_pipe_load`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function validate_pipe_load(pipe_name string, start_time timestamp) returns struct<
   error string,
@@ -947,7 +947,7 @@ function validate_pipe_load(pipe_name string, start_time timestamp) returns stru
 
 ## `warehouse_load_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function warehouse_load_history $1, $2() returns struct<start_time timestamp,
   end_time timestamp,
@@ -965,7 +965,7 @@ function warehouse_load_history $1, $2() returns struct<start_time timestamp,
 
 ## `warehouse_metering_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function warehouse_metering_history $1, $2() returns struct<start_time timestamp,
   end_time timestamp,

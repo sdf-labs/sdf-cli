@@ -4,5 +4,5 @@ SELECT
     campaign_name,
     platform,
     COUNT(DISTINCT customer_id) AS distinct_installs
-FROM app_installs_v2
+FROM staging.app_installs_v2
 GROUP BY 1,2,3

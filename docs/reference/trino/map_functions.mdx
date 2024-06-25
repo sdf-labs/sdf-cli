@@ -1,0 +1,116 @@
+---
+title: "Map Functions"
+---
+
+## `map`
+
+Returns an empty map.
+
+*Supported Signatures*
+```sql
+function map(array<$4>, array<$5>) returns map<$4, $5>
+function map() returns map<unknown, unknown>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map)
+
+## `map_concat`
+
+Returns the union of all the given maps. If a key is found in multiple given maps, that key’s value in the resulting map comes from the last one of those maps.
+
+*Supported Signatures*
+```sql
+function map_concat(map<$4, $5>, ...) returns map<$4, $5>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_concat)
+
+## `map_entries`
+
+Returns an array of all entries in the given map.
+
+*Supported Signatures*
+```sql
+function map_entries(map<$4, $5>) returns array<row(c0 $4, c1 $5)>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_entries)
+
+## `map_filter`
+
+Constructs a map from those entries of map for which function returns true.
+
+*Supported Signatures*
+```sql
+function map_filter(map<$4, $5>, function($4, $5, boolean)) returns map<$4, $5>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_filter)
+
+## `map_from_entries`
+
+Returns a map created from the given array of entries.
+
+*Supported Signatures*
+```sql
+function map_from_entries(array<row(c0 $4, c1 $5)>) returns map<$4, $5>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_from_entries)
+
+## `map_keys`
+
+Returns all the keys in the map x.
+
+*Supported Signatures*
+```sql
+function map_keys(map<$4, $5>) returns array<$4>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_keys)
+
+## `map_values`
+
+Returns all the values in the map x.
+
+*Supported Signatures*
+```sql
+function map_values(map<$4, $5>) returns array<$5>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_values)
+
+## `map_zip_with`
+
+Merges the two given maps into a single map by applying function to the pair of values with the same key. For keys only presented in one map, NULL will be passed as the value for the missing key.
+
+*Supported Signatures*
+```sql
+function map_zip_with(map<$4, $8>, map<$4, $7>, function($4, $8, $7, $6)) returns map<$4, $6>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#map_zip_with)
+
+## `multimap_from_entries`
+
+Returns a multimap created from the given array of entries. Each key can be associated with multiple values.
+
+*Supported Signatures*
+```sql
+function multimap_from_entries(array<row(c0 $4, c1 $5)>) returns map<$4, array<$5>>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#multimap_from_entries)
+
+## `transform_keys`
+
+Returns a map that applies function to each entry of map and transforms the keys.
+
+*Supported Signatures*
+```sql
+function transform_keys(map<$13, $5>, function($13, $5, $12)) returns map<$12, $5>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#transform_keys)
+
+## `transform_values`
+
+Returns a map that applies function to each entry of map and transforms the values.
+
+*Supported Signatures*
+```sql
+function transform_values(map<$4, $8>, function($4, $8, $7)) returns map<$4, $7>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/map.html#transform_values)
+
+

@@ -4,7 +4,7 @@ title: "Other Expressions"
 
 ## `if`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function if(bool, $1, $1) returns $1
 ```
@@ -12,14 +12,13 @@ function if(bool, $1, $1) returns $1
 
 ## `reclassify`
 
-#### Description
 Changes the classification label of the first argument from the expected classifier specified by the second argument to the desired classifier specified by the third. The expected and desired classifiers must belong to the same classifier group. No other classifiers attached to the first argument are impacted. The function will emit a warning if the the first argument does not have the expected classifier
 
-**Example/s:**
+*Examples:*
 ```sql examples.sql
 select reclassify(12345, 'pii.clear_text', 'pii.masked') as value; -- value '12345'
 ```
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function reclassify($1, string, string) returns $1
 function reclassify($1, string) returns $1

@@ -5,7 +5,14 @@ title: "Math Functions"
 
 ## `abs`
 
-#### Supported Signatures
+Returns the absolute value of x.
+
+
+*Examples:*
+```sql examples.sql
+select abs(-1) as value; -- value '1.0'
+```
+*Supported Signatures*
 ```sql
 function abs(tinyint) returns tinyint
 function abs(smallint) returns smallint
@@ -18,7 +25,14 @@ function abs(real) returns real
 
 ## `acos`
 
-#### Supported Signatures
+Returns the arc cosine of x.
+
+
+*Examples:*
+```sql examples.sql
+select acos(0.5) as value; -- value '1.0471975511965976'
+```
+*Supported Signatures*
 ```sql
 function acos(double) returns double
 ```
@@ -26,7 +40,14 @@ function acos(double) returns double
 
 ## `asin`
 
-#### Supported Signatures
+Returns the arc sine of x.
+
+
+*Examples:*
+```sql examples.sql
+select asin(1) as value; -- value '1.5707963267948966'
+```
+*Supported Signatures*
 ```sql
 function asin(double) returns double
 ```
@@ -34,7 +55,14 @@ function asin(double) returns double
 
 ## `atan`
 
-#### Supported Signatures
+Returns the arc tangent of x.
+
+
+*Examples:*
+```sql examples.sql
+select atan(0) as value; -- value '0.0'
+```
+*Supported Signatures*
 ```sql
 function atan(double) returns double
 ```
@@ -42,7 +70,14 @@ function atan(double) returns double
 
 ## `atan2`
 
-#### Supported Signatures
+Returns the arc tangent of y / x.
+
+
+*Examples:*
+```sql examples.sql
+select atan2(1, 0.5) as value; -- value '1.1071487177940904'
+```
+*Supported Signatures*
 ```sql
 function atan2(double, double) returns double
 ```
@@ -50,7 +85,14 @@ function atan2(double, double) returns double
 
 ## `cbrt`
 
-#### Supported Signatures
+Returns the cube root of x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT cbrt(328509) as value; -- value '69.0'
+```
+*Supported Signatures*
 ```sql
 function cbrt(double) returns double
 ```
@@ -58,7 +100,14 @@ function cbrt(double) returns double
 
 ## `ceil`
 
-#### Supported Signatures
+This is an alias for ceiling().
+
+
+*Examples:*
+```sql examples.sql
+select ceil(1.35) as value; -- value '2.0'
+```
+*Supported Signatures*
 ```sql
 function ceil(double) returns double
 function ceil(real) returns real
@@ -67,7 +116,9 @@ function ceil(real) returns real
 
 ## `ceiling`
 
-#### Supported Signatures
+Returns x rounded up to the nearest integer.
+
+*Supported Signatures*
 ```sql
 function ceiling(double) returns double
 function ceiling(real) returns real
@@ -76,7 +127,14 @@ function ceiling(real) returns real
 
 ## `cos`
 
-#### Supported Signatures
+Returns the cosine of x.
+
+
+*Examples:*
+```sql examples.sql
+select cos(1.0) as value; -- value '0.5403023058681398'
+```
+*Supported Signatures*
 ```sql
 function cos(double) returns double
 ```
@@ -84,7 +142,14 @@ function cos(double) returns double
 
 ## `cosh`
 
-#### Supported Signatures
+Returns the hyperbolic cosine of the given value.
+
+
+*Examples:*
+```sql examples.sql
+SELECT cosh(0) AS value; -- value '1.0'
+```
+*Supported Signatures*
 ```sql
 function cosh(double) returns double
 ```
@@ -92,7 +157,14 @@ function cosh(double) returns double
 
 ## `degrees`
 
-#### Supported Signatures
+Converts angle x in radians to degrees.
+
+
+*Examples:*
+```sql examples.sql
+SELECT degrees(3.14159) AS value; -- value '179.9998547447946'
+```
+*Supported Signatures*
 ```sql
 function degrees(double) returns double
 ```
@@ -100,7 +172,14 @@ function degrees(double) returns double
 
 ## `exp`
 
-#### Supported Signatures
+Returns Euler’s number raised to the power of x.
+
+
+*Examples:*
+```sql examples.sql
+select exp(1.0) as value; -- value '2.718281828459045'
+```
+*Supported Signatures*
 ```sql
 function exp(double) returns double
 ```
@@ -108,7 +187,14 @@ function exp(double) returns double
 
 ## `floor`
 
-#### Supported Signatures
+Returns x rounded down to the nearest integer.
+
+
+*Examples:*
+```sql examples.sql
+select floor(2.718) as value; -- value '2.0'
+```
+*Supported Signatures*
 ```sql
 function floor(double) returns double
 ```
@@ -116,7 +202,14 @@ function floor(double) returns double
 
 ## `is_nan`
 
-#### Supported Signatures
+Determine if `x` is not-a-number.
+
+
+*Examples:*
+```sql examples.sql
+select is_nan(1.1) as value; -- value 'false'
+```
+*Supported Signatures*
 ```sql
 function is_nan(double) returns boolean
 function is_nan(real) returns boolean
@@ -125,7 +218,14 @@ function is_nan(real) returns boolean
 
 ## `ln`
 
-#### Supported Signatures
+Returns the natural logarithm of x.
+
+
+*Examples:*
+```sql examples.sql
+select ln(2.1) as value; -- value '0.7419373447293773'
+```
+*Supported Signatures*
 ```sql
 function ln(double) returns double
 ```
@@ -133,7 +233,14 @@ function ln(double) returns double
 
 ## `log`
 
-#### Supported Signatures
+Returns the base b logarithm of x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT log(2.19, 1) AS value; -- value '0.0'
+```
+*Supported Signatures*
 ```sql
 function log(double, double) returns double
 ```
@@ -141,7 +248,14 @@ function log(double, double) returns double
 
 ## `log10`
 
-#### Supported Signatures
+Returns the base 10 logarithm of x.
+
+
+*Examples:*
+```sql examples.sql
+select log10(10) as value; -- value '1.0'
+```
+*Supported Signatures*
 ```sql
 function log10(double) returns double
 ```
@@ -149,7 +263,14 @@ function log10(double) returns double
 
 ## `log2`
 
-#### Supported Signatures
+Returns the base 2 logarithm of x.
+
+
+*Examples:*
+```sql examples.sql
+select log2(2) as value; -- value '1.0'
+```
+*Supported Signatures*
 ```sql
 function log2(double) returns double
 ```
@@ -157,7 +278,14 @@ function log2(double) returns double
 
 ## `pi`
 
-#### Supported Signatures
+Returns the constant Pi.
+
+
+*Examples:*
+```sql examples.sql
+SELECT PI() -- value '3.141592653589793'
+```
+*Supported Signatures*
 ```sql
 function pi() returns double
 ```
@@ -165,7 +293,9 @@ function pi() returns double
 
 ## `pow`
 
-#### Supported Signatures
+This is an alias for power().
+
+*Supported Signatures*
 ```sql
 function pow(double, double) returns double
 ```
@@ -173,7 +303,14 @@ function pow(double, double) returns double
 
 ## `power`
 
-#### Supported Signatures
+Returns x raised to the power of p.
+
+
+*Examples:*
+```sql examples.sql
+select power(2, 8) as value; -- value '256'
+```
+*Supported Signatures*
 ```sql
 function power(double, double) returns double
 ```
@@ -181,7 +318,14 @@ function power(double, double) returns double
 
 ## `radians`
 
-#### Supported Signatures
+Converts angle x in degrees to radians.
+
+
+*Examples:*
+```sql examples.sql
+SELECT radians(360) AS value; -- value '6.283185307179586'
+```
+*Supported Signatures*
 ```sql
 function radians(double) returns double
 ```
@@ -189,7 +333,9 @@ function radians(double) returns double
 
 ## `rand`
 
-#### Supported Signatures
+This is an alias for random().
+
+*Supported Signatures*
 ```sql
 function rand() returns double
 ```
@@ -200,7 +346,14 @@ function rand() returns double
 
 ## `random`
 
-#### Supported Signatures
+Returns a pseudo-random value in the range 0.0 &lt;= x &lt; 1.0.
+
+
+*Examples:*
+```sql examples.sql
+select random() as value; -- value '0.8781138533805801'
+```
+*Supported Signatures*
 ```sql
 function random() returns double
 ```
@@ -211,7 +364,14 @@ function random() returns double
 
 ## `round`
 
-#### Supported Signatures
+Returns x rounded to the nearest integer.
+
+
+*Examples:*
+```sql examples.sql
+select round(2.1) as value; -- value '2.0'
+```
+*Supported Signatures*
 ```sql
 function round(double) returns double
 function round(double, bigint) returns double
@@ -222,20 +382,26 @@ function round(real, bigint) returns real
 
 ## `sign`
 
-#### Supported Signatures
+Returns the signum function of x, that is.
+
+*Supported Signatures*
 ```sql
 function sign(decimal(p, s)) returns decimal(1, 0)
 function sign(double) returns double
-function sign(integer) returns integer
 function sign(real) returns real
-function sign(smallint) returns smallint
-function sign(tinyint) returns tinyint
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#sign)
 
 ## `sin`
 
-#### Supported Signatures
+Returns the sine of x.
+
+
+*Examples:*
+```sql examples.sql
+select sin(2.1) as value; -- value '-0.8632093666488737'
+```
+*Supported Signatures*
 ```sql
 function sin(double) returns double
 ```
@@ -243,7 +409,14 @@ function sin(double) returns double
 
 ## `sinh`
 
-#### Supported Signatures
+Returns the hyperbolic sine of x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT sinh(1) AS value; -- value '1.1752011936438014'
+```
+*Supported Signatures*
 ```sql
 function sinh(double) returns double
 ```
@@ -251,7 +424,14 @@ function sinh(double) returns double
 
 ## `sqrt`
 
-#### Supported Signatures
+Returns the square root of x.
+
+
+*Examples:*
+```sql examples.sql
+select sqrt(16) as value; -- value '4.0'
+```
+*Supported Signatures*
 ```sql
 function sqrt(double) returns double
 ```
@@ -259,7 +439,14 @@ function sqrt(double) returns double
 
 ## `tan`
 
-#### Supported Signatures
+Returns the tangent of x.
+
+
+*Examples:*
+```sql examples.sql
+select tan(0.5) as value; -- value '0.5463024898437905'
+```
+*Supported Signatures*
 ```sql
 function tan(double) returns double
 ```
@@ -267,7 +454,14 @@ function tan(double) returns double
 
 ## `tanh`
 
-#### Supported Signatures
+Returns the hyperbolic tangent of x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT tanh(1.0) AS value; -- value '0.7615941559557649'
+```
+*Supported Signatures*
 ```sql
 function tanh(double) returns double
 ```
@@ -275,7 +469,14 @@ function tanh(double) returns double
 
 ## `truncate`
 
-#### Supported Signatures
+Returns x rounded to integer by dropping digits after decimal point.
+
+
+*Examples:*
+```sql examples.sql
+SELECT truncate(1.23456, 2) as value; -- value '1.23'
+```
+*Supported Signatures*
 ```sql
 function truncate(decimal(p, s), bigint) returns decimal(p, s)
 function truncate(decimal(p, s)) returns decimal(rp, 0)

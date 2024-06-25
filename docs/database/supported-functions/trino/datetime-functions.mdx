@@ -3,35 +3,338 @@ title: "Datetime Functions"
 ---
 
 
+## `current_date`
+
+Returns the current date as of the start of the query.
+
+
+*Examples:*
+```sql examples.sql
+SELECT current_date() AS value; -- value '2024-06-20'
+```
+*Supported Signatures*
+```sql
+function current_date() returns date
+```
+*Note: current_date() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_date)
+
+## `current_time`
+
+Returns the current time with time zone as of the start of the query.
+
+
+*Examples:*
+```sql examples.sql
+SELECT current_time() AS value; -- value '13:52:34.245364'
+```
+*Supported Signatures*
+```sql
+function current_time() returns time
+```
+*Note: current_time() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_time)
+
+## `current_timestamp`
+
+Returns the current timestamp with time zone as of the start of the query, with 3 digits of subsecond precision,
+
+
+*Examples:*
+```sql examples.sql
+SELECT current_timestamp() AS value; -- value '2024-06-21T13:53:41.809016Z'
+```
+*Supported Signatures*
+```sql
+function current_timestamp() returns timestamp
+function current_timestamp(0) returns timestamp(0)
+function current_timestamp(3) returns timestamp(3)
+function current_timestamp(6) returns timestamp(6)
+function current_timestamp(9) returns timestamp(9)
+```
+*Note: current_timestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#current_timestamp)
+
+## `date`
+
+This is an alias for CAST(x AS date).
+
+*Supported Signatures*
+```sql
+function date(varchar) returns date
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date)
+
+## `date_diff`
+
+Takes a unit, timestamp1, and timestamp2. Returns timestamp2 - timestamp1 expressed in terms of unit.
+
+
+*Examples:*
+```sql examples.sql
+SELECT date_diff('second', TIMESTAMP '2020-03-01 00:00:00', TIMESTAMP '2020-03-02 00:00:00') AS value; -- value '86400'
+SELECT date_diff('hour', TIMESTAMP '2020-03-01 00:00:00 UTC', TIMESTAMP '2020-03-02 00:00:00 UTC') AS value; -- value '24'
+SELECT date_diff('day', DATE '2020-03-01', DATE '2020-03-02') AS value; -- value '1'
+SELECT date_diff('second', TIMESTAMP '2020-06-01 12:30:45.000000000', TIMESTAMP '2020-06-02 12:30:45.123456789') AS value; -- value '86400'
+SELECT date_diff('millisecond', TIMESTAMP '2020-06-01 12:30:45.000000000', TIMESTAMP '2020-06-02 12:30:45.123456789') AS value; -- value '86400123'
+```
+*Supported Signatures*
+```sql
+function date_diff(varchar, date, date) returns bigint
+function date_diff(varchar, time(p), time(p)) returns bigint
+function date_diff(varchar, timestamp(p), timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_diff)
+
+## `date_format`
+
+Formats timestamp as a string using format.
+
+
+*Examples:*
+```sql examples.sql
+SELECT date_format(TIMESTAMP '2022-10-20 05:10:00', '%m-%d-%Y %H') AS value; -- value '10-20-2022 05'
+```
+*Supported Signatures*
+```sql
+function date_format(timestamp(p), varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_format)
+
 ## `date_parse`
 
-#### Supported Signatures
+Parses string into a timestamp using format.
+
+*Supported Signatures*
 ```sql
 function date_parse(varchar, varchar) returns timestamp
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_parse)
 
+## `date_trunc`
+
+Returns x truncated to unit.
+
+*Supported Signatures*
+```sql
+function date_trunc(varchar, timestamp(p)) returns timestamp(p)
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#date_trunc)
+
 ## `day`
 
-#### Supported Signatures
+Returns the day of the month from x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT day(date('2022-10-20')) AS value; -- value '20'
+```
+*Supported Signatures*
 ```sql
 function day(date) returns bigint
+function day(timestamp(p)) returns bigint
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day)
 
+## `day_of_month`
+
+This is an alias for day().
+
+*Supported Signatures*
+```sql
+function day_of_month(date) returns bigint
+function day_of_month(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_month)
+
+## `day_of_week`
+
+Returns the ISO day of the week from x. The value ranges from 1 (Monday) to 7 (Sunday).
+
+*Supported Signatures*
+```sql
+function day_of_week(date) returns bigint
+function day_of_week(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_week)
+
+## `day_of_year`
+
+Returns the day of the year from x. The value ranges from 1 to 366.
+
+*Supported Signatures*
+```sql
+function day_of_year(date) returns bigint
+function day_of_year(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#day_of_year)
+
+## `dow`
+
+This is an alias for day_of_week().
+
+*Supported Signatures*
+```sql
+function dow(date) returns bigint
+function dow(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#dow)
+
+## `doy`
+
+This is an alias for day_of_year().
+
+*Supported Signatures*
+```sql
+function doy(date) returns bigint
+function doy(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#doy)
+
+## `from_unixtime`
+
+Returns the UNIX timestamp unixtime as a timestamp with time zone. unixtime is the number of seconds since 1970-01-01 00.00.00 UTC.
+
+
+*Examples:*
+```sql examples.sql
+SELECT from_unixtime(999919900) AS value; -- value '2001-09-08T03:31:40'
+```
+*Supported Signatures*
+```sql
+function from_unixtime(bigint) returns timestamp
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#from_unixtime)
+
+## `hour`
+
+Returns the hour of the day from x. The value ranges from 0 to 23.
+
+*Supported Signatures*
+```sql
+function hour(time(p)) returns bigint
+function hour(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#hour)
+
+## `localtimestamp`
+
+Returns the current timestamp as of the start of the query, with 3 digits of subsecond precision.
+
+*Supported Signatures*
+```sql
+function localtimestamp(0) returns timestamp(0)
+function localtimestamp(3) returns timestamp(3)
+function localtimestamp(6) returns timestamp(6)
+function localtimestamp(9) returns timestamp(9)
+```
+*Note: localtimestamp() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#localtimestamp)
+
+## `millisecond`
+
+Returns the millisecond of the second from x.
+
+*Supported Signatures*
+```sql
+function millisecond(time(p)) returns bigint
+function millisecond(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#millisecond)
+
+## `minute`
+
+Returns the minute of the hour from x.
+
+*Supported Signatures*
+```sql
+function minute(time(p)) returns bigint
+function minute(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#minute)
+
 ## `month`
 
-#### Supported Signatures
+Returns the month of the year from x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT month(cast ('2024-11-01' AS date )) AS value; -- value '11'
+```
+*Supported Signatures*
 ```sql
 function month(date) returns bigint
+function month(timestamp(p)) returns bigint
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#month)
 
+## `now`
+
+This is an alias for current_timestamp.
+
+
+*Examples:*
+```sql examples.sql
+select now() as value; -- value '2023-02-28 00:17:47.154040'
+```
+*Supported Signatures*
+```sql
+function now() returns timestamp
+```
+*Note: now() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#now)
+
+## `second`
+
+Returns the second of the minute from x.
+
+*Supported Signatures*
+```sql
+function second(time(p)) returns bigint
+function second(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#second)
+
+## `to_unixtime`
+
+Returns timestamp as a UNIX timestamp.
+
+
+*Examples:*
+```sql examples.sql
+SELECT to_unixtime(now()) AS value; -- value '1718974807'
+```
+*Supported Signatures*
+```sql
+function to_unixtime(timestamp(p)) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#to_unixtime)
+
 ## `year`
 
-#### Supported Signatures
+Returns the year from x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT year(cast('2024-01-01' as date)) as value; -- value '2024'
+```
+*Supported Signatures*
 ```sql
 function year(date) returns bigint
+function year(timestamp(p)) returns bigint
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#year)
 

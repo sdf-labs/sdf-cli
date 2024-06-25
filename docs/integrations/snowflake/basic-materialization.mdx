@@ -16,7 +16,6 @@ This guide should be followed after completing the [Getting Started with Snowfla
 
 Before beginning, we'll need to make sure we have the following:
 
-- A Mac or Linux with a valid installation of the latest SDF version running locally.
 - A Snowflake account with [this](https://app.snowflake.com/marketplace/listing/GZTSZAS2KII/cybersyn-tech-innovation-essentials?search=cybersyn) Cybersyn dataset installed.
 - Valid Snowflake username / password credentials with write access to at least one database we can materialize tables to.
 - Instantiated credentials completed in the previous guide.
@@ -41,22 +40,24 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
         sdf compile sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
         ```
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 3 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 1.975 secs
+Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;tech__innovation_essentials.cybersyn.domain_characteristics&nbsp;(schema)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.active_ai_domains&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;2.401&nbsp;secs
 
-Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
+Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 ┌─────────────┬───────────┬────────────┬─────────────┐
-│ column_name ┆ data_type ┆ classifier ┆ description │
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
 ╞═════════════╪═══════════╪════════════╪═════════════╡
-│ domain_id   ┆ varchar   ┆            ┆             │
+│&nbsp;domain_id&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 └─────────────┴───────────┴────────────┴─────────────┘
 
 </code>
 </pre>
+</div>
 
         <Warning>
             If you do not see a successful compilation, please ensure you've:
@@ -72,28 +73,27 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
         ```yaml
         defaults:
             dialect: snowflake
-            compute: remote
             preprocessor: jinja
             materialization: view
         ```
 
         Let's go through these one by one:
         - `dialect: snowflake` specifies that the SQL we're working with uses Snowflake's syntax and functions.
-        - `compute: remote` specifies that we're running our models in a remote warehouse. This is what tells SDF to use the `snowflake` provider when materializing tables that match the targets pattern.
         - `preprocessor: jinja` specifies that we're using Jinja templating in our SQL models (this will come in handy later).
         - `materialization: view` specifies that we're materializing our models as views by default in Snowflake. Note this can be overwritten on a per-model, or per-includes-path basis.
 
-        Next, let's look at the provider block:
+        Next, let's look at the integrations block:
             
         ```yaml
-        providers:
-          - type: snowflake
+        integrations:
+          - provider: snowflake
+            type: database
             sources: 
                - pattern: tech__innovation_essentials.cybersyn.*
             targets:
                - pattern: sdf_snowflake.*.*
         ```
-        This tells SDF to hydrate missing table schemas from the `tech__innovation_essentials.cybersyn` database and schema and materialize tables to the `sdf_snowflake` database. For more information on provider configuration, see the [provider documentation](/guide/transformation/providers).
+        This tells SDF to hydrate missing table schemas from the `tech__innovation_essentials.cybersyn` database and schema and materialize tables to the `sdf_snowflake` database. For more information on integration configuration, see the [integration documentation](/guide/setup/integrations).
 
         Now, let's materialize the tables in the `sdf_snowflake` database.
         ```shell
@@ -121,13 +121,13 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
         Let's say we want to materialize a new _table_ in the `sdf_snowflake` database, but in a different schema. You'll notice in the `workspace.sdf.yml` file, we have the following includes block:
 
         ```yaml
-        - path: src 
+        - path: models 
           index: catalog-schema-table-name
         ```
 
-        The index here means we'll interpret the database and schema name from the file path like so - `src/<database>/<schema>/<table>.sql`.
+        The index here means we'll interpret the database and schema name from the file path like so - `models/<database>/<schema>/<table>.sql`.
 
-        Since we want to add a new table, let's create a new file in the `src` directory called `sdf_snowflake/staging/latest_repo_name.sql` with the following content:
+        Since we want to add a new table, let's create a new file in the `models` directory called `sdf_snowflake/staging/latest_repo_name.sql` with the following content:
 
         ```sql
         WITH partitioned_repo_names AS (
@@ -155,27 +155,29 @@ Schema sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 
         Now let's compile this new table to ensure the SQL is valid and selects columns that actually exist:
         ```shell
-        sdf compile src/sdf_snowflake/staging/latest_repo_name.sql
+        sdf compile models/sdf_snowflake/staging/latest_repo_name.sql
         ```
 
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 4 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
-  Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 1.924 secs
+Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;tech__innovation_essentials.cybersyn.github_repos&nbsp;(schema)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;2.412&nbsp;secs
 
-Schema sdf_snowflake.staging.latest_repo_name
+Schema&nbsp;sdf_snowflake.staging.latest_repo_name
 ┌─────────────┬────────────────┬────────────┬─────────────┐
-│ column_name ┆ data_type      ┆ classifier ┆ description │
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
 ╞═════════════╪════════════════╪════════════╪═════════════╡
-│ repo_name   ┆ varchar        ┆            ┆             │
-│ repo_id     ┆ decimal(38, 0) ┆            ┆             │
+│&nbsp;repo_name&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;repo_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 └─────────────┴────────────────┴────────────┴─────────────┘
 
 </code>
 </pre>
+</div>
 
         Great! Everything compiled. Now, let's make sure this table is materialized as a `table` instead of a `view` in the `sdf_snowflake` database. We're doing this now since later one we'll want to use this table as an upstream dependency in our DAG.
 
@@ -198,35 +200,37 @@ Schema sdf_snowflake.staging.latest_repo_name
 
         Now, let's run the model to materialize the table in the `sdf_snowflake` database.
         ```shell
-        sdf run src/sdf_snowflake/staging/latest_repo_name.sql
+        sdf run models/sdf_snowflake/staging/latest_repo_name.sql
         ```
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 4 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
-    Running sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 5.642 secs
+Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;tech__innovation_essentials.cybersyn.github_repos&nbsp;(schema)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;6.473&nbsp;secs
 
-Table sdf_snowflake.staging.latest_repo_name
-┌───────────────────────────────────────────────────────┬───────────┐
-│ repo_name                                             ┆ repo_id   │
-╞═══════════════════════════════════════════════════════╪═══════════╡
-│ aarush-30/crypto-tracker                              ┆ 817715306 │
-│ RehanAdilAbbasiRAA/Machine-Learning-and-Model-traning ┆ 817734603 │
-│ PauloCesar-Souza/dio-bd-relacional                    ┆ 817546330 │
-│ eryk-fernandes/eryk-fernandes                         ┆ 817994287 │
-│ KEIO-SLC-SOFTTENNIS/keio_slc_softtennis.github.io     ┆ 816542708 │
-│ Gabrielam0305/Examen2_RolandoyGabriela                ┆ 817610950 │
-│ TxmMinh/App-stock-prediction                          ┆ 817829886 │
-│ chrisfullpw/sistema-de-registro                       ┆ 817615932 │
-│ BilvikaMellamputi/chatbot                             ┆ 817556818 │
-│ Eamanisrilakshmi/Srilakshmi06                         ┆ 817733564 │
-└───────────────────────────────────────────────────────┴───────────┘
-10 rows.
+Table&nbsp;sdf_snowflake.staging.latest_repo_name
+┌─────────────────────────────────────────────┬───────────┐
+│&nbsp;repo_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;repo_id&nbsp;&nbsp;&nbsp;│
+╞═════════════════════════════════════════════╪═══════════╡
+│&nbsp;guaguakai/constrained-bilevel-optimization&nbsp;&nbsp;┆&nbsp;792929076&nbsp;│
+│&nbsp;rtp-hari-ini/lele4d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;818891539&nbsp;│
+│&nbsp;KhoroshilonKrasava/MergingFiles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;818836642&nbsp;│
+│&nbsp;bykov-mikhael/bdpx.github.io&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;819050466&nbsp;│
+│&nbsp;Abhinavburnapelly/fitness&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;818946047&nbsp;│
+│&nbsp;Seneks999/goit-markup-hw-02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;818993096&nbsp;│
+│&nbsp;GsakuL/StreamController&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;818988549&nbsp;│
+│&nbsp;unknownpersonaka/Enibot-CLI-version-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;819045690&nbsp;│
+│&nbsp;melmaverig292/melmaverig292&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;818837432&nbsp;│
+│&nbsp;jfversluis/MauiMediaElementBackgroundSample&nbsp;┆&nbsp;819025504&nbsp;│
+└─────────────────────────────────────────────┴───────────┘
+10&nbsp;rows.
 
 </code>
 </pre>
+</div>
 
         Congratulations! You've just materialized your first table in Snowflake with SDF. In the next step, we'll add one more table and a downstream view to create a DAG.
     </Step>
@@ -243,7 +247,7 @@ Table sdf_snowflake.staging.latest_repo_name
             D --> E
         ```
 
-        Let's first create a new file in the `src` directory called `sdf_snowflake/staging/push_events.sql` with the following content:
+        Let's first create a new file in the `models` directory called `sdf_snowflake/staging/push_events.sql` with the following content:
 
         ```sql
         SELECT
@@ -262,26 +266,28 @@ Table sdf_snowflake.staging.latest_repo_name
 
         Now let's compile this new table to ensure the SQL is valid and selects columns that actually exist and are properly typed:
         ```shell
-        sdf compile src/sdf_snowflake/staging/push_events.sql
+        sdf compile models/sdf_snowflake/staging/push_events.sql
         ```
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 5 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-  Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
-   Finished 2 models [1 succeeded, 1 downloaded] in 1.958 secs
+Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;tech__innovation_essentials.cybersyn.github_events&nbsp;(schema)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;2.501&nbsp;secs
 
-Schema sdf_snowflake.staging.push_events
+Schema&nbsp;sdf_snowflake.staging.push_events
 ┌─────────────┬────────────────┬────────────┬─────────────┐
-│ column_name ┆ data_type      ┆ classifier ┆ description │
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
 ╞═════════════╪════════════════╪════════════╪═════════════╡
-│ id          ┆ varchar        ┆            ┆             │
-│ repo_id     ┆ decimal(38, 0) ┆            ┆             │
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;repo_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 └─────────────┴────────────────┴────────────┴─────────────┘
 
 </code>
 </pre>
+</div>
 
         Great! Everything compiled. Now, let's make sure this table is materialized as a `table` instead of a `view` in the `sdf_snowflake` database. 
 
@@ -297,17 +303,17 @@ Schema sdf_snowflake.staging.push_events
 
         Now, let's run the model to materialize the table in the `sdf_snowflake` database.
         ```shell
-        sdf run src/sdf_snowflake/staging/push_events.sql
+        sdf run models/sdf_snowflake/staging/push_events.sql
         ```
 
         {/* TODO (Elias): Bring this back once casting bug is fixed */}
         {/* ```run shell
-        cd tmp/cybersyn_tech_innovation && $sdf run src/sdf_snowflake/staging/push_events.sql
+        cd tmp/cybersyn_tech_innovation && $sdf run models/sdf_snowflake/staging/push_events.sql
         ``` */}
 
         Great! Now that we have our two tables, let's finish up our DAG by creating a downstream view that depends on these two tables.
 
-        Create a new file in the `src` directory called `sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql` with the following content:
+        Create a new file in the `models` directory called `sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql` with the following content:
 
         ```sql
         SELECT
@@ -331,26 +337,28 @@ Schema sdf_snowflake.staging.push_events
             sdf compile
         ```
 
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working set 6 model files, 1 .sdf file
-Downloading tech__innovation_essentials.cybersyn.uspto_patent_index (schema)
-Downloading tech__innovation_essentials.cybersyn.github_stars (schema)
-Downloading tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships (schema)
-Downloading tech__innovation_essentials.cybersyn.github_repos (schema)
-Downloading tech__innovation_essentials.cybersyn.uspto_contributor_index (schema)
-Downloading tech__innovation_essentials.cybersyn.github_events (schema)
-Downloading tech__innovation_essentials.cybersyn.domain_characteristics (schema)
-  Compiling sdf_snowflake.staging.latest_repo_name (./src/sdf_snowflake/staging/latest_repo_name.sql)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents (./src/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.active_ai_domains (./src/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-  Compiling sdf_snowflake.staging.push_events (./src/sdf_snowflake/staging/push_events.sql)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.most_starred_repos (./src/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
-  Compiling sdf_snowflake.cybersyn_tech_innovation.events_by_repo (./src/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-   Finished 13 models [6 succeeded, 7 downloaded] in 2.634 secs
+Working&nbsp;set&nbsp;6&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships&nbsp;(schema)
+Downloading&nbsp;tech__innovation_essentials.cybersyn.domain_characteristics&nbsp;(schema)
+Downloading&nbsp;tech__innovation_essentials.cybersyn.uspto_contributor_index&nbsp;(schema)
+Downloading&nbsp;tech__innovation_essentials.cybersyn.github_repos&nbsp;(schema)
+Downloading&nbsp;tech__innovation_essentials.cybersyn.github_events&nbsp;(schema)
+Downloading&nbsp;tech__innovation_essentials.cybersyn.github_stars&nbsp;(schema)
+Downloading&nbsp;tech__innovation_essentials.cybersyn.uspto_patent_index&nbsp;(schema)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.active_ai_domains&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.events_by_repo&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[6&nbsp;succeeded,&nbsp;7&nbsp;downloaded]&nbsp;in&nbsp;2.753&nbsp;secs
 
 </code>
 </pre>
+</div>
 
         Woohoo! Another successful compile. Now, let's try one final run of everything in this workspace to materialize our new view and run the entire DAG.
         ```shell

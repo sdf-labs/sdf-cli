@@ -5,7 +5,7 @@ title: "Date & Time Functions"
 
 ## `add_months`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function add_months(string, bigint) returns timestamp
 ```
@@ -13,9 +13,8 @@ function add_months(string, bigint) returns timestamp
 
 ## `convert_timezone`
 
-#### Description
 Returns the input timestamp converted from source timezone to a destination timezone
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function convert_timezone $1(varchar, varchar, $1) returns timestamp
 	where $1 in (timestamp, string)
@@ -26,9 +25,8 @@ function convert_timezone $1(varchar, $1) returns timestamp
 
 ## `date_from_parts`
 
-#### Description
 Construct a date from individual components
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_from_parts(decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns date
 ```
@@ -36,7 +34,7 @@ function date_from_parts(decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns
 
 ## `date_part`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_part $1(string, $1) returns double
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
@@ -46,7 +44,7 @@ function date_part $1(string, $1) returns double
 
 ## `date_trunc`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_trunc $1(string, $1) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
@@ -56,7 +54,7 @@ function date_trunc $1(string, $1) returns $1
 
 ## `dateadd`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dateadd $1(string, double, $1) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
@@ -66,7 +64,7 @@ function dateadd $1(string, double, $1) returns $1
 
 ## `datediff`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function datediff $1, $2(string, $1, $2) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
@@ -77,7 +75,7 @@ function datediff $1, $2(string, $1, $2) returns bigint
 
 ## `day`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function day($1) returns bigint
 ```
@@ -85,7 +83,7 @@ function day($1) returns bigint
 
 ## `dayname`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dayname $1($1) returns varchar
 	where $1 in (date, string)
@@ -94,7 +92,7 @@ function dayname $1($1) returns varchar
 
 ## `dayofmonth`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dayofmonth($1) returns bigint
 ```
@@ -102,7 +100,7 @@ function dayofmonth($1) returns bigint
 
 ## `dayofweek`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dayofweek($1) returns bigint
 ```
@@ -110,7 +108,7 @@ function dayofweek($1) returns bigint
 
 ## `dayofweekiso`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dayofweekiso($1) returns bigint
 ```
@@ -118,7 +116,7 @@ function dayofweekiso($1) returns bigint
 
 ## `dayofyear`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dayofyear($1) returns bigint
 ```
@@ -126,7 +124,7 @@ function dayofyear($1) returns bigint
 
 ## `extract`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function extract $1(string, $1) returns double
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, dayofweek_iso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
@@ -136,7 +134,7 @@ function extract $1(string, $1) returns double
 
 ## `hour`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hour($1) returns bigint
 ```
@@ -144,7 +142,7 @@ function hour($1) returns bigint
 
 ## `last_day`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function last_day $1($1) returns date
 	where $1 in (date, time, timestamp, varchar)
@@ -156,7 +154,7 @@ function last_day $1($1, string) returns date
 
 ## `minute`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function minute($1) returns bigint
 ```
@@ -164,7 +162,7 @@ function minute($1) returns bigint
 
 ## `month`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function month($1) returns bigint
 ```
@@ -172,7 +170,7 @@ function month($1) returns bigint
 
 ## `monthname`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function monthname $1($1) returns varchar
 	where $1 in (date, string)
@@ -181,7 +179,7 @@ function monthname $1($1) returns varchar
 
 ## `months_between`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function months_between $1($1, $1) returns bigint
 	where $1 in (date, time, timestamp, varchar)
@@ -190,7 +188,7 @@ function months_between $1($1, $1) returns bigint
 
 ## `next_day`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function next_day $1($1, varchar) returns date
 	where $1 in (date, string)
@@ -199,7 +197,7 @@ function next_day $1($1, varchar) returns date
 
 ## `previous_day`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function previous_day $1($1, varchar) returns date
 	where $1 in (date, string)
@@ -208,7 +206,7 @@ function previous_day $1($1, varchar) returns date
 
 ## `quarter`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function quarter($1) returns bigint
 ```
@@ -216,7 +214,7 @@ function quarter($1) returns bigint
 
 ## `second`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function second($1) returns bigint
 ```
@@ -224,9 +222,8 @@ function second($1) returns bigint
 
 ## `time_from_parts`
 
-#### Description
 Construct a time from individual components
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function time_from_parts(decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns time
 function time_from_parts(decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns time
@@ -235,7 +232,7 @@ function time_from_parts(decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal
 
 ## `time_slice`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function time_slice $1($1, bigint, string) returns $1
 	where $1 in (date, time, timestamp, varchar)
@@ -246,7 +243,7 @@ function time_slice $1($1, bigint, string, string) returns $1
 
 ## `timeadd`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timeadd $1(string, double, $1) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
@@ -256,7 +253,7 @@ function timeadd $1(string, double, $1) returns $1
 
 ## `timediff`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timediff $1(string, $1, $1) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
@@ -266,9 +263,8 @@ function timediff $1(string, $1, $1) returns bigint
 
 ## `timestamp_from_parts`
 
-#### Description
 Construct a timestamp from individual components
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_from_parts(decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns timestamp
 function timestamp_from_parts(decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns timestamp
@@ -279,7 +275,7 @@ function timestamp_from_parts(date, time) returns timestamp
 
 ## `timestampadd`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestampadd $1(string, double, $1) returns $1
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, day, days, dayofmonth, week, w, wk, weekofyear, woy, wy, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, millisecond, ms, mesc, milliseconds, microsecond, us,, usec,, microseconds, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
@@ -289,7 +285,7 @@ function timestampadd $1(string, double, $1) returns $1
 
 ## `timestampdiff`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestampdiff $1(string, $1, $1) returns bigint
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds)
@@ -299,9 +295,8 @@ function timestampdiff $1(string, $1, $1) returns bigint
 
 ## `trunc`
 
-#### Description
 truncate the fractional or date part
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function trunc(decimal(38, 0)) returns decimal(38, 0)
 function trunc(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
@@ -315,7 +310,7 @@ function trunc(timestamp, varchar) returns timestamp
 
 ## `week`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function week($1) returns bigint
 ```
@@ -323,7 +318,7 @@ function week($1) returns bigint
 
 ## `weekiso`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function weekiso($1) returns bigint
 ```
@@ -331,7 +326,7 @@ function weekiso($1) returns bigint
 
 ## `weekofyear`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function weekofyear($1) returns bigint
 ```
@@ -339,7 +334,7 @@ function weekofyear($1) returns bigint
 
 ## `year`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function year($1) returns bigint
 ```
@@ -347,7 +342,7 @@ function year($1) returns bigint
 
 ## `yearofweek`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function yearofweek($1) returns bigint
 ```
@@ -355,7 +350,7 @@ function yearofweek($1) returns bigint
 
 ## `yearofweekiso`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function yearofweekiso($1) returns bigint
 function yearofweekiso($1) returns bigint

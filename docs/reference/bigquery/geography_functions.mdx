@@ -4,7 +4,7 @@ title: "Geography Functions"
 
 ## `s2_cellidfrompoint`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function s2_cellidfrompoint(geography) returns bigint
 ```
@@ -12,7 +12,7 @@ function s2_cellidfrompoint(geography) returns bigint
 
 ## `s2_coveringcellids`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function s2_coveringcellids(geography) returns array<bigint>
 ```
@@ -20,7 +20,7 @@ function s2_coveringcellids(geography) returns array<bigint>
 
 ## `st_angle`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_angle(geography, geography, geography) returns double
 ```
@@ -28,7 +28,7 @@ function st_angle(geography, geography, geography) returns double
 
 ## `st_area`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_area(geography) returns double
 function st_area(geography, bool) returns double
@@ -37,7 +37,7 @@ function st_area(geography, bool) returns double
 
 ## `st_asbinary`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_asbinary(geography) returns bytes
 ```
@@ -45,7 +45,7 @@ function st_asbinary(geography) returns bytes
 
 ## `st_asgeojson`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_asgeojson(geography) returns string
 ```
@@ -53,7 +53,7 @@ function st_asgeojson(geography) returns string
 
 ## `st_astext`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_astext(geography) returns string
 ```
@@ -61,7 +61,7 @@ function st_astext(geography) returns string
 
 ## `st_azimuth`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_azimuth(geography, geography) returns double
 ```
@@ -69,7 +69,7 @@ function st_azimuth(geography, geography) returns double
 
 ## `st_boundary`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_boundary(geography) returns geography
 ```
@@ -77,7 +77,7 @@ function st_boundary(geography) returns geography
 
 ## `st_boundingbox`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_boundingbox(geography) returns geography
 ```
@@ -85,7 +85,7 @@ function st_boundingbox(geography) returns geography
 
 ## `st_buffer`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_buffer(geography, double) returns geography
 function st_buffer(geography, double, double) returns geography
@@ -94,7 +94,7 @@ function st_buffer(geography, double, double) returns geography
 
 ## `st_bufferwithtolerance`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_bufferwithtolerance(geography, double, double) returns 
 ```
@@ -102,7 +102,7 @@ function st_bufferwithtolerance(geography, double, double) returns
 
 ## `st_centroid`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_centroid(geography) returns geography
 ```
@@ -110,7 +110,7 @@ function st_centroid(geography) returns geography
 
 ## `st_centroid_agg`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_centroid_agg(geography) returns geography
 ```
@@ -118,7 +118,7 @@ function st_centroid_agg(geography) returns geography
 
 ## `st_closestpoint`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_closestpoint(geography, geography) returns geography
 function st_closestpoint(geography, geography, bool) returns geography
@@ -127,7 +127,7 @@ function st_closestpoint(geography, geography, bool) returns geography
 
 ## `st_clusterdbscan`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_clusterdbscan(geography, double, bigint) returns bigint
 ```
@@ -135,7 +135,7 @@ function st_clusterdbscan(geography, double, bigint) returns bigint
 
 ## `st_contains`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_contains(geography, geography) returns bool
 ```
@@ -143,7 +143,7 @@ function st_contains(geography, geography) returns bool
 
 ## `st_convexhull`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_convexhull(geography) returns geography
 ```
@@ -151,7 +151,7 @@ function st_convexhull(geography) returns geography
 
 ## `st_coveredby`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_coveredby(geography, geography) returns bool
 ```
@@ -159,7 +159,7 @@ function st_coveredby(geography, geography) returns bool
 
 ## `st_covers`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_covers(geography, geography) returns bool
 ```
@@ -167,7 +167,7 @@ function st_covers(geography, geography) returns bool
 
 ## `st_difference`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_difference(geography, geography) returns geography
 ```
@@ -175,7 +175,7 @@ function st_difference(geography, geography) returns geography
 
 ## `st_dimension`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_dimension(geography) returns bigint
 ```
@@ -183,7 +183,7 @@ function st_dimension(geography) returns bigint
 
 ## `st_disjoint`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_disjoint(geography, geography) returns bool
 ```
@@ -191,7 +191,7 @@ function st_disjoint(geography, geography) returns bool
 
 ## `st_distance`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_distance(geography, geography) returns double
 function st_distance(geography, geography, bool) returns double
@@ -200,7 +200,7 @@ function st_distance(geography, geography, bool) returns double
 
 ## `st_dump`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_dump(geography) returns geography
 function st_dump(geography, bigint) returns geography
@@ -209,7 +209,7 @@ function st_dump(geography, bigint) returns geography
 
 ## `st_dwithin`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_dwithin(geography, geography, double) returns bool
 ```
@@ -217,7 +217,7 @@ function st_dwithin(geography, geography, double) returns bool
 
 ## `st_endpoint`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_endpoint(geography) returns geography
 ```
@@ -225,7 +225,7 @@ function st_endpoint(geography) returns geography
 
 ## `st_equals`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_equals(geography, geography) returns bool
 ```
@@ -233,7 +233,7 @@ function st_equals(geography, geography) returns bool
 
 ## `st_exteriorring`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_exteriorring(geography) returns geography
 ```
@@ -241,7 +241,7 @@ function st_exteriorring(geography) returns geography
 
 ## `st_geogfrom`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geogfrom(string) returns geography
 function st_geogfrom(bytes) returns geography
@@ -250,7 +250,7 @@ function st_geogfrom(bytes) returns geography
 
 ## `st_geogfromgeojson`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geogfromgeojson(string) returns geography
 ```
@@ -258,7 +258,7 @@ function st_geogfromgeojson(string) returns geography
 
 ## `st_geogfromtext`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geogfromtext(string, bool) returns geography
 function st_geogfromtext(string) returns geography
@@ -267,7 +267,7 @@ function st_geogfromtext(string) returns geography
 
 ## `st_geogfromwkb`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geogfromwkb(bytes) returns geography
 function st_geogfromwkb(string) returns geography
@@ -276,7 +276,7 @@ function st_geogfromwkb(string) returns geography
 
 ## `st_geogpoint`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geogpoint(double, double) returns geography
 ```
@@ -284,7 +284,7 @@ function st_geogpoint(double, double) returns geography
 
 ## `st_geogpointfromgeohash`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geogpointfromgeohash(string) returns geography
 function st_geogpointfromgeohash(string, double, double) returns geography
@@ -293,7 +293,7 @@ function st_geogpointfromgeohash(string, double, double) returns geography
 
 ## `st_geohash`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geohash(geography) returns string
 function st_geohash(geography, bigint) returns string
@@ -302,7 +302,7 @@ function st_geohash(geography, bigint) returns string
 
 ## `st_geometrytype`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geometrytype(geography) returns string
 ```
@@ -310,7 +310,7 @@ function st_geometrytype(geography) returns string
 
 ## `st_interiorrings`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_interiorrings(geography) returns array<geography>
 ```
@@ -318,7 +318,7 @@ function st_interiorrings(geography) returns array<geography>
 
 ## `st_intersection`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_intersection(geography, geography) returns geography
 ```
@@ -326,7 +326,7 @@ function st_intersection(geography, geography) returns geography
 
 ## `st_intersects`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_intersects(geography, geography) returns bool
 ```
@@ -334,7 +334,7 @@ function st_intersects(geography, geography) returns bool
 
 ## `st_intersectsbox`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_intersectsbox(geography, double, double, double, double) returns bool
 ```
@@ -342,7 +342,7 @@ function st_intersectsbox(geography, double, double, double, double) returns boo
 
 ## `st_isclosed`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_isclosed(geography) returns bool
 ```
@@ -350,7 +350,7 @@ function st_isclosed(geography) returns bool
 
 ## `st_iscollection`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_iscollection(geography) returns bool
 ```
@@ -358,7 +358,7 @@ function st_iscollection(geography) returns bool
 
 ## `st_isempty`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_isempty(geography) returns bool
 ```
@@ -366,7 +366,7 @@ function st_isempty(geography) returns bool
 
 ## `st_isring`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_isring(geography) returns bool
 ```
@@ -374,7 +374,7 @@ function st_isring(geography) returns bool
 
 ## `st_length`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_length(geography) returns double
 function st_length(geography, bool) returns double
@@ -383,7 +383,7 @@ function st_length(geography, bool) returns double
 
 ## `st_linelocatepoint`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_linelocatepoint(geography, geography) returns double
 ```
@@ -391,7 +391,7 @@ function st_linelocatepoint(geography, geography) returns double
 
 ## `st_makeline`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_makeline(geography, geography) returns geography
 ```
@@ -399,7 +399,7 @@ function st_makeline(geography, geography) returns geography
 
 ## `st_makepolygon`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_makepolygon(geography) returns geography
 function st_makepolygon(geography, array<geography>) returns geography
@@ -408,7 +408,7 @@ function st_makepolygon(geography, array<geography>) returns geography
 
 ## `st_makepolygonoriented`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_makepolygonoriented(array<geography>) returns geography
 ```
@@ -416,7 +416,7 @@ function st_makepolygonoriented(array<geography>) returns geography
 
 ## `st_maxdistance`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_maxdistance(geography, geography) returns double
 function st_maxdistance(geography, geography, bool) returns double
@@ -425,7 +425,7 @@ function st_maxdistance(geography, geography, bool) returns double
 
 ## `st_npoints`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_npoints(geography) returns bigint
 ```
@@ -433,7 +433,7 @@ function st_npoints(geography) returns bigint
 
 ## `st_numgeometries`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_numgeometries(geography) returns bigint
 ```
@@ -441,7 +441,7 @@ function st_numgeometries(geography) returns bigint
 
 ## `st_numpoints`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_numpoints(geography) returns bigint
 ```
@@ -449,7 +449,7 @@ function st_numpoints(geography) returns bigint
 
 ## `st_perimeter`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_perimeter(geography) returns double
 function st_perimeter(geography, bool) returns double
@@ -458,7 +458,7 @@ function st_perimeter(geography, bool) returns double
 
 ## `st_pointn`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_pointn(geography, bigint) returns geography
 ```
@@ -466,7 +466,7 @@ function st_pointn(geography, bigint) returns geography
 
 ## `st_simplify`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_simplify(geography, bigint) returns geography
 ```
@@ -474,7 +474,7 @@ function st_simplify(geography, bigint) returns geography
 
 ## `st_snaptogrid`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_snaptogrid(geography, double) returns 
 ```
@@ -482,7 +482,7 @@ function st_snaptogrid(geography, double) returns
 
 ## `st_startpoint`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_startpoint(geography) returns geography
 ```
@@ -490,7 +490,7 @@ function st_startpoint(geography) returns geography
 
 ## `st_touches`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_touches(geography, geography) returns bool
 ```
@@ -498,7 +498,7 @@ function st_touches(geography, geography) returns bool
 
 ## `st_union`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_union(geography, geography) returns geography
 ```
@@ -506,7 +506,7 @@ function st_union(geography, geography) returns geography
 
 ## `st_union_agg`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_union_agg(geography) returns geography
 ```
@@ -514,7 +514,7 @@ function st_union_agg(geography) returns geography
 
 ## `st_within`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_within(geography, geography) returns bool
 ```
@@ -522,7 +522,7 @@ function st_within(geography, geography) returns bool
 
 ## `st_x`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_x(geography) returns double
 ```
@@ -530,7 +530,7 @@ function st_x(geography) returns double
 
 ## `st_y`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_y(geography) returns double
 ```

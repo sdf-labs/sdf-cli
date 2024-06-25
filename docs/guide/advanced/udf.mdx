@@ -101,8 +101,8 @@ function:
 ```
 
 ### Higher-order functions
-Presto and Spark support higher order function applications. As an example, Presto's  `transform` function applies a function pointwise to an array,
-e.g., the expression `transform(array[1,2,3], x -> x*x)` returns in Presto the value `array[1,4,9]`.
+Trino and Spark support higher order function applications. As an example, Trino's  `transform` function applies a function pointwise to an array,
+e.g., the expression `transform(array[1,2,3], x -> x*x)` returns in Trino the value `array[1,4,9]`.
 
 In SDF we capture the **signature of function** via the `lambda\<`*A*`,`*T*`\>` type constructor, where *A* stands for the argument type and *R* for the return type. 
 The function `transform` thus has the following type signature: 
@@ -173,12 +173,12 @@ function:
 
 ### Dialect
 All of SDF's function definitions are dialect specific. We specify the dialect as part of the function signature. 
-So to define `substr` as available for Presto we write: 
+So to define `substr` as available for Trino we write: 
 
 ```yaml
 function:
   name: substr
-  dialect: presto
+  dialect: trino
   parameters: 
     - datatype: varchar
     - datatype: int

@@ -1,0 +1,16 @@
+---
+title: "T-digest Functions"
+---
+
+## `tdigest_agg`
+
+Composes all input values of x into a tdigest. x can be of any numeric type.
+
+*Supported Signatures*
+```sql
+function tdigest_agg(double) returns tdigest
+function tdigest_agg(double, double) returns tdigest
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/tdigest.html#tdigest_agg)
+
+

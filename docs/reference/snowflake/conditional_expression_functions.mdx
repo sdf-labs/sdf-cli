@@ -5,9 +5,8 @@ title: "Conditional Expression Functions"
 
 ## `booland`
 
-#### Description
 returns result of logical (Boolean) AND of x and y
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function booland(decimal(38, 0), decimal(38, 0)) returns boolean
 ```
@@ -15,9 +14,8 @@ function booland(decimal(38, 0), decimal(38, 0)) returns boolean
 
 ## `boolnot`
 
-#### Description
 returns result of logical (Boolean) NOT of x
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function boolnot(decimal(38, 0)) returns boolean
 ```
@@ -25,9 +23,8 @@ function boolnot(decimal(38, 0)) returns boolean
 
 ## `boolor`
 
-#### Description
 returns result of logical (Boolean) OR of x and y
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function boolor(decimal(38, 0), decimal(38, 0)) returns boolean
 ```
@@ -35,9 +32,8 @@ function boolor(decimal(38, 0), decimal(38, 0)) returns boolean
 
 ## `boolxor`
 
-#### Description
 returns result of logical (Boolean) XOR of x and y
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function boolxor(decimal(38, 0), decimal(38, 0)) returns boolean
 ```
@@ -45,9 +41,8 @@ function boolxor(decimal(38, 0), decimal(38, 0)) returns boolean
 
 ## `coalesce`
 
-#### Description
 returns the first non-null expression among its arguments
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function coalesce($1, ...) returns $1
 ```
@@ -55,9 +50,8 @@ function coalesce($1, ...) returns $1
 
 ## `decode`
 
-#### Description
 compare an expression to search values and returns the matching one
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function decode($1, $1, $1, ...) returns $1
 ```
@@ -65,9 +59,8 @@ function decode($1, $1, $1, ...) returns $1
 
 ## `equal_null`
 
-#### Description
 Checks if two values are equal, with NULL=NULL semantic
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function equal_null($1, $1) returns boolean
 function equal_null(array, array) returns boolean
@@ -76,9 +69,8 @@ function equal_null(array, array) returns boolean
 
 ## `greatest`
 
-#### Description
 returns the largest value from a list of expressions
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function greatest($1, ...) returns $1
 ```
@@ -86,9 +78,8 @@ function greatest($1, ...) returns $1
 
 ## `greatest_ignore_nulls`
 
-#### Description
 returns the largest value from a list of expressions
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function greatest_ignore_nulls($1, ...) returns $1
 ```
@@ -96,9 +87,8 @@ function greatest_ignore_nulls($1, ...) returns $1
 
 ## `iff`
 
-#### Description
 Returns arg2 if arg1 is true, arg3 otherwise.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function iff(boolean, $1, $1) returns $1
 ```
@@ -106,9 +96,8 @@ function iff(boolean, $1, $1) returns $1
 
 ## `ifnull`
 
-#### Description
 Returns second expression if the first expression is NULL, the first expression otherwise.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ifnull($1, $1) returns $1
 ```
@@ -116,9 +105,8 @@ function ifnull($1, $1) returns $1
 
 ## `least`
 
-#### Description
 returns the smallest value from a list of expressions
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function least($1, ...) returns $1
 ```
@@ -126,9 +114,8 @@ function least($1, ...) returns $1
 
 ## `least_ignore_nulls`
 
-#### Description
 returns the smallest value from a list of expressions
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function least_ignore_nulls($1, ...) returns $1
 ```
@@ -136,7 +123,7 @@ function least_ignore_nulls($1, ...) returns $1
 
 ## `nullif`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function nullif($1, $1) returns $1
 ```
@@ -144,9 +131,8 @@ function nullif($1, $1) returns $1
 
 ## `nullifzero`
 
-#### Description
 Returns the 1st input, with values equal to 0 replaced with NULL
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function nullifzero(decimal(38, 0)) returns decimal(38, 0)
 function nullifzero(double) returns double
@@ -155,9 +141,8 @@ function nullifzero(double) returns double
 
 ## `nvl`
 
-#### Description
 Returns second expression if the first expression is NULL, the first expression otherwise.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function nvl($1, $1) returns $1
 ```
@@ -165,9 +150,8 @@ function nvl($1, $1) returns $1
 
 ## `nvl2`
 
-#### Description
 Returns second expression if the first expression is NOT NULL. Returns the third expression otherwise.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function nvl2($1, $1, $1) returns $1
 ```
@@ -175,9 +159,8 @@ function nvl2($1, $1, $1) returns $1
 
 ## `regr_valx`
 
-#### Description
 Returns the value of the dependent variable (2nd param) if both values are not-null.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_valx(double, double) returns double
 ```
@@ -185,9 +168,8 @@ function regr_valx(double, double) returns double
 
 ## `regr_valy`
 
-#### Description
 Returns the value of the independent variable (1st param) if both values are not-null.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_valy(double, double) returns double
 ```
@@ -195,9 +177,8 @@ function regr_valy(double, double) returns double
 
 ## `zeroifnull`
 
-#### Description
 Converts to zero if the input is NULL
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function zeroifnull(decimal(38, 0)) returns decimal(38, 0)
 function zeroifnull(double) returns double

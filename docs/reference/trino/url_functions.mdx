@@ -1,0 +1,95 @@
+---
+title: "Url Functions"
+---
+
+## `url_decode`
+
+Unescapes the URL encoded value. This function is the inverse of url_encode().
+
+*Supported Signatures*
+```sql
+function url_decode(varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_decode)
+
+## `url_encode`
+
+Escapes value by encoding it so that it can be safely included in URL query parameter names and values.
+
+*Supported Signatures*
+```sql
+function url_encode(varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_encode)
+
+## `url_extract_fragment`
+
+Returns the fragment identifier from url.
+
+*Supported Signatures*
+```sql
+function url_extract_fragment(varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_fragment)
+
+## `url_extract_host`
+
+Returns the host from url.
+
+*Supported Signatures*
+```sql
+function url_extract_host(varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_host)
+
+## `url_extract_parameter`
+
+Returns the value of the first query string parameter named name from url. Parameter extraction is handled in the typical manner as specified by RFC 1866#section-8.2.1.
+
+*Supported Signatures*
+```sql
+function url_extract_parameter(varchar, varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_parameter)
+
+## `url_extract_path`
+
+Returns the path from url.
+
+*Supported Signatures*
+```sql
+function url_extract_path(varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_path)
+
+## `url_extract_port`
+
+Returns the port number from url.
+
+*Supported Signatures*
+```sql
+function url_extract_port(varchar) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_port)
+
+## `url_extract_protocol`
+
+Returns the protocol from url.
+
+*Supported Signatures*
+```sql
+function url_extract_protocol(varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_protocol)
+
+## `url_extract_query`
+
+Returns the query string from url.
+
+*Supported Signatures*
+```sql
+function url_extract_query(varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/url.html#url_extract_query)
+
+

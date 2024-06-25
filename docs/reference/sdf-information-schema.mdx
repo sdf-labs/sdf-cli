@@ -7,11 +7,11 @@ During compilation, SDF creates a comprehensive **Information Schema** (IF) whic
 about your workspace. This metadata includes basic information such as tables, columns, data types, and descriptions
 along with more complex metadata like column level lineage, and data classifiers.
 
-This workspace IF can be used to enrich data catalogs, and queried to power [Checks](/guide/checks).
+This workspace IF can be used to enrich data catalogs, and queried to power [Checks](/guide/data-quality/checks).
 Under the hood, SDF stores the analysis output as Parquet. 
  
 ### Information Schema
-The below tables represent the SDF Information Schema. They are always accessible, after any compilation, in the *.sdfcache* under `.sdfcache/dbg/data/system/information_schema::sdf`
+The below tables represent the SDF Information Schema. They are always accessible, after any compilation, in the *sdftarget* under `sdftarget/dbg/data/system/information_schema::sdf`
 
 
 You may dynamically query the information schema in any valid SDF workspace. 
@@ -39,54 +39,56 @@ $sdf man information-schema --format markdown --show none
 ### Information Schema DDLs
 Below are the DDLs representing these tables in SQL.
 
-<pre style={{ fontFamily: 'monospace' }} className='language-sql'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-sql'>
 <code className='language-sql'>
 --information_schemas.sql
 
-CREATE TABLE sdf.information_schema.tables(
-    &quot;table_id&quot; varchar not null,
-    &quot;catalog_name&quot; varchar not null,
-    &quot;schema_name&quot; varchar not null,
-    &quot;table_name&quot; varchar not null,
-    &quot;depends_on&quot; array&lt;varchar&gt;,
-    &quot;depended_on_by&quot; array&lt;varchar&gt;,
-    &quot;description&quot; varchar,
-    &quot;dialect&quot; varchar not null,
-    &quot;materialization&quot; varchar,
-    &quot;purpose&quot; varchar,
-    &quot;classifiers&quot; array&lt;varchar&gt;,
-    &quot;source_locations&quot; array&lt;varchar&gt;
+CREATE&nbsp;TABLE&nbsp;sdf.information_schema.tables(
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;table_id&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;catalog_name&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;schema_name&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;table_name&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;depends_on&quot;&nbsp;array&lt;varchar&gt;,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;depended_on_by&quot;&nbsp;array&lt;varchar&gt;,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;description&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;dialect&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;materialization&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;purpose&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;classifiers&quot;&nbsp;array&lt;varchar&gt;,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;source_locations&quot;&nbsp;array&lt;varchar&gt;
 );
 
-CREATE TABLE sdf.information_schema.columns(
-    &quot;table_id&quot; varchar not null,
-    &quot;catalog_name&quot; varchar not null,
-    &quot;schema_name&quot; varchar not null,
-    &quot;table_name&quot; varchar not null,
-    &quot;depends_on&quot; array&lt;varchar&gt;,
-    &quot;depended_on_by&quot; array&lt;varchar&gt;,
-    &quot;description&quot; varchar,
-    &quot;dialect&quot; varchar not null,
-    &quot;materialization&quot; varchar,
-    &quot;purpose&quot; varchar,
-    &quot;classifiers&quot; array&lt;varchar&gt;,
-    &quot;source_locations&quot; array&lt;varchar&gt;
+CREATE&nbsp;TABLE&nbsp;sdf.information_schema.columns(
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;table_id&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;catalog_name&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;schema_name&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;table_name&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;depends_on&quot;&nbsp;array&lt;varchar&gt;,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;depended_on_by&quot;&nbsp;array&lt;varchar&gt;,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;description&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;dialect&quot;&nbsp;varchar&nbsp;not&nbsp;null,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;materialization&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;purpose&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;classifiers&quot;&nbsp;array&lt;varchar&gt;,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;source_locations&quot;&nbsp;array&lt;varchar&gt;
 );
 
-CREATE TABLE sdf.information_schema.table_lineage(
-    &quot;from_table_id&quot; varchar,
-    &quot;to_table_id&quot; varchar,
-    &quot;lineage_kind&quot; varchar
+CREATE&nbsp;TABLE&nbsp;sdf.information_schema.table_lineage(
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;from_table_id&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;to_table_id&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;lineage_kind&quot;&nbsp;varchar
 );
 
-CREATE TABLE sdf.information_schema.column_lineage(
-    &quot;from_table_id&quot; varchar,
-    &quot;from_column_id&quot; varchar,
-    &quot;to_table_id&quot; varchar,
-    &quot;to_column_id&quot; varchar,
-    &quot;lineage_kind&quot; varchar
+CREATE&nbsp;TABLE&nbsp;sdf.information_schema.column_lineage(
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;from_table_id&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;from_column_id&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;to_table_id&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;to_column_id&quot;&nbsp;varchar,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;lineage_kind&quot;&nbsp;varchar
 );
 
 
 </code>
 </pre>
+</div>

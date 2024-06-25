@@ -5,7 +5,15 @@ title: "Array Functions"
 
 ## `array_distinct`
 
-#### Supported Signatures
+Remove duplicate values from the array x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT array_distinct([1, 2, 3]) as value; -- value '[1, 2, 3]'
+SELECT array_distinct([1, 1, 2, 3]) as value; -- value '[1, 2, 3]'
+```
+*Supported Signatures*
 ```sql
 function array_distinct(array<$3>) returns array<$3>
 ```
@@ -13,7 +21,14 @@ function array_distinct(array<$3>) returns array<$3>
 
 ## `array_except`
 
-#### Supported Signatures
+Returns an array of elements in x but not in y, without duplicates.
+
+
+*Examples:*
+```sql examples.sql
+SELECT array_except([1, 1, 2, 3], [1]) AS value; -- value '[2, 3]'
+```
+*Supported Signatures*
 ```sql
 function array_except(array<$3>, array<$3>) returns array<$3>
 ```
@@ -21,7 +36,15 @@ function array_except(array<$3>, array<$3>) returns array<$3>
 
 ## `array_intersect`
 
-#### Supported Signatures
+Returns an array of the elements in the intersection of x and y, without duplicates.
+
+
+*Examples:*
+```sql examples.sql
+SELECT array_intersect([1, 1, 2, 3], [1]) AS value; -- value '[1]'
+SELECT array_intersect(['hello', 'world'], ['hello']) AS value; -- value '[hello]'
+```
+*Supported Signatures*
 ```sql
 function array_intersect(array<$3>, array<$3>) returns array<$3>
 ```
@@ -29,7 +52,14 @@ function array_intersect(array<$3>, array<$3>) returns array<$3>
 
 ## `array_join`
 
-#### Supported Signatures
+Concatenates the elements of the given array using the delimiter. Null elements are omitted in the result.
+
+
+*Examples:*
+```sql examples.sql
+SELECT array_join(['hello', 'world'], ' beautiful ') AS value; -- value 'hello beautiful world'
+```
+*Supported Signatures*
 ```sql
 function array_join(array<$1>, varchar) returns varchar
 function array_join(array<$1>, varchar, varchar) returns varchar
@@ -38,7 +68,14 @@ function array_join(array<$1>, varchar, varchar) returns varchar
 
 ## `array_position`
 
-#### Supported Signatures
+Returns the position of the first occurrence of the element in array x (or 0 if not found).
+
+
+*Examples:*
+```sql examples.sql
+SELECT array_position([1, 1, 2], 1) AS value; -- value '1'
+```
+*Supported Signatures*
 ```sql
 function array_position(array<$1>, $1) returns bigint
 ```
@@ -46,7 +83,15 @@ function array_position(array<$1>, $1) returns bigint
 
 ## `array_remove`
 
-#### Supported Signatures
+Remove all elements that equal element from array x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT array_remove([1, 1, 2], 1) AS value; -- value '[2]'
+SELECT array_remove(['hello', 'bad', 'world'], 'bad') AS value; -- value '[hello, world]'
+```
+*Supported Signatures*
 ```sql
 function array_remove(array<$3>, $3) returns array<$3>
 ```
@@ -54,7 +99,9 @@ function array_remove(array<$3>, $3) returns array<$3>
 
 ## `array_sort`
 
-#### Supported Signatures
+Sorts and returns the array x. The elements of x must be orderable. Null elements will be placed at the end of the returned array.
+
+*Supported Signatures*
 ```sql
 function array_sort(array<$3>) returns array<$3>
 ```
@@ -62,7 +109,14 @@ function array_sort(array<$3>) returns array<$3>
 
 ## `array_union`
 
-#### Supported Signatures
+Returns an array of the elements in the union of x and y, without duplicates.
+
+
+*Examples:*
+```sql examples.sql
+SELECT array_union([1, 1], [2]) as value; -- value '[1, 2]'
+```
+*Supported Signatures*
 ```sql
 function array_union(array<$3>, array<$3>) returns array<$3>
 ```
@@ -70,7 +124,14 @@ function array_union(array<$3>, array<$3>) returns array<$3>
 
 ## `cardinality`
 
-#### Supported Signatures
+Returns the cardinality (size) of the array x.
+
+
+*Examples:*
+```sql examples.sql
+SELECT cardinality([1, 1, 2]) as value; -- value '3'
+```
+*Supported Signatures*
 ```sql
 function cardinality(array<$3>) returns bigint
 ```
@@ -78,7 +139,15 @@ function cardinality(array<$3>) returns bigint
 
 ## `contains`
 
-#### Supported Signatures
+Takes an array and an element. Returns true if the array contains the element, false if not.
+
+
+*Examples:*
+```sql examples.sql
+SELECT contains(['hello', 'world'], 'hello') AS value; -- value 'true'
+SELECT contains(['hello', 'world'], '😊') AS value; -- value 'false'
+```
+*Supported Signatures*
 ```sql
 function contains(array<$1>, $1) returns boolean
 ```
@@ -86,7 +155,9 @@ function contains(array<$1>, $1) returns boolean
 
 ## `element_at`
 
-#### Supported Signatures
+Returns element of array at given index. If index &gt; 0, this function provides the same functionality as the SQL-standard subscript operator ([]), except that the function returns NULL when accessing an index larger than array length, whereas the subscript operator would fail in such a case. If index &lt; 0, element_at accesses elements from the last to the first.
+
+*Supported Signatures*
 ```sql
 function element_at(array<$3>, bigint) returns $3
 ```
@@ -94,7 +165,18 @@ function element_at(array<$3>, bigint) returns $3
 
 ## `flatten`
 
-#### Supported Signatures
+Flattens an array(array(T)) to an array(T) by concatenating the contained arrays.
+
+
+*Examples:*
+```sql examples.sql
+SELECT flatten(
+    ARRAY [ARRAY [1, 2],
+    ARRAY [3, 4]])
+AS value;
+ -- value '[1, 2, 3, 4]'
+```
+*Supported Signatures*
 ```sql
 function flatten(array<array<$3>>) returns array<$3>
 ```
@@ -102,7 +184,14 @@ function flatten(array<array<$3>>) returns array<$3>
 
 ## `repeat`
 
-#### Supported Signatures
+Repeat element for count times.
+
+
+*Examples:*
+```sql examples.sql
+select repeat('😉', 4) as value; -- value '😉😉😉😉'
+```
+*Supported Signatures*
 ```sql
 function repeat($1, bigint) returns array<$1>
 ```

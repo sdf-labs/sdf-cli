@@ -5,9 +5,8 @@ title: "Conversion Functions"
 
 ## `date`
 
-#### Description
 Converts the timestamp argument to a date
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date(timestamp) returns date
 function date(timestamp) returns date
@@ -19,9 +18,8 @@ function date(varchar, varchar) returns date
 
 ## `time`
 
-#### Description
 Converts the timestamp argument to a time
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function time(timestamp) returns time
 function time(timestamp) returns time
@@ -33,7 +31,7 @@ function time(variant) returns time
 
 ## `to_array`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_array($1) returns array
 ```
@@ -41,7 +39,7 @@ function to_array($1) returns array
 
 ## `to_binary`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_binary($1) returns binary
 function to_binary($1, string) returns binary
@@ -50,7 +48,7 @@ function to_binary($1, string) returns binary
 
 ## `to_boolean`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_boolean($1) returns boolean
 ```
@@ -58,7 +56,7 @@ function to_boolean($1) returns boolean
 
 ## `to_char`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_char($1, string) returns string
 function to_char($1) returns string
@@ -67,7 +65,7 @@ function to_char($1) returns string
 
 ## `to_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_date($1) returns datetime
 function to_date($1, string) returns datetime
@@ -76,7 +74,7 @@ function to_date($1, string) returns datetime
 
 ## `to_decimal`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_decimal($1) returns decimal(38, 0)
 function to_decimal($1, bigint) returns decimal(38, 0)
@@ -89,7 +87,7 @@ function to_decimal($1, string, bigint, bigint) returns decimal(38, 0)
 
 ## `to_double`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_double($1) returns double
 ```
@@ -97,9 +95,8 @@ function to_double($1) returns double
 
 ## `to_json`
 
-#### Description
 Convert variant data to string as JSON
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_json(variant) returns varchar
 ```
@@ -107,7 +104,7 @@ function to_json(variant) returns varchar
 
 ## `to_number`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_number($1) returns decimal(38, 0)
 function to_number($1, bigint) returns decimal(38, 0)
@@ -120,7 +117,7 @@ function to_number($1, string, bigint, bigint) returns decimal(38, 0)
 
 ## `to_numeric`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_numeric($1) returns decimal(38, 0)
 function to_numeric($1, bigint) returns decimal(38, 0)
@@ -133,7 +130,7 @@ function to_numeric($1, string, bigint, bigint) returns decimal(38, 0)
 
 ## `to_object`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_object($1) returns object
 ```
@@ -141,7 +138,7 @@ function to_object($1) returns object
 
 ## `to_time`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_time($1) returns time
 function to_time($1, string) returns time
@@ -150,7 +147,7 @@ function to_time($1, string) returns time
 
 ## `to_timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_timestamp($1) returns timestamp
 function to_timestamp($1, string) returns timestamp
@@ -159,7 +156,7 @@ function to_timestamp($1, string) returns timestamp
 
 ## `to_timestamp_ltz`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_timestamp_ltz($1) returns timestamp
 function to_timestamp_ltz($1, string) returns timestamp
@@ -168,7 +165,7 @@ function to_timestamp_ltz($1, string) returns timestamp
 
 ## `to_timestamp_ntz`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_timestamp_ntz($1) returns timestamp
 function to_timestamp_ntz($1, string) returns timestamp
@@ -177,7 +174,7 @@ function to_timestamp_ntz($1, string) returns timestamp
 
 ## `to_timestamp_tz`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_timestamp_tz($1) returns timestamp
 function to_timestamp_tz($1, string) returns timestamp
@@ -186,7 +183,7 @@ function to_timestamp_tz($1, string) returns timestamp
 
 ## `to_varchar`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_varchar($1) returns string
 function to_varchar($1, string) returns string
@@ -195,7 +192,7 @@ function to_varchar($1, string) returns string
 
 ## `to_variant`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_variant($1) returns variant
 ```
@@ -203,9 +200,8 @@ function to_variant($1) returns variant
 
 ## `to_xml`
 
-#### Description
 Convert variant data to string as XML
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_xml(variant) returns varchar
 ```
@@ -213,7 +209,7 @@ function to_xml(variant) returns varchar
 
 ## `try_to_binary`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_binary($1) returns binary
 function try_to_binary(string, string) returns binary
@@ -222,7 +218,7 @@ function try_to_binary(string, string) returns binary
 
 ## `try_to_boolean`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_boolean($1) returns boolean
 ```
@@ -230,7 +226,7 @@ function try_to_boolean($1) returns boolean
 
 ## `try_to_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_date($1) returns datetime
 function try_to_date($1, string) returns datetime
@@ -239,7 +235,7 @@ function try_to_date($1, string) returns datetime
 
 ## `try_to_decimal`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_decimal($1) returns decimal(38, 0)
 function try_to_decimal($1, bigint) returns decimal(38, 0)
@@ -252,7 +248,7 @@ function try_to_decimal($1, string, bigint, bigint) returns decimal(38, 0)
 
 ## `try_to_double`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_double($1) returns double
 ```
@@ -260,7 +256,7 @@ function try_to_double($1) returns double
 
 ## `try_to_number`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_number($1) returns decimal(38, 0)
 function try_to_number($1, bigint) returns decimal(38, 0)
@@ -273,7 +269,7 @@ function try_to_number($1, string, bigint, bigint) returns decimal(38, 0)
 
 ## `try_to_numeric`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_numeric($1) returns decimal(38, 0)
 function try_to_numeric($1, bigint) returns decimal(38, 0)
@@ -286,7 +282,7 @@ function try_to_numeric($1, string, bigint, bigint) returns decimal(38, 0)
 
 ## `try_to_time`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_time($1) returns time
 function try_to_time($1, string) returns time
@@ -295,7 +291,7 @@ function try_to_time($1, string) returns time
 
 ## `try_to_timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_timestamp($1) returns timestamp
 function try_to_timestamp($1, string) returns timestamp
@@ -304,7 +300,7 @@ function try_to_timestamp($1, string) returns timestamp
 
 ## `try_to_timestamp_ntz`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_timestamp_ntz($1) returns timestamp
 function try_to_timestamp_ntz($1, string) returns timestamp
@@ -313,7 +309,7 @@ function try_to_timestamp_ntz($1, string) returns timestamp
 
 ## `try_to_timestamp_tz`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_timestamp_tz($1) returns timestamp
 function try_to_timestamp_tz($1, string) returns timestamp

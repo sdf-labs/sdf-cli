@@ -5,9 +5,8 @@ title: "Encryption Functions"
 
 ## `decrypt`
 
-#### Description
 decrypted binary string (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function decrypt(binary, varchar) returns binary
 function decrypt(binary, varchar, binary) returns binary
@@ -20,9 +19,8 @@ function decrypt(binary, varchar, varchar, varchar) returns binary
 
 ## `decrypt_raw`
 
-#### Description
 decrypted binary string (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function decrypt_raw(binary, binary) returns binary
 function decrypt_raw(binary, binary, binary) returns binary
@@ -34,9 +32,8 @@ function decrypt_raw(binary, binary, binary, binary, varchar, binary) returns bi
 
 ## `encrypt`
 
-#### Description
 encrypted binary string including IV/nonce and AEAD tag (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function encrypt(binary, varchar) returns binary
 function encrypt(binary, varchar, binary) returns binary
@@ -55,9 +52,8 @@ function encrypt(varchar, varchar, varchar, varchar) returns binary
 
 ## `encrypt_raw`
 
-#### Description
 variant containing the encrypted binary string and additional data (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function encrypt_raw(binary, binary) returns variant
 function encrypt_raw(binary, binary, binary) returns variant
@@ -68,9 +64,8 @@ function encrypt_raw(binary, binary, binary, binary, varchar) returns variant
 
 ## `try_decrypt`
 
-#### Description
 decrypted binary string (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_decrypt(binary, varchar) returns binary
 function try_decrypt(binary, varchar, binary) returns binary
@@ -83,9 +78,8 @@ function try_decrypt(binary, varchar, varchar, varchar) returns binary
 
 ## `try_decrypt_raw`
 
-#### Description
 decrypted binary string (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_decrypt_raw(binary, binary) returns binary
 function try_decrypt_raw(binary, binary, binary) returns binary

@@ -1,0 +1,36 @@
+---
+title: "Mongodb Functions"
+---
+
+## `objectid`
+
+Extracts the TIMESTAMP WITH TIME ZONE from a given ObjectId.
+
+*Supported Signatures*
+```sql
+function objectid() returns objectid
+function objectid(varchar) returns objectid
+```
+[🔗 Official Documentation](https://trino.io/docs/current/connector/mongodb.html#objectid)
+
+## `objectid_timestamp`
+
+Extracts the TIMESTAMP WITH TIME ZONE from a given ObjectId.
+
+*Supported Signatures*
+```sql
+function objectid_timestamp(objectid) returns timestamp
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/../connector/mongodb.html#objectid_timestamp)
+
+## `timestamp_objectid`
+
+Creates an ObjectId from a TIMESTAMP WITH TIME ZONE.
+
+*Supported Signatures*
+```sql
+function timestamp_objectid(timestamp(0)) returns objectid
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/../connector/mongodb.html#timestamp_objectid)
+
+

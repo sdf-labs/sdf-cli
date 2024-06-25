@@ -1,0 +1,55 @@
+---
+title: "Setdigest Functions"
+---
+
+## `hash_counts`
+
+Returns a map containing the Murmur3Hash128 hashed values and the count of their occurences within the internal MinHash structure belonging to x.
+
+*Supported Signatures*
+```sql
+function hash_counts(setdigest) returns map<bigint, smallint>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#hash_counts)
+
+## `intersection_cardinality`
+
+Returns the estimation for the cardinality of the intersection of the two set digests.
+
+*Supported Signatures*
+```sql
+function intersection_cardinality(setdigest, setdigest) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#intersection_cardinality)
+
+## `jaccard_index`
+
+Returns the estimation of Jaccard index for the two set digests.
+
+*Supported Signatures*
+```sql
+function jaccard_index(setdigest, setdigest) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#jaccard_index)
+
+## `make_set_digest`
+
+Composes all input values of x into a setdigest.
+
+*Supported Signatures*
+```sql
+function make_set_digest($1) returns setdigest
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#make_set_digest)
+
+## `merge_set_digest`
+
+Returns the setdigest of the aggregate union of the individual setdigest Set Digest structures.
+
+*Supported Signatures*
+```sql
+function merge_set_digest(setdigest) returns setdigest
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/setdigest.html#merge_set_digest)
+
+

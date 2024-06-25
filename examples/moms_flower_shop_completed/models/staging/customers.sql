@@ -15,10 +15,10 @@ SELECT
     c.address_id,
     a.full_address,
     a.state
-FROM raw_customers c 
+FROM raw.raw_customers c 
 
     LEFT OUTER JOIN app_installs_v2 i
         ON (c.id = i.customer_id)
 
-    LEFT OUTER JOIN raw_addresses a
+    LEFT OUTER JOIN raw.raw_addresses a
         ON (c.address_id = a.address_id)

@@ -1,7 +1,8 @@
 ---
-title: "Getting Started"
+title: "Getting Started with Snowflake and SDF"
+sidebarTitle: "Getting Started"
 description:
-  "Getting started with Snowflake and SDF."
+  "SDF as a best-in-class transformation layer for Snowflake"
 ---
 
 ## Overview
@@ -14,9 +15,8 @@ SDF will use remote Snowflake schema information to do type bindings and other s
 
 In order to connect to Snowflake, you will need to have on hand the following:
 
-1. A Mac or Linux with a valid installation of the latest SDF version running locally.
-2. A Snowflake account to connect to.
-3. Valid credentials with read access to materialize tables in your Snowflake account.
+1. A Snowflake account to connect to.
+2. Valid credentials with read access to materialize tables in your Snowflake account.
 
 ## Guide
 
@@ -46,16 +46,22 @@ In order to connect to Snowflake, you will need to have on hand the following:
         
         <Info>
         This will create a new [credential](/reference/sdf-yml#block-credential) in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with AWS services. By default, the 
-        credential's name is default. As such, the credential does not need to be explicitly referenced in the provider configuration below.
+        credential's name is default. As such, the credential does not need to be explicitly referenced in the integrations configuration below.
         </Info>
+
+        To validate the connection, run:
+        ```shell
+        sdf auth status
+        ```
     </Step>
     <Step title="Add Snowflake Provider in Workspace">
-        Once authenticated, add a table provider block in your `workspace.sdf.yml`. This tells SDF to use Snowflake to hydrate missing table schemas.
+        Once authenticated, add an integration block in your `workspace.sdf.yml`. This tells SDF to use Snowflake to hydrate missing table schemas.
         ``` yml
         workspace:
             ...
-            providers:
-                - type: snowflake
+            integrations:
+                - provider: snowflake
+                  type: database
                   sources: 
                     - pattern: <DATABASE>.*.*
         ```
@@ -64,26 +70,28 @@ In order to connect to Snowflake, you will need to have on hand the following:
         ``` yml
         workspace:
             ...
-            providers:
-                - type: snowflake
+            integrations:
+                - provider: snowflake
+                  type: database
                   sources: 
                     - pattern: db1.*.*
                     - pattern: db2.*.*
         ```
 
-        Providers can also be configured to use specific credentials by referencing the credential name in the provider block. For example, if you wanted to use a credential called `snowflake-creds`, you would write:
+        Integrations can also be configured to use specific credentials by referencing the credential name in the integration block. For example, if you wanted to use a credential called `snowflake-creds`, you would write:
         ``` yml
         workspace:
             ...
-            providers:
-                - type: snowflake
+            integrations:
+                - provider: snowflake
+                  type: database
                   credential: snowflake-creds
                   sources: 
                     - pattern: db1.schema1.mytable
                     - pattern: db2.schema2.*
         ```
 
-        For more information on provider configuration, see the [provider documentation](/guide/transformation/providers).
+        For more information on integration configuration, see the [integration documentation](/guide/setup/integrations).
     </Step>
     <Step title="Try it out!">
         Now that you're connected, let's make sure SDF can pull the schema information it needs. 
@@ -112,12 +120,13 @@ The `CREATE MATERIALIZATION` permission listed above is meant to be subsituted w
 If you'd like to grant all write access on a database, these can be easily achieved with a `grant all` command on the database.
 </Note>
 
-Required permissions for your Snowflake role are based on your provider configuration, as this determines where SDF will attempt to write models out to and where it will read schemas from.
+Required permissions for your Snowflake role are based on your integration configuration, as this determines where SDF will attempt to write models out to and where it will read schemas from.
 
-Let's imagine we had the following provider configuration:
+Let's imagine we had the following integration configured:
 ```yml
-  providers:
-    - type: snowflake
+  integrations:
+    - provider: snowflake
+      type: database
       credential: limited
       sources: 
         - pattern: my_production_database.*.*
@@ -126,14 +135,14 @@ Let's imagine we had the following provider configuration:
           rename-as: dev_sandbox.${1}.${2}
 ```
 
-As we can see from the provider, SDF will read schemas from the `my_production_database` database and write models to the `dev_sandbox` database.
+As we can see from the integration, SDF will read schemas from the `my_production_database` database and write models to the `dev_sandbox` database.
 
 <Tip>
   Despite `my_production_database` being included as a target, SDF only requires write access to the databases and schemas after the rename operation. As such, the `dev_sandbox` schema should be the only schema that requires write access.
 </Tip>
 
 
-Now let's create a role `sdf_dev_role` with permissions to write to the `dev_sandbox` database and read from the `my_production_database` database. This role will model exactly what's required to compile and run with the provider above.
+Now let's create a role `sdf_dev_role` with permissions to write to the `dev_sandbox` database and read from the `my_production_database` database. This role will model exactly what's required to compile and run with the integration above.
 
 ```sql
 -- Create the role

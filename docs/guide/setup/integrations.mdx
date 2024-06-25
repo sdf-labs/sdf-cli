@@ -1,0 +1,94 @@
+---
+title: 'Integrations'
+description: 'Integrations are the fundamental connection point between your data warehouse and SDF. Credentials are used by integrations to authenticate to your data warehouse.'
+---
+
+The first step towards using SDF to transform queries in your warehouse is configuring an `integration`. Integrations enable SDF to talk to your data warehouse and give you fine-grained controls over the databases, schemas, and tables that SDF can read and write to. 
+Integrations live as a subproperty of the [workspace block](/reference/sdf-yml#block-workspace), so a basic integration configuration will look like this:
+
+```yaml workspace.sdf.yml
+workspace:
+  ...
+  integrations:
+    - integration: snowflake
+      type: database
+      sources:
+        - pattern: "w_source.*.*"
+      targets:
+        - pattern: "w_target.*.*"
+```
+
+Simply put, this Snowflake integration would let SDF pull table metadata from the database `w_source` for compilation, then let SDF write and materialize tables to the database `w_target`.
+
+<Tip>
+  The integration above defaults to using a credential called `default`. This prevents you from having to add the `credential` property to the integration block.
+</Tip>
+
+Sources and targets are configurable at the schema and table level, for example if I only wanted to pull the schema for a table called `my_table` in schema `schema1`, but I wanted to pull the schema for all tables in `schema2`, I would write:
+``` yml
+workspace:
+    ...
+    integrations:
+        - integration: snowflake
+          type: database
+          sources: 
+            - pattern: db1.schema1.mytable
+            - pattern: db2.schema2.*
+    ...
+```
+
+### Multiple Integrations
+
+You can have multiple integrations in a single workspace. This is useful when you have multiple data warehouses or databases that you want to hydrate tables from. For example, if you have Snowflake and Redshift databases, you can configure your workspace like so:
+
+```yaml workspace.sdf.yml
+workspace:
+  ...
+  integrations:
+    - integration: snowflake
+      type: database
+      credential: snowflake-creds
+      sources:
+        - pattern: "snowflake_source.*.*"
+      targets:
+        - pattern: "snowflake_target.*.*"
+    - integration: redshift
+      type: database
+      credential: redshift-creds
+      sources:
+        - pattern: "redshift_source.*.*"
+      targets:
+        - pattern: "redshift_target.*.*"
+```
+
+In this example, we have two integrations, one for Snowflake and one for Redshift. Each integration has its own set of sources and targets, and each integration uses its own set of credentials to authenticate to the respective data warehouse.
+
+### Integration Configuration
+
+Integrations have a few key properties that you can configure:
+
+- `provider`: The name of the provider you want to use. This can be `snowflake`, `redshift`, `s3`, and others. `sdf` is a special provider that allows for running SQL queries locally without a data warehouse connection.
+- `type`: The type of integration you're using. This can be `database`, `data`, or `metadata`. See our [integrations overview](/integrations/overview) for more information.
+- `credential`: The name of the credential you want to use to authenticate with your data warehouse. This is optional and defaults to `default`.
+- `sources`: A list of patterns that SDF will use to hydrate table schemas from your data warehouse when it doesn't find them locally defined in SQL.
+- `targets`: A list of patterns that SDF will use to materialize tables to your data warehouse when you run `sdf run`.
+
+<Note>
+  This list is not exhaustive. Other properties may be required based on the integration type and provider you're using. See the [Integration YML Reference](/reference/sdf-yml#nested-element-integration) for more information.
+</Note>
+<Warning>
+  All tables being materialized or output by SDF compilation or execution must match a target pattern. If a table does not match a target pattern, SDF will throw an error.
+</Warning>
+
+## Next Steps
+
+For a more active example, follow along with the materialization guide specific to your data warehouse:
+
+<CardGroup cols={2}>
+  <Card title="Snowflake" icon="snowflake" href="/integrations/snowflake">
+    Set SDF up with your Snowflake instance in under 5 minutes
+  </Card>
+  <Card title="Redshift" icon="aws" href="/integrations/redshift">
+    Set SDF up with your Redshift instance in under 5 minutes
+  </Card>
+</CardGroup>

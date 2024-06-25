@@ -1,6 +1,7 @@
 workspace:
-  name: hello # The name of this workspace -- required
-  edition: "1.2" # The edition of this workspace -- required
+  name: hello
+  edition: "1.3"
   description: "A minimal workspace"
+
   includes:
-    - path: src # The path to sql sources for this workspace -- at least one path is required
+    - path: models

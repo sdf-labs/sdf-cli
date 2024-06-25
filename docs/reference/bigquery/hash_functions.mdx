@@ -4,7 +4,7 @@ title: "Hash Functions"
 
 ## `farm_fingerprint`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function farm_fingerprint $1($1) returns bigint
 	where $1 in (string, bytes)
@@ -13,7 +13,7 @@ function farm_fingerprint $1($1) returns bigint
 
 ## `md5`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function md5 $1($1) returns bytes
 	where $1 in (string, bytes)
@@ -22,7 +22,7 @@ function md5 $1($1) returns bytes
 
 ## `sha1`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha1 $1($1) returns bytes
 	where $1 in (string, bytes)
@@ -31,7 +31,7 @@ function sha1 $1($1) returns bytes
 
 ## `sha256`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha256 $1($1) returns bytes
 	where $1 in (string, bytes)
@@ -40,7 +40,7 @@ function sha256 $1($1) returns bytes
 
 ## `sha512`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha512 $1($1) returns bytes
 	where $1 in (string, bytes)

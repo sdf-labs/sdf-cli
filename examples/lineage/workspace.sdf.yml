@@ -1,6 +1,6 @@
 workspace:
   name: lineage
-  edition: "1.2"
+  edition: "1.3"
   description: >
     Creates a three stage pipeline with one source ('source.sql') and two sinks, called 'sink.sql' and 'knis.sql'. It shows how to compute lineage.
 
@@ -15,30 +15,31 @@ workspace:
     Try removing the DATA.pii classifier on source.
 
   includes:
-    - type: model
-      path: src/
-
-    - type: check
-      path: checks/
+    - path: models/
+    - path: checks/
 ---
 environment:
   name: trino
+  
   defaults:
     dialect: trino
+  
   includes:
     - type: model
-      path: src/
+      path: models/
     - type: check
       path: checks/
 ---
 classifier:
   name: DATA
+
   labels:
     - name: uid
     - name: pii
 ---
 table:
   name: source
+  
   columns:
     - name: user_id
       classifiers:

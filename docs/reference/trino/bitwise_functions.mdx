@@ -1,0 +1,94 @@
+---
+title: "Bitwise Functions"
+---
+
+## `bit_count`
+
+Count the number of bits set in x (treated as bits-bit signed integer) in 2’s complement representation.
+
+*Supported Signatures*
+```sql
+function bit_count(bigint, bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bit_count)
+
+## `bitwise_and`
+
+Returns the bitwise AND of x and y in 2’s complement representation.
+
+*Supported Signatures*
+```sql
+function bitwise_and(bigint, bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_and)
+
+## `bitwise_left_shift`
+
+Returns the left shifted value of value.
+
+*Supported Signatures*
+```sql
+function bitwise_left_shift(bigint, bigint) returns bigint
+function bitwise_left_shift(integer, bigint) returns integer
+function bitwise_left_shift(smallint, bigint) returns smallint
+function bitwise_left_shift(tinyint, bigint) returns tinyint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_left_shift)
+
+## `bitwise_not`
+
+Returns the bitwise NOT of x in 2’s complement representation (NOT x = -x - 1).
+
+*Supported Signatures*
+```sql
+function bitwise_not(bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_not)
+
+## `bitwise_or`
+
+Returns the bitwise OR of x and y in 2’s complement representation.
+
+*Supported Signatures*
+```sql
+function bitwise_or(bigint, bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_or)
+
+## `bitwise_right_shift`
+
+Returns the logical right shifted value of value.
+
+*Supported Signatures*
+```sql
+function bitwise_right_shift(bigint, bigint) returns bigint
+function bitwise_right_shift(integer, bigint) returns integer
+function bitwise_right_shift(smallint, bigint) returns smallint
+function bitwise_right_shift(tinyint, bigint) returns tinyint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_right_shift)
+
+## `bitwise_right_shift_arithmetic`
+
+Returns the arithmetic right shifted value of value.
+
+*Supported Signatures*
+```sql
+function bitwise_right_shift_arithmetic(bigint, bigint) returns bigint
+function bitwise_right_shift_arithmetic(integer, bigint) returns integer
+function bitwise_right_shift_arithmetic(smallint, bigint) returns smallint
+function bitwise_right_shift_arithmetic(tinyint, bigint) returns tinyint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_right_shift_arithmetic)
+
+## `bitwise_xor`
+
+Returns the bitwise XOR of x and y in 2’s complement representation.
+
+*Supported Signatures*
+```sql
+function bitwise_xor(bigint, bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/bitwise.html#bitwise_xor)
+
+

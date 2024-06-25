@@ -40,9 +40,9 @@ Let's bring it all together in the form of an example. Suppose we have a data wa
 > `cat workspace.sdf.yml`
 ```yaml
 workspace:
-  edition: "1.2"
+  edition: "1.3"
   includes: 
-    - path: src/
+    - path: models/
   resources:
     - path: events/
 ```
@@ -155,19 +155,19 @@ For instance, to count all actions per user for a particular date and time, call
 *Note, the `--no-show` option causes SDF to omit outputting a fragment of the resulting table to STDOUT.*
 ```yaml
    Building dau.pub.events (./src/events.sql)
-    Written .sdfcache/dau/pub/events/dt=20220102/hr=00/
+    Written sdftarget/dau/pub/events/dt=20220102/hr=00/
    Building dau.pub.hau (./src/hau.sql)
-    Written .sdfcache/dau/pub/hau/dt=20220102/hr=00/
-    Written .sdfcache/assembly.sdf.yml
+    Written sdftarget/dau/pub/hau/dt=20220102/hr=00/
+    Written sdftarget/assembly.sdf.yml
    Finished build in 0.341 secs
 ```
 The provided date parameter (which must be a prefix of [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)), is mapped to partition variables using the provided format conversion. 
 
-We see the result of the execution materialized in `.sdfcache`.
-> tree .sdfcache
+We see the result of the execution materialized in `sdftarget`.
+> tree sdftarget
 <div className="mt-5 mb-8 not-prose bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800 relative p-5 text-sm leading-6 text-gray-50">
 <pre style={{ fontFamily: 'monospace' }}>
-.sdfcache
+sdftarget
 ├── assembly.sdf.yml
 |
 └── dau

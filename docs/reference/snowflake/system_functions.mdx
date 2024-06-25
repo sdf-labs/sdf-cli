@@ -5,7 +5,7 @@ title: "System Functions"
 
 ## `get_query_operator_stats`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function get_query_operator_stats(string) returns struct<query_id string, step_id bigint, operator_id bigint, parent_operators array, operator_type string, operator_statistics variant, execution_time_breakdown variant, operator_attributes variant>
 
@@ -14,9 +14,8 @@ function get_query_operator_stats(string) returns struct<query_id string, step_i
 
 ## `system$abort_session`
 
-#### Description
 Abort the specified open session
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$abort_session(decimal(38, 0)) returns varchar
 ```
@@ -24,9 +23,8 @@ function system$abort_session(decimal(38, 0)) returns varchar
 
 ## `system$abort_transaction`
 
-#### Description
 Abort the specified transaction if it is running. If the transaction is already is committed/rolled back then the state of the transaction is not altered.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$abort_transaction(decimal(38, 0)) returns varchar
 ```
@@ -34,9 +32,8 @@ function system$abort_transaction(decimal(38, 0)) returns varchar
 
 ## `system$behavior_change_bundle_status`
 
-#### Description
 returned value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$behavior_change_bundle_status(varchar) returns varchar
 ```
@@ -44,9 +41,8 @@ function system$behavior_change_bundle_status(varchar) returns varchar
 
 ## `system$cancel_all_queries`
 
-#### Description
 cancel all the queries running in the specified session
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$cancel_all_queries() returns varchar
 function system$cancel_all_queries(decimal(38, 0)) returns varchar
@@ -55,9 +51,8 @@ function system$cancel_all_queries(decimal(38, 0)) returns varchar
 
 ## `system$cancel_query`
 
-#### Description
 cancel the specified running query
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$cancel_query(varchar) returns varchar
 ```
@@ -65,9 +60,8 @@ function system$cancel_query(varchar) returns varchar
 
 ## `system$clustering_depth`
 
-#### Description
 Average depth of the table
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$clustering_depth(varchar, ...) returns double
 function system$clustering_depth(varchar, varchar, ...) returns double
@@ -77,9 +71,8 @@ function system$clustering_depth(varchar, varchar, varchar, ...) returns double
 
 ## `system$clustering_information`
 
-#### Description
 returns clustering information as json
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$clustering_information(varchar, ...) returns varchar
 function system$clustering_information(varchar, varchar, ...) returns varchar
@@ -91,9 +84,8 @@ function system$clustering_information(varchar, decimal(38, 0), ...) returns var
 
 ## `system$convert_pipes_sqs_to_sns`
 
-#### Description
-returns true if all SQS pipes' metadata based on this bucket are successfully converted to new SNS topic-based pipes.
-#### Supported Signatures
+returns true if all SQS pipes&#39; metadata based on this bucket are successfully converted to new SNS topic-based pipes.
+*Supported Signatures*
 ```sql
 function system$convert_pipes_sqs_to_sns(varchar, varchar) returns varchar
 ```
@@ -101,9 +93,8 @@ function system$convert_pipes_sqs_to_sns(varchar, varchar) returns varchar
 
 ## `system$disable_database_replication`
 
-#### Description
 Returns success/fail message of the operation
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$disable_database_replication(varchar) returns varchar
 ```
@@ -111,9 +102,8 @@ function system$disable_database_replication(varchar) returns varchar
 
 ## `system$estimate_query_acceleration`
 
-#### Description
 estimate query acceleration result
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$estimate_query_acceleration(varchar) returns varchar
 ```
@@ -121,9 +111,8 @@ function system$estimate_query_acceleration(varchar) returns varchar
 
 ## `system$estimate_search_optimization_costs`
 
-#### Description
 result: the cost report result for search optimization on the given table
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$estimate_search_optimization_costs(varchar) returns varchar
 function system$estimate_search_optimization_costs(varchar, varchar) returns varchar
@@ -132,9 +121,8 @@ function system$estimate_search_optimization_costs(varchar, varchar) returns var
 
 ## `system$explain_json_to_text`
 
-#### Description
 text format explain plan from json
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$explain_json_to_text(varchar) returns varchar
 ```
@@ -142,9 +130,8 @@ function system$explain_json_to_text(varchar) returns varchar
 
 ## `system$explain_plan_json`
 
-#### Description
 json of the explain plan result
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$explain_plan_json(varchar) returns varchar
 ```
@@ -152,9 +139,8 @@ function system$explain_plan_json(varchar) returns varchar
 
 ## `system$external_table_pipe_status`
 
-#### Description
 returns pipe status as json
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$external_table_pipe_status(varchar) returns varchar
 ```
@@ -162,9 +148,8 @@ function system$external_table_pipe_status(varchar) returns varchar
 
 ## `system$generate_saml_csr`
 
-#### Description
 returns the result of the operation.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$generate_saml_csr() returns varchar
 ```
@@ -172,9 +157,8 @@ function system$generate_saml_csr() returns varchar
 
 ## `system$get_aws_sns_iam_policy`
 
-#### Description
 returns IAM policy for the SNS topic
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_aws_sns_iam_policy(varchar) returns varchar
 ```
@@ -182,9 +166,8 @@ function system$get_aws_sns_iam_policy(varchar) returns varchar
 
 ## `system$get_directory_table_status`
 
-#### Description
 returns the associated directory table status
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_directory_table_status() returns varchar
 function system$get_directory_table_status(varchar) returns varchar
@@ -193,9 +176,8 @@ function system$get_directory_table_status(varchar) returns varchar
 
 ## `system$get_iceberg_table_information`
 
-#### Description
 returns the latest Iceberg metadata information
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_iceberg_table_information(varchar) returns varchar
 function system$get_iceberg_table_information(varchar, decimal(38, 0)) returns varchar
@@ -206,9 +188,8 @@ function system$get_iceberg_table_information(decimal(38, 0), decimal(38, 0)) re
 
 ## `system$get_predecessor_return_value`
 
-#### Description
 Return data
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_predecessor_return_value() returns varchar
 function system$get_predecessor_return_value(varchar) returns varchar
@@ -217,9 +198,8 @@ function system$get_predecessor_return_value(varchar) returns varchar
 
 ## `system$get_service_logs`
 
-#### Description
 return status of operation
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_service_logs(varchar, decimal(38, 0), varchar) returns varchar
 function system$get_service_logs(varchar, decimal(38, 0), varchar, decimal(38, 0)) returns varchar
@@ -228,9 +208,8 @@ function system$get_service_logs(varchar, decimal(38, 0), varchar, decimal(38, 0
 
 ## `system$get_service_status`
 
-#### Description
 return service resource set status
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_service_status($1) returns varchar
 function system$get_service_status($1, decimal(38, 0)) returns varchar
@@ -239,9 +218,8 @@ function system$get_service_status($1, decimal(38, 0)) returns varchar
 
 ## `system$get_tag`
 
-#### Description
 Returns the associated tag value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_tag() returns varchar
 ```
@@ -249,9 +227,8 @@ function system$get_tag() returns varchar
 
 ## `system$get_tag_allowed_values`
 
-#### Description
 Returns the allowed values for a tag
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_tag_allowed_values() returns varchar
 ```
@@ -259,9 +236,8 @@ function system$get_tag_allowed_values() returns varchar
 
 ## `system$get_tag_on_current_column`
 
-#### Description
 Returns the associated tag value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_tag_on_current_column() returns varchar
 ```
@@ -269,9 +245,8 @@ function system$get_tag_on_current_column() returns varchar
 
 ## `system$get_tag_on_current_table`
 
-#### Description
 Returns the associated tag value on the current table
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_tag_on_current_table() returns varchar
 ```
@@ -279,9 +254,8 @@ function system$get_tag_on_current_table() returns varchar
 
 ## `system$get_task_graph_config`
 
-#### Description
 Result
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$get_task_graph_config() returns varchar
 function system$get_task_graph_config(varchar) returns varchar
@@ -290,9 +264,8 @@ function system$get_task_graph_config(varchar) returns varchar
 
 ## `system$global_account_set_parameter`
 
-#### Description
 param set result from the account
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$global_account_set_parameter(varchar, varchar, varchar) returns varchar
 ```
@@ -300,9 +273,8 @@ function system$global_account_set_parameter(varchar, varchar, varchar) returns 
 
 ## `system$last_change_commit_time`
 
-#### Description
 returns the largest commit time as a long.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$last_change_commit_time(varchar) returns decimal(38, 0)
 ```
@@ -310,9 +282,8 @@ function system$last_change_commit_time(varchar) returns decimal(38, 0)
 
 ## `system$migrate_saml_idp_registration`
 
-#### Description
 Returns the result of the operation.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$migrate_saml_idp_registration(varchar) returns varchar
 function system$migrate_saml_idp_registration(varchar, varchar) returns varchar
@@ -321,9 +292,8 @@ function system$migrate_saml_idp_registration(varchar, varchar) returns varchar
 
 ## `system$pipe_force_resume`
 
-#### Description
 returns result of operation
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$pipe_force_resume(varchar) returns varchar
 function system$pipe_force_resume(varchar, varchar) returns varchar
@@ -332,9 +302,8 @@ function system$pipe_force_resume(varchar, varchar) returns varchar
 
 ## `system$pipe_rebinding_with_notification_channel`
 
-#### Description
 returns true if the pipe successfully rebinds with its assigned notification channel
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$pipe_rebinding_with_notification_channel(varchar) returns varchar
 ```
@@ -342,9 +311,8 @@ function system$pipe_rebinding_with_notification_channel(varchar) returns varcha
 
 ## `system$pipe_status`
 
-#### Description
 returns pipe status as json
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$pipe_status(varchar) returns varchar
 ```
@@ -352,9 +320,8 @@ function system$pipe_status(varchar) returns varchar
 
 ## `system$query_reference`
 
-#### Description
 Returns the query reference identifier
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$query_reference(varchar) returns varchar
 function system$query_reference(varchar, boolean) returns varchar
@@ -363,9 +330,8 @@ function system$query_reference(varchar, boolean) returns varchar
 
 ## `system$reference`
 
-#### Description
 Returns the reference identifier
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$reference(varchar, varchar, ...) returns varchar
 function system$reference(varchar, varchar, boolean, ...) returns varchar
@@ -378,9 +344,8 @@ function system$reference(varchar, varchar, varchar, varchar, ...) returns varch
 
 ## `system$set_return_value`
 
-#### Description
-Returns "OK" if succeeded
-#### Supported Signatures
+Returns &quot;OK&quot; if succeeded
+*Supported Signatures*
 ```sql
 function system$set_return_value(varchar) returns varchar
 ```
@@ -388,9 +353,8 @@ function system$set_return_value(varchar) returns varchar
 
 ## `system$show_active_behavior_change_bundles`
 
-#### Description
 returned value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$show_active_behavior_change_bundles() returns varchar
 ```
@@ -398,9 +362,8 @@ function system$show_active_behavior_change_bundles() returns varchar
 
 ## `system$snowpipe_streaming_update_channel_offset_token`
 
-#### Description
 returns status of update
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$snowpipe_streaming_update_channel_offset_token(varchar, varchar, varchar) returns varchar
 ```
@@ -408,9 +371,8 @@ function system$snowpipe_streaming_update_channel_offset_token(varchar, varchar,
 
 ## `system$task_dependents_enable`
 
-#### Description
-Returns "OK" if succeeded
-#### Supported Signatures
+Returns &quot;OK&quot; if succeeded
+*Supported Signatures*
 ```sql
 function system$task_dependents_enable(varchar) returns varchar
 ```
@@ -418,9 +380,8 @@ function system$task_dependents_enable(varchar) returns varchar
 
 ## `system$task_runtime_info`
 
-#### Description
 result
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$task_runtime_info(varchar) returns varchar
 ```
@@ -428,7 +389,7 @@ function system$task_runtime_info(varchar) returns varchar
 
 ## `system$typeof`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$typeof($1) returns varchar
 ```
@@ -436,9 +397,8 @@ function system$typeof($1) returns varchar
 
 ## `system$user_task_cancel_ongoing_executions`
 
-#### Description
-Returns "OK" if succeeded
-#### Supported Signatures
+Returns &quot;OK&quot; if succeeded
+*Supported Signatures*
 ```sql
 function system$user_task_cancel_ongoing_executions(varchar) returns varchar
 ```
@@ -446,9 +406,8 @@ function system$user_task_cancel_ongoing_executions(varchar) returns varchar
 
 ## `system$verify_external_oauth_token`
 
-#### Description
 The OAuth Access Token.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$verify_external_oauth_token() returns varchar
 ```
@@ -456,9 +415,8 @@ function system$verify_external_oauth_token() returns varchar
 
 ## `system$wait`
 
-#### Description
 Wait for a finite amount of time
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function system$wait(decimal(38, 0)) returns varchar
 function system$wait(decimal(38, 0), varchar) returns varchar

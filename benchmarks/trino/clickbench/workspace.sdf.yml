@@ -1,7 +1,7 @@
 workspace:
-  edition: "1.2"
+  edition: "1.3"
   name: "clickbench"
-  defaults: 
+  defaults:
     dialect: trino
   description: >
     The ClickBench benchmark is designed to evaluate the performance of database systems using a dataset and queries derived from the real-world use cases of ClickHouse, 

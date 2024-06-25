@@ -8,7 +8,7 @@ SELECT
         NULLIF(i.total_num_installs, 0) AS avg_customer_acquisition_cost,
     campaign_duration / 
         NULLIF(i.total_num_installs, 0) AS install_duration_ratio
-FROM marketing_campaigns m
-    LEFT OUTER JOIN stg_installs_per_campaign i
+FROM staging.marketing_campaigns m
+    LEFT OUTER JOIN staging.stg_installs_per_campaign i
     ON (m.campaign_id = i.campaign_id)
 ORDER BY total_num_installs DESC NULLS LAST

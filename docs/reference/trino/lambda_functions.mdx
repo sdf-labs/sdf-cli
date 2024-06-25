@@ -1,0 +1,31 @@
+---
+title: "Lambda Functions"
+---
+
+## `reduce_agg`
+
+Reduces all input values into a single value. inputFunction will be invoked for each non-null input value. In addition to taking the input value, inputFunction takes the current state, initially initialState, and returns the new state. combineFunction will be invoked to combine two states into a new state. The final state is returned.
+
+*Supported Signatures*
+```sql
+function reduce_agg($1, $10, function($10, $1, $10), function($10, $10, $10)) returns $10
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#reduce_agg)
+
+## `regexp_replace`
+
+Removes every instance of the substring matched by the regular expression pattern from string.
+
+
+*Examples:*
+```sql examples.sql
+SELECT REGEXP_REPLACE('text foo another text', 'foo', 'bar') -- value 'text bar another text'
+```
+*Supported Signatures*
+```sql
+function regexp_replace(varchar, joniregexp) returns varchar
+function regexp_replace(varchar, joniregexp, varchar) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_replace)
+
+

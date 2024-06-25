@@ -4,7 +4,7 @@ title: "String Functions"
 
 ## `ascii`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ascii(string) returns int64
 ```
@@ -12,7 +12,7 @@ function ascii(string) returns int64
 
 ## `byte_length`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function byte_length $1($1) returns int64
 	where $1 in (string, bytes)
@@ -21,7 +21,7 @@ function byte_length $1($1) returns int64
 
 ## `char_length`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function char_length(string) returns int64
 ```
@@ -29,7 +29,7 @@ function char_length(string) returns int64
 
 ## `character_length`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function character_length(string) returns int64
 ```
@@ -37,7 +37,7 @@ function character_length(string) returns int64
 
 ## `chr`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function chr(int64) returns string
 ```
@@ -45,7 +45,7 @@ function chr(int64) returns string
 
 ## `code_points_to_bytes`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function code_points_to_bytes(array<int64>) returns bytes
 ```
@@ -53,7 +53,7 @@ function code_points_to_bytes(array<int64>) returns bytes
 
 ## `code_points_to_string`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function code_points_to_string(array<int64>) returns string
 ```
@@ -61,7 +61,7 @@ function code_points_to_string(array<int64>) returns string
 
 ## `collate`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function collate(string, string) returns string
 ```
@@ -69,7 +69,7 @@ function collate(string, string) returns string
 
 ## `concat`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function concat $1($1, ...) returns $1
 	where $1 in (string, bytes)
@@ -78,7 +78,7 @@ function concat $1($1, ...) returns $1
 
 ## `contains_substr`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function contains_substr $1($1, string) returns bool
 	where $1 in (string, bigint, bool, timestamp, time, date, datetime)
@@ -89,7 +89,7 @@ function contains_substr $1(array<$1>, string) returns bool
 
 ## `ends_with`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ends_with $1($1, string) returns bool
 	where $1 in (string, bytes)
@@ -98,7 +98,7 @@ function ends_with $1($1, string) returns bool
 
 ## `format`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function format(string) returns string
 function format(string, $1) returns string
@@ -111,7 +111,7 @@ function format(string, $1, $2, $3, $4, $5) returns string
 
 ## `from_base32`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function from_base32(string) returns bytes
 ```
@@ -119,7 +119,7 @@ function from_base32(string) returns bytes
 
 ## `from_base64`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function from_base64(string) returns bytes
 ```
@@ -127,7 +127,7 @@ function from_base64(string) returns bytes
 
 ## `from_hex`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function from_hex(string) returns bytes
 ```
@@ -135,7 +135,7 @@ function from_hex(string) returns bytes
 
 ## `initcap`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function initcap(string) returns string
 function initcap(string, string) returns string
@@ -144,7 +144,7 @@ function initcap(string, string) returns string
 
 ## `instr`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function instr(string, string) returns int64
 function instr(string, string, int64) returns int64
@@ -154,7 +154,7 @@ function instr(string, string, int64, int64) returns int64
 
 ## `left`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function left $1($1, int64) returns $1
 	where $1 in (string, bytes)
@@ -163,7 +163,7 @@ function left $1($1, int64) returns $1
 
 ## `length`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function length $1($1) returns int64
 	where $1 in (string, bytes)
@@ -172,7 +172,7 @@ function length $1($1) returns int64
 
 ## `lower`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function lower(string) returns string
 ```
@@ -180,7 +180,7 @@ function lower(string) returns string
 
 ## `lpad`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function lpad(string, int64, string) returns string
 function lpad(string, int64) returns string
@@ -189,7 +189,7 @@ function lpad(string, int64) returns string
 
 ## `ltrim`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ltrim(string) returns string
 function ltrim(string, string) returns string
@@ -198,7 +198,7 @@ function ltrim(string, string) returns string
 
 ## `normalize_and_casefold`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function normalize_and_casefold(string) returns string
 function normalize_and_casefold(string, normalization_mode string) returns string
@@ -208,7 +208,7 @@ function normalize_and_casefold(string, normalization_mode string) returns strin
 
 ## `octet_length`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function octet_length $1($1) returns int64
 	where $1 in (string, bytes)
@@ -217,7 +217,7 @@ function octet_length $1($1) returns int64
 
 ## `regexp_contains`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_contains $1($1, string) returns bool
 	where $1 in (string, bytes)
@@ -226,7 +226,7 @@ function regexp_contains $1($1, string) returns bool
 
 ## `regexp_extract`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_extract $1($1, string) returns $1
 	where $1 in (string, bytes)
@@ -239,7 +239,7 @@ function regexp_extract $1($1, string, int64, int64) returns $1
 
 ## `regexp_extract_all`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_extract_all $1($1, string) returns array<$1>
 	where $1 in (string, bytes)
@@ -248,7 +248,7 @@ function regexp_extract_all $1($1, string) returns array<$1>
 
 ## `regexp_instr`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_instr $1($1, $1) returns int64
 	where $1 in (string, bytes)
@@ -261,7 +261,7 @@ function regexp_instr $1($1, $1, int64, int64, int64) returns int64
 
 ## `regexp_replace`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_replace $1($1, string, string) returns $1
 	where $1 in (string, bytes)
@@ -270,7 +270,7 @@ function regexp_replace $1($1, string, string) returns $1
 
 ## `regexp_substr`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regexp_substr $1($1, string) returns $1
 	where $1 in (string, bytes)
@@ -283,7 +283,7 @@ function regexp_substr $1($1, string, int64, int64) returns $1
 
 ## `repeat`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function repeat $1($1, int64) returns $1
 	where $1 in (string, bytes)
@@ -292,7 +292,7 @@ function repeat $1($1, int64) returns $1
 
 ## `replace`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function replace $1($1, string, string) returns $1
 	where $1 in (string, bytes)
@@ -301,7 +301,7 @@ function replace $1($1, string, string) returns $1
 
 ## `reverse`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function reverse $1($1) returns $1
 	where $1 in (string, bytes)
@@ -310,7 +310,7 @@ function reverse $1($1) returns $1
 
 ## `right`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function right $1($1, int64) returns $1
 	where $1 in (string, bytes)
@@ -319,7 +319,7 @@ function right $1($1, int64) returns $1
 
 ## `rpad`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function rpad(string, int64, string) returns string
 function rpad(string, int64) returns string
@@ -328,7 +328,7 @@ function rpad(string, int64) returns string
 
 ## `rtrim`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function rtrim(string) returns string
 function rtrim(string, string) returns string
@@ -337,7 +337,7 @@ function rtrim(string, string) returns string
 
 ## `safe_convert_bytes_to_string`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function safe_convert_bytes_to_string(bytes) returns string
 ```
@@ -345,7 +345,7 @@ function safe_convert_bytes_to_string(bytes) returns string
 
 ## `soundex`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function soundex(string) returns string
 ```
@@ -353,7 +353,7 @@ function soundex(string) returns string
 
 ## `split`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function split $1($1) returns array<$1>
 	where $1 in (string, bytes)
@@ -364,7 +364,7 @@ function split $1($1, $1) returns array<$1>
 
 ## `starts_with`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function starts_with(string, string) returns bool
 ```
@@ -372,7 +372,7 @@ function starts_with(string, string) returns bool
 
 ## `substr`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function substr(string, int64) returns string
 function substr(string, int64, int64) returns string
@@ -381,7 +381,7 @@ function substr(string, int64, int64) returns string
 
 ## `substring`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function substring $1($1, int64) returns $1
 	where $1 in (string, bytes)
@@ -392,7 +392,7 @@ function substring $1($1, int64, int64) returns $1
 
 ## `to_base32`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_base32(bytes) returns string
 ```
@@ -400,7 +400,7 @@ function to_base32(bytes) returns string
 
 ## `to_base64`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_base64(bytes) returns string
 ```
@@ -408,7 +408,7 @@ function to_base64(bytes) returns string
 
 ## `to_code_points`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_code_points $1($1) returns array<int64>
 	where $1 in (string, bytes)
@@ -417,7 +417,7 @@ function to_code_points $1($1) returns array<int64>
 
 ## `to_hex`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_hex(bytes) returns string
 ```
@@ -425,7 +425,7 @@ function to_hex(bytes) returns string
 
 ## `translate`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function translate $1($1, $1, $1) returns $1
 	where $1 in (string, bytes)
@@ -434,7 +434,7 @@ function translate $1($1, $1, $1) returns $1
 
 ## `trim`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function trim(string) returns string
 function trim(string, string) returns string
@@ -443,7 +443,7 @@ function trim(string, string) returns string
 
 ## `unicode`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function unicode(string) returns int64
 ```
@@ -451,7 +451,7 @@ function unicode(string) returns int64
 
 ## `upper`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function upper(string) returns string
 ```

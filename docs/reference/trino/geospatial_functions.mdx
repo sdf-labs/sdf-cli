@@ -1,0 +1,830 @@
+---
+title: "Geospatial Functions"
+---
+
+## `bing_tile`
+
+Creates a Bing tile object from XY coordinates and a zoom level. Zoom levels from 1 to 23 are supported.
+
+*Supported Signatures*
+```sql
+function bing_tile(bigint, bigint, bigint) returns bingtile
+function bing_tile(varchar) returns bingtile
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile)
+
+## `bing_tile_at`
+
+Returns a Bing tile at a given zoom level containing a point at a given latitude and longitude. Latitude must be within [-85.05112878, 85.05112878] range. Longitude must be within [-180, 180] range. Zoom levels from 1 to 23 are supported.
+
+*Supported Signatures*
+```sql
+function bing_tile_at(double, double, bigint) returns bingtile
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_at)
+
+## `bing_tile_coordinates`
+
+Returns the XY coordinates of a given Bing tile.
+
+*Supported Signatures*
+```sql
+function bing_tile_coordinates(bingtile) returns row(x bigint, y bigint)
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_coordinates)
+
+## `bing_tile_polygon`
+
+Returns the polygon representation of a given Bing tile.
+
+*Supported Signatures*
+```sql
+function bing_tile_polygon(bingtile) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_polygon)
+
+## `bing_tile_quadkey`
+
+Returns the quadkey of a given Bing tile.
+
+*Supported Signatures*
+```sql
+function bing_tile_quadkey(bingtile) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_quadkey)
+
+## `bing_tile_zoom_level`
+
+Returns the zoom level of a given Bing tile.
+
+*Supported Signatures*
+```sql
+function bing_tile_zoom_level(bingtile) returns tinyint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tile_zoom_level)
+
+## `bing_tiles_around`
+
+Returns a collection of Bing tiles that surround the point specified by the latitude and longitude arguments at a given zoom level.
+
+*Supported Signatures*
+```sql
+function bing_tiles_around(double, double, bigint) returns array<bingtile>
+function bing_tiles_around(double, double, bigint, double) returns array<bingtile>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#bing_tiles_around)
+
+## `convex_hull_agg`
+
+Returns the minimum convex geometry that encloses all input geometries.
+
+*Supported Signatures*
+```sql
+function convex_hull_agg(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#convex_hull_agg)
+
+## `from_encoded_polyline`
+
+Decodes a polyline to a linestring.
+
+*Supported Signatures*
+```sql
+function from_encoded_polyline(varchar) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#from_encoded_polyline)
+
+## `from_geojson_geometry`
+
+Returns the spherical geography type object from the GeoJSON representation stripping non geometry key/values. Feature and FeatureCollection are not supported.
+
+*Supported Signatures*
+```sql
+function from_geojson_geometry(varchar) returns sphericalgeography
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#from_geojson_geometry)
+
+## `geometry_from_hadoop_shape`
+
+Returns a geometry type object from Spatial Framework for Hadoop representation.
+
+*Supported Signatures*
+```sql
+function geometry_from_hadoop_shape(varbinary) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_from_hadoop_shape)
+
+## `geometry_invalid_reason`
+
+Returns the reason for why the input geometry is not valid. Returns NULL if the input is valid.
+
+*Supported Signatures*
+```sql
+function geometry_invalid_reason(geometry) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_invalid_reason)
+
+## `geometry_nearest_points`
+
+Returns the points on each geometry nearest the other.  If either geometry is empty, return NULL.  Otherwise, return a row of two Points that have the minimum distance of any two points on the geometries.  The first Point will be from the first Geometry argument, the second from the second Geometry argument.  If there are multiple pairs with the minimum distance, one pair is chosen arbitrarily.
+
+*Supported Signatures*
+```sql
+function geometry_nearest_points(geometry, geometry) returns row(c0 geometry, c1 geometry)
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_nearest_points)
+
+## `geometry_to_bing_tiles`
+
+Returns the minimum set of Bing tiles that fully covers a given geometry at a given zoom level. Zoom levels from 1 to 23 are supported.
+
+*Supported Signatures*
+```sql
+function geometry_to_bing_tiles(geometry, bigint) returns array<bingtile>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_to_bing_tiles)
+
+## `geometry_union`
+
+Returns a geometry that represents the point set union of the input geometries. Performance of this function, in conjunction with array_agg() to first aggregate the input geometries, may be better than geometry_union_agg(), at the expense of higher memory utilization.
+
+*Supported Signatures*
+```sql
+function geometry_union(array<geometry>) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_union)
+
+## `geometry_union_agg`
+
+Returns a geometry that represents the point set union of all input geometries.
+
+*Supported Signatures*
+```sql
+function geometry_union_agg(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#geometry_union_agg)
+
+## `great_circle_distance`
+
+Returns the great-circle distance between two points on Earth’s surface in kilometers.
+
+*Supported Signatures*
+```sql
+function great_circle_distance(double, double, double, double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#great_circle_distance)
+
+## `line_interpolate_point`
+
+Returns a Point interpolated along a LineString at the fraction given. The fraction must be between 0 and 1, inclusive.
+
+*Supported Signatures*
+```sql
+function line_interpolate_point(geometry, double) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_interpolate_point)
+
+## `line_interpolate_points`
+
+Returns an array of Points interpolated along a LineString. The fraction must be between 0 and 1, inclusive.
+
+*Supported Signatures*
+```sql
+function line_interpolate_points(geometry, double) returns array<geometry>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_interpolate_points)
+
+## `line_locate_point`
+
+Returns a float between 0 and 1 representing the location of the closest point on the LineString to the given Point, as a fraction of total 2d line length.
+
+*Supported Signatures*
+```sql
+function line_locate_point(geometry, geometry) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#line_locate_point)
+
+## `simplify_geometry`
+
+Returns a “simplified” version of the input geometry using the Douglas-Peucker algorithm. Will avoid creating derived geometries (polygons in particular) that are invalid.
+
+*Supported Signatures*
+```sql
+function simplify_geometry(geometry, double) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#simplify_geometry)
+
+## `st_area`
+
+Returns the 2D Euclidean area of a geometry.
+
+*Supported Signatures*
+```sql
+function st_area(geometry) returns double
+function st_area(sphericalgeography) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Area)
+
+## `st_asbinary`
+
+Returns the WKB representation of the geometry.
+
+*Supported Signatures*
+```sql
+function st_asbinary(geometry) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_AsBinary)
+
+## `st_astext`
+
+Returns the WKT representation of the geometry. For empty geometries, ST_AsText(ST_LineFromText(&#39;LINESTRING EMPTY&#39;)) will produce &#39;MULTILINESTRING EMPTY&#39; and ST_AsText(ST_Polygon(&#39;POLYGON EMPTY&#39;)) will produce &#39;MULTIPOLYGON EMPTY&#39;.
+
+*Supported Signatures*
+```sql
+function st_astext(geometry) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_AsText)
+
+## `st_boundary`
+
+Returns the closure of the combinatorial boundary of this geometry.
+
+*Supported Signatures*
+```sql
+function st_boundary(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Boundary)
+
+## `st_buffer`
+
+Returns the geometry that represents all points whose distance from the specified geometry is less than or equal to the specified distance. If the points of the geometry are extremely close together (delta &lt; 1e-8), this might return an empty geometry.
+
+*Supported Signatures*
+```sql
+function st_buffer(geometry, double) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Buffer)
+
+## `st_centroid`
+
+Returns the point value that is the mathematical centroid of a geometry.
+
+*Supported Signatures*
+```sql
+function st_centroid(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Centroid)
+
+## `st_contains`
+
+Returns true if and only if no points of the second geometry lie in the exterior of the first geometry, and at least one point of the interior of the first geometry lies in the interior of the second geometry.
+
+*Supported Signatures*
+```sql
+function st_contains(geometry, geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Contains)
+
+## `st_convexhull`
+
+Returns the minimum convex geometry that encloses all input geometries.
+
+*Supported Signatures*
+```sql
+function st_convexhull(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_ConvexHull)
+
+## `st_coorddim`
+
+Returns the coordinate dimension of the geometry.
+
+*Supported Signatures*
+```sql
+function st_coorddim(geometry) returns tinyint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_CoordDim)
+
+## `st_crosses`
+
+Returns true if the supplied geometries have some, but not all, interior points in common.
+
+*Supported Signatures*
+```sql
+function st_crosses(geometry, geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Crosses)
+
+## `st_difference`
+
+Returns the geometry value that represents the point set difference of the given geometries.
+
+*Supported Signatures*
+```sql
+function st_difference(geometry, geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Difference)
+
+## `st_dimension`
+
+Returns the inherent dimension of this geometry object, which must be less than or equal to the coordinate dimension.
+
+*Supported Signatures*
+```sql
+function st_dimension(geometry) returns tinyint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Dimension)
+
+## `st_disjoint`
+
+Returns true if the give geometries do not spatially intersect – if they do not share any space together.
+
+*Supported Signatures*
+```sql
+function st_disjoint(geometry, geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Disjoint)
+
+## `st_distance`
+
+Returns the great-circle distance in meters between two SphericalGeography points.
+
+*Supported Signatures*
+```sql
+function st_distance(geometry, geometry) returns double
+function st_distance(sphericalgeography, sphericalgeography) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Distance)
+
+## `st_endpoint`
+
+Returns the last point of a LineString geometry as a Point. This is a shortcut for ST_PointN(geometry, ST_NumPoints(geometry)).
+
+*Supported Signatures*
+```sql
+function st_endpoint(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_EndPoint)
+
+## `st_envelope`
+
+Returns the bounding rectangular polygon of a geometry.
+
+*Supported Signatures*
+```sql
+function st_envelope(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Envelope)
+
+## `st_envelopeaspts`
+
+Returns an array of two points. the lower left and upper right corners of the bounding rectangular polygon of a geometry. Returns NULL if input geometry is empty.
+
+*Supported Signatures*
+```sql
+function st_envelopeaspts(geometry) returns array<geometry>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_EnvelopeAsPts)
+
+## `st_equals`
+
+Returns true if the given geometries represent the same geometry.
+
+*Supported Signatures*
+```sql
+function st_equals(geometry, geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Equals)
+
+## `st_exteriorring`
+
+Returns a line string representing the exterior ring of the input polygon.
+
+*Supported Signatures*
+```sql
+function st_exteriorring(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_ExteriorRing)
+
+## `st_geometries`
+
+Returns an array of geometries in the specified collection. Returns a one-element array if the input geometry is not a multi-geometry. Returns NULL if input geometry is empty.
+
+*Supported Signatures*
+```sql
+function st_geometries(geometry) returns array<geometry>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Geometries)
+
+## `st_geometryfromtext`
+
+Returns a geometry type object from WKT representation.
+
+*Supported Signatures*
+```sql
+function st_geometryfromtext(varchar) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryFromText)
+
+## `st_geometryn`
+
+Returns the geometry element at a given index (indices start at 1). If the geometry is a collection of geometries (e.g., GEOMETRYCOLLECTION or MULTI*), returns the geometry at a given index. If the given index is less than 1 or greater than the total number of elements in the collection, returns NULL. Use ST_NumGeometries() to find out the total number of elements. Singular geometries (e.g., POINT, LINESTRING, POLYGON), are treated as collections of one element. Empty geometries are treated as empty collections.
+
+*Supported Signatures*
+```sql
+function st_geometryn(geometry, bigint) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryN)
+
+## `st_geometrytype`
+
+Returns the type of the geometry.
+
+*Supported Signatures*
+```sql
+function st_geometrytype(geometry) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeometryType)
+
+## `st_geomfrombinary`
+
+Returns a geometry type object from WKB representation.
+
+*Supported Signatures*
+```sql
+function st_geomfrombinary(varbinary) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_GeomFromBinary)
+
+## `st_interiorringn`
+
+Returns the interior ring element at the specified index (indices start at 1). If the given index is less than 1 or greater than the total number of interior rings in the input geometry, returns NULL. The input geometry must be a polygon. Use ST_NumInteriorRing() to find out the total number of elements.
+
+*Supported Signatures*
+```sql
+function st_interiorringn(geometry, bigint) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_InteriorRingN)
+
+## `st_interiorrings`
+
+Returns an array of all interior rings found in the input geometry, or an empty array if the polygon has no interior rings. Returns NULL if the input geometry is empty. The input geometry must be a polygon.
+
+*Supported Signatures*
+```sql
+function st_interiorrings(geometry) returns array<geometry>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_InteriorRings)
+
+## `st_intersection`
+
+Returns the geometry value that represents the point set intersection of two geometries.
+
+*Supported Signatures*
+```sql
+function st_intersection(geometry, geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Intersection)
+
+## `st_intersects`
+
+Returns true if the given geometries spatially intersect in two dimensions (share any portion of space) and false if they do not (they are disjoint).
+
+*Supported Signatures*
+```sql
+function st_intersects(geometry, geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Intersects)
+
+## `st_isclosed`
+
+Returns true if the linestring’s start and end points are coincident.
+
+*Supported Signatures*
+```sql
+function st_isclosed(geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsClosed)
+
+## `st_isempty`
+
+Returns true if this Geometry is an empty geometrycollection, polygon, point etc.
+
+*Supported Signatures*
+```sql
+function st_isempty(geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsEmpty)
+
+## `st_isring`
+
+Returns true if and only if the line is closed and simple.
+
+*Supported Signatures*
+```sql
+function st_isring(geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsRing)
+
+## `st_issimple`
+
+Returns true if this Geometry has no anomalous geometric points, such as self intersection or self tangency.
+
+*Supported Signatures*
+```sql
+function st_issimple(geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsSimple)
+
+## `st_isvalid`
+
+Returns true if and only if the input geometry is well formed. Use geometry_invalid_reason() to determine why the geometry is not well formed.
+
+*Supported Signatures*
+```sql
+function st_isvalid(geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_IsValid)
+
+## `st_length`
+
+Returns the length of a linestring or multi-linestring using Euclidean measurement on a two dimensional plane (based on spatial ref) in projected units.
+
+*Supported Signatures*
+```sql
+function st_length(geometry) returns double
+function st_length(sphericalgeography) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Length)
+
+## `st_linefromtext`
+
+Returns a geometry type linestring object from WKT representation.
+
+*Supported Signatures*
+```sql
+function st_linefromtext(varchar) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_LineFromText)
+
+## `st_linestring`
+
+Returns a LineString formed from an array of points. If there are fewer than two non-empty points in the input array, an empty LineString will be returned. Array elements must not be NULL or the same as the previous element. The returned geometry may not be simple, e.g. may self-intersect or may contain duplicate vertexes depending on the input.
+
+*Supported Signatures*
+```sql
+function st_linestring(array<geometry>) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_LineString)
+
+## `st_multipoint`
+
+Returns a MultiPoint geometry object formed from the specified points. Returns NULL if input array is empty. Array elements must not be NULL or empty. The returned geometry may not be simple and may contain duplicate points if input array has duplicates.
+
+*Supported Signatures*
+```sql
+function st_multipoint(array<geometry>) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_MultiPoint)
+
+## `st_numgeometries`
+
+Returns the number of geometries in the collection. If the geometry is a collection of geometries (e.g., GEOMETRYCOLLECTION or MULTI*), returns the number of geometries, for single geometries returns 1, for empty geometries returns 0.
+
+*Supported Signatures*
+```sql
+function st_numgeometries(geometry) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumGeometries)
+
+## `st_numinteriorring`
+
+Returns the cardinality of the collection of interior rings of a polygon.
+
+*Supported Signatures*
+```sql
+function st_numinteriorring(geometry) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumInteriorRing)
+
+## `st_numpoints`
+
+Returns the number of points in a geometry. This is an extension to the SQL/MM ST_NumPoints function which only applies to point and linestring.
+
+*Supported Signatures*
+```sql
+function st_numpoints(geometry) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_NumPoints)
+
+## `st_overlaps`
+
+Returns true if the given geometries share space, are of the same dimension, but are not completely contained by each other.
+
+*Supported Signatures*
+```sql
+function st_overlaps(geometry, geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Overlaps)
+
+## `st_point`
+
+Returns a geometry type point object with the given coordinate values.
+
+*Supported Signatures*
+```sql
+function st_point(double, double) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Point)
+
+## `st_pointn`
+
+Returns the vertex of a linestring at a given index (indices start at 1). If the given index is less than 1 or greater than the total number of elements in the collection, returns NULL. Use ST_NumPoints() to find out the total number of elements.
+
+*Supported Signatures*
+```sql
+function st_pointn(geometry, bigint) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_PointN)
+
+## `st_points`
+
+Returns an array of points in a linestring.
+
+*Supported Signatures*
+```sql
+function st_points(geometry) returns array<geometry>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Points)
+
+## `st_polygon`
+
+Returns a geometry type polygon object from WKT representation.
+
+*Supported Signatures*
+```sql
+function st_polygon(varchar) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Polygon)
+
+## `st_relate`
+
+Returns true if first geometry is spatially related to second geometry.
+
+*Supported Signatures*
+```sql
+function st_relate(geometry, geometry, varchar) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Relate)
+
+## `st_startpoint`
+
+Returns the first point of a LineString geometry as a Point. This is a shortcut for ST_PointN(geometry, 1).
+
+*Supported Signatures*
+```sql
+function st_startpoint(geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_StartPoint)
+
+## `st_symdifference`
+
+Returns the geometry value that represents the point set symmetric difference of two geometries.
+
+*Supported Signatures*
+```sql
+function st_symdifference(geometry, geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_SymDifference)
+
+## `st_touches`
+
+Returns true if the given geometries have at least one point in common, but their interiors do not intersect.
+
+*Supported Signatures*
+```sql
+function st_touches(geometry, geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Touches)
+
+## `st_union`
+
+Returns a geometry that represents the point set union of the input geometries.
+
+*Supported Signatures*
+```sql
+function st_union(geometry, geometry) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Union)
+
+## `st_within`
+
+Returns true if first geometry is completely inside second geometry.
+
+*Supported Signatures*
+```sql
+function st_within(geometry, geometry) returns boolean
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Within)
+
+## `st_x`
+
+Returns the X coordinate of the point.
+
+*Supported Signatures*
+```sql
+function st_x(geometry) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_X)
+
+## `st_xmax`
+
+Returns X maxima of a bounding box of a geometry.
+
+*Supported Signatures*
+```sql
+function st_xmax(geometry) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_XMax)
+
+## `st_xmin`
+
+Returns X minima of a bounding box of a geometry.
+
+*Supported Signatures*
+```sql
+function st_xmin(geometry) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_XMin)
+
+## `st_y`
+
+Returns the Y coordinate of the point.
+
+*Supported Signatures*
+```sql
+function st_y(geometry) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_Y)
+
+## `st_ymax`
+
+Returns Y maxima of a bounding box of a geometry.
+
+*Supported Signatures*
+```sql
+function st_ymax(geometry) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_YMax)
+
+## `st_ymin`
+
+Returns Y minima of a bounding box of a geometry.
+
+*Supported Signatures*
+```sql
+function st_ymin(geometry) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#ST_YMin)
+
+## `to_encoded_polyline`
+
+Encodes a linestring or multipoint to a polyline.
+
+*Supported Signatures*
+```sql
+function to_encoded_polyline(geometry) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_encoded_polyline)
+
+## `to_geojson_geometry`
+
+Returns the GeoJSON encoded defined by the input spherical geography.
+
+*Supported Signatures*
+```sql
+function to_geojson_geometry(sphericalgeography) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_geojson_geometry)
+
+## `to_geometry`
+
+Converts a SphericalGeography object to a Geometry object.
+
+*Supported Signatures*
+```sql
+function to_geometry(sphericalgeography) returns geometry
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_geometry)
+
+## `to_spherical_geography`
+
+Converts a Geometry object to a SphericalGeography object on the sphere of the Earth’s radius. This function is only applicable to POINT, MULTIPOINT, LINESTRING, MULTILINESTRING, POLYGON, MULTIPOLYGON geometries defined in 2D space, or GEOMETRYCOLLECTION of such geometries. For each point of the input geometry, it verifies that point.x is within [-180.0, 180.0] and point.y is within [-90.0, 90.0], and uses them as (longitude, latitude) degrees to construct the shape of the SphericalGeography result.
+
+*Supported Signatures*
+```sql
+function to_spherical_geography(geometry) returns sphericalgeography
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/geospatial.html#to_spherical_geography)
+
+

@@ -1,0 +1,314 @@
+---
+title: "Binary Functions"
+---
+
+## `crc32`
+
+Computes the CRC-32 of binary. For general purpose hashing, use xxhash64(), as it is much faster and produces a better quality hash.
+
+*Supported Signatures*
+```sql
+function crc32(varbinary) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#crc32)
+
+## `from_base32`
+
+Decodes binary data from the base32 encoded string.
+
+*Supported Signatures*
+```sql
+function from_base32(varbinary) returns varbinary
+function from_base32(varchar) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base32)
+
+## `from_base64`
+
+Decodes binary data from the base64 encoded string.
+
+*Supported Signatures*
+```sql
+function from_base64(varbinary) returns varbinary
+function from_base64(varchar) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base64)
+
+## `from_base64url`
+
+Decodes binary data from the base64 encoded string using the URL safe alphabet.
+
+*Supported Signatures*
+```sql
+function from_base64url(varbinary) returns varbinary
+function from_base64url(varchar) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_base64url)
+
+## `from_big_endian_32`
+
+Decodes the 32-bit two’s complement big-endian binary. The input must be exactly 4 bytes.
+
+*Supported Signatures*
+```sql
+function from_big_endian_32(varbinary) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_big_endian_32)
+
+## `from_big_endian_64`
+
+Decodes the 64-bit two’s complement big-endian binary. The input must be exactly 8 bytes.
+
+*Supported Signatures*
+```sql
+function from_big_endian_64(varbinary) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_big_endian_64)
+
+## `from_hex`
+
+Decodes binary data from the hex encoded string.
+
+*Supported Signatures*
+```sql
+function from_hex(varbinary) returns varbinary
+function from_hex(varchar) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_hex)
+
+## `from_ieee754_32`
+
+Decodes the 32-bit big-endian binary in IEEE 754 single-precision floating-point format. The input must be exactly 4 bytes.
+
+*Supported Signatures*
+```sql
+function from_ieee754_32(varbinary) returns real
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_ieee754_32)
+
+## `from_ieee754_64`
+
+Decodes the 64-bit big-endian binary in IEEE 754 double-precision floating-point format. The input must be exactly 8 bytes.
+
+*Supported Signatures*
+```sql
+function from_ieee754_64(varbinary) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#from_ieee754_64)
+
+## `hmac_md5`
+
+Computes HMAC with MD5 of binary with the given key.
+
+*Supported Signatures*
+```sql
+function hmac_md5(varbinary, varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_md5)
+
+## `hmac_sha1`
+
+Computes HMAC with SHA1 of binary with the given key.
+
+*Supported Signatures*
+```sql
+function hmac_sha1(varbinary, varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha1)
+
+## `hmac_sha256`
+
+Computes HMAC with SHA256 of binary with the given key.
+
+*Supported Signatures*
+```sql
+function hmac_sha256(varbinary, varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha256)
+
+## `hmac_sha512`
+
+Computes HMAC with SHA512 of binary with the given key.
+
+*Supported Signatures*
+```sql
+function hmac_sha512(varbinary, varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#hmac_sha512)
+
+## `md5`
+
+Computes the MD5 hash of binary.
+
+*Supported Signatures*
+```sql
+function md5(varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#md5)
+
+## `murmur3`
+
+Computes the 128-bit MurmurHash3 hash of binary.
+
+*Supported Signatures*
+```sql
+function murmur3(varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#murmur3)
+
+## `sha1`
+
+Computes the SHA1 hash of binary.
+
+*Supported Signatures*
+```sql
+function sha1(varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha1)
+
+## `sha256`
+
+Computes the SHA256 hash of binary.
+
+
+*Examples:*
+```sql examples.sql
+select sha256('Hello World!') as value; -- value '7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069'
+```
+*Supported Signatures*
+```sql
+function sha256(varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha256)
+
+## `sha512`
+
+Computes the SHA512 hash of binary.
+
+
+*Examples:*
+```sql examples.sql
+select sha512('Hello World!') as value; -- value '861844d6704e8573fec34d967e20bcfef3d424cf48be04e6dc08f2bd58c729743371015ead891cc3cf1c9d34b49264b510751b1ff9e537937bc46b5d6ff4ecc8'
+```
+*Supported Signatures*
+```sql
+function sha512(varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#sha512)
+
+## `spooky_hash_v2_32`
+
+Computes the 32-bit SpookyHashV2 hash of binary.
+
+*Supported Signatures*
+```sql
+function spooky_hash_v2_32(varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#spooky_hash_v2_32)
+
+## `spooky_hash_v2_64`
+
+Computes the 64-bit SpookyHashV2 hash of binary.
+
+*Supported Signatures*
+```sql
+function spooky_hash_v2_64(varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#spooky_hash_v2_64)
+
+## `to_base32`
+
+Encodes binary into a base32 string representation.
+
+*Supported Signatures*
+```sql
+function to_base32(varbinary) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base32)
+
+## `to_base64`
+
+Encodes binary into a base64 string representation.
+
+*Supported Signatures*
+```sql
+function to_base64(varbinary) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base64)
+
+## `to_base64url`
+
+Encodes binary into a base64 string representation using the URL safe alphabet.
+
+*Supported Signatures*
+```sql
+function to_base64url(varbinary) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_base64url)
+
+## `to_big_endian_32`
+
+Encodes integer into a 32-bit two’s complement big-endian format.
+
+*Supported Signatures*
+```sql
+function to_big_endian_32(bigint) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_big_endian_32)
+
+## `to_big_endian_64`
+
+Encodes bigint into a 64-bit two’s complement big-endian format.
+
+*Supported Signatures*
+```sql
+function to_big_endian_64(bigint) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_big_endian_64)
+
+## `to_hex`
+
+Encodes binary into a hex string representation.
+
+
+*Examples:*
+```sql examples.sql
+SELECT to_hex(cast(1000 as varbinary)) AS value; -- value 'e8030000'
+```
+*Supported Signatures*
+```sql
+function to_hex(varbinary) returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_hex)
+
+## `to_ieee754_32`
+
+Encodes real into a 32-bit big-endian binary according to IEEE 754 single-precision floating-point format.
+
+*Supported Signatures*
+```sql
+function to_ieee754_32(real) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_ieee754_32)
+
+## `to_ieee754_64`
+
+Encodes double into a 64-bit big-endian binary according to IEEE 754 double-precision floating-point format.
+
+*Supported Signatures*
+```sql
+function to_ieee754_64(double) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#to_ieee754_64)
+
+## `xxhash64`
+
+Computes the xxHash64 hash of binary.
+
+*Supported Signatures*
+```sql
+function xxhash64(varbinary) returns varbinary
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/binary.html#xxhash64)
+
+

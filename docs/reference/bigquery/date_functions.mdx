@@ -4,7 +4,7 @@ title: "Date Functions"
 
 ## `current_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_date() returns date
 function current_date(string) returns date
@@ -13,7 +13,7 @@ function current_date(string) returns date
 
 ## `date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date(bigint, bigint, bigint) returns date
 function date(timestamp) returns date
@@ -24,7 +24,7 @@ function date(datetime) returns date
 
 ## `date_add`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_add $1($1, interval) returns $1
 	where $1 in (date, datetime, timestamp)
@@ -33,7 +33,7 @@ function date_add $1($1, interval) returns $1
 
 ## `date_diff`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_diff $1($1, $1, date_part string) returns bigint
 	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
@@ -43,7 +43,7 @@ function date_diff $1($1, $1, date_part string) returns bigint
 
 ## `date_from_unix_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_from_unix_date(bigint) returns date
 ```
@@ -51,7 +51,7 @@ function date_from_unix_date(bigint) returns date
 
 ## `date_trunc`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function date_trunc $1($1, date_part string) returns $1
 	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
@@ -61,7 +61,7 @@ function date_trunc $1($1, date_part string) returns $1
 
 ## `format_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function format_date $1(string, $1) returns string
 	where $1 in (date, datetime, timestamp)
@@ -70,7 +70,7 @@ function format_date $1(string, $1) returns string
 
 ## `last_day`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function last_day $1($1) returns date
 	where $1 in (date, datetime)
@@ -82,7 +82,7 @@ function last_day $1($1, date_part string) returns date
 
 ## `parse_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function parse_date(string, string) returns date
 ```
@@ -90,7 +90,7 @@ function parse_date(string, string) returns date
 
 ## `unix_date`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function unix_date(date) returns bigint
 ```

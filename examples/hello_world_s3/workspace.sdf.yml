@@ -1,0 +1,40 @@
+workspace:
+  name: hello_world
+  edition: "1.3"
+  description: >
+    Hello World! Let's analyze the world population.
+
+    To build using the local population data (./local/pop.csv), run using the 'local' environment: 'sdf run -e local --show all'
+
+    To pull data from s3 (s3://sdfdatasets), first authenticate SDF with a local AWS profile. This can be any AWS profile, as the S3 bucket is public.
+    Use: `sdf auth login aws --profile <profile>`
+
+    Next, run using the remote environment: 'sdf run -e remote --show all'. 
+
+    Type 'sdf compile' to view schema information for either environment.
+
+  defaults:
+    dialect: presto
+    environment: local
+---
+environment:
+  name: local
+
+  includes:
+    - path: local
+      type: model
+    - path: local/pop.csv
+      type: resource
+---
+environment:
+  name: remote
+
+  includes:
+    - path: remote
+
+  integrations:
+    - provider: s3
+      type: data
+      buckets:
+        - uri: s3://sdfdatasets
+          region: us-east-1

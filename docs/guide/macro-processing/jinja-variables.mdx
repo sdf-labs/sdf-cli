@@ -117,6 +117,11 @@ from
 ```
 </CodeGroup>
 
+[SDF Variables](/guide/macro-processing/sdf-variables) specified via the command line, or in the `workspace.sdf.yml` file, can also be accessed in the same way as local variables. They are namespaced globally, and can be accessed in any file in the workspace.
+
+<Warning>
+    Local variables are prioritized over global variables if they share the same name.
+</Warning>
 
 <Note>
     Since local variables are scoped to the file they are defined in, you can define a variable with the same name in another file without any conflicts. Furthermore, you can reference the variable by name alone without any prefix or namespace.

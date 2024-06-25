@@ -31,7 +31,7 @@ Let's explore some of the capabilities unlocked by using jinja in a minimal SDF 
 
     </Step>
     <Step title="Add a Jinja Expression to main.sql">
-        Replace the contents of /src/main.sql with a short jinja expression like:
+        Replace the contents of /models/main.sql with a short jinja expression like:
         ```sql
         select 
         {% for i in range (1, 5)%}
@@ -80,7 +80,7 @@ Let's explore some of the capabilities unlocked by using jinja in a minimal SDF 
         workspace:
             ...
             includes:
-            - path: src   
+            - path: models   
             - path: macros # <-- add this
             ...
         ```
@@ -104,9 +104,9 @@ Let's explore some of the capabilities unlocked by using jinja in a minimal SDF 
     </Step>  
     <Step title="Using the Jinja function">
         It's time to reference the function.
-        Let's create a new SQL file, `child.sql` in the */src* folder.
+        Let's create a new SQL file, `child.sql` in the */models* folder.
 
-        ```sql src/child.sql
+        ```sql models/child.sql
         CREATE TABLE {{ jinjex.switch_schema("private", "child") }}
         AS
         SELECT col_1, col_3 
@@ -156,4 +156,4 @@ Let's explore some of the capabilities unlocked by using jinja in a minimal SDF 
 </Steps>
 
 For additional resources on effectively using macros, please see SDF docs on:
-* [Environment Variables](../macro-processing/env-vars)
+* [Environment Variables](/guide/macro-processing/jinja-variables)

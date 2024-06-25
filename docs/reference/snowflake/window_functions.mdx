@@ -5,9 +5,8 @@ title: "Window Functions"
 
 ## `conditional_change_event`
 
-#### Description
 Returns the event window number of this row in the window based on whether the argument expression on the current row differs from that on the previous row 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function conditional_change_event($1) returns decimal(38, 0)
 ```
@@ -15,9 +14,8 @@ function conditional_change_event($1) returns decimal(38, 0)
 
 ## `conditional_true_event`
 
-#### Description
 Returns the event window number of this row in the window based on the result of the boolean argument expression 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function conditional_true_event(boolean) returns decimal(38, 0)
 function conditional_true_event(decimal(38, 0)) returns decimal(38, 0)
@@ -26,9 +24,8 @@ function conditional_true_event(decimal(38, 0)) returns decimal(38, 0)
 
 ## `cume_dist`
 
-#### Description
 Returns the cumulative distribution of a row in the window
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function cume_dist() returns double
 ```
@@ -36,9 +33,8 @@ function cume_dist() returns double
 
 ## `dense_rank`
 
-#### Description
 Returns the dense rank of a row in the window
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function dense_rank() returns decimal(38, 0)
 ```
@@ -46,9 +42,8 @@ function dense_rank() returns decimal(38, 0)
 
 ## `first_value`
 
-#### Description
 Returns the first value of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function first_value($1) returns $1
 ```
@@ -56,9 +51,8 @@ function first_value($1) returns $1
 
 ## `lag`
 
-#### Description
 Returns the value of an expression at the specified offset row
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function lag($1) returns $1
 function lag($1, decimal(38, 0)) returns $1
@@ -68,9 +62,8 @@ function lag($1, decimal(38, 0), $1) returns $1
 
 ## `last_value`
 
-#### Description
 Returns the last value of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function last_value($1) returns $1
 ```
@@ -78,9 +71,8 @@ function last_value($1) returns $1
 
 ## `lead`
 
-#### Description
 Returns the value of an expression at the specified offset row
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function lead($1) returns $1
 function lead($1, decimal(38, 0)) returns $1
@@ -90,9 +82,8 @@ function lead($1, decimal(38, 0), $1) returns $1
 
 ## `nth_value`
 
-#### Description
 Returns the first value of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function nth_value($1, decimal(38, 0)) returns $1
 ```
@@ -100,9 +91,8 @@ function nth_value($1, decimal(38, 0)) returns $1
 
 ## `ntile`
 
-#### Description
 Number of groups (ntiles) per window
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ntile(decimal(38, 0)) returns decimal(38, 0)
 ```
@@ -110,9 +100,8 @@ function ntile(decimal(38, 0)) returns decimal(38, 0)
 
 ## `percent_rank`
 
-#### Description
 Returns the percent rank of a row in the window
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function percent_rank() returns double
 ```
@@ -120,9 +109,8 @@ function percent_rank() returns double
 
 ## `rank`
 
-#### Description
 Returns the rank of a row in the window
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function rank() returns decimal(38, 0)
 ```
@@ -130,9 +118,8 @@ function rank() returns decimal(38, 0)
 
 ## `ratio_to_report`
 
-#### Description
 Returns a cumulative ratio_to_report of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ratio_to_report(decimal(38, 0)) returns decimal(38, 0)
 function ratio_to_report(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
@@ -143,9 +130,8 @@ function ratio_to_report(double, decimal(38, 0)) returns double
 
 ## `row_number`
 
-#### Description
 Returns the position of this row in the window
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function row_number() returns decimal(38, 0)
 ```

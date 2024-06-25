@@ -5,9 +5,8 @@ title: "String & Binary Functions"
 
 ## `ascii`
 
-#### Description
 Returns the ascii code of the first character of the string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ascii(varchar) returns decimal(38, 0)
 ```
@@ -15,9 +14,8 @@ function ascii(varchar) returns decimal(38, 0)
 
 ## `base64_decode_binary`
 
-#### Description
 return decoded binary
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function base64_decode_binary(varchar) returns binary
 function base64_decode_binary(varchar, varchar) returns binary
@@ -26,9 +24,8 @@ function base64_decode_binary(varchar, varchar) returns binary
 
 ## `base64_decode_string`
 
-#### Description
 return decoded string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function base64_decode_string(varchar) returns varchar
 function base64_decode_string(varchar, varchar) returns varchar
@@ -37,9 +34,8 @@ function base64_decode_string(varchar, varchar) returns varchar
 
 ## `base64_encode`
 
-#### Description
 return encoded string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function base64_encode(varchar) returns varchar
 function base64_encode(varchar, decimal(38, 0)) returns varchar
@@ -52,9 +48,8 @@ function base64_encode(binary, decimal(38, 0), varchar) returns varchar
 
 ## `bit_length`
 
-#### Description
 Returns the length of the object in bits
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bit_length(varchar) returns decimal(38, 0)
 function bit_length(binary) returns decimal(38, 0)
@@ -63,9 +58,8 @@ function bit_length(binary) returns decimal(38, 0)
 
 ## `char`
 
-#### Description
 Convert an ASCII or Unicode code into a single character
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function char(decimal(38, 0)) returns varchar
 ```
@@ -73,9 +67,8 @@ function char(decimal(38, 0)) returns varchar
 
 ## `charindex`
 
-#### Description
 Returns the position of the needle in the haystack, optionally from a given index
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function charindex(varchar, varchar) returns decimal(38, 0)
 function charindex(varchar, varchar, decimal(38, 0)) returns decimal(38, 0)
@@ -86,9 +79,8 @@ function charindex(binary, binary, decimal(38, 0)) returns decimal(38, 0)
 
 ## `chr`
 
-#### Description
 Convert an ASCII or Unicode code into a single character
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function chr(decimal(38, 0)) returns varchar
 ```
@@ -96,7 +88,7 @@ function chr(decimal(38, 0)) returns varchar
 
 ## `collate`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function collate($1, string) returns $1
 ```
@@ -104,7 +96,7 @@ function collate($1, string) returns $1
 
 ## `collation`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function collation($1) returns string
 ```
@@ -112,9 +104,8 @@ function collation($1) returns string
 
 ## `compress`
 
-#### Description
 compressed data (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function compress(varchar, varchar) returns binary
 function compress(binary, varchar) returns binary
@@ -123,9 +114,8 @@ function compress(binary, varchar) returns binary
 
 ## `concat`
 
-#### Description
 Returns concatenation of the input strings, or null if any one of them is null.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function concat(varchar, ...) returns varchar
 function concat(binary, ...) returns binary
@@ -134,9 +124,8 @@ function concat(binary, ...) returns binary
 
 ## `concat_ws`
 
-#### Description
 Returns concatenation of the input strings with separator, or null if any one of them is null.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function concat_ws(varchar, varchar, ...) returns varchar
 function concat_ws(binary, binary, ...) returns binary
@@ -145,9 +134,8 @@ function concat_ws(binary, binary, ...) returns binary
 
 ## `contains`
 
-#### Description
 returns TRUE if arg1 constains arg2
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function contains(varchar, varchar) returns boolean
 function contains(binary, binary) returns boolean
@@ -156,9 +144,8 @@ function contains(binary, binary) returns boolean
 
 ## `decompress_binary`
 
-#### Description
 decompressed binary (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function decompress_binary(binary, varchar) returns binary
 ```
@@ -166,9 +153,8 @@ function decompress_binary(binary, varchar) returns binary
 
 ## `decompress_string`
 
-#### Description
 decompressed string (return)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function decompress_string(binary, varchar) returns varchar
 ```
@@ -176,9 +162,8 @@ function decompress_string(binary, varchar) returns varchar
 
 ## `editdistance`
 
-#### Description
 Returns the Levenshtein edit distance between two strings.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function editdistance(varchar, varchar) returns decimal(38, 0)
 function editdistance(varchar, varchar, decimal(38, 0)) returns decimal(38, 0)
@@ -187,9 +172,8 @@ function editdistance(varchar, varchar, decimal(38, 0)) returns decimal(38, 0)
 
 ## `endswith`
 
-#### Description
 returns TRUE if arg1 ends with arg2
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function endswith(varchar, varchar) returns boolean
 function endswith(binary, binary) returns boolean
@@ -198,9 +182,8 @@ function endswith(binary, binary) returns boolean
 
 ## `hex_decode_binary`
 
-#### Description
 return decoded binary
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hex_decode_binary(varchar) returns binary
 ```
@@ -208,9 +191,8 @@ function hex_decode_binary(varchar) returns binary
 
 ## `hex_decode_string`
 
-#### Description
 return decoded string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hex_decode_string(varchar) returns varchar
 ```
@@ -218,9 +200,8 @@ function hex_decode_string(varchar) returns varchar
 
 ## `hex_encode`
 
-#### Description
 return encoded string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hex_encode(varchar) returns varchar
 function hex_encode(varchar, decimal(38, 0)) returns varchar
@@ -231,9 +212,8 @@ function hex_encode(binary, decimal(38, 0)) returns varchar
 
 ## `initcap`
 
-#### Description
 return string with all the initial letter of each word is LOWERcase.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function initcap(varchar) returns varchar
 function initcap(varchar, varchar) returns varchar
@@ -242,9 +222,8 @@ function initcap(varchar, varchar) returns varchar
 
 ## `insert`
 
-#### Description
 Returns the first string with a substring at the given position and length replaced with the second string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function insert(varchar, decimal(38, 0), decimal(38, 0), varchar) returns varchar
 ```
@@ -252,9 +231,8 @@ function insert(varchar, decimal(38, 0), decimal(38, 0), varchar) returns varcha
 
 ## `jarowinkler_similarity`
 
-#### Description
 Returns the Jaro-Winkler similarity metric between two strings.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function jarowinkler_similarity(varchar, varchar) returns decimal(38, 0)
 ```
@@ -262,9 +240,8 @@ function jarowinkler_similarity(varchar, varchar) returns decimal(38, 0)
 
 ## `left`
 
-#### Description
 Returns leftmost N characters of the input string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function left(varchar, decimal(38, 0)) returns varchar
 ```
@@ -272,9 +249,8 @@ function left(varchar, decimal(38, 0)) returns varchar
 
 ## `len`
 
-#### Description
 Returns length of string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function len(varchar) returns decimal(38, 0)
 function len(binary) returns decimal(38, 0)
@@ -283,9 +259,8 @@ function len(binary) returns decimal(38, 0)
 
 ## `length`
 
-#### Description
 Returns the length of the string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function length(varchar) returns decimal(38, 0)
 function length(binary) returns decimal(38, 0)
@@ -294,9 +269,8 @@ function length(binary) returns decimal(38, 0)
 
 ## `lower`
 
-#### Description
 return string with all characters in lowercase
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function lower(varchar) returns varchar
 ```
@@ -304,9 +278,8 @@ function lower(varchar) returns varchar
 
 ## `lpad`
 
-#### Description
 padded result string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function lpad(varchar, decimal(38, 0)) returns varchar
 function lpad(varchar, decimal(38, 0), varchar) returns varchar
@@ -316,9 +289,8 @@ function lpad(binary, decimal(38, 0), binary) returns binary
 
 ## `ltrim`
 
-#### Description
 return string trimmed from left
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function ltrim(varchar) returns varchar
 function ltrim(varchar, varchar) returns varchar
@@ -327,9 +299,8 @@ function ltrim(varchar, varchar) returns varchar
 
 ## `md5`
 
-#### Description
 Hex-encoded MD5 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function md5(varchar) returns varchar
 function md5(binary) returns varchar
@@ -338,9 +309,8 @@ function md5(binary) returns varchar
 
 ## `md5_binary`
 
-#### Description
 Binary MD5 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function md5_binary(varchar) returns binary
 function md5_binary(binary) returns binary
@@ -349,9 +319,8 @@ function md5_binary(binary) returns binary
 
 ## `md5_hex`
 
-#### Description
 Hex-encoded MD5 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function md5_hex(varchar) returns varchar
 function md5_hex(binary) returns varchar
@@ -360,7 +329,7 @@ function md5_hex(binary) returns varchar
 
 ## `md5_number_lower64`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function md5_number_lower64(string) returns binary
 ```
@@ -368,7 +337,7 @@ function md5_number_lower64(string) returns binary
 
 ## `md5_number_upper64`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function md5_number_upper64(string) returns binary
 ```
@@ -376,9 +345,8 @@ function md5_number_upper64(string) returns binary
 
 ## `octet_length`
 
-#### Description
 Returns the length of the string in bytes
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function octet_length(varchar) returns decimal(38, 0)
 function octet_length(binary) returns decimal(38, 0)
@@ -387,9 +355,8 @@ function octet_length(binary) returns decimal(38, 0)
 
 ## `parse_ip`
 
-#### Description
 Returns an object with all the components of the IP
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function parse_ip(varchar, varchar) returns object
 function parse_ip(varchar, varchar, decimal(38, 0)) returns object
@@ -398,9 +365,8 @@ function parse_ip(varchar, varchar, decimal(38, 0)) returns object
 
 ## `parse_url`
 
-#### Description
 Returns an object with all the components of the URL
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function parse_url(varchar) returns object
 function parse_url(varchar, decimal(38, 0)) returns object
@@ -409,9 +375,8 @@ function parse_url(varchar, decimal(38, 0)) returns object
 
 ## `position`
 
-#### Description
 Returns the position of the needle in the haystack, optionally from a given index
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function position(varchar, varchar) returns decimal(38, 0)
 function position(varchar, varchar, decimal(38, 0)) returns decimal(38, 0)
@@ -422,9 +387,8 @@ function position(binary, binary, decimal(38, 0)) returns decimal(38, 0)
 
 ## `repeat`
 
-#### Description
 Returns the input string repeated N times
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function repeat(varchar, decimal(38, 0)) returns varchar
 ```
@@ -432,9 +396,8 @@ function repeat(varchar, decimal(38, 0)) returns varchar
 
 ## `replace`
 
-#### Description
 replaces all occurrences of searched substring in subject with a replacement
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function replace(varchar, varchar) returns varchar
 function replace(varchar, varchar, varchar) returns varchar
@@ -443,9 +406,8 @@ function replace(varchar, varchar, varchar) returns varchar
 
 ## `reverse`
 
-#### Description
 return string with character order reversed
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function reverse(varchar) returns varchar
 function reverse(binary) returns binary
@@ -454,9 +416,8 @@ function reverse(binary) returns binary
 
 ## `right`
 
-#### Description
 Returns rightmost N characters of the input string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function right(varchar, decimal(38, 0)) returns varchar
 ```
@@ -464,9 +425,8 @@ function right(varchar, decimal(38, 0)) returns varchar
 
 ## `rpad`
 
-#### Description
 padded result string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function rpad(varchar, decimal(38, 0)) returns varchar
 function rpad(varchar, decimal(38, 0), varchar) returns varchar
@@ -476,9 +436,8 @@ function rpad(binary, decimal(38, 0), binary) returns binary
 
 ## `rtrim`
 
-#### Description
 return string trimmed from right
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function rtrim(varchar) returns varchar
 function rtrim(varchar, varchar) returns varchar
@@ -487,9 +446,8 @@ function rtrim(varchar, varchar) returns varchar
 
 ## `rtrimmed_length`
 
-#### Description
 Returns the length of the input string without trailing blanks
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function rtrimmed_length(varchar) returns varchar
 ```
@@ -497,9 +455,8 @@ function rtrimmed_length(varchar) returns varchar
 
 ## `sha1`
 
-#### Description
 Hex-encoded SHA1 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha1(varchar) returns varchar
 function sha1(binary) returns varchar
@@ -508,9 +465,8 @@ function sha1(binary) returns varchar
 
 ## `sha1_binary`
 
-#### Description
 Binary SHA1 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha1_binary(varchar) returns binary
 function sha1_binary(binary) returns binary
@@ -519,9 +475,8 @@ function sha1_binary(binary) returns binary
 
 ## `sha1_hex`
 
-#### Description
 Hex-encoded SHA1 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha1_hex(varchar) returns varchar
 function sha1_hex(binary) returns varchar
@@ -530,9 +485,8 @@ function sha1_hex(binary) returns varchar
 
 ## `sha2`
 
-#### Description
 Hex-encoded SHA2 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha2(varchar) returns varchar
 function sha2(varchar, decimal(38, 0)) returns varchar
@@ -543,9 +497,8 @@ function sha2(binary, decimal(38, 0)) returns varchar
 
 ## `sha2_binary`
 
-#### Description
 Binary SHA2 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha2_binary(varchar) returns binary
 function sha2_binary(varchar, decimal(38, 0)) returns binary
@@ -556,9 +509,8 @@ function sha2_binary(binary, decimal(38, 0)) returns binary
 
 ## `sha2_hex`
 
-#### Description
 Hex-encoded SHA2 digest
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sha2_hex(varchar) returns varchar
 function sha2_hex(varchar, decimal(38, 0)) returns varchar
@@ -569,9 +521,8 @@ function sha2_hex(binary, decimal(38, 0)) returns varchar
 
 ## `soundex`
 
-#### Description
 soundex encoding of string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function soundex(varchar) returns varchar
 ```
@@ -579,9 +530,8 @@ function soundex(varchar) returns varchar
 
 ## `soundex_p123`
 
-#### Description
 soundex_p123 encoding of string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function soundex_p123(varchar) returns varchar
 ```
@@ -589,9 +539,8 @@ function soundex_p123(varchar) returns varchar
 
 ## `space`
 
-#### Description
 N spaces
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function space(decimal(38, 0)) returns varchar
 ```
@@ -599,9 +548,8 @@ function space(decimal(38, 0)) returns varchar
 
 ## `split`
 
-#### Description
 return split string as array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function split(varchar, varchar) returns array
 ```
@@ -609,9 +557,8 @@ function split(varchar, varchar) returns array
 
 ## `split_part`
 
-#### Description
 Splits a string with a delimiter and returns the requested part
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function split_part(varchar, varchar, decimal(38, 0)) returns varchar
 ```
@@ -619,7 +566,7 @@ function split_part(varchar, varchar, decimal(38, 0)) returns varchar
 
 ## `split_to_table`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function split_to_table(string, string) returns struct<seq int, index int, value string>
 ```
@@ -627,9 +574,8 @@ function split_to_table(string, string) returns struct<seq int, index int, value
 
 ## `startswith`
 
-#### Description
 returns TRUE if arg1 starts with arg2
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function startswith(varchar, varchar) returns boolean
 function startswith(binary, binary) returns boolean
@@ -638,9 +584,8 @@ function startswith(binary, binary) returns boolean
 
 ## `strtok`
 
-#### Description
 Tokenizes a string with a delimiter and returns the requested part
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function strtok(varchar) returns varchar
 function strtok(varchar, varchar) returns varchar
@@ -650,7 +595,7 @@ function strtok(varchar, varchar, decimal(38, 0)) returns varchar
 
 ## `strtok_split_to_table`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function strtok_split_to_table(string, ...) returns struct<seq int, index int, value string>
 ```
@@ -658,9 +603,8 @@ function strtok_split_to_table(string, ...) returns struct<seq int, index int, v
 
 ## `strtok_to_array`
 
-#### Description
 Return tokenized string as array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function strtok_to_array(varchar) returns array
 function strtok_to_array(varchar, varchar) returns array
@@ -669,9 +613,8 @@ function strtok_to_array(varchar, varchar) returns array
 
 ## `substr`
 
-#### Description
 Returns string fragment of the input string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function substr(varchar, decimal(38, 0)) returns varchar
 function substr(varchar, decimal(38, 0), decimal(38, 0)) returns varchar
@@ -682,9 +625,8 @@ function substr(binary, decimal(38, 0), decimal(38, 0)) returns binary
 
 ## `substring`
 
-#### Description
 Returns string fragment of the input string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function substring(varchar, decimal(38, 0)) returns varchar
 function substring(varchar, decimal(38, 0), decimal(38, 0)) returns varchar
@@ -695,9 +637,8 @@ function substring(binary, decimal(38, 0), decimal(38, 0)) returns binary
 
 ## `translate`
 
-#### Description
 replaces all occurences of each character of the source alphabet in the subject with the corresponding character in the target alphabet
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function translate(varchar, varchar, varchar) returns varchar
 ```
@@ -705,9 +646,8 @@ function translate(varchar, varchar, varchar) returns varchar
 
 ## `trim`
 
-#### Description
 return string trimmed from both sides
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function trim(varchar) returns varchar
 function trim(varchar, varchar) returns varchar
@@ -716,9 +656,8 @@ function trim(varchar, varchar) returns varchar
 
 ## `try_base64_decode_binary`
 
-#### Description
 return decoded binary
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_base64_decode_binary(varchar) returns binary
 function try_base64_decode_binary(varchar, varchar) returns binary
@@ -727,9 +666,8 @@ function try_base64_decode_binary(varchar, varchar) returns binary
 
 ## `try_base64_decode_string`
 
-#### Description
 return decoded string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_base64_decode_string(varchar) returns varchar
 function try_base64_decode_string(varchar, varchar) returns varchar
@@ -738,9 +676,8 @@ function try_base64_decode_string(varchar, varchar) returns varchar
 
 ## `try_hex_decode_binary`
 
-#### Description
 return decoded binary
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_hex_decode_binary(varchar) returns binary
 ```
@@ -748,9 +685,8 @@ function try_hex_decode_binary(varchar) returns binary
 
 ## `try_hex_decode_string`
 
-#### Description
 return decoded string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_hex_decode_string(varchar) returns varchar
 ```
@@ -758,9 +694,8 @@ function try_hex_decode_string(varchar) returns varchar
 
 ## `unicode`
 
-#### Description
 Returns the Unicode code point of the first character of the string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function unicode(varchar) returns decimal(38, 0)
 ```
@@ -768,9 +703,8 @@ function unicode(varchar) returns decimal(38, 0)
 
 ## `upper`
 
-#### Description
 return string with all characters in uppercase
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function upper(varchar) returns varchar
 ```
@@ -778,9 +712,8 @@ function upper(varchar) returns varchar
 
 ## `uuid_string`
 
-#### Description
 Returns a pseudo-randomly generated (version 4) UUID.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function uuid_string() returns varchar
 function uuid_string(varchar, varchar) returns varchar

@@ -1,0 +1,48 @@
+---
+title: "Session Functions"
+---
+
+## `current_catalog`
+
+Returns a character string that represents the current catalog name.
+
+*Supported Signatures*
+```sql
+function current_catalog() returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_catalog)
+
+## `current_groups`
+
+Returns the list of groups for the current user running the query.
+
+*Supported Signatures*
+```sql
+function current_groups() returns array<varchar>
+```
+*Note: current_groups() is stable,  i.e. might return a
+                different value for a different query execution.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_groups)
+
+## `current_schema`
+
+Returns a character string that represents the current unqualified schema name.
+
+*Supported Signatures*
+```sql
+function current_schema() returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_schema)
+
+## `current_user`
+
+Returns the current user running the query.
+
+*Supported Signatures*
+```sql
+function current_user() returns varchar
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/session.html#current_user)
+
+

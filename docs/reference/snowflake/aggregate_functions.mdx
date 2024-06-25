@@ -5,9 +5,8 @@ title: "Aggregate Functions"
 
 ## `any_value`
 
-#### Description
 Returns the first non-null value of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function any_value($1) returns $1
 ```
@@ -15,9 +14,8 @@ function any_value($1) returns $1
 
 ## `approx_count_distinct`
 
-#### Description
 approximate distinct row count
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_count_distinct($1, ...) returns decimal(38, 0)
 ```
@@ -25,9 +23,8 @@ function approx_count_distinct($1, ...) returns decimal(38, 0)
 
 ## `approx_percentile`
 
-#### Description
 percentile approximation of inputs
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_percentile(double, double) returns double
 ```
@@ -35,9 +32,8 @@ function approx_percentile(double, double) returns double
 
 ## `approx_percentile_accumulate`
 
-#### Description
 tdigest state in JSON format
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_percentile_accumulate(double) returns object
 ```
@@ -45,9 +41,8 @@ function approx_percentile_accumulate(double) returns object
 
 ## `approx_percentile_combine`
 
-#### Description
 A tdigest state in JSON format
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_percentile_combine(object) returns object
 ```
@@ -55,9 +50,8 @@ function approx_percentile_combine(object) returns object
 
 ## `approx_percentile_estimate`
 
-#### Description
 ESTIMATED PERCENTILE VALUE
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_percentile_estimate(object, double) returns double
 ```
@@ -65,9 +59,8 @@ function approx_percentile_estimate(object, double) returns double
 
 ## `approx_top_k`
 
-#### Description
 Array containing top k items and their frequencies
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_top_k($1) returns array
 function approx_top_k($1, decimal(38, 0)) returns array
@@ -77,9 +70,8 @@ function approx_top_k($1, decimal(38, 0), decimal(38, 0)) returns array
 
 ## `approx_top_k_accumulate`
 
-#### Description
 An internal state
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_top_k_accumulate($1, decimal(38, 0)) returns object
 ```
@@ -87,9 +79,8 @@ function approx_top_k_accumulate($1, decimal(38, 0)) returns object
 
 ## `approx_top_k_combine`
 
-#### Description
 A state created by combining information from combining  all input
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_top_k_combine(object) returns object
 function approx_top_k_combine(object, decimal(38, 0)) returns object
@@ -98,9 +89,8 @@ function approx_top_k_combine(object, decimal(38, 0)) returns object
 
 ## `approx_top_k_estimate`
 
-#### Description
 Array containing most common k items and their frequencies
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approx_top_k_estimate(object) returns array
 function approx_top_k_estimate(object, decimal(38, 0)) returns array
@@ -109,9 +99,8 @@ function approx_top_k_estimate(object, decimal(38, 0)) returns array
 
 ## `approximate_jaccard_index`
 
-#### Description
 Similarity approximation of inputs
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approximate_jaccard_index(variant) returns double
 ```
@@ -119,9 +108,8 @@ function approximate_jaccard_index(variant) returns double
 
 ## `approximate_similarity`
 
-#### Description
 Similarity approximation of inputs
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function approximate_similarity(variant) returns double
 ```
@@ -129,9 +117,8 @@ function approximate_similarity(variant) returns double
 
 ## `array_agg`
 
-#### Description
 output array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_agg($1) returns array
 ```
@@ -139,9 +126,8 @@ function array_agg($1) returns array
 
 ## `array_union_agg`
 
-#### Description
 output array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_union_agg(array) returns array
 function array_union_agg(array) returns array
@@ -150,9 +136,8 @@ function array_union_agg(array) returns array
 
 ## `array_unique_agg`
 
-#### Description
 output array
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_unique_agg($1) returns array
 ```
@@ -160,9 +145,8 @@ function array_unique_agg($1) returns array
 
 ## `avg`
 
-#### Description
 Returns the average of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function avg(decimal(38, 0)) returns decimal(38, 0)
 function avg(double) returns double
@@ -172,9 +156,8 @@ function avg(string) returns string
 
 ## `bitand_agg`
 
-#### Description
 Returns the bitwise AND of a column. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bitand_agg(decimal(38, 0)) returns decimal(38, 0)
 function bitand_agg(string) returns string
@@ -183,9 +166,8 @@ function bitand_agg(string) returns string
 
 ## `bitmap_bit_position`
 
-#### Description
 relative position in bitmap
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bitmap_bit_position(decimal(38, 0)) returns decimal(38, 0)
 ```
@@ -193,9 +175,8 @@ function bitmap_bit_position(decimal(38, 0)) returns decimal(38, 0)
 
 ## `bitmap_bucket_number`
 
-#### Description
 bucket index of the destination bitmap
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bitmap_bucket_number(decimal(38, 0)) returns decimal(38, 0)
 ```
@@ -203,9 +184,8 @@ function bitmap_bucket_number(decimal(38, 0)) returns decimal(38, 0)
 
 ## `bitmap_construct_agg`
 
-#### Description
 bitmap
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bitmap_construct_agg(decimal(38, 0)) returns binary
 ```
@@ -213,9 +193,8 @@ function bitmap_construct_agg(decimal(38, 0)) returns binary
 
 ## `bitmap_count`
 
-#### Description
 number of set bits in the bitmap
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bitmap_count(binary) returns decimal(38, 0)
 ```
@@ -223,9 +202,8 @@ function bitmap_count(binary) returns decimal(38, 0)
 
 ## `bitmap_or_agg`
 
-#### Description
 destination bitmap
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bitmap_or_agg(binary) returns binary
 ```
@@ -233,9 +211,8 @@ function bitmap_or_agg(binary) returns binary
 
 ## `bitor_agg`
 
-#### Description
 Returns the bitwise OR of a column. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bitor_agg(decimal(38, 0)) returns decimal(38, 0)
 function bitor_agg(string) returns string
@@ -244,9 +221,8 @@ function bitor_agg(string) returns string
 
 ## `bitxor_agg`
 
-#### Description
 Returns the bitwise XOR of a column. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bitxor_agg(decimal(38, 0)) returns decimal(38, 0)
 function bitxor_agg(string) returns string
@@ -255,9 +231,8 @@ function bitxor_agg(string) returns string
 
 ## `booland_agg`
 
-#### Description
 Returns the logical (boolean) AND of a column. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function booland_agg(decimal(38, 0)) returns boolean
 function booland_agg(boolean) returns boolean
@@ -266,9 +241,8 @@ function booland_agg(boolean) returns boolean
 
 ## `boolor_agg`
 
-#### Description
 Returns the logical (boolean) OR of a column. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function boolor_agg(decimal(38, 0)) returns boolean
 function boolor_agg(boolean) returns boolean
@@ -277,9 +251,8 @@ function boolor_agg(boolean) returns boolean
 
 ## `boolxor_agg`
 
-#### Description
 Returns the logical (boolean) XOR of a column. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function boolxor_agg(decimal(38, 0)) returns boolean
 function boolxor_agg(boolean) returns boolean
@@ -288,9 +261,8 @@ function boolxor_agg(boolean) returns boolean
 
 ## `corr`
 
-#### Description
 Returns the correlation coefficient for non-null pairs in a group.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function corr(double, double) returns double
 ```
@@ -298,9 +270,8 @@ function corr(double, double) returns double
 
 ## `count`
 
-#### Description
 Return number of non-null values of a given expression
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function count($1, ...) returns decimal(38, 0)
 ```
@@ -308,9 +279,8 @@ function count($1, ...) returns decimal(38, 0)
 
 ## `count_if`
 
-#### Description
 Returns a conditional count
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function count_if(boolean) returns decimal(38, 0)
 function count_if(boolean) returns double
@@ -319,9 +289,8 @@ function count_if(boolean) returns double
 
 ## `covar_pop`
 
-#### Description
 Returns the population covariance for non-null pairs in a group.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function covar_pop(double, double) returns double
 ```
@@ -329,9 +298,8 @@ function covar_pop(double, double) returns double
 
 ## `covar_samp`
 
-#### Description
 Returns the sample covariance for non-null pairs in a group.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function covar_samp(double, double) returns double
 ```
@@ -339,7 +307,7 @@ function covar_samp(double, double) returns double
 
 ## `grouping`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function grouping(...) returns int
 ```
@@ -347,9 +315,8 @@ function grouping(...) returns int
 
 ## `grouping_id`
 
-#### Description
 Returns grouping bit-vector
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function grouping_id($1, ...) returns decimal(38, 0)
 ```
@@ -357,9 +324,8 @@ function grouping_id($1, ...) returns decimal(38, 0)
 
 ## `hash_agg`
 
-#### Description
 aggregate hash value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hash_agg($1, ...) returns decimal(38, 0)
 function hash_agg($1) returns decimal(38, 0)
@@ -372,9 +338,8 @@ function hash_agg($1, $2, $3, $4, $5) returns decimal(38, 0)
 
 ## `hll`
 
-#### Description
 approximate distinct row count
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hll($1, ...) returns decimal(38, 0)
 ```
@@ -382,9 +347,8 @@ function hll($1, ...) returns decimal(38, 0)
 
 ## `hll_accumulate`
 
-#### Description
 HyperLogLog state
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hll_accumulate($1, ...) returns binary
 ```
@@ -392,9 +356,8 @@ function hll_accumulate($1, ...) returns binary
 
 ## `hll_combine`
 
-#### Description
 combined HyperLogLog state
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hll_combine(binary) returns binary
 ```
@@ -402,9 +365,8 @@ function hll_combine(binary) returns binary
 
 ## `hll_estimate`
 
-#### Description
 approximate distinct row count
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hll_estimate(binary) returns decimal(38, 0)
 ```
@@ -412,9 +374,8 @@ function hll_estimate(binary) returns decimal(38, 0)
 
 ## `hll_export`
 
-#### Description
 HyperLogLog state as a compound OBJECT
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hll_export(binary) returns object
 ```
@@ -422,9 +383,8 @@ function hll_export(binary) returns object
 
 ## `hll_import`
 
-#### Description
 HyperLogLog state in binary format
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function hll_import(object) returns binary
 ```
@@ -432,9 +392,8 @@ function hll_import(object) returns binary
 
 ## `kurtosis`
 
-#### Description
 Returns the sample kurtosis of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function kurtosis(decimal(38, 0)) returns double
 function kurtosis(double) returns double
@@ -443,9 +402,8 @@ function kurtosis(double) returns double
 
 ## `listagg`
 
-#### Description
 output string
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function listagg(varchar) returns varchar
 function listagg(varchar, varchar) returns varchar
@@ -454,9 +412,8 @@ function listagg(varchar, varchar) returns varchar
 
 ## `max`
 
-#### Description
 Returns the maximum of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function max($1) returns $1
 ```
@@ -464,9 +421,8 @@ function max($1) returns $1
 
 ## `max_by`
 
-#### Description
 Returns value of first column with maximum second column val
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function max_by($1, $2) returns $1
 function max_by($1, $2, decimal(38, 0)) returns array
@@ -475,9 +431,8 @@ function max_by($1, $2, decimal(38, 0)) returns array
 
 ## `median`
 
-#### Description
 value of sort key at specified percentile
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function median() returns decimal(38, 0)
 function median(decimal(38, 0)) returns decimal(38, 0)
@@ -486,9 +441,8 @@ function median(decimal(38, 0)) returns decimal(38, 0)
 
 ## `min`
 
-#### Description
 Returns the minimum of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function min($1) returns $1
 ```
@@ -496,9 +450,8 @@ function min($1) returns $1
 
 ## `min_by`
 
-#### Description
 Returns value of first column with minimum second column val
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function min_by($1, $2) returns $1
 function min_by($1, $2, decimal(38, 0)) returns array
@@ -507,9 +460,8 @@ function min_by($1, $2, decimal(38, 0)) returns array
 
 ## `minhash`
 
-#### Description
 Minhash state including an array of k (first input arg) minimum hash values
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function minhash(decimal(38, 0), $1, ...) returns variant
 ```
@@ -517,9 +469,8 @@ function minhash(decimal(38, 0), $1, ...) returns variant
 
 ## `minhash_combine`
 
-#### Description
 Combined result of two (or more) minhash states
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function minhash_combine(variant) returns variant
 ```
@@ -527,9 +478,8 @@ function minhash_combine(variant) returns variant
 
 ## `mode`
 
-#### Description
 Returns the most frequent item of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function mode($1) returns $1
 ```
@@ -537,9 +487,8 @@ function mode($1) returns $1
 
 ## `object_agg`
 
-#### Description
 output object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function object_agg(varchar, variant) returns object
 ```
@@ -547,9 +496,8 @@ function object_agg(varchar, variant) returns object
 
 ## `percentile_cont`
 
-#### Description
 value of sort key at specified percentile
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function percentile_cont() returns double
 function percentile_cont(decimal(38, 0)) returns double
@@ -558,9 +506,8 @@ function percentile_cont(decimal(38, 0)) returns double
 
 ## `percentile_disc`
 
-#### Description
 value of sort key at specified percentile
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function percentile_disc() returns decimal(38, 0)
 function percentile_disc(decimal(38, 0)) returns decimal(38, 0)
@@ -569,9 +516,8 @@ function percentile_disc(decimal(38, 0)) returns decimal(38, 0)
 
 ## `regr_avgx`
 
-#### Description
 Returns the average of the independent variable (2nd parameter) for non-null pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_avgx(double, double) returns double
 ```
@@ -579,9 +525,8 @@ function regr_avgx(double, double) returns double
 
 ## `regr_avgy`
 
-#### Description
 Returns the average of the dependent variable (1st parameter) for non-null pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_avgy(double, double) returns double
 ```
@@ -589,9 +534,8 @@ function regr_avgy(double, double) returns double
 
 ## `regr_count`
 
-#### Description
 Returns the number of non-null number pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_count(double, double) returns double
 ```
@@ -599,9 +543,8 @@ function regr_count(double, double) returns double
 
 ## `regr_intercept`
 
-#### Description
 Returns the intercept of the univariate linear regression line for non-null pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_intercept(double, double) returns double
 ```
@@ -609,9 +552,8 @@ function regr_intercept(double, double) returns double
 
 ## `regr_r2`
 
-#### Description
 Returns the coefficient of determination for non-null pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_r2(double, double) returns double
 ```
@@ -619,9 +561,8 @@ function regr_r2(double, double) returns double
 
 ## `regr_slope`
 
-#### Description
 Returns the slope of the linear regression line for non-null pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_slope(double, double) returns double
 ```
@@ -629,9 +570,8 @@ function regr_slope(double, double) returns double
 
 ## `regr_sxx`
 
-#### Description
 Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr2) for non-null pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_sxx(double, double) returns double
 ```
@@ -639,9 +579,8 @@ function regr_sxx(double, double) returns double
 
 ## `regr_sxy`
 
-#### Description
 Returns REGR_COUNT(expr1, expr2) * COVAR_POP(expr1, expr2) for non-null pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_sxy(double, double) returns double
 ```
@@ -649,9 +588,8 @@ function regr_sxy(double, double) returns double
 
 ## `regr_syy`
 
-#### Description
 Returns REGR_COUNT(expr1, expr2) * VAR_POP(expr1) for non-null pairs.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function regr_syy(double, double) returns double
 ```
@@ -659,9 +597,8 @@ function regr_syy(double, double) returns double
 
 ## `skew`
 
-#### Description
 Returns the sample skew of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function skew(decimal(38, 0)) returns double
 function skew(double) returns double
@@ -670,9 +607,8 @@ function skew(double) returns double
 
 ## `stddev`
 
-#### Description
 Returns the sample standard deviation of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function stddev(decimal(38, 0)) returns double
 function stddev(double) returns double
@@ -681,9 +617,8 @@ function stddev(double) returns double
 
 ## `stddev_pop`
 
-#### Description
 Returns the population standard deviation of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function stddev_pop(decimal(38, 0)) returns double
 function stddev_pop(double) returns double
@@ -692,9 +627,8 @@ function stddev_pop(double) returns double
 
 ## `stddev_samp`
 
-#### Description
 Returns the sample standard deviation of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function stddev_samp(decimal(38, 0)) returns double
 function stddev_samp(double) returns double
@@ -703,9 +637,8 @@ function stddev_samp(double) returns double
 
 ## `sum`
 
-#### Description
 Returns a sum of a column
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sum(decimal(38, 0)) returns decimal(38, 0)
 function sum(double) returns double
@@ -714,9 +647,8 @@ function sum(double) returns double
 
 ## `var_pop`
 
-#### Description
 Returns the population variance of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function var_pop(decimal(38, 0)) returns double
 function var_pop(double) returns double
@@ -725,9 +657,8 @@ function var_pop(double) returns double
 
 ## `var_samp`
 
-#### Description
 Returns the sample variance of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function var_samp(decimal(38, 0)) returns double
 function var_samp(double) returns double
@@ -736,9 +667,8 @@ function var_samp(double) returns double
 
 ## `variance`
 
-#### Description
 Returns the sample variance of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function variance(decimal(38, 0)) returns double
 function variance(double) returns double
@@ -747,9 +677,8 @@ function variance(double) returns double
 
 ## `variance_pop`
 
-#### Description
 Returns the population variance of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function variance_pop(decimal(38, 0)) returns double
 function variance_pop(double) returns double
@@ -758,9 +687,8 @@ function variance_pop(double) returns double
 
 ## `variance_samp`
 
-#### Description
 Returns the sample variance of the values in a group. Null values are ignored.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function variance_samp(decimal(38, 0)) returns double
 function variance_samp(double) returns double

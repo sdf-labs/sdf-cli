@@ -5,7 +5,14 @@ title: "Binary Functions"
 
 ## `sha256`
 
-#### Supported Signatures
+Computes the SHA256 hash of binary.
+
+
+*Examples:*
+```sql examples.sql
+select sha256('Hello World!') as value; -- value '7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069'
+```
+*Supported Signatures*
 ```sql
 function sha256(varbinary) returns varbinary
 ```
@@ -13,7 +20,14 @@ function sha256(varbinary) returns varbinary
 
 ## `sha512`
 
-#### Supported Signatures
+Computes the SHA512 hash of binary.
+
+
+*Examples:*
+```sql examples.sql
+select sha512('Hello World!') as value; -- value '861844d6704e8573fec34d967e20bcfef3d424cf48be04e6dc08f2bd58c729743371015ead891cc3cf1c9d34b49264b510751b1ff9e537937bc46b5d6ff4ecc8'
+```
+*Supported Signatures*
 ```sql
 function sha512(varbinary) returns varbinary
 ```
@@ -21,7 +35,14 @@ function sha512(varbinary) returns varbinary
 
 ## `to_hex`
 
-#### Supported Signatures
+Encodes binary into a hex string representation.
+
+
+*Examples:*
+```sql examples.sql
+SELECT to_hex(cast(1000 as varbinary)) AS value; -- value 'e8030000'
+```
+*Supported Signatures*
 ```sql
 function to_hex(varbinary) returns varchar
 ```

@@ -1,6 +1,6 @@
 workspace:
-  name: moms_flower_shop # The name of this workspace -- required
-  edition: "1.2" # The edition of this workspace -- required
+  name: moms_flower_shop
+  edition: "1.3"
   description: >
     This workspace represents the data warehouse of mom's flower shop. 
 
@@ -15,15 +15,20 @@ workspace:
     models are available in the staging and analytics folders under the models folder.
 
   includes:
-    - path: models  # The path to sql models for this workspace -- at least one path is required
-    - path: seeds/parquet  # Where raw data is stored locally
-      type: resource  
-    - path: metadata  # Tables metadata
-    
-    # Uncomment here to begin the "Deprecating a Model" tutorial >>>>>>
-    - path: classifications  # Classifiers
-    - path: reports  # Reports based on SDF s information schema
-      type: report  
-    - path: checks  # Checks against SDF's information schema
-      type: check
-    # <<<<<<
+    - path: models
+      index: schema-table-name
+    - path: seeds/parquet
+      type: resource
+    - path: metadata
+    - path: classifications
+    - path: reports
+    - path: checks
+---
+environment:
+  name: dev
+  integrations:
+    - provider: sdf
+      type: database
+      targets:
+        - pattern: moms_flower_shop.*.*
+          rename-as: moms_workshed.${1}.${2}

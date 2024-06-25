@@ -7,13 +7,15 @@ description: "SDF offers a rich open source library ecosystem, as well as open s
 
 SDF is open core powered by [Apache DataFusion](https://datafusion.apache.org/). This means that while certain parts of SDF may be closed source, the core of SDF's SQL execution, function typing, and logical plan representation are all open source.
 
+
+
 SDF workspaces can also depend on one another, allowing you to build and share your own open source libraries. This is especially useful for sharing common functions, macros, and models across your organization.
 
 ## Open Source Libraries
 
 SDF offers a rich open source library ecosystem that you can use to extend the functionality of your SDF workspace. These libraries are maintained by the SDF community and are available for you to use in your own SDF projects.
 
-The SDF binary includes three open source libraries by default. Contributions are welcome, and the source code can be found in the GitHub repos linked below as well as in the `.sdfcache` directory of your workspace.
+The SDF binary includes three open source libraries by default. Contributions are welcome, and the source code can be found in the GitHub repos linked below as well as in the `sdftarget` directory of your workspace.
 
 #### [**SDF Materialization**](https://github.com/sdf-labs/materialization)
 
@@ -62,7 +64,7 @@ SDF is built on a number of open source components. These components are used to
 
 Most notably, local execution and more is powered by [Apache DataFusion](https://datafusion.apache.org/). Our official fork used internally is open sourced and available for contributions [here](https://github.com/sdf-labs/arrow-datafusion).
 
-One of SDF's more significant efforts is to power local compilation and execution of dialect-specific functions and queries. Imagine being able to run a Snowflake-native query locally on your machine against sampled data, then run the same query against your Snowflake warehouse in production.
+One of SDF's more significant efforts is to power local compilation and execution of dialect-specific functions and queries. Imagine being able to run a Snowflake-native query locally on your machine against sampled data, then run the same query against your Snowflake warehouse in the cloud.
 Our ongoing efforts to do this are powered by our open source [SQL Functions Crate](https://github.com/sdf-labs/sql-functions). 
 
 <Tip>

@@ -20,7 +20,6 @@ This first section will walk you through the steps to integrate SDF with an exis
 Ensure that you have the following installed and configured locally before beginning.
 
 - [DBT](https://docs.getdbt.com/dbt-cli/installation)
-- [SDF](/guide/install)
 - A valid `profiles.yml` file configured wth DBT. See [here](https://docs.getdbt.com/dbt-cli/configure-your-profile) for more information.
 
 Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You can clone it from [here](https://github.com/dbt-labs/jaffle_shop?tab=readme-ov-file).
@@ -29,7 +28,7 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 	Without a valid `profiles.yml`, the Jaffle Shop example will not be able to compile, and SDF will not work.
 </Warning>
 <Info>
-	We use this example as it doesn't require authentication to a database or existing warehouse. In a production scenario, you'd likely compile DBT with your own models and remote warehouse, requiring authentication. To use SDF in this context, check our [authentication](/guide/authentication) page to see if we support your warehouse. If not, DDLs can be manually added to SDF alongside the DBT project to enable SDF compilation.
+	We use this example as it doesn't require authentication to a database or existing warehouse. In a production scenario, you'd likely compile DBT with your own models and remote warehouse, requiring authentication. To use SDF in this context, check our [integrations](/guide/setup/integrations) page to see if we support your warehouse. If not, DDLs can be manually added to SDF alongside the DBT project to enable SDF compilation.
 </Info>
 
 ## Guide
@@ -81,7 +80,7 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 		All SDF needs to know is the name of the table, the location of the file, and the file format. From there, it can infer the schema and data types. As new seeds are added, simply running `sdf dbt refresh` will update the `workspace.sdf.yml` file with the new seeds. Seeds can also be configured manually according to the YAML specification for [SDF Table Blocks](/reference/sdf-yml#block-table)
 	</Step>
 	<Step title="Compile SDF">
-		Now that we have our `workspace.sdf.yml` file configured, we can compile SDF. This will generate the column level lineage and place it in the `.sdfcache` directory local to your DBT project. 
+		Now that we have our `workspace.sdf.yml` file configured, we can compile SDF. This will generate the column level lineage and place it in the `sdftarget` directory local to your DBT project. 
 
 		```shell
 		sdf compile
@@ -195,22 +194,24 @@ This command will initialize the SDF workspace for your DBT project. It will cre
 ```shell
 sdf dbt init
 ```
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Initialize a sdf workspace from a dbt project -- best effort
+Initialize&nbsp;a&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;a&nbsp;dbt&nbsp;project&nbsp;--&nbsp;best&nbsp;effort
 
-Usage: sdf dbt init [OPTIONS]
+Usage:&nbsp;sdf&nbsp;dbt&nbsp;init&nbsp;[OPTIONS]
 
 Options:
-      --target &lt;TARGET&gt;                Use this DBT target over the default target in profiles.yml
-      --profiles-dir &lt;PROFILES_DIR&gt;    Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
-      --workspace-dir &lt;WORKSPACE_DIR&gt;  Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
-  -s, --save                           Save and overwrite the workspace file
-  -c, --config &lt;CONFIG&gt;                Supply a config yml file or provide config as yml string e.g. &#39;&#123;key: value&#125;&#39;
-  -h, --help                           Print help
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--target&nbsp;&lt;TARGET&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;target&nbsp;over&nbsp;the&nbsp;default&nbsp;target&nbsp;in&nbsp;profiles.yml
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--profiles-dir&nbsp;&lt;PROFILES_DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;profile&nbsp;instead&nbsp;of&nbsp;the&nbsp;defaults&nbsp;at&nbsp;~/.dbt/profile.yml&nbsp;--&nbsp;(note&nbsp;dbt&nbsp;uses&nbsp;--profile_dir,&nbsp;this&nbsp;CLI&nbsp;uses&nbsp;--profile-dir)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--workspace-dir&nbsp;&lt;WORKSPACE_DIR&gt;&nbsp;&nbsp;Specifies&nbsp;the&nbsp;workspace&nbsp;directory&nbsp;where&nbsp;we&nbsp;expect&nbsp;to&nbsp;see&nbsp;manifest&nbsp;and&nbsp;dbt&nbsp;project&nbsp;files&nbsp;The&nbsp;SDF&nbsp;workspace&nbsp;file&nbsp;will&nbsp;be&nbsp;placed&nbsp;in&nbsp;the&nbsp;same&nbsp;directory.&nbsp;Default:&nbsp;current&nbsp;directory
+&nbsp;&nbsp;-s,&nbsp;--save&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;and&nbsp;overwrite&nbsp;the&nbsp;workspace&nbsp;file
+&nbsp;&nbsp;-c,&nbsp;--config&nbsp;&lt;CONFIG&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supply&nbsp;a&nbsp;config&nbsp;yml&nbsp;file&nbsp;or&nbsp;provide&nbsp;config&nbsp;as&nbsp;yml&nbsp;string&nbsp;e.g.&nbsp;&#39;&#123;key:&nbsp;value&#125;&#39;
+&nbsp;&nbsp;-h,&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help
 
 </code>
 </pre>
+</div>
 
 <Warning>
 	`dbt compile` must be run before running `sdf dbt init`
@@ -222,22 +223,24 @@ This command will refresh the SDF workspace for your DBT project. This is useful
 ```shell
 sdf dbt refresh
 ```
-<pre style={{ fontFamily: 'monospace' }} className='language-shell'>
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Re-initialize a sdf workspace from a dbt project -- best effort
+Re-initialize&nbsp;a&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;a&nbsp;dbt&nbsp;project&nbsp;--&nbsp;best&nbsp;effort
 
-Usage: sdf dbt refresh [OPTIONS]
+Usage:&nbsp;sdf&nbsp;dbt&nbsp;refresh&nbsp;[OPTIONS]
 
 Options:
-      --target &lt;TARGET&gt;                Use this DBT target over the default target in profiles.yml
-      --profiles-dir &lt;PROFILES_DIR&gt;    Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
-      --workspace-dir &lt;WORKSPACE_DIR&gt;  Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
-  -s, --save                           Save and overwrite the workspace file
-  -c, --config &lt;CONFIG&gt;                Supply a config yml file or provide config as yml string e.g. &#39;&#123;key: value&#125;&#39;
-  -h, --help                           Print help
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--target&nbsp;&lt;TARGET&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;target&nbsp;over&nbsp;the&nbsp;default&nbsp;target&nbsp;in&nbsp;profiles.yml
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--profiles-dir&nbsp;&lt;PROFILES_DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;profile&nbsp;instead&nbsp;of&nbsp;the&nbsp;defaults&nbsp;at&nbsp;~/.dbt/profile.yml&nbsp;--&nbsp;(note&nbsp;dbt&nbsp;uses&nbsp;--profile_dir,&nbsp;this&nbsp;CLI&nbsp;uses&nbsp;--profile-dir)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--workspace-dir&nbsp;&lt;WORKSPACE_DIR&gt;&nbsp;&nbsp;Specifies&nbsp;the&nbsp;workspace&nbsp;directory&nbsp;where&nbsp;we&nbsp;expect&nbsp;to&nbsp;see&nbsp;manifest&nbsp;and&nbsp;dbt&nbsp;project&nbsp;files&nbsp;The&nbsp;SDF&nbsp;workspace&nbsp;file&nbsp;will&nbsp;be&nbsp;placed&nbsp;in&nbsp;the&nbsp;same&nbsp;directory.&nbsp;Default:&nbsp;current&nbsp;directory
+&nbsp;&nbsp;-s,&nbsp;--save&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;and&nbsp;overwrite&nbsp;the&nbsp;workspace&nbsp;file
+&nbsp;&nbsp;-c,&nbsp;--config&nbsp;&lt;CONFIG&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supply&nbsp;a&nbsp;config&nbsp;yml&nbsp;file&nbsp;or&nbsp;provide&nbsp;config&nbsp;as&nbsp;yml&nbsp;string&nbsp;e.g.&nbsp;&#39;&#123;key:&nbsp;value&#125;&#39;
+&nbsp;&nbsp;-h,&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help
 
 </code>
 </pre>
+</div>
 
 By default, `sdf dbt refresh` will make changes to your `workspace.sdf.yml` in order to reflect any updates to your DBT project. However, in certain cases when you want to preserve things like comments in your `workspace.sdf.yml` file, for this you can use the `--no-save` flag.
 This will output the changes to the `workspace.sdf.yml` file to the console, but not save them to the file.

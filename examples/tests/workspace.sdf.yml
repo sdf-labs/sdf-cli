@@ -1,13 +1,14 @@
 workspace:
   name: tests_workspace # The name of this workspace -- required
-  edition: "1.2" # The edition of this workspace -- required
+  edition: "1.3" # The edition of this workspace -- required
   description: >
     This workspace demonstrates how to use the SDF built-in tests library
-  includes:
-    - path: src  # The path to sql models for this workspace -- at least one path is required
-    - path: seeds  # Where raw data is stored locally
-      type: resource  
-    - path: src_metadata  # Where table metadata and tests are stored
 
-  defaults: 
+  includes:
+    - path: models # The path to sql models for this workspace -- at least one path is required
+    - path: seeds # Where raw data is stored locally
+      type: resource
+    - path: src_metadata # Where table metadata and tests are stored
+
+  defaults:
     preprocessor: jinja

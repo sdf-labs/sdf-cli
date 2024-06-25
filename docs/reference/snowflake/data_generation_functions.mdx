@@ -5,9 +5,8 @@ title: "Data Generation Functions"
 
 ## `normal`
 
-#### Description
 Returns a normal distribution
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function normal(double, double, decimal(38, 0)) returns double
 ```
@@ -15,9 +14,8 @@ function normal(double, double, decimal(38, 0)) returns double
 
 ## `random`
 
-#### Description
 returns a random number sequence
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function random() returns decimal(38, 0)
 function random(decimal(38, 0)) returns decimal(38, 0)
@@ -26,9 +24,8 @@ function random(decimal(38, 0)) returns decimal(38, 0)
 
 ## `randstr`
 
-#### Description
 Returns a random string of alphanumeric characters
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function randstr(decimal(38, 0), decimal(38, 0)) returns varchar
 ```
@@ -36,9 +33,8 @@ function randstr(decimal(38, 0), decimal(38, 0)) returns varchar
 
 ## `seq1`
 
-#### Description
 returns a sequence of 1-byte integers
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function seq1() returns decimal(38, 0)
 function seq1(decimal(38, 0)) returns decimal(38, 0)
@@ -47,9 +43,8 @@ function seq1(decimal(38, 0)) returns decimal(38, 0)
 
 ## `seq2`
 
-#### Description
 returns a sequence of 2-byte integers
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function seq2() returns decimal(38, 0)
 function seq2(decimal(38, 0)) returns decimal(38, 0)
@@ -58,9 +53,8 @@ function seq2(decimal(38, 0)) returns decimal(38, 0)
 
 ## `seq4`
 
-#### Description
 returns a sequence of 4-byte integers
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function seq4() returns decimal(38, 0)
 function seq4(decimal(38, 0)) returns decimal(38, 0)
@@ -69,9 +63,8 @@ function seq4(decimal(38, 0)) returns decimal(38, 0)
 
 ## `seq8`
 
-#### Description
 returns a sequence of 8-byte integers
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function seq8() returns decimal(38, 0)
 function seq8(decimal(38, 0)) returns decimal(38, 0)
@@ -80,9 +73,8 @@ function seq8(decimal(38, 0)) returns decimal(38, 0)
 
 ## `uniform`
 
-#### Description
 Returns a uniform random distribution
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function uniform(decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 function uniform(double, double, decimal(38, 0)) returns double
@@ -91,9 +83,8 @@ function uniform(double, double, decimal(38, 0)) returns double
 
 ## `zipf`
 
-#### Description
 Returns a Zipf distribution
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function zipf(double, decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 ```

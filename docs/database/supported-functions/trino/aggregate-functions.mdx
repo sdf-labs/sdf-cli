@@ -5,7 +5,15 @@ title: "Aggregate Functions"
 
 ## `array_agg`
 
-#### Supported Signatures
+Returns an array created from the input x elements.
+
+
+*Examples:*
+```sql examples.sql
+CREATE TABLE tbl AS VALUES (1), (5), (9);  SELECT array_agg(column1) AS value FROM tbl;
+ -- value '[1, 5, 9]'
+```
+*Supported Signatures*
 ```sql
 function array_agg($1) returns array<$1>
 ```
@@ -13,7 +21,15 @@ function array_agg($1) returns array<$1>
 
 ## `avg`
 
-#### Supported Signatures
+Returns the average (arithmetic mean) of all input values.
+
+
+*Examples:*
+```sql examples.sql
+CREATE TABLE tbl AS VALUES (1), (5), (9); 
+ SELECT avg(tbl.column1) AS value FROM tbl; -- value '5.0'
+```
+*Supported Signatures*
 ```sql
 function avg(double) returns double
 function avg(decimal(p, s)) returns decimal(p, s)
@@ -23,7 +39,15 @@ function avg(real) returns real
 
 ## `count`
 
-#### Supported Signatures
+Returns the number of input rows.
+
+
+*Examples:*
+```sql examples.sql
+CREATE TABLE tbl AS VALUES (1), (5), (9); 
+ SELECT count(tbl.column1) AS value FROM tbl; -- value '3'
+```
+*Supported Signatures*
 ```sql
 function count() returns bigint
 function count($1) returns bigint
@@ -32,7 +56,15 @@ function count($1) returns bigint
 
 ## `max`
 
-#### Supported Signatures
+Returns the maximum value of all input values.
+
+
+*Examples:*
+```sql examples.sql
+CREATE TABLE tbl AS VALUES (1), (5), (9); 
+ SELECT max(tbl.column1) AS value FROM tbl; -- value '9'
+```
+*Supported Signatures*
 ```sql
 function max($1, ...) returns $1
 ```
@@ -40,7 +72,15 @@ function max($1, ...) returns $1
 
 ## `min`
 
-#### Supported Signatures
+Returns the minimum value of all input values.
+
+
+*Examples:*
+```sql examples.sql
+CREATE TABLE tbl AS VALUES (1), (5), (9); 
+ SELECT min(tbl.column1) AS value FROM tbl; -- value '1'
+```
+*Supported Signatures*
 ```sql
 function min($1, ...) returns $1
 ```
@@ -48,7 +88,9 @@ function min($1, ...) returns $1
 
 ## `stddev`
 
-#### Supported Signatures
+This is an alias for stddev_samp().
+
+*Supported Signatures*
 ```sql
 function stddev(double) returns double
 ```
@@ -56,7 +98,15 @@ function stddev(double) returns double
 
 ## `stddev_pop`
 
-#### Supported Signatures
+Returns the population standard deviation of all input values.
+
+
+*Examples:*
+```sql examples.sql
+CREATE TABLE tbl AS VALUES (1), (5), (9);  SELECT stddev_pop(column1) as value from tbl;
+ -- value '3.265986323710904'
+```
+*Supported Signatures*
 ```sql
 function stddev_pop(bigint) returns double
 function stddev_pop(double) returns double
@@ -65,7 +115,15 @@ function stddev_pop(double) returns double
 
 ## `stddev_samp`
 
-#### Supported Signatures
+Returns the sample standard deviation of all input values.
+
+
+*Examples:*
+```sql examples.sql
+CREATE TABLE tbl AS VALUES (1), (5), (9);  SELECT stddev_samp(column1) as value from tbl;
+ -- value '4.0'
+```
+*Supported Signatures*
 ```sql
 function stddev_samp(bigint) returns double
 function stddev_samp(double) returns double
@@ -74,7 +132,15 @@ function stddev_samp(double) returns double
 
 ## `sum`
 
-#### Supported Signatures
+Returns the sum of all input values.
+
+
+*Examples:*
+```sql examples.sql
+CREATE TABLE tbl AS VALUES (1), (5), (9); 
+ SELECT sum(tbl.column1) AS value FROM tbl; -- value '15'
+```
+*Supported Signatures*
 ```sql
 function sum(bigint) returns bigint
 function sum(double) returns double

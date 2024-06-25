@@ -5,7 +5,7 @@ title: "Table Functions"
 
 ## `flatten`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function flatten $1(input $1) returns struct<seq bigint, key string, path string, index bigint, value variant, this $1>
 	where $1 in (variant, object, array)
@@ -14,7 +14,7 @@ function flatten $1(input $1) returns struct<seq bigint, key string, path string
 
 ## `generator`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function generator() returns struct<dummy bigint>
 ```
@@ -22,7 +22,7 @@ function generator() returns struct<dummy bigint>
 
 ## `get_object_references`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function get_object_references() returns struct<database_name string, schema_name string, object_name string, referenced_database_name string, referenced_schema_name string, referenced_object_name string, referenced_object_type string>
 ```
@@ -30,7 +30,7 @@ function get_object_references() returns struct<database_name string, schema_nam
 
 ## `infer_schema`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function infer_schema() returns struct<
   column_name string,
@@ -46,7 +46,7 @@ function infer_schema() returns struct<
 
 ## `rest_event_history`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function rest_event_history(rest_service_type string) returns struct<
   event_timestamp timestamp,
@@ -69,7 +69,7 @@ function rest_event_history(rest_service_type string) returns struct<
 
 ## `validate`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function validate(string, job_id string) returns struct<
   error string,

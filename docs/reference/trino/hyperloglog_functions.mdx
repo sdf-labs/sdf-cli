@@ -1,0 +1,39 @@
+---
+title: "Hyperloglog Functions"
+---
+
+## `approx_set`
+
+Returns the HyperLogLog sketch of the input data set of x. This data sketch underlies approx_distinct() and can be stored and used later by calling cardinality().
+
+*Supported Signatures*
+```sql
+function approx_set(bigint) returns hyperloglog
+function approx_set(double) returns hyperloglog
+function approx_set(varchar) returns hyperloglog
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#approx_set)
+
+## `empty_approx_set`
+
+Returns an empty HyperLogLog.
+
+*Supported Signatures*
+```sql
+function empty_approx_set() returns hyperloglog
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#empty_approx_set)
+
+## `merge`
+
+Returns the HyperLogLog of the aggregate union of the individual hll HyperLogLog structures.
+
+*Supported Signatures*
+```sql
+function merge(hyperloglog) returns hyperloglog
+function merge(qdigest) returns qdigest
+function merge(tdigest) returns tdigest
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/hyperloglog.html#merge)
+
+

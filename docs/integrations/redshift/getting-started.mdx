@@ -1,7 +1,8 @@
 ---
-title: "Getting Started"
+title: "Getting Started with Redshift and SDF"
+sidebarTitle: "Getting Started"
 description:
-  "Getting started with Redshift and SDF."
+  "SDF as a best-in-class transformation layer for Redshift"
 ---
 
 ## Overview
@@ -94,18 +95,24 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
 
         <Info>
         This will create a new [credential](/reference/sdf-yml#block-credential) in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with AWS services. By default, the 
-        credential's name is default. As such, the credential does not need to be explicitly referenced in the provider configuration below.
+        credential's name is default. As such, the credential does not need to be explicitly referenced in the integrations configuration below.
         </Info>
+
+        To validate the connection, run:
+        ```shell
+        sdf auth status
+        ```
     </Step>
     <Step title="Add Redshift Provider in Workspace">
-        Once authenticated, add a table provider block in your `workspace.sdf.yml` workspace block. This tells SDF to use Redshift to hydrate missing table schemas.
+        Once authenticated, add an integrations block in your `workspace.sdf.yml` workspace block. This tells SDF to use Redshift to hydrate missing table schemas.
         
         ``` yml
         ---
         workspace:
             ...
-            providers:
-                - type: redshift
+            integrations:
+                - provider: redshift
+                  type: database
                   cluster-identifier: <CLUSTER_IDENTIFIER>
                   sources: 
                     - pattern: <DATABASE>.*.*
@@ -116,20 +123,22 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
         ---
         workspace:
             ...
-            providers:
-                - type: redshift
+            integrations:
+                - provider: redshift
+                  type: database
                   cluster-identifier: <CLUSTER_IDENTIFIER>
                   sources: 
                     - pattern: <DATABASE>.*.*
                     - pattern: <DATABASE>.*.*
         ```
 
-        Lastly, providers can also be configured to use specific credentials by referencing the credential name in the provider block. For example, if you wanted to use a credential called `redshift-creds`, you would write:
+        Lastly, integrations can also be configured to use specific credentials by referencing the credential name in the integration block. For example, if you wanted to use a credential called `redshift-creds`, you would write:
         ``` yml
         workspace:
             ...
-            providers:
-                - type: redshift
+            integrations:
+                - provider: redshift
+                  type: database
                   credential: redshift-creds
                   cluster-identifier: <CLUSTER_IDENTIFIER>
                   sources: 
@@ -137,7 +146,7 @@ Redshift catalog, schema, and tables map 1:1 to SDF's catalog.schema.table model
                     - pattern: db1.schema2.*
         ```
 
-        For more information on provider configuration, see the [provider documentation](/integrations/providers).
+        For more information on provider configuration, see the [integration documentation](/guide/setup/integrations).
     </Step>
     <Step title="Try it out!">
         Now that you're connected, let's make sure SDF can pull the schema information it needs. 

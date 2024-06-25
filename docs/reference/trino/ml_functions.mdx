@@ -1,0 +1,90 @@
+---
+title: "Ml Functions"
+---
+
+## `classify`
+
+Returns a label predicted by the given classifier SVM model.
+
+*Supported Signatures*
+```sql
+function classify(map<bigint, double>, classifier) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#classify)
+
+## `features`
+
+Returns the map representing the feature vector.
+
+*Supported Signatures*
+```sql
+function features(double) returns map<bigint, double>
+function features(double, double) returns map<bigint, double>
+function features(double, double, double) returns map<bigint, double>
+function features(double, double, double, double) returns map<bigint, double>
+function features(double, double, double, double, double) returns map<bigint, double>
+function features(double, double, double, double, double, double) returns map<bigint, double>
+function features(double, double, double, double, double, double, double) returns map<bigint, double>
+function features(double, double, double, double, double, double, double, double) returns map<bigint, double>
+function features(double, double, double, double, double, double, double, double, double) returns map<bigint, double>
+function features(double, double, double, double, double, double, double, double, double, double) returns map<bigint, double>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#features)
+
+## `learn_classifier`
+
+Returns an SVM-based classifier model, trained with the given label and feature data sets.
+
+*Supported Signatures*
+```sql
+function learn_classifier(bigint, map<bigint, double>) returns classifier
+function learn_classifier(double, map<bigint, double>) returns classifier
+function learn_classifier(varchar, map<bigint, double>) returns classifier
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_classifier)
+
+## `learn_libsvm_classifier`
+
+Returns an SVM-based classifier model, trained with the given label and feature data sets. You can control the training process by libsvm parameters.
+
+*Supported Signatures*
+```sql
+function learn_libsvm_classifier(bigint, map<bigint, double>, varchar) returns classifier
+function learn_libsvm_classifier(double, map<bigint, double>, varchar) returns classifier
+function learn_libsvm_classifier(varchar, map<bigint, double>, varchar) returns classifier
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_libsvm_classifier)
+
+## `learn_libsvm_regressor`
+
+Returns an SVM-based regressor model, trained with the given target and feature data sets. You can control the training process by libsvm parameters.
+
+*Supported Signatures*
+```sql
+function learn_libsvm_regressor(bigint, map<bigint, double>, varchar) returns regressor
+function learn_libsvm_regressor(double, map<bigint, double>, varchar) returns regressor
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_libsvm_regressor)
+
+## `learn_regressor`
+
+Returns an SVM-based regressor model, trained with the given target and feature data sets.
+
+*Supported Signatures*
+```sql
+function learn_regressor(bigint, map<bigint, double>) returns regressor
+function learn_regressor(double, map<bigint, double>) returns regressor
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#learn_regressor)
+
+## `regress`
+
+Returns a predicted target value by the given regressor SVM model.
+
+*Supported Signatures*
+```sql
+function regress(map<bigint, double>, regressor) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/ml.html#regress)
+
+

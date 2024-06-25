@@ -105,7 +105,7 @@
 					"pages": [
 						"guide/setup/io",
 						"guide/setup/workspaces",
-						"guide/setup/providers",
+						"guide/setup/integrations",
 						"guide/setup/materialization",
 						"guide/setup/environments"
 					]
@@ -118,17 +118,16 @@
 						"guide/basics/classifiers",
 						{
 							"group": "Macro Processing",
-							"icon": "microchip",
 							"pages": [
 								"guide/macro-processing/overview",
+								"guide/macro-processing/intro-to-jinja",
 								"guide/macro-processing/jinja",
 								"guide/macro-processing/jinja-variables",
-								"guide/macro-processing/sql-variables"
+								"guide/macro-processing/sdf-variables"
 							]
 						},
 						{
 							"group": "Data Quality",
-							"icon": "helmet-safety",
 							"pages": [
 								"guide/data-quality/overview",
 								"guide/data-quality/checks",
@@ -248,36 +247,36 @@
 						{
 							"group": "SDF Execution Support",
 							"pages": [
-								"reference/presto/sdf_execution_support/all_functions"
+								"reference/trino/sdf_execution_support/all_functions"
 							]
 						},
-						"reference/presto/aggregate_functions",
-						"reference/presto/array_functions",
-						"reference/presto/binary_functions",
-						"reference/presto/bitwise_functions",
-						"reference/presto/color_functions",
-						"reference/presto/comparison_functions",
-						"reference/presto/conditional_functions",
-						"reference/presto/conversion_functions",
-						"reference/presto/datetime_functions",
-						"reference/presto/geospatial_functions",
-						"reference/presto/hyperloglog_functions",
-						"reference/presto/json_functions",
-						"reference/presto/lambda_functions",
-						"reference/presto/map_functions",
-						"reference/presto/math_functions",
-						"reference/presto/ml_functions",
-						"reference/presto/mongodb_functions",
-						"reference/presto/qdigest_functions",
-						"reference/presto/regexp_functions",
-						"reference/presto/session_functions",
-						"reference/presto/setdigest_functions",
-						"reference/presto/string_functions",
-						"reference/presto/t-digest_functions",
-						"reference/presto/teradata_functions",
-						"reference/presto/url_functions",
-						"reference/presto/uuid_functions",
-						"reference/presto/window_functions"
+						"reference/trino/aggregate_functions",
+						"reference/trino/array_functions",
+						"reference/trino/binary_functions",
+						"reference/trino/bitwise_functions",
+						"reference/trino/color_functions",
+						"reference/trino/comparison_functions",
+						"reference/trino/conditional_functions",
+						"reference/trino/conversion_functions",
+						"reference/trino/datetime_functions",
+						"reference/trino/geospatial_functions",
+						"reference/trino/hyperloglog_functions",
+						"reference/trino/json_functions",
+						"reference/trino/lambda_functions",
+						"reference/trino/map_functions",
+						"reference/trino/math_functions",
+						"reference/trino/ml_functions",
+						"reference/trino/mongodb_functions",
+						"reference/trino/qdigest_functions",
+						"reference/trino/regexp_functions",
+						"reference/trino/session_functions",
+						"reference/trino/setdigest_functions",
+						"reference/trino/string_functions",
+						"reference/trino/t-digest_functions",
+						"reference/trino/teradata_functions",
+						"reference/trino/url_functions",
+						"reference/trino/uuid_functions",
+						"reference/trino/window_functions"
 					]
 				},
 				{
@@ -464,7 +463,8 @@
 				{
 					"group": "Migration Guides",
 					"pages": [
-						"releases/migrations/1.1-1.2"
+						"releases/migrations/11-12",
+						"releases/migrations/12-13"
 					]
 				}
 			]

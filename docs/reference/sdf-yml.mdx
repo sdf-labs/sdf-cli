@@ -5,14 +5,13 @@ title: "SDF YML Schema"
 ## Block: `Workspace`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`edition:` | `string`| The SDF edition, should always be 1.2 (1.1 is deprecated)|
+`edition:` | `string`| The SDF edition, should always be 1.3 (1.2 is deprecated)|
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string`| A description of this workspace|
 `repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
-`providers:` | `array`| The providers for this environment|
 `integrations:` | `array`| The integrations for this environment|
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `source-locations:` | `array`| Workspace defined by these set of files|
@@ -22,7 +21,7 @@ title: "SDF YML Schema"
 | :---- | :--- | :------- |
 `name:` | `string`| |
 `description:` | `string?`| |
-`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to &#96;presto&#96;|
+`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to &#96;trino&#96;|
 `materialization:` | [`Materialization?`](#enum-materialization)| The table-type of this table (new version)|
 `purpose:` | [`TablePurpose?`](#enum-tablepurpose)| Specify what kind of table or view this is|
 `origin:` | [`TableOrigin?`](#enum-tableorigin)| The origin of this table &lt;remote&gt; or &lt;local&gt;|
@@ -47,7 +46,7 @@ title: "SDF YML Schema"
 `with-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
 `compression:` | [`CompressionType?`](#enum-compressiontype)| Json or CSV data is compressed with this method [only for external tables]|
-`seeded:` | `boolean?`| Is this table backed by a DDL or a type provider|
+`cycle-cut-point:` | `boolean?`| If this table is part of a cyclic dependency then cut the cycle here|
 `source-locations:` | `array`| Table is defined by these .sql and/or .sdf files|
 `sealed:` | `boolean?`| This table is either backed by a create table ddl or by a table definition in yml that is the table&#39;s complete schema|
 ## Block: `Classifier`
@@ -75,7 +74,7 @@ title: "SDF YML Schema"
 `binds:` | `array`| The generic type bounds|
 `volatility:` | [`Volatility`](#enum-volatility)| volatility - The volatility of the function.|
 `examples:` | `array`| example - Example use of the function (tuple with input/output)|
-`cross-link:` | `string`| cross-link - link to existing documentation, for example: https://prestodb.io/docs/current/functions/datetime.html#truncation-function|
+`cross-link:` | `string`| cross-link - link to existing documentation, for example: https://trino.io/docs/current/functions/datetime.html#date_trunc|
 `reclassify:` | `array`| Array of reclassify instructions for changing the attached classifier labels|
 `source-locations:` | `array`| Function defined by these set of .sdf files|
 `implemented-by:` | [`FunctionImplSpec?`](#enum-functionimplspec)| |
@@ -132,9 +131,7 @@ title: "SDF YML Schema"
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
 `excludes:` | `array`| An array of directories and filenames to be skipped when resolving includes|
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
-`compute:` | [`ComputeKind`](#enum-computekind)| The compute platform for this environment. If not set, defaults to Local|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
-`providers:` | `array`| The providers for this environment|
 `integrations:` | `array`| The integrations for this environment|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
 `source-locations:` | `array`| Workspace defined by these set of files|
@@ -163,16 +160,10 @@ Supported dialects.
 Values |
 | :--- |
 `snowflake`
-`presto`
+`trino`
 `bigquery`
 `redshift`
 `spark-lp`
-## Enum: `ComputeKind`
-Supported compute platforms.
-Values |
-| :--- |
-`local`
-`remote`
 ## Enum: `Preprocessor`
 Values |
 | :--- |
@@ -225,6 +216,12 @@ Value | Description|
 | :--- | :------- |
 `content` | undefined|
 `path` | Excludes this path, can be a glob expression|
+## Enum: `IntegrationType`
+Values |
+| :--- |
+`data`
+`metadata`
+`database`
 ## Enum: `ProviderType`
 Values |
 | :--- |
@@ -233,12 +230,6 @@ Values |
 `snowflake`
 `s3`
 `sdf`
-## Enum: `IntegrationType`
-Values |
-| :--- |
-`data`
-`metadata`
-`database`
 ## Enum: `TablePurpose`
 Value | Description|
 | :--- | :------- |
@@ -347,7 +338,6 @@ Values |
 | :---- | :--- | :------- |
 `environment:` | `string?`| The default environment (can only be set on the level of the workspace)|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this environment. If not set, defaults to trino|
-`compute:` | [`ComputeKind?`](#enum-computekind)| DEPRECATED; subsumed by providers/integrations information|
 `preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| The preprocessor for this environment. If not set, defaults to local|
 `catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
@@ -380,17 +370,18 @@ Values |
 `branch:` | `string?`| the Git branch (choose only one of the fields: rev, branch, tag)|
 `tag:` | `string?`| the Git tag (choose only one of the fields: rev, branch, tag)|
 `imports:` | `array`| Which models, reports, tests, checks etc. to include from the dependency|
-### Nested element: `TargetProvider`
+### Nested element: `Integration`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`type:` | [`ProviderType`](#enum-providertype)| The type of the catalog [e.g.: hive]|
+`type:` | [`IntegrationType`](#enum-integrationtype)| The type of the integration [e.g.: database, metadata, data]|
+`provider:` | [`ProviderType`](#enum-providertype)| The type of the provider [e.g.: snowflake, redshift, s3]|
 `credential:` | `string?`| Credential identifier for this provider|
-`warehouse:` | `string?`| The snowflake warehouse (defaults: the warehouse that was given at sdf Auth)|
 `cluster-identifier:` | `string?`| The cluster identifier for redshift server|
-`batch-size:` | `integer?`| |
+`batch-size:` | `integer?`| The size of the batch when querying the provider|
 `sources:` | `array`| A list of (possibly remote) sources to read, matched in order, so write specific pattern before more general patterns|
 `targets:` | `array`| A list of (possibly remote) targets to build,  matched in order, so write specific pattern before more general patterns, source patterns are excluded|
-`buckets:` | `array`| A list o|
+`buckets:` | `array`| A list of remote buckets to target|
+`output-location:` | `string?`| The remote output location of the integration|
 ### Nested element: `SourcePattern`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -409,17 +400,6 @@ Values |
 | :---- | :--- | :------- |
 `uri:` | `string`| The uri of the bucket|
 `region:` | `string?`| The region of the bucket|
-### Nested element: `Integration`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`type:` | [`IntegrationType`](#enum-integrationtype)| The type of the integration [e.g.: database, metadata, data]|
-`provider:` | [`ProviderType`](#enum-providertype)| The type of the provider [e.g.: snowflake, redshift, s3]|
-`credential:` | `string?`| Credential identifier for this provider|
-`cluster-identifier:` | `string?`| The cluster identifier for redshift server|
-`batch-size:` | `integer?`| The size of the batch when querying the provider|
-`sources:` | `array`| A list of (possibly remote) sources to read, matched in order, so write specific pattern before more general patterns|
-`targets:` | `array`| A list of (possibly remote) targets to build,  matched in order, so write specific pattern before more general patterns, source patterns are excluded|
-`buckets:` | `array`| A list o|
 ### Nested element: `FilePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |

@@ -4,7 +4,7 @@ title: "Aggregate Functions"
 
 ## `any_value`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function any_value($1) returns $1
 ```
@@ -12,7 +12,7 @@ function any_value($1) returns $1
 
 ## `array_agg`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_agg($1) returns array<$1>
 ```
@@ -20,7 +20,7 @@ function array_agg($1) returns array<$1>
 
 ## `array_avg`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_avg $1(array<$1>) returns double
 	where $1 in (int, bigint, float, double)
@@ -29,7 +29,7 @@ function array_avg $1(array<$1>) returns double
 
 ## `array_concat_agg`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function array_concat_agg(array<$1>) returns array<$1>
 ```
@@ -37,7 +37,7 @@ function array_concat_agg(array<$1>) returns array<$1>
 
 ## `avg`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function avg $1($1) returns $1
 	where $1 in (double, interval)
@@ -47,7 +47,7 @@ function avg(bigint) returns double
 
 ## `bit_and`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bit_and(bigint) returns bigint
 ```
@@ -55,7 +55,7 @@ function bit_and(bigint) returns bigint
 
 ## `bit_or`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bit_or(bigint) returns bigint
 ```
@@ -63,7 +63,7 @@ function bit_or(bigint) returns bigint
 
 ## `bit_xor`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function bit_xor(bigint) returns bigint
 ```
@@ -71,7 +71,7 @@ function bit_xor(bigint) returns bigint
 
 ## `corr`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function corr(float64, float64) returns float64
 ```
@@ -79,7 +79,7 @@ function corr(float64, float64) returns float64
 
 ## `count`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function count($1) returns bigint
 ```
@@ -87,7 +87,7 @@ function count($1) returns bigint
 
 ## `countif`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function countif(bool) returns bigint
 ```
@@ -95,7 +95,7 @@ function countif(bool) returns bigint
 
 ## `covar_pop`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function covar_pop(float64, float64) returns float64
 ```
@@ -103,7 +103,7 @@ function covar_pop(float64, float64) returns float64
 
 ## `covar_samp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function covar_samp(float64, float64) returns float64
 ```
@@ -111,7 +111,7 @@ function covar_samp(float64, float64) returns float64
 
 ## `logical_and`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function logical_and(bool) returns bool
 ```
@@ -119,7 +119,7 @@ function logical_and(bool) returns bool
 
 ## `logical_or`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function logical_or(bool) returns bool
 ```
@@ -127,7 +127,7 @@ function logical_or(bool) returns bool
 
 ## `max`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function max($1) returns $1
 ```
@@ -135,7 +135,7 @@ function max($1) returns $1
 
 ## `max_by`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function max_by($1, $2) returns $1
 ```
@@ -143,7 +143,7 @@ function max_by($1, $2) returns $1
 
 ## `min`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function min($1) returns $1
 ```
@@ -151,7 +151,7 @@ function min($1) returns $1
 
 ## `min_by`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function min_by($1, $2) returns $1
 ```
@@ -159,7 +159,7 @@ function min_by($1, $2) returns $1
 
 ## `stddev_pop`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function stddev_pop(float64) returns float64
 ```
@@ -167,7 +167,7 @@ function stddev_pop(float64) returns float64
 
 ## `stddev_samp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function stddev_samp(float64) returns float64
 ```
@@ -175,7 +175,7 @@ function stddev_samp(float64) returns float64
 
 ## `string_agg`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function string_agg $1($1) returns $1
 	where $1 in (string, bytes)
@@ -186,7 +186,7 @@ function string_agg $1($1, $1) returns $1
 
 ## `sum`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sum($1) returns $1
 ```
@@ -194,7 +194,7 @@ function sum($1) returns $1
 
 ## `var_pop`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function var_pop(float64) returns float64
 ```
@@ -202,7 +202,7 @@ function var_pop(float64) returns float64
 
 ## `var_samp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function var_samp(float64) returns float64
 ```

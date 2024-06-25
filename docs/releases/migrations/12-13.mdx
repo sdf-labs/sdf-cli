@@ -1,0 +1,130 @@
+---
+title: "1.2 ➡️ 1.3"
+description: Workspace edition 1.3 brings a new information schema, improvements to the SDF CLI, and an expansion of what was previously the `provider` configuration. This guide will help you migrate your workspace from edition 1.2 to 1.3.
+---
+
+In versions `0.2.30` and above, workspace `1.3` is required. As a first step, please update your workspace block to the following:
+
+```yaml
+workspace:
+  edition: "1.3"
+  ...
+```
+
+## Breaking Changes
+
+### Providers -> Integrations
+
+SDF can read metadata and data from a variety of sources, including databases, data lakes, and data catalogs. 
+In the past, we referred to databases as `providers`, then had confusing methods for configuring data lakes and data catalogs.
+Now, all of these external relationships are managed in a single, unified `integrations` block. 
+
+This replaces the `providers` block in the workspace configuration.
+
+If you have a workspace with a provider block like this:
+```yaml
+workspace:
+  ...
+  providers:
+    - type: snowflake
+      credential: snowflake-creds
+      sources: 
+        - pattern: apress.*.*
+```
+
+It should now look like this:
+```yaml
+workspace:
+  ...
+  integrations:
+    - provider: snowflake
+      type: database
+      credential: snowflake-creds
+      sources: 
+        - pattern: apress.*.*
+```
+
+This makes integrations much more extensible as we grow towards more data and metadata sources for local execution.
+For an in-depth guide on how to configure a certain integration or a description about our new integrations philosophy, see the [integration documentation](/integrations/overview).
+
+<Note>
+  The `type` field is now required for all integrations. This is to differentiate between database, data lake, and data catalog integrations.
+</Note>
+
+
+### Goodbye Compute
+
+Previously, the `compute` property was required in the `defaults` block to tell SDF where to run the query, i.e. `local` or `remote`. 
+This is now _inferred_ from the integrations block, rendering it unnecessary. It should now be removed from the `defaults` block.
+
+```yaml
+workspace:
+  ...
+  defaults:
+    ...
+    catalog: xyz
+    compute: remote
+```
+
+Should now look like this:
+
+```yaml
+workspace:
+  ...
+  defaults:
+    ...
+    catalog: xyz
+```
+
+### Information Schema V2
+
+The information schema has been updated to include more metadata about your tables, and has been re-architected to enable performant queries on larger workspaces.
+If you have any checks or reports, these will need to be rewritten to use the new information schema.
+
+For example, if you have a check that looks like this:
+```sql
+SELECT 
+    t.table_ref
+FROM 
+    sdf.information_schema.tables t
+JOIN 
+    sdf.information_schema.columns c ON t.table_ref = c.table_ref
+WHERE 
+    c.classifiers LIKE '%PII%' AND t.schema_name = 'external'
+GROUP BY t.table_ref;
+```
+
+It should now look like this:
+```sql
+SELECT 
+    t.table_id
+FROM 
+    sdf.information_schema.tables t
+JOIN 
+    sdf.information_schema.columns c ON t.table_id = c.table_id
+WHERE 
+    CONTAINS_ARRAY_VARCHAR(c.classifiers, 'PII') AND t.schema_name = 'public'
+GROUP BY t.table_id;
+```
+
+As you can see, new functions are now available for local execution, including `CONTAINS_ARRAY_VARCHAR`.
+
+For a full reference on the new information schema, see the [information schema documentation](/reference/sdf-information-schema).
+
+### Goodbye .sdfcache, hello sdftarget
+
+Based on some quality user feedback, the `.sdfcache` directory has been renamed to `sdftarget`. This is where SDF will store all of its metadata and cache files.
+
+This shouldn't break anything as is, but if you have any scripts or processes that rely on the `.sdfcache` directory, you'll need to update them to use `sdftarget` instead.
+
+Furthermore, `.gitignore` files should be updated to ignore `sdftarget` instead of `.sdfcache`.
+
+### Support for `trino` syntax
+
+We've enabled `trino` to be used as an alias for `trino` for the workspace's `dialect` property.
+
+To see all accepted dialects, see the [dialect documentation](/reference/sdf-yml#dialect).
+
+### `seeded: true` -> `cut-cycle-here: true`
+
+Due to confusion with configuring `seed` models and breaking cycles with the `seeded` property, we'd renamed this field to `cut-cycle-here`. This now explicitly marks this table as first table to be processed in a cycle.

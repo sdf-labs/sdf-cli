@@ -4,7 +4,7 @@ title: "Timestamp Functions"
 
 ## `current_timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_timestamp() returns timestamp
 ```
@@ -12,7 +12,7 @@ function current_timestamp() returns timestamp
 
 ## `format_timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function format_timestamp $1(string, $1) returns string
 	where $1 in (timestamp, datetime)
@@ -22,7 +22,7 @@ function format_timestamp(string, timestamp, time_zone string) returns string
 
 ## `parse_timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function parse_timestamp(string, string) returns timestamp
 function parse_timestamp(string, string, time_zone string) returns timestamp
@@ -31,7 +31,7 @@ function parse_timestamp(string, string, time_zone string) returns timestamp
 
 ## `timestamp`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp(string) returns timestamp
 function timestamp(string, time_zone string) returns timestamp
@@ -44,7 +44,7 @@ function timestamp(datetime, time_zone string) returns timestamp
 
 ## `timestamp_add`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_add $1($1, interval) returns $1
 	where $1 in (timestamp, datetime)
@@ -53,7 +53,7 @@ function timestamp_add $1($1, interval) returns $1
 
 ## `timestamp_diff`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_diff $1($1, $1, date_part string) returns bigint
 	where date_part in (microsecond, millisecond, second, minute, hour, day, week, month, quarter, year)
@@ -63,7 +63,7 @@ function timestamp_diff $1($1, $1, date_part string) returns bigint
 
 ## `timestamp_micros`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_micros(int64) returns timestamp
 ```
@@ -71,7 +71,7 @@ function timestamp_micros(int64) returns timestamp
 
 ## `timestamp_millis`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_millis(int64) returns timestamp
 ```
@@ -79,7 +79,7 @@ function timestamp_millis(int64) returns timestamp
 
 ## `timestamp_seconds`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_seconds(int64) returns timestamp
 ```
@@ -87,7 +87,7 @@ function timestamp_seconds(int64) returns timestamp
 
 ## `timestamp_sub`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_sub $1($1, interval) returns $1
 	where $1 in (timestamp, datetime)
@@ -96,7 +96,7 @@ function timestamp_sub $1($1, interval) returns $1
 
 ## `timestamp_trunc`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function timestamp_trunc $1($1, date_time_part string) returns $1
 	where date_time_part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
@@ -108,7 +108,7 @@ function timestamp_trunc(timestamp, date_time_part string, time_zone string) ret
 
 ## `unix_micros`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function unix_micros(timestamp) returns int64
 ```
@@ -116,7 +116,7 @@ function unix_micros(timestamp) returns int64
 
 ## `unix_millis`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function unix_millis(timestamp) returns int64
 ```
@@ -124,7 +124,7 @@ function unix_millis(timestamp) returns int64
 
 ## `unix_seconds`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function unix_seconds(timestamp) returns int64
 ```

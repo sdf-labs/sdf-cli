@@ -5,9 +5,8 @@ title: "Geospatial Functions"
 
 ## `h3_cell_to_boundary`
 
-#### Description
 Returns a polygon containing the h3 integer cell boundaries
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_cell_to_boundary(decimal(38, 0)) returns geography
 function h3_cell_to_boundary(varchar) returns geography
@@ -16,9 +15,8 @@ function h3_cell_to_boundary(varchar) returns geography
 
 ## `h3_cell_to_children`
 
-#### Description
 Returns the H3 children cells as integers for a given H3 index
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_cell_to_children(decimal(38, 0), decimal(38, 0)) returns array
 ```
@@ -26,9 +24,8 @@ function h3_cell_to_children(decimal(38, 0), decimal(38, 0)) returns array
 
 ## `h3_cell_to_children_string`
 
-#### Description
 Returns the H3 children cells as strings for a given H3 index
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_cell_to_children_string(varchar, decimal(38, 0)) returns array
 ```
@@ -36,9 +33,8 @@ function h3_cell_to_children_string(varchar, decimal(38, 0)) returns array
 
 ## `h3_cell_to_parent`
 
-#### Description
 Returns the H3 parent cell as an integer for a given H3 index
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_cell_to_parent(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 function h3_cell_to_parent(varchar, decimal(38, 0)) returns varchar
@@ -47,9 +43,8 @@ function h3_cell_to_parent(varchar, decimal(38, 0)) returns varchar
 
 ## `h3_cell_to_point`
 
-#### Description
 Returns a point (geography) corresponding to the center of the h3 integer cell passed
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_cell_to_point(decimal(38, 0)) returns geography
 function h3_cell_to_point(varchar) returns geography
@@ -58,9 +53,8 @@ function h3_cell_to_point(varchar) returns geography
 
 ## `h3_coverage`
 
-#### Description
 Returns the full spherical based covering of H3 cells as integers for any geography type
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_coverage(geography, decimal(38, 0)) returns array
 ```
@@ -68,9 +62,8 @@ function h3_coverage(geography, decimal(38, 0)) returns array
 
 ## `h3_coverage_strings`
 
-#### Description
 Returns the full spherical based covering of H3 cells as strings for any geography type
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_coverage_strings(geography, decimal(38, 0)) returns array
 ```
@@ -78,9 +71,8 @@ function h3_coverage_strings(geography, decimal(38, 0)) returns array
 
 ## `h3_get_resolution`
 
-#### Description
 Returns the cell resolution for a given H3 integer cell
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_get_resolution(decimal(38, 0)) returns decimal(38, 0)
 function h3_get_resolution(varchar) returns decimal(38, 0)
@@ -89,9 +81,8 @@ function h3_get_resolution(varchar) returns decimal(38, 0)
 
 ## `h3_grid_disk`
 
-#### Description
 Returns all H3 cells that are at most k steps away from the input cell
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_grid_disk(decimal(38, 0), decimal(38, 0)) returns array
 function h3_grid_disk(varchar, decimal(38, 0)) returns array
@@ -100,9 +91,8 @@ function h3_grid_disk(varchar, decimal(38, 0)) returns array
 
 ## `h3_grid_distance`
 
-#### Description
 Returns the number of H3 cells that are betweem two input cells
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_grid_distance(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 function h3_grid_distance(varchar, varchar) returns decimal(38, 0)
@@ -111,9 +101,8 @@ function h3_grid_distance(varchar, varchar) returns decimal(38, 0)
 
 ## `h3_grid_path`
 
-#### Description
 Returns all H3 cells that are along the straight line connecting both cells
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_grid_path(decimal(38, 0), decimal(38, 0)) returns array
 function h3_grid_path(varchar, varchar) returns array
@@ -122,9 +111,8 @@ function h3_grid_path(varchar, varchar) returns array
 
 ## `h3_int_to_string`
 
-#### Description
 Returns the H3 cell formatted as a string given its integer representation
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_int_to_string(decimal(38, 0)) returns varchar
 ```
@@ -132,9 +120,8 @@ function h3_int_to_string(decimal(38, 0)) returns varchar
 
 ## `h3_latlng_to_cell`
 
-#### Description
 Returns an H3 index as an integer that corresponds to a given point (lat/lng) and resolution
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_latlng_to_cell(double, double, decimal(38, 0)) returns decimal(38, 0)
 ```
@@ -142,9 +129,8 @@ function h3_latlng_to_cell(double, double, decimal(38, 0)) returns decimal(38, 0
 
 ## `h3_latlng_to_cell_string`
 
-#### Description
 Returns an H3 index as a string that corresponds to a given point (lat/lng) and resolution
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_latlng_to_cell_string(double, double, decimal(38, 0)) returns varchar
 ```
@@ -152,9 +138,8 @@ function h3_latlng_to_cell_string(double, double, decimal(38, 0)) returns varcha
 
 ## `h3_point_to_cell`
 
-#### Description
 Returns an H3 integer cell that corresponds to a given point (geography) and resolution
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_point_to_cell(geography, decimal(38, 0)) returns decimal(38, 0)
 ```
@@ -162,9 +147,8 @@ function h3_point_to_cell(geography, decimal(38, 0)) returns decimal(38, 0)
 
 ## `h3_point_to_cell_string`
 
-#### Description
 Returns an H3 string cell that corresponds to a given point (geography) and resolution
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_point_to_cell_string(geography, decimal(38, 0)) returns varchar
 ```
@@ -172,9 +156,8 @@ function h3_point_to_cell_string(geography, decimal(38, 0)) returns varchar
 
 ## `h3_polygon_to_cells`
 
-#### Description
 Returns the planar centroid based covering of H3 cells as integers for a polygon/multipolygon
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_polygon_to_cells(geography, decimal(38, 0)) returns array
 ```
@@ -182,9 +165,8 @@ function h3_polygon_to_cells(geography, decimal(38, 0)) returns array
 
 ## `h3_polygon_to_cells_strings`
 
-#### Description
 Returns the planar centroid based covering of H3 cells as strings for a polygon/multipolygon
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_polygon_to_cells_strings(geography, decimal(38, 0)) returns array
 ```
@@ -192,9 +174,8 @@ function h3_polygon_to_cells_strings(geography, decimal(38, 0)) returns array
 
 ## `h3_string_to_int`
 
-#### Description
 Returns the H3 cell formatted as an integer given its string representation
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function h3_string_to_int(varchar) returns decimal(38, 0)
 ```
@@ -202,9 +183,8 @@ function h3_string_to_int(varchar) returns decimal(38, 0)
 
 ## `haversine`
 
-#### Description
 Calculate great circle distance (in km) from two (lat, lon) locations (degrees).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function haversine(double, double, double, double) returns double
 ```
@@ -212,9 +192,8 @@ function haversine(double, double, double, double) returns double
 
 ## `st_area`
 
-#### Description
 Area of the object in square meters
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_area(geography) returns double
 function st_area(geometry) returns double
@@ -223,9 +202,8 @@ function st_area(geometry) returns double
 
 ## `st_asbinary`
 
-#### Description
 Return the WKB representation of the GEOGRAPHY object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_asbinary(geography) returns binary
 function st_asbinary(geometry) returns binary
@@ -234,9 +212,8 @@ function st_asbinary(geometry) returns binary
 
 ## `st_asewkb`
 
-#### Description
 Return the EWKB representation of the GEOGRAPHY object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_asewkb(geography) returns binary
 function st_asewkb(geometry) returns binary
@@ -245,9 +222,8 @@ function st_asewkb(geometry) returns binary
 
 ## `st_asewkt`
 
-#### Description
 Return the WKB representation of the GEOGRAPHY object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_asewkt(geography) returns varchar
 function st_asewkt(geometry) returns varchar
@@ -256,9 +232,8 @@ function st_asewkt(geometry) returns varchar
 
 ## `st_asgeojson`
 
-#### Description
 Return the GeoJSON representation of the GEOGRAPHY object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_asgeojson(geography) returns object
 function st_asgeojson(geometry) returns object
@@ -267,9 +242,8 @@ function st_asgeojson(geometry) returns object
 
 ## `st_astext`
 
-#### Description
 Return the WKT representation of the GEOGRAPHY object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_astext(geography) returns varchar
 function st_astext(geometry) returns varchar
@@ -278,9 +252,8 @@ function st_astext(geometry) returns varchar
 
 ## `st_aswkb`
 
-#### Description
 Return the WKB representation of the GEOGRAPHY object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_aswkb(geography) returns binary
 function st_aswkb(geometry) returns binary
@@ -289,9 +262,8 @@ function st_aswkb(geometry) returns binary
 
 ## `st_aswkt`
 
-#### Description
 Return the WKB representation of the GEOGRAPHY object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_aswkt(geography) returns varchar
 function st_aswkt(geometry) returns varchar
@@ -300,9 +272,8 @@ function st_aswkt(geometry) returns varchar
 
 ## `st_azimuth`
 
-#### Description
 Returns the azimuth in radians of the segment defined by the given point
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_azimuth(geography, geography) returns double
 function st_azimuth(geometry, geometry) returns double
@@ -311,9 +282,8 @@ function st_azimuth(geometry, geometry) returns double
 
 ## `st_buffer`
 
-#### Description
 Returns the geometry generated by the buffer operation upon the given input geometry using the diven distance
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_buffer(geometry, double) returns geometry
 ```
@@ -321,9 +291,8 @@ function st_buffer(geometry, double) returns geometry
 
 ## `st_centroid`
 
-#### Description
 The centroid of geography
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_centroid(geography) returns geography
 function st_centroid(geometry) returns geometry
@@ -332,9 +301,8 @@ function st_centroid(geometry) returns geometry
 
 ## `st_collect`
 
-#### Description
 Aggregates all geographies into a GeometryCollection or Multi* geography if they are all of the same single element type (e.g. Point)
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_collect(geography) returns geography
 function st_collect(geography, geography) returns geography
@@ -343,9 +311,8 @@ function st_collect(geography, geography) returns geography
 
 ## `st_contains`
 
-#### Description
 True if the first object fully contains the second
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_contains(geography, geography) returns boolean
 function st_contains(geometry, geometry) returns boolean
@@ -354,9 +321,8 @@ function st_contains(geometry, geometry) returns boolean
 
 ## `st_coveredby`
 
-#### Description
 True if the second object covers the first
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_coveredby(geography, geography) returns boolean
 function st_coveredby(geometry, geometry) returns boolean
@@ -365,9 +331,8 @@ function st_coveredby(geometry, geometry) returns boolean
 
 ## `st_covers`
 
-#### Description
 True if the first object covers the second
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_covers(geography, geography) returns boolean
 function st_covers(geometry, geometry) returns boolean
@@ -376,9 +341,8 @@ function st_covers(geometry, geometry) returns boolean
 
 ## `st_difference`
 
-#### Description
 Geometry representing the set difference a minus b
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_difference(geography, geography) returns geography
 ```
@@ -386,9 +350,8 @@ function st_difference(geography, geography) returns geography
 
 ## `st_dimension`
 
-#### Description
 The dimension of the input geography
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_dimension(geography) returns decimal(38, 0)
 function st_dimension(geometry) returns decimal(38, 0)
@@ -397,9 +360,8 @@ function st_dimension(geometry) returns decimal(38, 0)
 
 ## `st_disjoint`
 
-#### Description
 True if the two objects not intersect
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_disjoint(geography, geography) returns boolean
 function st_disjoint(geometry, geometry) returns boolean
@@ -408,9 +370,8 @@ function st_disjoint(geometry, geometry) returns boolean
 
 ## `st_distance`
 
-#### Description
 Distance between two geography objects in meters
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_distance(geography, geography) returns double
 function st_distance(geometry, geometry) returns double
@@ -419,9 +380,8 @@ function st_distance(geometry, geometry) returns double
 
 ## `st_dwithin`
 
-#### Description
 True if the minimum distance between two objects is smaller than or equal to the specified distance in meters
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_dwithin(geography, geography, double) returns boolean
 ```
@@ -429,9 +389,8 @@ function st_dwithin(geography, geography, double) returns boolean
 
 ## `st_endpoint`
 
-#### Description
 The last point in the geography, only supports LineStrings
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_endpoint(geography) returns geography
 function st_endpoint(geometry) returns geometry
@@ -440,9 +399,8 @@ function st_endpoint(geometry) returns geometry
 
 ## `st_envelope`
 
-#### Description
 the double-precision (float8) minimum bounding box for the supplied geometry
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_envelope(geography) returns geography
 function st_envelope(geometry) returns geometry
@@ -451,9 +409,8 @@ function st_envelope(geometry) returns geometry
 
 ## `st_geogfromgeohash`
 
-#### Description
 The geography represented by the geohash
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geogfromgeohash(varchar, decimal(38, 0)) returns geography
 function st_geogfromgeohash(varchar) returns geography
@@ -462,9 +419,8 @@ function st_geogfromgeohash(varchar) returns geography
 
 ## `st_geogpointfromgeohash`
 
-#### Description
 The point represented by the geohash
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geogpointfromgeohash(varchar) returns geography
 ```
@@ -472,9 +428,8 @@ function st_geogpointfromgeohash(varchar) returns geography
 
 ## `st_geographyfromwkb`
 
-#### Description
 Parse WKB or EWKB
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geographyfromwkb(varchar) returns geography
 function st_geographyfromwkb(varchar, boolean) returns geography
@@ -485,9 +440,8 @@ function st_geographyfromwkb(binary, boolean) returns geography
 
 ## `st_geographyfromwkt`
 
-#### Description
 Alias of ST_GEOGRAPHYFROMTEXT
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geographyfromwkt(varchar) returns geography
 function st_geographyfromwkt(varchar, boolean) returns geography
@@ -496,9 +450,8 @@ function st_geographyfromwkt(varchar, boolean) returns geography
 
 ## `st_geohash`
 
-#### Description
 The geohash of a geography
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geohash(geography, decimal(38, 0)) returns varchar
 function st_geohash(geography) returns varchar
@@ -507,9 +460,8 @@ function st_geohash(geography) returns varchar
 
 ## `st_geometryfromwkb`
 
-#### Description
 Parse WKB or EWKB from binary
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geometryfromwkb(binary, decimal(38, 0)) returns geometry
 function st_geometryfromwkb(binary) returns geometry
@@ -528,9 +480,8 @@ function st_geometryfromwkb(binary, boolean) returns geometry
 
 ## `st_geometryfromwkt`
 
-#### Description
 Alias of ST_GEOMETRYFROMTEXT
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_geometryfromwkt(varchar) returns geometry
 function st_geometryfromwkt(varchar, decimal(38, 0)) returns geometry
@@ -541,9 +492,8 @@ function st_geometryfromwkt(varchar, boolean) returns geometry
 
 ## `st_hausdorffdistance`
 
-#### Description
 the Hausdorff distance between two geometries
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_hausdorffdistance(geography, geography) returns double
 ```
@@ -551,9 +501,8 @@ function st_hausdorffdistance(geography, geography) returns double
 
 ## `st_intersection`
 
-#### Description
 Geometry representing the intersection of a and b
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_intersection(geography, geography) returns geography
 ```
@@ -561,9 +510,8 @@ function st_intersection(geography, geography) returns geography
 
 ## `st_intersects`
 
-#### Description
 True if the two objects intersect
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_intersects(geography, geography) returns boolean
 function st_intersects(geometry, geometry) returns boolean
@@ -572,9 +520,8 @@ function st_intersects(geometry, geometry) returns boolean
 
 ## `st_isvalid`
 
-#### Description
 True if g has an internal representation
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_isvalid(geography) returns boolean
 function st_isvalid(geometry) returns boolean
@@ -583,9 +530,8 @@ function st_isvalid(geometry) returns boolean
 
 ## `st_length`
 
-#### Description
 Length or perimeter of the object in meters
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_length(geography) returns double
 function st_length(geometry) returns double
@@ -594,9 +540,8 @@ function st_length(geometry) returns double
 
 ## `st_makegeompoint`
 
-#### Description
 Creates a point with the given x and y
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_makegeompoint(double, double) returns geometry
 ```
@@ -604,9 +549,8 @@ function st_makegeompoint(double, double) returns geometry
 
 ## `st_makeline`
 
-#### Description
 Create a Line out of the points in the input geographies
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_makeline(geography, geography) returns geography
 function st_makeline(geometry, geometry) returns geometry
@@ -615,9 +559,8 @@ function st_makeline(geometry, geometry) returns geometry
 
 ## `st_makepoint`
 
-#### Description
 Creates a point with the given longitude and latitude
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_makepoint(double, double) returns geography
 ```
@@ -625,9 +568,8 @@ function st_makepoint(double, double) returns geography
 
 ## `st_makepolygon`
 
-#### Description
 The Polygon consisting of the LineString as outer shell
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_makepolygon(geography) returns geography
 function st_makepolygon(geometry) returns geometry
@@ -636,9 +578,8 @@ function st_makepolygon(geometry) returns geometry
 
 ## `st_makepolygonoriented`
 
-#### Description
 The Polygon consisting of the LineString as outer shell, with unmodified orientation
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_makepolygonoriented(geography) returns geography
 ```
@@ -646,9 +587,8 @@ function st_makepolygonoriented(geography) returns geography
 
 ## `st_npoints`
 
-#### Description
-The number of points in the object's definition
-#### Supported Signatures
+The number of points in the object&#39;s definition
+*Supported Signatures*
 ```sql
 function st_npoints(geography) returns decimal(38, 0)
 function st_npoints(geometry) returns decimal(38, 0)
@@ -657,9 +597,8 @@ function st_npoints(geometry) returns decimal(38, 0)
 
 ## `st_numpoints`
 
-#### Description
 Alias for ST_NPOINTS
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_numpoints(geography) returns decimal(38, 0)
 function st_numpoints(geometry) returns decimal(38, 0)
@@ -668,9 +607,8 @@ function st_numpoints(geometry) returns decimal(38, 0)
 
 ## `st_perimeter`
 
-#### Description
 Perimeter of the object in meters
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_perimeter(geography) returns double
 function st_perimeter(geometry) returns double
@@ -679,9 +617,8 @@ function st_perimeter(geometry) returns double
 
 ## `st_point`
 
-#### Description
 Creates a point with the given longitude and latitude
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_point(double, double) returns geography
 ```
@@ -689,9 +626,8 @@ function st_point(double, double) returns geography
 
 ## `st_pointn`
 
-#### Description
 The nth point in the geography, only supports LineStrings
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_pointn(geography, decimal(38, 0)) returns geography
 function st_pointn(geometry, decimal(38, 0)) returns geometry
@@ -700,9 +636,8 @@ function st_pointn(geometry, decimal(38, 0)) returns geometry
 
 ## `st_polygon`
 
-#### Description
 Alias for ST_MAKEPOLYGON
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_polygon(geography) returns geography
 function st_polygon(geometry) returns geometry
@@ -711,9 +646,8 @@ function st_polygon(geometry) returns geometry
 
 ## `st_setsrid`
 
-#### Description
 Returns a geometry same as input geometry but with SRID set to the given value
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_setsrid(geometry, decimal(38, 0)) returns geometry
 ```
@@ -721,9 +655,8 @@ function st_setsrid(geometry, decimal(38, 0)) returns geometry
 
 ## `st_simplify`
 
-#### Description
 Simplified version of the given geometry
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_simplify(geography, double, boolean) returns geography
 function st_simplify(geography, double) returns geography
@@ -733,9 +666,8 @@ function st_simplify(geometry, double) returns geometry
 
 ## `st_srid`
 
-#### Description
 Returns the SRID of a geography if present. Otherwise 4326
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_srid(geography) returns decimal(38, 0)
 function st_srid(geometry) returns decimal(38, 0)
@@ -744,9 +676,8 @@ function st_srid(geometry) returns decimal(38, 0)
 
 ## `st_startpoint`
 
-#### Description
 The first point in the geography, only supports LineStrings
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_startpoint(geography) returns geography
 function st_startpoint(geometry) returns geometry
@@ -755,9 +686,8 @@ function st_startpoint(geometry) returns geometry
 
 ## `st_symdifference`
 
-#### Description
 Geometry representing the set symmetric difference a minus b
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_symdifference(geography, geography) returns geography
 ```
@@ -765,9 +695,8 @@ function st_symdifference(geography, geography) returns geography
 
 ## `st_transform`
 
-#### Description
 Returns the geometry transformed from one SRID to another SRID.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_transform(geometry, decimal(38, 0), decimal(38, 0)) returns geometry
 function st_transform(geometry, decimal(38, 0)) returns geometry
@@ -776,9 +705,8 @@ function st_transform(geometry, decimal(38, 0)) returns geometry
 
 ## `st_union`
 
-#### Description
 Geometry representing the union of a and b
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_union(geography, geography) returns geography
 ```
@@ -786,9 +714,8 @@ function st_union(geography, geography) returns geography
 
 ## `st_within`
 
-#### Description
 True if the second object fully contains the first
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_within(geography, geography) returns boolean
 function st_within(geometry, geometry) returns boolean
@@ -797,9 +724,8 @@ function st_within(geometry, geometry) returns boolean
 
 ## `st_x`
 
-#### Description
 The longitude of a point
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_x(geography) returns double
 function st_x(geometry) returns double
@@ -808,9 +734,8 @@ function st_x(geometry) returns double
 
 ## `st_xmax`
 
-#### Description
 The maximum longitude
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_xmax(geography) returns double
 function st_xmax(geometry) returns double
@@ -819,9 +744,8 @@ function st_xmax(geometry) returns double
 
 ## `st_xmin`
 
-#### Description
 The minimum longitude
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_xmin(geography) returns double
 function st_xmin(geometry) returns double
@@ -830,9 +754,8 @@ function st_xmin(geometry) returns double
 
 ## `st_y`
 
-#### Description
 The latitude of a point
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_y(geography) returns double
 function st_y(geometry) returns double
@@ -841,9 +764,8 @@ function st_y(geometry) returns double
 
 ## `st_ymax`
 
-#### Description
 The maximum latitude
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_ymax(geography) returns double
 function st_ymax(geometry) returns double
@@ -852,9 +774,8 @@ function st_ymax(geometry) returns double
 
 ## `st_ymin`
 
-#### Description
 The minimum latitude
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function st_ymin(geography) returns double
 function st_ymin(geometry) returns double
@@ -863,9 +784,8 @@ function st_ymin(geometry) returns double
 
 ## `to_geography`
 
-#### Description
 No-op; prevents us from re-packaging GEOGRAPHY during input
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_geography(geography) returns geography
 function to_geography(geography, boolean) returns geography
@@ -881,9 +801,8 @@ function to_geography($1) returns geography
 
 ## `to_geometry`
 
-#### Description
 No-op; prevents us from re-packaging GEOMETRY during input
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function to_geometry(geometry) returns geometry
 function to_geometry(variant, decimal(38, 0)) returns geometry
@@ -909,9 +828,8 @@ function to_geometry(binary, boolean) returns geometry
 
 ## `try_to_geography`
 
-#### Description
 No-op; prevents us from re-packaging GEOGRAPHY during input
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_geography(geography) returns geography
 function try_to_geography(geography, boolean) returns geography
@@ -926,9 +844,8 @@ function try_to_geography(binary, boolean) returns geography
 
 ## `try_to_geometry`
 
-#### Description
 No-op; prevents us from re-packaging GEOMETRY during input
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function try_to_geometry(geometry) returns geometry
 function try_to_geometry(variant, decimal(38, 0)) returns geometry

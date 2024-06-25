@@ -1,11 +1,11 @@
 workspace:
-  edition: "1.2"
+  edition: "1.3"
   name: "tpch"
-  defaults: 
+  defaults:
     dialect: trino
   description: >
     The TPC-H benchmark is a standard for measuring processing performance of analytical SQL engines.
-    
+
     To run the benchmark:
     1. Run the included hydrate.sh script which downloads relevant data
     2. To execute all queries: `sdf run --no-cache`
@@ -14,4 +14,3 @@ workspace:
     - path: queries
     - path: tpch_pd_scale_10
       type: resource
-  

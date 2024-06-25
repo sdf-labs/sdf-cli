@@ -5,9 +5,8 @@ title: "Metadata Functions"
 
 ## `generate_column_description`
 
-#### Description
 parse the result from INFER_SCHEMA and generate a copy-able column description
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function generate_column_description(array, varchar) returns varchar
 ```
@@ -15,9 +14,8 @@ function generate_column_description(array, varchar) returns varchar
 
 ## `get_ddl`
 
-#### Description
 DDL used to create the object
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function get_ddl(varchar, varchar) returns varchar
 function get_ddl(varchar, varchar, boolean) returns varchar

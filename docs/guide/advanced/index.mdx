@@ -33,11 +33,11 @@ can be edited and utilized where index is specified as none.
 ```yaml workspace.sdf.yml
 workspace:
    name: csv_123
-   edition: "1.2"
+   edition: "1.3"
    defaults:
-     dialect: presto
+     dialect: trino
    includes:
-      - path: src
+      - path: models
         index: none
       - path: local
         index: none
@@ -93,13 +93,13 @@ Begin by specifying the index type to `catalog-schema-table-name` and defining d
 ```yaml workspace.sdf.yml
 workspace:
    name: csv_123
-   edition: "1.2"
+   edition: "1.3"
    defaults:
     catalog: example
     schema: pub
-    dialect: presto
+    dialect: trino
    includes:
-      - path: src
+      - path: models
         index: catalog-schema-table-name
       - path: local
         index: catalog-schema-table-name
@@ -159,12 +159,12 @@ If the default catalog is not set in the top-level workspace block, the catalog 
 ```yaml workspace.sdf.yml
 workspace:
    name: csv_123
-   edition: "1.2"
+   edition: "1.3"
    defaults:
     schema: pub
-    dialect: presto
+    dialect: trino
    includes:
-      - path: src
+      - path: models
         index: schema-table-name
         defaults:
           catalog: example

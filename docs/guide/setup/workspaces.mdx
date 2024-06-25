@@ -82,9 +82,9 @@ The simplest version of a `workspace.sdf.yml` looks like this:
 ```yaml
 workspace:
   name: hello_world
-  edition: "1.2"
+  edition: "1.3"
   includes:
-    - path: src
+    - path: models
 ```
 
 So what's going on here? The first thing you'll notice is the workspace
@@ -93,30 +93,55 @@ to expect when compiling your project.
 
 Next we see an `includes` block. This tells the SDF engine where to look to find
 the code sources it will use to build your project and transform your data.
-Simply put, your SQL files should go into the `src` directory.
+Simply put, your SQL files should go into the `models` directory.
 
 For a full list of the options available in the `workspace.sdf.yml`, see the
 [sdf.yml](/reference/sdf-yml) reference.
 
 #### Important Properties
 
-```yaml
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-yml'>
+<code className='language-yml'>
 workspace:
-  name: my_project
-  edition: "1.2"
-  includes:
-    - path: src/
-    - path: priv/
-      defaults:
-        schema: priv
-        dialect: bigquery
-	excludes:
-		- path: test_data/
-  defaults:
-    catalog: my_project
-    schema: public
-    dialect: sdf
-```
+&nbsp;&nbsp;name:&nbsp;moms_flower_shop
+&nbsp;&nbsp;edition:&nbsp;&quot;1.3&quot;
+&nbsp;&nbsp;description:&nbsp;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;workspace&nbsp;represents&nbsp;the&nbsp;data&nbsp;warehouse&nbsp;of&nbsp;mom&#39;s&nbsp;flower&nbsp;shop.&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;It&nbsp;contains&nbsp;raw&nbsp;data&nbsp;regarding:
+&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;Customers
+&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;Marketing&nbsp;campaigns
+&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;Mobile&nbsp;in-app&nbsp;events
+&nbsp;&nbsp;&nbsp;&nbsp;4.&nbsp;Street&nbsp;addresses
+
+&nbsp;&nbsp;&nbsp;&nbsp;That&nbsp;data&nbsp;is&nbsp;available&nbsp;in&nbsp;the&nbsp;seeds&nbsp;folder&nbsp;and&nbsp;is&nbsp;referenced&nbsp;in&nbsp;models/raw
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;loaded&nbsp;and&nbsp;used&nbsp;by&nbsp;SDF.&nbsp;Data&nbsp;transformations&nbsp;are&nbsp;performed&nbsp;and&nbsp;additional&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;models&nbsp;are&nbsp;available&nbsp;in&nbsp;the&nbsp;staging&nbsp;and&nbsp;analytics&nbsp;folders&nbsp;under&nbsp;the&nbsp;models&nbsp;folder.
+
+&nbsp;&nbsp;includes:
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;models
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema-table-name
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;seeds/parquet
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;resource
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;metadata
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;classifications
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;reports
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;checks
+---
+environment:
+&nbsp;&nbsp;name:&nbsp;dev
+&nbsp;&nbsp;integrations:
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;provider:&nbsp;sdf
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;database
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;targets:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;pattern:&nbsp;moms_flower_shop.*.*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rename-as:&nbsp;moms_workshed.$&#123;1&#125;.$&#123;2&#125;
+
+</code>
+</pre>
+</div>
 
 - `name` - The name of the workspace. This is used to create the default catalog
   for the workspace.
@@ -217,7 +242,7 @@ example of how to apply this classifier to a column.
 
 ### Generated Metadata
 
-SDF represents all the metadata about your project in a local `.sdfcache` directory. After
+SDF represents all the metadata about your project in a local `sdftarget` directory. After
 running an SDF command, you'll find this new directory appears in your SDF workspace.
 This is automatically added to your `.gitignore` and should not be tracked in git.
 As the name implies, this folder enables SDF to cache intermediaries as you're
@@ -228,55 +253,51 @@ These `sdf.yml` files represent all the user-defined and generated SDF metadata 
 This metadata is used to enable features like column-level lineage, classifier
 propagation, and more.
 
-Here's an example of a full-fledged table definition generated in the `.sdfcache`:
+Here's an example of a full-fledged table definition generated in the `sdftarget`:
 
-```yaml .sdfcache/dbg/table/default/public/main.sdf.yml
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-yml'>
+<code className='language-yml'>
 table:
-  name: default.public.main
-  includes:
-    - path: src/main.sql
-  dialect: sdf
-  columns:
-    - name: time_date
-      datatype: timestamp
-      nullable: false
-    - name: user_id
-      datatype: varchar
-      nullable: false
-      lineage:
-        copy:
-          - j_table.user_id
-          - b_table.user_id
-          - i_table.user_id
-          - k_table.user_id
-          - h_table.user_id
-          - f_table.user_id
-          - g_table.user_id
-          - d_table.user_id
-          - e_table.user_id
-          - c_table.user_id
-          - l_table.user_id
-          - m_table.user_id
-          - a_table.user_id
-    - name: user_id_hash
-      datatype: int
-      nullable: false
-      lineage:
-        mod:
-          - j_table.user_id
-          - b_table.user_id
-          - i_table.user_id
-          - k_table.user_id
-          - h_table.user_id
-          - f_table.user_id
-          - g_table.user_id
-          - d_table.user_id
-          - e_table.user_id
-          - c_table.user_id
-          - l_table.user_id
-          - m_table.user_id
-          - a_table.user_id
-```
+&nbsp;&nbsp;name:&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns
+&nbsp;&nbsp;dialect:&nbsp;trino
+&nbsp;&nbsp;materialization:&nbsp;view
+&nbsp;&nbsp;purpose:&nbsp;model
+&nbsp;&nbsp;dependencies:
+&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2
+&nbsp;&nbsp;columns:
+&nbsp;&nbsp;-&nbsp;name:&nbsp;install_date
+&nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;varchar
+&nbsp;&nbsp;&nbsp;&nbsp;lineage:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modify:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.install_time
+&nbsp;&nbsp;-&nbsp;name:&nbsp;campaign_name
+&nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;varchar
+&nbsp;&nbsp;&nbsp;&nbsp;lineage:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.campaign_name
+&nbsp;&nbsp;-&nbsp;name:&nbsp;platform
+&nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;varchar
+&nbsp;&nbsp;&nbsp;&nbsp;lineage:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.platform
+&nbsp;&nbsp;-&nbsp;name:&nbsp;distinct_installs
+&nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;bigint
+&nbsp;&nbsp;&nbsp;&nbsp;lineage:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modify:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.customer_id
+&nbsp;&nbsp;lineage:
+&nbsp;&nbsp;&nbsp;&nbsp;scan:
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.campaign_name
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.install_time
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.platform
+&nbsp;&nbsp;source-locations:
+&nbsp;&nbsp;-&nbsp;path:&nbsp;models/analytics/agg_installs_and_campaigns.sql
+
+</code>
+</pre>
+</div>
 
 These generated `sdf.yml` files are a powerful representation that can help you understand what
 SDF is doing under the hood. You can use these files to understand how SDF
@@ -285,6 +306,6 @@ tools and functionalities on top of it in the future.
 
 <Note>
   Want to build something cool that utilizes the SDF engine? We'd love to hear
-  about it! [Inquire here](https://sdf.com/inquiries) to let us
+  about it! [Inquire here](https://www.sdf.com/support) to let us
   know what you're working on and how we can help.
 </Note>

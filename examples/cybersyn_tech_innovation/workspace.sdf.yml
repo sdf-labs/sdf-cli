@@ -1,6 +1,6 @@
 workspace:
   name: cybersyn_tech_innovation # The name of this workspace -- required
-  edition: "1.2" # The edition of this workspace -- required
+  edition: "1.3" # The edition of this workspace -- required
   description: >
     This workspace uses a free dataset on Snowflake's marketplace called Tech & Innovation Essentials. 
     Running and compiling this workspace requires a connection to a Snowflake account with the dataset above installed.
@@ -11,12 +11,11 @@ workspace:
 
   defaults:
     dialect: snowflake
-    compute: remote
     preprocessor: jinja
     materialization: view
 
   includes:
-    - path: src # The path to sql sources for this workspace -- at least one path is required
+    - path: models # The path to sql sources for this workspace -- at least one path is required
       index: catalog-schema-table-name # The index to use for sources, this grabs the catalog, schema, and table name from the directory structure.
 
   integrations:

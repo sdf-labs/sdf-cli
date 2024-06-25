@@ -1,0 +1,202 @@
+---
+title: "Intro to Jinja"
+---
+
+## Overview
+
+Jinja is a powerful and popular templating engine. SDF uses [Mini Jinja](https://docs.rs/minijinja/latest/minijinja/),
+a lightweight version of the [Pythonic Jinja](https://jinja.palletsprojects.com/en/3.1.x/) designed specifically for 
+Rust applications. It provides similar functionality to Jinja but is tailored for integration with Rust projects, 
+offering enhanced performance.
+
+<Tip>
+    SDF comes with Jinja support built-in! No additional installations are required.
+</Tip>
+
+## How Does it Work?
+
+Jinja (or Mini Jinja) enables developers to embed logic and dynamic content into static templates. It leverages a unique 
+syntax which resembles Python and is added directly to a file:
+- Jinja blocks should to be wrapped with `{%` and `%}`
+- Jinja variables should be wrapped with `{{` and `}}`
+
+When the file is invoked by the program, in this case SDF, the template gets resolved, changing the file dynamically 
+based on the template.
+
+<Note>
+    This guide provides a high level overview of Jinja basics. We highly recommend to learn more from the 
+    [official Jinja documentation](https://docs.rs/minijinja/latest/minijinja/) and other sources online.
+</Note>
+
+## Common Templating in Data Pipeplines
+
+### Variables
+Let's look at a simple example to make this more concrete. For simplicity, let's assume we know 
+`table_name = orders`:
+
+<Tip>
+    In the code blocks below, toggle between the queries jinja templates and the rendered versions
+    of the queries. The rendered versions of the queries are the ones that will be compiled and 
+    executed by SDF.
+</Tip>
+
+<CodeGroup>
+```sql Jinja Template
+SELECT *
+FROM {{ table_name }}
+```
+```sql Rendered File
+SELECT *
+FROM orders
+```
+</CodeGroup>
+
+In order for this to work, we need to define the `table_name` Jinja variable. This is done using a `set` block:
+<CodeGroup>
+```sql Jinja Template
+{% set table_name = 'orders' %}
+SELECT *
+FROM {{ table_name }}
+```
+```sql Rendered File
+SELECT *
+FROM orders
+```
+</CodeGroup>
+
+### If Statements
+Let's make it more interesting. If the environment name is 'dev', we want to query `dev_orders`, otherwise, `orders`.
+For that, we can use an `if` Jinja block. Notice, we need to close the `if` block with a `endif` block
+
+<CodeGroup>
+```sql Jinja Template
+{% if builtin.environment == 'dev' %}  
+    {% set table_name = 'dev_orders' %}
+{% else %}
+    {% set table_name = 'orders' %}
+{% endif %}
+SELECT *
+FROM {{ table_name }}
+```
+```sql Rendered File in Dev
+SELECT *
+FROM dev_orders
+```
+```sql Rendered File not in Dev
+SELECT *
+FROM orders
+```
+</CodeGroup>
+
+<Note>
+    SDF has many built-in Jinja variables that can be accessed in your models. Specifically, `builtin.environment` 
+    returns the environment name of the current environment.
+</Note>
+
+### For Loops
+Jinja supports advanced data structures like lists and dictionaries. Notice that similarly to `if` statements,
+`for` loop blocks need to end with `endfor` blocks.
+
+<CodeGroup>
+```sql Jinja Template
+{% set columns = ['order_id', 'customer_id', 'order_type'] %}
+SELECT 
+    {% for column_name in columns %}
+        {{ column_name }},
+    {% endfor %}
+    COUNT(*) AS cnt
+FROM orders
+GROUP BY 
+    {{ columns|join(', ') }}
+```
+```sql Rendered File
+SELECT 
+    order_id,
+    customer_id,
+    order_type,
+    COUNT(*) AS cnt
+FROM orders
+GROUP BY 
+    order_id, customer_id, order_type
+```
+</CodeGroup>
+
+<Note>
+    Jinja supports some Python native methods. For example, the `join` method of lists as can be seen in the 
+    example above.
+</Note>
+
+Now, let's see how to iterate on a dictionary:
+
+<CodeGroup>
+```sql Jinja Template
+{% set columns = {
+    'id': 'order_id', 
+    'uid': 'customer_id', 
+    'type': 'order_type'
+    }
+ %}
+SELECT 
+    {% for column_name, column_rename in columns|items() %}
+        {{ column_name }} AS {{ column_rename }},
+    {% endfor %}
+    ...
+FROM orders
+```
+```sql Rendered File
+
+SELECT 
+    id AS order_id,
+    type AS order_type,
+    uid AS customer_id,
+    -- ...
+FROM orders
+```
+</CodeGroup>
+
+Another way to iterate on dictionaries is to iterate directly on its keys:
+<CodeGroup>
+```sql Jinja Template
+{% set columns = {
+    'id': 'order_id', 
+    'uid': 'customer_id', 
+    'type': 'order_type'
+    }
+ %}
+SELECT 
+    {% for column_name in columns %}
+        {{ column_name }} AS {{ columns[column_rename] }},
+    {% endfor %}
+    ...
+FROM orders
+```
+```sql Rendered File
+
+SELECT 
+    id AS order_id,
+    type AS order_type,
+    uid AS customer_id,
+    -- ...
+FROM orders
+```
+</CodeGroup>
+
+<Note>
+    Mini Jinja syntax differs slightly from Pythonic Jinja, but it will still meets
+    all your Jinja needs. 
+    
+    For example, although iterating over dictionaries is slightly different, both 
+    libraries can implement the same logic with minor adjustments.
+</Note>
+
+## Resources
+
+Jinja templating is incredibly powerful and there is much more to learn. We hope this guide helped provide an
+introduction to Jinja, but we encourage you to learn more about what you can do. 
+
+- [Mini Jinja Documentation](https://github.com/sunng87/mini-jinja): Official documentation providing detailed 
+guidance on using Mini Jinja.
+
+- [Mini Jinja GitHub Repository](https://docs.rs/minijinja/latest/minijinja/): The source code, issues, 
+and discussions related to Mini Jinja can be found on GitHub.
+

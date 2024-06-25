@@ -1,0 +1,23 @@
+---
+title: "Uuid Functions"
+---
+
+## `uuid`
+
+Returns a pseudo randomly generated UUID (type 4).
+
+
+*Examples:*
+```sql examples.sql
+SELECT uuid() as value; -- value '22552909-5560-4234-a383-5a968a4e2a91'
+```
+*Supported Signatures*
+```sql
+function uuid() returns uuid
+```
+*Note: uuid() is volatile, i.e. might return a
+                different value for the same input.*
+
+[🔗 Official Documentation](https://trino.io/docs/current/functions/uuid.html#uuid)
+
+

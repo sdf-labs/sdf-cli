@@ -5,7 +5,7 @@ title: "Context Functions"
 
 ## `all_user_names`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function all_user_names() returns array
 ```
@@ -13,7 +13,7 @@ function all_user_names() returns array
 
 ## `current_account`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_account() returns string
 ```
@@ -21,7 +21,7 @@ function current_account() returns string
 
 ## `current_account_name`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_account_name() returns string
 ```
@@ -29,7 +29,7 @@ function current_account_name() returns string
 
 ## `current_available_roles`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_available_roles() returns string
 ```
@@ -37,9 +37,8 @@ function current_available_roles() returns string
 
 ## `current_client`
 
-#### Description
 Returns the current client version.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_client() returns varchar
 function current_client() returns string
@@ -48,9 +47,8 @@ function current_client() returns string
 
 ## `current_database`
 
-#### Description
 Returns the current database.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_database() returns varchar
 ```
@@ -58,9 +56,8 @@ function current_database() returns varchar
 
 ## `current_date`
 
-#### Description
 Returns the current date.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_date() returns date
 ```
@@ -68,9 +65,8 @@ function current_date() returns date
 
 ## `current_ip_address`
 
-#### Description
 Returns the Client Internet Protocol address (IP address) of the current request.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_ip_address() returns varchar
 ```
@@ -78,9 +74,8 @@ function current_ip_address() returns varchar
 
 ## `current_organization_name`
 
-#### Description
 Returns the name of the organization the current account belongs to.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_organization_name() returns varchar
 ```
@@ -88,9 +83,8 @@ function current_organization_name() returns varchar
 
 ## `current_region`
 
-#### Description
 Returns the current region name.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_region() returns varchar
 ```
@@ -98,9 +92,8 @@ function current_region() returns varchar
 
 ## `current_role`
 
-#### Description
 Returns the currently active role name.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_role() returns varchar
 ```
@@ -108,9 +101,8 @@ function current_role() returns varchar
 
 ## `current_role_type`
 
-#### Description
 Returns if the current role is of type account or database
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_role_type() returns varchar
 ```
@@ -118,9 +110,8 @@ function current_role_type() returns varchar
 
 ## `current_schema`
 
-#### Description
 Returns the current schema.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_schema() returns varchar
 ```
@@ -128,9 +119,8 @@ function current_schema() returns varchar
 
 ## `current_schemas`
 
-#### Description
 Returns active search path schemas
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_schemas() returns varchar
 ```
@@ -138,9 +128,8 @@ function current_schemas() returns varchar
 
 ## `current_secondary_roles`
 
-#### Description
-Returns the currently active secondary roles' names.
-#### Supported Signatures
+Returns the currently active secondary roles&#39; names.
+*Supported Signatures*
 ```sql
 function current_secondary_roles() returns varchar
 ```
@@ -148,9 +137,8 @@ function current_secondary_roles() returns varchar
 
 ## `current_session`
 
-#### Description
 Returns the current session.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_session() returns varchar
 ```
@@ -158,9 +146,8 @@ function current_session() returns varchar
 
 ## `current_statement`
 
-#### Description
 Returns the text of the currently executing statement.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_statement() returns varchar
 ```
@@ -168,9 +155,8 @@ function current_statement() returns varchar
 
 ## `current_time`
 
-#### Description
 Returns the current time.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_time() returns time
 function current_time(decimal(38, 0)) returns time
@@ -179,9 +165,8 @@ function current_time(decimal(38, 0)) returns time
 
 ## `current_timestamp`
 
-#### Description
 Returns the current timestamp.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_timestamp() returns timestamp
 function current_timestamp(decimal(38, 0)) returns timestamp
@@ -190,9 +175,8 @@ function current_timestamp(decimal(38, 0)) returns timestamp
 
 ## `current_transaction`
 
-#### Description
 Returns the transaction id of an open transaction in the current session or scope.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_transaction() returns decimal(38, 0)
 ```
@@ -200,9 +184,8 @@ function current_transaction() returns decimal(38, 0)
 
 ## `current_user`
 
-#### Description
 Returns the current user name.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_user() returns varchar
 ```
@@ -210,9 +193,8 @@ function current_user() returns varchar
 
 ## `current_version`
 
-#### Description
 Returns the current software version (major.minor.patch).
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_version() returns varchar
 ```
@@ -220,9 +202,8 @@ function current_version() returns varchar
 
 ## `current_warehouse`
 
-#### Description
 Returns the warehouse currently in use.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function current_warehouse() returns varchar
 ```
@@ -230,9 +211,8 @@ function current_warehouse() returns varchar
 
 ## `getdate`
 
-#### Description
 Returns the current timestamp
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function getdate() returns timestamp
 ```
@@ -240,7 +220,7 @@ function getdate() returns timestamp
 
 ## `getvariable`
 
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function getvariable(string) returns string
 ```
@@ -248,9 +228,8 @@ function getvariable(string) returns string
 
 ## `invoker_role`
 
-#### Description
 Returns the invoker role
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function invoker_role() returns varchar
 ```
@@ -258,9 +237,8 @@ function invoker_role() returns varchar
 
 ## `invoker_share`
 
-#### Description
 Returns the invoker role
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function invoker_share() returns varchar
 ```
@@ -268,9 +246,8 @@ function invoker_share() returns varchar
 
 ## `is_database_role_in_session`
 
-#### Description
 Return true if the db role is in current role hierarchy
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_database_role_in_session(varchar) returns boolean
 ```
@@ -278,9 +255,8 @@ function is_database_role_in_session(varchar) returns boolean
 
 ## `is_granted_to_invoker_role`
 
-#### Description
-Returns true if the arg is in invoker_role's hierarchy
-#### Supported Signatures
+Returns true if the arg is in invoker_role&#39;s hierarchy
+*Supported Signatures*
 ```sql
 function is_granted_to_invoker_role(varchar) returns boolean
 ```
@@ -288,9 +264,8 @@ function is_granted_to_invoker_role(varchar) returns boolean
 
 ## `is_role_in_session`
 
-#### Description
 Return true if in current hierarchy
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function is_role_in_session(varchar) returns boolean
 ```
@@ -298,9 +273,8 @@ function is_role_in_session(varchar) returns boolean
 
 ## `last_query_id`
 
-#### Description
 Returns the id of the last executed statement in the current session.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function last_query_id() returns varchar
 function last_query_id(decimal(38, 0)) returns varchar
@@ -309,9 +283,8 @@ function last_query_id(decimal(38, 0)) returns varchar
 
 ## `last_transaction`
 
-#### Description
 Returns the transaction id of the last committed or rolled back transaction in the current session.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function last_transaction() returns decimal(38, 0)
 ```
@@ -319,9 +292,8 @@ function last_transaction() returns decimal(38, 0)
 
 ## `localtime`
 
-#### Description
 Returns the current time.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function localtime() returns time
 function localtime(decimal(38, 0)) returns time
@@ -330,9 +302,8 @@ function localtime(decimal(38, 0)) returns time
 
 ## `localtimestamp`
 
-#### Description
 Returns the current timestamp.
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function localtimestamp() returns timestamp
 function localtimestamp(decimal(38, 0)) returns timestamp
@@ -341,9 +312,8 @@ function localtimestamp(decimal(38, 0)) returns timestamp
 
 ## `sysdate`
 
-#### Description
 Returns the current timestamp in the UTC time zone
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function sysdate() returns timestamp
 ```
@@ -351,9 +321,8 @@ function sysdate() returns timestamp
 
 ## `systimestamp`
 
-#### Description
 Returns the current timestamp
-#### Supported Signatures
+*Supported Signatures*
 ```sql
 function systimestamp() returns timestamp
 ```
