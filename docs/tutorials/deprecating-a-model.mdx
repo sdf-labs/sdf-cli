@@ -56,13 +56,43 @@ Now, the paths are included in our project.
         downstream dependencies using SDF's lineage command. We simply run:
 
         ``` shell
-        sdf lineage app_installs --forward --show result
+        sdf lineage staging.app_installs --forward --show result
         ```
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Table:&nbsp;app_installs
+Table:&nbsp;staging.app_installs
+
+staging.app_installs.campaign_id
+
+staging.app_installs.campaign_name
+│
+│&nbsp;copy
+└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;analytics.agg_installs_and_campaigns.campaign_name
+
+staging.app_installs.campaign_type
+
+staging.app_installs.customer_id
+│
+│&nbsp;mod
+└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;analytics.agg_installs_and_campaigns.distinct_installs
+
+staging.app_installs.event_id
+
+staging.app_installs.install_time
+│
+│&nbsp;mod
+└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;analytics.agg_installs_and_campaigns.install_date
+
+staging.app_installs.platform
+│
+│&nbsp;copy
+└──────┐
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;analytics.agg_installs_and_campaigns.platform
 
 
 </code>
@@ -90,13 +120,28 @@ Table:&nbsp;app_installs
 
         Let's compile and see how it looks:
         ```shell
-        sdf compile app_installs --show result
+        sdf compile staging.app_installs --show result
         ```
 
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
+
+Schema&nbsp;moms_flower_shop.staging.app_installs
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;table&nbsp;is&nbsp;a&nbsp;staging&nbsp;table&nbsp;which&nbsp;adds&nbsp;campaign&nbsp;information&nbsp;to&nbsp;app&nbsp;install&nbsp;events
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TABLE_STATUS.deprecated]
+┌───────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═══════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;event_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;customer_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;install_time&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;platform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_name&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_type&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└───────────────┴───────────┴────────────┴─────────────┘
 
 </code>
 </pre>
@@ -154,11 +199,12 @@ Table:&nbsp;app_installs
 <code className='language-error'>
 
 Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
-┌──────────┬──────────────────────────────┐
-│&nbsp;table_id&nbsp;┆&nbsp;upstream_deprecated_table_id&nbsp;│
-╞══════════╪══════════════════════════════╡
-└──────────┴──────────────────────────────┘
-0&nbsp;rows.
+┌───────────────────────────────────────────────────────┬───────────────────────────────────────┐
+│&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;upstream_deprecated_table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞═══════════════════════════════════════════════════════╪═══════════════════════════════════════╡
+│&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;┆&nbsp;moms_flower_shop.staging.app_installs&nbsp;│
+└───────────────────────────────────────────────────────┴───────────────────────────────────────┘
+1&nbsp;rows.
 
 </code>
 </pre>
@@ -220,7 +266,7 @@ next tutorial - [enriching your warehouse](/tutorials/enriching-your-warehouse)
   <Card title="Classifiers" href="/guide/basics/classifiers">
     Learn all the ways classifiers can help enhance your workspace
   </Card>
-  <Card title="Checks" href="/guide/data-quality/checks">
-    Learn more about setting up checks for static analysis
+  <Card title="Reports" href="/guide/data-quality/reports">
+    Learn more about reports to get immediate insights about your data Warehouse
   </Card>
 </CardGroup>

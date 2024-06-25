@@ -30,7 +30,7 @@ Init for run commands:
 
         ``` yml workspace.sdf.yml
         ...
-        # Uncomment here to complete the "Deprecating a Model" tutorial >>>>>>
+        # Uncomment here to begin the "Deprecating a Model" tutorial >>>>>>
         - path: classifications  # Classifiers
         - path: reports  # Reports based on SDF s information schema
             type: report
@@ -92,7 +92,7 @@ Init for run commands:
         ...
         - name: event_id
             description: A unique identifier of an in-app event within mom's flower shop's mobile app
-            # Uncomment to complete the "Enriching your Warehouse" tutorial >>>>>
+            # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
             classifiers:
                 - EVENT.inapp
             # <<<<<
@@ -101,7 +101,7 @@ Init for run commands:
         ``` yml metadata/raw/raw_marketing_campaign_events.sdf.yml
         - name: event_id
             description: A unique identifier of the marketing campaign event
-            # Uncomment to complete the "Enriching your Warehouse" tutorial >>>>>
+            # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
             classifiers:
                 - EVENT.marketing
             # <<<<<
@@ -123,12 +123,23 @@ Init for run commands:
         Although we didn't assign the classifiers to `dim_marketing_campaigns`,
         we can see some of its columns inherited the classifier `EVENT.inapp`.
         ```shell
-        sdf compile dim_marketing_campaigns --show result
+        sdf compile analytics.dim_marketing_campaigns --show result
         ```
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
+
+Schema&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
+┌───────────────────────────────┬───────────┬─────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;&nbsp;┆&nbsp;description&nbsp;│
+╞═══════════════════════════════╪═══════════╪═════════════╪═════════════╡
+│&nbsp;campaign_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;total_num_installs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EVENT.inapp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;avg_customer_acquisition_cost&nbsp;┆&nbsp;double&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EVENT.inapp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;install_duration_ratio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EVENT.inapp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└───────────────────────────────┴───────────┴─────────────┴─────────────┘
 
 </code>
 </pre>
@@ -138,11 +149,26 @@ Init for run commands:
         and `EVENT.marketing`. This is due to the incorrect `JOIN` we found.
 
         ```shell 
-        sdf compile app_installs --show result
+        sdf compile staging.app_installs --show result
         ```
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
+
+Schema&nbsp;moms_flower_shop.staging.app_installs
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;table&nbsp;is&nbsp;a&nbsp;staging&nbsp;table&nbsp;which&nbsp;adds&nbsp;campaign&nbsp;information&nbsp;to&nbsp;app&nbsp;install&nbsp;events
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TABLE_STATUS.deprecated]
+┌───────────────┬───────────┬─────────────────────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;description&nbsp;│
+╞═══════════════╪═══════════╪═════════════════════════════╪═════════════╡
+│&nbsp;event_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EVENT.inapp&nbsp;EVENT.marketing&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;customer_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;install_time&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;platform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_name&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_type&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└───────────────┴───────────┴─────────────────────────────┴─────────────┘
 
 </code>
 </pre>
@@ -177,7 +203,13 @@ Init for run commands:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-[Pass]&nbsp;Check&nbsp;moms_flower_shop.pub.mixed_event_ids
+[Fail] Check moms_flower_shop.pub.mixed_event_ids
+┌──────────────┬─────────────┬────────────────────────────────┐
+│ table_name   ┆ column name ┆ classifiers                    │
+╞══════════════╪═════════════╪════════════════════════════════╡
+│ app_installs ┆ event_id    ┆ [EVENT.inapp, EVENT.marketing] │
+└──────────────┴─────────────┴────────────────────────────────┘
+1 rows.
 
 </code>
 </pre>
@@ -211,7 +243,7 @@ to monitor your warehouse's health and compliance.
 
         ``` yml metadata/raw/raw_customers.sdf.yml
         ...
-        # Uncomment to complete the "Enriching your Warehouse" tutorial >>>>>
+        # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
         classifiers:  <-- uncomment this part
             - name: PII.[name/address/gender/email]  <-- uncomment this part
         # <<<<<
@@ -224,6 +256,7 @@ to monitor your warehouse's health and compliance.
         ```
 
         For example, the `customers` table compile output should look like this:
+
         ```shell
         sdf compile staging.customers --show result
         ```
@@ -232,22 +265,22 @@ to monitor your warehouse's health and compliance.
 <code className='language-shell'>
 
 Schema&nbsp;moms_flower_shop.staging.customers
-┌───────────────┬───────────┬────────────┬─────────────┐
-│&nbsp;column_name&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
-╞═══════════════╪═══════════╪════════════╪═════════════╡
-│&nbsp;customer_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;first_name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;last_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;full_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;campaign_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;campaign_name&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;campaign_type&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;address_id&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;full_address&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-└───────────────┴───────────┴────────────┴─────────────┘
+┌───────────────┬───────────┬─────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;&nbsp;┆&nbsp;description&nbsp;│
+╞═══════════════╪═══════════╪═════════════╪═════════════╡
+│&nbsp;customer_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;first_name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;PII.name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;last_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;PII.name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;full_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;PII.name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;PII.email&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;PII.gender&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_name&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_type&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;address_id&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;PII.address&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;full_address&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└───────────────┴───────────┴─────────────┴─────────────┘
 
 </code>
 </pre>
@@ -312,16 +345,43 @@ Schema&nbsp;moms_flower_shop.staging.customers
         For example, we can look at the `raw_addresses` output 
         from the first command:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
-<code className='language-error'>
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+
+Schema&nbsp;moms_flower_shop.raw.raw_addresses
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All&nbsp;relevant&nbsp;information&nbsp;related&nbsp;to&nbsp;street&nbsp;addresses&nbsp;known&nbsp;to&nbsp;mom&#39;s&nbsp;flower&nbsp;shop.&nbsp;&nbsp;This&nbsp;information&nbsp;comes&nbsp;from&nbsp;the&nbsp;user&nbsp;input&nbsp;into&nbsp;the&nbsp;mobile&nbsp;app.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[RETENTION.d7]
+┌───────────────┬───────────┬────────────┬──────────────────────────────────────────────────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞═══════════════╪═══════════╪════════════╪══════════════════════════════════════════════════════════╡
+│&nbsp;index&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Row&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;address_id&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;A&nbsp;unique&nbsp;identifier&nbsp;of&nbsp;an&nbsp;address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;full_address&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;full&nbsp;address&nbsp;associated&nbsp;with&nbsp;the&nbsp;address_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;street_number&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;address&nbsp;street&nbsp;number&nbsp;associated&nbsp;with&nbsp;the&nbsp;address_id&nbsp;│
+│&nbsp;street_name&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;address&nbsp;street&nbsp;name&nbsp;associated&nbsp;with&nbsp;the&nbsp;address_id&nbsp;&nbsp;&nbsp;│
+│&nbsp;state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;address&nbsp;US&nbsp;state&nbsp;associated&nbsp;with&nbsp;the&nbsp;address_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;city&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;address&nbsp;US&nbsp;city&nbsp;associated&nbsp;with&nbsp;the&nbsp;address_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└───────────────┴───────────┴────────────┴──────────────────────────────────────────────────────────┘
 
 </code>
 </pre>
 </div>
         Or `dim_marketing_campaigns` from the second:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
-<code className='language-error'>
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+
+Schema&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[RETENTION.infinity]
+┌───────────────────────────────┬───────────┬─────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;&nbsp;┆&nbsp;description&nbsp;│
+╞═══════════════════════════════╪═══════════╪═════════════╪═════════════╡
+│&nbsp;campaign_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;total_num_installs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EVENT.inapp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;avg_customer_acquisition_cost&nbsp;┆&nbsp;double&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EVENT.inapp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;install_duration_ratio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EVENT.inapp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└───────────────────────────────┴───────────┴─────────────┴─────────────┘
 
 </code>
 </pre>
@@ -352,7 +412,7 @@ report against the information schema.
   <Card title="Checks" href="/guide/data-quality/checks">
     Learn more about setting up checks for static analysis
   </Card>
-  <Card title="Reports" href="/guide/data-quality/reports">
-    Learn more about reports to get immediate insights about your data warehouse
+  <Card title="Checks" href="/guide/data-quality/checks">
+    Learn more about checks to run impact analysis on your data warehouse
   </Card>
 </CardGroup>

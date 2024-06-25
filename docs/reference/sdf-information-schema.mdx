@@ -13,9 +13,10 @@ Under the hood, SDF stores the analysis output as Parquet.
 ### Information Schema
 The below tables represent the SDF Information Schema. They are always accessible, after any compilation, in the *sdftarget* under `sdftarget/dbg/data/system/information_schema::sdf`
 
+<img src="https://cdn.sdf.com/docs/Information-schema-RD.png"/>
 
 You may dynamically query the information schema in any valid SDF workspace. 
- 
+
 **To query your tables:**
 ``` shell
 sdf run -q "select * from sdf.information_schema.tables" 

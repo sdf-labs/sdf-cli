@@ -153,6 +153,18 @@ For the sake of the tutorials, there is no need to connect to a database or to l
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 
+Schema&nbsp;moms_flower_shop.raw.raw_customers
+┌─────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;first_name&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;last_name&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;address_id&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴───────────┴────────────┴─────────────┘
+
 </code>
 </pre>
 </div>
@@ -167,6 +179,24 @@ For the sake of the tutorials, there is no need to connect to a database or to l
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
+
+Table&nbsp;moms_flower_shop.raw.raw_customers
+┌────┬────────────┬─────────────┬─────────────────────────────┬─────────────┬────────────┐
+│&nbsp;id&nbsp;┆&nbsp;first_name&nbsp;┆&nbsp;last_name&nbsp;&nbsp;&nbsp;┆&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;address_id&nbsp;│
+╞════╪════════════╪═════════════╪═════════════════════════════╪═════════════╪════════════╡
+│&nbsp;1&nbsp;&nbsp;┆&nbsp;Willi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Vannuchi&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;wvannuchi0@engadget.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;73&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2&nbsp;&nbsp;┆&nbsp;Opalina&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Christophle&nbsp;┆&nbsp;ochristophle1@sina.com.cn&nbsp;&nbsp;&nbsp;┆&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;3&nbsp;&nbsp;┆&nbsp;Parke&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Tackley&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;ptackley2@deliciousdays.com&nbsp;┆&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;89&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;4&nbsp;&nbsp;┆&nbsp;Berton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Klamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bklamp3@desdev.cn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;99&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;5&nbsp;&nbsp;┆&nbsp;Taryn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Brook&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;tbrook4@flavors.me&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;6&nbsp;&nbsp;┆&nbsp;Moina&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Crake&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;mcrake5@uol.com.br&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;38&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;7&nbsp;&nbsp;┆&nbsp;Robbyn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Chezelle&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;rchezelle6@themeforest.net&nbsp;&nbsp;┆&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;92&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;8&nbsp;&nbsp;┆&nbsp;Carce&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Clendening&nbsp;&nbsp;┆&nbsp;cclendening7@chron.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;9&nbsp;&nbsp;┆&nbsp;Pennie&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Shilton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;pshilton8@mapy.cz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Genderqueer&nbsp;┆&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;10&nbsp;┆&nbsp;Brig&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Graal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bgraal9@microsoft.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;38&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└────┴────────────┴─────────────┴─────────────────────────────┴─────────────┴────────────┘
+1000&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;--limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
 
 </code>
 </pre>
@@ -200,7 +230,7 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.874&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.801&nbsp;secs
 
 </code>
 </pre>
@@ -226,18 +256,18 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;8&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.823&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.796&nbsp;secs
 
 </code>
 </pre>

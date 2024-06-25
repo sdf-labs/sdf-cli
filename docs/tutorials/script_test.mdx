@@ -9,28 +9,39 @@ Not an error:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
+Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;17&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded]&nbsp;in&nbsp;0.994&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded]&nbsp;in&nbsp;0.884&nbsp;secs
 
 </code>
 </pre>
 </div>
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
-<code className='language-shell'>
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+
+Schema&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
+┌───────────────────────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═══════════════════════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;campaign_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;campaign_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;total_num_installs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;avg_customer_acquisition_cost&nbsp;┆&nbsp;double&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;install_duration_ratio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└───────────────────────────────┴───────────┴────────────┴─────────────┘
 
 </code>
 </pre>
@@ -42,76 +53,74 @@ Checks:
 <code className='language-error'>
 
 Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
-┌──────────┬──────────────────────────────┐
-│&nbsp;table_id&nbsp;┆&nbsp;upstream_deprecated_table_id&nbsp;│
-╞══════════╪══════════════════════════════╡
-└──────────┴──────────────────────────────┘
-0&nbsp;rows.
+┌───────────────────────────────────────────────────────┬───────────────────────────────────────┐
+│&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;upstream_deprecated_table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞═══════════════════════════════════════════════════════╪═══════════════════════════════════════╡
+│&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;┆&nbsp;moms_flower_shop.staging.app_installs&nbsp;│
+└───────────────────────────────────────────────────────┴───────────────────────────────────────┘
+1&nbsp;rows.
 
 </code>
 </pre>
 </div>
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
-<code className='language-error'>
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
 
 Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
-┌──────────┬──────────────────────────────┐
-│&nbsp;table_id&nbsp;┆&nbsp;upstream_deprecated_table_id&nbsp;│
-╞══════════╪══════════════════════════════╡
-└──────────┴──────────────────────────────┘
-0&nbsp;rows.
+┌───────────────────────────────────────────────────────┬───────────────────────────────────────┐
+│&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;upstream_deprecated_table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞═══════════════════════════════════════════════════════╪═══════════════════════════════════════╡
+│&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;┆&nbsp;moms_flower_shop.staging.app_installs&nbsp;│
+└───────────────────────────────────────────────────────┴───────────────────────────────────────┘
+1&nbsp;rows.
 
 </code>
 </pre>
 </div>
 
 
+Error: No Column Found
 
-<Steps>
-    <Step title="Error: No Column Found">
-        
-        The run will fail and the error message will look like this:
+The run will fail and the error message will look like this:
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-No error found, but command cd tmp/moms_flower_shop/ && $sdf compile staging.stg_installs_per_campaign --show result failed. Please check the command and try again.
+error: SDF227: No column 'non_existing_column' found, available are 'app_installs.install_time', 'app_installs.campaign_name', 'app_installs.campaign_type', 'app_installs.campaign_id', 'app_installs.customer_id', ...
+  --> models/staging/stg_installs_per_campaign.sql:2:5
 
 </code>
 </pre>
 </div>
 
-    </Step>
-    <Step title="Error: Function Arguments Do Not Match">
-        
-        The run will fail and the error message will look like this:
+Error: Function Arguments Do Not Match
+
+The run will fail and the error message will look like this:
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-No error found, but command cd tmp/moms_flower_shop && $sdf compile staging.stg_installs_per_campaign failed. Please check the command and try again.
+error: SDF209: Function ABS arguments do not match. Actual: (varchar). Candidates: (tinyint); (smallint); (bigint); (double); (decimal(p, s)); (real).
+  --> models/staging/stg_installs_per_campaign.sql:2:5
 
 </code>
 </pre>
 </div>
-    </Step>
-    <Step title="Error: Un-aggregated columns in aggregation context">
-        
-        The run will fail and the error message will look like this:
+
+Error: Un-aggregated columns in aggregation context
+
+The run will fail and the error message will look like this:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-No error found, but command cd tmp/moms_flower_shop && $sdf compile staging.stg_installs_per_campaign failed. Please check the command and try again.
+error: SDF209: Function ABS arguments do not match. Actual: (varchar). Candidates: (tinyint); (smallint); (bigint); (double); (decimal(p, s)); (real).
+  --> models/staging/stg_installs_per_campaign.sql:2:5
 
 </code>
 </pre>
 </div>
-    </Step>
-    <Step title="Try it Yourself">
-        What is that one syntax mistake you always forget about until you see that 
-        run error? Try it out! See if SDF can save you the wait next time :)
-    </Step>
-</Steps>
-
+Try it Yourself
+What is that one syntax mistake you always forget about until you see that 
+run error? Try it out! See if SDF can save you the wait next time :)

@@ -20,9 +20,13 @@ workspace:
     - path: seeds/parquet
       type: resource
     - path: metadata
+      index: schema-table-name
     - path: classifications
     - path: reports
     - path: checks
+  
+  defaults: 
+    preprocessor: jinja
 ---
 environment:
   name: dev

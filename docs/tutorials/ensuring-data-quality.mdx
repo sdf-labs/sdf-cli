@@ -1,0 +1,209 @@
+---
+title:"Ensuring Data Quality"
+---
+
+## Overview
+In the previous tutorials we learned how SDF can help enforce metadata-based data 
+contracts, which are defined against SDF's [information schema](/reference/sdf-information-schema).
+
+In this tutorial, we will add tests against the data in our warehouse, creating an 
+additional layer of data quality validation to out data warehouse.
+
+SDF Provides a standard and open-source [testing library](https://github.com/sdf-labs/tests). 
+The functions provided in the library are included natively in SDF.
+
+<Tip>
+  All SDF Tests for all columns are compiled into table scans. 
+  This allows SDF to run multiple tests with a single scan. 
+  This dramatically reduces the cost of data tests.
+</Tip>
+
+## Prerequisites
+Completion of the [previous tutorial](/tutorials/enriching-your-warehouse).
+
+{/*
+Init for run commands:
+*/}
+
+## Guide
+
+<Steps>
+    <Step title="What Are SDF Tests?">
+        There are three types of tests builtin.
+        - **Scalar Column Tests** - validate expectations of individual values in columns (eg. `x > 100` )
+        - **Aggregate Column Tests** - validate expectations of all values in a columns (eg. `sum(x) > 100` )
+        - **Table Tests** - validate expectations for all columns in table (eg. columns a and b are unique).
+
+        In this tutorial, we will create one test of each type. 
+
+        <Tip>
+            To learn more about SDF's testing capabilities, read our 
+            [Tests Guide](/guide/data-quality/tests).
+        </Tip>
+    </Step>
+    <Step title="Setup">
+        Since SDF's tests library leverages Jinja, we also need to add Jinja as a preprocessor.
+        In the `workspace.sdf.yml` file, uncomment the following:
+
+        ``` yml workspace.sdf.yml
+        # Uncomment here to begin the "Ensuring Data Quality" tutorial >>>>>>
+        defaults: 
+          preprocessor: jinja
+        # <<<<<<
+        ```
+        
+        For the sake of this tutorial, we will add tests on the `inapp_events` staging model located in 
+        `models/staging/inapp_events`.
+        
+        To add tests to the model, we need to create a YML file to hold the model's metadata.
+
+        Under `metadata/staging`, create a new file called `inapp_events.sdf.yml` containing the following definition:
+
+        ``` yml metadata/staging/inapp_events.sdf.yml
+        table:
+            name: app_installs
+        ```
+        
+        <Tip>
+            In this tutorial, we use the metadata file to define tests, but we've seen in past tutorials
+            how the table metadata file is also used for table and column descriptions and classifications' 
+            application.
+        </Tip>
+    </Step>
+    <Step title="Scalar Column Tests">
+    Let's say we want to verify there are no negative orders, meaning the event_value which represents the 
+    total order amount in USD.
+
+    We can use the scalar test `valid_scalar(condition)` where `condition = event_value >=0`. 
+    Add to the newly created YML file the following test:
+
+    ``` yml metadata/staging/inapp_events.sdf.yml
+    table:
+        name: inapp_events
+        # Add the code below:
+        columns: 
+          - name: event_value
+            tests:
+              - expect: valid_scalar("""event_name >= 0""")
+                severity: error
+    ```
+
+    A few things to note:
+        1. This is a column-level test so we need to add a column definition
+        2. To specify the condition, we need to wrap it with triple quotes `"""condition"""`
+        3. We can define a severity level for the test - either error or warning
+    
+    To execute the test, simply run the command:
+    ``` shell
+    sdf test --show result
+    ```
+
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+[Pass]&nbsp;Test&nbsp;moms_flower_shop.staging.test_inapp_events
+
+</code>
+</pre>
+</div>
+    
+    </Step>
+    <Step title="Aggregate Column Tests">
+        We can write a similar test as an aggregate column test. Instead of validating 
+        each value individually, we can just look at the minimum value of `event_value` 
+        and assert whether it is positive.
+
+        Let's add the new test to the YML file:
+
+        ``` yml metadata/staging/inapp_events.sdf.yml
+        table:
+          name: inapp_events
+          columns: 
+              - name: event_value
+              tests:
+              - expect: valid_scalar("""event_name >= 0""")
+                  severity: error
+              # Add the code below:
+              - expect: minimum(0)
+                  severity: error
+        ```
+
+        <Tip>
+            All types of tests work together harmoniously and will be executed within 
+            one table scan to save on compute costs. 
+        </Tip>
+
+        Let's run the test again:
+        ``` shell
+        sdf test --show result
+        ```
+
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+[Pass]&nbsp;Test&nbsp;moms_flower_shop.staging.test_inapp_events
+
+</code>
+</pre>
+</div>
+    </Step>
+    <Step title="Table Tests">
+        On a table level, we want to make sure that our unique key is indeed unique.
+        In this case, the table key is event_id. However, in other cases, it could be
+        a combination of multiple columns. SDF supports all scenarios.
+
+        Let's add this table-level test to the YML file:
+
+        ``` yml metadata/staging/inapp_events.sdf.yml
+        table:
+            name: inapp_events
+            # Add the code below:
+            tests:
+              - expect: unique_columns(["event_id"])
+                severity: error
+            columns: 
+                - name: event_value
+                    tests:
+                        ...
+        ```
+
+        <Note>
+        Notice we wrap the column name with quotation marks `"col_name"`.
+        </Note>
+
+        We can run the tests again:
+        ``` shell
+        sdf test --show result
+        ```
+
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+[Pass]&nbsp;Test&nbsp;moms_flower_shop.staging.test_inapp_events
+
+</code>
+</pre>
+</div>
+    </Step>
+</Steps>
+    
+## Summary
+Quality tests against your data are critical to ensure that the data is correct 
+and meets the expectations of data consumers.
+
+SDF's built-in open-source tests lib makes it super easy to add rule-based 
+data quality checks to your data warehouse.
+
+
+## Related Topics
+<CardGroup cols={2}>
+  <Card title="Tests" href="/guide/data-quality/tests">
+    Learn how to ensure high data-quality standards with SDF
+  </Card>
+  <Card title="Jinja" href="/guide/macro-processing/jinja">
+    Learn how to leverage Jinja macro processing to scale your data transformation
+  </Card>
+</CardGroup>

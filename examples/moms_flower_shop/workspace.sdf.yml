@@ -20,12 +20,19 @@ workspace:
     - path: seeds/parquet # Where raw data is stored locally
       type: resource
     - path: metadata # Tables metadata
+      index: schema-table-name
+
 
 
     # Uncomment here to begin the "Deprecating a Model" tutorial >>>>>>
     # - path: classifications  # Classifiers
     # - path: reports  # Reports based on SDF s information schema
-    # type: report
+    #   type: report
     # - path: checks  # Checks against SDF s information schema
-    # type: check
+    #   type: check
     # <<<<<<
+
+  # Uncomment here to begin the "Ensuring Data Quality" tutorial >>>>>>
+  # defaults: 
+  #   preprocessor: jinja
+  # <<<<<<
