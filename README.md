@@ -56,6 +56,11 @@ All SDF releases are reflected in this repo as official releases. You can find t
 
 For in-depth release notes, check out the [SDF changelog](https://docs.sdf.com/releases/latest).
 
+SDF is updated frequently and adheres to a strict versioning system:
+_._.*  || Patch versions include patch fixes, and additive improvments which should not contain any breaking changes
+_.*._  || Minor versions may include breaking changes. These might be YML schema changes, information schema changes, or changes in SDF's internal logic
+*._._  || Major versions 
+
 ## Contributing
 
-Contributions are welcome to our examples and docs. However, since the compiler is closed source, we cannot accept contributions to the core compiler. That being said, our execution capabilities are based on [Apache DataFusion](https://datafusion.apache.org/) and function execution is enabled by our open source [SQL Functions Crate](https://github.com/sdf-labs/sql-functions). If you're ever missing support for a function, finding that a function is mistyped, or dealing with an execution error - feel free to contribute to either of those repos. If you have a feature request or bug report with the compiler, please open an issue on this repo. We'll track it and prioritize it ASAP. 
+Contributions are welcome to our examples and docs. Although SDF is still being incubated and is not yet open source, it is powered by an open source core: [Apache DataFusion](https://datafusion.apache.org/) and function execution is enabled by our open source [SQL Functions Crate](https://github.com/sdf-labs/sql-functions). If you're ever missing support for a function, finding that a function is mistyped, or dealing with an execution error - feel free to contribute to either of those repos. If you have a feature request or bug report with the compiler, please open an issue on this repo. We'll track it and prioritize it ASAP. 
