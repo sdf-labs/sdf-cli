@@ -20,8 +20,8 @@
 	},
 	"redirects": [
 		{
-			"source": "guide/install",
-			"destination": "introduction/install"
+			"source": "/guide/install",
+			"destination": "/introduction/install"
 		}
 	],
 	"topbarCtaButton": {
@@ -80,6 +80,7 @@
 			"pages": [
 				"introduction/welcome",
 				"introduction/getting-started",
+				"introduction/install",
 				"introduction/features",
 				"introduction/open-source"
 			]
