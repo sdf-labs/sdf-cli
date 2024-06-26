@@ -21,20 +21,20 @@ Use the below feature matrix to determine if SDF is right for you
 ## Feature Matrix
 
 ### Database Support
-SDF is working to build parity with common data warehouse developemnt patterns including Jinja macro pre-processing, materialization strategies, multiple environment support, and more.
+SDF is working to build parity with common data warehouse development patterns including Jinja macro pre-processing, materialization strategies, multiple environment support, and more.
 
-| Feature        | SDF DB | Redshift | Snowflake | BigQuery | Trino | Trino | Spark |
-|----------------|:------:|:--------:|:---------:|:--------:|:------:|:-----:|:-----:|
-| SQL Dialect Support | 🟢|   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟡  |
-| Column-level Lineage |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟢  |
-| Impact Analysis |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🟡  |
-| Macros & Jinja |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🔴  |
-| Zero-Copy Environments |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |   🔴  |
-| Table Provider |   🟡   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
-| Run & Execution|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
-| Materialization|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
-| Database Auth  |   🟢   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |   🔴  |
-| Local Execution|   🟢   |   🔴      |   🔴      |   🔴     |   🟢    |   🟢  |   🔴  |
+| Feature        | SDF DB | Redshift | Snowflake | BigQuery | Trino | Spark |
+|----------------|:------:|:--------:|:---------:|:--------:|:------:|:-----:|
+| SQL Dialect Support | 🟢|   🟢      |   🟢      |   🟢     |   🟢    |   🟡  |
+| Column-level Lineage |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |
+| Impact Analysis |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟡  |
+| Macros & Jinja |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🔴  |
+| Zero-Copy Environments |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🔴  |
+| Table Provider |   🟡   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |
+| Run & Execution|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |
+| Materialization|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |
+| Database Auth  |   🟢   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |
+| Local Execution|   🟢   |   🔴      |   🔴      |   🔴     |   🟢    |   🔴  |
 
 <Note>
   When we say "SQL Dialect Support", we mean support for SDF's rich static analysis toolset - including compilation, lineage, dependency analysis, and more.
@@ -60,7 +60,7 @@ To check the current status of all credentials held by SDF, run `sdf auth status
 
 
 ### Orchestration Support
-SDF Supports simple orchestration. Commands like `compile` & `run` are executed in dependency order, allowing for simple orchestration via cron jobs, or github actions.
+SDF Supports simple orchestration. Commands like `compile` & `run` are executed in dependency order, allowing for simple orchestration via cron jobs, or GitHub Actions.
 
 For more advanced orchestration needs, SDF recommends [Dagster](https://dagster.com).
 
@@ -86,9 +86,9 @@ dependent entirely on your data processing requirements.
 | Web-Assembly         |    ❌     |
 
 For a complete list of releases, please see the official
-[github releases page](https://github.com/sdf-labs/sdf-cli/releases).
+[GitHub releases page](https://github.com/sdf-labs/sdf-cli/releases).
 
 <Tip>
-  SDF is hardware optimized. For best performance, download the version that
+  SDF is hardware-optimized. For best performance, download the version that
   matches your chipset.
 </Tip>
