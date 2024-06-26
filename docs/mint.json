@@ -18,6 +18,12 @@
 			"to": "#2C4A6B"
 		}
 	},
+	"redirects": [
+		{
+			"source": "guide/install",
+			"destination": "introduction/install"
+		}
+	],
 	"topbarCtaButton": {
 		"name": "Get Started",
 		"url": "https://console.sdf.com/"
@@ -48,9 +54,9 @@
 	],
 	"anchors": [
 		{
-			"name": "Website",
+			"name": "Install",
 			"icon": "rectangle-terminal",
-			"url": "https://sdf.com"
+			"url": "https://docs.sdf.com/introduction/install"
 		},
 		{
 			"name": "Github",
@@ -58,7 +64,12 @@
 			"url": "https://github.com/sdf-labs"
 		},
 		{
-			"name": "Try SDF",
+			"name": "Slack",
+			"icon": "slack",
+			"url": "https://join.slack.com/t/sdfcommunity/shared_invite/zt-2lhkpqhue-9HT0UUFJrYYaC_vTmZqqOg"
+		},
+		{
+			"name": "Get a Demo",
 			"icon": "rocket",
 			"url": "https://sdf.com/book-demo"
 		}
