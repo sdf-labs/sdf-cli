@@ -43,7 +43,7 @@ Let's write and modify a report, starting with one of the sdf samples.
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/models/internal/users_per_org.sql
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/reports/tables_with_pii.sql
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;pii_saas_platform/workspace.sdf.yml
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.197&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.188&nbsp;secs
 
 </code>
 </pre>
@@ -104,21 +104,21 @@ Let's write and modify a report, starting with one of the sdf samples.
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;payment.public.invoices&nbsp;(./ddls/payment/public/invoices.sql)
 &nbsp;&nbsp;Compiling&nbsp;payment.public.users&nbsp;(./ddls/payment/public/users.sql)
+&nbsp;&nbsp;Compiling&nbsp;payment.public.invoices&nbsp;(./ddls/payment/public/invoices.sql)
 &nbsp;&nbsp;Compiling&nbsp;payment.public.organizations&nbsp;(./ddls/payment/public/organizations.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.avg_invoice_amt&nbsp;(./models/internal/avg_invoice_amt.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.external.org_invoice_stats&nbsp;(./models/external/org_invoice_stats.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.invoice_payment_delay&nbsp;(./models/internal/invoice_payment_delay.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.total_revenue_per_org&nbsp;(./models/internal/total_revenue_per_org.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.external.invoice_stats&nbsp;(./models/external/invoice_stats.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_domain&nbsp;(./models/internal/users_per_domain.sql)
 &nbsp;&nbsp;Compiling&nbsp;transformations.internal.mau_per_org&nbsp;(./models/internal/mau_per_org.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.external.invoice_stats&nbsp;(./models/external/invoice_stats.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.external.org_invoice_stats&nbsp;(./models/external/org_invoice_stats.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_domain&nbsp;(./models/internal/users_per_domain.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.avg_invoice_amt&nbsp;(./models/internal/avg_invoice_amt.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.invoice_payment_delay&nbsp;(./models/internal/invoice_payment_delay.sql)
 &nbsp;&nbsp;Compiling&nbsp;transformations.internal.most_frequent_payer&nbsp;(./models/internal/most_frequent_payer.sql)
 &nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_org&nbsp;(./models/internal/users_per_org.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.total_revenue_per_org&nbsp;(./models/internal/total_revenue_per_org.sql)
 Working&nbsp;set&nbsp;1&nbsp;report&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Reporting&nbsp;sdf.reports.tables_with_pii&nbsp;(./reports/tables_with_pii.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;1.627&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;1.593&nbsp;secs
 
 Report&nbsp;sdf.reports.tables_with_pii
 ┌──────────────────────────────────────────────┬─────────────────────────┬───────────┐
@@ -160,7 +160,7 @@ Report&nbsp;sdf.reports.tables_with_pii
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
 Working&nbsp;set&nbsp;1&nbsp;report&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Reporting&nbsp;sdf.reports.tables_with_pii&nbsp;(./reports/tables_with_pii.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;1.385&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;1.359&nbsp;secs
 
 Report&nbsp;sdf.reports.tables_with_pii
 ┌──────────────────────────────────────────────┬──────────────┬─────────────────────────┬───────────┐
@@ -201,7 +201,7 @@ Report&nbsp;sdf.reports.tables_with_pii
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
 Working&nbsp;set&nbsp;2&nbsp;report&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Reporting&nbsp;sdf.reports.pii_datatypes&nbsp;(./reports/pii_datatypes.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;2&nbsp;reports&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;reused]&nbsp;in&nbsp;1.439&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;2&nbsp;reports&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;reused]&nbsp;in&nbsp;1.356&nbsp;secs
 
 Report&nbsp;sdf.reports.tables_with_pii
 ┌──────────────────────────────────────────────┬──────────────┬─────────────────────────┬───────────┐

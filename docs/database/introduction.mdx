@@ -1,5 +1,5 @@
 ---
-title: "SDF Database"
+title: "SDF DB Overview"
 description:
   "Fast, dependency aware in memory query execution built into the same binary as SDF, with the same SQL syntax as Trino and AWS Athena. Powered by Apache DataFusion."
 ---
@@ -14,11 +14,14 @@ description:
 </Frame>
 
 # Overview
-SDF is both a transformation layer and *dependency aware* database. SDF understands time, code, and data dependencies 
-to optimize execution across the whole warehouse. SDF only executes parts of the DAG that have changed. All of this intelligence is managed by 
-a sophisticated caching layer that fingerprints data, code, metadata to optimally recompute nodes that are out of date after any given change. 
+SDF DB was designed with two goals in mind:
+1. Provide an integrated transformation layer and *dependency aware* database to make getting started with a data warehouse faster, more intuitive, and scalable.
+2. Use SDF's Executable Semantics for multiple SQL dialects to enable query acceleration for proprietary data warehouses on compute agnostic storage like Iceberg and AWS S3.
 
-Use SDF to run fast, in-memory, queries on data locally or in the cloud on all sorts of different data. The physical plan, optimizer and execution is based on [Apache Datafusion](https://datafusion.apache.org/) for which we have the greatest appreciation.
+SDF DB understands time, code, and data dependencies to optimize execution across many queries in a warehouse. SDF DB only executes parts of the DAG that have changed since the last run. This intelligence is managed by 
+a sophisticated caching layer that fingerprints data, code, metadata to optimally recompute nodes that are out of date after a change. 
+
+Use SDF to run fast, in-memory, queries on data locally or in the cloud. The physical plan, optimizer and execution is based on [Apache Datafusion](https://datafusion.apache.org/) for which we have the greatest appreciation.
 
 <Tip>
 SDF DB is in alpha with breaking changes, new functionality, and more coming all the time. If you are interested in using the database product, please contact us.
@@ -44,6 +47,11 @@ workspace:
   defaults: 
     dialect: trino
 ```
+
+### What SDF DB is Not
+As the line between "Database", "Query Engine", and "Execution Runtime" is being blurred, it's important to note what SDF DB is not.
+
+SDF is not designed to be a Online Transactional Processing, (OLTP) and as such is not a replacement for MySQL or PostgreSQL.
 
 ### Data Provider Capabilities
 Data may come from many sources, either from a local file system, remote file system, or metadata storage layer.
