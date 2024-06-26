@@ -3,7 +3,7 @@ title: "1.2 ➡️ 1.3"
 description: Workspace edition 1.3 brings a new information schema, improvements to the SDF CLI, and an expansion of what was previously the `provider` configuration. This guide will help you migrate your workspace from edition 1.2 to 1.3.
 ---
 
-In versions `0.2.30` and above, workspace `1.3` is required. As a first step, please update your workspace block to the following:
+In versions `0.3.0` and above, workspace `1.3` is required. As a first step, please update your workspace block to the following:
 
 ```yaml
 workspace:
@@ -125,6 +125,6 @@ We've enabled `trino` to be used as an alias for `trino` for the workspace's `di
 
 To see all accepted dialects, see the [dialect documentation](/reference/sdf-yml#dialect).
 
-### `seeded: true` -> `cut-cycle-here: true`
+### `seeded: true` -> `cycle-cut-point: true`
 
-Due to confusion with configuring `seed` models and breaking cycles with the `seeded` property, we'd renamed this field to `cut-cycle-here`. This now explicitly marks this table as first table to be processed in a cycle.
+Due to confusion with configuring `seed` models and breaking cycles with the `seeded` property, we'd renamed this field to `cycle-cut-point`. This now explicitly marks this table as first table to be processed in a cycle.
