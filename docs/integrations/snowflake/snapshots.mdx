@@ -1,0 +1,374 @@
+---
+title: "Snapshots"
+description:
+  "Materialize snapshot models in Snowflake."
+---
+
+## Overview
+This guide describes how to materialize snapshot models in Snowflake. The goal of snapshots is to capture and preserve the state of your data at specific points in time, allowing you to track historical changes and perform time-based analyses.
+
+## Prerequisites
+
+<Info>
+This guide should be followed after completing the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide and the [Basic Materialization with Snowflake](/integrations/snowflake/basic-materialization) guide.
+</Info>
+
+You'll also need:
+
+- A Snowflake account to connect to
+- Valid credentials with read and write access to the SNAPSHOTS database used in this guide.
+
+## Guide
+
+<Steps>
+    <Step title="Create a new SDF Project from the Snapshots Sample">
+        Create a new SDF project using the Snapshots sample. This will create a new project in your current working directory with the sample project files.
+        ```shell
+        sdf new --sample snapshots
+        ```
+
+        {/* ```run quiet
+        cd tmp/ && $sdf new --sample snapshots --show none
+        ``` */}
+
+        {/* ```run quiet
+        cd tmp/snapshots && $sdf run -q "drop schema if exists snapshots.pub" --exec-raw-query
+        ``` */}
+    </Step>
+    <Step title="Compile to Test Credentials">
+        To ensure your credentials are working and have read access to Snowflake, let's try compiling one of the models.
+        ```shell
+        sdf compile b -e test1
+        ```
+
+        {/* ```run shell
+        cd tmp/snapshots && $sdf compile b -e test1
+        ``` */}
+        
+    <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+    <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+    <code className='language-shell'>
+Working set 3 model files, 4 .sdf files
+  Compiling SNAPSHOTS.PUB.A1 (./models/test1/a1.sql)
+  Compiling SNAPSHOTS.PUB.B (./models/test1/b.sql)
+   Finished 2 models [2 succeeded] in 3.921 secs
+
+Schema SNAPSHOTS.PUB.B
+┌────────────────┬───────────────┬────────────┬─────────────┐
+│ column_name    ┆ data_type     ┆ classifier ┆ description │
+╞════════════════╪═══════════════╪════════════╪═════════════╡
+│ id             ┆ decimal(1, 0) ┆            ┆             │
+│ name           ┆ varchar       ┆            ┆             │
+│ event time     ┆ varchar       ┆            ┆             │
+│ sdf_hash       ┆ varchar       ┆            ┆             │
+│ sdf_updated_at ┆ varchar       ┆            ┆             │
+│ sdf_valid_from ┆ varchar       ┆            ┆             │
+│ sdf_valid_to   ┆ varchar       ┆            ┆             │
+└────────────────┴───────────────┴────────────┴─────────────┘
+        </code>
+        </pre>
+        </div>
+
+        <Warning>
+            If you do not see a successful compilation, please ensure you've:
+            1. Followed the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide to authenticate to your Snowflake.
+            2. Granted the correct level of access to be able to create database SNAPSHOTS. 
+               (See [Granting Privileges](https://docs.snowflake.com/en/sql-reference/sql/grant-privilege).) 
+        </Warning>
+    </Step>
+    <Step title="Initialize the snapshot">
+        Let's examine the model definitions used in this example. The following model will be used as the initial input 
+        for the snapshot:
+
+      ```sql models/test1/a1.sql
+        select * from values 
+          (1, CAST('Jack' AS VARCHAR), '2022-01-01'),
+          (2, 'Bob', '2022-01-01'),
+          (3, 'Jane', '2022-01-01')
+        as T(id, name, "event time")
+      ```
+
+      The initial data contains three entries with three columns (`id`, `name`, and `"event time"`) each.
+
+      <Note>
+      We cast the first `name` value to `VARCHAR` because otherwise Snowflake will infer `VARCHAR(4)` for this column, and SDF 
+      currently does not support constrained `VARCHAR` types.
+      </Note>
+
+      And here is the snapshot query:
+
+      ```sql models/test1/b.sql
+        {% if builtin.is_snapshot_mode %}
+          select * from a2
+        {% else %}
+          select * from a1
+        {% endif %}
+      ```
+
+      This query uses the `builtin.is_snapshot_mode` Jinja variable to indicate whether this is the initial 
+      run of the snapshot or not. On the initial run, we use `a1` as the input; on the subsequent runs, we will use `a2`.
+
+      The snapshot model must also have an associated YML configuration. In this first example, we use the following one:
+
+      ```yaml models/test1/b.sdf.yml
+      table:
+        name: b
+        materialization: snapshot-table
+        snapshot-options:
+          strategy: timestamp
+          unique-key: id
+          updated-at: event time
+      ```
+
+      This snapshot uses the `timestamp` strategy which determines whether a row is up-to-date based 
+      on the value of a pre-determined datetime column.  The name of this column must be specified in 
+      the required parameter `updated-at`. The second required parameter `unique-key` indicates 
+      the unique key of the input data set.
+
+      Let's now run the initial step:
+
+        ```shell
+        sdf run b -e test1
+        ```
+
+        {/* ```run shell
+        cd tmp/snapshots && $sdf run b -e test1
+        ``` */}
+
+    <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+    <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+    <code className='language-shell'>
+Working set 3 model files, 4 .sdf files
+    Running SNAPSHOTS.PUB.A1 (./models/test1/a1.sql)
+    Running SNAPSHOTS.PUB.B (./models/test1/b.sql)
+   Finished 2 models [2 succeeded] in 6.913 secs
+
+Table SNAPSHOTS.PUB.B
+┌────┬──────┬────────────┬──────────────────────────────────┬────────────────┬────────────────┬──────────────┐
+│ id ┆ name ┆ event time ┆ sdf_hash                         ┆ sdf_updated_at ┆ sdf_valid_from ┆ sdf_valid_to │
+╞════╪══════╪════════════╪══════════════════════════════════╪════════════════╪════════════════╪══════════════╡
+│ 1  ┆ Jack ┆ 2022-01-01 ┆ 199dc952035c90f47a765784178ae2be ┆ 2022-01-01     ┆ 2022-01-01     ┆              │
+│ 2  ┆ Bob  ┆ 2022-01-01 ┆ fc6ca1611012246ab16ad73bf7cc0804 ┆ 2022-01-01     ┆ 2022-01-01     ┆              │
+│ 3  ┆ Jane ┆ 2022-01-01 ┆ 3d9f0a45a46f2c6be345cc37db0ae26e ┆ 2022-01-01     ┆ 2022-01-01     ┆              │
+└────┴──────┴────────────┴──────────────────────────────────┴────────────────┴────────────────┴──────────────┘
+3 rows.
+        </code>
+        </pre>
+        </div>
+
+        This mirrors the data from the input with four additional columns added to track the snapshot's state.
+        In particular, the last column is NULL for each row, indicating that all rows are currently valid.
+    </Step>
+    <Step title="Take the next snapshot">
+        Let's look at the second version of the input data represented by the model `a2`:
+
+      ```sql models/test1/a2.sql
+        select * from values 
+          (1, CAST('Jacob' AS VARCHAR), 10, '2022-01-02'),
+          (3, 'Mary Jane', 20, '2022-01-01'),
+          (44, 'Cloe', 30, '2022-01-02')
+        as T(id, name, age, "event time")
+      ```
+
+      Compared to the first data set, the names in two rows were updated (with only one of them having also 
+      changed `"event time"`); one row was deleted; one new row was added; one new column `age` was added, and
+      the type of `id` was widened from `NUMERIC(1, 0)` to `NUMERIC(2, 0)`.
+
+      Let's see how this impacts the snapshot table:
+
+        ```shell
+        sdf run b -e test1
+        ```
+
+        {/* ```run shell
+        cd tmp/snapshots && $sdf run b -e test1
+        ``` */}
+
+    <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+    <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+    <code className='language-shell'>
+Working set 3 model files, 4 .sdf files
+Downloading SNAPSHOTS.PUB.B (exists_remotely)
+    Running SNAPSHOTS.PUB.A2 (./models/test1/a2.sql)
+    Running SNAPSHOTS.PUB.B (./models/test1/b.sql)
+   Finished 3 models [2 succeeded, 1 reused] in 7.641 secs
+
+Table SNAPSHOTS.PUB.B
+┌────┬───────┬─────┬────────────┬──────────────────────────────────┬────────────────┬────────────────┬──────────────┐
+│ id ┆ name  ┆ age ┆ event time ┆ sdf_hash                         ┆ sdf_updated_at ┆ sdf_valid_from ┆ sdf_valid_to │
+╞════╪═══════╪═════╪════════════╪══════════════════════════════════╪════════════════╪════════════════╪══════════════╡
+│ 1  ┆ Jacob ┆ 10  ┆ 2022-01-02 ┆ ea571ed0c11bd37ca976d34c4b16f926 ┆ 2022-01-02     ┆ 2022-01-02     ┆              │
+│ 44 ┆ Cloe  ┆ 30  ┆ 2022-01-02 ┆ c1b374e761a344daa96718c16264b925 ┆ 2022-01-02     ┆ 2022-01-02     ┆              │
+│ 1  ┆ Jack  ┆     ┆ 2022-01-01 ┆ 199dc952035c90f47a765784178ae2be ┆ 2022-01-01     ┆ 2022-01-01     ┆ 2022-01-02   │
+│ 2  ┆ Bob   ┆     ┆ 2022-01-01 ┆ fc6ca1611012246ab16ad73bf7cc0804 ┆ 2022-01-01     ┆ 2022-01-01     ┆              │
+│ 3  ┆ Jane  ┆     ┆ 2022-01-01 ┆ 3d9f0a45a46f2c6be345cc37db0ae26e ┆ 2022-01-01     ┆ 2022-01-01     ┆              │
+└────┴───────┴─────┴────────────┴──────────────────────────────────┴────────────────┴────────────────┴──────────────┘
+5 rows.
+        </code>
+        </pre>
+        </div>
+
+      Observations:
+
+      * Only `Jake` was successfully changed to `Jakob` because it had an updated value in the `updated-at` 
+      column `"event time"`
+      * The table was successfully altered to widen the type of `id` and to add the new column `age`
+      * The `age` values are set to `NULL` for the records that didn't changed
+      * The new row (`Cloe`) was successfully added 
+      * The row that was removed from the input (`Bob`) is still considered valid in the snapshot because SDF doesn't 
+      yet support invalidating on deletes.
+    </Step>
+    <Step title="Strategy `check`">
+      In the next example, we will try the `check` snapshot strategy which uses the contents of the specified columns
+      to determine whether the row has changed or not. We will use the same two versions of the input data `a1` and `a2`.
+      Make sure to drop `b` from Snowflake before running the commands below: 
+
+      ```sql
+      DROP TABLE IF EXISTS SNAPSHOTS.PUB.B
+      ```
+
+      {/*```run quiet
+      cd tmp/snapshots && $sdf run -q "drop schema if exists snapshots.pub" --exec-raw-query
+      ``` */}
+
+      The only change from the previous example is the configuration of the snapshot:
+
+      ```yaml models/test2/b.sdf.yml
+      table:
+        name: b
+        materialization: snapshot-table
+        snapshot-options:
+          strategy: check
+          unique-key: id
+          check-cols: all
+      ```
+      Like the `timestamp` strategy, the `check` strategy requires `unique-key` to be defined, but, instead of `updated-at`, 
+      the second required setting is `check-cols`, defining the columns used for 
+      change detection. Two options are available: `all` (seen in this example), or an explicit list of column names.
+
+      Let's see the result after two runs of this snapshot model:
+
+        ```shell
+        sdf run b -e test2
+        ```
+
+        ```shell
+        sdf run b -e test2
+        ```
+
+        {/* ```run quiet
+        cd tmp/snapshots && $sdf run b -e test2
+        ``` */}
+
+        {/* ```run shell
+        cd tmp/snapshots && $sdf run b -e test2
+        ``` */}
+
+    <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+    <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+    <code className='language-shell'>
+Working set 3 model files, 4 .sdf files
+Downloading SNAPSHOTS.PUB.B (exists_remotely)
+    Running SNAPSHOTS.PUB.A2 (./models/test2/a2.sql)
+    Running SNAPSHOTS.PUB.B (./models/test2/b.sql)
+   Finished 3 models [2 succeeded, 1 reused] in 6.921 secs
+
+Table SNAPSHOTS.PUB.B
+┌────┬───────────┬─────┬────────────┬──────────────────────────────────┬─────────────────────────┬─────────────────────────┬─────────────────────────┐
+│ id ┆ name      ┆ age ┆ event time ┆ sdf_hash                         ┆ sdf_updated_at          ┆ sdf_valid_from          ┆ sdf_valid_to            │
+╞════╪═══════════╪═════╪════════════╪══════════════════════════════════╪═════════════════════════╪═════════════════════════╪═════════════════════════╡
+│ 1  ┆ Jacob     ┆ 10  ┆ 2022-01-02 ┆ 0703576642735ca52b9cc99813872e41 ┆ 2024-06-28T02:11:58.147 ┆ 2024-06-28T02:11:58.147 ┆                         │
+│ 3  ┆ Mary Jane ┆ 20  ┆ 2022-01-01 ┆ 73e49865acff389b13ff40264c02cdb7 ┆ 2024-06-28T02:11:58.147 ┆ 2024-06-28T02:11:58.147 ┆                         │
+│ 44 ┆ Cloe      ┆ 30  ┆ 2022-01-02 ┆ fbe60e2541ca3191878c98d378106908 ┆ 2024-06-28T02:11:58.147 ┆ 2024-06-28T02:11:58.147 ┆                         │
+│ 2  ┆ Bob       ┆     ┆ 2022-01-01 ┆ 075a864f927091575de99e4ff637bb49 ┆ 2024-06-28T02:11:51.004 ┆ 2024-06-28T02:11:51.004 ┆                         │
+│ 1  ┆ Jack      ┆     ┆ 2022-01-01 ┆ ba90dbb448819f622e98b3f114a362f9 ┆ 2024-06-28T02:11:51.004 ┆ 2024-06-28T02:11:51.004 ┆ 2024-06-28T02:11:58.147 │
+│ 3  ┆ Jane      ┆     ┆ 2022-01-01 ┆ d7677d7bc22a7eb3572ade9a214652db ┆ 2024-06-28T02:11:51.004 ┆ 2024-06-28T02:11:51.004 ┆ 2024-06-28T02:11:58.147 │
+└────┴───────────┴─────┴────────────┴──────────────────────────────────┴─────────────────────────┴─────────────────────────┴─────────────────────────┘
+6 rows.
+        </code>
+        </pre>
+        </div>
+
+        The output is similar to that of the `timestamp`-based snapshot above except that the change for the `Jane` 
+        row took effect. This is because SDF compares the content of all columns, not `"event time"`, to recognize
+        there was an update.
+
+        Finally, let's look at a `check` scenario with explicitly specified `check-cols` columns. Make sure to drop
+        `b` again for this example to work.
+
+        ```sql
+        DROP TABLE IF EXISTS SNAPSHOTS.PUB.B
+        ```
+
+        {/* ```run quiet
+        cd tmp/snapshots && $sdf run -q "drop schema if exists snapshots.pub" --exec-raw-query
+        ``` */}
+
+        The snapshot configuration now looks as follows:
+
+        ```yaml models/test3/b.sdf.yml
+        table:
+          name: b
+          materialization: snapshot-table
+          snapshot-options:
+            strategy: check
+            unique-key: id
+            check-cols:
+              !cols ['event time']
+        ```
+
+      This indicates that only the `"event time"` column should be used in change detection. 
+      Let's see the result after two runs of this snapshot model:
+
+        ```shell
+        sdf run b -e test3
+        ```
+
+        ```shell
+        sdf run b -e test3
+        ```
+
+        {/* ```run quiet
+        cd tmp/snapshots && $sdf run b -e test3
+        ``` */}
+
+        {/* ```run shell
+        cd tmp/snapshots && $sdf run b -e test3
+        ``` */}
+
+    <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+    <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+    <code className='language-shell'>
+Working set 3 model files, 4 .sdf files
+Downloading SNAPSHOTS.PUB.B (exists_remotely)
+    Running SNAPSHOTS.PUB.A2 (./models/test3/a2.sql)
+    Running SNAPSHOTS.PUB.B (./models/test3/b.sql)
+   Finished 3 models [2 succeeded, 1 reused] in 7.444 secs
+
+Table SNAPSHOTS.PUB.B
+┌────┬───────┬─────┬────────────┬──────────────────────────────────┬─────────────────────────┬─────────────────────────┬─────────────────────────┐
+│ id ┆ name  ┆ age ┆ event time ┆ sdf_hash                         ┆ sdf_updated_at          ┆ sdf_valid_from          ┆ sdf_valid_to            │
+╞════╪═══════╪═════╪════════════╪══════════════════════════════════╪═════════════════════════╪═════════════════════════╪═════════════════════════╡
+│ 1  ┆ Jacob ┆ 10  ┆ 2022-01-02 ┆ 1eea253ca4f8514070e9a40df6de6a9b ┆ 2024-06-28T02:12:16.584 ┆ 2024-06-28T02:12:16.584 ┆                         │
+│ 44 ┆ Cloe  ┆ 30  ┆ 2022-01-02 ┆ e7d967e9000fec8b9603f463d42f72c6 ┆ 2024-06-28T02:12:16.584 ┆ 2024-06-28T02:12:16.584 ┆                         │
+│ 1  ┆ Jack  ┆     ┆ 2022-01-01 ┆ df08b6f3f8220bd51a3443bc5c1db4d2 ┆ 2024-06-28T02:12:08.806 ┆ 2024-06-28T02:12:08.806 ┆ 2024-06-28T02:12:16.584 │
+│ 2  ┆ Bob   ┆     ┆ 2022-01-01 ┆ 667051c30a92f42cbc7ff2cfb80a6e0f ┆ 2024-06-28T02:12:08.806 ┆ 2024-06-28T02:12:08.806 ┆                         │
+│ 3  ┆ Jane  ┆     ┆ 2022-01-01 ┆ b0b9cc51ca0963dcd7706d3ae6edc8ac ┆ 2024-06-28T02:12:08.806 ┆ 2024-06-28T02:12:08.806 ┆                         │
+└────┴───────┴─────┴────────────┴──────────────────────────────────┴─────────────────────────┴─────────────────────────┴─────────────────────────┘
+5 rows.
+        </code>
+        </pre>
+        </div>
+
+        This output is identical to the output of the `timestamp`-based snapshot because the same `"event time"`
+        column is looked at in both cases.
+
+        <Note>
+        If `"event time"` decreased as a result of the change, the `timestamp` snapshot would not create an updated
+        record because it only does so if the `updated-at` value increases. Conversely, the `check` snapshot would
+        record an update because it looks for any change in the specified columns.
+        </Note>
+
+    </Step>
+
+</Steps>

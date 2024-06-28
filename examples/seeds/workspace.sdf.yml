@@ -1,0 +1,24 @@
+workspace:
+  name: seeds
+  edition: "1.3"
+  description: >
+    This workspace demonstrates a seed table: a table whose data is provided in a CSV file
+
+    To follow along with SDF's official guide:  https://docs.sdf.com/integrations/snowflake/seeds
+
+  defaults:
+    dialect: snowflake
+    preprocessor: jinja
+
+  integrations:
+    - provider: snowflake
+      type: database
+      targets:
+        - pattern: "*.*.*"
+---
+environment:
+  name: test
+  includes:
+    - path: seeds
+      type: seed
+    - path: models

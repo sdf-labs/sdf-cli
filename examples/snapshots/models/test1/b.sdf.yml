@@ -1,0 +1,7 @@
+table:
+  name: b
+  materialization: snapshot-table
+  snapshot-options:
+    strategy: timestamp
+    unique-key: id
+    updated-at: event time

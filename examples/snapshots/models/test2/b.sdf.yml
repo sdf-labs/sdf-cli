@@ -1,0 +1,7 @@
+table:
+  name: b
+  materialization: snapshot-table
+  snapshot-options:
+    strategy: check
+    unique-key: id
+    check-cols: all
