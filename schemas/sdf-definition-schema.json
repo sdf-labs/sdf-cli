@@ -265,13 +265,41 @@
       ]
     },
     "IndexMethod": {
-      "type": "string",
-      "enum": [
-        "none",
-        "table-name",
-        "schema-table-name",
-        "catalog-schema-table-name",
-        "scan-dbt"
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "scan-dbt"
+          ]
+        },
+        {
+          "description": "File path is not used in figuring out the full names of the tables defined in the file. Catalog and schema are inferred from the SQL statement if possible, or from the `defaults` section in the workspace configuration. Table name is inferred from the SQL statement if possible or from the name of the file without the extension. To figure out dependencies between tables and files, SDF will parse every file in the corresponding include path. This is the default option",
+          "type": "string",
+          "enum": [
+            "none"
+          ]
+        },
+        {
+          "description": "Table name is inferred from the file name without the extension. Catalog and schema are inferred from the `defaults` configuration. SDF assumes that a referenced table will reside in the file with the corresponding name. As a result, only the required subset of files is parsed. This option is is fast compared to the default, but it requires catalog and schemas to use the default values",
+          "type": "string",
+          "enum": [
+            "table-name"
+          ]
+        },
+        {
+          "description": "Table name is inferred from the file name without the extension. Schema is inferred from the directory name in which the file resides. Catalog is inferred from the `defaults` configuration. SDF assumes that a referenced table will reside in the directory/file with the corresponding schema/table name. As a result, only the required subset of files is parsed. This option is also fast, and it allows the schema to vary based on the directory name, but it still requires catalog to use the default values",
+          "type": "string",
+          "enum": [
+            "schema-table-name"
+          ]
+        },
+        {
+          "description": "Table name is inferred from the file name without the extension. Schema is inferred from the directory name in which the file resides. Catalog is inferred from the directory name in which the schema directory resides. Defaults are not used. SDF assumes that a referenced table will reside in the catalog/schema/table file with the corresponding schema/catalog/table names. As a result, only the required subset of files is parsed. This option is also fast, and it provides the most flexibility as catalog, schema and table names can all vary",
+          "type": "string",
+          "enum": [
+            "catalog-schema-table-name"
+          ]
+        }
       ]
     },
     "Defaults": {
@@ -457,16 +485,76 @@
       ]
     },
     "Materialization": {
-      "type": "string",
-      "enum": [
-        "table",
-        "temporary-table",
-        "external-table",
-        "view",
-        "materialized-view",
-        "incremental-table",
-        "snapshot-table",
-        "recursive-table"
+      "oneOf": [
+        {
+          "description": "Permanent table; e.g. for Snowflake, it will generate `CREATE OR REPLACE TABLE AS ...`",
+          "type": "string",
+          "enum": [
+            "table"
+          ]
+        },
+        {
+          "description": "Temporary table; e.g. for Snowflake, it will generate `CREATE OR REPLACE TEMPORARY TABLE AS ...",
+          "type": "string",
+          "enum": [
+            "temporary-table"
+          ]
+        },
+        {
+          "description": "Table with pre-existing data; it is not populated by SDF e.g. for Snowflake, it will generate `CREATE OR REPLACE EXTERNAL TABLE ...`",
+          "type": "string",
+          "enum": [
+            "external-table"
+          ]
+        },
+        {
+          "description": "Permanent view (default option); e.g. for Snowflake, it will generate `CREATE OR REPLACE VIEW AS ...`",
+          "type": "string",
+          "enum": [
+            "view"
+          ]
+        },
+        {
+          "description": "Materialized view; e.g. for Snowflake, it will generate `CREATE OR REPLACE MATERIALIZED VIEW AS ...`",
+          "type": "string",
+          "enum": [
+            "materialized-view"
+          ]
+        },
+        {
+          "description": "Incremental tables are permanent tables that are gradually populated and not overwritten from scratch during every SDF run. Different SQL statements will be generated depending on whether this table already exists or not. In the latter case, an equivalent of `CREATE OR REPLACE TABLE` will be generated; in the former case, one of `INSERT INTO ...`, `MERGE ...`, or `DELETE FROM ...`, followed by `INSERT INTO ...` will be generated depending on the parameters of `incremental-options`",
+          "type": "string",
+          "enum": [
+            "incremental-table"
+          ]
+        },
+        {
+          "description": "Snapshot tables are permanent tables that capture a snapshot of some underlying data at the time of running the query. Like incremental tables, snapshot tables are not recomputed from scratch during every SDF run",
+          "type": "string",
+          "enum": [
+            "snapshot-table"
+          ]
+        },
+        {
+          "description": "Recursive tables are permanent tables whose queries can have self-references. SDF will generate an equivalent of `CREATE RECURSIVE TABLE AS ...`. Note: in Snowflake, recursive tables are not treated specially---a normal `CREATE OR REPLACE TABLE AS...` is generated for them",
+          "type": "string",
+          "enum": [
+            "recursive-table"
+          ]
+        },
+        {
+          "description": "User defined other materializations, it is up to users to define their own materialization logics",
+          "type": "object",
+          "required": [
+            "other"
+          ],
+          "properties": {
+            "other": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
       ]
     },
     "TableCreationFlags": {
