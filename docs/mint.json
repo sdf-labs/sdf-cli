@@ -172,7 +172,8 @@
 						"integrations/snowflake/getting-started",
 						"integrations/snowflake/basic-materialization",
 						"integrations/snowflake/incremental-materialization",
-						"integrations/snowflake/snapshots"
+						"integrations/snowflake/snapshots",
+						"integrations/snowflake/seeds"
 					]
 				},
 				{

@@ -1,0 +1,167 @@
+---
+title: "Seeds"
+description:
+  "Upload data files as tables"
+---
+
+## Overview
+This guide describes the seeds mechanism that helps you upload raw data files (e.g. csv files) 
+to Snowflake as tables
+
+## Prerequisites
+
+<Info>
+This guide should be followed after completing the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide and the [Basic Materialization with Snowflake](/integrations/snowflake/basic-materialization) guide.
+</Info>
+
+You'll also need:
+
+- A Snowflake account to connect to
+- Valid credentials with read and write access to the SEEDS database used in this guide.
+
+## Guide
+
+<Steps>
+    <Step title="Create a new SDF Project from the Seeds Sample">
+        Create a new SDF project using the Seeds sample. This will create a new project in your current working directory with the sample project files.
+        ```shell
+        sdf new --sample seeds
+        ```
+
+
+        The newly created `seeds` directory contains three files:
+
+        * The workspace file `workspace.sdf.yml`
+        * The data file `seeds/raw_customers.csv`, and
+        * The model `models/french_customers.sql` which consumes and filters the seed table
+    </Step>
+    <Step title="Contents of the workspace file">
+        Let's look into the workspace file:
+
+        ```yaml workspace.sdf.yml
+        workspace:
+          name: seeds
+          edition: "1.3"
+          description: >
+            This workspace demonstrates a seed table: a table whose data is provided in a CSV file
+
+            To follow along with SDF's official guide:  https://docs.sdf.com/integrations/snowflake/seeds
+
+          defaults:
+            dialect: snowflake
+            preprocessor: jinja
+
+          integrations:
+            - provider: snowflake
+              type: database
+              targets:
+                - pattern: "*.*.*"
+        ---
+        environment:
+          name: test
+          includes:
+            - path: seeds
+              type: seed
+            - path: models
+        ```
+
+        Of note is the `includes` section containing two paths:
+
+        * The `models` directory for all the model code, and
+        * The `seeds` directory for the data files in CSV format. 
+
+        The seeds path is declared with `type: seed`. This instructs SDF to look for CSV files 
+        in the specified directory.
+    </Step>
+    <Step title="Seed files">
+        The seed flies must use CSV format and must include a header row. Here is `seeds/raw_customers.csv` 
+        with some synthetic customer data:
+
+        ```shell seeds/raw_customers.csv
+        customerid,name,phone,email,address,region,postalzip,country,createdat,updatedat
+        1,Genevieve Trevino,1-394-354-2458,gravida.aliquam@icloud.ca,749-727 Aliquam Rd.,Zamboanga Peninsula,5377 SH,Italy,2022-12-14T00:07:02.407Z,2022-12-21T14:08:36.464Z
+        2,Amos Dyer,1-277-725-1145,consequat.dolor.vitae@yahoo.couk,Ap 984-2094 Nulla. Ave,Västra Götalands län,392910,Russian Federation,2023-02-28T10:06:36.354Z,2023-03-05T18:06:37.369Z
+        3,Leslie Rollins,1-584-147-6573,nunc.sed@aol.net,366-8487 Pede. Street,Trøndelag,X1V 4CC,Austria,2023-02-13T02:06:10.388Z,2023-02-24T20:07:47.418Z
+        ...
+        ```
+    </Step>
+    <Step title="Models derived from seeds">
+        Seed files materialize as tables which can be used in the definition of other models just like any other table.
+        Here is a model which filters the above seed table to a subset of rows whose country is France:
+
+        ```sql models/french_customers.sql
+        select * from raw_customers
+        where country = 'France'
+        ```
+
+        We can run this model as follows:
+
+        ```shell
+        sdf run french_customers -e test
+        ```
+
+        {/* ```run shell
+        cd tmp/seeds && $sdf run french_customers -e test
+        ``` */}
+
+        <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+        <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+        <code className='language-shell'>
+Working set 1 model file, 1 seed file, 1 .sdf file
+  Uploading ‘SEEDS.PUB.RAW_CUSTOMERS’
+    Running SEEDS.PUB.FRENCH_CUSTOMERS (./models/french_customers.sql)
+   Finished 2 models [2 succeeded] in 9.779 secs
+
+Table SEEDS.PUB.FRENCH_CUSTOMERS
+┌────────────┬─────────────────┬────────────────┬────────────────────────────────────────┬─────────────────────────────────┬─────────────────────────────┬───────────┬─────────┬─────────────────────────┬─────────────────────────┐
+│ customerid ┆ name            ┆ phone          ┆ email                                  ┆ address                         ┆ region                      ┆ postalzip ┆ country ┆ createdat               ┆ updatedat               │
+╞════════════╪═════════════════╪════════════════╪════════════════════════════════════════╪═════════════════════════════════╪═════════════════════════════╪═══════════╪═════════╪═════════════════════════╪═════════════════════════╡
+│ 10         ┆ Alfonso Mcbride ┆ 1-426-567-2754 ┆ ultricies.ligula.nullam@protonmail.net ┆ P.O. Box 120, 3949 Leo, Rd.     ┆ North Island                ┆ 4751-5554 ┆ France  ┆ 2023-02-11T02:05:55.379 ┆ 2023-02-19T09:06:00.400 │
+│ 11         ┆ Carol White     ┆ 1-192-246-3106 ┆ porttitor.scelerisque.neque@icloud.edu ┆ Ap #345-4585 Luctus Rd.         ┆ Saint Petersburg City       ┆ 57565     ┆ France  ┆ 2023-01-24T07:06:21.325 ┆ 2023-02-02T10:07:55.385 │
+│ 44         ┆ Keely Mccarthy  ┆ 1-557-880-9789 ┆ tristique.senectus@aol.org             ┆ P.O. Box 432, 6899 Accumsan Rd. ┆ Luxemburg                   ┆ 7542      ┆ France  ┆ 2023-03-08T05:05:59.346 ┆ 2023-03-19T03:07:29.433 │
+│ 76         ┆ Samantha Booker ┆ 1-691-851-1158 ┆ faucibus.orci@google.ca                ┆ 148-3403 Aenean Road            ┆ Southwestern Tagalog Region ┆ 8533      ┆ France  ┆ 2023-03-06T09:05:33.404 ┆ 2023-03-14T08:06:44.471 │
+│ 104        ┆ Kitra Huber     ┆ 1-322-815-5342 ┆ interdum.curabitur@hotmail.couk        ┆ 910-6287 Nam Rd.                ┆ Viken                       ┆ 45012     ┆ France  ┆ 2023-02-22T17:06:44.334 ┆ 2023-03-01T08:08:24.417 │
+│ 147        ┆ Kaseem Rowland  ┆ 1-209-868-8767 ┆ sed.facilisis@google.edu               ┆ 2536 Aliquam St.                ┆ Cartago                     ┆ 8576-5132 ┆ France  ┆ 2023-02-16T21:06:00.390 ┆ 2023-02-22T05:06:19.404 │
+│ 229        ┆ Deirdre Clark   ┆ 1-821-572-8987 ┆ augue.scelerisque.mollis@hotmail.couk  ┆ 2734 Natoque Avenue             ┆ North Chungcheong           ┆ 858642    ┆ France  ┆ 2023-02-08T11:06:13.389 ┆ 2023-02-12T07:07:30.436 │
+│ 257        ┆ Marah Silva     ┆ 1-577-860-9883 ┆ pellentesque.ut.ipsum@yahoo.org        ┆ Ap #318-2518 Risus St.          ┆ Lubelskie                   ┆ 4718      ┆ France  ┆ 2022-12-29T06:05:53.314 ┆ 2023-01-07T03:07:15.331 │
+│ 316        ┆ Berk Melendez   ┆ 1-425-391-6429 ┆ vel@aol.ca                             ┆ Ap #540-6098 Semper, Road       ┆ Paraná                      ┆ 1274      ┆ France  ┆ 2023-01-24T13:06:14.320 ┆ 2023-02-02T07:07:19.398 │
+│ 377        ┆ Adam Fitzgerald ┆ 1-477-951-6067 ┆ sem@google.edu                         ┆ Ap #426-4098 Vestibulum Rd.     ┆ Nariño                      ┆ 53150     ┆ France  ┆ 2023-01-13T03:06:22.406 ┆ 2023-01-25T23:06:40.441 │
+└────────────┴─────────────────┴────────────────┴────────────────────────────────────────┴─────────────────────────────────┴─────────────────────────────┴───────────┴─────────┴─────────────────────────┴─────────────────────────┘
+10 rows.
+        </code>
+        </pre>
+        </div>
+
+    </Step>
+    <Step title="Ad-hoc queries against seeds">
+        We can also run ad-hoc queries directly against seeds tables. Here is a query counting the number of countries
+        in `raw_customers`:
+
+        ```shell
+        sdf run -e test -q "SELECT COUNT(DISTINCT country) AS cnt FROM raw_customers"
+        ```
+
+        {/* ```run shell
+        cd tmp/seeds && $sdf run -e test -q "SELECT COUNT(DISTINCT country) as cnt from raw_customers"
+        ``` */}
+
+        <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+        <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+        <code className='language-shell'>
+Working set 2 model files, 1 seed file, 1 .sdf file
+  Uploading ‘SEEDS.PUB.RAW_CUSTOMERS’
+    Running seeds.pub.query (./sdftarget/test/query.sql)
+   Finished 2 models [2 succeeded] in 9.053 secs
+
+Table seeds.pub.query
+┌─────┐
+│ cnt │
+╞═════╡
+│ 35  │
+└─────┘
+1 rows.
+        </code>
+        </pre>
+        </div>
+    </Step>
+</Steps>
