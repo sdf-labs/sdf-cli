@@ -26,7 +26,7 @@ When `sdf test` runs this query, it will check if any data is returned and fail 
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.test_main&nbsp;(./sdftarget/dbg/tests/hello/pub/test_main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.785&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.773&nbsp;secs
 [Pass]&nbsp;Test&nbsp;hello.pub.test_main
 
 </code>
@@ -180,7 +180,7 @@ table:
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;(./models/raw_inapp_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.828&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.807&nbsp;secs
 [Pass]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
 
 </code>
@@ -265,7 +265,7 @@ ORDER&nbsp;BY&nbsp;reason;
 <code className='language-error'>
     Running tests_workspace.pub.raw_inapp_events (./models/raw_inapp_events.sql)
     Testing tests_workspace.pub.test_raw_inapp_events (./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
-   Finished 1 model [1 succeeded], 1 test [1 failed] in 0.825 secs, for details see below.
+   Finished 1 model [1 succeeded], 1 test [1 failed] in 0.791 secs, for details see below.
 [Fail] Test tests_workspace.pub.test_raw_inapp_events
 ┌─────────────────────────────────────────────────────┐
 │ reason                                              │
@@ -275,11 +275,149 @@ ORDER&nbsp;BY&nbsp;reason;
 1 rows.
 
 -------
-Summary 1 model [1 succeeded], 1 test [1 failed] in 0.825 secs.
+Summary 1 model [1 succeeded], 1 test [1 failed] in 0.791 secs.
 -------
 
 </code>
 </pre>
 </div>
   </Step>
+</Steps>
+
+
+## Add Custom Tests
+
+SDF supports an easy way to write custom tests that will utilize our built-in testing infrastructure
+to run custom testing macros. 
+
+<Steps>
+  <Step title="Setup">
+    In our workspace, let's create a new folder for our custom test macros. We can call it `custom_tests`.
+
+    The new directory will look like this:
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+&nbsp;&nbsp;&nbsp;&nbsp;Cleaned&nbsp;sdftarget
+&nbsp;&nbsp;&nbsp;Finished&nbsp;clean&nbsp;in&nbsp;0.297&nbsp;secs
+.
+├──&nbsp;custom_tests
+├──&nbsp;models
+│  &nbsp;└──&nbsp;raw_inapp_events.sql
+├──&nbsp;seeds
+│  &nbsp;└──&nbsp;inapp_events.csv
+├──&nbsp;src_metadata
+│  &nbsp;└──&nbsp;raw_inapp_events.sdf.yml
+└──&nbsp;workspace.sdf.yml
+
+4&nbsp;directories,&nbsp;4&nbsp;files
+
+</code>
+</pre>
+</div>
+
+    We also need to include the new folder in our `workspace.sdf.yml` file:
+    ```yml
+        workspace:
+          name: tests_workspace
+            ...
+            include:
+                - path: custom_tests
+                  type: metadata
+            ...
+        ```
+
+    Now we are ready to add some custom tests!
+  </Step>
+  <Step title="Create a Custom Test">
+    To extend SDF's built-in testing library, add a jinja file named `my_test.jinja`
+    with the following custom test in the newly created folder:
+
+    ```jinja custom_tests/my_test.jinja
+    {% macro custom_column_test(severity, column_name) -%}
+        COUNT(CASE WHEN {{ column_name }} > 1000 THEN 1 ELSE NULL END) > 0 
+        ==> 
+        '{{severity}}: column {{ column_name }} is over 1000"' 
+    {%- endmacro %}
+    ```
+
+    <Note>
+      In order to use SDF's testing infrastructure, we need to maintain
+      a similar macro signature as in the official library.
+    </Note>
+  </Step>
+  <Step title="Try It!">
+        First, we need to add the test to our table yml file, just like we did with 
+        SDF's built-in tests.
+        In the file `src_metadata/raw_inapp_events.sdf.yml`, add our new custom test
+        to the column `event_name`:
+        ```yml src_metadata/raw_inapp_events.sdf.yml
+        table:
+            ...
+            columns:
+                - name: index
+                    description: row_number
+                    tests:
+                        - expect: tests_workspace.custom_column_test()  <-- this is our new test!
+                          severity: warning
+            ... 
+        ```
+
+        <Tip>
+          Unlike with regular tests, to call a custom test we need to use the syntax 
+          `{sdf_workspace_name}.{custom_test_name}`. In the example above, the workspace name
+          is `tests_workspace` and the custom_test_name is `custom_column_test`.
+        </Tip>
+
+        Let's run the test! In your terminal, execute:
+        ```shell
+        sdf test
+        ```
+
+        The test passed! 
+
+        
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;(./models/raw_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.774&nbsp;secs
+[Pass]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
+
+</code>
+</pre>
+</div>
+
+        We can look at the compiled tests query located in the file 
+        `sdftarget/dbg/preprocessed/sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql`.
+        Notice our custom logic in the compiled query:
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+
+
+WITH
+raw_inapp_events_constraints&nbsp;AS&nbsp;(
+&nbsp;&nbsp;&nbsp;&nbsp;SELECT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CASE&nbsp;WHEN&nbsp;COUNT(CASE&nbsp;WHEN&nbsp;index&nbsp;&gt;&nbsp;1000&nbsp;THEN&nbsp;1&nbsp;ELSE&nbsp;NULL&nbsp;END)&nbsp;&gt;&nbsp;0&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;THEN&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&#39;err:&nbsp;column&nbsp;index&nbsp;is&nbsp;over&nbsp;1000&quot;&#39;&nbsp;ELSE&nbsp;NULL&nbsp;END&nbsp;AS&nbsp;index_1
+&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;tests_workspace.pub.raw_inapp_events
+)
+
+SELECT&nbsp;reason&nbsp;
+FROM&nbsp;(
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;SELECT&nbsp;index_1&nbsp;as&nbsp;reason&nbsp;FROM&nbsp;raw_inapp_events_constraints&nbsp;WHERE&nbsp;index_1&nbsp;IS&nbsp;NOT&nbsp;NULL&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;AS&nbsp;_combined_errors
+ORDER&nbsp;BY&nbsp;reason;
+
+</code>
+</pre>
+</div>
+    </Step>
 </Steps>

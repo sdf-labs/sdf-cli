@@ -1,0 +1,226 @@
+---
+title: "Custom Libraries"
+description:
+  "Expand SDF Built-in Libraries with custom logic"
+---
+
+SDF comes with built-in open-source libraries (learn more about our [open source libs](/introduction/open-source)).
+To further increase SDF's compatibility, it is possible to expand those built-in libs with custom logic.
+
+The following guide will explain how to do so, step by step.
+
+##Setup
+<Steps> 
+    <Step title="Open an SDF workspace">
+        For the sake of the example, we will use our `tests` sample workspace.
+        However, you can always use your existing SDF workspace to follow along.
+        
+        To create the `tests` workspace, run the following command:
+        ```shell
+        sdf new --sample tests & cd tests
+        ```
+
+        ```
+        run shell
+        cd tmp && $sdf new --sample tests
+        ```
+        
+        There are slight syntax differences for expanding each library.
+        To keep it simple, we will focus our example on tests and point
+        out the implementation differences for other libs.
+    </Step>
+    <Step title="Create a New Libs Folder">
+        Within your workspace, create a new folder. We will call it `my_lib`, 
+        but any name would work. This is where we will add our custom logic in 
+        later steps.
+
+        If you are using the `tests` example, your workspace should look like this:
+
+        ```
+        run quiet
+        cd tmp/tests && mkdir my_lib
+        ```
+
+        ```
+        run shell
+        cd tmp/tests && tree .
+        ```
+    </Step>
+    <Step title="Copy SDF's Built-in Lib">
+        One option is to copy the libraries from GitHub:
+        - [SDF Tests](https://github.com/sdf-labs/tests), 
+        - [SDF Materialization](https://github.com/sdf-labs/materialization), 
+        - [SDF Utils](https://github.com/sdf-labs/utils)
+
+        Another option is to copy them from `sdfTarget`.
+        If you don't have an `sdfTarget` directory, all you need to do is 
+        to compile your workspace:
+
+        ```shell 
+        sdf compile
+        ```
+        If your compilation was successful, you will see `sdfTarget` in your
+        workspace:
+        
+        ```
+        run shell
+        cd tmp/tests && sdf compile --show none && tree . -L 4 -a
+        ```
+
+        SDF's libraries will be located under `sdfTarget/dbg/.lib`.
+
+        
+        Let's copy `sdf_test` to our new custom libraries folder:
+
+        ```
+        run quiet
+        cd tmp/tests && cp -R sdfTarget/dbg/.lib/sdf_test my_lib
+        ```
+        
+        ```
+        run error
+        cd tmp/tests && tree ./my_lib 
+        ```
+
+        <Tip>
+            You can choose to keep the library name as is, `sdf_test`, 
+            or change it if there's another name you'd prefer to use.
+        </Tip>
+    </Step>
+    <Step title="Add Custom Library to the Workspace YML">
+        Now, we need to add our new library to the workspace configuration.
+        In our `workspace.sdf.yml` file, let's add the following section:
+
+        ```yml
+        workspace:
+            ...
+            dependencies:
+                - name: sdf_test
+                  path: my_lib/sdf_tests  <-- or a different folder name
+            ...
+        ```
+
+        Notice, we are using SDF's built-in library name, `sdf_test`. 
+        However, we can also choose a different name to our library. If 
+        we decide to do so, we'll need to indicate it in the defaults.
+
+        Let's assume we call the new tests library `new_tests`:
+        ```yml
+        workspace:
+            ...
+            dependencies:
+                - name: new_tests  <-- this is the new lib name
+                  path: my_lib/sdf_tests  <-- or a different folder name
+            defaults:
+                test-lib: new_tests  <-- this is the new lib name
+            ...
+        ```
+
+        If we want to add another type of custom lib with a non-default
+        name, we should add to the defaults section:
+        <CodeGroup>
+        ```yml workspace.sdf.yml (materialization)
+        ...
+        defaults:
+            materialization-lib: new_mat  <-- This is a non-default name
+        ...
+        ```
+        ```yml workspace.sdf.yml (utils)
+        ...
+        defaults:
+            utils-lib: new_utils  <-- This is a non-default name
+        ...
+        ```
+        </CodeGroup>
+
+        <Tip>
+        - We can have more than one custom lib added to a workspace. 
+            Each lib is independent of the rest.
+        - We can create an environment to include the custom libs rather 
+        than include it in the main workspace configuration. It'll look like this:
+        ```yml
+        workspace:
+            ...
+        ---
+        environment:
+            name: custom_libs
+            dependencies:
+                - name: sdf_test
+                  path: my_lib/sdf_test
+            ...
+        ```
+        </Tip>
+    </Step>
+    <Step title="Expand Your Lib">
+        Let's add some custom logic!
+
+        Open the lib file. It will be located under `my_lib/sdf_test/macro/test.jinja`.
+        If you changed any folder names, make sure to apply the changes to locate
+        the relevant file.
+
+        Copy the following macro to the top of your custom tests lib:
+        ```jinja my_lib/sdf_test/macro/test.jinja
+        {% macro custom_column_test(severity, column_name) -%}
+            COUNT(CASE WHEN {{ column_name }} > 1000 THEN 1 ELSE NULL END) > 0 
+            ==> 
+            '{{severity}}: column {{ column_name }} is over 1000"' 
+        {%- endmacro %}
+        ```
+
+        <Note>
+            We are keeping it simple and merely checking that the column value is below 1000,
+            but of course, you can implement any custom and complex logic here.
+        </Note>
+    </Step>
+    <Step title="Try It!">
+        First, we need to add the test to our table yml file, just like for SDF's built-in tests 
+        (to learn more, visit our [Tests Guide](/guide/data-quality/tests)).
+        In the file `src_metadata/raw_inapp_events.sdf.yml`, add our new custom test
+        to the column `event_name`:
+        ```yml src_metadata/raw_inapp_events.sdf.yml
+        table:
+            ...
+            columns:
+                - name: index
+                    description: row_number
+                    tests:
+                        - expect: custom_column_test()  <-- this is our new test!
+                          severity: warning
+            ... 
+        ```
+
+        Let's run the test! In your terminal, execute:
+        ```shell
+        sdf test
+        ```
+
+        The test passed! 
+        ```
+        add yml
+        custom_libs/raw_inapp_events.sdf.yml -> tests/src_metadata/raw_inapp_events.sdf.yml
+        ```
+        ```
+        add yml
+        custom_libs/workspace.sdf.yml -> tests/workspace.sdf.yml
+        ```
+
+        ```
+        add jinja
+        custom_libs/test.jinja -> tests/my_lib/sdf_test/macros/test.jinja
+        ```
+        
+        ```
+        run shell
+        cd tmp/tests && sdf test
+        ```
+
+        We can look at the compiled tests query located in the file 
+        `sdftarget/dbg/preprocessed/sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql`.
+        Notice our custom logic in the compiled query:
+
+        ```
+        run shell
+        cd tmp/tests && cat sdftarget/dbg/preprocessed/sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql
+        ```
+    </Step>
+</Steps>
