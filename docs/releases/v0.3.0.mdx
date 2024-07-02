@@ -1,0 +1,72 @@
+---
+title: "V0.3.0"
+description: "This document contains release notes from version 0.3.0 of SDF."
+---
+### June 24th, 2024
+
+We are excited to announce that a new minor release of our CLI is now available, bringing
+ improvements, new features, and bug fixes to SDF. Interested in our product roadmap or want to 
+discuss features? Reach out to your SDF point of contact to provide any points of feedback!
+
+### Migrate from version 1.2 to 1.3
+
+Workspace edition 1.3 brings a new information schema, improvements to the SDF CLI, and 
+an expansion of what was previously the provider configuration. We've created a guide to help 
+migrate your workspace from edition 1.2 to 1.3.
+
+In versions 0.3.0 and above, workspace 1.3 is required. As a first step, please update your 
+workspace block to the following and complete the steps within the [1.2 -> 1.3 Migration Guide](releases/migrations/12-13)
+
+``` yml workspace.sdf.yml
+workspace:
+  edition: "1.3"
+  ...
+```
+
+### New Trino/Presto Reference Functions 
+
+SDF DB is currently designed to model Trino in semantics and execution. 
+All functions are currently designed for 1:1 compatiblity with the functions 
+in the Trino Dialect. Function implementation is in Rust, providing for fast execution.
+
+Each supported function has a new doc outlining an example and supported signatures. 
+
+- [Overview](/database/supported-functions/overview)
+- [String Functions](/database/supported-functions/trino/string-functions)
+- [Math Functions](/database/supported-functions/trino/array-functions)
+- [Datetime Functions](/database/supported-functions/trino/datetime-functions)
+- [Aggregate Functions](/database/supported-functions/trino/aggregate-functions)
+- [Regexp Functions](/database/supported-functions/trino/regexp-functions)
+- [Comparison Functions](/database/supported-functions/trino/comparisonfunctions)
+- [Binary Functions](/database/supported-functions/trino/binary-functions)
+- [Conditional Functions](/database/supported-functions/trino/conditional-functions)
+- [Array Functions](/database/supported-functions/trino/array-functions)
+
+### Add Support for S3 Output-Location
+
+Introducing support for an `output-location` property on the SDF integration. This 
+allows users to specify either a local path to output targets to a remote S3 path. 
+Remote paths require corresponding data providers to be setup withint the 
+`workspace.sdf.yml` file.
+
+```yml workspace.sdf.yml
+---
+environment:
+  name: test_output_location
+  ...
+  integrations:
+    - provider: sdf
+      output-location: "s3://sdf-cli-tests/remote-location-test/" # or local path ../../path-to-artifacts
+    - provider: s3
+      type: data
+      credential: aws_integration
+      buckets:
+        - uri: s3://sdfdatasets
+          region: us-east-1
+```
+
+### General bug fixes and stability improvements:
+- Fix browser history back/forward bug
+- Support schema evolution for snapshots
+- Improve caching of SDF Lineage
+- Fix bugs in snapshots and remote download handling
