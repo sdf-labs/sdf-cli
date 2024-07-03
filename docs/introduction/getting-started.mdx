@@ -67,7 +67,7 @@ After running the command, you will see the following output:
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/.gitignore
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/models/main.sql
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/workspace.sdf.yml
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.307&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.189&nbsp;secs
 
 </code>
 </pre>
@@ -154,7 +154,7 @@ Let's see just how easy it is to set up SDF and run your first query.
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.770&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.667&nbsp;secs
 
 Schema&nbsp;hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -183,7 +183,7 @@ Schema&nbsp;hello.pub.main
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.738&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.626&nbsp;secs
 
 Table&nbsp;hello.pub.main
 ┌──────────────┐
@@ -218,7 +218,7 @@ Table&nbsp;hello.pub.main
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main2&nbsp;(./models/main2.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.782&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.654&nbsp;secs
 main2.message
 │
 │&nbsp;copy
@@ -238,4 +238,15 @@ In this guide we showed you just how easy it is to install SDF and run your firs
     add auto-fill, type checking, and YML validation directly inline while editing `sdf.yml` files.
 </Tip>
 
+
+
+## Quick Links
+<CardGroup cols={2}>
+  <Card title="Tutorials" href="/tutorials/tutorials-intro">
+    Try it yourself! Get to know the real value of SDF through our short series of tutorials
+  </Card>
+    <Card title="Setup SDF" href="/guide/setup/io">
+    Learn more about setting up SDF in your data stack
+  </Card>
+</CardGroup> 
 
