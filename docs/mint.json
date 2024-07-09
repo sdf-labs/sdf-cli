@@ -157,8 +157,7 @@
 					"pages": [
 						"guide/advanced/index",
 						"guide/advanced/udf",
-						"guide/advanced/telemetry",
-						"guide/advanced/environments"
+						"guide/advanced/telemetry"
 					]
 				}
 			]
@@ -189,7 +188,6 @@
 					"group": "DBT",
 					"icon": "circle",
 					"pages": [
-						"integrations/dbt/overview_dbt",
 						"integrations/dbt/integrating",
 						"integrations/dbt/migrating"
 					]
