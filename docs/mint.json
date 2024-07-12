@@ -105,6 +105,7 @@
 				"cloud/authentication",
 				"cloud/deployment",
 				"cloud/sso",
+				"cloud/reporting",
 				"cloud/troubleshooting",
 				"cloud/organization_roles",
 				"cloud/workspace_credentials"

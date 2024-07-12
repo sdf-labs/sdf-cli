@@ -1,0 +1,60 @@
+---
+title: "Cloud Reports"
+---
+
+## Cloud Report Visualizations
+
+We are excited to introduce a new feature that brings Report visualizations to the cloud, making it easier for you to track and analyze your data warehouse directly from your browser. 
+
+## What are Reports?
+
+Reports are SQL queries that run against the information schema, enabling you to analyze your warehouse and metadata. They are an essential tool for tracking and analyzing business logic, datatypes, and metadata, throughout your data warehouse. Here are some examples of effective Reports:
+
+- **Privacy Compliance Analysis:** Get a list of all tables and columns that contain Personally Identifiable Information (PII).
+- **Materialization Breakdown:** Improve your warehouse understanding with a clear breakdown of the different materialization types used across your warehouse.
+- **Dead Column Analysis:** Optimize your warehouse by computing a list of all columns that have no dependencies, then remove them to save on storage and compute costs.
+
+To learn more, [check out our doc on creating Reports](/guide/data-quality/reports#reports) utilizing the SDF Engine. 
+
+## Getting Started
+
+To get started with pre-built Reports in the SDF Engine that can be integrated into any SDF Workspace, follow our [guide to installing the Workspace Evaluator](https://github.com/sdf-labs/workspace-evaluator/blob/main/readme.mdx). Once you have created Reports in the engine, you will need to re-push your workspace, [see our guide here](/cloud/deployment). Then you will see the visualizations populate in the Reports tab of the cloud! 
+
+## How to Access and Use Reports in the Cloud
+
+1. **Login to the SDF Cloud:** If you do not yet have access to the cloud, request a demo here to upgrade your plan. 
+2. **Navigate to the Reports Tab:** Access the Reports tab from your cloud sidebar.
+3. **View and Search Through Your Reports:** See all your Reports listed with their respective details sorted alphabetically by name, and search by name or creator to find the respective Report you’re looking for.
+4. **Analyze Visualizations:** View the visualization and analyze the output. 
+
+<Frame>
+    <video
+    autoPlay
+    muted
+    className="w-full aspect-video"
+    src="https://cdn.sdf.com/vid/reporting_demo.mov"
+    ></video>
+</Frame>
+
+
+## Report Visuals in the Cloud
+
+With our new feature, you can now see visualizations of your Reports in the cloud. Depending on the Report's result, the visualization will be displayed in one of two formats:
+
+1. **Single Value Display:** If the result of your Report is a single row and a single column, the visualization will display the single value in a tile in the Reports dashboard.
+2. **Table Display:** If the result consists of more than one row or one column, the visualization will be displayed as a table.
+
+<Frame>
+    <video
+    autoPlay
+    muted
+    className="w-full aspect-video"
+    src="https://cdn.sdf.com/vid/report_view_comparison.mov"
+    ></video>
+</Frame>
+
+You will see a dashboard that provides an overview of all Reports in your workspace. Each Report on the dashboard will include the following information:
+
+- **Name of the Report:** The title or description of theReport.
+- **User Who Created the Report:** The username of the individual who created the Report.
+- **Last Run Time:** The timestamp of the last execution of the Report.
