@@ -1119,6 +1119,17 @@ function minute(timestamp(p)) returns bigint
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#minute)
 
+## `mod`
+
+Returns the modulus (remainder) of n divided by m.
+
+*Supported Signatures*
+```sql
+function mod(bigint, bigint) returns bigint
+function mod(double, double) returns double
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#mod)
+
 ## `month`
 
 Returns the month of the year from x.
@@ -1254,6 +1265,17 @@ select power(2, 8) as value; -- value '256'
 function power(double, double) returns double
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#power)
+
+## `quarter`
+
+Returns the quarter of the year from x. The value ranges from 1 to 4.
+
+*Supported Signatures*
+```sql
+function quarter(date) returns bigint
+function quarter(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#quarter)
 
 ## `radians`
 

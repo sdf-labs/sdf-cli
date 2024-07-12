@@ -296,6 +296,17 @@ function now() returns timestamp
 
 [🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#now)
 
+## `quarter`
+
+Returns the quarter of the year from x. The value ranges from 1 to 4.
+
+*Supported Signatures*
+```sql
+function quarter(date) returns bigint
+function quarter(timestamp(p)) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/datetime.html#quarter)
+
 ## `second`
 
 Returns the second of the minute from x.
