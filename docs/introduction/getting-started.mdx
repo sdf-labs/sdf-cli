@@ -25,7 +25,7 @@ sdf --help
 <code className='language-shell'>
 SDF:&nbsp;A&nbsp;fast&nbsp;SQL&nbsp;compiler,&nbsp;local&nbsp;development&nbsp;framework,&nbsp;and&nbsp;in-memory&nbsp;analytical&nbsp;database
 
-Usage:&nbsp;sdf&nbsp;&lt;COMMAND&gt;
+Usage:&nbsp;sdf&nbsp;[OPTIONS]&nbsp;&lt;COMMAND&gt;
 
 Commands:
 &nbsp;&nbsp;new&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create&nbsp;a&nbsp;new&nbsp;sdf&nbsp;workspace
@@ -45,8 +45,27 @@ Commands:
 &nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;this&nbsp;message&nbsp;or&nbsp;the&nbsp;help&nbsp;of&nbsp;the&nbsp;given&nbsp;subcommand(s)
 
 Options:
-&nbsp;&nbsp;-h,&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help
-&nbsp;&nbsp;-V,&nbsp;--version&nbsp;&nbsp;Print&nbsp;version
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-level&nbsp;&lt;LOG_LEVEL&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;log&nbsp;level
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[possible&nbsp;values:&nbsp;trace,&nbsp;debug,&nbsp;info,&nbsp;warn,&nbsp;error]
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-file&nbsp;&lt;LOG_FILE&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates&nbsp;or&nbsp;replaces&nbsp;the&nbsp;log&nbsp;file
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-form&nbsp;&lt;LOG_FORM&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;the&nbsp;log&nbsp;format;&nbsp;default&nbsp;flat
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Possible&nbsp;values:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;flat:&nbsp;&nbsp;&nbsp;Writes&nbsp;nd-json,&nbsp;compact,&nbsp;no&nbsp;nested&nbsp;objects
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;nested:&nbsp;Writes&nbsp;nd-json,&nbsp;compact,&nbsp;nested&nbsp;objects
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;pretty:&nbsp;Writes&nbsp;nd-json,&nbsp;pretty,&nbsp;nested&nbsp;objects
+
+&nbsp;&nbsp;-h,&nbsp;--help
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help&nbsp;(see&nbsp;a&nbsp;summary&nbsp;with&nbsp;&#39;-h&#39;)
+
+&nbsp;&nbsp;-V,&nbsp;--version
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;version
 
 </code>
 </pre>
@@ -67,7 +86,7 @@ After running the command, you will see the following output:
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/.gitignore
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/models/main.sql
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/workspace.sdf.yml
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.285&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.300&nbsp;secs
 
 </code>
 </pre>
@@ -154,7 +173,7 @@ Let's see just how easy it is to set up SDF and run your first query.
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.751&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.791&nbsp;secs
 
 Schema&nbsp;hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -183,7 +202,7 @@ Schema&nbsp;hello.pub.main
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.733&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.767&nbsp;secs
 
 Table&nbsp;hello.pub.main
 ┌──────────────┐
@@ -218,7 +237,7 @@ Table&nbsp;hello.pub.main
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main2&nbsp;(./models/main2.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.753&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.792&nbsp;secs
 main2.message
 │
 │&nbsp;copy

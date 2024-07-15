@@ -36,6 +36,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf man cli`↴](#sdf-man-cli)
 * [`sdf man functions`↴](#sdf-man-functions)
 * [`sdf man definition-schema`↴](#sdf-man-definition-schema)
+* [`sdf man event-schema`↴](#sdf-man-event-schema)
 * [`sdf man information-schema`↴](#sdf-man-information-schema)
 * [`sdf man error-codes`↴](#sdf-man-error-codes)
 * [`sdf dbt`↴](#sdf-dbt)
@@ -46,7 +47,7 @@ This document contains the help content for the `sdf` command-line program.
 
 SDF: A fast SQL compiler, local development framework, and in-memory analytical database
 
-**Usage:** `sdf  COMMAND `
+**Usage:** `sdf [OPTIONS]  COMMAND `
 
 ###### **Subcommands:**
 
@@ -73,10 +74,22 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 
 * `--num-threads  NUM_THREADS ` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
 * `--stack-size  STACK_SIZE ` — Set stack size for worker thread, in bytes
-* `--log-level  LOG_LEVEL ` — Set log level (by setting env var RUST_LOG)
+* `--log-level  LOG_LEVEL ` — Set log level
 
   Possible values: `trace`, `debug`, `info`, `warn`, `error`
 
+* `--log-file  LOG_FILE ` — Creates or replaces the log file
+* `--log-form  LOG_FORM ` — Set the log format; default flat
+
+  Possible values:
+  - `flat`:
+    Writes nd-json, compact, no nested objects
+  - `nested`:
+    Writes nd-json, compact, nested objects
+  - `pretty`:
+    Writes nd-json, pretty, nested objects
+
+* `--log-filter  LOG_FILTER ` — Filters log messages; filters are written as  key : prefix_of_value 
 * `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
@@ -1304,6 +1317,7 @@ Display reference material, like the CLI, dialect specific functions, schemas fo
 * `cli` — Display SDF's command line interface
 * `functions` — Display SDF's functions definitions
 * `definition-schema` — Display SDF's yml blocks as a json schema doc [only: json]
+* `event-schema` — Display SDF's trace events as a json schema only [only: json]
 * `information-schema` — Display SDF's information schemas [only: sql]
 * `error-codes` — 
 
@@ -1368,6 +1382,21 @@ Display SDF's functions definitions
 Display SDF's yml blocks as a json schema doc [only: json]
 
 **Usage:** `sdf man definition-schema [OPTIONS]`
+
+###### **Options:**
+
+* `--format  FORMAT ` — Format reference material in this  format  [only: json]
+
+  Possible values: `sql`, `yml`, `markdown`, `json`
+
+
+
+
+## `sdf man event-schema`
+
+Display SDF's trace events as a json schema only [only: json]
+
+**Usage:** `sdf man event-schema [OPTIONS]`
 
 ###### **Options:**
 
@@ -1484,5 +1513,5 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 
 
 
-   Finished man in 0.288 secs
+   Finished man in 0.312 secs
 

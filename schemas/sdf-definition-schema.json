@@ -1161,12 +1161,9 @@
         },
         "origin": {
           "description": "The origin of this table <remote> or <local>",
-          "anyOf": [
+          "allOf": [
             {
               "$ref": "#/definitions/TableOrigin"
-            },
-            {
-              "type": "null"
             }
           ]
         },
