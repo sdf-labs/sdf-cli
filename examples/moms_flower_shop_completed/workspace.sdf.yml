@@ -16,15 +16,19 @@ workspace:
 
   includes:
     - path: models
+      type: model
       index: schema-table-name
     - path: seeds/parquet
       type: resource
     - path: metadata
+      type: metadata
       index: schema-table-name
     - path: classifications
       type: metadata
     - path: reports
+      type: report
     - path: checks
+      type: check
   
   defaults: 
     preprocessor: jinja

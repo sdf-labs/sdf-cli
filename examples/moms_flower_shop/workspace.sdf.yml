@@ -16,10 +16,12 @@ workspace:
 
   includes:
     - path: models # The path to sql models for this workspace -- at least one path is required
+      type: model
       index: schema-table-name
     - path: seeds/parquet # Where raw data is stored locally
       type: resource
     - path: metadata # Tables metadata
+      type: metadata
       index: schema-table-name
 
 
