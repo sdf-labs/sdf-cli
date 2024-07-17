@@ -15,8 +15,9 @@ workspace:
     Try removing the DATA.pii classifier on source.
 
   includes:
-    - path: models/
-    - path: checks/
+    - path: models
+    - path: checks
+
 ---
 environment:
   name: trino
