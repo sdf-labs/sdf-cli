@@ -1,0 +1,103 @@
+---
+title: "Custom Scripts"
+description:
+  "Integrate SDF into more complex workflows with pre and post hooks"
+---
+
+SDF supports execution of arbitrary `scripts` which can be executed via the `sdf exec` command. In this way, you may string multiple commmands together, sequentially.
+
+`scripts` is a reserved name keyword in the `config` yml block. Each property in scripts will be an independently executable command. 
+
+To execute any script run: `sdf exec [SCRIPT_NAME]`
+
+Keep in mind:
+- If a subcommand exits with an error code, SDF will propagate that error code, and exit with that same error code
+- SDF pipes both `stdout` and `stderr` from subcommands 
+- Scripts are run via the `sh` shell. Color coding will *not* be preserved.
+
+### Getting Started
+To configure a custom script, add a `scripts` element to the `config` block. Each element in the `properties` array will become a separately executable command.
+
+``` yaml
+---
+config:
+  name: scripts
+  description: My custom scripts
+  properties:
+    my_script: "echo 'hello world'"
+    other_script: "echo $USER"
+    macro_script: "echo {{env_var('PWD')}}" # needs preprocessor: jinja
+```
+
+You are now able to execute these scripts as:
+- `sdf exec my_script`
+- `sdf exec other_script`
+- `sdf exec macro_script`
+
+### Reserved Script Keywords: Pre-Compile, Pre-Run, Post-Compile & Post-Run
+In addition to generic scripts, SDF has 4 reserved keywords which will execute scripts natively as part of `sdf compile` and `sdf run` commands.
+
+- `pre-compile` -> When executing `sdf compile` or `sdf check` or `sdf report`, the script in pre-compile is executed first
+- `post-compile` ->  When executing `sdf compile` or `sdf check` or `sdf report`, the script in post-compile is executed after compile has successfully finished
+- `pre-run` -> When executing `sdf run` or `sdf test` or `sdf stats`, the script in pre-run is executed first
+- `post-run` -> When executing `sdf run` or `sdf test` or `sdf stats`, the script in post-run is executed after run has successfully finished
+
+
+#### Example
+The configuration below utilizes all 4 keywords. Let's add it to the default workspace from `sdf new`
+
+``` yaml
+---
+config:
+  name: scripts
+  description: Below are the 4 reserved keywords for scripts
+  properties:
+    pre-compile: >
+      echo "RUNNING PRE-COMPILE"
+    post-compile: >
+      echo "RUNNING POST-COMPILE"
+    pre-run: >
+      echo "RUNNING PRE-RUN"
+    post-run: >
+      echo "RUNNING POST-RUN"
+```
+
+When executing `sdf compile`, we now run the pre-compile script first, and then post-compile resulting in the below output.
+
+``` shell
+> sdf compile
+  Working set 1 model file, 1 .sdf file
+         Info Executing pre-hook
+  RUNNING PRE-COMPILE
+    Compiling cfg.pub.main (./models/main.sql)
+         Info Executing post-hook
+  RUNNING POST-COMPILE
+     Finished 1 model [1 succeeded] in 0.270 secs
+```
+
+### Use Cases
+Scripts allow for organization specific workflows
+- Pre-hooks and Post-hooks -> Run custom logic before or after an SDF command
+- Metadata uploading -> Upload SDF's information schema to a database for further processing.
+- Post processing -> Parse metadata for post-run statistics
+- Validate results -> Run python, js, shell, or any other process to validate that current changes fit with your current data infrastructure.
+
+### User & Root User
+Scripts inherit the user of the calling SDF process. As a result `sudo sdf exec ...` will run subcommands as sudo as well.
+
+See the below script to validate whether an SDF script is root.
+
+``` yaml
+---
+config:
+  name: scripts
+  properties:
+    is_root: >
+      if [ "$EUID" -ne 0 ]
+        then echo "Not running as root"
+      else 
+        echo "Running as root"
+      fi
+```
+
+
