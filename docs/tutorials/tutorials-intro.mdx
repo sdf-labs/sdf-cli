@@ -156,15 +156,23 @@ For the sake of the tutorials, there is no need to connect to a database or to l
 Schema&nbsp;moms_flower_shop.raw.raw_customers
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All&nbsp;relevant&nbsp;information&nbsp;related&nbsp;to&nbsp;customers&nbsp;known&nbsp;to&nbsp;mom&nbsp;s&nbsp;flower&nbsp;shop.&nbsp;&nbsp;This&nbsp;information&nbsp;comes&nbsp;from&nbsp;the&nbsp;user&nbsp;input&nbsp;into&nbsp;the&nbsp;mobile&nbsp;app.
 
+All&nbsp;relevant&nbsp;information&nbsp;related&nbsp;to&nbsp;customers&nbsp;known&nbsp;to&nbsp;mom&nbsp;s&nbsp;flower&nbsp;shop.&nbsp;&nbsp;This&nbsp;information&nbsp;comes&nbsp;from&nbsp;the&nbsp;user&nbsp;input&nbsp;into&nbsp;the&nbsp;mobile&nbsp;app.
+
 ┌─────────────┬───────────┬────────────┬────────────────────────────────────────────────────────────┐
 │&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 ╞═════════════╪═══════════╪════════════╪════════════════════════════════════════════════════════════╡
 │&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;A&nbsp;unique&nbsp;identifier&nbsp;of&nbsp;a&nbsp;mom&nbsp;s&nbsp;floewr&nbsp;shop&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;A&nbsp;unique&nbsp;identifier&nbsp;of&nbsp;a&nbsp;mom&nbsp;s&nbsp;floewr&nbsp;shop&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;first_name&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;first&nbsp;name&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;first&nbsp;name&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;last_name&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;last&nbsp;name&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;last&nbsp;name&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;email&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;email&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;gender&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;gender&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;address_id&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;address_id&nbsp;of&nbsp;the&nbsp;address&nbsp;associated&nbsp;with&nbsp;the&nbsp;customer&nbsp;│
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;address_id&nbsp;of&nbsp;the&nbsp;address&nbsp;associated&nbsp;with&nbsp;the&nbsp;customer&nbsp;│
 └─────────────┴───────────┴────────────┴────────────────────────────────────────────────────────────┘
 
 </code>
@@ -224,15 +232,15 @@ Table&nbsp;moms_flower_shop.raw.raw_customers
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.809&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.652&nbsp;secs
 
 </code>
 </pre>
@@ -257,11 +265,11 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
+Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
@@ -269,7 +277,7 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.778&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.628&nbsp;secs
 
 </code>
 </pre>

@@ -387,6 +387,7 @@ Values |
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `pattern:` | `string`| A source that can be read. Sources must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
+`time-travel-qualifier:` | `string?`| Time travel qualifier expression (e.g. &#96;AT (TIMESTAMP =&gt; &#123;&#123; SOME_TIMESTAMP &#125;&#125;)&#96;&#96;)|
 `preload:` | `boolean?`| Whether to preload the source|
 `rename-from:` | `string?`| Renames sources when searching in the remote, the ith $&#123;i&#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &quot;_$&#123;1&#125;._$&#123;2&#125;._$&#123;3&#125;&quot;|
 ### Nested element: `TargetPattern`

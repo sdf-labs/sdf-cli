@@ -105,10 +105,11 @@ This is an alias for ceiling().
 
 *Examples:*
 ```sql examples.sql
-select ceil(1.35) as value; -- value '2.0'
+SELECT ceil(1.3) AS value; -- value '2.0'
 ```
 *Supported Signatures*
 ```sql
+function ceil(bigint) returns bigint
 function ceil(double) returns double
 function ceil(real) returns real
 ```
@@ -120,6 +121,7 @@ Returns x rounded up to the nearest integer.
 
 *Supported Signatures*
 ```sql
+function ceiling(bigint) returns bigint
 function ceiling(double) returns double
 function ceiling(real) returns real
 ```
@@ -189,13 +191,9 @@ function exp(double) returns double
 
 Returns x rounded down to the nearest integer.
 
-
-*Examples:*
-```sql examples.sql
-select floor(2.718) as value; -- value '2.0'
-```
 *Supported Signatures*
 ```sql
+function floor(bigint) returns bigint
 function floor(double) returns double
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/math.html#floor)

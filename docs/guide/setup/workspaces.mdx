@@ -122,14 +122,19 @@ workspace:
 
 &nbsp;&nbsp;includes:
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;models
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;model
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema-table-name
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;seeds/parquet
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;resource
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;metadata
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;metadata
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema-table-name
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;classifications
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;metadata
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;reports
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;report
 &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;checks
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;check
 &nbsp;&nbsp;
 &nbsp;&nbsp;defaults:&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;preprocessor:&nbsp;jinja

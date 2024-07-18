@@ -886,6 +886,13 @@
           "description": "A source that can be read. Sources must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope",
           "type": "string"
         },
+        "time-travel-qualifier": {
+          "description": "Time travel qualifier expression (e.g. `AT (TIMESTAMP => {{ SOME_TIMESTAMP }})``)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "preload": {
           "description": "Whether to preload the source",
           "type": [
