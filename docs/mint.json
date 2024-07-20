@@ -159,7 +159,8 @@
 						"guide/advanced/custom_scripts",
 						"guide/advanced/index",
 						"guide/advanced/udf",
-						"guide/advanced/telemetry"
+						"guide/advanced/telemetry",
+						"guide/advanced/logging"
 					]
 				}
 			]

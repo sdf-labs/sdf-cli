@@ -1,0 +1,331 @@
+---
+title: "Logging"
+description:
+  "SDF provides several options for configuring log output. Furthermore, the SDF DB can be used to query and analyze logs."
+---
+
+SDF outputs valuable context to `stdout` by default, but rich trace logs are also available for debugging and monitoring. 
+
+The following guide will go through the different logging options available in SDF and how to use them. See the [reference](#reference) for details on log formats, levels, and properties.
+
+## Guide
+<Steps> 
+    <Step title="Open an SDF workspace">
+        Let's use our `moms_flower_shop_completed` sample workspace as a base for this guide. If you don't have it, you can create it by running:
+        
+        ```shell
+        sdf new --sample moms_flower_shop_completed && cd moms_flower_shop_completed
+        ```
+
+    </Step>
+    <Step title="Explore Log Levels">
+        By default, SDF logs progress, warnings, and errors. 
+        We can filter this down by specifying `--log-level warn` or `--log-level error` to only see warnings or errors, respectively.
+        
+        To see more in-depth logs, we can use the `--log-level info` flag. This will expose logs that capture the internal steps that sdf follows to compile and run a workspace.
+
+        Let's say we want to view info logs along with error and warn logs, we can run:
+        ```shell
+        sdf compile moms_flower_shop.raw.raw_inapp_events --log-level info --show none
+        ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.256077761+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/main.rs:101&quot;,&quot;ev&quot;:&quot;sdf&quot;,&quot;ev_type&quot;:&quot;open&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.256124768+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/main.rs:102&quot;,&quot;ev&quot;:&quot;sdf&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;job_id&quot;,&quot;val_s&quot;:&quot;43bdd458-c132-4095-ac49-88566f9bc7ee&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.256132713+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/main.rs:103&quot;,&quot;ev&quot;:&quot;sdf&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;args&quot;,&quot;val_as&quot;:&quot;[\&quot;compile\&quot;,\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;,\&quot;--log-level\&quot;,\&quot;info\&quot;,\&quot;--show\&quot;,\&quot;none\&quot;]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.256732235+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/initializing.rs:143&quot;,&quot;ev&quot;:&quot;initialize&quot;,&quot;ev_type&quot;:&quot;open&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.256904996+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/initializing.rs:317&quot;,&quot;ev&quot;:&quot;initialize.load_workspace&quot;,&quot;ev_type&quot;:&quot;open&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.271114026+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/initializing.rs:419&quot;,&quot;ev&quot;:&quot;initialize.load_workspace&quot;,&quot;ev_dur_ms&quot;:14,&quot;ev_type&quot;:&quot;close&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.271130397+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/initializing.rs:422&quot;,&quot;ev&quot;:&quot;initialize.load_dependencies&quot;,&quot;ev_type&quot;:&quot;open&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.271137410+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/initializing.rs:547&quot;,&quot;ev&quot;:&quot;initialize.load_dependencies&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;close&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.271147488+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/initializing.rs:550&quot;,&quot;ev&quot;:&quot;initialize.load_prelude&quot;,&quot;ev_type&quot;:&quot;open&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:46.273539927+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/initializing.rs:620&quot;,&quot;ev&quot;:&quot;initialize.load_prelude&quot;,&quot;ev_dur_ms&quot;:2,&quot;ev_type&quot;:&quot;close&quot;&#125;
+
+</code>
+</pre>
+</div>
+
+        <Note>
+          We used `--show none` to avoid displaying stdout output. The `--show` flag controls the standard out, things like "compiling \<table\>", and is separate from info, debug, and trace logs.
+        </Note>
+
+        Nice! We've lifted up the hood on SDF and are seeing info logs in action.
+
+        `debug` and `trace` logs are also available, and are more detailed than `info` logs. Let's try trace, the most detailed log level:
+        
+        ```shell
+        sdf compile moms_flower_shop.raw.raw_inapp_events --log-level trace --show none
+        ```
+
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.775615070+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:565&quot;,&quot;ev&quot;:&quot;cmd.prepare.read_makefile&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;analyze_with_sources&quot;,&quot;val_b&quot;:false&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.775621963+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:570&quot;,&quot;ev&quot;:&quot;cmd.prepare.read_makefile&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;resolved_table_names&quot;,&quot;val_as&quot;:&quot;[]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.775630379+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:576&quot;,&quot;ev&quot;:&quot;cmd.prepare.read_makefile&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;seen_these_files&quot;,&quot;val_as&quot;:&quot;[]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.775641950+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:582&quot;,&quot;ev&quot;:&quot;cmd.prepare.read_makefile&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;sources&quot;,&quot;val_as&quot;:&quot;[]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.775647450+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:589&quot;,&quot;ev&quot;:&quot;cmd.prepare.read_makefile&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;close&quot;&#125;
+
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783481953+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1539&quot;,&quot;ev&quot;:&quot;cmd.schedule.remote_sync&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;close&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783501078+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1551&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;dag.initial&quot;,&quot;val_msas&quot;:&quot;&#123;\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;:[]&#125;&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783514794+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1564&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;dag.cleaned&quot;,&quot;val_msas&quot;:&quot;&#123;\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;:[]&#125;&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783521456+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1571&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;missing_defs&quot;,&quot;val_as&quot;:&quot;[]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783534150+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1652&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;dag.resolved_targets&quot;,&quot;val_msas&quot;:&quot;[\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783545741+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1663&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;dag.targeted&quot;,&quot;val_msas&quot;:&quot;&#123;\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;:[]&#125;&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783580666+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1701&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;dag.acyclic&quot;,&quot;val_msas&quot;:&quot;&#123;\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;:[]&#125;&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783596675+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1709&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;cycles&quot;,&quot;val_aas&quot;:&quot;[]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783607075+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1715&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;cut_points&quot;,&quot;val_aas&quot;:&quot;[]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783613978+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:1721&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;order.initial&quot;,&quot;val_as&quot;:&quot;[\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783635117+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:2084&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;order.without_providers&quot;,&quot;val_as&quot;:&quot;[\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783645786+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:2112&quot;,&quot;ev&quot;:&quot;cmd.schedule.dag&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;close&quot;&#125;
+
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783657608+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:2120&quot;,&quot;ev&quot;:&quot;cmd.do&quot;,&quot;ev_type&quot;:&quot;open&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783672757+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:2146&quot;,&quot;ev&quot;:&quot;cmd.do&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;order.without_providers_or_cached&quot;,&quot;val_as&quot;:&quot;[\&quot;moms_flower_shop.raw.raw_inapp_events\&quot;]&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.783681643+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:2162&quot;,&quot;ev&quot;:&quot;cmd.do&quot;,&quot;ev_type&quot;:&quot;open&quot;&#125;
+
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.785281643+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:3092&quot;,&quot;ev&quot;:&quot;cmd.do.derived&quot;,&quot;ev_type&quot;:&quot;open&quot;,&quot;ith&quot;:1,&quot;table&quot;:&quot;moms_flower_shop.raw.raw_inapp_events&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.786191611+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/describe.rs:265&quot;,&quot;ev&quot;:&quot;cmd.do.derived.meta_analysis&quot;,&quot;ev_type&quot;:&quot;open&quot;,&quot;table&quot;:&quot;moms_flower_shop.raw.raw_inapp_events&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.786245591+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/describe.rs:291&quot;,&quot;ev&quot;:&quot;cmd.do.derived.meta_analysis&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;close&quot;,&quot;table&quot;:&quot;moms_flower_shop.raw.raw_inapp_events&quot;&#125;
+
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.815629962+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:2567&quot;,&quot;ev&quot;:&quot;cmd.do.gen_makefile&quot;,&quot;ev_type&quot;:&quot;open&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.815841364+00:00&quot;,&quot;_lvl&quot;:&quot;TRACE&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/dep_cache.rs:2076&quot;,&quot;ev&quot;:&quot;written_makefile&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;makefile&quot;,&quot;val_m&quot;:&quot;&#123;\n&nbsp;&nbsp;\&quot;contents\&quot;:&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;\&quot;credentials\&quot;:&nbsp;\&quot;99914b932bd37a50b983c5e7c90ae93b\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;\&quot;env_vars\&quot;:&nbsp;\&quot;d751713988987e9331980363e24189ce\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;\&quot;cli_vars\&quot;:&nbsp;\&quot;99914b932bd37a50b983c5e7c90ae93b\&quot;\n&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;\&quot;prelude\&quot;:&nbsp;[\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;workspace.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.931374527Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_addresses.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_marketing_campaign_events.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/analytics/dim_marketing_campaigns.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/staging/inapp_events.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_inapp_events.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/analytics/agg_installs_and_campaigns.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/staging/app_installs.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_customers.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;classifications/column_classifiers.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;classifications/table_classifiers.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_addresses.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_marketing_campaign_events.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/analytics/dim_marketing_campaigns.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/staging/inapp_events.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_inapp_events.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/analytics/agg_installs_and_campaigns.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/staging/app_installs.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_customers.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_test/workspace.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_utils/workspace.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_mat/workspace.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_test/macros/test.jinja\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_utils/macros/generate_surrogate_key.jinja\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_utils/macros/generate_integer_values.jinja\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_utils/macros/generate_date_values.jinja\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_utils/macros/group_by.jinja\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;sdftarget/dbg/.lib/sdf_mat/macros/materialize.jinja\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:47.351358260Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;\n&nbsp;&nbsp;],\n&nbsp;&nbsp;\&quot;deps\&quot;:&nbsp;[\n&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;target\&quot;:&nbsp;\&quot;moms_flower_shop.raw.raw_inapp_events__tn__\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;deps\&quot;:&nbsp;[]\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;\n&nbsp;&nbsp;],\n&nbsp;&nbsp;\&quot;source_files\&quot;:&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;\&quot;values\&quot;:&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;moms_flower_shop.raw.raw_inapp_events__tn__\&quot;:&nbsp;[\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;metadata/raw/raw_inapp_events.sdf.yml\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;models/raw/raw_inapp_events.sql\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.927374572Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;file\&quot;:&nbsp;\&quot;seeds/parquet/inapp_events.parquet\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;mtime\&quot;:&nbsp;\&quot;2024-07-20T06:23:45.931374527Z\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;\n&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;\&quot;incomplete_source_files\&quot;:&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;\&quot;values\&quot;:&nbsp;[]\n&nbsp;&nbsp;&#125;,\n&nbsp;&nbsp;\&quot;target_status\&quot;:&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;\&quot;values\&quot;:&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;moms_flower_shop.raw.raw_inapp_events__tn__\&quot;:&nbsp;&#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;purpose\&quot;:&nbsp;\&quot;model\&quot;,\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&quot;status\&quot;:&nbsp;\&quot;succeeded\&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;\n&nbsp;&nbsp;&nbsp;&nbsp;&#125;\n&nbsp;&nbsp;&#125;\n&#125;&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.815909050+00:00&quot;,&quot;_lvl&quot;:&quot;DEBUG&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/utils/dep_cache.rs:2076&quot;,&quot;ev&quot;:&quot;written_makefile&quot;,&quot;ev_type&quot;:&quot;state&quot;,&quot;id&quot;:&quot;makefile&quot;,&quot;note&quot;:&quot;Exceeds&nbsp;limit;&nbsp;use&nbsp;log-level&nbsp;trace&quot;&#125;
+&#123;&quot;__ts&quot;:&quot;2024-07-20T06:23:47.815997133+00:00&quot;,&quot;_lvl&quot;:&quot;INFO&quot;,&quot;_src&quot;:&quot;crates/sdf-cli/src/subcommands/build.rs:2581&quot;,&quot;ev&quot;:&quot;cmd.do.gen_makefile&quot;,&quot;ev_dur_ms&quot;:0,&quot;ev_type&quot;:&quot;close&quot;&#125;
+
+</code>
+</pre>
+</div>
+
+        Notice that the trace logs include `info`, `debug`, and `trace` logs. Furthermore, the `trace` log is _very_ _very_ long. Trace logs are typically used for internal use cases, such as debugging SDF itself. As such, we recommend using `info` or `debug` logs for most use cases.
+    </Step>
+    <Step title="Explore Log Formats">
+        All logs are output in [`ndjson`](https://github.com/ndjson/ndjson-spec) format. This format is easy to parse and read by both humans and machines.
+        That being said, you might have noticed the output of the logs in the previous step were not particularly readable, or one might say, _pretty_. To make scraping through logs more enjoyable, we can use different log formats.
+
+        The logs you saw above defaulted to log format `flat`. With flat logs, the entire JSON structure is flattened into a single line and nested JSON in the log output is represented as a string.
+
+        The `nested` log format is similar to `flat`, but nested JSON strings are parsed into JSON objects. This format is useful for querying logs and storing them in a database. 
+
+        To make logs more readable, we can use the `pretty` log format. Let's try it out:
+        ```shell
+        sdf compile moms_flower_shop.raw.raw_inapp_events --log-level info --log-form pretty --show none
+        ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+&#123;
+&nbsp;&nbsp;&quot;__ts&quot;:&nbsp;&quot;2024-07-20T06:23:48.137688369+00:00&quot;,
+&nbsp;&nbsp;&quot;_lvl&quot;:&nbsp;&quot;INFO&quot;,
+&nbsp;&nbsp;&quot;_src&quot;:&nbsp;&quot;crates/sdf-cli/src/main.rs:101&quot;,
+&nbsp;&nbsp;&quot;ev&quot;:&nbsp;&quot;sdf&quot;,
+&nbsp;&nbsp;&quot;ev_type&quot;:&nbsp;&quot;open&quot;
+&#125;
+
+</code>
+</pre>
+</div>
+
+        Now that we have pretty logs, we can easily read the logs and see the structure of the JSON objects. Check out the [reference](#reference) at the end of this guide to learn more about the different properties in a log.
+
+        <Tip>
+            If you're interested in querying and analyzing the log output yourself, you can use the __SDF DB__. The SDF DB can work with logs output using the `nested` log format.
+            To learn more, visit our [SDF DB Guide](/database/introduction).
+        </Tip>
+    </Step>
+    <Step title="Writing Logs to Files">
+        By default, SDF logs to `stdout`. However, we can write logs to a file by specifying the `--log-file` flag.
+
+        Let's write the logs to a file named `sdf.log`:
+        ```shell
+        sdf compile moms_flower_shop.raw.raw_inapp_events --log-level info --log-file sdf.log --show none
+        ```
+
+
+        This command will produce no output, but if we inspect the new file `sdf.log`, we'll see the logs output to the file.
+        
+        The logs outputted to the file respect any `--log-level` or `--log-form` flags you've set.
+    </Step>
+    <Step title="Bonus: Analyze the Logs with SDF DB">
+        As mentioned earlier, SDF's in-memory database can be used to query and analyze logs, right from the terminal on your machine. 
+
+        Let's start by gathering up all the info logs in the `nested` format from a fresh compile.
+
+        First, let's clean the workspace cache:
+        ```shell
+        sdf clean
+        ```
+
+
+        Now, let's compile the workspace and output the logs to a file called `logs/compile_info.json` in the `nested` format:
+        ```shell
+        sdf compile moms_flower_shop.raw.raw_inapp_events --log-level info --log-form nested --log-file logs/compile_info.json --show none
+        ```
+
+
+        Now that we have the logs in the `nested` format written to a file, let's include them in our SDF workspace by adding the following to the `includes` block in your `workspace.sdf.yml`:
+
+        ```yml
+        workspace:
+        ...
+          includes:
+            - path: logs
+              type: seed
+        ```
+
+
+        Finally, let's compile our new logs model to ensure SDF can process it:
+        ```shell
+        sdf compile moms_flower_shop.pub.compile_info
+        ```
+        
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;1&nbsp;seed&nbsp;file,&nbsp;19&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.740&nbsp;secs
+
+Schema&nbsp;moms_flower_shop.pub.compile_info
+┌────────────────┬────────────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞════════════════╪════════════════╪════════════╪═════════════╡
+│&nbsp;__ts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;_lvl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;_src&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;ev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;ev_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;val_s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;val_as&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;array&lt;varchar&gt;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;ev_dur_ms&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;val_b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;boolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;ith&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;num_files&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;num_errors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;num_statements&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;num_tables&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;error_code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└────────────────┴────────────────┴────────────┴─────────────┘
+
+</code>
+</pre>
+</div>
+       
+       Awesome! SDF can process the logs model. Let's run a quick inline query to select some properties from the logs:
+
+        ```shell
+        sdf run -q "select __ts, ev, ev_type, ev_dur_ms from compile_info"
+        ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;13&nbsp;model&nbsp;files,&nbsp;1&nbsp;seed&nbsp;file,&nbsp;19&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.pub.query&nbsp;(./sdftarget/dbg/query.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.775&nbsp;secs
+
+Table&nbsp;moms_flower_shop.pub.query
+┌─────────────────────────────────────┬──────────────────────────────┬─────────┬───────────┐
+│&nbsp;__ts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;ev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;ev_type&nbsp;┆&nbsp;ev_dur_ms&nbsp;│
+╞═════════════════════════════════════╪══════════════════════════════╪═════════╪═══════════╡
+│&nbsp;2024-07-20T06:23:49.943403123+00:00&nbsp;┆&nbsp;sdf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;open&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.943588687+00:00&nbsp;┆&nbsp;sdf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;state&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.943769072+00:00&nbsp;┆&nbsp;sdf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;state&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.944785438+00:00&nbsp;┆&nbsp;initialize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;open&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.945002941+00:00&nbsp;┆&nbsp;initialize.load_workspace&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;open&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.959403927+00:00&nbsp;┆&nbsp;initialize.load_workspace&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;close&nbsp;&nbsp;&nbsp;┆&nbsp;14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.959520864+00:00&nbsp;┆&nbsp;initialize.load_dependencies&nbsp;┆&nbsp;open&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.959618074+00:00&nbsp;┆&nbsp;initialize.load_dependencies&nbsp;┆&nbsp;close&nbsp;&nbsp;&nbsp;┆&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.959731995+00:00&nbsp;┆&nbsp;initialize.load_prelude&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;open&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2024-07-20T06:23:49.962221985+00:00&nbsp;┆&nbsp;initialize.load_prelude&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;close&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────────────────────────────┴──────────────────────────────┴─────────┴───────────┘
+62&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;--limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+</code>
+</pre>
+</div>
+
+        Nice! We've successfully queried the logs using the SDF DB. Any models you create from the logs can be used to analyze and query the logs further.
+        To learn more about the SDF DB, visit our [SDF DB Guide](/database/introduction).
+    </Step>
+</Steps>
+
+## Reference
+
+As a quick reference, let's review the different log levels, format, and properties within a log:
+
+#### **Log Levels**
+  - `info` - general information about the execution of the command
+  - `debug` - more detailed information about the execution of the command
+  - `trace` - very detailed information about the execution of the command
+
+#### **Log Format**
+  - `flat` - the entire JSON structure is flattened into a single line
+  - `nested` - the entire JSON structure, flattened into a single line, with nested JSON strings parsed into JSON objects. Used to query logs with the SDF DB.
+  - `pretty` - the entire JSON structure, formatted for easy reading, with nested JSON strings parsed into JSON objects
+
+#### **Log Properties**:
+  - `_ts` - the timestamp of the log
+  - `_lvl` - the log level (info, debug, trace, etc.)
+  - `id` - the ID of the variable being logged
+  - `val_s` - the value of a variable being logged if it's a string
+  - `val_a*` - the value of a variable being logged if it's an array, the `*` represents the value type of the array. I.e. `as` for an array of strings
+  - `val_m*` - the value of a variable being logged if it's a map, the `*` represents the value type of the map. I.e. `mss` for a map of string to string
+  - `val_b` - the value of a variable being logged if it's a boolean
+  - `val_i` - the value of a variable being logged if it's an integer 
+  - `ith` - the index of the wave being logged
+  - `num_files` - the number of files being processed by an operation
+  - `file` - the filename being processed
+  - `num_errors` - the number of errors encountered during an operation
+  - `num_statements` - the number of statements being processed by an operation
+  - `num_tables` - the number of tables being processed by an operation
+  - `table` - the table being processed by an operation
+  - `message` - a message associated with the log
+  - `error_code` - the error code associated with the log (`0` if no error)
+  - `_src` - the source of the log in the Rust codebase
+  - `ev` - the event name corresponding to this log. Used to map `open` and `close` events
+  - `ev_type` - the type of the event (see reference below)
+  - `ev_dur_ms` - the duration of the event in milliseconds
+  - `status` - the status of the event (see reference below)
+
+<Info>
+  Why all the val_ properties? SDF logs are designed to be queryable by engines that support structured types. As such, we map the Rust variable types to structured types like so:
+  ```
+  Rust types
+  h - hashmap
+  z - hashset
+  a - array
+  v - vector
+  o - option
+  t - table_name
+  s - string
+  n - number
+  b - bool
+
+  Json (also SQL) Types
+  m - map
+  a - array
+  n - number
+  b - bool
+  s - string
+  ```
+  So, `msas` is map of string to array of string
+</Info>
+
+#### **Event Types**:
+  - `open` - the start of an event
+  - `close` - the end of an event. Use the `ev` property to map this to the corresponding `open` event
+  - `state` - a summary of state at a given point in time for an event
+  - `wave` - represents a batch operation operating on a subset of a dag or process. Waves have state, duration, and status properties
+
+#### **Status**:
+  - `succeeded` - the event was successful
+  - `failed` - the event failed
+  - `skipped` - the event was skipped
