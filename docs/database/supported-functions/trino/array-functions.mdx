@@ -66,6 +66,26 @@ function array_join(array<$1>, varchar, varchar) returns varchar
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_join)
 
+## `array_max`
+
+Returns the maximum value of input array.
+
+*Supported Signatures*
+```sql
+function array_max(array<$1>) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_max)
+
+## `array_min`
+
+Returns the minimum value of input array.
+
+*Supported Signatures*
+```sql
+function array_min(array<$1>) returns $1
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/array.html#array_min)
+
 ## `array_position`
 
 Returns the position of the first occurrence of the element in array x (or 0 if not found).

@@ -494,6 +494,13 @@
           ]
         },
         {
+          "description": "Transient tables are cost-optimized as the 90 day data retention period is not enforced. They also limit Snowflake time travel support. e.g. for Snowflake, it will generate `CREATE OR REPLACE TRANSIENT TABLE AS ...`",
+          "type": "string",
+          "enum": [
+            "transient-table"
+          ]
+        },
+        {
           "description": "Temporary table; e.g. for Snowflake, it will generate `CREATE OR REPLACE TEMPORARY TABLE AS ...",
           "type": "string",
           "enum": [

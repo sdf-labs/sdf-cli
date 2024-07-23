@@ -176,6 +176,7 @@ Values |
 Value | Description|
 | :--- | :------- |
 `table` | Permanent table; e.g. for Snowflake, it will generate `CREATE OR REPLACE TABLE AS ...`|
+`transient-table` | Transient tables are cost-optimized as the 90 day data retention period is not enforced. They also limit Snowflake time travel support. e.g. for Snowflake, it will generate `CREATE OR REPLACE TRANSIENT TABLE AS ...`|
 `temporary-table` | Temporary table; e.g. for Snowflake, it will generate `CREATE OR REPLACE TEMPORARY TABLE AS ...|
 `external-table` | Table with pre-existing data; it is not populated by SDF e.g. for Snowflake, it will generate `CREATE OR REPLACE EXTERNAL TABLE ...`|
 `view` | Permanent view (default option); e.g. for Snowflake, it will generate `CREATE OR REPLACE VIEW AS ...`|
