@@ -1,0 +1,108 @@
+---
+title: "S3 Connecting to SDF Example"
+description: ""
+---
+
+## Overview
+
+This guide will walk you through the steps of creating an AWS S3 
+integration with SDF to analyze world population data. 
+
+## Guide to walking through the AWS S3 example
+
+<Steps>
+    <Step title="Create Hello World S3 Workspace from Example">
+        Begin by running the following command to create an SDF workspace from the example 
+        `hello_world_s3`.
+
+        ``` shell 
+        sdf new --sample hello_world_s3 && cd hello_world_s3
+        ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/local/pop.csv
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/local/popdata.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/local/world_metrics.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/remote/q1.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/remote/un_pop_data.sql
+&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/workspace.sdf.yml
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.217&nbsp;secs
+
+</code>
+</pre>
+</div>
+
+        This command will generate a new workspace containing the following 
+        directories:2
+
+        ``` yml
+        ├── local
+        │   ├── pop.csv
+        │   ├── popdata.sql
+        │   └── world_metrics.sql
+        ├── remote
+        │   ├── q1.sql
+        │   └── un_pop_data.sql
+        └── workspace.sdf.yml
+        ```
+    </Step>
+    <Step title="Build using local population data">
+        To start, let's build the data using the local environment defined in the `workspace.sdf.yml` file.
+        This block identified the `local` folder and the locally downloaded `pop.csv` contianing the information. 
+        To see the information available and understand the data that we will be using for this example. Let's run the folowing:
+
+        ``` shell
+        sdf run -e local --show all
+        ```
+
+    </Step>
+    <Step title="Authenticate SDF with a Local AWS Profile ">
+        Now that we have an understanding of the data and how it should be represented, let's
+        connect to S3, pull the data, and run in a remote environment.
+        
+        To pull data from s3, in this example the public bucket (s3://sdfdatasets), 
+        first authenticate SDF with a local AWS profile. This can be any AWS profile, 
+        as the S3 bucket is public.
+
+        <Note> 
+        If you have not set up an AWS profile yet, follow the instructions on the 
+        [Getting Started with S3 Guide](/integrations/aws/s3/getting-started-s3)
+        </Note>
+
+        Run the following command:
+    
+        ``` cmd
+        sdf auth login aws --profile <profile>
+        ```
+
+         <Info>
+        This will create a new [credential](/reference/sdf-yml#block-credential) in a `~/.sdf/` 
+        directory in the root of your system. This credential will be used to authenticate with 
+        AWS services. By default, the credential's name is default. As such, the credential does 
+        not need to be explicitly referenced in the integrations configuration below.
+        </Info>
+
+        To validate the connection, run:
+        
+        ``` shell
+        sdf auth status
+        ```
+    </Step>
+    <Step title="Run using the remote environment">
+        To run using the S3 bucket's objects and utilize the remote environment run the following:
+
+        ``` shell
+        sdf run -e remote --show all
+        ```
+        
+    </Step>
+    <Step title="Try it out!">
+        Now that you're connected, let's make sure SDF can pull the schema information it needs. 
+
+        Run `sdf compile --show all`
+
+        If the connection is successful, you will see the schema for the tables!
+    </Step>
+</Steps>

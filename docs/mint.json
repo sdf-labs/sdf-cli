@@ -181,10 +181,23 @@
 					]
 				},
 				{
-					"group": "Redshift",
+					"group": "AWS",
 					"icon": "aws",
 					"pages": [
-						"integrations/redshift/getting-started"
+						"integrations/aws/overview",
+						{
+							"group": "Redshift",
+							"pages": [
+								"integrations/aws/redshift/getting-started"
+							]
+						},
+						{
+							"group": "S3",
+							"pages": [
+								"integrations/aws/s3/getting-started-with-S3",
+								"integrations/aws/s3/s3-example"
+							]
+						}
 					]
 				},
 				{

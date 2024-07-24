@@ -1,0 +1,112 @@
+---
+title: "Connecting to AWS S3 Object Storage"
+description: "SDF supports connection to AWS S3"
+---
+
+## Overview
+
+This guide will walk you through the steps of creating an AWS S3 integration. By the end, 
+you will be able to reference remote S3 objects in SDF as if they were locally defined!
+
+SDF will use remote S3 schema information to do type bindings, column level lineage, 
+and other static analysis checks on your workspace.
+
+## Guide using an IAM access_key and secret_key
+
+<Steps>
+    <Step title="Collect Required Information">
+        To connect to S3 via IAM credentials, you need a valid keypair with the minimum credentials to read objects from your S3 Object Storage.
+        * `access_key` the access key of your IAM profile
+        * `secret_access_key` the secret key of your IAM profile
+        * `region` containing the S3 objects
+
+        <Note>
+	        Run `sdf auth login aws --help` to see all login options.
+        </Note>
+
+    </Step>
+    <Step title="Register the User in the AWS CLI">
+    To begin, you need to register your user with the AWS CLI. 
+    You can optionally provide a profile name. As default region, please use the AWS region 
+    that your S3 bucket is located in. 
+
+    The example below configures a profile called *S3*
+    ``` shell
+    aws configure --profile S3  
+    ```
+    
+    </Step>
+    <Step title="Connect SDF to AWS">
+        Connect SDF to AWS by telling SDF which of your AWS profiles to use.
+        ``` shell
+        sdf auth login aws --profile S3 --default-region <REGION>
+        ```
+
+        <Info>
+        This will create a new [credential](/reference/sdf-yml#block-credential) in 
+        a `~/.sdf/` directory in the root of your system. This credential will be used 
+        to authenticate with AWS services. By default, the credential's name is default. 
+        As such, the credential does not need to be explicitly referenced in the integrations 
+        configuration below.
+        </Info>
+
+        To validate the connection, run:
+        ```shell
+        sdf auth status
+        ```
+    </Step>
+    <Step title="Add S3 Integration in your SDF Workspace">
+        Once authenticated, add an integrations block in your `workspace.sdf.yml` 
+        workspace block. This tells SDF to reference S3.
+        
+        ``` yml
+        ---
+        workspace:
+            ...
+            integrations:
+                - provider: S3
+                  type: data
+                  bucket: 
+                    - uri: <LOCATION>
+                      region: <REGION>
+        ```
+
+        For more information on SDF integrations, see the [integration documentation](/guide/setup/integrations).
+    </Step>
+    <Step title="Try it out!">
+        Now that you're connected, let's make sure SDF can pull the schema information it needs. 
+
+        Run `sdf compile -q "select * from <DATABASE>.<SCHEMA>.<TABLE>" --show all`
+
+        If the connection is successful, you will see the schema for the table you selected.
+    </Step>
+</Steps>
+
+<Warning>
+    The ARN you created also needs user access to the database. Depending on your 
+    DBs Access Policy, you might also have to give explicit access to
+    this new user for this S3 bucket. You can do this through by adding 
+    the ARN user to the appropriate group:
+</Warning>
+
+## Troubleshoot Resources
+1. **Seeing errors like this `ERROR: permission denied for schema schema1` from `sdf run`?**
+
+    This may be due to the user not having the correct permissions to this schema.
+    To check if you have the right access, you can run the following query.
+
+    Use `SVV_SCHEMA_PRIVILEGES` to view the schema owner, and schema_acl which shows the access control list for the schema.
+    ```sql
+    SELECT schema_owner, schema_acl FROM SVV_ALL_SCHEMAS WHERE schema_name = 'schema1';
+    ```
+
+    If your user does not have access to the schema, you can grant access to the schema by running the following query.
+    To run this query, you either have to be a superuser or the owner of the schema.
+    ```sql
+    GRANT CREATE ON SCHEMA schema1 TO <username>;
+    ```
+
+    The `<username>` is the user name of your IAM user, with `IAM:` prefix. For example, if your IAM user name is `my_user`, you can run:
+    ```sql
+    GRANT CREATE ON SCHEMA schema1 TO "IAM:my_user";
+    ```
