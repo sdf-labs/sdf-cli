@@ -1373,6 +1373,13 @@
             "boolean",
             "null"
           ]
+        },
+        "meta": {
+          "description": "Metadata for this table",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
