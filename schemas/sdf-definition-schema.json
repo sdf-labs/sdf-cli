@@ -249,10 +249,24 @@
           ]
         },
         {
-          "description": "Metadata are .sdf.yml files to add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
+          "description": "[Deprecated] Metadata are .sdf.yml files to add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
           "type": "string",
           "enum": [
             "metadata"
+          ]
+        },
+        {
+          "description": "Specifications are .sdf.yml files to configure your workspace and add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
+          "type": "string",
+          "enum": [
+            "spec"
+          ]
+        },
+        {
+          "description": "Macros are .jinja files that define reusable SQL code. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype",
+          "type": "string",
+          "enum": [
+            "macro"
           ]
         },
         {
