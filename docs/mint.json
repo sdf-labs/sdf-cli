@@ -376,30 +376,14 @@
 						{
 							"group": "July 2024",
 							"pages": [
-								"releases/v0.3.5"
+								"releases/v0.3.5",
+								"releases/v0.3.7",
+								"releases/v0.3.8",
+								"releases/v0.3.9",
+								"releases/v0.3.10"
 							]
 						},	
 						{
-						"group": "June 2024",
-						"pages": [
-							"releases/v0.3.4",
-							"releases/v0.3.3",
-							"releases/v0.3.2",
-							"releases/v0.3.1",
-							"releases/v0.3.0"
-						]
-					},	
-					{
-						"group": "June 2024",
-						"pages": [
-							"releases/v0.3.4",
-							"releases/v0.3.3",
-							"releases/v0.3.2",
-							"releases/v0.3.1",
-							"releases/v0.3.0"
-						]
-					},	
-					{
 						"group": "June 2024",
 						"pages": [
 							"releases/v0.3.4",

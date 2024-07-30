@@ -1,0 +1,16 @@
+---
+title: "V0.3.8"
+description: "This document contains release notes from version 0.3.8 of SDF."
+---
+### July 12th, 2024
+
+We are excited to announce that a new minor release of our CLI is now available, bringing
+ improvements, new features, and bug fixes to SDF. Interested in our product roadmap or want to 
+discuss features? Reach out to your SDF point of contact to provide any points of feedback!
+
+### General bug fixes and stability improvements:
+- Added table-origin to Information Schema
+- Updated fixes for Reports tab within SDF Cloud, including pagination support to Table components and internal tests
+- Added support for configurable logging infra using JSON, example: `sdf compile --log-level trace  --no-cache --show none`
+- Implemented sdf man event-schema for defined event schema and validator for logs
+- Fixed error with combined sql/jinja code where jinja preprocessor was breaking query parsing
