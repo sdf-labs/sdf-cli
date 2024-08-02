@@ -13,6 +13,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf new`↴](#sdf-new)
 * [`sdf clean`↴](#sdf-clean)
 * [`sdf compile`↴](#sdf-compile)
+* [`sdf lint`↴](#sdf-lint)
 * [`sdf run`↴](#sdf-run)
 * [`sdf test`↴](#sdf-test)
 * [`sdf stats`↴](#sdf-stats)
@@ -39,6 +40,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf man event-schema`↴](#sdf-man-event-schema)
 * [`sdf man information-schema`↴](#sdf-man-information-schema)
 * [`sdf man error-codes`↴](#sdf-man-error-codes)
+* [`sdf man lint-rules`↴](#sdf-man-lint-rules)
 * [`sdf dbt`↴](#sdf-dbt)
 * [`sdf dbt init`↴](#sdf-dbt-init)
 * [`sdf dbt refresh`↴](#sdf-dbt-refresh)
@@ -55,6 +57,7 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `new` — Create a new sdf workspace
 * `clean` — Remove artifacts that sdf has generated in the past
 * `compile` — Compile models
+* `lint` — Compile models
 * `run` — Run models
 * `test` — Test your models
 * `stats` — Statistics for your data
@@ -180,7 +183,7 @@ Compile models
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -289,6 +292,129 @@ Compile models
 
 
 
+## `sdf lint`
+
+Compile models
+
+**Usage:** `sdf lint [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Compile only the given source dirs, files or tables [default: all models]
+
+###### **Options:**
+
+* `--infer-functions` — Infer function signature
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--infer-tables` — Infer table schema and generate ddls
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--no-cache` — Shorthand for cache policy none
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save  SAVE ` — Controls which assets to save [default: none]
+
+  Possible values: `info-schema`, `assembly`, `table-deps`
+
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--fetch` — Fetches changes to tables with remote origin
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--no-scripts` — Do not run scripts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
+* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+
+
+
 ## `sdf run`
 
 Run models
@@ -315,7 +441,7 @@ Run models
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -435,7 +561,7 @@ Test your models
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -552,7 +678,7 @@ Statistics for your data
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -663,7 +789,7 @@ Report code quality
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -774,7 +900,7 @@ Check code quality
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -901,7 +1027,7 @@ Display lineage for a given table and/or column
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -1030,7 +1156,7 @@ Push a local workspace to the SDF Service
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -1185,7 +1311,7 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 * `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
 * `--stage  STAGE ` — Run the following stages [default: all stages]
 
-  Possible values: `preprocess`, `parse`, `resolve`, `classify`, `execute`
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
 
 * `--cache  CACHE ` — Controls cache use
 
@@ -1420,7 +1546,7 @@ Show status of credentials / tokens
 
 Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
 
-**Usage:** `sdf man [OPTIONS]  COMMAND `
+**Usage:** `sdf man  COMMAND `
 
 ###### **Subcommands:**
 
@@ -1429,16 +1555,8 @@ Display reference material, like the CLI, dialect specific functions, schemas fo
 * `definition-schema` — Display SDF's yml blocks as a json schema doc [only: json]
 * `event-schema` — Display SDF's trace events as a json schema only [only: json]
 * `information-schema` — Display SDF's information schemas [only: sql]
-* `error-codes` — 
-
-###### **Options:**
-
-* `-s`, `--show  SHOW ` — Display messages [default: progress]
-
-  Default value: `progress`
-
-  Possible values: `progress`, `none`
-
+* `error-codes` — Display SDF' error codes [only: markdown]
+* `lint-rules` — Display SDF's linter rules [only: markdown]
 
 
 
@@ -1534,11 +1652,28 @@ Display SDF's information schemas [only: sql]
 
 ## `sdf man error-codes`
 
+Display SDF' error codes [only: markdown]
+
 **Usage:** `sdf man error-codes [OPTIONS]`
 
 ###### **Options:**
 
 * `--format  FORMAT ` — Format reference material in this  format  [only: markdown]
+
+  Possible values: `sql`, `yml`, `markdown`, `json`
+
+
+
+
+## `sdf man lint-rules`
+
+Display SDF's linter rules [only: markdown]
+
+**Usage:** `sdf man lint-rules [OPTIONS]`
+
+###### **Options:**
+
+* `--format  FORMAT ` — Format reference material in this  format  [only: json]
 
   Possible values: `sql`, `yml`, `markdown`, `json`
 
@@ -1645,5 +1780,4 @@ Execute custom scripts
 
 
 
-   Finished man in 0.243 secs
 

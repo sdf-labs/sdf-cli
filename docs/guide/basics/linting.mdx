@@ -1,0 +1,147 @@
+---
+title: "SDF Lint"
+---
+
+### SDF's SQL Linter
+
+Welcome to the future of SQL linting! 
+
+We have redefined SQL linting, setting a new standard for how we can help Data Engineers achieve readability, 
+reliability, and performance in the data transformation layer. Our SQL Linter is build on top of SDF's core engine 
+to ensure **unmatched accuracy, performance, and depth of rules** compared with standard SQL linters.
+
+#### 100x Faster
+> SDF's linter is 100x Faster than standard SQL Linters since it's built with Rust 
+and utilizes SDF's sophisticated caching mechanism.
+
+#### Accurate
+> Accurately detect issues in your SQL by relying on SDF's core engine
+
+#### Advanced rules
+> We provide advanced typing, optimization, and custom governance rules by 
+leveraging to SDF's one-of-a-kind SQL semantic understanding
+> - **Semantic rules** - derived from our semantic understanding of your SQL (e.g., 
+[prevent type cohesion](/reference/lint-rules#disallow-implicit-conversions-in))
+> - **Performance rules** - dialect-specific optimizations (e.g., [prevent function application
+on indexed columns when filtering](/reference/lint-rules#flag-function-application-in-where-on-indexed-columns))
+> - **SDF Checks** - create [custom lint rules](/reference/lint-rules#check-rules) on top of SDF's information schema 
+
+<Note>
+Advanced rules rely on SDF's compilation and will automatically execute `sdf compile` as a 
+pre-requisite.
+</Note>
+
+### Linting Rule Types
+
+| Parameter | Description | Standard SQL Linter | SDF
+| -------- | -------- | -------- | -------- |
+| **Layout rules** | [SQL formatting rules](/guide/basics/linting#layout-rules) | 🟢 | 🟢 |
+| **Syntax rules** | [SQL syntax consistency and best practices rules](/guide/basics/linting#syntax-rules) | 🟡 | 🟢 |
+| **Semantic rules** | [Logic and datatype related guardrails](/guide/basics/linting#semantic-rules) | 🔴 | 🟢 |
+| **Performance rules** | [Performance enhancement recommendations](/guide/basics/linting#performance-rules) | 🔴 | 🟢 |
+| **[Custom SDF Checks rules](/guide/data-quality/checks)** | [Checks against SDF's information schema](/guide/basics/linting#sdf-checks-rules) | 🔴 | 🟢 |
+
+
+### Find Issues
+
+- Use `sdf lint` to evaluate your SQL code against a set of linting rules
+- You can lint a subset of models by specifying targets for the command: `sdf lint [TARGET]`
+- [Default linter configuration](/guide/basics/linting#default-configuration)
+
+{/* TODO: Add demo video */}
+
+{/*
+### Fix Problems
+
+- Use `sdf lint fmt` to automatically resolve all formatting issues
+- For issues that can't be automatically fixed, we will provide explanations detailing 
+why and where the rule has failed. You can always `cmd+click` the linter's output to open
+the exact location in the model
+- To ignore a specific error, add the inline-comment `-- noqa` to your query. 
+This will prevent that line from being evaluated
+*/}
+
+### Customize and Configure 
+- By default, `sdf lint` uses SDF's recommended rules and configuration
+- To customize our linter rules according to your preferences, override the default 
+settings with a `linter-rules` configuration block in your `workspace.sdf.yml`
+
+```yml workspace.sdf.yml
+workspace:
+  ...
+  defaults:
+    linter-rules: my_custom_linter
+  ...
+
+---
+linter-rules:
+    name: my_custom_linter
+    syntax-rules:
+        flag-inconsistent-grouping: on
+        ...
+    semantic-rules: # semantic-rules
+        disallow-implicit-conversions-in: [eq,in]
+        ...
+    ...
+```
+
+#### Default Rules
+``` yml
+---
+linter: 
+  name: default_linter
+  syntax-rules:
+    case-keyword: consistent 
+    case-literal: consistent 
+    case-type: consistent   
+    disallow-these-identifiers: []  
+    flag-keywords-used-as-identifiers: on  
+    disallow-these-chars-in-quoted-identifiers: ".#%{}\\<>*?/$!'\":@+`|="  
+    flag-unnecessary-quoted-identifiers: on  
+    inconsistent-column-reference: consistent  
+    flag-dereference-in-join-relation: on  
+    flag-inconsistent-grouping: on  
+    flag-unnecessary-else: on 
+    flag-unnecessary-case: on 
+    flag-unnecessary-cte: on  
+    flag-unnecessary-nested-case: on 
+    flag-distinct-parenthesis: on 
+    disallow-subquery-in: [from, join] 
+    flag-misordered-join-condition: on 
+    flag-select-item-order: on 
+    flag-trailing-semicolon-after-statements: on  
+
+  semantic-rules:
+    case-function: null  # (off) 
+    case-column: null  # (off) 
+    case-table: null  # (off) 
+    case-alias: null  # (off) 
+    disallow-implicit-conversions-in: [] # (off) 
+  
+  performance-rules:
+    flag-function-application-in-where-on-indexed-columns: null  # (off)  
+```
+
+### CI Integration
+To learn how to integrate SDF into your CI/CD workflow, check out our 
+[CI/CD guide](/integrations/cicd/ci_cd). Once the integration is set up, 
+just add the `sdf lint` command to the workflow configuration:
+```
+on:
+  pull_request:
+...
+    - uses: sdf-labs/sdf-action@v0
+      with:
+        sdf_version: 'latest'
+        command: 'sdf lint'
+        snowflake_account_id: ${{ secrets.SNOWFLAKE_ACCOUNT_ID }}
+        snowflake_username: ${{ secrets.SNOWFLAKE_USERNAME }}
+        snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+        snowflake_role: ${{ secrets.SNOWFLAKE_ROLE }}
+        snowflake_warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+```
+
+### Rules Reference
+
+For the full list of rules and configuration options, please visit our 
+[lint rules reference page](/reference/lint-rules)

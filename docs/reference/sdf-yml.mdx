@@ -15,7 +15,7 @@ title: "SDF YML Schema"
 `integrations:` | `array`| The integrations for this environment|
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `source-locations:` | `array`| Workspace defined by these set of files|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as |
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -134,7 +134,7 @@ title: "SDF YML Schema"
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `dependencies:` | `array`| Dependencies of the workspace to other workspaces or to cloud database providers|
 `integrations:` | `array`| The integrations for this environment|
-`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as \&#123;\&#123; dt \&#125;\&#125;|
+`vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as |
 `source-locations:` | `array`| Workspace defined by these set of files|
 `preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| Experimental: This project has jinja|
 ## Enum: `IncludeType`
@@ -330,6 +330,35 @@ Values |
 `interactive`
 `headless`
 `id_token_from_file`
+## Enum: `Capitalization`
+Values |
+| :--- |
+`upper`
+`lower`
+`pascal`
+`snake`
+`camel`
+`consistent`
+## Enum: `RuleOn`
+Values |
+| :--- |
+`on`
+## Enum: `ColumnQualifier`
+Values |
+| :--- |
+`qualified`
+`unqualified`
+`consistent`
+## Enum: `SubQueryScope`
+Values |
+| :--- |
+`join`
+`from`
+## Enum: `ImplicitConversionOperators`
+Values |
+| :--- |
+`eq`
+`in`
 ## Nested Elements
 ### Nested element: `IncludePath`
 |Field | Type | Description|
@@ -351,6 +380,7 @@ Values |
 `utils-lib:` | `string?`| The default utils library, if set overrides sdf_utils|
 `test-lib:` | `string?`| The default test library, if set overrides sdf_test|
 `materialization-lib:` | `string?`| The default materialization library, if set overrides sdf_materialization|
+`linter:` | `string?`| The named lint rule set, uses defaults (from sdftarget/&lt;environment&gt;/lint.sdf.yml) if not set|
 `index-method:` | [`IndexMethod?`](#enum-indexmethod)| The default index for this tables|
 `include-type:` | [`IncludeType?`](#enum-includetype)| The default index for this tables|
 `sync-method:` | [`SyncType?`](#enum-synctype)| The default index for this tables|
@@ -521,4 +551,50 @@ Values |
 | :---- | :--- | :------- |
 `access_key:` | `string`| |
 `secret_key:` | `string`| |
+### Nested element: `Linter`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of these lint rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
+`layout-rules:` | [`LayoutRules?`](#nested-element-layoutrules)| These rules check for proper spacing|
+`syntax-rules:` | [`SyntaxRules?`](#nested-element-syntaxrules)| |
+`semantic-rules:` | [`SemanticRules?`](#nested-element-semanticrules)| |
+`performance-rules:` | [`PerformanceRules?`](#nested-element-performancerules)| |
+`check-rules:` | `object?`| |
+### Nested element: `LayoutRules`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+### Nested element: `SyntaxRules`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`case-keyword:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of keywords |
+`case-literal:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of &#96;boolean&#96;/&#96;null&#96; literal |
+`case-type:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of datatypes. |
+`disallow-these-identifiers:` | `[string]?`| Block a list of configurable words from being used |
+`flag-keywords-used-as-identifiers:` | `[string]?`| Keywords should not be used as identifiers |
+`disallow-these-chars-in-quoted-identifiers:` | `string?`| Do not use special characters in identifiers |
+`flag-unnecessary-quoted-identifiers:` | [`RuleOn?`](#enum-ruleon)| Unnecessary quoted identifier |
+`flag-inconsistent-qualified-column-reference:` | [`ColumnQualifier?`](#enum-columnqualifier)| Inconsistent column references in SELECT clause |
+`flag-unqualified-multi-source-column-reference:` | [`RuleOn?`](#enum-ruleon)| Columns reference should specify source table or view in queries with more than one source. |
+`flag-inconsistent-ordinal-column-reference:` | [`RuleOn?`](#enum-ruleon)| Inconsistent column references in GROUP BY/ORDER BY clauses |
+`flag-unnecessary-else:` | [`RuleOn?`](#enum-ruleon)| Redundant &#96;ELSE NULL&#96; in a case when statement |
+`flag-unnecessary-case:` | [`RuleOn?`](#enum-ruleon)| CASE statement can be simplified |
+`flag-unused-cte:` | [`RuleOn?`](#enum-ruleon)| Query defines a CTE (common-table expression) but does not use it |
+`flag-unnecessary-nested-case:` | [`RuleOn?`](#enum-ruleon)| Nested CASE statement in ELSE clause could be flattened. |
+`flag-distinct-parenthesis:` | [`RuleOn?`](#enum-ruleon)| DISTINCT used with parentheses |
+`disallow-subquery-in:` | `array`| Join/From clauses should not contain subqueries. Use CTEs instead |
+`flag-misordered-join-condition:` | [`RuleOn?`](#enum-ruleon)| Join conditions column references should follow tables reference order |
+`flag-select-item-order:` | [`RuleOn?`](#enum-ruleon)| Select wildcards then simple targets before calculations and aggregates. |
+`flag-trailing-semicolon-after-statements:` | [`RuleOn?`](#enum-ruleon)| Statements should not end with a semi-colon. Multi-statements must be separated with a semi-colon but the final statement should NOT end with one. |
+### Nested element: `SemanticRules`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`case-function:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of function names |
+`case-column:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of column names |
+`case-table:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of table names |
+`case-alias:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of alias |
+`disallow-implicit-conversions-in:` | `array`| Prevent type implicit casting or coercion |
+### Nested element: `PerformanceRules`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`flag-function-application-in-where-on-indexed-columns:` | [`RuleOn?`](#enum-ruleon)| Avoid functions in where clauses over indexed, partitioned or clustered columns, to prevent filter push down and improve performance |
 
