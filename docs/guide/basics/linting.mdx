@@ -85,6 +85,10 @@ linter-rules:
     ...
 ```
 
+<Note>
+The linter config block will override the default configuration.
+</Note>
+
 #### Default Rules
 ``` yml
 ---
@@ -112,14 +116,7 @@ linter:
     flag-trailing-semicolon-after-statements: on  
 
   semantic-rules:
-    case-function: null  # (off) 
-    case-column: null  # (off) 
-    case-table: null  # (off) 
-    case-alias: null  # (off) 
     disallow-implicit-conversions-in: [] # (off) 
-  
-  performance-rules:
-    flag-function-application-in-where-on-indexed-columns: null  # (off)  
 ```
 
 ### CI Integration
@@ -133,7 +130,7 @@ on:
     - uses: sdf-labs/sdf-action@v0
       with:
         sdf_version: 'latest'
-        command: 'sdf lint'
+        command: 'sdf lint' 
         snowflake_account_id: ${{ secrets.SNOWFLAKE_ACCOUNT_ID }}
         snowflake_username: ${{ secrets.SNOWFLAKE_USERNAME }}
         snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
@@ -141,6 +138,9 @@ on:
         snowflake_warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
 ```
 
+<Tip>
+You can specify a target for the command to only run `sdf lint` on a partial DAG
+</Tip>
 ### Rules Reference
 
 For the full list of rules and configuration options, please visit our 
