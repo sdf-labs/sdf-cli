@@ -1,0 +1,10 @@
+table:
+  name: my_table
+  location: seeds/my_table.csv
+  columns:
+    - name: num
+      datatype: int
+    - name: cool_col
+      datatype: varchar
+    - name: bool_col
+      datatype: boolean

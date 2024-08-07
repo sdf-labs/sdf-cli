@@ -1,0 +1,6 @@
+num,cool_col,bool_col
+1,'cool_col_1',TRUE
+2,'cool_col_2',TRUE
+3,'cool_col_3',FALSE
+4,'cool_col_4',TRUE
+5,'cool_col_5',false

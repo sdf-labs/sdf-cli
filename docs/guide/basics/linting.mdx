@@ -102,12 +102,12 @@ linter:
     flag-keywords-used-as-identifiers: on  
     disallow-these-chars-in-quoted-identifiers: ".#%{}\\<>*?/$!'\":@+`|="  
     flag-unnecessary-quoted-identifiers: on  
-    inconsistent-column-reference: consistent  
-    flag-dereference-in-join-relation: on  
-    flag-inconsistent-grouping: on  
+    flag-inconsistent-qualified-column-reference: consistent  
+    flag-unqualified-multi-source-column-reference: on  
+    flag-inconsistent-ordinal-column-reference: on  
     flag-unnecessary-else: on 
     flag-unnecessary-case: on 
-    flag-unnecessary-cte: on  
+    flag-unused-cte: on  
     flag-unnecessary-nested-case: on 
     flag-distinct-parenthesis: on 
     disallow-subquery-in: [from, join] 

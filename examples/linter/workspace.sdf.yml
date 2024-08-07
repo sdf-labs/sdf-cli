@@ -1,0 +1,79 @@
+workspace:
+  name: linter
+  edition: "1.3"
+  description: "A minimal workspace"
+
+  includes:
+    - path: models
+    - path: seeds
+  
+  defaults:
+    dialect: snowflake
+    linter: custom_linter_config
+
+
+---
+linter: 
+  name: custom_linter_config
+  syntax-rules:
+    # options: consistent, upper, lower, pascal, snake, camel
+    case-keyword: null  
+
+    # options: consistent, upper, lower, pascal, snake, camel
+    case-literal: null   
+
+    # options: consistent, upper, lower, pascal, snake, camel
+    case-type: null     
+
+    # options: add blocked identifier names. try: ['message']
+    disallow-these-identifiers: [] 
+
+    # options: on
+    flag-keywords-used-as-identifiers: null  
+
+    # options: default pattern ".#%{}\\<>*?/$!'\":@+`|=" 
+    disallow-these-chars-in-quoted-identifiers: ""  
+
+    # options: on
+    flag-unnecessary-quoted-identifiers: null   
+
+    # options: consistent, qualified, unqualified
+    flag-inconsistent-qualified-column-reference: null    
+
+    # options: on
+    flag-unqualified-multi-source-column-reference: null   
+
+    # options: on
+    flag-inconsistent-ordinal-column-reference: null   
+
+    # options: on
+    flag-unnecessary-else: null  
+
+    # options: on
+    flag-unnecessary-case: null  
+
+    # options: on
+    flag-unused-cte: null   
+
+    # options: on
+    flag-unnecessary-nested-case: null  
+
+    # options: on
+    flag-distinct-parenthesis: null  
+
+    # options: [from, join] 
+    disallow-subquery-in: [] 
+
+    # options: on
+    flag-misordered-join-condition: null  
+
+    # options: on
+    flag-select-item-order: null  
+
+    # options: on
+    flag-trailing-semicolon-after-statements: null   
+
+  semantic-rules:
+    # options [eq] / [in] / [eq, in]
+    disallow-implicit-conversions-in: [] 
+
