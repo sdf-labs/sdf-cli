@@ -98,17 +98,24 @@
 			]
 		},
 		{
-			"group": "Cloud",
+			"group": "Getting Started",
 			"pages": [
 				"cloud/introduction",
 				"cloud/billing",
 				"cloud/authentication",
 				"cloud/deployment",
 				"cloud/sso",
-				"cloud/reporting",
 				"cloud/troubleshooting",
-				"cloud/organization_roles",
-				"cloud/workspace_credentials"
+				"cloud/organization_roles"
+			]
+		},
+		{
+			"group": "Cloud Guides",
+			"pages": [
+				"cloud/github_integration",
+				"cloud/credentials",
+				"cloud/environments",
+				"cloud/reporting"
 			]
 		},
 		{
