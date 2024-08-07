@@ -1,0 +1,406 @@
+---
+title: "Getting Started with Dagster and SDF"
+sidebarTitle: "Getting Started"
+description:
+  "SDF as a best-in-class transformation and authoring layer for Dagster Orchestration"
+---
+
+## Overview
+
+SDF can integrate seemlessly with your existing Dagster projects, providing the best-in-class transformation layer while enabling you to schedule, orchestrate, and monitor your dags in Dagster. 
+
+When it comes time to materialize your Dagster assets, you can be confident that SDF has successfully compiled your workspace, making it safe to execute locally or against your cloud data warehouse.
+
+## Setting up your Dagster Project
+
+The following guide assumes you already have an active SDF workspace. If not, you can create one in this [SDF Tutorial Series](tutorials/tutorials-intro).
+
+<Steps>
+  <Step title="Set up your environment">
+    Getting started with Dagster and SDF is as easy as installing both with pip:
+    <Note>
+      <strong>Note</strong>: We strongly recommend installing `dagster` and the `sdf-cli` package inside a
+      Python virtualenv.
+    </Note>
+
+    ```shell
+    pip install dagster-sdf dagster-webserver
+    ```
+
+    The `dagster-sdf` library installs both [`sdf-cli`](https://pypi.org/project/sdf-cli/) and [`dagster`](https://pypi.org/project/dagster/) as python dependencies. If you're starting from scratch, this will make the `sdf` CLI available to you, which you can use to interact with your SDF workspace.
+
+    To validate that you've installed the packages correctly, run the following commands and confirm that their output matches:
+
+    ```shell
+    sdf --version
+    ---
+    sdf 0.3.16
+
+    dagster-sdf --help
+    ---
+    Usage: dagster-sdf [OPTIONS] COMMAND [ARGS]...                                                                                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                                                            
+    CLI tools for working with Dagster and sdf.                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                
+     Options
+      --help  -h  Show this message and exit.
+    
+     Commands
+      workspace   Commands for using an sdf workspace in Dagster.
+    ```
+
+
+    <Note>
+      <strong>Note</strong>: Version numbers and formatting may vary, but the output should be similar to the above.
+    </Note>
+
+  </Step>
+
+  <Step title="Initialize your SDF Workspace with Dagster">
+    
+    Select from one of the following to create a Dagster project alongside your SDF workspace.
+
+    <Tabs>
+      <Tab title="Using the dagster-sdf cli">
+
+        ### Create a new project using the dagster-sdf cli
+
+        This approach uses the `dagster-sdf` CLI to create a new Dagster project that references an existing SDF workspace. The dagster-sdf CLI pre-generates a scaffolded Dagster project with the necessary configuration to interface with your SDF workspace.
+
+        Initializing your project is as easy as running the following command:
+
+        ```shell
+        dagster-sdf workspace scaffold --project-name ${DAGSTER_PROJECT_NAME}
+        ```
+
+        with arguments:
+
+        - `--project-name` - [required] The name of the Dagster project to be created. This will be the name of the directory containing the project files.
+        - `--sdf-workspace-dir` - [optional] The path to an existing SDF workspace, which should contain a valid `workspace.sdf.yml` file. Optional, if executing from the root of an SDF workspace.
+
+        This will create a new directory named after the `project-name` specified above containing a set of files that define a Dagster project (i.e. `assets.py`, `definitions.py` etc.) and configuration on how to interface with your SDF workspace.
+
+        The output should look similar to:
+
+        ```shell
+        Running with dagster-sdf version: 1.8.0.  
+        Initializing Dagster project my_project_name in the current working directory for sdf workspace  
+        directory /home/user/my_sdf_workspace.
+        Your Dagster project has been initialized. To view your SDF workspace in Dagster, run the following  
+        commands:  
+
+        cd ./my_project_name  
+        DAGSTER_SDF_COMPILE_ON_LOAD=1 dagster dev
+        ```
+
+      </Tab>
+
+      <Tab title="Author a definition file">
+
+      ### Author a Dagster project in a single file
+
+      Compiling and materializing your SDF workspace with Dagster is as easy as authoring a single definition file.
+
+      Simply create a Python file in the same directory as your SDF `workspace.sdf.yml` with the following content:
+
+      ```python definitions.py
+      from pathlib import Path
+
+      from dagster import AssetExecutionContext, Definitions
+      from dagster_sdf import (
+          SdfCliResource,
+          SdfWorkspace,
+          build_schedule_from_sdf_selection,
+          sdf_assets,
+      )
+
+      RELATIVE_PATH_TO_MY_SDF_WORKSPACE = "./my_sdf_workspace"
+      workspace_dir = Path(__file__).joinpath("..", RELATIVE_PATH_TO_MY_SDF_WORKSPACE).resolve()
+      target_dir = workspace_dir.joinpath("sdf_dagster_out") # The destination for outputs generated by SDF during execution
+      environment = "dbg" # Replace with your environment, e.g. "prod"
+
+      workspace = SdfWorkspace(
+          workspace_dir=workspace_dir,
+          target_dir=target_dir,
+          environment=environment,
+      )
+
+      @sdf_assets(workspace=workspace)
+      def my_sdf_assets(context: AssetExecutionContext, sdf: SdfCliResource):
+          yield from sdf.cli(
+            ["run", "--save", "info-schema"], 
+            target_dir=target_dir, 
+            environment=environment, 
+            context=context
+          ).stream()
+
+      defs = Definitions(
+          assets=[my_sdf_assets],
+          resources={
+              "sdf": SdfCliResource(
+                workspace_dir=workspace_dir, 
+                global_config_flags=["--log-form=nested"]
+              ),
+          },
+      )
+      ```
+      <Tip>
+        Since this file contains all Dagster definitions required for Dagster to execute your workspace, it is common practice to name this file `definitions.py`.
+      </Tip>
+
+      Ensure that the `RELATIVE_PATH_TO_MY_SDF_WORKSPACE` variable points to the directory containing your SDF workspace.
+
+      </Tab>
+      <Tab title="Bring your own Dagster project">
+
+        ### Using an existing Dagster project
+
+        If you already have an existing Dagster project, you can add an `@sdf_assets` asset definition to compile and run your SDF workspace. To do this, you'll need to:
+
+        1. Define an `SdfWorkspace` alongside a new `@sdf_assets` asset definition
+        2. Register the new asset definition, along with an `SdfCliResource` resource that will be accessed by the asset definition to materialize the workspace.
+
+        **Note**: This example assumes that your existing Dagster project includes both `assets.py` and `definitions.py` files, among other required files like `setup.py` and `pyproject.toml`. For example, your project might look like this:
+
+        ```shell
+        my_dagster_project
+        ├── __init__.py
+        ├── assets.py
+        ├── definitions.py
+        ├── pyproject.toml
+        ├── setup.cfg
+        └── setup.py
+        ```
+
+        1. Change directories to the Dagster project directory:
+
+          ```shell
+          cd my_dagster_project/
+          ```
+
+        2. Create a Python file named `workspace.py` and add the following code:
+
+          ```python workspace.py
+          from pathlib import Path
+
+          from dagster_sdf import SdfWorkspace
+
+          RELATIVE_PATH_TO_MY_SDF_WORKSPACE = "./my_sdf_workspace"
+          workspace_dir = Path(__file__).joinpath("..", RELATIVE_PATH_TO_MY_SDF_WORKSPACE).resolve()
+          target_dir = workspace_dir.joinpath("sdf_dagster_out") # The destination for outputs generated by SDF during execution
+          environment = "dbg" # Replace with your environment, e.g. "prod"
+
+          workspace = SdfWorkspace(
+              workspace_dir=workspace_dir,
+              target_dir=target_dir,
+              environment=environment,
+          )
+          ```
+
+          The `SdfWorkspace` is a representation of your SDF workspace in Dagster. It's core responsibility is to define the key components of a workspace, for example, the workspace and target output directories as well as which environment to prepare (i.e. compile) the workspace with.
+
+          Setting the `DAGSTER_SDF_COMPILE_ON_LOAD` environment variable to true when starting the Dagster development web-server will ensure that the `SdfWorkspace` compiles your workspace and generates the asset dag along with all compile-time available metadata.
+
+        3. In your project's `assets.py` file, add the following code:
+
+          ```python assets.py
+          from dagster import AssetExecutionContext
+          from dagster_sdf import SdfCliResource, sdf_assets
+
+          from .workspace import workspace, target_dir, environment
+
+          @sdf_assets(workspace=workspace)
+          def my_sdf_assets(context: AssetExecutionContext, sdf: SdfCliResource):
+              yield from sdf.cli(
+                ["run", "--save", "info-schema"], 
+                target_dir=target_dir, 
+                environment=environment, 
+                context=context
+              ).stream()
+          ```
+
+          The `@sdf_assets` decorator builds a [multi-assets](https://docs.dagster.io/concepts/assets/multi-assets) representation of your SDF workspace from the SDF information schema. This is used by Dagster to display your SDF workspace as an asset dag in the Dagster UI. It also defines the set of assets which Dagster will expect the SDF cli to emmit materialization events on run.
+
+        4. In your project's `definitions.py` file, update the `Definitions` object to include the newly created asset and workspace, as well as to define the `SdfCliResource` resource:
+
+          ```python definitions.py
+          from dagster import Definitions
+          from dagster_sdf import SdfCliResource
+
+          from .assets import my_sdf_assets
+          from .workspace import workspace
+
+          defs = Definitions(
+              ...,
+              assets=[
+                  ...,
+                  # Add the sdf assets alongside your other asset definitions
+                  my_sdf_assets,
+              ],
+              resources={
+                  ...: ...,
+                  # Add the sdf cli resource alongside any other resources
+                  "sdf": SdfCliResource(workspace_dir=workspace, global_config_flags=["--log-form=nested"]),
+              },
+          )
+          ```
+
+        With these changes, you've added your SDF Workspace to your existing project and are ready to materialize your models with Dagster.
+
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Understanding your Dagster project">
+
+  Great! Now we have a Dagster project configured alongside our SDF workspace. 
+
+  You may have noticed some new objects in your python code when generating or authoring your Dagster project. These are all made possible by and exposed through the `dagster-sdf` package installed in Step 1. We'll briefly break down the key components here: 
+
+  - **SdfWorkspace**: This is a representation of your SDF workspace in Dagster. Its core responsibility is to define the key components of a workspace, for example, the workspace and target output directories as well as which environment to prepare (i.e. compile) the workspace with.
+  - **SdfCliResource**: This is a Dagster resource that provides access to the SDF cli. It's used by the `@sdf_assets` decorator to materialize your SDF workspace by running a command with the `sdf-cli`. It can be used to run arbitrary SDF commands, but is tested to work with the `compile`, `run` and `test` commands.
+  - **@sdf_assets**: This is a decorator that builds a [multi-assets](https://docs.dagster.io/concepts/assets/multi-assets) representation of your SDF workspace from the SDF information schema. This is used by Dagster to display your SDF workspace as an asset dag in the Dagster UI.
+
+  </Step>
+  <Step title="Start the Dagster Web Server">
+
+  With your Dagster project set up, you can now materialize your SDF workspace using the Dagster UI.
+
+  Depending on the approach you took in Step 2, you can start the Dagster development server from either a:
+
+  <Tabs>
+    <Tab title="Dagster Project">
+
+    ### From a Dagster project
+
+    1. Change directories to the Dagster project directory:
+
+      ```shell
+      cd my_dagster_project/
+      ```
+
+    2. To start Dagster's UI, run the following:
+
+      ```shell
+      DAGSTER_SDF_COMPILE_ON_LOAD=1 dagster dev
+      ```
+
+      Your output should look similar to:
+
+      ```shell
+      Serving dagster-webserver on http://127.0.0.1:3000 in process 70635
+      ```
+
+      Click on the link to open the Dagster web server in your browser.
+    </Tab>
+    <Tab title="Dagster File">
+
+    ### From a Dagster file
+
+    1. Locate the Dagster file containing your definitions. If you created a single Dagster file in the Step 2, this file will be `definitions.py`.
+
+    2. To start Dagster's UI, run the following:
+
+      ```shell
+      DAGSTER_SDF_COMPILE_ON_LOAD=1 dagster dev -f definitions.py
+      ```
+
+      Your output should look similar to:
+
+      ```shell
+      Serving dagster-webserver on http://127.0.0.1:3000 in process 70635
+      ```
+
+      Click on the link to open the Dagster web server in your browser.
+
+    </Tab>
+  </Tabs>
+  </Step>
+  <Step title="Materialize your project in the Dagster UI">
+
+  With the Dagster web server running, you can now navigate to the Dagster UI to view your SDF workspace as an asset dag.
+
+  ![Webserver and Asset Dag](https://cdn.sdf.com/img/dagster-sdf-gif-1.gif)
+
+  From here, we can view the metadata available at compile time from SDF on a given asset, such as the asset description, raw sql, code location, and more. We can also see the Dagster assets that your SDF workspace depends on, and the assets that depend on your SDF workspace.
+
+  In Dagster, running an SDF model corresponds to **materializing** an asset. Each SDF model is represented as an asset in the Dagster UI. Depending on your configuration, running a model will result in it either executing locally using the [SDF DB](/database/introduction#sdf-db-overview) or executing remotely using the relevant configured [integrations](/guide/setup/integrations).
+
+  To see this in action, click on the `Materialize all` button on the asset lineage view. This will materialize all assets in the workspace, including your SDF assets.
+
+  ![Materialize Asset Dag](https://cdn.sdf.com/img/dagster-sdf-gif-2.gif)
+
+  If everything is set up correctly, you should see the assets in your SDF workspace materialize successfully. Inspecting a particular asset will reveal additional runtime metadata, such as the execution time, the materialized sql, and the table schema along with any propagated classifiers.
+
+  </Step>
+  <Step title="Optional: Defining upstream dependencies">
+
+  A common use case for using Dagster with SDF is when you have a complex data pipeline, parts of which are not authored in SDF. These assets can be upstream dependencies that your SDF workspace expects to have materialized prior to run.
+
+  SDF interprets these dependencies as source tables. Let's take for example a snowflake warehouse which has tables that are materialized by different assets in your Dagster project.
+  
+  If you have the following query in your SDF workspace:
+    
+  ```sql internal_sdf_table.sql
+  SELECT * FROM upstream_dagster_table
+  ```
+
+  Where `upstream_dagster_table` is not defined in SDF but is materialized in Dagster via:
+
+  ```python assets.py
+  import snowflake.connector
+  ...
+  @asset
+  def build_upstream_dagster_table():
+      credential = ...
+      conn = snowflake.connector.connect(
+          user=credential['username'],
+          password=credential['password'],
+          account=credential['account-id'],
+          warehouse=credential['warehouse'],
+          role=credential['role'],
+      )
+      cursor = conn.cursor()
+      create_upstream_table = """
+      CREATE OR REPLACE TABLE upstream_dagster_table (
+          id INTEGER,
+          field STRING,
+      );
+      """
+      cursor.execute(create_upstream_table)
+      cursor.close()
+      conn.close()
+  ...
+  ```
+
+  Then you can define the `upstream_dagster_table` as a Dagster source in your SDF workspace by specifying a `dagster-asset-key` in the meta section of the table definition:
+
+  ```yaml upstream_dagster_table.sdf.yml
+  table:
+    name: upstream_dagster_table
+    meta:
+      dagster-asset-key: build_upstream_dagster_table
+  ```
+
+  This will have no impact on SDF's execution, but will give Dagster the context that the `upstream_dagster_table` is a Dagster asset that needs to be materialized before the SDF workspace can be run.
+
+  <Note>
+    <strong>Note</strong>: In order to read the `upstream_dagster_table` materialized by Dagster, you will need to define an integration in your SDF workspace that can read from the source table. See [Integration Docs](/guide/setup/integrations) for more information. 
+  </Note>
+
+  </Step>
+
+</Steps>
+
+Congratulations! You've successfully set up your SDF workspace with Dagster and materialized your assets in the dagster UI. 
+
+## Quick Links
+<CardGroup cols={2}>
+  <Card title="Integrations" href="/guide/setup/integrations">
+    Check out our integrations guide to learn more about the different cloud providers and databases that SDF supports
+  </Card>
+  <Card title="Setup SDF" href="/guide/setup/io">
+    Learn more about setting up SDF in your data stack
+  </Card>
+</CardGroup> 
+
+  
