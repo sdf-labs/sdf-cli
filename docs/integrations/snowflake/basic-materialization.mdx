@@ -46,14 +46,14 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;tech__innovation_essentials.cybersyn.domain_characteristics&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.active_ai_domains&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.731&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.726&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
-┌─────────────┬───────────┬────────────┬─────────────┐
-│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
-╞═════════════╪═══════════╪════════════╪═════════════╡
-│&nbsp;domain_id&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-└─────────────┴───────────┴────────────┴─────────────┘
+┌─────────────┬───────────┬────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞═════════════╪═══════════╪════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡
+│&nbsp;domain_id&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Base&nbsp;domain&nbsp;for&nbsp;the&nbsp;website.&nbsp;For&nbsp;example,&nbsp;the&nbsp;domain_id&nbsp;for&nbsp;https://docs.cybersyn.com/&nbsp;would&nbsp;be&nbsp;&#39;cybersyn.com&#39;&nbsp;│
+└─────────────┴───────────┴────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
 </code>
 </pre>
@@ -165,15 +165,15 @@ Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.active_ai_domains
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;tech__innovation_essentials.cybersyn.github_repos&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.786&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.662&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.latest_repo_name
-┌─────────────┬────────────────┬────────────┬─────────────┐
-│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
-╞═════════════╪════════════════╪════════════╪═════════════╡
-│&nbsp;repo_name&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;repo_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-└─────────────┴────────────────┴────────────┴─────────────┘
+┌─────────────┬────────────────┬────────────┬──────────────────────────────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞═════════════╪════════════════╪════════════╪══════════════════════════════════════╡
+│&nbsp;repo_name&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Name&nbsp;of&nbsp;the&nbsp;repository&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;repo_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;repository&nbsp;│
+└─────────────┴────────────────┴────────────┴──────────────────────────────────────┘
 
 </code>
 </pre>
@@ -209,7 +209,7 @@ Schema&nbsp;sdf_snowflake.staging.latest_repo_name
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;tech__innovation_essentials.cybersyn.github_repos&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;6.292&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;9.965&nbsp;secs
 
 Table&nbsp;sdf_snowflake.staging.latest_repo_name
 ┌───────────────────────────────────────────┬───────────┐
@@ -275,15 +275,15 @@ Table&nbsp;sdf_snowflake.staging.latest_repo_name
 Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;tech__innovation_essentials.cybersyn.github_events&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.811&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.773&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.push_events
-┌─────────────┬────────────────┬────────────┬─────────────┐
-│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
-╞═════════════╪════════════════╪════════════╪═════════════╡
-│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;repo_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-└─────────────┴────────────────┴────────────┴─────────────┘
+┌─────────────┬────────────────┬────────────┬────────────────────────────────────────────────────────────────────────────────────────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞═════════════╪════════════════╪════════════╪════════════════════════════════════════════════════════════════════════════════════════════════╡
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;Github&nbsp;event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;repo_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;repository&nbsp;involved&nbsp;in&nbsp;the&nbsp;event,&nbsp;joinable&nbsp;to&nbsp;the&nbsp;github_repos&nbsp;table&nbsp;│
+└─────────────┴────────────────┴────────────┴────────────────────────────────────────────────────────────────────────────────────────────────┘
 
 </code>
 </pre>
@@ -341,20 +341,20 @@ Schema&nbsp;sdf_snowflake.staging.push_events
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;6&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;tech__innovation_essentials.cybersyn.github_repos&nbsp;(schema)
 Downloading&nbsp;tech__innovation_essentials.cybersyn.uspto_contributor_index&nbsp;(schema)
 Downloading&nbsp;tech__innovation_essentials.cybersyn.github_events&nbsp;(schema)
 Downloading&nbsp;tech__innovation_essentials.cybersyn.github_stars&nbsp;(schema)
-Downloading&nbsp;tech__innovation_essentials.cybersyn.domain_characteristics&nbsp;(schema)
-Downloading&nbsp;tech__innovation_essentials.cybersyn.github_repos&nbsp;(schema)
 Downloading&nbsp;tech__innovation_essentials.cybersyn.uspto_patent_index&nbsp;(schema)
+Downloading&nbsp;tech__innovation_essentials.cybersyn.domain_characteristics&nbsp;(schema)
 Downloading&nbsp;tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships&nbsp;(schema)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.active_ai_domains&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/active_ai_domains.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.events_by_repo&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[6&nbsp;succeeded,&nbsp;7&nbsp;downloaded]&nbsp;in&nbsp;2.001&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[6&nbsp;succeeded,&nbsp;7&nbsp;downloaded]&nbsp;in&nbsp;1.882&nbsp;secs
 
 </code>
 </pre>

@@ -1360,9 +1360,19 @@ function rank() returns bigint
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/window.html#rank)
 
+## `regexp_count`
+
+Returns the number of occurrence of pattern in string.
+
+*Supported Signatures*
+```sql
+function regexp_count(varchar, joniregexp) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_count)
+
 ## `regexp_extract`
 
-Returns the first substring matched by the regular expression pattern in string.
+Returns the first substring matched in a string by the regular expression pattern.
 
 
 *Examples:*
@@ -1372,8 +1382,20 @@ SELECT REGEXP_EXTRACT('email_address@gmail.com', '@(.*?)\.' -- value 'gmail'
 *Supported Signatures*
 ```sql
 function regexp_extract(varchar, joniregexp) returns varchar
+function regexp_extract(varchar, joniregexp, bigint) returns varchar
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract)
+
+## `regexp_extract_all`
+
+Returns the substrings of a string matched by the regular expression pattern.
+
+*Supported Signatures*
+```sql
+function regexp_extract_all(varchar, joniregexp) returns array<varchar>
+function regexp_extract_all(varchar, joniregexp, bigint) returns array<varchar>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_extract_all)
 
 ## `regexp_like`
 
@@ -1390,6 +1412,18 @@ function regexp_like(varchar, joniregexp) returns boolean
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_like)
 
+## `regexp_position`
+
+Returns the index of the first occurrence (counting from 1) of pattern in string. Returns -1 if not found.
+
+*Supported Signatures*
+```sql
+function regexp_position(varchar, joniregexp) returns bigint
+function regexp_position(varchar, joniregexp, bigint) returns bigint
+function regexp_position(varchar, joniregexp, bigint, bigint) returns bigint
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_position)
+
 ## `regexp_replace`
 
 Removes every instance of the substring matched by the regular expression pattern from string.
@@ -1405,6 +1439,16 @@ function regexp_replace(varchar, joniregexp) returns varchar
 function regexp_replace(varchar, joniregexp, varchar) returns varchar
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_replace)
+
+## `regexp_split`
+
+Splits string using the regular expression pattern and returns an array. Trailing empty strings are preserved.
+
+*Supported Signatures*
+```sql
+function regexp_split(varchar, joniregexp) returns array<varchar>
+```
+[🔗 Official Documentation](https://trino.io/docs/current/functions/regexp.html#regexp_split)
 
 ## `repeat`
 
