@@ -2,6 +2,8 @@
 ### case-keyword 
 Inconsistent capitalization of keywords 
  
+*SDF Errors:* 
+#### - `SDF107` 
 *SQLFluff Alias:* `L010` 
  
 *Configuration:* 
@@ -18,6 +20,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Referencing keywords in inconsistent capitalization. All references should be either uppercase or lowercase, not both. 
 ```sql 
 select a 
@@ -38,6 +41,9 @@ from my_table
 ### case-literal 
 Inconsistent capitalization of `boolean`/`null` literal 
  
+*SDF Errors:* 
+#### - `SDF108` 
+#### - `SDF109` 
 *SQLFluff Alias:* `L040` 
  
 *Configuration:* 
@@ -54,6 +60,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Referencing literals in inconsistent capitalization. All references should be either uppercase or lowercase, not both. 
 ```sql 
 SELECT 
@@ -86,6 +93,8 @@ FROM my_table
 ### case-type 
 Inconsistent capitalization of datatypes. 
  
+*SDF Errors:* 
+#### - `SDF110` 
 *SQLFluff Alias:* `L063` 
  
 *Configuration:* 
@@ -129,6 +138,8 @@ CREATE TABLE t (
 ### disallow-these-identifiers 
 Block a list of configurable words from being used 
  
+*SDF Errors:* 
+#### -`SDF124` 
 *SQLFluff Alias:* `L029` 
  
 *Configuration:* 
@@ -147,6 +158,8 @@ linter:
 ### flag-keywords-used-as-identifiers 
 Keywords should not be used as identifiers 
  
+*SDF Errors:* 
+#### -`SDF125` 
 *SQLFluff Alias:* `L029` 
  
 *Configuration:* 
@@ -158,10 +171,12 @@ linter:
  ... 
  syntax-rules: 
    ... 
-   flag-keywords-used-as-identifiers: on # default 
+   # ignore_words is an array of names to ignore in this rule 
+   flag-keywords-used-as-identifiers: [] # default 
 ``` 
  
 **Anti-pattern** 
+ 
 Using built-in keywords or functions as identifiers. 
 ```sql 
 SELECT 
@@ -179,6 +194,8 @@ FROM my_table
 ### disallow-these-chars-in-quoted-identifiers 
 Do not use special characters in identifiers 
  
+*SDF Errors:* 
+#### -`SDF117` 
 *SQLFluff Alias:* `L057` 
  
 *Configuration:* 
@@ -199,6 +216,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Using special characters within identifiers when creating or aliasing objects. 
 ```sql 
 SELECT 
@@ -220,6 +238,8 @@ FROM my_table
 ### flag-unnecessary-quoted-identifiers 
 Unnecessary quoted identifier 
  
+*SDF Errors:* 
+#### -`SDF118` 
 *SQLFluff Alias:* `L059` 
  
 *Configuration:* 
@@ -247,8 +267,10 @@ SELECT 'a' AS a
 ``` 
 
 ### flag-inconsistent-qualified-column-reference 
-Inconsistent column references in SELECT clause 
+Inconsistent column references in SELECT clause of both qualified and unqualified references 
  
+*SDF Errors:* 
+#### -`SDF112` 
 *SQLFluff Alias:* `L028` 
  
 *Configuration:* 
@@ -266,7 +288,7 @@ linter:
  
 **Anti-pattern** 
  
-Using both explicit and implicit column references in the `SELECT` clause. Reference should be consistent. 
+Using both qualified and unqualified column references in the `SELECT` clause. Reference should be consistent. 
 ```sql 
 SELECT 
    a, 
@@ -278,13 +300,13 @@ FROM my_table
  
 Use unquoted identifiers where possible. 
 ```sql 
--- explicit 
+-- qualified 
 SELECT 
    my_table.a, 
    my_table.b 
 FROM my_table 
  
--- implicit 
+-- unqualified 
 SELECT 
    a, 
    b 
@@ -294,6 +316,8 @@ FROM my_table
 ### flag-unqualified-multi-source-column-reference 
 Columns reference should specify source table or view in queries with more than one source. 
  
+*SDF Errors:* 
+#### -`SDF116` 
 *SQLFluff Alias:* `L027` 
  
 *Configuration:* 
@@ -309,6 +333,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Not specifying the source table or view when referencing columns in queries involving more than one source, thus creating ambiguity. 
  
 ```sql 
@@ -327,8 +352,10 @@ FROM table_a LEFT OUTER JOIN table_b USING (col_a)
 ``` 
 
 ### flag-inconsistent-ordinal-column-reference 
-Inconsistent column references in GROUP BY/ORDER BY clauses 
+Inconsistent column references in GROUP BY/ORDER BY clauses of both ordinal and non-ordinal 
  
+*SDF Errors:* 
+#### -`SDF105` 
 *SQLFluff Alias:* `L054` 
  
 *Configuration:* 
@@ -344,6 +371,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Using both explicit and implicit column references in the `GROUP BY` or `ORDER BY` clause. Reference should be consistent. 
 ```sql 
 SELECT 
@@ -358,6 +386,7 @@ ORDER BY
 ``` 
  
 **Best-practice** 
+ 
 Use unquoted identifiers where possible. 
 ```sql 
 -- explicit 
@@ -386,6 +415,8 @@ ORDER BY
 ### flag-unnecessary-else 
 Redundant `ELSE NULL` in a case when statement 
  
+*SDF Errors:* 
+#### -`SDF119` 
 *SQLFluff Alias:* `L035` 
  
 *Configuration:* 
@@ -401,6 +432,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Stating `ELSE NULL` within a `CASE WHEN` statement. 
 ```sql 
 SELECT 
@@ -425,6 +457,8 @@ FROM my_table
 ### flag-unnecessary-case 
 CASE statement can be simplified 
  
+*SDF Errors:* 
+#### -`SDF120` 
 *SQLFluff Alias:* `L043` 
  
 *Configuration:* 
@@ -440,6 +474,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 The following `CASE` statement are unnecessary and can be simplified: 
 ```sql 
 -- boolean outcome 
@@ -460,6 +495,7 @@ FROM my_table
 ``` 
  
 **Best-practice** 
+ 
 Use simpler SQL syntax: 
 ```sql 
 -- boolean outcome 
@@ -476,6 +512,8 @@ FROM my_table
 ### flag-unused-cte 
 Query defines a CTE (common-table expression) but does not use it 
  
+*SDF Errors:* 
+#### -`SDF121` 
 *SQLFluff Alias:* `L045` 
  
 *Configuration:* 
@@ -491,6 +529,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Defining CTEs that are not being used in the query (e.g., `sub_2` in the example below). 
 ```sql 
 WITH 
@@ -520,6 +559,8 @@ FROM sub1
 ### flag-unnecessary-nested-case 
 Nested CASE statement in ELSE clause could be flattened. 
  
+*SDF Errors:* 
+#### -`SDF122` 
 *SQLFluff Alias:* `L058` 
  
 *Configuration:* 
@@ -535,6 +576,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Unnecessarily nesting `CASE` statements. 
 ```sql 
 SELECT 
@@ -561,6 +603,8 @@ FROM my_table
 ### flag-distinct-parenthesis 
 DISTINCT used with parentheses 
  
+*SDF Errors:* 
+#### -`SDF123` 
 *SQLFluff Alias:* `L015` 
  
 *Configuration:* 
@@ -593,6 +637,8 @@ FROM my_table
 ### disallow-subquery-in 
 Join/From clauses should not contain subqueries. Use CTEs instead 
  
+*SDF Errors:* 
+#### -`SDF113` 
 *SQLFluff Alias:* `L042` 
  
 *Configuration:* 
@@ -609,6 +655,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Selecting from a subquery instead of defining the subquery in a CTE. 
 ```sql 
 SELECT 
@@ -631,6 +678,8 @@ FROM sub
 ### flag-misordered-join-condition 
 Join conditions column references should follow tables reference order 
  
+*SDF Errors:* 
+#### -`SDF114` 
 *SQLFluff Alias:* `ST09` 
  
 *Configuration:* 
@@ -646,6 +695,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Referencing columns in join `ON` clause statement in a different order than 
 the tables are referenced in the `JOIN` clause 
 ```sql 
@@ -672,6 +722,8 @@ FROM first_table
 ### flag-select-item-order 
 Select wildcards then simple targets before calculations and aggregates. 
  
+*SDF Errors:* 
+#### -`SDF115` 
 *SQLFluff Alias:* `L034` 
  
 *Configuration:* 
@@ -709,6 +761,8 @@ FROM my_table
 ### flag-trailing-semicolon-after-statements 
 Statements should not end with a semi-colon. Multi-statements must be separated with a semi-colon but the final statement should NOT end with one. 
  
+*SDF Errors:* 
+#### -`SDF111` 
 *SQLFluff Alias:* `L052` 
  
 *Configuration:* 
@@ -724,6 +778,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Ending the last statement with a semi-colon 
 ```sql 
 -- single statement 
@@ -748,6 +803,8 @@ SELECT b FROM table_b
 ### case-function 
 Inconsistent capitalization of function names 
  
+*SDF Errors:* 
+#### -`SDF106` 
 *SQLFluff Alias:* `L030` 
  
 *Configuration:* 
@@ -764,6 +821,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Referencing functions in inconsistent capitalization. All references should be either uppercase or lowercase, not both. 
 ```sql 
 SELECT 
@@ -804,6 +862,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Referencing column names in inconsistent capitalization. 
 ```sql 
 SELECT 
@@ -892,6 +951,7 @@ linter:
 ``` 
  
 **Anti-pattern** 
+ 
 Referencing alias in inconsistent capitalization. 
 ```sql 
 SELECT 
@@ -919,7 +979,7 @@ FROM table_a AS A JOIN table_b AS B USING(my_col)
 
 ### disallow-implicit-conversions-in 
 Prevent type implicit casting or coercion 
- 
+#### DSF126 
 *Configuration:* 
 ```yml workspace.sdf.yml 
 workspace: 

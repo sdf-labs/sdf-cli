@@ -573,9 +573,9 @@ Values |
 `flag-keywords-used-as-identifiers:` | `[string]?`| Keywords should not be used as identifiers |
 `disallow-these-chars-in-quoted-identifiers:` | `string?`| Do not use special characters in identifiers |
 `flag-unnecessary-quoted-identifiers:` | [`RuleOn?`](#enum-ruleon)| Unnecessary quoted identifier |
-`flag-inconsistent-qualified-column-reference:` | [`ColumnQualifier?`](#enum-columnqualifier)| Inconsistent column references in SELECT clause |
+`flag-inconsistent-qualified-column-reference:` | [`ColumnQualifier?`](#enum-columnqualifier)| Inconsistent column references in SELECT clause of both qualified and unqualified references |
 `flag-unqualified-multi-source-column-reference:` | [`RuleOn?`](#enum-ruleon)| Columns reference should specify source table or view in queries with more than one source. |
-`flag-inconsistent-ordinal-column-reference:` | [`RuleOn?`](#enum-ruleon)| Inconsistent column references in GROUP BY/ORDER BY clauses |
+`flag-inconsistent-ordinal-column-reference:` | [`RuleOn?`](#enum-ruleon)| Inconsistent column references in GROUP BY/ORDER BY clauses of both ordinal and non-ordinal |
 `flag-unnecessary-else:` | [`RuleOn?`](#enum-ruleon)| Redundant &#96;ELSE NULL&#96; in a case when statement |
 `flag-unnecessary-case:` | [`RuleOn?`](#enum-ruleon)| CASE statement can be simplified |
 `flag-unused-cte:` | [`RuleOn?`](#enum-ruleon)| Query defines a CTE (common-table expression) but does not use it |
