@@ -135,8 +135,53 @@ CREATE TABLE t (
 ); 
 ``` 
 
+### case-function 
+Inconsistent capitalization of function names 
+ 
+*SDF Errors:* 
+#### -`SDF106` 
+*SQLFluff Alias:* `L030` 
+ 
+*Configuration:* 
+```yml workspace.sdf.yml 
+workspace: 
+  ... 
+--- 
+linter: 
+ ... 
+ semantic-rules: 
+   ... 
+   # capitalization_policy is one of [consistent, upper, lower, pascal, snake, camel] 
+   case-function: null # default (off) 
+``` 
+ 
+**Anti-pattern** 
+ 
+Referencing functions in inconsistent capitalization. All references should be either uppercase or lowercase, not both. 
+```sql 
+SELECT 
+   max(a) AS max_a, 
+   MIN(a) AS min_a 
+FROM my_table 
+``` 
+ 
+**Best-practice** 
+```sql 
+SELECT 
+   MAX(a) AS max_a, 
+   MIN(a) AS min_a 
+FROM my_table 
+ 
+-- or 
+ 
+SELECT 
+   max(a) AS max_a, 
+   min(a) AS min_a 
+FROM my_table 
+``` 
+
 ### disallow-these-identifiers 
-Block a list of configurable words from being used 
+
  
 *SDF Errors:* 
 #### -`SDF124` 
@@ -800,51 +845,6 @@ SELECT b FROM table_b
 ``` 
 
 ## Semantic Rules 
-### case-function 
-Inconsistent capitalization of function names 
- 
-*SDF Errors:* 
-#### -`SDF106` 
-*SQLFluff Alias:* `L030` 
- 
-*Configuration:* 
-```yml workspace.sdf.yml 
-workspace: 
-  ... 
---- 
-linter: 
- ... 
- semantic-rules: 
-   ... 
-   # capitalization_policy is one of [consistent, upper, lower, pascal, snake, camel] 
-   case-function: null # default (off) 
-``` 
- 
-**Anti-pattern** 
- 
-Referencing functions in inconsistent capitalization. All references should be either uppercase or lowercase, not both. 
-```sql 
-SELECT 
-   max(a) AS max_a, 
-   MIN(a) AS min_a 
-FROM my_table 
-``` 
- 
-**Best-practice** 
-```sql 
-SELECT 
-   MAX(a) AS max_a, 
-   MIN(a) AS min_a 
-FROM my_table 
- 
--- or 
- 
-SELECT 
-   max(a) AS max_a, 
-   min(a) AS min_a 
-FROM my_table 
-``` 
-
 ### case-column 
 Inconsistent capitalization of column names 
  

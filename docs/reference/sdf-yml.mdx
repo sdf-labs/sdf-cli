@@ -569,7 +569,8 @@ Values |
 `case-keyword:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of keywords |
 `case-literal:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of &#96;boolean&#96;/&#96;null&#96; literal |
 `case-type:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of datatypes. |
-`disallow-these-identifiers:` | `[string]?`| Block a list of configurable words from being used |
+`case-function:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of function names |
+`disallow-these-identifiers:` | `[string]?`| |
 `flag-keywords-used-as-identifiers:` | `[string]?`| Keywords should not be used as identifiers |
 `disallow-these-chars-in-quoted-identifiers:` | `string?`| Do not use special characters in identifiers |
 `flag-unnecessary-quoted-identifiers:` | [`RuleOn?`](#enum-ruleon)| Unnecessary quoted identifier |
@@ -588,7 +589,6 @@ Values |
 ### Nested element: `SemanticRules`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`case-function:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of function names |
 `case-column:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of column names |
 `case-table:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of table names |
 `case-alias:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of alias |
