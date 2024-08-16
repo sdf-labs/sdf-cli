@@ -57,7 +57,7 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `new` — Create a new sdf workspace
 * `clean` — Remove artifacts that sdf has generated in the past
 * `compile` — Compile models
-* `lint` — Compile models
+* `lint` — Lint models
 * `run` — Run models
 * `test` — Test your models
 * `stats` — Statistics for your data
@@ -295,7 +295,7 @@ Compile models
 
 ## `sdf lint`
 
-Compile models
+Lint models
 
 **Usage:** `sdf lint [OPTIONS] [TARGETS]...`
 
@@ -414,6 +414,13 @@ Compile models
 
 * `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
+* `--fix`
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--dest  DEST ` — For test only
 
 
 
