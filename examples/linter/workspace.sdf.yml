@@ -31,7 +31,7 @@ linter:
     # options: on
     flag-keywords-used-as-identifiers: null  
 
-    # options: default pattern ".#%{}\\<>*?/$!'\":@+`|=" 
+    # options: default pattern ".#%{}\\<>*?/!'\":@+`|=" 
     disallow-these-chars-in-quoted-identifiers: ""  
 
     # options: on
