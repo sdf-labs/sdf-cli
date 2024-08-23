@@ -6,9 +6,9 @@ description: We're glad to see you here. Today we're going to install SDF and cr
 ## Installing SDF
 
 Installing SDF is easy as running the following command:
-```shell 
+```shell
     curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s
-``` 
+```
 
 For more information on installation, see our [installation guide](/guide/introduction/install).
 
@@ -64,8 +64,8 @@ To create a new SDF Workspace, run the following command:
 ```shell
 sdf new --sample hello && cd hello
 ```
-After running the command, you will see the following output: 
- 
+After running the command, you will see the following output:
+
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
@@ -145,14 +145,14 @@ The cache is machine specific and should not be checked in to git. An appropriat
 Let's see just how easy it is to set up SDF and run your first query.
 
 <Steps>
-    <Step title="Static Analysis with `sdf compile`">        
-        First, we'll run the core command of SDF: [sdf compile](/reference/sdf-cli#sdf-compile). 
-        
+    <Step title="Static Analysis with `sdf compile`">
+        First, we'll run the core command of SDF: [sdf compile](/reference/sdf-cli#sdf-compile).
+
         The `--show` flag allows you to modulate SDF's output and the `all` option indicates that we would like to see all schemas from all models referenced in the workspace.
         ```shell
         sdf compile --show all
         ```
-         
+
         Your output should look like:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
@@ -172,12 +172,12 @@ Schema&nbsp;hello.pub.main
 </pre>
 </div>
 
-        As you can see from the output, SDF has statically analyzed the query and determined there's a single non-nullable column named `column` and it's of type `varchar`. 
+        As you can see from the output, SDF has statically analyzed the query and determined there's a single non-nullable column named `column` and it's of type `varchar`.
         You'll also see an empty `classifier` block in the output. This is for metadata we'll attach to columns, but we'll get to that later.
     </Step>
     <Step title="Execution with `sdf run`">
         Next, let's execute the query, using SDF as the database. We'll execute the query with SDF's integrated execution runtime, right on your machine.
-        
+
         ```shell
         sdf run --show all
         ```
@@ -211,7 +211,7 @@ Table&nbsp;hello.pub.main
     </Step>
     <Step title="Lineage with `sdf lineage`">
         SDF guarantees rich column level lineage. The command below specifies a particular column, in a particular table that we would like to inspect.
-        
+
         ```shell
         sdf lineage main2 --column message
         ```
@@ -253,5 +253,5 @@ In this guide we showed you just how easy it is to install SDF and run your firs
     <Card title="Setup SDF" href="/guide/setup/io">
     Learn more about setting up SDF in your data stack
   </Card>
-</CardGroup> 
+</CardGroup>
 
