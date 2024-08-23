@@ -197,44 +197,19 @@ sdf dbt init
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Initialize&nbsp;a&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;a&nbsp;dbt&nbsp;project&nbsp;--&nbsp;best&nbsp;effort
+Initialize&nbsp;a&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;a&nbsp;dbt&nbsp;project&nbsp;&#45;&#45;&nbsp;best&nbsp;effort
 
 Usage:&nbsp;sdf&nbsp;dbt&nbsp;init&nbsp;[OPTIONS]
 
 Options:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--target&nbsp;&lt;TARGET&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;target&nbsp;over&nbsp;the&nbsp;default&nbsp;target&nbsp;in&nbsp;profiles.yml
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--profiles-dir&nbsp;&lt;PROFILES_DIR&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;profile&nbsp;instead&nbsp;of&nbsp;the&nbsp;defaults&nbsp;at&nbsp;~/.dbt/profile.yml&nbsp;--&nbsp;(note&nbsp;dbt&nbsp;uses&nbsp;--profile_dir,&nbsp;this&nbsp;CLI&nbsp;uses&nbsp;--profile-dir)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--workspace-dir&nbsp;&lt;WORKSPACE_DIR&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specifies&nbsp;the&nbsp;workspace&nbsp;directory&nbsp;where&nbsp;we&nbsp;expect&nbsp;to&nbsp;see&nbsp;manifest&nbsp;and&nbsp;dbt&nbsp;project&nbsp;files&nbsp;The&nbsp;SDF&nbsp;workspace&nbsp;file&nbsp;will&nbsp;be&nbsp;placed&nbsp;in&nbsp;the&nbsp;same&nbsp;directory.&nbsp;Default:&nbsp;current&nbsp;directory
-
-&nbsp;&nbsp;-s,&nbsp;--save
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;and&nbsp;overwrite&nbsp;the&nbsp;workspace&nbsp;file
-
-&nbsp;&nbsp;-c,&nbsp;--config&nbsp;&lt;CONFIG&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supply&nbsp;a&nbsp;config&nbsp;yml&nbsp;file&nbsp;or&nbsp;provide&nbsp;config&nbsp;as&nbsp;yml&nbsp;string&nbsp;e.g.&nbsp;&#39;&#123;key:&nbsp;value&#125;&#39;
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-level&nbsp;&lt;LOG_LEVEL&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;log&nbsp;level
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[possible&nbsp;values:&nbsp;trace,&nbsp;debug,&nbsp;info,&nbsp;warn,&nbsp;error]
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-file&nbsp;&lt;LOG_FILE&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates&nbsp;or&nbsp;replaces&nbsp;the&nbsp;log&nbsp;file
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-form&nbsp;&lt;LOG_FORM&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;the&nbsp;log&nbsp;format;&nbsp;default&nbsp;flat
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Possible&nbsp;values:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;flat:&nbsp;&nbsp;&nbsp;Writes&nbsp;nd-json,&nbsp;compact,&nbsp;no&nbsp;nested&nbsp;objects
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;nested:&nbsp;Writes&nbsp;nd-json,&nbsp;compact,&nbsp;nested&nbsp;objects
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;pretty:&nbsp;Writes&nbsp;nd-json,&nbsp;pretty,&nbsp;nested&nbsp;objects
-
-&nbsp;&nbsp;-h,&nbsp;--help
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help&nbsp;(see&nbsp;a&nbsp;summary&nbsp;with&nbsp;&#39;-h&#39;)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;target&nbsp;&lt;TARGET&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;target&nbsp;over&nbsp;the&nbsp;default&nbsp;target&nbsp;in&nbsp;profiles.yml
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;profiles&#45;dir&nbsp;&lt;PROFILES_DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;profile&nbsp;instead&nbsp;of&nbsp;the&nbsp;defaults&nbsp;at&nbsp;~/.dbt/profile.yml&nbsp;&#45;&#45;&nbsp;(note&nbsp;dbt&nbsp;uses&nbsp;&#45;&#45;profile_dir,&nbsp;this&nbsp;CLI&nbsp;uses&nbsp;&#45;&#45;profile&#45;dir)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;workspace&#45;dir&nbsp;&lt;WORKSPACE_DIR&gt;&nbsp;&nbsp;Specifies&nbsp;the&nbsp;workspace&nbsp;directory&nbsp;where&nbsp;we&nbsp;expect&nbsp;to&nbsp;see&nbsp;manifest&nbsp;and&nbsp;dbt&nbsp;project&nbsp;files&nbsp;The&nbsp;SDF&nbsp;workspace&nbsp;file&nbsp;will&nbsp;be&nbsp;placed&nbsp;in&nbsp;the&nbsp;same&nbsp;directory.&nbsp;Default:&nbsp;current&nbsp;directory
+&nbsp;&nbsp;&#45;s,&nbsp;&#45;&#45;save&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;and&nbsp;overwrite&nbsp;the&nbsp;workspace&nbsp;file
+&nbsp;&nbsp;&#45;c,&nbsp;&#45;&#45;config&nbsp;&lt;CONFIG&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supply&nbsp;a&nbsp;config&nbsp;yml&nbsp;file&nbsp;or&nbsp;provide&nbsp;config&nbsp;as&nbsp;yml&nbsp;string&nbsp;e.g.&nbsp;&#39;&#123;key:&nbsp;value&#125;&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;log&#45;level&nbsp;&lt;LOG_LEVEL&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;log&nbsp;level&nbsp;[possible&nbsp;values:&nbsp;trace,&nbsp;debug,&nbsp;debug&#45;pretty,&nbsp;info,&nbsp;warn,&nbsp;error]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;log&#45;file&nbsp;&lt;LOG_FILE&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates&nbsp;or&nbsp;replaces&nbsp;the&nbsp;log&nbsp;file
+&nbsp;&nbsp;&#45;h,&nbsp;&#45;&#45;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help
 
 </code>
 </pre>
@@ -253,44 +228,19 @@ sdf dbt refresh
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Re-initialize&nbsp;a&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;a&nbsp;dbt&nbsp;project&nbsp;--&nbsp;best&nbsp;effort
+Re&#45;initialize&nbsp;a&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;a&nbsp;dbt&nbsp;project&nbsp;&#45;&#45;&nbsp;best&nbsp;effort
 
 Usage:&nbsp;sdf&nbsp;dbt&nbsp;refresh&nbsp;[OPTIONS]
 
 Options:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--target&nbsp;&lt;TARGET&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;target&nbsp;over&nbsp;the&nbsp;default&nbsp;target&nbsp;in&nbsp;profiles.yml
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--profiles-dir&nbsp;&lt;PROFILES_DIR&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;profile&nbsp;instead&nbsp;of&nbsp;the&nbsp;defaults&nbsp;at&nbsp;~/.dbt/profile.yml&nbsp;--&nbsp;(note&nbsp;dbt&nbsp;uses&nbsp;--profile_dir,&nbsp;this&nbsp;CLI&nbsp;uses&nbsp;--profile-dir)
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--workspace-dir&nbsp;&lt;WORKSPACE_DIR&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specifies&nbsp;the&nbsp;workspace&nbsp;directory&nbsp;where&nbsp;we&nbsp;expect&nbsp;to&nbsp;see&nbsp;manifest&nbsp;and&nbsp;dbt&nbsp;project&nbsp;files&nbsp;The&nbsp;SDF&nbsp;workspace&nbsp;file&nbsp;will&nbsp;be&nbsp;placed&nbsp;in&nbsp;the&nbsp;same&nbsp;directory.&nbsp;Default:&nbsp;current&nbsp;directory
-
-&nbsp;&nbsp;-s,&nbsp;--save
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;and&nbsp;overwrite&nbsp;the&nbsp;workspace&nbsp;file
-
-&nbsp;&nbsp;-c,&nbsp;--config&nbsp;&lt;CONFIG&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supply&nbsp;a&nbsp;config&nbsp;yml&nbsp;file&nbsp;or&nbsp;provide&nbsp;config&nbsp;as&nbsp;yml&nbsp;string&nbsp;e.g.&nbsp;&#39;&#123;key:&nbsp;value&#125;&#39;
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-level&nbsp;&lt;LOG_LEVEL&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;log&nbsp;level
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[possible&nbsp;values:&nbsp;trace,&nbsp;debug,&nbsp;info,&nbsp;warn,&nbsp;error]
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-file&nbsp;&lt;LOG_FILE&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates&nbsp;or&nbsp;replaces&nbsp;the&nbsp;log&nbsp;file
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--log-form&nbsp;&lt;LOG_FORM&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;the&nbsp;log&nbsp;format;&nbsp;default&nbsp;flat
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Possible&nbsp;values:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;flat:&nbsp;&nbsp;&nbsp;Writes&nbsp;nd-json,&nbsp;compact,&nbsp;no&nbsp;nested&nbsp;objects
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;nested:&nbsp;Writes&nbsp;nd-json,&nbsp;compact,&nbsp;nested&nbsp;objects
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;pretty:&nbsp;Writes&nbsp;nd-json,&nbsp;pretty,&nbsp;nested&nbsp;objects
-
-&nbsp;&nbsp;-h,&nbsp;--help
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help&nbsp;(see&nbsp;a&nbsp;summary&nbsp;with&nbsp;&#39;-h&#39;)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;target&nbsp;&lt;TARGET&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;target&nbsp;over&nbsp;the&nbsp;default&nbsp;target&nbsp;in&nbsp;profiles.yml
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;profiles&#45;dir&nbsp;&lt;PROFILES_DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;this&nbsp;DBT&nbsp;profile&nbsp;instead&nbsp;of&nbsp;the&nbsp;defaults&nbsp;at&nbsp;~/.dbt/profile.yml&nbsp;&#45;&#45;&nbsp;(note&nbsp;dbt&nbsp;uses&nbsp;&#45;&#45;profile_dir,&nbsp;this&nbsp;CLI&nbsp;uses&nbsp;&#45;&#45;profile&#45;dir)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;workspace&#45;dir&nbsp;&lt;WORKSPACE_DIR&gt;&nbsp;&nbsp;Specifies&nbsp;the&nbsp;workspace&nbsp;directory&nbsp;where&nbsp;we&nbsp;expect&nbsp;to&nbsp;see&nbsp;manifest&nbsp;and&nbsp;dbt&nbsp;project&nbsp;files&nbsp;The&nbsp;SDF&nbsp;workspace&nbsp;file&nbsp;will&nbsp;be&nbsp;placed&nbsp;in&nbsp;the&nbsp;same&nbsp;directory.&nbsp;Default:&nbsp;current&nbsp;directory
+&nbsp;&nbsp;&#45;s,&nbsp;&#45;&#45;save&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;and&nbsp;overwrite&nbsp;the&nbsp;workspace&nbsp;file
+&nbsp;&nbsp;&#45;c,&nbsp;&#45;&#45;config&nbsp;&lt;CONFIG&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supply&nbsp;a&nbsp;config&nbsp;yml&nbsp;file&nbsp;or&nbsp;provide&nbsp;config&nbsp;as&nbsp;yml&nbsp;string&nbsp;e.g.&nbsp;&#39;&#123;key:&nbsp;value&#125;&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;log&#45;level&nbsp;&lt;LOG_LEVEL&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;log&nbsp;level&nbsp;[possible&nbsp;values:&nbsp;trace,&nbsp;debug,&nbsp;debug&#45;pretty,&nbsp;info,&nbsp;warn,&nbsp;error]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;log&#45;file&nbsp;&lt;LOG_FILE&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates&nbsp;or&nbsp;replaces&nbsp;the&nbsp;log&nbsp;file
+&nbsp;&nbsp;&#45;h,&nbsp;&#45;&#45;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help
 
 </code>
 </pre>

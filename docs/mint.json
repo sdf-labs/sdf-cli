@@ -199,7 +199,6 @@
 					"group": "AWS",
 					"icon": "aws",
 					"pages": [
-						"integrations/aws/overview",
 						{
 							"group": "Redshift",
 							"pages": [
@@ -209,8 +208,8 @@
 						{
 							"group": "S3",
 							"pages": [
-								"integrations/aws/s3/getting-started-with-S3",
-								"integrations/aws/s3/s3-example"
+								"integrations/aws/S3/getting-started",
+								"integrations/aws/S3/s3-example"
 							]
 						}
 					]

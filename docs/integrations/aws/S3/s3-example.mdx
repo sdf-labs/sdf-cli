@@ -1,6 +1,6 @@
 ---
-title: "S3 Connecting to SDF Example"
-description: ""
+title: "Executing on Data from S3"
+description: "SDF DB can execute queries on data stored in S3 parquet, CSV, JSON, gzip, and more"
 ---
 
 ## Overview
@@ -19,56 +19,110 @@ integration with SDF to analyze world population data.
         sdf new --sample hello_world_s3 && cd hello_world_s3
         ```
 
+
+        This command will generate a new workspace containing a two environments - one configured to run data locally, the other configured to pull data down
+        from an SDF-hosted public S3 bucket `s3://sdf-datasets`.
+
+        The project structure looks like this:
+
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/local/pop.csv
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/local/popdata.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/local/world_metrics.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/remote/q1.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/remote/un_pop_data.sql
-&nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello_world_s3/workspace.sdf.yml
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.294&nbsp;secs
+.
+├──&nbsp;local
+│  &nbsp;├──&nbsp;pop.csv
+│  &nbsp;├──&nbsp;popdata.sql
+│  &nbsp;└──&nbsp;world_metrics.sql
+├──&nbsp;remote
+│  &nbsp;├──&nbsp;q1.sql
+│  &nbsp;└──&nbsp;un_pop_data.sql
+└──&nbsp;workspace.sdf.yml
+
+2&nbsp;directories,&nbsp;6&nbsp;files
+
+</code>
+</pre>
+</div>
+    </Step>
+    <Step title="Build using local population data">
+        To start, let's run the queries on the local CSV data packaged into the sample. To do this, we can use the local environment defined in the `workspace.sdf.yml`.
+        
+        The local environment is configured to run the queries on the `pop.csv` file in the `local` directory. Let's run our queries to get a sense for the data we're working with.
+
+        ``` shell
+        sdf run --show all
+        ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello_world.pub.popdata&nbsp;(./local/popdata.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello_world.pub.world_metrics&nbsp;(./local/world_metrics.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello_world.pub.world_metrics_1&nbsp;(./local/world_metrics.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;3&nbsp;models&nbsp;[3&nbsp;succeeded]&nbsp;in&nbsp;0.758&nbsp;secs
+
+Table&nbsp;hello_world.pub.popdata
+┌───────────────┬────────────┬─────────────┬────────────────────────────────┐
+│&nbsp;country&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;population&nbsp;┆&nbsp;date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞═══════════════╪════════════╪═════════════╪════════════════════════════════╡
+│&nbsp;China&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1412600000&nbsp;┆&nbsp;31&nbsp;Dec&nbsp;2021&nbsp;┆&nbsp;Official&nbsp;estimate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;India&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1375586000&nbsp;┆&nbsp;1&nbsp;Mar&nbsp;2022&nbsp;&nbsp;┆&nbsp;Official&nbsp;projection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;United&nbsp;States&nbsp;┆&nbsp;333329956&nbsp;&nbsp;┆&nbsp;5&nbsp;Dec&nbsp;2022&nbsp;&nbsp;┆&nbsp;Population&nbsp;clock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Indonesia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;275773800&nbsp;&nbsp;┆&nbsp;1&nbsp;Jul&nbsp;2022&nbsp;&nbsp;┆&nbsp;Official&nbsp;estimate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Pakistan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;235825000&nbsp;&nbsp;┆&nbsp;1&nbsp;Jul&nbsp;2022&nbsp;&nbsp;┆&nbsp;UN&nbsp;projection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Nigeria&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;218541000&nbsp;&nbsp;┆&nbsp;1&nbsp;Jul&nbsp;2022&nbsp;&nbsp;┆&nbsp;UN&nbsp;projection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Brazil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;215486475&nbsp;&nbsp;┆&nbsp;7&nbsp;Dec&nbsp;2022&nbsp;&nbsp;┆&nbsp;National&nbsp;population&nbsp;clock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Bangladesh&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;165158616&nbsp;&nbsp;┆&nbsp;15&nbsp;Jun&nbsp;2022&nbsp;┆&nbsp;2022&nbsp;preliminary&nbsp;census&nbsp;result&nbsp;│
+│&nbsp;Russia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;145100000&nbsp;&nbsp;┆&nbsp;1&nbsp;Sep&nbsp;2022&nbsp;&nbsp;┆&nbsp;Official&nbsp;estimate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Mexico&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;128533664&nbsp;&nbsp;┆&nbsp;30&nbsp;Jun&nbsp;2022&nbsp;┆&nbsp;National&nbsp;quarterly&nbsp;estimate&nbsp;&nbsp;&nbsp;&nbsp;│
+└───────────────┴────────────┴─────────────┴────────────────────────────────┘
+241&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;&#45;&#45;limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+Table&nbsp;hello_world.pub.world_metrics_1
+┌───────────────┬─────┬─────────────┬──────────┐
+│&nbsp;country&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;day&nbsp;┆&nbsp;source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;source3&nbsp;&nbsp;│
+╞═══════════════╪═════╪═════════════╪══════════╡
+│&nbsp;China&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;31&nbsp;&nbsp;┆&nbsp;estimate&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;India&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;┆&nbsp;projection&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;United&nbsp;States&nbsp;┆&nbsp;5&nbsp;&nbsp;&nbsp;┆&nbsp;clock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Indonesia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;┆&nbsp;estimate&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Pakistan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;┆&nbsp;projection&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Nigeria&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;┆&nbsp;projection&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Brazil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;7&nbsp;&nbsp;&nbsp;┆&nbsp;population&nbsp;&nbsp;┆&nbsp;clock&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Bangladesh&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;15&nbsp;&nbsp;┆&nbsp;preliminary&nbsp;┆&nbsp;census&nbsp;&nbsp;&nbsp;│
+│&nbsp;Russia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;┆&nbsp;estimate&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Mexico&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;30&nbsp;&nbsp;┆&nbsp;quarterly&nbsp;&nbsp;&nbsp;┆&nbsp;estimate&nbsp;│
+└───────────────┴─────┴─────────────┴──────────┘
+241&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;&#45;&#45;limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+Table&nbsp;hello_world.pub.world_metrics
+┌────────────┬──────────────────┬─────────────────┐
+│&nbsp;world_pop&nbsp;&nbsp;┆&nbsp;smallest_country&nbsp;┆&nbsp;largest_country&nbsp;│
+╞════════════╪══════════════════╪═════════════════╡
+│&nbsp;7820009936&nbsp;┆&nbsp;47&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1412600000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└────────────┴──────────────────┴─────────────────┘
+1&nbsp;rows.
 
 </code>
 </pre>
 </div>
 
-        This command will generate a new workspace containing the following 
-        directories:2
-
-        ``` yml
-        ├── local
-        │   ├── pop.csv
-        │   ├── popdata.sql
-        │   └── world_metrics.sql
-        ├── remote
-        │   ├── q1.sql
-        │   └── un_pop_data.sql
-        └── workspace.sdf.yml
-        ```
+        <Note>
+            Since the default environment specified in the `workspace.sdf.yml` is `local` we don't need specify the environment (`-e`) in the compile command.
+        </Note>
     </Step>
-    <Step title="Build using local population data">
-        To start, let's build the data using the local environment defined in the `workspace.sdf.yml` file.
-        This block identified the `local` folder and the locally downloaded `pop.csv` contianing the information. 
-        To see the information available and understand the data that we will be using for this example. Let's run the folowing:
+    <Step title="Authenticate SDF using a local AWS Profile">
+        Nice! We're run the queries locally. Let's move on to running them on remote data pulled down from S3.
 
-        ``` shell
-        sdf run -e local --show all
-        ```
-
-    </Step>
-    <Step title="Authenticate SDF with a Local AWS Profile ">
-        Now that we have an understanding of the data and how it should be represented, let's
-        connect to S3, pull the data, and run in a remote environment.
-        
-        To pull data from s3, in this example the public bucket (s3://sdfdatasets), 
-        first authenticate SDF with a local AWS profile. This can be any AWS profile, 
-        as the S3 bucket is public.
+        Let's start by authenticating SDF to AWS. This will be used to pull data from our public bucket (`s3://sdfdatasets`), 
+        so this can be any AWS profile you have available locally.
 
         <Note> 
         If you have not set up an AWS profile yet, follow the instructions on the 
-        [Getting Started with S3 Guide](/integrations/aws/s3/getting-started-s3)
+        [Getting Started with S3 Guide](/integrations/aws/s3/getting-started)
         </Note>
 
         Run the following command:
@@ -91,18 +145,23 @@ integration with SDF to analyze world population data.
         ```
     </Step>
     <Step title="Run using the remote environment">
-        To run using the S3 bucket's objects and utilize the remote environment run the following:
+        Now that we've successfully authenticated SDF with AWS, we can try running in the remote environment.
 
+        This command will pull down the data from remote, then run the queries on the downloaded data locally. It will then cache the results and the downloaded data,
+        so that subsequent runs will be much faster.
+
+        Let's try it!
         ``` shell
         sdf run -e remote --show all
         ```
-        
-    </Step>
-    <Step title="Try it out!">
-        Now that you're connected, let's make sure SDF can pull the schema information it needs. 
 
-        Run `sdf compile --show all`
+        # ```run shell
+        # cd tmp/hello_world_s3 && $sdf run -e remote --show all
+        # ```
 
-        If the connection is successful, you will see the schema for the tables!
+        Great! We've showcased how SDF can pull down remote data for local execution.
+        <Tip>
+            Run it again, and notice how much faster it is while using the cache :)
+        </Tip>
     </Step>
 </Steps>

@@ -113,7 +113,7 @@ workspace:
 &nbsp;&nbsp;&nbsp;&nbsp;It&nbsp;contains&nbsp;raw&nbsp;data&nbsp;regarding:
 &nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;Customers
 &nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;Marketing&nbsp;campaigns
-&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;Mobile&nbsp;in-app&nbsp;events
+&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;Mobile&nbsp;in&#45;app&nbsp;events
 &nbsp;&nbsp;&nbsp;&nbsp;4.&nbsp;Street&nbsp;addresses
 
 &nbsp;&nbsp;&nbsp;&nbsp;That&nbsp;data&nbsp;is&nbsp;available&nbsp;in&nbsp;the&nbsp;seeds&nbsp;folder&nbsp;and&nbsp;is&nbsp;referenced&nbsp;in&nbsp;models/raw
@@ -121,32 +121,32 @@ workspace:
 &nbsp;&nbsp;&nbsp;&nbsp;models&nbsp;are&nbsp;available&nbsp;in&nbsp;the&nbsp;staging&nbsp;and&nbsp;analytics&nbsp;folders&nbsp;under&nbsp;the&nbsp;models&nbsp;folder.
 
 &nbsp;&nbsp;includes:
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;models
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;models
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;model
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema-table-name
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;seeds/parquet
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema&#45;table&#45;name
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;seeds/parquet
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;resource
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;metadata
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;metadata
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;metadata
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema-table-name
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;classifications
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema&#45;table&#45;name
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;classifications
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;metadata
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;reports
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;reports
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;report
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;path:&nbsp;checks
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;checks
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;check
 &nbsp;&nbsp;
 &nbsp;&nbsp;defaults:&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;preprocessor:&nbsp;jinja
----
+&#45;&#45;&#45;
 environment:
 &nbsp;&nbsp;name:&nbsp;dev
 &nbsp;&nbsp;integrations:
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;provider:&nbsp;sdf
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;provider:&nbsp;sdf
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;database
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;targets:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;pattern:&nbsp;moms_flower_shop.*.*
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rename-as:&nbsp;moms_workshed.$&#123;1&#125;.$&#123;2&#125;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;pattern:&nbsp;moms_flower_shop.*.*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rename&#45;as:&nbsp;moms_workshed.&#36;&#123;1&#125;.&#36;&#123;2&#125;
 
 </code>
 </pre>
@@ -165,6 +165,43 @@ Each includes element can specify additional properties like the [IncludeType](/
   the same project by configuring the dialect in the
   [table metadata block](#table-block). However, most projects will only use
   one.
+
+#### Includes Blocks
+
+The includes sub-property exist only on the [workspace block](#workspace-block) and the [environment block](/guide/setup/environments). 
+The purpose of this block is to tell SDF where to find the models, metadata specifications, macros, reports, and resources like seed data. The includes property contains a list of
+includes blocks, each of which are dictionaries that share the same structure. The most commonly used properties on these includes blocks are:
+
+- `path` - The relative path to the directory or file in the workspace containing the models, metadata, resources, etc. This path is relative to the `workspace.sdf.yml`.
+- `type` - The type of assets being included by this block. Some commonly used types are `model`, `spec`, and `macro`.
+- `defaults` - This block models the defaults block at the top level of the workspace or environment block. It enables you to overwrite default properties on a per-includes-path basis.
+
+SDF will auto-infer the type of the includes block if the directory name matches a certain naming convention. We consider this a best practice and encourage users to follow these conventions.
+
+| Directory Name | Type |
+| -------------- | ---- |
+| models | `model` |
+| specs | `spec` |
+| reports | `report` |
+| checks | `check` |
+| macros | `macro` |
+| seeds | `seed` |
+| resources | `resource` |
+
+<Tip> 
+  Given the naming conventions mentioned above, the following includes block would work without any type specifications:
+
+  ```yaml workspace.sdf.yml
+  includes:
+    - path: models
+    - path: specs
+    - path: reports
+    - path: checks
+    - path: macros
+    - path: seeds
+    - path: resources
+  ``` 
+</Tip>
 
 
 ### Table Block
@@ -274,38 +311,38 @@ table:
 &nbsp;&nbsp;materialization:&nbsp;view
 &nbsp;&nbsp;purpose:&nbsp;model
 &nbsp;&nbsp;dependencies:
-&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2
+&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2
 &nbsp;&nbsp;columns:
-&nbsp;&nbsp;-&nbsp;name:&nbsp;install_date
+&nbsp;&nbsp;&#45;&nbsp;name:&nbsp;install_date
 &nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;varchar
 &nbsp;&nbsp;&nbsp;&nbsp;lineage:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modify:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.install_time
-&nbsp;&nbsp;-&nbsp;name:&nbsp;campaign_name
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.install_time
+&nbsp;&nbsp;&#45;&nbsp;name:&nbsp;campaign_name
 &nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;varchar
 &nbsp;&nbsp;&nbsp;&nbsp;lineage:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.campaign_name
-&nbsp;&nbsp;-&nbsp;name:&nbsp;platform
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.campaign_name
+&nbsp;&nbsp;&#45;&nbsp;name:&nbsp;platform
 &nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;varchar
 &nbsp;&nbsp;&nbsp;&nbsp;lineage:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.platform
-&nbsp;&nbsp;-&nbsp;name:&nbsp;distinct_installs
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.platform
+&nbsp;&nbsp;&#45;&nbsp;name:&nbsp;distinct_installs
 &nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;bigint
 &nbsp;&nbsp;&nbsp;&nbsp;lineage:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modify:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.customer_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.customer_id
 &nbsp;&nbsp;classifiers:
-&nbsp;&nbsp;-&nbsp;RETENTION.infinity
+&nbsp;&nbsp;&#45;&nbsp;RETENTION.infinity
 &nbsp;&nbsp;lineage:
 &nbsp;&nbsp;&nbsp;&nbsp;scan:
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.campaign_name
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.install_time
-&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;moms_flower_shop.staging.app_installs_v2.platform
-&nbsp;&nbsp;source-locations:
-&nbsp;&nbsp;-&nbsp;path:&nbsp;metadata/analytics/agg_installs_and_campaigns.sdf.yml
-&nbsp;&nbsp;-&nbsp;path:&nbsp;models/analytics/agg_installs_and_campaigns.sql
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.campaign_name
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.install_time
+&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.platform
+&nbsp;&nbsp;source&#45;locations:
+&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;metadata/analytics/agg_installs_and_campaigns.sdf.yml
+&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;models/analytics/agg_installs_and_campaigns.sql
 
 </code>
 </pre>

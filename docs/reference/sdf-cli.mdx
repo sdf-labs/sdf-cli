@@ -14,6 +14,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf clean`↴](#sdf-clean)
 * [`sdf compile`↴](#sdf-compile)
 * [`sdf lint`↴](#sdf-lint)
+* [`sdf fmt`↴](#sdf-fmt)
 * [`sdf run`↴](#sdf-run)
 * [`sdf test`↴](#sdf-test)
 * [`sdf stats`↴](#sdf-stats)
@@ -58,6 +59,7 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `clean` — Remove artifacts that sdf has generated in the past
 * `compile` — Compile models
 * `lint` — Lint models
+* `fmt` — format models
 * `run` — Run models
 * `test` — Test your models
 * `stats` — Statistics for your data
@@ -81,19 +83,9 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `--stack-size  STACK_SIZE ` — Set stack size for worker thread, in bytes
 * `--log-level  LOG_LEVEL ` — Set log level
 
-  Possible values: `trace`, `debug`, `info`, `warn`, `error`
+  Possible values: `trace`, `debug`, `debug-pretty`, `info`, `warn`, `error`
 
 * `--log-file  LOG_FILE ` — Creates or replaces the log file
-* `--log-form  LOG_FORM ` — Set the log format; default flat
-
-  Possible values:
-  - `flat`:
-    Writes nd-json, compact, no nested objects
-  - `nested`:
-    Writes nd-json, compact, nested objects
-  - `pretty`:
-    Writes nd-json, pretty, nested objects
-
 * `--log-filter  LOG_FILTER ` — Filters log messages; filters are written as  key : prefix_of_value 
 * `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
 * `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
@@ -420,6 +412,131 @@ Lint models
 
   Possible values: `true`, `false`
 
+* `--dest  DEST ` — For test only
+
+
+
+## `sdf fmt`
+
+format models
+
+**Usage:** `sdf fmt [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Compile only the given source dirs, files or tables [default: all models]
+
+###### **Options:**
+
+* `--infer-functions` — Infer function signature
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--infer-tables` — Infer table schema and generate ddls
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--no-cache` — Shorthand for cache policy none
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save  SAVE ` — Controls which assets to save [default: none]
+
+  Possible values: `info-schema`, `assembly`, `table-deps`
+
+* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--fetch` — Fetches changes to tables with remote origin
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--env-vars  ENV_VARS `
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--no-scripts` — Do not run scripts
+
+  Default value: `false`
+
+  Possible values: `true`, `false`
+
+* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
+* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `--dest  DEST ` — For test only
 
 

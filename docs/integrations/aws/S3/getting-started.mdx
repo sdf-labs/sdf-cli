@@ -1,6 +1,6 @@
 ---
-title: "Connecting to AWS S3 Object Storage"
-description: "SDF supports connection to AWS S3"
+title: "Getting Started"
+description: "SDF supports reading data and metadata from S3, and writing it the results back."
 ---
 
 ## Overview
@@ -57,7 +57,7 @@ and other static analysis checks on your workspace.
     </Step>
     <Step title="Add S3 Integration in your SDF Workspace">
         Once authenticated, add an integrations block in your `workspace.sdf.yml` 
-        workspace block. This tells SDF to reference S3.
+        workspace block. This tells SDF to pull data from the specified bucket, 
         
         ``` yml
         ---
@@ -73,10 +73,24 @@ and other static analysis checks on your workspace.
 
         For more information on SDF integrations, see the [integration documentation](/guide/setup/integrations).
     </Step>
-    <Step title="Try it out!">
-        Now that you're connected, let's make sure SDF can pull the schema information it needs. 
+    <Step title="Create a Table that Pulls Data from S3">
+        Next, we'll need to define an external table in SQL that references data in our S3 bucket. Let's imagine this table was pulling data from a CSV file, if so the definition would like like so:
 
-        Run `sdf compile -q "select * from <DATABASE>.<SCHEMA>.<TABLE>" --show all`
+        ```sql my_external_table.sql
+            CREATE TABLE database.schema.my_external_table WITH (
+                FORMAT='CSV', 
+                SKIP_HEADER_LINE_COUNT=1,
+                LOCATION='s3://path/to/your.csv'
+            );
+        ```
+
+        We recommend placing this file in the `models` directory, or whichever directory you have specified in your `workspace.sdf.yml`'s includes block.
+
+    </Step>
+    <Step title="Try it out!">
+        Now that you're connected and you have a table defined, let's make sure SDF can pull the schema information it needs. 
+
+        Run `sdf compile -q "select * from database.schema.my_external_table" --show all`
 
         If the connection is successful, you will see the schema for the table you selected.
     </Step>
@@ -86,27 +100,5 @@ and other static analysis checks on your workspace.
     The ARN you created also needs user access to the database. Depending on your 
     DBs Access Policy, you might also have to give explicit access to
     this new user for this S3 bucket. You can do this through by adding 
-    the ARN user to the appropriate group:
+    the ARN user to the appropriate group.
 </Warning>
-
-## Troubleshoot Resources
-1. **Seeing errors like this `ERROR: permission denied for schema schema1` from `sdf run`?**
-
-    This may be due to the user not having the correct permissions to this schema.
-    To check if you have the right access, you can run the following query.
-
-    Use `SVV_SCHEMA_PRIVILEGES` to view the schema owner, and schema_acl which shows the access control list for the schema.
-    ```sql
-    SELECT schema_owner, schema_acl FROM SVV_ALL_SCHEMAS WHERE schema_name = 'schema1';
-    ```
-
-    If your user does not have access to the schema, you can grant access to the schema by running the following query.
-    To run this query, you either have to be a superuser or the owner of the schema.
-    ```sql
-    GRANT CREATE ON SCHEMA schema1 TO <username>;
-    ```
-
-    The `<username>` is the user name of your IAM user, with `IAM:` prefix. For example, if your IAM user name is `my_user`, you can run:
-    ```sql
-    GRANT CREATE ON SCHEMA schema1 TO "IAM:my_user";
-    ```
