@@ -136,7 +136,7 @@ For the sake of the tutorials, there is no need to connect to a database or to l
 
     <Tip>
     When we run SDF compile, our engine validates SQL syntax and dependencies correctness.
-    In the example above, SDF is set to compile models under `models/raw`, but but if we 
+    In the example above, SDF is set to compile models under `models/raw`, but if we 
     run `sdf compile` alone we will instantly guarantee a successful execution of all models 
     in the warehouse with a single command, running locally with lightning speed.
     </Tip>
@@ -232,7 +232,7 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.874&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[7&nbsp;succeeded,&nbsp;4&nbsp;reused]&nbsp;in&nbsp;0.820&nbsp;secs
 
 </code>
 </pre>
@@ -258,18 +258,18 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.813&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.819&nbsp;secs
 
 </code>
 </pre>
