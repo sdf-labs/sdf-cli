@@ -61,7 +61,7 @@ Init for run commands:
 
         ``` yml metadata/staging/inapp_events.sdf.yml
         table:
-            name: app_installs
+            name: inapp_events
         ```
 
         <Tip>
@@ -121,12 +121,12 @@ Init for run commands:
           name: inapp_events
           columns:
               - name: event_value
-              tests:
-              - expect: valid_scalar("""event_name >= 0""")
-                  severity: error
-              # Add the code below:
-              - expect: minimum(0)
-                  severity: error
+                tests:
+                  - expect: valid_scalar("""event_name >= 0""")
+                    severity: error
+                  # Add the code below:
+                  - expect: minimum(0)
+                    severity: error
         ```
 
         <Tip>
