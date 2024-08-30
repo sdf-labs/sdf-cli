@@ -1,5 +1,5 @@
 ---
-title: "Deprecating a Model"
+title: "Deprecating a model"
 ---
 
 ## Overview
@@ -224,6 +224,7 @@ Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
 
         * If the model is not being used, we can just delete it altogether.
         * Otherwise, we can update the `FROM` statement of `models/analytics/agg_installs_and_campaigns.sql`
+                                  
         like we did for our previous model:
 
         ``` sql models/analytics/agg_installs_and_campaigns.sql
