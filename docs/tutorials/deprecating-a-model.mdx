@@ -5,9 +5,9 @@ title: "Deprecating a model"
 ## Overview
 In the previous tutorial, we discovered `app_installs` was replaced by `app_installs_v2`.
 
-This tutorial will walk through the deprecation of `app_installs` and demonstrate 
+This tutorial will walk through the deprecation of `app_installs` and demonstrate
 how SDF can help overcome the two big hurdles in deprecating a model:
-1. Preventing prod from breaking by tracking and resolving downstream dependencies 
+1. Preventing prod from breaking by tracking and resolving downstream dependencies
 2. Setting up guardrails to prevent future mistakes
 
 ## Prerequisites
@@ -20,9 +20,9 @@ Init for run commands:
 
 ## Setup
 ### Reference to Metadata Files
-SDF's semantic understanding is based on metadata files, defining your custom business 
-logic, and smart propagation of values. To get started, we need to reference the metadata 
-directory by simply including the relevant paths in our workspace configuration file, `workspace.sdf.yml`. 
+SDF's semantic understanding is based on metadata files, defining your custom business
+logic, and smart propagation of values. To get started, we need to reference the metadata
+directory by simply including the relevant paths in our workspace configuration file, `workspace.sdf.yml`.
 
 Open the file `workspace.sdf.yml` and uncomment the following:
 
@@ -40,14 +40,14 @@ Open the file `workspace.sdf.yml` and uncomment the following:
 
 <Note>
 Note
-* The classifications folder contains one YAML file for table classifiers, and one for column classifiers. 
+* The classifications folder contains one YAML file for table classifiers, and one for column classifiers.
 * The metadata folder is structured based on our models folder.
-* The reports folder is currently empty. 
+* The reports folder is currently empty.
 
 We will talk about all of these a bit later.
 </Note>
 
-Now, the paths are included in our project. 
+Now, the paths are included in our project.
 
 ## Guide
 
@@ -100,7 +100,7 @@ staging.app_installs.platform
 </pre>
 </div>
         <Tip>
-            **Wow!** The model `agg_installs_and_campaigns` is also using the 
+            **Wow!** The model `agg_installs_and_campaigns` is also using the
             old version table!
         </Tip>
     </Step>
@@ -108,9 +108,9 @@ staging.app_installs.platform
         The file `classifications/table_classifiers.sdf.yml` holds definitions of
         a table level classifier called `TABLE_STATUS`. You can see that one of the
         table status options is `deprecated`.
-        
-        To add the classifier to our table, navigate to the table's metadata file 
-        `metadata/staging/app_installs.sdf.yml`. Remove the commented 
+
+        To add the classifier to our table, navigate to the table's metadata file
+        `metadata/staging/app_installs.sdf.yml`. Remove the commented
         section assigning the `TABLE_STATUS.deprecated` classifier to the table:
 
         ```yml metadata/staging/app_installs.sdf.yml
@@ -148,16 +148,16 @@ Schema&nbsp;moms_flower_shop.staging.app_installs
 </code>
 </pre>
 </div>
-        
+
         <Tip>
             Read more about classifiers in the [Classifiers Guide](/guide/basics/classifiers).
         </Tip>
     </Step>
-    <Step title="Create a Report of Deprecated Tables Reference">
-        To receive an instant snapshot all models referencing deprecated tables through the **entire data warehouse**
-        we can create an [SDF report](/guide/data-quality/reports) that will display all deprecated table is references.
+    <Step title="Create a Report of References to Deprecated Tables">
+        We can create an [SDF report](/guide/data-quality/reports) to receive an instant snapshot of
+        all models referencing deprecated tables throughout the **entire data warehouse**.
 
-        Create a new SQL file called `deprecated_table_reference.sql` in the 
+        Create a new SQL file called `deprecated_table_reference.sql` in the
         `reports/` directory. Copy the following query to your new file:
 
         ``` sql reports/deprecated_table_reference.sql
@@ -165,13 +165,13 @@ Schema&nbsp;moms_flower_shop.staging.app_installs
         deprecated_tables AS (
             SELECT
                 table_id
-            FROM sdf.information_schema.tables 
-            WHERE 
+            FROM sdf.information_schema.tables
+            WHERE
                 CONTAINS(classifiers, 'TABLE_STATUS.deprecated')
         )
 
-        SELECT 
-            to_table_id AS table_id, 
+        SELECT
+            to_table_id AS table_id,
             from_table_id AS upstream_deprecated_table_id
         FROM sdf.information_schema.table_lineage
         WHERE from_table_id IN (SELECT table_id FROM deprecated_tables)
@@ -180,15 +180,15 @@ Schema&nbsp;moms_flower_shop.staging.app_installs
         ```
 
         <Tip>
-            To learn more about SDF's rich information schema and how you can 
+            To learn more about SDF's rich information schema and how you can
             leverage it to write your custom own reports, read our [information schema
             reference page](/reference/sdf-information-schema).
         </Tip>
 
-        Thanks to SDF's lineage, we already knew that `agg_installs_and_campaigns` 
-        is referencing the old table. It's a good test to our check - 
+        Thanks to SDF's lineage tracking capabilities, we already know that `agg_installs_and_campaigns`
+        is referencing the old table. It's a good test to check -
         we expect it to fail.
-        
+
         Let's check it out (pun intended):
 
         ``` shell
@@ -220,12 +220,13 @@ Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
     </Step>
     <Step title="Resolve Downstream Dependencies">
         To make sure we won't break prod if we delete our table, we
-        can choose to resolve the dependency by either: 
-        
-        * If the model is not being used, we can just delete it all together.
-        * Otherwise, we can update the `FROM` statement of `models/analytics/agg_installs_and_campaigns.sql` 
+        can choose to resolve the dependency in one of two ways:
+
+        * If the model is not being used, we can just delete it altogether.
+        * Otherwise, we can update the `FROM` statement of `models/analytics/agg_installs_and_campaigns.sql`
+                                  
         like we did for our previous model:
-        
+
         ``` sql models/analytics/agg_installs_and_campaigns.sql
         ...
         FROM staging.app_installs_v2  -- Change from app_installs to app_installs_v2
@@ -255,8 +256,8 @@ Report&nbsp;moms_flower_shop.pub.deprecated_table_reference
     </Step>
 </Steps>
 
-That was really cool, ha? Let's explore what other cool things we can 
-do with SDF's information schema and semantic understanding in our 
+That was really cool, ha? Let's explore what other cool things we can
+do with SDF's information scehma and semantic understanding in our
 next tutorial - [enriching your warehouse](/tutorials/enriching-your-warehouse)
 
 
