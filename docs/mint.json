@@ -208,7 +208,7 @@
 						{
 							"group": "S3",
 							"pages": [
-								"integrations/aws/S3/getting-started-with-S3",
+								"integrations/aws/S3/getting-started",
 								"integrations/aws/S3/s3-example"
 							]
 						}

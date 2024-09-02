@@ -94,30 +94,35 @@ The linter config block will override the default configuration.
 ---
 linter: 
   name: default_linter
+
+  semantic-rules:
+    disallow-implicit-conversions-in: [] # (off) 
+
   syntax-rules:
     case-keyword: consistent 
     case-literal: consistent 
     case-type: consistent   
-    disallow-these-identifiers: []  
-    flag-keywords-used-as-identifiers: []  
-    disallow-these-chars-in-quoted-identifiers: ".#%{}\\<>*?/!'\":@+`|="  
-    flag-unnecessary-quoted-identifiers: on  
-    flag-inconsistent-qualified-column-reference: on  
-    flag-unqualified-multi-source-column-reference: on  
-    flag-inconsistent-ordinal-column-reference: on  
-    flag-unnecessary-else: on 
-    flag-unnecessary-case: on 
-    flag-unused-cte: on  
-    flag-unnecessary-nested-case: on 
-    flag-distinct-parenthesis: on 
     disallow-subquery-in: [from, join] 
+    disallow-these-chars-in-quoted-identifiers: ".#%{}\\<>*?/!'\":@+`|="
+    disallow-these-identifiers: []  
+    flag-distinct-parenthesis: on 
+    flag-inconsistent-qualified-column-reference: on  
+    flag-inconsistent-ordinal-column-reference: on  
+    flag-keywords-used-as-identifiers: []  
     flag-misordered-join-condition: on 
     flag-select-item-order: on 
     flag-trailing-semicolon-after-statements: on  
-
-  semantic-rules:
-    disallow-implicit-conversions-in: [] # (off) 
+    flag-unnecessary-case: on 
+    flag-unnecessary-else: on 
+    flag-unnecessary-nested-case: on 
+    flag-unnecessary-quoted-identifiers: on  
+    flag-unqualified-multi-source-column-reference: on  
+    flag-unused-cte: on    
 ```
+
+<Note>
+All other rules are turned off by default.
+</Note>
 
 ### CI Integration
 To learn how to integrate SDF into your CI/CD workflow, check out our 

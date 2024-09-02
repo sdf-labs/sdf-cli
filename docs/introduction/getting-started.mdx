@@ -72,7 +72,7 @@ After running the command, you will see the following output:
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/.gitignore
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/models/main.sql
 &nbsp;&nbsp;&nbsp;&nbsp;Created&nbsp;hello/workspace.sdf.yml
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.295&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.289&nbsp;secs
 
 </code>
 </pre>
@@ -159,7 +159,7 @@ Let's see just how easy it is to set up SDF and run your first query.
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.732&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.714&nbsp;secs
 
 Schema&nbsp;hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -174,33 +174,6 @@ Schema&nbsp;hello.pub.main
 
         As you can see from the output, SDF has statically analyzed the query and determined there's a single non-nullable column named `column` and it's of type `varchar`. 
         You'll also see an empty `classifier` block in the output. This is for metadata we'll attach to columns, but we'll get to that later.
-    </Step>
-    <Step title="Execution with `sdf run`">
-        Next, let's execute the query, using SDF as the database. We'll execute the query with SDF's integrated execution runtime, right on your machine.
-        
-        ```shell
-        sdf run --show all
-        ```
-
-        Your output should look like:
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
-<code className='language-shell'>
-Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.733&nbsp;secs
-
-Table&nbsp;hello.pub.main
-┌──────────────┐
-│&nbsp;message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-╞══════════════╡
-│&nbsp;Hello&nbsp;World!&nbsp;│
-└──────────────┘
-1&nbsp;rows.
-
-</code>
-</pre>
-</div>
     </Step>
     <Step title="Create a New Model">
         Now, create a new file in the source directory called `main2.sql` with the query:
@@ -223,12 +196,48 @@ Table&nbsp;hello.pub.main
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main2&nbsp;(./models/main2.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.734&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.717&nbsp;secs
 main2.message
 │
 │&nbsp;copy
 └──────┐
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;main.message
+
+</code>
+</pre>
+</div>
+    </Step>
+    <Step title="Execution with `sdf run`">
+        Next, let's execute the query, using SDF as the database. We'll execute the query with SDF's integrated execution runtime, right on your machine.
+        
+        ```shell
+        sdf run --show all
+        ```
+
+        Your output should look like:
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main2&nbsp;(./models/main2.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.743&nbsp;secs
+
+Table&nbsp;hello.pub.main
+┌──────────────┐
+│&nbsp;message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞══════════════╡
+│&nbsp;Hello&nbsp;World!&nbsp;│
+└──────────────┘
+1&nbsp;rows.
+
+Table&nbsp;hello.pub.main2
+┌──────────────┐
+│&nbsp;message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+╞══════════════╡
+│&nbsp;Hello&nbsp;World!&nbsp;│
+└──────────────┘
+1&nbsp;rows.
 
 </code>
 </pre>
