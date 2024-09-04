@@ -38,24 +38,24 @@ Init for run commands:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-analytics.dim_marketing_campaigns.total_num_installs
+moms_flower_shop.analytics.dim_marketing_campaigns.total_num_installs
 │
 │&nbsp;copy
 └──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;staging.stg_installs_per_campaign.total_num_installs
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.staging.stg_installs_per_campaign.total_num_installs
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;mod
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;staging.app_installs.event_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.staging.app_installs.event_id
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;copy
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raw.raw_marketing_campaign_events.event_id
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;staging.inapp_events.event_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events.event_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.staging.inapp_events.event_id
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;copy
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raw.raw_inapp_events.event_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.raw.raw_inapp_events.event_id
 
 </code>
 </pre>
@@ -107,15 +107,15 @@ analytics.dim_marketing_campaigns.total_num_installs
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-staging.customers.campaign_id
+moms_flower_shop.staging.customers.campaign_id
 │
 │&nbsp;copy
 └──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;staging.app_installs_v2.campaign_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.staging.app_installs_v2.campaign_id
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;copy
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raw.raw_marketing_campaign_events.campaign_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events.campaign_id
 
 </code>
 </pre>
@@ -153,7 +153,7 @@ staging.customers.campaign_id
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;9&nbsp;reused]&nbsp;in&nbsp;0.778&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;9&nbsp;reused]&nbsp;in&nbsp;0.829&nbsp;secs
 
 </code>
 </pre>
@@ -172,19 +172,19 @@ Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
-Table:&nbsp;staging.stg_installs_per_campaign
+Table:&nbsp;moms_flower_shop.staging.stg_installs_per_campaign
 
-staging.stg_installs_per_campaign.campaign_id
+moms_flower_shop.staging.stg_installs_per_campaign.campaign_id
 
-staging.stg_installs_per_campaign.total_num_installs
+moms_flower_shop.staging.stg_installs_per_campaign.total_num_installs
 │
 │&nbsp;copy
 ├──────┐
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;analytics.dim_marketing_campaigns.total_num_installs
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns.total_num_installs
 │&nbsp;mod
 └──────┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;analytics.dim_marketing_campaigns.avg_customer_acquisition_cost
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;analytics.dim_marketing_campaigns.install_duration_ratio
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns.avg_customer_acquisition_cost
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns.install_duration_ratio
 
 
 </code>
@@ -204,14 +204,14 @@ staging.stg_installs_per_campaign.total_num_installs
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.882&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.950&nbsp;secs
 
 Table&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
 ┌─────────────┬─────────────────────────────────┬────────────────────┬───────────────────────────────┬────────────────────────┐
@@ -288,7 +288,7 @@ Notice how quickly you get the response!
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error: SDF227: No column 'non_existing_column' found. Available are "app_installs"."install_time", "app_installs"."campaign_name", "app_installs"."event_id", "app_installs"."platform", "app_installs"."campaign_id", "app_installs"."campaign_type", "app_installs"."customer_id"
+error: SDF227: No column non_existing_column found. Available are app_installs.install_time, app_installs.campaign_name, app_installs.campaign_id, app_installs.campaign_type, app_installs.event_id, app_installs.platform, app_installs.customer_id
   --> models/staging/stg_installs_per_campaign.sql:2:5
 
 </code>
@@ -328,7 +328,7 @@ error: SDF227: No column 'non_existing_column' found. Available are "app_install
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error: SDF209: Function ABS arguments do not match. Actual: (varchar). Candidates: (tinyint); (smallint); (bigint); (double); (decimal(p, s)); (real).
+error: SDF209: Failed to resolve function ABS: Argument type mismatch: actual: (varchar); candidates: (tinyint); (smallint); (bigint); (double); (decimal(p, s)); (real).
   --> models/staging/stg_installs_per_campaign.sql:2:5
 
 </code>
@@ -357,7 +357,7 @@ error: SDF209: Function ABS arguments do not match. Actual: (varchar). Candidate
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error: SDF209: Function ABS arguments do not match. Actual: (varchar). Candidates: (tinyint); (smallint); (bigint); (double); (decimal(p, s)); (real).
+error: SDF209: Failed to resolve function ABS: Argument type mismatch: actual: (varchar); candidates: (tinyint); (smallint); (bigint); (double); (decimal(p, s)); (real).
   --> models/staging/stg_installs_per_campaign.sql:2:5
 
 </code>

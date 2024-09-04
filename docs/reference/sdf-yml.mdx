@@ -7,6 +7,9 @@ title: "SDF YML Schema"
 | :---- | :--- | :------- |
 `edition:` | `string`| The SDF edition, should always be 1.3 (1.2 is deprecated)|
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
+`is-tablename-case-sensitive:` | `boolean`| Whether table names are treated as case sensitive in this workspace Applies globally to the entire project, and is non-overridable. Defaults to false
+
+Note: this setting is *only* effective when set on the root workspace file, if set on included workspaces it will be ignored|
 `description:` | `string`| A description of this workspace|
 `repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
@@ -19,8 +22,10 @@ title: "SDF YML Schema"
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| |
-`description:` | `string?`| |
+`name:` | [`String`](#nested-element-string)| The name of the table (syntax: [[catalog.]schema].table)
+
+Note: this field is typed as a [QualifiedName] for serialization. In almost all cases you should use the [Self::fqn()] method to get the fully qualified [TableName] instead of accessing this field directly.|
+`description:` | `string?`| A description of this table|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to &#96;trino&#96;|
 `materialization:` | [`Materialization?`](#enum-materialization)| The table-type of this table (new version)|
 `purpose:` | [`TablePurpose?`](#enum-tablepurpose)| Specify what kind of table or view this is|
@@ -63,7 +68,7 @@ title: "SDF YML Schema"
 ## Block: `Function`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the function [syntax: [[catalog.]schema].function]|
+`name:` | [`String`](#nested-element-string)| The name of the function [syntax: [[catalog.]schema].function]|
 `section:` | `string`| The generic type bounds|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect that provides this function|
 `description:` | `string`| A description of this function|
@@ -102,6 +107,13 @@ title: "SDF YML Schema"
 `password:` | `string`| The password to connect to snowflake|
 `role:` | `string?`| The role to use for the connection|
 `warehouse:` | `string?`| The warehouse to use for the connection|
+#### bigquery
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`type:` | `string`| |
+`client-email:` | `string`| The client email of your bigquery service account|
+`private-key:` | `string`| The base64-encoded private key of your bigquery service account|
+`project-id:` | `string`| Project Id|
 #### aws
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -126,7 +138,7 @@ title: "SDF YML Schema"
 ## Block: `Environment`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
+`name:` | [`String`](#nested-element-string)| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
 `description:` | `string`| A description of this workspace|
 `repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
@@ -167,6 +179,7 @@ Values |
 `bigquery`
 `redshift`
 `spark-lp`
+`sdf`
 ## Enum: `Preprocessor`
 Values |
 | :--- |
@@ -233,6 +246,7 @@ Values |
 `glue`
 `redshift`
 `snowflake`
+`bigquery`
 `s3`
 `sdf`
 ## Enum: `TablePurpose`
@@ -330,6 +344,11 @@ Values |
 `interactive`
 `headless`
 `id_token_from_file`
+## Enum: `RuleOn`
+Values |
+| :--- |
+`on`
+`off`
 ## Enum: `Capitalization`
 Values |
 | :--- |
@@ -338,17 +357,15 @@ Values |
 `pascal`
 `snake`
 `camel`
+`off`
 `consistent`
-## Enum: `RuleOn`
-Values |
-| :--- |
-`on`
 ## Enum: `ColumnQualifier`
 Values |
 | :--- |
 `qualified`
 `unqualified`
 `consistent`
+`off`
 ## Enum: `SubQueryScope`
 Values |
 | :--- |
@@ -370,17 +387,18 @@ Values |
 ### Nested element: `Defaults`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`environment:` | `string?`| The default environment (can only be set on the level of the workspace)|
+`environment:` | [`String?`](#nested-element-string)| The default environment (can only be set on the level of the workspace)|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this environment. If not set, defaults to trino|
 `preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| The preprocessor for this environment. If not set, defaults to local|
-`catalog:` | `string?`| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
-`schema:` | `string?`| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
+`catalog:` | [`String?`](#nested-element-string)| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
+`schema:` | [`String?`](#nested-element-string)| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
 `materialization:` | [`Materialization?`](#enum-materialization)| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|
 `creation-flag:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines table creation flags, defaults to  if not set|
 `utils-lib:` | `string?`| The default utils library, if set overrides sdf_utils|
 `test-lib:` | `string?`| The default test library, if set overrides sdf_test|
 `materialization-lib:` | `string?`| The default materialization library, if set overrides sdf_materialization|
 `linter:` | `string?`| The named lint rule set, uses defaults (from sdftarget/&lt;environment&gt;/lint.sdf.yml) if not set|
+`formatter:` | `string?`| |
 `index-method:` | [`IndexMethod?`](#enum-indexmethod)| The default index for this tables|
 `include-type:` | [`IncludeType?`](#enum-includetype)| The default index for this tables|
 `sync-method:` | [`SyncType?`](#enum-synctype)| The default index for this tables|
@@ -388,6 +406,9 @@ Values |
 `csv-has-header:` | `boolean?`| CSV data has a header [only for external tables]|
 `csv-delimiter:` | `string?`| CSV data is separated by this delimiter [only for external tables]|
 `csv-compression:` | [`CompressionType?`](#enum-compressiontype)| Json or CSV data is compressed with this method [only for external tables]|
+### Nested element: `String`
+|Field | Type | Description|
+| :---- | :--- | :------- |
 ### Nested element: `ExcludePath`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -396,7 +417,7 @@ Values |
 ### Nested element: `Dependency`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| |
+`name:` | [`String`](#nested-element-string)| |
 `path:` | `string?`| The relative path from this workspace to the referenced workspace, for a Git repo, from the root of the depot to the workspace|
 `environment:` | `string?`| The chosen workspace environment (none means default)|
 `target:` | `string?`| The chosen workspace target (none means default)|
@@ -461,12 +482,12 @@ Values |
 | :---- | :--- | :------- |
 `strategy:` | [`SnapshotStrategy`](#enum-snapshotstrategy)| Snapshot strategy; may be one of &#96;timestamp&#96; (default), or &#96;check&#96;|
 `unique-key:` | `string`| Expression used for identifying records that will be updated according to the snapshot strategiy; May be a column name or an expression combining multiple columns|
-`updated-at:` | `string?`| Name of the timestamp column used to identify the last update time This option is only required for the &#96;timestamp&#96; snapshot strategy|
+`updated-at:` | [`String?`](#nested-element-string)| Name of the timestamp column used to identify the last update time This option is only required for the &#96;timestamp&#96; snapshot strategy|
 `check-cols:` | [`CheckColsSpec?`](#enum-checkcolsspec)| Specification of which columns to check for change (may be a list of column names or &#96;all&#96;) This option is only required for the &#96;check&#96; snapshot strategy|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the column|
+`name:` | [`String`](#nested-element-string)| The name of the column|
 `description:` | `string`| A description of this column|
 `datatype:` | `string?`| The type of this column|
 `classifiers:` | `array`| An array of classifier references|
@@ -496,7 +517,7 @@ Values |
 ### Nested element: `Partition`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the partition column|
+`name:` | [`String`](#nested-element-string)| The name of the partition column|
 `description:` | `string?`| A description of the partition column|
 `format:` | `string?`| The format of the partition column [use strftime format for date/time] See (guide)[https://docs.sdf.com/guide/schedules]|
 ### Nested element: `Label`
@@ -507,7 +528,7 @@ Values |
 ### Nested element: `Parameter`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string?`| The name of the parameter|
+`name:` | [`String?`](#nested-element-string)| The name of the parameter|
 `description:` | `string?`| A description of this parameter|
 `datatype:` | `string?`| The datatype of this parameter|
 `classifier:` | `[string]?`| An array of classifier references|
@@ -516,7 +537,7 @@ Values |
 ### Nested element: `OptionalParameter`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of the parameter|
+`name:` | [`String`](#nested-element-string)| The name of the parameter|
 `description:` | `string?`| A description of this parameter|
 `datatype:` | `string`| The datatype of this parameter|
 `classifier:` | `[string]?`| An array of classifier references|
@@ -525,7 +546,7 @@ Values |
 ### Nested element: `TypeBound`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`type-variable:` | `string`| |
+`type-variable:` | [`String`](#nested-element-string)| |
 `datatypes:` | `array`| |
 ### Nested element: `Example`
 |Field | Type | Description|
@@ -539,7 +560,7 @@ Values |
 ### Nested element: `DataFusionSpec`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`udf:` | `string?`| The name attribute of the implementing UDF. None indicates the UDF is named the same as the function.|
+`udf:` | [`String?`](#nested-element-string)| The name attribute of the implementing UDF. None indicates the UDF is named the same as the function.|
 ### Nested element: `Config`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -555,6 +576,7 @@ Values |
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | `string`| The name of these lint rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
+`defaults:` | [`RuleOn`](#enum-ruleon)| The overall switch, default is off|
 `layout-rules:` | [`LayoutRules?`](#nested-element-layoutrules)| These rules check for proper spacing|
 `syntax-rules:` | [`SyntaxRules?`](#nested-element-syntaxrules)| |
 `semantic-rules:` | [`SemanticRules?`](#nested-element-semanticrules)| |
@@ -597,4 +619,9 @@ Values |
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `flag-function-application-in-where-on-indexed-columns:` | [`RuleOn?`](#enum-ruleon)| Avoid functions in where clauses over indexed, partitioned or clustered columns, to prevent filter push down and improve performance |
+### Nested element: `FormatRules`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`name:` | `string`| The name of formatter rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
+`line-length:` | `integer?`| The line length|
 

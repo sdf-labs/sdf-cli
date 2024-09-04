@@ -71,8 +71,8 @@ function collate(string, string) returns string
 
 *Supported Signatures*
 ```sql
-function concat $1($1, ...) returns $1
-	where $1 in (string, bytes)
+function concat(bytes, ...) returns bytes
+function concat(...) returns string
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#concat)
 
@@ -253,6 +253,8 @@ function regexp_extract_all $1($1, string) returns array<$1>
 function regexp_instr $1($1, $1) returns int64
 	where $1 in (string, bytes)
 function regexp_instr $1($1, $1, int64) returns int64
+	where $1 in (string, bytes)
+function regexp_instr $1($1, $1, int64, int64) returns int64
 	where $1 in (string, bytes)
 function regexp_instr $1($1, $1, int64, int64, int64) returns int64
 	where $1 in (string, bytes)

@@ -1075,15 +1075,6 @@ function ltrim(varchar) returns varchar
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/string.html#ltrim)
 
-## `make_array`
-
-*Supported Signatures*
-```sql
-function make_array($1, ...) returns array<$1>
-function make_array() returns array<unknown>
-```
-[🔗 Official Documentation]()
-
 ## `max`
 
 Returns the maximum value of all input values.
@@ -1814,8 +1805,6 @@ function sum(bigint) returns bigint
 function sum(double) returns double
 function sum(decimal(p, s)) returns decimal(38, s)
 function sum(real) returns real
-function sum(interval day to second) returns interval day to second
-function sum(interval year to month) returns interval year to month
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/aggregate.html#sum)
 

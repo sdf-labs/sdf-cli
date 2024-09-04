@@ -75,20 +75,11 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 
 ###### **Options:**
 
-* `--no-parallel` — Do NOT run in parallel
-
-  Possible values: `true`, `false`
-
-* `--num-threads  NUM_THREADS ` — Number of threads to use for parallel operations. If unset, default is number of CPU cores. Must be greater than 0 if set
-* `--stack-size  STACK_SIZE ` — Set stack size for worker thread, in bytes
 * `--log-level  LOG_LEVEL ` — Set log level
 
   Possible values: `trace`, `debug`, `debug-pretty`, `info`, `warn`, `error`
 
 * `--log-file  LOG_FILE ` — Creates or replaces the log file
-* `--log-filter  LOG_FILTER ` — Filters log messages; filters are written as  key : prefix_of_value 
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -107,12 +98,7 @@ Create a new sdf workspace
 * `--list-samples` — List all available samples
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--sample  SAMPLE ` — Create a workspace with the sample content at  path 
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `-s`, `--show  SHOW ` — Display progress messages
 
   Default value: `progress`
@@ -138,8 +124,6 @@ Remove artifacts that sdf has generated in the past
 
   Possible values: `progress`, `none`
 
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -155,18 +139,9 @@ Compile models
 
 ###### **Options:**
 
-* `--infer-functions` — Infer function signature
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--infer-tables` — Infer table schema and generate ddls
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
@@ -183,66 +158,21 @@ Compile models
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -250,38 +180,15 @@ Compile models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `--prefer-local` — When set will minimize remote DB accessess and will rely on local schema information in .sdf.yml files
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--no-incremental-mode` — Set incremental-mode to false (deault is true)
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--no-snapshot-mode` — Set snapshot-mode to false (deault is true)
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 
 
 
@@ -297,18 +204,9 @@ Lint models
 
 ###### **Options:**
 
-* `--infer-functions` — Infer function signature
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--infer-tables` — Infer table schema and generate ddls
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
@@ -325,66 +223,21 @@ Lint models
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -392,27 +245,9 @@ Lint models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `--fix`
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--dest  DEST ` — For test only
 
 
 
@@ -428,18 +263,9 @@ format models
 
 ###### **Options:**
 
-* `--infer-functions` — Infer function signature
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--infer-tables` — Infer table schema and generate ddls
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
@@ -456,66 +282,21 @@ format models
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -523,21 +304,6 @@ format models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
-* `--dest  DEST ` — For test only
 
 
 
@@ -553,12 +319,6 @@ Run models
 
 ###### **Options:**
 
-* `--exec-raw-query` — Hidden Option to Run Queries in Raw Mode
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
@@ -575,66 +335,21 @@ Run models
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -642,29 +357,12 @@ Run models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
 * `--dry-run` — Plan command but don't evaluate it
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -696,66 +394,21 @@ Test your models
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -763,26 +416,9 @@ Test your models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-u`, `--sql-logic-test-update` — Goldie update the sqllogictests files
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -814,66 +450,21 @@ Statistics for your data
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -881,20 +472,6 @@ Statistics for your data
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -926,66 +503,21 @@ Report code quality
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -993,20 +525,6 @@ Report code quality
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -1038,66 +556,21 @@ Check code quality
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -1105,20 +578,6 @@ Check code quality
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -1138,15 +597,9 @@ Display lineage for a given table and/or column
 * `--forward` — Compute downstream lineage instead of the default upstream lineage
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--show-scans` — Display scan dependencies in addition to copy and mod dependencies. Unset by default
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--max-depth  MAX_DEPTH ` — Limiting the depth of shown lineage tree. Default value of 0 shows full lineage
 
   Default value: `0`
@@ -1166,66 +619,21 @@ Display lineage for a given table and/or column
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -1233,20 +641,6 @@ Display lineage for a given table and/or column
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -1265,21 +659,12 @@ Push a local workspace to the SDF Service
 * `--delete` — Delete this workspace from the SDF Service
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-y`, `--yes` — Answer yes to all prompts which include credentials' uploading to the console when using a table provider
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-d`, `--dry-run` — No changes will be made to the console when this is set
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
@@ -1296,66 +681,21 @@ Push a local workspace to the SDF Service
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -1363,20 +703,6 @@ Push a local workspace to the SDF Service
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -1452,66 +778,21 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
   Possible values: `read-write`, `write-only`, `read-only`, `none`
 
-* `--no-cache` — Shorthand for cache policy none
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--save  SAVE ` — Controls which assets to save [default: none]
 
   Possible values: `info-schema`, `assembly`, `table-deps`
 
-* `--save-assembly` — Saves assembly.sdf.yml and sdf.information_schema.* in sdftarget/profile/...
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--fetch` — Fetches changes to tables with remote origin
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-assembly` — ONLY FOR TEST: Shows assembly.sdf.yml on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--show-preprocessed` — ONLY FOR TEST: Shows preprocessed .sql on console
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--save-preprocessed` — ONLY FOR TEST: Save preprocessed .sql in compiled dir
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS `
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `-x`, `--experimental` — Modern output
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--format  FORMAT ` — Show error tables in this format
 
   Default value: `table`
@@ -1519,20 +800,6 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--no-propagate` — Do NOT perform propagate phase, short form of --stage resolve
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--no-scripts` — Do not run scripts
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 
 
 
@@ -1573,9 +840,6 @@ Configure how to authenticate with AWS
 * `--use-web-identity` — Use web identity to authenticate
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `--bucket-region-map  BUCKET_REGION_MAP ` — Mapping of bucket names to regions
 * `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials will be stored (default is platform specific)
 * `--access-key-id  ACCESS_KEY_ID ` — AWS access key id
@@ -1721,7 +985,7 @@ Display SDF's functions definitions
 
   Default value: `trino`
 
-  Possible values: `snowflake`, `trino`, `bigquery`, `redshift`, `spark-lp`
+  Possible values: `snowflake`, `trino`, `bigquery`, `redshift`, `spark-lp`, `sdf`
 
 * `--section  SECTION ` — Section to display [ section  value must appear in the function registry]
 
@@ -1733,9 +997,6 @@ Display SDF's functions definitions
 * `--implemented` — limit output to only implemented functions
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 
 
 
@@ -1827,8 +1088,6 @@ Initialize an sdf workspace from an existing dbt project
 
 ###### **Options:**
 
-* `--target-dir  TARGET_DIR ` — Set the  target-dir  for this session
-* `--credentials-dir  CREDENTIALS_DIR ` — Read the credentials from  credentials-dir 
 * `-s`, `--show  SHOW ` — Display messages
 
   Default value: `progress`
@@ -1849,18 +1108,9 @@ Initialize a sdf workspace from a dbt project -- best effort
 * `--target  TARGET ` — Use this DBT target over the default target in profiles.yml
 * `--profiles-dir  PROFILES_DIR ` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
 * `--workspace-dir  WORKSPACE_DIR ` — Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
-* `-n`, `--no-save` — DEPRECATED: this option has no effect; see --save
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-s`, `--save` — Save and overwrite the workspace file
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-c`, `--config  CONFIG ` — Supply a config yml file or provide config as yml string e.g. '(key: value)'
 
 
@@ -1876,18 +1126,9 @@ Re-initialize a sdf workspace from a dbt project -- best effort
 * `--target  TARGET ` — Use this DBT target over the default target in profiles.yml
 * `--profiles-dir  PROFILES_DIR ` — Use this DBT profile instead of the defaults at ~/.dbt/profile.yml -- (note dbt uses --profile_dir, this CLI uses --profile-dir)
 * `--workspace-dir  WORKSPACE_DIR ` — Specifies the workspace directory where we expect to see manifest and dbt project files The SDF workspace file will be placed in the same directory. Default: current directory
-* `-n`, `--no-save` — DEPRECATED: this option has no effect; see --save
-
-  Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-s`, `--save` — Save and overwrite the workspace file
 
   Default value: `false`
-
-  Possible values: `true`, `false`
-
 * `-c`, `--config  CONFIG ` — Supply a config yml file or provide config as yml string e.g. '(key: value)'
 
 

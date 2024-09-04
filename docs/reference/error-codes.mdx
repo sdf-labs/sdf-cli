@@ -58,11 +58,15 @@ These codes are grouped into ranges. Error codes pertain **only** to SQL stateme
 | 1039 | LintCheckFailed |
 | 1040 | SubprocessError |
 | 1041 | FmtError |
+| 1042 | FunctionDefinitionError |
 | 1500 | MacroUnsupportedValueType |
 | 1501 | JinjaError |
 | 1502 | MacroSyntaxError |
 | 1503 | MacroVarNotFound |
 | 1504 | InvalidSeedValue |
+| 2000 | SessionError |
+| 8998 | InvalidDialect |
+| 8999 | RuntimeError |
 | 9000 | NotSupported |
 | 9001 | Unknown |
 | 9002 | Unexpected |
@@ -138,6 +142,10 @@ These codes are grouped into ranges. Error codes pertain **only** to SQL stateme
 | 240 | InvalidStageName |
 | 241 | SnowflakeNotSupportTimeUnitAfterInterval |
 | 242 | ImplicitColumnAlias |
+| 243 | InvalidSchemaName |
+| 244 | UnknownType |
+| 245 | CatalogNotFound |
+| 246 | SchemaNotFound |
 | 401 | BadQueryNoWith |
 | 402 | BadRowCount |
 | 403 | BadInlineTable |
@@ -173,6 +181,7 @@ These codes are grouped into ranges. Error codes pertain **only** to SQL stateme
 | 433 | InvalidExpression |
 | 434 | InvalidCollate |
 | 435 | InvalidRegexp |
+| 436 | InvalidFunctionName |
 | 301 | ProjectionFailed |
 | 302 | JoinFailed |
 | 303 | AggregateFailed |
@@ -199,4 +208,5 @@ These codes are grouped into ranges. Error codes pertain **only** to SQL stateme
 | 9902 | FrontendUnexpected |
 | 9903 | FrontendNotImplemented |
 | 9904 | FrontendAntlrError |
+| 9905 | FrontendExecutionError |
 
