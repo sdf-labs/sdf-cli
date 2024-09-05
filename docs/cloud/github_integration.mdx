@@ -1,31 +1,31 @@
 ---
-title: "Integrating with Github"
+title: "Integrating with GitHub"
 ---
 
 ## Overview
 
-After completing this integration, your SDF cloud workspace will stay in sync with your GitHub repository. This means new Git commits to the SDF workspace in code will be automatically pulled and compiled ensuring the SDF Cloud catalog always stays up to date.
+Our GitHub integration ensures that your SDF workspace remains fully synchronized with your GitHub repository, enabling users to slot the SDF Cloud into their development process. Whenever new PRs are opened inside Github, SDF will automatically listen for new commits and update the SDF Cloud for your respective branches. This guarantees that the SDF Cloud catalog is consistently up to date, reflecting the latest changes in your code. 
+
+The GitHub integration further enables you to view multiple branches and their catalogs and lineage graphs directly from within the SDF Cloud, giving you the ability to easily track, compare, and manage changes across different versions of your data models. 
+
 
 ## Prerequisites
 
-- A GitHub account with access to the desired repository.
-- Appropriate permissions on the repository to grant access.
-- Necessary roles within the cloud platform to configure integrations.
+- A GitHub account with owner level access to the desired repository you would like to integrate.
+- Admin level role within the SDF Cloud to configure integrations.
 
 <Note>
-If you installed the SDF Github app before integrating with Github in the SDF cloud, you will need to delete the app, then integrate with Github through SDF for the integration to succeed.
+If you do not have appropriate GitHub access, you can still request access to the repository which will notify the GitHub repository owner to grant access. 
 </Note>
-
 
 ## Getting Started
 
 <Steps>
-    <Step title="Navigate to the Integrations and Link Github">
-        - Navigate to your SDF global settings and [locate the "Integrations" tab](https://console.sdf.com/catalog/settings/integrations) in the menu. Next, select the option to "Link Github". 
+    <Step title="Navigate to the Integrations and Link GitHub">
+        - Navigate to your SDF global settings and [locate the "Integrations" tab](https://console.sdf.com/catalog/settings/integrations) in the menu. Next, select the option to "Link GitHub". 
     </Step>
     <Step title="Authorize SDF with GitHub">
-    <img src="https://cdn.sdf.com/img/install_github_app.png"/>
-        - You will be redirected to GitHub to authorize SDF to interact with your GitHub account. This step involves granting permission for SDF to act on your behalf, access resources, and verify your GitHub identity. Once SDF is authorized to work with Github, you will be able to select the repository or repositories you want to integrate with the cloud platform and grant access.
+        - You will be redirected to GitHub to authorize SDF to access your GitHub repository. This step involves granting permission for SDF to act on your behalf, access resources, and verify your GitHub identity. Once SDF is authorized to work with GitHub, you will be able to select the repository or repositories you want to integrate with the cloud platform and grant access.
         <Note>
             If you do not have the right permissions to install SDF in your repository, then you will need to request approval for installation from an account admin and wait for that approval to go through. 
         </Note>
@@ -34,7 +34,8 @@ If you installed the SDF Github app before integrating with Github in the SDF cl
         </Warning>
     </Step>
     <Step title="Connect Your GitHub Workspace">
-        - After granting access, you will be redirected back to the cloud platform and should see that the integration was successful. You will now be able to connect a Github workspace. Once you begin the flow, you will be prompted to fill in the following fields:
+    <img src="https://cdn.sdf.com/img/connecting_workspace.gif"/>
+        - After granting access, you will be redirected back to SDF Cloud and should see that the integration was successful. You will now be able to connect a GitHub workspace. Once you begin the flow to connect your workspace, you will be prompted to fill in the following fields:
             - **Repository**: Select the repository you are integrating this workspace with.
             - **Branch**: Input the branch you want to synchronize.
             - **Path**: Input the path to the `workspace.sdf.yml` file in your designated repository.
@@ -51,20 +52,40 @@ If you installed the SDF Github app before integrating with Github in the SDF cl
             └── workspace1.sdf.yml
         </code>
     </pre>
-    </div> 
+    </div>
     </Step>
-    <Step title="Add Workspace Credentials and Environment Variables">
-        - Optionally, you will be prompted to input workspace credentials and environment variables/secrets while connecting your Github workspace. Access the 
-[Adding Workspace Credentials Guide](/cloud/credentials) or the [Configuring Environment Variables and Secrets Guide](/cloud/environments) to learn more.
+    <Step title="Optional: Add Environment Variables and Secrets">
+    <img src="https://cdn.sdf.com/img/adding_env_vars.gif"/>
+        - You will then be prompted to optionally input environment variables and/or secrets while connecting your GitHub workspace. Access the [Configuring Environment Variables and Secrets Guide](/cloud/environments) to learn more.
     </Step>
-    <Step title="Sync GitHub and View your Integration">
-        - Once the fields are properly filled in, click the 'Sync GitHub' button to synchronize your GitHub repository with the cloud platform. If you need to make changes, click 'Edit Configuration' to go back to GitHub and adjust your settings. Once synced, you will see the integration in the console. If you wanted to delete the integration, click the 'Settings' icon and select 'Delete'.
+    <Step title="Optional: Add Workspace Credentials">
+    <img src="https://cdn.sdf.com/img/adding_credential.gif"/>
+        - You will also be prompted to optionally input workspace credentials while connecting your GitHub workspace. Access the 
+[Adding Workspace Credentials Guide](/cloud/credentials) to learn more.
+    </Step>
+    <Step title="Sync GitHub and View Your Integration">
+        - Once the fields are properly filled in, click the 'Sync GitHub' button to synchronize your GitHub repository with the cloud platform. If you need to make changes, click 'Edit Configuration' to go back to GitHub and adjust your settings. Once synced, you will see the integration in the console.
         <Note>
             When we say "synchronize" this just means the SDF cloud is running `git pull` under the hood to fetch the latest changes from the main branch.
         </Note>
         <Warning>
-            When you sync your workspace with Github you will no longer be able to utilize the `sdf push` command to see the latest deployment for that specific workspace. 
+            When you sync your workspace with GitHub you will no longer be able to utilize the `sdf push` command to see the latest deployment for that specific workspace. 
         </Warning>
+    </Step>
+    <Step title="Utilizing the Navigation Bar">
+        - Along the bottom of the screen, you will see your navigation bar which indicates: 
+            - The selected workspace you are currently viewing and it's health status
+            - The selected branch you are currently viewing and a sync button which will fetch the latest branches
+            - The GitHub Commit hash (which when clicked will take you to the latest compiled commit in GitHub)
+            - The environment for your workspace
+            - And you will see a button to recompile the workspace 
+
+        You are able to utilize the dropdown selectors to choose which workspace and branch you'd like to view within the Cloud, which will update the catalog and lineage to reflect the corresponding workspace/branch. 
+
+        <Note>
+        If your branch has become stale, you should see an indicator in the navigation bar which will prompt you to recompile your workspace to view the latest changes. 
+        </Note>
+        <img src="https://cdn.sdf.com/img/usingthenavigationbar.gif"/>
     </Step>
 </Steps>
     
@@ -73,7 +94,11 @@ If you installed the SDF Github app before integrating with Github in the SDF cl
 - **Authorization Fails:** Ensure you have the necessary permissions on GitHub and try again.
 - **Permission Issues:** Verify that you have granted access to the correct repositories.
 - **Integration Not Appearing:** Refresh the page and check the integration settings.
-- **Compilation Failed:**[Check the logs for your workspace](https://console.sdf.com/catalog/logs/default) to find more extensive information on why compilation failed. You may need to re-sync with Github or recompile your workspace first. Finally, check the [Github Status page](https://www.githubstatus.com/) to make sure Git systems are operational. 
+- **Compilation Failed:**[Check the logs for your workspace](https://console.sdf.com/catalog/logs/default) to find more extensive information on why compilation failed. You may need to re-sync with GitHub or recompile your workspace first. Finally, check the [GitHub Status page](https://www.githubstatus.com/) to make sure Git systems are operational. 
+
+<Warning>
+If you installed the SDF GitHub app before integrating with GitHub in the SDF Cloud, you will need to first delete the app, then integrate with GitHhub through SDF for the integration to succeed.
+</Warning>
 
 <Note>
     Still having trouble? [Join our Slack community](https://join.slack.com/t/sdfcommunity/shared_invite/zt-2lkokt7ed-xIR0_pcmUOU3~CebxuqeKg) or email us at help@sdf.com. 
