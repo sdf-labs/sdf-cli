@@ -29,10 +29,12 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf auth login`↴](#sdf-auth-login)
 * [`sdf auth login aws`↴](#sdf-auth-login-aws)
 * [`sdf auth login snowflake`↴](#sdf-auth-login-snowflake)
+* [`sdf auth login bigquery`↴](#sdf-auth-login-bigquery)
 * [`sdf auth logout`↴](#sdf-auth-logout)
 * [`sdf auth logout aws`↴](#sdf-auth-logout-aws)
 * [`sdf auth logout openai`↴](#sdf-auth-logout-openai)
 * [`sdf auth logout snowflake`↴](#sdf-auth-logout-snowflake)
+* [`sdf auth logout bigquery`↴](#sdf-auth-logout-bigquery)
 * [`sdf auth status`↴](#sdf-auth-status)
 * [`sdf man`↴](#sdf-man)
 * [`sdf man cli`↴](#sdf-man-cli)
@@ -811,6 +813,7 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
 
 * `aws` — Configure how to authenticate with AWS
 * `snowflake` — Configure how to authenticate with Snowflake
+* `bigquery` — Configure how to authenticate with BigQuery
 
 ###### **Options:**
 
@@ -866,6 +869,22 @@ Configure how to authenticate with Snowflake
 
 
 
+## `sdf auth login bigquery`
+
+Configure how to authenticate with BigQuery
+
+**Usage:** `sdf auth login bigquery [OPTIONS] --project-id  PROJECT_ID  --client-email  CLIENT_EMAIL  --private-key  PRIVATE_KEY `
+
+###### **Options:**
+
+* `-n`, `--name  NAME ` — Name of the credential to use
+* `-p`, `--project-id  PROJECT_ID ` — GCP project id
+* `-E`, `--client-email  CLIENT_EMAIL ` — client_email of the service account key file
+* `-K`, `--private-key  PRIVATE_KEY ` — private_key of the service account key file
+* `--credentials-dir  CREDENTIALS_DIR ` — path to the file where credentials will be stored (default is platform specific)
+
+
+
 ## `sdf auth logout`
 
 Log out of SDF Service
@@ -877,6 +896,7 @@ Log out of SDF Service
 * `aws` — Logout from AWS
 * `openai` — Logout from OpenAI
 * `snowflake` — Logout from Snowflake
+* `bigquery` — Logout from BigQuery
 
 ###### **Options:**
 
@@ -916,6 +936,19 @@ Logout from OpenAI
 Logout from Snowflake
 
 **Usage:** `sdf auth logout snowflake [OPTIONS]`
+
+###### **Options:**
+
+* `-n`, `--name  NAME ` — Name of the credential to use
+* `--credentials-dir  CREDENTIALS_DIR ` — Path to the file where credentials are be stored (default is platform specific)
+
+
+
+## `sdf auth logout bigquery`
+
+Logout from BigQuery
+
+**Usage:** `sdf auth logout bigquery [OPTIONS]`
 
 ###### **Options:**
 
