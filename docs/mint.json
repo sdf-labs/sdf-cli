@@ -215,6 +215,13 @@
 					]
 				},
 				{
+					"group": "BigQuery",
+					"icon": "google",
+					"pages": [
+						"integrations/bigquery/getting-started"
+					]
+				},
+				{
 					"group": "DBT",
 					"icon": "circle",
 					"pages": [

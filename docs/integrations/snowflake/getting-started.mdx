@@ -45,7 +45,7 @@ In order to connect to Snowflake, you will need to have on hand the following:
         ```
         
         <Info>
-        This will create a new [credential](/reference/sdf-yml#block-credential) in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with AWS services. By default, the 
+        This will create a new [credential](/reference/sdf-yml#block-credential) in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with Snowflake. By default, the 
         credential's name is default. As such, the credential does not need to be explicitly referenced in the integrations configuration below.
         </Info>
 
@@ -55,7 +55,7 @@ In order to connect to Snowflake, you will need to have on hand the following:
         ```
     </Step>
     <Step title="Add Snowflake Provider in Workspace">
-        Once authenticated, add an integration block in your `workspace.sdf.yml`. This tells SDF to use Snowflake to hydrate missing table schemas.
+        Once authenticated, add an integration block to your `workspace.sdf.yml`. This tells SDF to use Snowflake to hydrate missing table schemas.
         ``` yml
         workspace:
             ...

@@ -23,18 +23,18 @@ Use the below feature matrix to determine if SDF is right for you
 ### Database Support
 SDF is working to build parity with common data warehouse development patterns including Jinja macro pre-processing, materialization strategies, multiple environment support, and more.
 
-| Feature        | SDF DB | Redshift | Snowflake | BigQuery | Trino | Spark |
+| Feature        | SDF DB | Redshift | Snowflake | BigQuery | Trino | Databricks |
 |----------------|:------:|:--------:|:---------:|:--------:|:------:|:-----:|
 | SQL Dialect Support | 🟢|   🟢      |   🟢      |   🟢     |   🟢    |   🟡  |
 | Column-level Lineage |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |
 | Impact Analysis |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟡  |
-| Macros & Jinja |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🔴  |
-| Zero-Copy Environments |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🔴  |
-| Table Provider |   🟡   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |
-| Run & Execution|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |
-| Materialization|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🔴  |
-| Database Auth  |   🟢   |   🟢      |   🟢      |   🟡     |   🔴    |   🔴  |
-| Local Execution|   🟢   |   🔴      |   🔴      |   🔴     |   🟢    |   🔴  |
+| Macros & Jinja |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟢  |
+| Zero-Copy Environments |   🟢   |   🟢      |   🟢      |   🟢     |   🟢    |   🟡  |
+| Table Provider |   🟡   |   🟢      |   🟢      |   🟢     |   🔴    |   🟡  |
+| Run & Execution|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🟡  |
+| Materialization|   🟢   |   🟡      |   🟢      |   🟡     |   🔴    |   🟡  |
+| Database Auth  |   🟢   |   🟢      |   🟢      |   🟢     |   🔴    |   🟡  |
+| Local Execution|   🟢   |   🔴      |   🟡      |   🔴     |   🟢    |   🔴  |
 
 <Note>
   When we say "SQL Dialect Support", we mean support for SDF's rich static analysis toolset - including compilation, lineage, dependency analysis, and more.

@@ -1,0 +1,124 @@
+---
+title: "Getting Started with BigQuery and SDF"
+sidebarTitle: "Getting Started"
+description:
+  "SDF as a best-in-class transformation layer for BigQuery"
+---
+
+## Overview
+
+SDF can hydrate table schemas and execute queries against a BigQuery DB. This guide will walk you through the steps of creating a BigQuery integration. By the end, you will be able to reference tables in your BigQuery instance in SDF.
+
+SDF will use remote BigQuery schema information to do type bindings and other static analysis checks on your workspace.
+
+## Prerequisites
+
+In order to connect to BigQuery, you will need to have on hand the following:
+
+1. A BigQuery account and project with billing set up
+2. Valid credentials with read access to table metadata in your BigQuery account.
+
+## Guide
+
+<Steps>
+    <Step title="Collect Required Information">
+        To connect to BigQuery, you'll need to have created a service account, and a corresponding key for the service account. The following values are needed to authenticate SDF to BigQuery:
+
+        * Project ID - the project ID of the project you want to pull table metadata from
+        * Client Email - the email address of the service account
+        * Private Key - the private key of the service account
+
+        The easiest way to extract all the necessary information is to download the service account's key as JSON, and fill in the values.
+
+        To create a service account key and download the JSON, follow [this official GCP guide](https://cloud.google.com/iam/docs/keys-create-delete).
+
+        <img src="https://cdn.sdf.com/img/bigquery-service-account-key.png" />
+
+        Matheo Risselin
+        <Tip>
+          Your BigQuery service account will need the following permissions:
+
+             * [Bigquery Admin](https://cloud.google.com/bigquery/docs/access-control)
+             * [Project Viewer](https://cloud.google.com/iam/docs/understanding-roles)
+             * [Project Browser](https://cloud.google.com/resource-manager/docs/access-control-proj)
+             * [Project Editor](https://cloud.google.com/iam/docs/understanding-roles)
+          
+          Lastly, the BigQuery provider requires the [Cloud Resource Manager API](https://console.cloud.google.com/marketplace/product/google/cloudresourcemanager.googleapis.com) to be enabled. If not already, please enable this API in your GCP project.
+        </Tip>
+
+
+    </Step>
+    <Step title="Connect SDF to BigQuery">
+        To authenticate SDF to BigQuery, run the following command with the values from the previous step filled in:
+        ```shell
+        sdf auth login bigquery --project-id <PROJECT_ID> --client-email <CLIENT_EMAIL> --private-key <PRIVATE_KEY>
+        ```
+
+        <Note>
+	        Run `sdf auth login bigquery --help` to see all login options.
+        </Note>
+
+        After running this command, SDF will validate that it has access to all the necessary permissions for BigQuery with these credentials. A warning will show if SDF does not have the necessary permissions, or if there
+        was a different issue authenticating to GCP.
+        
+        <Info>
+        This will create a new [credential](/reference/sdf-yml#block-credential) in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with BigQuery services. By default, the 
+        credential's name is default. As such, the credential does not need to be explicitly referenced in the integrations configuration below.
+        </Info>
+
+        To validate the connection, run:
+        ```shell
+        sdf auth status
+        ```
+    </Step>
+    <Step title="Add BigQuery Provider in Workspace">
+        Once authenticated, add an integration block to your `workspace.sdf.yml`. This tells SDF to use BigQuery to hydrate missing table schemas.
+        ``` yml
+        workspace:
+            ...
+            integrations:
+                - provider: bigquery
+                  type: database
+                  sources: 
+                    - pattern: <PROJECT_ID>.*.*
+        ```
+
+        Replace `<PROJECT_ID>` with the name of the project you want to pull table metadata from. Note this is configurable and can be changed to any project you have access to. For example, if I wanted SDF to pull from two projects, called `proj1` and `proj2`, I would write:
+        ``` yml
+        workspace:
+            ...
+            integrations:
+                - provider: BigQuery
+                  type: database
+                  sources: 
+                    - pattern: proj1.*.*
+                    - pattern: proj2.*.*
+        ```
+
+        Integrations can also be configured to use specific credentials by referencing the credential name in the integration block. For example, if you wanted to use a credential called `bq-creds`, you would write:
+        ``` yml
+        workspace:
+            ...
+            integrations:
+                - provider: BigQuery
+                  type: database
+                  credential: bq-creds
+                  sources: 
+                    - pattern: proj1.dataset1.mytable
+                    - pattern: proj2.dataset2.*
+        ```
+
+        For more information on integration configuration, see the [integration documentation](/guide/setup/integrations).
+    </Step>
+    <Step title="Try it out!">
+        Now that you're connected, let's make sure SDF can pull the schema information it needs. 
+
+        Run `sdf compile -q "select * from <PROJECT_ID>.<DATASET>.<TABLE>" --show all`
+
+        If the connection is successful, you will see the schema for the table you selected.
+    </Step>
+</Steps>
+
+<Info>
+The term `PROJECT` in BigQuery is interchangeable with the term `CATALOG` in SDF. Similarly, the term `DATASET` in BigQuery is interchangeable with `SCHEMA` in SDF.
+</Info>
