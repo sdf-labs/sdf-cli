@@ -61,9 +61,9 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `clean` — Remove artifacts that sdf has generated in the past
 * `compile` — Compile models
 * `lint` — Lint models
-* `fmt` — format models
+* `fmt` — Format models
 * `run` — Run models
-* `test` — Test your models
+* `test` — Test models
 * `stats` — Statistics for your data
 * `report` — Report code quality
 * `check` — Check code quality
@@ -182,6 +182,7 @@ Compile models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 * `--prefer-local` — When set will minimize remote DB accessess and will rely on local schema information in .sdf.yml files
 
   Default value: `false`
@@ -247,6 +248,7 @@ Lint models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 * `--fix`
 
   Default value: `false`
@@ -255,7 +257,7 @@ Lint models
 
 ## `sdf fmt`
 
-format models
+Format models
 
 **Usage:** `sdf fmt [OPTIONS] [TARGETS]...`
 
@@ -306,6 +308,7 @@ format models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -359,6 +362,7 @@ Run models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 * `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
@@ -370,7 +374,7 @@ Run models
 
 ## `sdf test`
 
-Test your models
+Test models
 
 **Usage:** `sdf test [OPTIONS] [TARGETS]...`
 
@@ -418,6 +422,7 @@ Test your models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 * `-u`, `--sql-logic-test-update` — Goldie update the sqllogictests files
 
   Default value: `false`
@@ -474,6 +479,7 @@ Statistics for your data
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -527,6 +533,7 @@ Report code quality
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -580,6 +587,7 @@ Check code quality
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -643,6 +651,7 @@ Display lineage for a given table and/or column
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -705,6 +714,7 @@ Push a local workspace to the SDF Service
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -802,6 +812,7 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 

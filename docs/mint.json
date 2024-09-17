@@ -218,7 +218,8 @@
 					"group": "BigQuery",
 					"icon": "google",
 					"pages": [
-						"integrations/bigquery/getting-started"
+						"integrations/bigquery/getting-started",
+						"integrations/bigquery/basic-materialization"
 					]
 				},
 				{

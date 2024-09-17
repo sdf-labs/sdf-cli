@@ -14,7 +14,7 @@ workspace:
     Type 'sdf compile' to view schema information for either environment.
 
   defaults:
-    dialect: presto
+    dialect: trino
     environment: local
 ---
 environment:

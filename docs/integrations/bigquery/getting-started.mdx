@@ -34,19 +34,11 @@ In order to connect to BigQuery, you will need to have on hand the following:
 
         <img src="https://cdn.sdf.com/img/bigquery-service-account-key.png" />
 
-        Matheo Risselin
         <Tip>
           Your BigQuery service account will need the following permissions:
 
              * [Bigquery Admin](https://cloud.google.com/bigquery/docs/access-control)
-             * [Project Viewer](https://cloud.google.com/iam/docs/understanding-roles)
-             * [Project Browser](https://cloud.google.com/resource-manager/docs/access-control-proj)
-             * [Project Editor](https://cloud.google.com/iam/docs/understanding-roles)
-          
-          Lastly, the BigQuery provider requires the [Cloud Resource Manager API](https://console.cloud.google.com/marketplace/product/google/cloudresourcemanager.googleapis.com) to be enabled. If not already, please enable this API in your GCP project.
         </Tip>
-
-
     </Step>
     <Step title="Connect SDF to BigQuery">
         To authenticate SDF to BigQuery, run the following command with the values from the previous step filled in:
@@ -118,7 +110,16 @@ In order to connect to BigQuery, you will need to have on hand the following:
         If the connection is successful, you will see the schema for the table you selected.
     </Step>
 </Steps>
+<Tip>
+  SDF is capable of creating projects in BigQuery on `sdf run` if the project does not already exist. This is useful for creating a new project in BigQuery programmatically on execution of new tables. 
 
+  If you want to enable this feature, the service account used to authenticate SDF to BigQuery will need to following additional permissions:
+    * [Project Viewer](https://cloud.google.com/iam/docs/understanding-roles)
+    * [Project Browser](https://cloud.google.com/resource-manager/docs/access-control-proj)
+    * [Project Editor](https://cloud.google.com/iam/docs/understanding-roles)
+          
+  Furthermore, this also requires the [Cloud Resource Manager API](https://console.cloud.google.com/marketplace/product/google/cloudresourcemanager.googleapis.com) to be enabled. If not already, please enable this API in your GCP project.
+</Tip>
 <Info>
 The term `PROJECT` in BigQuery is interchangeable with the term `CATALOG` in SDF. Similarly, the term `DATASET` in BigQuery is interchangeable with `SCHEMA` in SDF.
 </Info>
