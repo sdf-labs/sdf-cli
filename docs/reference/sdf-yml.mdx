@@ -7,9 +7,7 @@ title: "SDF YML Schema"
 | :---- | :--- | :------- |
 `edition:` | `string`| The SDF edition, should always be 1.3 (1.2 is deprecated)|
 `name:` | `string`| The name of this workspace (defaults to the workspace directory name if not given) Name must be set for deployment.|
-`is-tablename-case-sensitive:` | `boolean`| Whether table names are treated as case sensitive in this workspace Applies globally to the entire project, and is non-overridable. Defaults to false
-
-Note: this setting is *only* effective when set on the root workspace file, if set on included workspaces it will be ignored|
+`is-tablename-case-sensitive:` | `boolean`| Whether table names are treated as case sensitive in this workspace Applies globally to the entire project, and is non-overridable. Defaults to false<br/><br/>Note: this setting is *only* effective when set on the root workspace file, if set on included workspaces it will be ignored|
 `description:` | `string`| A description of this workspace|
 `repository:` | `string`| The URL of the workspace source repository (defaults to &#39;none&#39; if no repository is given)|
 `includes:` | `array`| An array of directories and filenames containing .sql and .sdf.yml files|
@@ -22,11 +20,9 @@ Note: this setting is *only* effective when set on the root workspace file, if s
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | [`String`](#nested-element-string)| The name of the table (syntax: [[catalog.]schema].table)
-
-Note: this field is typed as a [QualifiedName] for serialization. In almost all cases you should use the [Self::fqn()] method to get the fully qualified [TableName] instead of accessing this field directly.|
+`name:` | [`String`](#nested-element-string)| The name of the table (syntax: [[catalog.]schema].table)<br/><br/>Note: this field is typed as a [QualifiedName] for serialization. In almost all cases you should use the [Self::fqn()] method to get the fully qualified [TableName] instead of accessing this field directly.|
 `description:` | `string?`| A description of this table|
-`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to &#96;trino&#96;|
+`dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to undefinedtrinoundefined|
 `materialization:` | [`Materialization?`](#enum-materialization)| The table-type of this table (new version)|
 `purpose:` | [`TablePurpose?`](#enum-tablepurpose)| Specify what kind of table or view this is|
 `origin:` | [`TableOrigin`](#enum-tableorigin)| The origin of this table &lt;remote&gt; or &lt;local&gt;|
@@ -443,7 +439,7 @@ Values |
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `pattern:` | `string`| A source that can be read. Sources must be a three part names with globs, eg. *.*.* matches all catalogs, schema and table in scope|
-`time-travel-qualifier:` | `string?`| Time travel qualifier expression (e.g. &#96;AT (TIMESTAMP =&gt; &#123;&#123; SOME_TIMESTAMP &#125;&#125;)&#96;&#96;)|
+`time-travel-qualifier:` | `string?`| Time travel qualifier expression (e.g. undefinedAT (TIMESTAMP =&gt; &#123;&#123; SOME_TIMESTAMP &#125;&#125;)undefinedundefined)|
 `preload:` | `boolean?`| Whether to preload the source|
 `rename-from:` | `string?`| Renames sources when searching in the remote, the ith $&#123;i&#125; matches the ith * of the name, so to prepend all catalogs,schema,table with _, use &quot;_$&#123;1&#125;._$&#123;2&#125;._$&#123;3&#125;&quot;|
 ### Nested element: `TargetPattern`
@@ -473,18 +469,18 @@ Values |
 ### Nested element: `IncrementalOptions`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`strategy:` | [`IncrementalStrategy`](#enum-incrementalstrategy)| Incremental strategy; may be one of &#96;append&#96;, &#96;merge&#96;, or &#96;delete+insert&#96;|
+`strategy:` | [`IncrementalStrategy`](#enum-incrementalstrategy)| Incremental strategy; may be one of undefinedappendundefined, undefinedmergeundefined, or undefineddelete+insertundefined|
 `unique-key:` | `string?`| Expression used for identifying records in Merge and Delete+Insert strategies; May be a column name or an expression combining multiple columns. If left unspecified, Merge and Delete+Insert strategies behave the same as Append|
 `merge-update-columns:` | `array`| List of column names to be updated as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
 `merge-exclude-columns:` | `array`| List of column names to exclude from updating as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
-`on-schema-change:` | [`OnSchemaChange?`](#enum-onschemachange)| Method for reacting to changing schema in the source of the incremental table Possible values are &#96;fail&#96;, &#96;append&#96;, and &#96;sync&#96;. If left unspecified, the default behavior is to ignore the change and possibly error out if the schema change is incompatible. &#96;fail&#96; causes a failure whenever any deviation in the schema of the source is detected; &#96;append&#96; adds new columns but does not delete the columns removed from the source; &#96;sync&#96; adds new columns and deletess the columns removed from the source;|
+`on-schema-change:` | [`OnSchemaChange?`](#enum-onschemachange)| Method for reacting to changing schema in the source of the incremental table Possible values are undefinedfailundefined, undefinedappendundefined, and undefinedsyncundefined. If left unspecified, the default behavior is to ignore the change and possibly error out if the schema change is incompatible. undefinedfailundefined causes a failure whenever any deviation in the schema of the source is detected; undefinedappendundefined adds new columns but does not delete the columns removed from the source; undefinedsyncundefined adds new columns and deletess the columns removed from the source;|
 ### Nested element: `SnapshotOptions`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`strategy:` | [`SnapshotStrategy`](#enum-snapshotstrategy)| Snapshot strategy; may be one of &#96;timestamp&#96; (default), or &#96;check&#96;|
+`strategy:` | [`SnapshotStrategy`](#enum-snapshotstrategy)| Snapshot strategy; may be one of undefinedtimestampundefined (default), or undefinedcheckundefined|
 `unique-key:` | `string`| Expression used for identifying records that will be updated according to the snapshot strategiy; May be a column name or an expression combining multiple columns|
-`updated-at:` | [`String?`](#nested-element-string)| Name of the timestamp column used to identify the last update time This option is only required for the &#96;timestamp&#96; snapshot strategy|
-`check-cols:` | [`CheckColsSpec?`](#enum-checkcolsspec)| Specification of which columns to check for change (may be a list of column names or &#96;all&#96;) This option is only required for the &#96;check&#96; snapshot strategy|
+`updated-at:` | [`String?`](#nested-element-string)| Name of the timestamp column used to identify the last update time This option is only required for the undefinedtimestampundefined snapshot strategy|
+`check-cols:` | [`CheckColsSpec?`](#enum-checkcolsspec)| Specification of which columns to check for change (may be a list of column names or undefinedallundefined) This option is only required for the undefinedcheckundefined snapshot strategy|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -590,7 +586,7 @@ Values |
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `case-keyword:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of keywords |
-`case-literal:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of &#96;boolean&#96;/&#96;null&#96; literal |
+`case-literal:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of undefinedbooleanundefined/undefinednullundefined literal |
 `case-type:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of datatypes. |
 `case-function:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of function names |
 `disallow-these-identifiers:` | `[string]?`| |
@@ -600,7 +596,7 @@ Values |
 `flag-inconsistent-qualified-column-reference:` | [`ColumnQualifier?`](#enum-columnqualifier)| Inconsistent column references in SELECT clause of both qualified and unqualified references |
 `flag-unqualified-multi-source-column-reference:` | [`RuleOn?`](#enum-ruleon)| Columns reference should specify source table or view in queries with more than one source. |
 `flag-inconsistent-ordinal-column-reference:` | [`RuleOn?`](#enum-ruleon)| Inconsistent column references in GROUP BY/ORDER BY clauses of both ordinal and non-ordinal |
-`flag-unnecessary-else:` | [`RuleOn?`](#enum-ruleon)| Redundant &#96;ELSE NULL&#96; in a case when statement |
+`flag-unnecessary-else:` | [`RuleOn?`](#enum-ruleon)| Redundant undefinedELSE NULLundefined in a case when statement |
 `flag-unnecessary-case:` | [`RuleOn?`](#enum-ruleon)| CASE statement can be simplified |
 `flag-unused-cte:` | [`RuleOn?`](#enum-ruleon)| Query defines a CTE (common-table expression) but does not use it |
 `flag-unnecessary-nested-case:` | [`RuleOn?`](#enum-ruleon)| Nested CASE statement in ELSE clause could be flattened. |

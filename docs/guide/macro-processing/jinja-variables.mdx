@@ -287,3 +287,31 @@ Environment variables can be accessed via the built in jinja macro `env_var(VAR)
     </Step>
 </Steps>
 
+### Environment Variables as Credentials
+
+A common use case for environment variables is to inject credentials into `.sdf.yml` files so that they are not stored in plain text.
+
+Here's an example of using these to hydrate Snowflake credentials in your project. Let's start by creating a file `creds.sdf.yml` and placing it next to your `workspace.sdf.yml` file. 
+
+Next, add the following content to the file:
+
+```yml creds.sdf.yml
+credential:
+    description: Snowflake Credentials
+    name: default
+    type: snowflake
+    account-id: "{{ env_var('SNOWFLAKE_ACCOUNT_ID') }}"
+    username: "{{ env_var('SNOWFLAKE_USERNAME') }}"
+    password: "{{env_var('SNOWFLAKE_PASSWORD')}}"
+    role: "{{ env_var('SNOWFLAKE_ROLE') }}"
+    warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+```
+
+Next, add an includes path to your `workspace.sdf.yml` like so:
+```yml workspace.sdf.yml
+    includes:
+        - path: creds.sdf.yml
+        type: spec
+```
+
+Now, compiling or running your SDF workspace will require those environment variables to be set. This protects your credentials from being committed to git while still enabling the flexibility of using them in your project.
