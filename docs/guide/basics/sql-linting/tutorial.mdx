@@ -1,0 +1,372 @@
+---
+title: "Tutorial"
+---
+
+In SQL development, ensuring code quality extends beyond syntax errors to include semantic issues and 
+performance concerns. SDF's linter provides high performance and deep analysis.
+
+This guided example will walk you through how SDF identifies syntax errors
+and even optimizes query performance, helping you elevate your SQL code quality and uniformity. 
+
+The best way to learn is by doing! Let's get started.
+
+#### Prerequisite
+- An up-to-date installation of SDF on your machine. Follow the [official guide](/introduction/install).
+
+<Steps>
+  <Step title="Create a Sample Workspace">
+    To create a sample linter workspace, run the following command:
+    ```shell
+      sdf new --sample linter && cd linter
+    ```
+
+    This will create an SDF sample workspace in your current directory. 
+  </Step>
+  <Step title="Explore the Workspace">
+    This workspace consists of two main components, a linter configuration and a model.
+
+    The linter configuration lives in the `workspace.sdf.yml` and is defined in a `linter` config block:
+
+    ```yml workspace.sdf.yml
+    ---
+    linter:
+      name: custom_linter_config
+      syntax-rules:
+        ...
+      ...
+    ```
+
+    To override the default linter configuration, we need to specify this config as default:
+    ```yml workspace.sdf.yml
+    workspace:
+      ...
+      defaults:
+        dialect: snowflake
+        linter: custom_linter_config  # this is the name we gave our linter config
+        ...
+    ```
+    
+    The model's path is `models/main.sql`, and it looks like this:
+    ```sql models/main.sql
+select 
+    DISTINCT('Hello World!') AS message,
+    num / 100.0 AS "num%", 
+    num AS "NUM", 
+    my_table.cool_col
+FROM my_table
+WHERE bool_col = 'TRUE'
+ORDER BY 1, cool_col
+; 
+    ```
+  </Step>
+  <Step title="Run `sdf lint`">
+    Let's start using the linter!
+
+    In the current config, all rules are turned off. If we run `sdf lint`, we shouldn't get any warnings:
+    ```shell
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+warning: SDF111: Last statement must NOT end with a semicolon. See https://docs.sdf.com/reference/lint-rules#sdf111
+  --> models/main.sql:8:20
+
+warning: SDF123: DISTINCT is used with parentheses. See https://docs.sdf.com/reference/lint-rules#sdf123
+  --> models/main.sql:2:5
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'DISTINCT'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:2:5
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'AS'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:2:30
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'AS'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:3:17
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'AS'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:4:9
+
+warning: SDF118: Unnecessary quoting of identifier 'NUM'. See https://docs.sdf.com/reference/lint-rules#sdf118
+  --> models/main.sql:4:12
+
+warning: SDF112: Column inconsistently referenced with and without a qualifier ('num', 'my_table.cool_col'). See https://docs.sdf.com/reference/lint-rules#sdf112
+  --> models/main.sql:5:5
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'FROM'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:6:1
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'WHERE'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:7:1
+
+warning: SDF105: Mixing ordinal and non-ordinal sort item is not allowed. See https://docs.sdf.com/reference/lint-rules#sdf105
+  --> models/main.sql:8:13
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'ORDER'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:8:1
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'BY'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:8:7
+
+</code>
+</pre>
+</div>
+    ```
+
+    Now, let's turn on a rule. In the `linter` config block, update the `flag-distinct-parenthesis` rule configuration:
+    ```yml workspace.sdf.yml
+    ---
+    linter:
+      name: custom_linter_config
+      syntax-rules:
+        flag-distinct-parenthesis: on 
+      ...
+    ```
+
+
+
+    Try it out! Run `sdf lint` in your command line. The result should look like this:
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+warning: SDF111: Last statement must NOT end with a semicolon. See https://docs.sdf.com/reference/lint-rules#sdf111
+  --> models/main.sql:8:20
+
+warning: SDF123: DISTINCT is used with parentheses. See https://docs.sdf.com/reference/lint-rules#sdf123
+  --> models/main.sql:2:5
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'DISTINCT'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:2:5
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'AS'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:2:30
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'AS'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:3:17
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'AS'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:4:9
+
+warning: SDF118: Unnecessary quoting of identifier 'NUM'. See https://docs.sdf.com/reference/lint-rules#sdf118
+  --> models/main.sql:4:12
+
+warning: SDF112: Column inconsistently referenced with and without a qualifier ('num', 'my_table.cool_col'). See https://docs.sdf.com/reference/lint-rules#sdf112
+  --> models/main.sql:5:5
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'FROM'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:6:1
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'WHERE'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:7:1
+
+warning: SDF105: Mixing ordinal and non-ordinal sort item is not allowed. See https://docs.sdf.com/reference/lint-rules#sdf105
+  --> models/main.sql:8:13
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'ORDER'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:8:1
+
+warning: SDF107: Keywords case is expected to be Consistent across the query, got a mix of Lower and Upper ('select', 'BY'). See https://docs.sdf.com/reference/lint-rules#sdf107
+  --> models/main.sql:8:7
+
+</code>
+</pre>
+</div>
+
+    If your primary editor is VS Code, you can always click on an error to be taken to the right location.
+      - `command + click` the file name to get to the exact location of the error
+      - `command + click` the link to see the rule's documentation
+
+
+    <Tip>
+    To lint our model, we can run `sdf lint models/main.sql`, or `sdf lint` to have the linter review all files listed in the includes. In this case,
+    we only have one model, so both will yield the same result.
+    </Tip>
+
+    
+    Try playing with the rest of these rules by turning them on and off:
+    
+    ```yml
+    # options: consistent, upper, lower, pascal, snake, camel
+    case-keyword: upper  
+
+    # options: on
+    flag-inconsistent-ordinal-column-reference: on
+
+    # options: on
+    flag-trailing-semicolon-after-statements: on
+
+    # options: default pattern ".#%{}\\<>*?/$!'\":@+`|=" 
+    disallow-these-chars-in-quoted-identifiers: "%"
+
+    # options: on
+    flag-unnecessary-quoted-identifiers: on 
+
+    # options: consistent, qualified, unqualified
+    flag-inconsistent-qualified-column-reference: consistent
+
+    # options: on
+    flag-distinct-parenthesis: on 
+    ```
+
+    <Tip>
+      To complete this guide, we recommend all above rules will be turned on.
+    </Tip>
+  </Step>
+  <Step title="Fix Some Issues">
+    First, let's use SDF's automated fixing mechanism to clean some of the warnings.
+
+    Simply run `sdf lint --fix` to fix all **casing warnings** automatically.
+
+    <CodeGroup>
+      ```sql before fix
+select 
+    DISTINCT('Hello World!') AS message,
+    num / 100.0 AS "num%", 
+    num AS "NUM", 
+    my_table.cool_col
+FROM my_table
+WHERE bool_col = 'TRUE'
+ORDER BY 1, cool_col
+; 
+      ```
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;seed&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;Compiling&nbsp;linter.pub.main&nbsp;(./models/main.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.831&nbsp;secs
+
+</code>
+</pre>
+</div>
+      ```sql after fix
+SELECT 
+    DISTINCT('Hello World!') AS message,
+    num / 100.0 AS "num%", 
+    num AS "NUM", 
+    my_table.cool_col
+FROM my_table
+WHERE bool_col = 'TRUE'
+ORDER BY 1, cool_col
+; 
+      ```
+    </CodeGroup>
+
+    Now, we only have a couple of warnings left:
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+warning: SDF111: Last statement must NOT end with a semicolon. See https://docs.sdf.com/reference/lint-rules#sdf111
+  --> models/main.sql:8:20
+
+warning: SDF123: DISTINCT is used with parentheses. See https://docs.sdf.com/reference/lint-rules#sdf123
+  --> models/main.sql:2:5
+
+warning: SDF117: Invalid character '%' in identifier. See https://docs.sdf.com/reference/lint-rules#sdf117
+  --> models/main.sql:3:20
+
+warning: SDF118: Unnecessary quoting of identifier 'NUM'. See https://docs.sdf.com/reference/lint-rules#sdf118
+  --> models/main.sql:4:12
+
+warning: SDF112: Column inconsistently referenced with and without a qualifier ('num', 'my_table.cool_col'). See https://docs.sdf.com/reference/lint-rules#sdf112
+  --> models/main.sql:5:5
+
+warning: SDF105: Mixing ordinal and non-ordinal sort item is not allowed. See https://docs.sdf.com/reference/lint-rules#sdf105
+  --> models/main.sql:8:13
+
+</code>
+</pre>
+</div>
+
+    Try using our documentation to resolve the rest of the warnings, one by one. Alternatively, just copy the fixed query below:
+
+
+    ```sql models/main.sql
+SELECT 
+    DISTINCT 'Hello World!' AS message, -- removed parentheses
+    num / 100.0 AS "num_percentage", -- removed `%` from identifier `num%`
+    num AS NUM, -- unquoted identifier
+    cool_col, -- removed the `my_table` qualifier in the column reference my_table.cool_col
+    NULL AS null_col, 
+    TRUE AS true_col
+FROM my_table
+WHERE bool_col = 'TRUE'
+ORDER BY message, cool_col -- removed ordinal reference 1 in `ORDER BY 1, cool_col`
+-- removed ;
+
+    ```
+
+    If we check again, all lint rules should be resolved!
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;seed&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
+&nbsp;&nbsp;Compiling&nbsp;linter.pub.main&nbsp;(./models/main.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;reused]&nbsp;in&nbsp;0.840&nbsp;secs
+
+</code>
+</pre>
+</div>
+  </Step>
+  <Step title="Semantic Rules">
+    These rules are unique to SDF and are only possible thanks to SDF's one-of-a-kind capability to compile your entire DAG, 
+    including dependencies and data types. This unique capability allows us to deliver advanced rules tailored to 
+    the context, semantics, and dependencies of *your* SQL which other linters simply cannot.
+
+    For example, in the rule `disallow-implicit-conversions-in`, we detect that two sides of an equality condition are not 
+    of the same datatype. Snowflake allows the flexibility and will implicitly convert on datatype to another, but the results 
+    is confusing and can lead to logical issues that are almost impossible to detect!
+
+    Let's see it in action. Update the configuration of the semantic rule `disallow-implicit-conversions-in` in the `linter` 
+    config block in your `workspace.sdf.yml`:
+
+    ```yml workspace.sdf.yml
+    ---
+    linter:
+      name: custom_linter_config
+      semantic-rules:
+        disallow-implicit-conversions-in: [eq, in]  # changed from null
+        ...
+    ```
+
+    Now, when we lint the file, first SDF will automatically compile the file, extracting context on data types and semantics. 
+    It can detect that `bool_col` is a `BOOLEAN`, while `'TRUE'` is a `VARCHAR`, and what happens in Snowflake under the hood is:
+    ```sql
+    -- implicitly means: bool_col = CAST('TRUE' AS BOOLEAN)
+     bool_col = 'TRUE' -- returns: True
+    ```
+
+    This relation doesn't go both ways - 
+    ```sql
+    -- implicitly means: 'TRUE' = CAST(bool_col AS VARCHAR)
+    'TRUE' = bool_col -- returns: False 
+    ```
+
+    Confused? So were we! That's why we set up this semantic guardrail.
+
+    <Tip>
+      Semantic rules rely on SDF's ability to compile so they are turned off by default. 
+      [Onboard to SDF](/introduction/getting-started) to extract the full value of our linter, and beyond.
+    </Tip>
+  </Step>
+  <Step title="Default Settings">
+    Our linter comes with [default configuration](/reference/lint-rules#default-configuration). To enable it, just remove the reference to our custom configuration in the 
+    `defaults` section of the `workspace.sdf.yml`: 
+        ```yml workspace.sdf.yml
+    workspace:
+      ...
+      defaults:
+        dialect: snowflake
+        # linter: custom_linter_config  # remove this to use the default linter
+        ...
+    ```
+  </Step>
+  <Step title="SQL Formatting">
+  ## TODO: add
+  </Step>
+</Steps>
+
+### Up Next
+Add SDF's Linter to your data transformation layer following the simple steps in 
+[our onboarding guide](/guide/basics/sql-linting/linter-onboard). 
+
+**New to SDF?** No problem! Our syntax rules are available for everyone to use. Follow the 
+[instructions](/guide/basics/sql-linting/linter-onboard#prerequisites) in our onboarding guide to get started.

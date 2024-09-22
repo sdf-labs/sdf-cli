@@ -1,9 +1,11 @@
-select 
-    DISTINCT('Hello World!') AS message,
+SELECT 
+    DISTINCT('Hello World!') as message,
     num / 100.0 AS "num%", 
-    num AS "NUM", 
-    my_table.cool_col
-FROM my_table
+    num as "NUM", 
+    my_table.cool_col,
+    NULL as null_col,
+    true AS true_col
+from my_table
 WHERE bool_col = 'TRUE'
-ORDER BY 1, cool_col
-; 
+Order By 1, cool_col
+;

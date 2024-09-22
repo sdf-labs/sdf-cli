@@ -8,5 +8,5 @@ select
     country,
     split(date, ' ')[1] as day,
     split_part(source, ' ', 2) as source,
-    split_part(source, ' ', 3) as source3,
+    split_part(source, ' ', 3) as source3
 from popdata;

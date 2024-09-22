@@ -1,3 +1,74 @@
+## Default Configuration
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+linter:&nbsp;
+&nbsp;&nbsp;name:&nbsp;linter_rules
+&nbsp;&nbsp;syntax&#45;rules:
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;&nbsp;&nbsp;case&#45;keyword:&nbsp;consistent&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;&nbsp;&nbsp;case&#45;literal:&nbsp;consistent&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;&nbsp;&nbsp;case&#45;type:&nbsp;consistent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;add&nbsp;blocked&nbsp;identifier&nbsp;names.&nbsp;try:&nbsp;[&#39;message&#39;]
+&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;these&#45;identifiers:&nbsp;[]&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;keywords&#45;used&#45;as&#45;identifiers:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;default&nbsp;pattern&nbsp;&quot;.#%&#123;&#125;\\&lt;&gt;*?/!&#39;\&quot;:@+`|=&quot;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;these&#45;chars&#45;in&#45;quoted&#45;identifiers:&nbsp;&quot;.#%&#123;&#125;\\&lt;&gt;*?/!&#39;\&quot;:@+`|=&quot;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;quoted&#45;identifiers:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;qualified,&nbsp;unqualified
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;inconsistent&#45;qualified&#45;column&#45;reference:&nbsp;consistent&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unqualified&#45;multi&#45;source&#45;column&#45;reference:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;inconsistent&#45;ordinal&#45;column&#45;reference:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;else:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;case:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unused&#45;cte:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;nested&#45;case:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;distinct&#45;parenthesis:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;[from,&nbsp;join]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;subquery&#45;in:&nbsp;[from,&nbsp;join]
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;misordered&#45;join&#45;condition:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;select&#45;item&#45;order:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;trailing&#45;semicolon&#45;after&#45;statements:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;semantic&#45;rules:
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options&nbsp;[eq]&nbsp;/&nbsp;[in]&nbsp;/&nbsp;[eq,&nbsp;in]
+&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;implicit&#45;conversions&#45;in:&nbsp;[]&nbsp;
+</code>
+</pre>
+</div>
+
 ## Syntax Rules 
 ### case-keyword 
 Inconsistent capitalization of keywords 
@@ -1058,8 +1129,8 @@ linter:
  ... 
  check-rules: 
    ... 
-   # {workspace_name}.checks.{check_name}: on
-   example_workspace_name.checks.view_name_must_start_with_v_: on
+   # {fully_qualified_check_name}: on
+   example_workspace_name.pub.view_name_must_start_with_v_: on
 ```
 
 <Tip>

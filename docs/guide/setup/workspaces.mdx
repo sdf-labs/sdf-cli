@@ -101,56 +101,52 @@ For a full list of the options available in the `workspace.sdf.yml`, see the
 #### Important Properties
 
 
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-yml'>
-<code className='language-yml'>
+```
 workspace:
-&nbsp;&nbsp;name:&nbsp;moms_flower_shop
-&nbsp;&nbsp;edition:&nbsp;&quot;1.3&quot;
-&nbsp;&nbsp;description:&nbsp;&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;workspace&nbsp;represents&nbsp;the&nbsp;data&nbsp;warehouse&nbsp;of&nbsp;mom&#39;s&nbsp;flower&nbsp;shop.&nbsp;
+  name: moms_flower_shop
+  edition: "1.3"
+  description: >
+    This workspace represents the data warehouse of mom's flower shop. 
 
-&nbsp;&nbsp;&nbsp;&nbsp;It&nbsp;contains&nbsp;raw&nbsp;data&nbsp;regarding:
-&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;Customers
-&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;Marketing&nbsp;campaigns
-&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;Mobile&nbsp;in&#45;app&nbsp;events
-&nbsp;&nbsp;&nbsp;&nbsp;4.&nbsp;Street&nbsp;addresses
+    It contains raw data regarding:
+    1. Customers
+    2. Marketing campaigns
+    3. Mobile in-app events
+    4. Street addresses
 
-&nbsp;&nbsp;&nbsp;&nbsp;That&nbsp;data&nbsp;is&nbsp;available&nbsp;in&nbsp;the&nbsp;seeds&nbsp;folder&nbsp;and&nbsp;is&nbsp;referenced&nbsp;in&nbsp;models/raw
-&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;loaded&nbsp;and&nbsp;used&nbsp;by&nbsp;SDF.&nbsp;Data&nbsp;transformations&nbsp;are&nbsp;performed&nbsp;and&nbsp;additional&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;models&nbsp;are&nbsp;available&nbsp;in&nbsp;the&nbsp;staging&nbsp;and&nbsp;analytics&nbsp;folders&nbsp;under&nbsp;the&nbsp;models&nbsp;folder.
+    That data is available in the seeds folder and is referenced in models/raw
+    to be loaded and used by SDF. Data transformations are performed and additional 
+    models are available in the staging and analytics folders under the models folder.
 
-&nbsp;&nbsp;includes:
-&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;models
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;model
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema&#45;table&#45;name
-&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;seeds/parquet
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;resource
-&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;metadata
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;metadata
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index:&nbsp;schema&#45;table&#45;name
-&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;classifications
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;metadata
-&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;reports
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;report
-&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;path:&nbsp;checks
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;check
-&nbsp;&nbsp;
-&nbsp;&nbsp;defaults:&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;preprocessor:&nbsp;jinja
-&#45;&#45;&#45;
+  includes:
+    - path: models
+      type: model
+      index: schema-table-name
+    - path: seeds/parquet
+      type: resource
+    - path: metadata
+      type: metadata
+      index: schema-table-name
+    - path: classifications
+      type: metadata
+    - path: reports
+      type: report
+    - path: checks
+      type: check
+  
+  defaults: 
+    preprocessor: jinja
+---
 environment:
-&nbsp;&nbsp;name:&nbsp;dev
-&nbsp;&nbsp;integrations:
-&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;provider:&nbsp;sdf
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;database
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;targets:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;pattern:&nbsp;moms_flower_shop.*.*
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rename&#45;as:&nbsp;moms_workshed.&#36;&#123;1&#125;.&#36;&#123;2&#125;
+  name: dev
+  integrations:
+    - provider: sdf
+      type: database
+      targets:
+        - pattern: moms_flower_shop.*.*
+          rename-as: moms_workshed.${1}.${2}
 
-</code>
-</pre>
-</div>
+```
 
 - `name` - The name of the workspace. This is used to create the default catalog
   for the workspace.

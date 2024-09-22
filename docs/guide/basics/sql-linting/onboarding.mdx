@@ -1,0 +1,230 @@
+---
+title: "Onboarding"
+---
+
+This guide will show you the easiest way to integrate SDF's Linter in your development workflows.
+To familiarize yourself with SDF Lint's capabilities, try the [introductory example](/guide/basics/sql-linting/guided-example#try-it-out).
+
+### Prerequisites 
+To integrate SDF Lint in your workflow you will need:
+1. The latest SDF binary [installation guide](/introduction/install)
+2. An SDF Workspace defined by a `workspace.sdf.yml` in your data transformation directory. The file should include the following:
+
+``` yml workspace.sdf.yml
+workspace:
+  name: my_data_transformation_layer  # The name of the workspace
+  edition: "1.3"
+
+  includes:
+    - path: models/ # This is a path to your compiled SQL queries
+  
+  defaults:
+    dialect: snowflake # Note: SDF Lint is currently only available for Snowflake SQL
+```
+ 
+- `includes path` - this is the relative path to your **compiled** SQL queries. 
+  - You can include more than one path by adding a new `- path: ..` item
+  - The provided path can contain subdirectories
+  - DBT users:
+    - Run `dbt compile` and save tha targets directory
+    - Add the path to compiled queries
+    - Read more [here](/integrations/dbt/integrating) to troubleshoot
+  - If you already have SDF set up and compile successfully, we will automatically resolve
+    any jinja templates to a compiled query, lint, and format it. 
+- Default `dialect` - explicitly specify the SQL dialect to lint (currently supported: `snowflake`)
+- `name`, `edition`, and `description` are mandatory fields. You may want to update the `name` and `description` based on your workspace.
+
+
+That's it. Let's get started!
+
+<Tip>
+  Advanced features such as semantic and performance rules are only supported when using SDF as the transformatin layer. This means your SDF project has to `compile` without errors. 
+</Tip>
+
+
+### Integrate SDF Lint in Your Data Workflows
+<Steps>
+  <Step title="Find Issues">
+    Every SDF workspace comes with a default linter configuration.
+    - You can lint one model or a subset of models by specifying a target (path) as a command argument: `sdf lint <PATH_TO_FILE/DIRECTORY>`
+    - Run the `sdf lint` command to evaluate your SQL code against a set of linting rules
+
+    <Tip>
+      Start by linting one file first before running the linter on your entire data transformation layer. 
+    </Tip>
+  </Step>
+
+  <Step title="Customize and Configure">
+    - By default, `sdf lint` uses SDF's [recommended rules and configuration](/reference/lint-rules#default-configuration)
+    - To customize the linter configuration according to your preferences, override the default 
+      settings with a `linter` configuration block in your `workspace.sdf.yml`
+
+    <Tip>
+     Start by overriding the default configuration, like in the [introductory guide](/guide/basics/sql-linting/linting-intro#try-it-out),
+      and turn on one or two rules at a time.
+    </Tip>
+
+    Add a `linter` config block to your `workspace.sdf.yml` and customize your rules. The following is the 
+    default configuration which you can adjust based on your preferences:
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+linter:&nbsp;
+&nbsp;&nbsp;name:&nbsp;linter_rules
+&nbsp;&nbsp;syntax&#45;rules:
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;&nbsp;&nbsp;case&#45;keyword:&nbsp;consistent&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;&nbsp;&nbsp;case&#45;literal:&nbsp;consistent&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;&nbsp;&nbsp;case&#45;type:&nbsp;consistent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;add&nbsp;blocked&nbsp;identifier&nbsp;names.&nbsp;try:&nbsp;[&#39;message&#39;]
+&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;these&#45;identifiers:&nbsp;[]&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;keywords&#45;used&#45;as&#45;identifiers:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;default&nbsp;pattern&nbsp;&quot;.#%&#123;&#125;\\&lt;&gt;*?/!&#39;\&quot;:@+`|=&quot;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;these&#45;chars&#45;in&#45;quoted&#45;identifiers:&nbsp;&quot;.#%&#123;&#125;\\&lt;&gt;*?/!&#39;\&quot;:@+`|=&quot;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;quoted&#45;identifiers:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;qualified,&nbsp;unqualified
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;inconsistent&#45;qualified&#45;column&#45;reference:&nbsp;consistent&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unqualified&#45;multi&#45;source&#45;column&#45;reference:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;inconsistent&#45;ordinal&#45;column&#45;reference:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;else:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;case:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unused&#45;cte:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;nested&#45;case:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;distinct&#45;parenthesis:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;[from,&nbsp;join]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;subquery&#45;in:&nbsp;[from,&nbsp;join]
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;misordered&#45;join&#45;condition:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;select&#45;item&#45;order:&nbsp;on&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;trailing&#45;semicolon&#45;after&#45;statements:&nbsp;on&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;semantic&#45;rules:
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options&nbsp;[eq]&nbsp;/&nbsp;[in]&nbsp;/&nbsp;[eq,&nbsp;in]
+&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;implicit&#45;conversions&#45;in:&nbsp;[]&nbsp;
+</code>
+</pre>
+</div>
+
+    Set this `linter` configuration as default:
+    ```yml workspace.sdf.yml
+      workspace:
+        ...
+        defaults:
+          linter: linter_rules
+        ...
+    --- 
+    linter:
+      name: linter_rules
+      ...
+    ```
+
+  <Note>
+    The linter config block will override the [default configuration](/reference/lint-rules#default-configuration).
+  </Note>
+  </Step>
+  <Step title="Fix Problems">
+  **Automated Fixes**
+
+  Use `sdf lint --fix` to fix inconsistent casing syntax rules. Toggle the `before` and `after` queries below
+  to see how `sdf lint --fix` will modify all keywords to be uppercase given the configuration `case-keyword: upper`:
+  <CodeGroup>
+  ```sql before fix
+  select *
+  FROM my_table
+  where 1=1
+  Order by 1
+  ```
+
+  ```sql after fix
+  SELECT *
+  FROM my_table
+  WHERE 1=1
+  ORDER BY 1
+  ```
+  </CodeGroup>
+
+  {/*
+  TODO: Add: Use `sdf fmt` to automatically format your SQL
+  */}
+
+  **Manual Fixes**
+
+  If SDF cannot fix the lint warning automatically, it will provide detailed information 
+  on the alert, including the exact location of the issue in the model (`command + click` to open)
+  and a link to our documentation.
+  
+  To suppress linting errors on a specific row, add the inline-comment `-- noqa` to that specific row. 
+  This will prevent that line from being evaluated. You can also add `-- noqa-file` to skip linting a file completely.
+
+  </Step>
+  <Step title="CI Integration">
+    To integrate SDF's linter in your CI, you should start with a clean slate - no lint warnings. Therefore we recommend:
+    1. Configure a subset of lint-rules to start with
+    2. Use `sdf lint --fix` to resolve supported warnings
+    3. Align on a subset of your DAG which doesn't have lint errors (given the subset of rules)
+    4. Integrate `sdf lint` to your CI workflow
+
+    To learn how to integrate SDF into your CI/CD workflow, check out our 
+    [CI/CD guide](/integrations/cicd/ci_cd). Once the integration is set up, 
+    just add the `sdf lint` command to the workflow configuration:
+    
+    ``` yml
+    on:
+      pull_request:
+    ...
+        - uses: sdf-labs/sdf-action@v0
+          with:
+            sdf_version: 'latest'
+            command: 'sdf lint <PATH_TO_SUB_DAG>' 
+            snowflake_account_id: ${{ secrets.SNOWFLAKE_ACCOUNT_ID }}
+            snowflake_username: ${{ secrets.SNOWFLAKE_USERNAME }}
+            snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+            snowflake_role: ${{ secrets.SNOWFLAKE_ROLE }}
+            snowflake_warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+    ```
+
+    <Tip>
+    If you only want to lint a subset of the DAG, specify a path in the command. Otherwise, remove `<PATH_TO_SUB_DAG>` 
+    so the command `sdf lint` will lint the entire workspace.
+    </Tip>
+  </Step>
+  <Step title="Iterate">
+    Keep introduce new lint rules and include more models overtime. 
+    
+    We highly recommend checking out our advanced rules ([semantic](/reference/lint-rules#semantic-rules), 
+    [performance](/reference/lint-rules#performance-rules), [checks](/reference/lint-rules#check-rules)) to take your SQL correctness and 
+    performance to the next level.
+  </Step>
+</Steps>
+
