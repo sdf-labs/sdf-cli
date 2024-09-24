@@ -28,7 +28,7 @@ Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;1
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.main&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.test_main&nbsp;(./sdftarget/dbg/tests/hello/pub/test_main.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.test_main&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.675&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.621&nbsp;secs
 [Pass]&nbsp;Test&nbsp;hello.pub.test_main
 
 </code>
@@ -109,7 +109,7 @@ table:
   The full repo of `sdf_tests`, our open-source tests library, is is available on GitHub [here](https://github.com/sdf-labs/tests).
 </Tip>
 
-## Writing Your Own Test
+## Add Your First Tests
 <Steps>
   <Step title="Prerequisite">
     SDF's built-in tests library `sdf_tests` uses Jinja macros. Therefore, setting Jinja
@@ -184,7 +184,7 @@ Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.706&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.641&nbsp;secs
 [Pass]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
 
 </code>
@@ -267,22 +267,22 @@ ORDER&nbsp;BY&nbsp;reason;
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-    Running tests_workspace.pub.raw_inapp_events (./models/raw_inapp_events.sql)
-    Warning tests_workspace.pub.raw_inapp_events attempting to execute Trino, local execution is currently experimental
-    Testing tests_workspace.pub.test_raw_inapp_events (./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
-    Warning tests_workspace.pub.test_raw_inapp_events attempting to execute Trino, local execution is currently experimental
-   Finished 1 model [1 succeeded], 1 test [1 failed] in 0.701 secs, for details see below.
-[Fail] Test tests_workspace.pub.test_raw_inapp_events
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;(./models/raw_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.645&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
+[Fail]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
 ┌─────────────────────────────────────────────────────┐
-│ reason                                              │
+│&nbsp;reason&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 ╞═════════════════════════════════════════════════════╡
-│ wrn: column event_value has values outside of 0..10 │
+│&nbsp;wrn:&nbsp;column&nbsp;event_value&nbsp;has&nbsp;values&nbsp;outside&nbsp;of&nbsp;0..10&nbsp;│
 └─────────────────────────────────────────────────────┘
-1 rows.
+1&nbsp;rows.
 
--------
-Summary 1 model [1 succeeded], 1 test [1 failed] in 0.701 secs.
--------
+&#45;&#45;&#45;&#45;&#45;&#45;&#45;
+Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.645&nbsp;secs.
+&#45;&#45;&#45;&#45;&#45;&#45;&#45;
 
 </code>
 </pre>
@@ -290,8 +290,80 @@ Summary 1 model [1 succeeded], 1 test [1 failed] in 0.701 secs.
   </Step>
 </Steps>
 
+## Add a Generic Test
 
-## Add Custom Tests
+SDF supports the ability to turn any SQL query into a data test. This is useful for more complex tests that are not covered by the standard library.
+
+<Steps>
+  <Step title="Create a New Workspace">
+    Let's start by creating a new workspace called `generic_test_example`
+    ```shell
+    sdf new generic_test_example
+    ```
+  </Step>
+  <Step title="Write a Generic Test">
+    Next, let's write a SQL query that will represent our generic test. For our example, we'll write the most basic of tests which will always fail (since it will always return data).
+
+    Create a new file `generic_test.sql` in a new directory called `tests`:
+    ```sql tests/generic_test.sql
+    select 1 as col; 
+    ```
+  </Step>
+  <Step title="Configure Generic Tests">
+    Next, let's update the `workspace.sdf.yml` to include our new generic test. 
+    To do so, add `- path: tests` to your `workspace.sdf.yml` includes block like so:
+    ```yml workspace.sdf.yml
+    workspace:
+      name: hello
+      edition: "1.3"
+      description: "A minimal workspace"
+
+      includes:
+        - path: models
+        - path: tests
+    ```
+
+    <Note>
+      The `- path: tests` includes item does not need the `type: test` property since naming your directory `tests` defaults
+      the include type to `test`. For a list of all default include types, check out our [includes block documentation](/guide/setup/workspaces#includes-blocks)
+    </Note>
+  </Step>
+  <Step title="Run the Test">
+    Now that we have a our new generic tests added, let's trying running it! Note that we are expecting this test to fail, as the SQL query we wrote will always return data.
+
+    In the terminal, run:
+    ```shell
+    sdf test
+    ```
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.generic_test&nbsp;(./tests/generic_test.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.main&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
+&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.generic_test&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.624&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
+[Fail]&nbsp;Test&nbsp;hello.pub.generic_test
+┌─────┐
+│&nbsp;col&nbsp;│
+╞═════╡
+│&nbsp;1&nbsp;&nbsp;&nbsp;│
+└─────┘
+1&nbsp;rows.
+
+&#45;&#45;&#45;&#45;&#45;&#45;&#45;
+Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.624&nbsp;secs.
+&#45;&#45;&#45;&#45;&#45;&#45;&#45;
+
+</code>
+</pre>
+</div>
+
+    Great! It's the first time in your life you've been happy to see a test fail.
+  </Step>
+</Steps>
+
+## Add Custom Tests to the Testing Library
 
 SDF supports an easy way to write custom tests that will utilize our built-in testing infrastructure
 to run custom testing macros. 
@@ -306,7 +378,7 @@ to run custom testing macros.
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
 &nbsp;&nbsp;&nbsp;&nbsp;Cleaned&nbsp;sdftarget
-&nbsp;&nbsp;&nbsp;Finished&nbsp;clean&nbsp;in&nbsp;0.149&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;clean&nbsp;in&nbsp;0.098&nbsp;secs
 .
 ├──&nbsp;custom_tests
 ├──&nbsp;models
@@ -392,7 +464,7 @@ Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.675&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.623&nbsp;secs
 [Pass]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
 
 </code>
