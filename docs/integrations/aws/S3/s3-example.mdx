@@ -59,11 +59,11 @@ integration with SDF to analyze world population data.
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello_world.pub.popdata&nbsp;(./local/popdata.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello_world.pub.popdata&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello_world.pub.world_metrics&nbsp;(./local/world_metrics.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello_world.pub.world_metrics_1&nbsp;(./local/world_metrics.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello_world.pub.world_metrics&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello_world.pub.world_metrics&nbsp;(./local/world_metrics.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello_world.pub.world_metrics_1&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;3&nbsp;models&nbsp;[3&nbsp;succeeded]&nbsp;in&nbsp;0.631&nbsp;secs
+&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello_world.pub.world_metrics&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
+&nbsp;&nbsp;&nbsp;Finished&nbsp;3&nbsp;models&nbsp;[3&nbsp;succeeded]&nbsp;in&nbsp;0.703&nbsp;secs
 
 Table&nbsp;hello_world.pub.popdata
 ┌───────────────┬────────────┬─────────────┬────────────────────────────────┐
@@ -83,14 +83,6 @@ Table&nbsp;hello_world.pub.popdata
 241&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
 &nbsp;&nbsp;Run&nbsp;with&nbsp;&#45;&#45;limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
 
-Table&nbsp;hello_world.pub.world_metrics
-┌────────────┬──────────────────┬─────────────────┐
-│&nbsp;world_pop&nbsp;&nbsp;┆&nbsp;smallest_country&nbsp;┆&nbsp;largest_country&nbsp;│
-╞════════════╪══════════════════╪═════════════════╡
-│&nbsp;7820009936&nbsp;┆&nbsp;47&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1412600000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-└────────────┴──────────────────┴─────────────────┘
-1&nbsp;rows.
-
 Table&nbsp;hello_world.pub.world_metrics_1
 ┌───────────────┬─────┬─────────────┬──────────┐
 │&nbsp;country&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;day&nbsp;┆&nbsp;source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;source3&nbsp;&nbsp;│
@@ -108,6 +100,14 @@ Table&nbsp;hello_world.pub.world_metrics_1
 └───────────────┴─────┴─────────────┴──────────┘
 241&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
 &nbsp;&nbsp;Run&nbsp;with&nbsp;&#45;&#45;limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+Table&nbsp;hello_world.pub.world_metrics
+┌────────────┬──────────────────┬─────────────────┐
+│&nbsp;world_pop&nbsp;&nbsp;┆&nbsp;smallest_country&nbsp;┆&nbsp;largest_country&nbsp;│
+╞════════════╪══════════════════╪═════════════════╡
+│&nbsp;7820009936&nbsp;┆&nbsp;47&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1412600000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└────────────┴──────────────────┴─────────────────┘
+1&nbsp;rows.
 
 </code>
 </pre>
@@ -168,7 +168,7 @@ Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;hello_world.pub.un_pop_data&nbsp;&nbsp;(s3://sdfdatasets/hello&#45;world/world_population_full.csv)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello_world.pub.q1&nbsp;(./remote/q1.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello_world.pub.q1&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;3.996&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;2.257&nbsp;secs
 
 Table&nbsp;hello_world.pub.un_pop_data
 ┌───────┬───────────┬───────────────────┬───────────────┬─────────────────┬───────┬──────┬──────────────────────┬──────────────────────────────────┬────────────┐

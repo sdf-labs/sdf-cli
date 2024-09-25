@@ -1,1 +1,1 @@
-select 'Hello World!' as message; 
+select 'Hello World!' as message

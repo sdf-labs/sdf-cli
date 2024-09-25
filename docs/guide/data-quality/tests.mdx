@@ -28,7 +28,7 @@ Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;1
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.main&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.test_main&nbsp;(./sdftarget/dbg/tests/hello/pub/test_main.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.test_main&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.621&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.691&nbsp;secs
 [Pass]&nbsp;Test&nbsp;hello.pub.test_main
 
 </code>
@@ -184,7 +184,7 @@ Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.641&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.727&nbsp;secs
 [Pass]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
 
 </code>
@@ -271,7 +271,7 @@ ORDER&nbsp;BY&nbsp;reason;
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.645&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.727&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
 [Fail]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
 ┌─────────────────────────────────────────────────────┐
 │&nbsp;reason&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
@@ -281,7 +281,7 @@ ORDER&nbsp;BY&nbsp;reason;
 1&nbsp;rows.
 
 &#45;&#45;&#45;&#45;&#45;&#45;&#45;
-Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.645&nbsp;secs.
+Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.727&nbsp;secs.
 &#45;&#45;&#45;&#45;&#45;&#45;&#45;
 
 </code>
@@ -338,11 +338,11 @@ SDF supports the ability to turn any SQL query into a data test. This is useful 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.generic_test&nbsp;(./tests/generic_test.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.main&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.generic_test&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.624&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
+&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.main&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.677&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
 [Fail]&nbsp;Test&nbsp;hello.pub.generic_test
 ┌─────┐
 │&nbsp;col&nbsp;│
@@ -352,7 +352,7 @@ SDF supports the ability to turn any SQL query into a data test. This is useful 
 1&nbsp;rows.
 
 &#45;&#45;&#45;&#45;&#45;&#45;&#45;
-Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.624&nbsp;secs.
+Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;0.677&nbsp;secs.
 &#45;&#45;&#45;&#45;&#45;&#45;&#45;
 
 </code>
@@ -378,7 +378,7 @@ to run custom testing macros.
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
 &nbsp;&nbsp;&nbsp;&nbsp;Cleaned&nbsp;sdftarget
-&nbsp;&nbsp;&nbsp;Finished&nbsp;clean&nbsp;in&nbsp;0.098&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;clean&nbsp;in&nbsp;0.181&nbsp;secs
 .
 ├──&nbsp;custom_tests
 ├──&nbsp;models
@@ -464,7 +464,7 @@ Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.623&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.723&nbsp;secs
 [Pass]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
 
 </code>
