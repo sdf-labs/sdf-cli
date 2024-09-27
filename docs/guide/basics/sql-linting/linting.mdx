@@ -72,31 +72,27 @@ If you specify your own YML linter configuration, you will **turn off** the defa
 ``` yml
 ---
 linter: 
-  name: default_linter
-
-  semantic-rules:
-    disallow-implicit-conversions-in: [] # (off) 
-
-  syntax-rules:
-    case-keyword: consistent 
-    case-literal: consistent 
-    case-type: consistent   
-    disallow-subquery-in: [from, join] 
-    disallow-these-chars-in-quoted-identifiers: ".#%{}\\<>*?/!'\":@+`|="
-    disallow-these-identifiers: []  
-    flag-distinct-parenthesis: on 
-    flag-inconsistent-qualified-column-reference: on  
-    flag-inconsistent-ordinal-column-reference: on  
-    flag-keywords-used-as-identifiers: []  
-    flag-misordered-join-condition: on 
-    flag-select-item-order: on 
-    flag-trailing-semicolon-after-statements: on  
-    flag-unnecessary-case: on 
-    flag-unnecessary-else: on 
-    flag-unnecessary-nested-case: on 
-    flag-unnecessary-quoted-identifiers: on  
-    flag-unqualified-multi-source-column-reference: on  
-    flag-unused-cte: on    
+  case-keyword: lower 
+  case-literal: lower
+  case-function: lower
+  case-type: off   
+  no-subquery-in: [] # (off) 
+  no-these-chars-in-quoted-identifiers: "" # (off)
+  no-these-identifiers: [] # (off) 
+  no-distinct-parenthesis: off 
+  no-unnecessary-quoted-identifiers: off  
+  no-inconsistent-ordinal-column-reference: off  
+  keywords-as-identifiers: []  
+  strict-join-condition-order: off 
+  strict-wildcard-order: off 
+  no-trailing-semicolon: off  
+  no-unnecessary-case: off 
+  no-unnecessary-else: off 
+  no-unnecessary-nested-case: off 
+  no-unqualified-multi-source-column-reference: off  
+  no-unused-cte: off    
+  ctx-strict-qualified-column-reference: off  
+  ctx-no-implicit-conversions-in: [] # (off) 
 ```
 
 <Note>
@@ -116,24 +112,24 @@ For the full list of rules and configuration options, please visit our
 | Syntax      | `case-literal` | SDF108, SDF109  | L040     |     ✅   | `consistent` |
 | Syntax      | `case-type` | SDF110        | L063            |    ✅    | `consistent` |
 | Syntax      | `case-function` | SDF106 | L030 |    ✅    | `off` |
-| Syntax      | `disallow-these-identifiers` | SDF124 | L029 |    ❌    | `[]` |
-| Syntax      | `flag-keywords-used-as-identifiers` | SDF125 | ?? |    ❌    | `[]` |
-| Syntax      | `disallow-these-chars-in-quoted-identifiers` | SDF117 | L057 |    ❌    | ` ".#%{}\\<>*?/!'\":@+`|=" ` |
-| Syntax      | `flag-unnecessary-quoted-identifiers` | SDF118 | L059 |    ❌    | `on` |
-| Syntax      | `flag-inconsistent-qualified-column-reference` | SDF112 | L028 |    ❌    | `consistent` |
-| Syntax      | `flag-unqualified-multi-source-column-reference` | SDF116 | L027 |    ❌    | `on` |
-| Syntax      | `flag-inconsistent-ordinal-column-reference` | SDF105 | L054 |    ❌    | `on` |
-| Syntax      | `flag-unnecessary-else` | SDF119 | L035 |    ❌    | `on` |
-| Syntax      | `flag-unnecessary-case` | SDF120 | L043 |    ❌    | `on` |
-| Syntax      | `flag-unused-cte` | SDF121 | L045 |    ❌    | `on` |
-| Syntax      | `flag-unnecessary-nested-case` | SDF122 | L058 |    ❌    | `on` |
-| Syntax      | `flag-distinct-parenthesis` | SDF123 | L015 |    ❌    | `on` |
-| Syntax      | `flag-misordered-join-condition` | SDF114 | ST09 |    ❌    | `on` |
-| Syntax      | `flag-select-item-order` | SDF115 | L034 |    ❌    | `on` |
-| Syntax      | `flag-trailing-semicolon-after-statements` | SDF111 | L052 |    ❌    | `on` |
+| Syntax      | `no-these-identifiers` | SDF124 | L029 |    ❌    | `[]` |
+| Syntax      | `keywords-as-identifiers` | SDF125 | ?? |    ❌    | `[]` |
+| Syntax      | `no-these-chars-in-quoted-identifiers` | SDF117 | L057 |    ❌    | ` ".#%{}\\<>*?/!'\":@+`|=" ` |
+| Syntax      | `no-unnecessary-quoted-identifiers` | SDF118 | L059 |    ❌    | `on` |
+| Syntax      | `ctx-strict-qualified-column-reference` | SDF112 | L028 |    ❌    | `consistent` |
+| Syntax      | `no-unqualified-multi-source-column-reference` | SDF116 | L027 |    ❌    | `on` |
+| Syntax      | `no-inconsistent-ordinal-column-reference` | SDF105 | L054 |    ❌    | `on` |
+| Syntax      | `no-unnecessary-else` | SDF119 | L035 |    ❌    | `on` |
+| Syntax      | `no-unnecessary-case` | SDF120 | L043 |    ❌    | `on` |
+| Syntax      | `no-unused-cte` | SDF121 | L045 |    ❌    | `on` |
+| Syntax      | `no-unnecessary-nested-case` | SDF122 | L058 |    ❌    | `on` |
+| Syntax      | `no-distinct-parenthesis` | SDF123 | L015 |    ❌    | `on` |
+| Syntax      | `strict-join-condition-order` | SDF114 | ST09 |    ❌    | `on` |
+| Syntax      | `strict-wildcard-order` | SDF115 | L034 |    ❌    | `on` |
+| Syntax      | `no-trailing-semicolon` | SDF111 | L052 |    ❌    | `on` |
 | Semantic    | `case-column` | --------- | --------------- |    ❌    | `off` |
 | Semantic    | `case-table` | --------- | --------------- |    ❌    | `off` |
 | Semantic    | `case-alias` | --------- | --------------- |    ❌    | `off` |
-| Semantic    | `disallow-implicit-conversions-in` | --------- | --------------- |    ❌    | `off` |
+| Semantic    | `ctx-no-implicit-conversions-in` | --------- | --------------- |    ❌    | `off` |
 
 | Performance | `flag-function-application-in-where-on-indexed-columns` | --------- | --------------- |    ❌    | `off` |

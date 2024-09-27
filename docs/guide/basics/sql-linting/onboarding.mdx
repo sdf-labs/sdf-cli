@@ -71,67 +71,65 @@ That's it. Let's get started!
 <code className='language-shell'>
 linter:&nbsp;
 &nbsp;&nbsp;name:&nbsp;linter_rules
-&nbsp;&nbsp;syntax&#45;rules:
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
-&nbsp;&nbsp;&nbsp;&nbsp;case&#45;keyword:&nbsp;consistent&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;case&#45;keyword:&nbsp;consistent&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
-&nbsp;&nbsp;&nbsp;&nbsp;case&#45;literal:&nbsp;consistent&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;case&#45;literal:&nbsp;consistent&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
-&nbsp;&nbsp;&nbsp;&nbsp;case&#45;type:&nbsp;consistent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;upper,&nbsp;lower,&nbsp;pascal,&nbsp;snake,&nbsp;camel
+&nbsp;&nbsp;case&#45;type:&nbsp;consistent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;add&nbsp;blocked&nbsp;identifier&nbsp;names.&nbsp;try:&nbsp;[&#39;message&#39;]
-&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;these&#45;identifiers:&nbsp;[]&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;add&nbsp;blocked&nbsp;identifier&nbsp;names.&nbsp;try:&nbsp;[&#39;message&#39;]
+&nbsp;&nbsp;no&#45;these&#45;identifiers:&nbsp;[]&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;keywords&#45;used&#45;as&#45;identifiers:&nbsp;on&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;keywords&#45;as&#45;identifiers:&nbsp;on&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;default&nbsp;pattern&nbsp;&quot;.#%&#123;&#125;\\&lt;&gt;*?/!&#39;\&quot;:@+`|=&quot;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;these&#45;chars&#45;in&#45;quoted&#45;identifiers:&nbsp;&quot;.#%&#123;&#125;\\&lt;&gt;*?/!&#39;\&quot;:@+`|=&quot;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;default&nbsp;pattern&nbsp;&quot;.#%&#123;&#125;\\&lt;&gt;*?/!&#39;\&quot;:@+`|=&quot;&nbsp;
+&nbsp;&nbsp;no&#45;these&#45;chars&#45;in&#45;quoted&#45;identifiers:&nbsp;&quot;.#%&#123;&#125;\\&lt;&gt;*?/!&#39;\&quot;:@+`|=&quot;&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;quoted&#45;identifiers:&nbsp;on&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;unnecessary&#45;quoted&#45;identifiers:&nbsp;on&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;qualified,&nbsp;unqualified
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;inconsistent&#45;qualified&#45;column&#45;reference:&nbsp;consistent&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;consistent,&nbsp;qualified,&nbsp;unqualified
+&nbsp;&nbsp;ctx&#45;strict&#45;qualified&#45;column&#45;reference:&nbsp;consistent&nbsp;&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unqualified&#45;multi&#45;source&#45;column&#45;reference:&nbsp;on&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;unqualified&#45;multi&#45;source&#45;column&#45;reference:&nbsp;on&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;inconsistent&#45;ordinal&#45;column&#45;reference:&nbsp;on&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;inconsistent&#45;ordinal&#45;column&#45;reference:&nbsp;on&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;else:&nbsp;on&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;unnecessary&#45;else:&nbsp;on&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;case:&nbsp;on&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;unnecessary&#45;case:&nbsp;on&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unused&#45;cte:&nbsp;on&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;unused&#45;cte:&nbsp;on&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;unnecessary&#45;nested&#45;case:&nbsp;on&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;unnecessary&#45;nested&#45;case:&nbsp;on&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;distinct&#45;parenthesis:&nbsp;on&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;distinct&#45;parenthesis:&nbsp;on&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;[from,&nbsp;join]&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;subquery&#45;in:&nbsp;[from,&nbsp;join]
+&nbsp;&nbsp;#&nbsp;options:&nbsp;[from,&nbsp;join]&nbsp;
+&nbsp;&nbsp;no&#45;subquery&#45;in:&nbsp;[from,&nbsp;join]
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;misordered&#45;join&#45;condition:&nbsp;on&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;strict&#45;join&#45;condition&#45;order:&nbsp;on&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;select&#45;item&#45;order:&nbsp;on&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;strict&#45;wildcard&#45;order:&nbsp;on&nbsp;&nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options:&nbsp;on
-&nbsp;&nbsp;&nbsp;&nbsp;flag&#45;trailing&#45;semicolon&#45;after&#45;statements:&nbsp;on&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;#&nbsp;options:&nbsp;on
+&nbsp;&nbsp;no&#45;trailing&#45;semicolon:&nbsp;on&nbsp;&nbsp;&nbsp;
 
-&nbsp;&nbsp;semantic&#45;rules:
-&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;options&nbsp;[eq]&nbsp;/&nbsp;[in]&nbsp;/&nbsp;[eq,&nbsp;in]
-&nbsp;&nbsp;&nbsp;&nbsp;disallow&#45;implicit&#45;conversions&#45;in:&nbsp;[]&nbsp;
+&nbsp;&nbsp;#&nbsp;options&nbsp;[eq]&nbsp;/&nbsp;[in]&nbsp;/&nbsp;[eq,&nbsp;in]
+&nbsp;&nbsp;ctx&#45;no&#45;implicit&#45;conversions&#45;in:&nbsp;[]&nbsp;
 </code>
 </pre>
 </div>
@@ -222,8 +220,8 @@ linter:&nbsp;
   <Step title="Iterate">
     Keep introduce new lint rules and include more models overtime. 
     
-    We highly recommend checking out our advanced rules ([semantic](/reference/lint-rules#semantic-rules), 
-    [performance](/reference/lint-rules#performance-rules), [checks](/reference/lint-rules#check-rules)) to take your SQL correctness and 
+    We highly recommend checking out our advanced rules (semantic ctx-...), 
+    (performance perf-...) to take your SQL correctness and 
     performance to the next level.
   </Step>
 </Steps>
