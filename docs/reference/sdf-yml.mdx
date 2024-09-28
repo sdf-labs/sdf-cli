@@ -17,6 +17,7 @@ title: "SDF YML Schema"
 `defaults:` | [`Defaults?`](#nested-element-defaults)| Defaults for this workspace|
 `source-locations:` | `array`| Workspace defined by these set of files|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as |
+`dbt:` | [`DbtConfig?`](#nested-element-dbtconfig)| Configuration for dbt integration|
 ## Block: `Table`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -157,7 +158,7 @@ Value | Description|
 `metadata` | [Deprecated] Metadata are .sdf.yml files to add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
 `spec` | Specifications are .sdf.yml files to configure your workspace and add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
 `macro` | Macros are .jinja files that define reusable SQL code. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`seed` | Seeds are data files used both locally and in remote data warehouses. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`seed` | Seeds are models created from resources. The sdf local engine enables type checking of seeds independently of providers. Seeds can optionally be uploaded to the remote warehouse. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
 ## Enum: `IndexMethod`
 Value | Description|
 | :--- | :------- |
@@ -167,16 +168,27 @@ Value | Description|
 `schema-table-name` | Table name is inferred from the file name without the extension. Schema is inferred from the directory name in which the file resides. Catalog is inferred from the `defaults` configuration. SDF assumes that a referenced table will reside in the directory/file with the corresponding schema/table name. As a result, only the required subset of files is parsed. This option is also fast, and it allows the schema to vary based on the directory name, but it still requires catalog to use the default values|
 `catalog-schema-table-name` | Table name is inferred from the file name without the extension. Schema is inferred from the directory name in which the file resides. Catalog is inferred from the directory name in which the schema directory resides. Defaults are not used. SDF assumes that a referenced table will reside in the catalog/schema/table file with the corresponding schema/catalog/table names. As a result, only the required subset of files is parsed. This option is also fast, and it provides the most flexibility as catalog, schema and table names can all vary|
 ## Enum: `Dialect`
-Supported dialects.
-Values |
-| :--- |
-`snowflake`
-`trino`
-`bigquery`
-`redshift`
-`spark-lp`
-`sdf`
-`databricks`
+Value | Description|
+| :--- | :------- |
+`trino` | undefined|
+`snowflake` | Snowflake dialect with unnormalized column names
+
+When this dialect is specified, column names will be automatically converted to uppercase. Use this dialect if - *all* column names in your database are case-normalized to uppercase, and - you want the column names in your YAML files to be case-insensitive.
+
+If your table has lower-case or mixed-case column names, then this dialect will not work -- you *must* use [Dialect::Snowflake] instead.
+
+Note that the difference between this dialect and [Dialect::Snowflake] is limited to non-SQL sources *only* (e.g. `.sdf.yml` files, parquet/CSV files). For SQL files, these two dialects are identical.
+
+NOTE: the serialized form of this dialect is `snowflake`, for backward compatibility's sake:|
+`snowflake_normalized` | Snowflake dialect with semantically accurate column names
+
+When this dialect is specified, column names will be left as-is.
+
+Users should be encouraged to use this dialect, as it is more accurate, with less potential for surprises.
+
+Note that the difference between this dialect and [Dialect::Snowflake] is limited to non-SQL sources *only* (e.g. `.sdf.yml` files, parquet/CSV files). For SQL files, these two dialects are identical.
+
+NOTE: the serialized form of this dialect is `snowflake_normalized`, for backward compatibility's sake:|
 ## Enum: `Preprocessor`
 Values |
 | :--- |
@@ -214,7 +226,6 @@ Value | Description|
 `on-push` | Synchronizes directory on every push|
 `never` | Never synchronizes directory|
 ## Enum: `Severity`
-Supported dialects.
 Values |
 | :--- |
 `warning`
@@ -356,13 +367,6 @@ Values |
 `camel`
 `off`
 `consistent`
-## Enum: `ColumnQualifier`
-Values |
-| :--- |
-`qualified`
-`unqualified`
-`consistent`
-`off`
 ## Enum: `SubQueryScope`
 Values |
 | :--- |
@@ -373,6 +377,13 @@ Values |
 | :--- |
 `eq`
 `in`
+## Enum: `ColumnQualifier`
+Values |
+| :--- |
+`qualified`
+`unqualified`
+`consistent`
+`off`
 ## Nested Elements
 ### Nested element: `IncludePath`
 |Field | Type | Description|
@@ -466,6 +477,15 @@ Values |
 ### Nested element: `Constant`
 |Field | Type | Description|
 | :---- | :--- | :------- |
+### Nested element: `DbtConfig`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`enabled:` | `boolean`| Whether the dbt integration is enabled|
+`project-dir:` | `string?`| Dbt Project Directory|
+`target-dir:` | `string?`| The dbt target to pass to undefineddbt parseundefined invocation|
+`profile:` | [`String?`](#nested-element-string)| The dbt profile to use|
+`target:` | [`String?`](#nested-element-string)| The dbt target for the profile|
+`auto-parse:` | `boolean`| Automatically Run Parse in-between commands (default: true)|
 ### Nested element: `IncrementalOptions`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -572,50 +592,34 @@ Values |
 ### Nested element: `Linter`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of these lint rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
+`name:` | `string?`| The name of these lint rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
 `defaults:` | [`RuleOn`](#enum-ruleon)| The overall switch, default is off|
-`layout-rules:` | [`LayoutRules?`](#nested-element-layoutrules)| These rules check for proper spacing|
-`syntax-rules:` | [`SyntaxRules?`](#nested-element-syntaxrules)| |
-`semantic-rules:` | [`SemanticRules?`](#nested-element-semanticrules)| |
-`performance-rules:` | [`PerformanceRules?`](#nested-element-performancerules)| |
-`check-rules:` | `object?`| |
-### Nested element: `LayoutRules`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-### Nested element: `SyntaxRules`
-|Field | Type | Description|
-| :---- | :--- | :------- |
 `case-keyword:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of keywords |
 `case-literal:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of undefinedbooleanundefined/undefinednullundefined literal |
 `case-type:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of datatypes. |
 `case-function:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of function names |
-`disallow-these-identifiers:` | `[string]?`| |
-`flag-keywords-used-as-identifiers:` | `[string]?`| Keywords should not be used as identifiers |
-`disallow-these-chars-in-quoted-identifiers:` | `string?`| Do not use special characters in identifiers |
-`flag-unnecessary-quoted-identifiers:` | [`RuleOn?`](#enum-ruleon)| Unnecessary quoted identifier |
-`flag-inconsistent-qualified-column-reference:` | [`ColumnQualifier?`](#enum-columnqualifier)| Inconsistent column references in SELECT clause of both qualified and unqualified references |
-`flag-unqualified-multi-source-column-reference:` | [`RuleOn?`](#enum-ruleon)| Columns reference should specify source table or view in queries with more than one source. |
-`flag-inconsistent-ordinal-column-reference:` | [`RuleOn?`](#enum-ruleon)| Inconsistent column references in GROUP BY/ORDER BY clauses of both ordinal and non-ordinal |
-`flag-unnecessary-else:` | [`RuleOn?`](#enum-ruleon)| Redundant undefinedELSE NULLundefined in a case when statement |
-`flag-unnecessary-case:` | [`RuleOn?`](#enum-ruleon)| CASE statement can be simplified |
-`flag-unused-cte:` | [`RuleOn?`](#enum-ruleon)| Query defines a CTE (common-table expression) but does not use it |
-`flag-unnecessary-nested-case:` | [`RuleOn?`](#enum-ruleon)| Nested CASE statement in ELSE clause could be flattened. |
-`flag-distinct-parenthesis:` | [`RuleOn?`](#enum-ruleon)| DISTINCT used with parentheses |
-`disallow-subquery-in:` | `array`| Join/From clauses should not contain subqueries. Use CTEs instead |
-`flag-misordered-join-condition:` | [`RuleOn?`](#enum-ruleon)| Join conditions column references should follow tables reference order |
-`flag-select-item-order:` | [`RuleOn?`](#enum-ruleon)| Select wildcards then simple targets before calculations and aggregates. |
-`flag-trailing-semicolon-after-statements:` | [`RuleOn?`](#enum-ruleon)| Statements should not end with a semi-colon. Multi-statements must be separated with a semi-colon but the final statement should NOT end with one. |
-### Nested element: `SemanticRules`
-|Field | Type | Description|
-| :---- | :--- | :------- |
+`no-these-identifiers:` | `[string]?`| |
+`keywords-as-identifiers:` | `[string]?`| Keywords should not be used as identifiers |
+`no-chars-in-quoted-identifiers:` | `string?`| Do not use special characters in identifiers |
+`no-unnecessary-quoted-identifiers:` | [`RuleOn?`](#enum-ruleon)| Unnecessary quoted identifier |
+`no-unqualified-multi-source-column-reference:` | [`RuleOn?`](#enum-ruleon)| Columns reference should specify source table or view in queries with more than one source. |
+`no-inconsistent-ordinal-column-reference:` | [`RuleOn?`](#enum-ruleon)| Inconsistent column references in GROUP BY/ORDER BY clauses of both ordinal and non-ordinal |
+`no-unnecessary-else:` | [`RuleOn?`](#enum-ruleon)| Redundant undefinedELSE NULLundefined in a case when statement |
+`no-unnecessary-case:` | [`RuleOn?`](#enum-ruleon)| CASE statement can be simplified |
+`no-unused-cte:` | [`RuleOn?`](#enum-ruleon)| Query defines a CTE (common-table expression) but does not use it |
+`no-unnecessary-nested-case:` | [`RuleOn?`](#enum-ruleon)| Nested CASE statement in ELSE clause could be flattened. |
+`no-distinct-parenthesis:` | [`RuleOn?`](#enum-ruleon)| DISTINCT used with parentheses |
+`no-subquery-in:` | `[SubQueryScope]?`| Join/From clauses should not contain subqueries. Use CTEs instead |
+`strict-join-condition-order:` | [`RuleOn?`](#enum-ruleon)| Join conditions column references should follow tables reference order |
+`strict-wildcard-order:` | [`RuleOn?`](#enum-ruleon)| Select wildcards then simple targets before calculations and aggregates. |
+`no-trailing-semicolon:` | [`RuleOn?`](#enum-ruleon)| Statements should not end with a semi-colon. Multi-statements must be separated with a semi-colon but the final statement should NOT end with one. |
 `case-column:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of column names |
 `case-table:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of table names |
 `case-alias:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of alias |
-`disallow-implicit-conversions-in:` | `array`| Prevent type implicit casting or coercion |
-### Nested element: `PerformanceRules`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`flag-function-application-in-where-on-indexed-columns:` | [`RuleOn?`](#enum-ruleon)| Avoid functions in where clauses over indexed, partitioned or clustered columns, to prevent filter push down and improve performance |
+`ctx-no-implicit-conversions-in:` | `[ImplicitConversionOperators]?`| Prevent type implicit casting or coercion |
+`ctx-strict-qualified-column-reference:` | [`ColumnQualifier?`](#enum-columnqualifier)| Inconsistent column references in SELECT clause of both qualified and unqualified references |
+`perf-only-direct-partition-column-access:` | [`RuleOn?`](#enum-ruleon)| Avoid functions in where clauses over indexed, partitioned or clustered columns, to prevent filter push down and improve performance |
+`check-rules:` | `object?`| |
 ### Nested element: `FormatRules`
 |Field | Type | Description|
 | :---- | :--- | :------- |

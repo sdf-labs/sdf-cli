@@ -9,8 +9,6 @@ Converts the timestamp argument to a date
 *Supported Signatures*
 ```sql
 function date(timestamp) returns date
-function date(timestamp) returns date
-function date(timestamp) returns date
 function date(varchar) returns date
 function date(varchar, varchar) returns date
 ```
@@ -21,8 +19,6 @@ function date(varchar, varchar) returns date
 Converts the timestamp argument to a time
 *Supported Signatures*
 ```sql
-function time(timestamp) returns time
-function time(timestamp) returns time
 function time(timestamp) returns time
 function time(varchar) returns time
 function time(variant) returns time
@@ -67,8 +63,8 @@ function to_char($1) returns string
 
 *Supported Signatures*
 ```sql
-function to_date($1) returns datetime
-function to_date($1, string) returns datetime
+function to_date($1) returns date
+function to_date($1, string) returns date
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/to_date)
 
@@ -228,8 +224,8 @@ function try_to_boolean($1) returns boolean
 
 *Supported Signatures*
 ```sql
-function try_to_date($1) returns datetime
-function try_to_date($1, string) returns datetime
+function try_to_date($1) returns date
+function try_to_date($1, string) returns date
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/try_to_date)
 

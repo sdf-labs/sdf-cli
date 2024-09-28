@@ -16,6 +16,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf lint`↴](#sdf-lint)
 * [`sdf fmt`↴](#sdf-fmt)
 * [`sdf run`↴](#sdf-run)
+* [`sdf build`↴](#sdf-build)
 * [`sdf test`↴](#sdf-test)
 * [`sdf stats`↴](#sdf-stats)
 * [`sdf report`↴](#sdf-report)
@@ -44,6 +45,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf man information-schema`↴](#sdf-man-information-schema)
 * [`sdf man error-codes`↴](#sdf-man-error-codes)
 * [`sdf man lint-rules`↴](#sdf-man-lint-rules)
+* [`sdf init`↴](#sdf-init)
 * [`sdf dbt`↴](#sdf-dbt)
 * [`sdf dbt init`↴](#sdf-dbt-init)
 * [`sdf dbt refresh`↴](#sdf-dbt-refresh)
@@ -63,7 +65,8 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `lint` — Lint models
 * `fmt` — Format models
 * `run` — Run models
-* `test` — Test models
+* `build` — Run model and tests, and if successful, publish, aka "write-audit-publish"
+* `test` — Test your models
 * `stats` — Statistics for your data
 * `report` — Report code quality
 * `check` — Check code quality
@@ -72,6 +75,7 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `system` — System maintenance, install and update
 * `auth` — Authenticate CLI to services like SDF, AWS, OpenAI, etc
 * `man` — Display reference material, like the CLI, dialect specific functions, schemas for authoring and interchange
+* `init` — Initialize a workspace interactively
 * `dbt` — Initialize an sdf workspace from an existing dbt project
 * `exec` — Execute custom scripts
 
@@ -82,6 +86,7 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
   Possible values: `trace`, `debug`, `debug-pretty`, `info`, `warn`, `error`
 
 * `--log-file  LOG_FILE ` — Creates or replaces the log file
+* `--show-all-errors` — Don't suppress errors
 
 
 
@@ -182,14 +187,13 @@ Compile models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
-* `--prefer-local` — When set will minimize remote DB accessess and will rely on local schema information in .sdf.yml files
+* `--prefer-local` — When set will minimize remote DB accesses and will rely on local schema information in .sdf.yml files
 
   Default value: `false`
-* `--no-incremental-mode` — Set incremental-mode to false (deault is true)
+* `--no-incremental-mode` — Set incremental-mode to false (default is true)
 
   Default value: `false`
-* `--no-snapshot-mode` — Set snapshot-mode to false (deault is true)
+* `--no-snapshot-mode` — Set snapshot-mode to false (default is true)
 
   Default value: `false`
 
@@ -207,9 +211,6 @@ Lint models
 
 ###### **Options:**
 
-* `--infer-tables` — Infer table schema and generate ddls
-
-  Default value: `false`
 * `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
@@ -248,7 +249,6 @@ Lint models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 * `--fix`
 
   Default value: `false`
@@ -267,9 +267,6 @@ Format models
 
 ###### **Options:**
 
-* `--infer-tables` — Infer table schema and generate ddls
-
-  Default value: `false`
 * `-e`, `--environment  ENVIRONMENT ` — Use this environment
 * `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
 
@@ -308,7 +305,6 @@ Format models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -362,7 +358,65 @@ Run models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
+* `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
+* `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
+* `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
+* `--dry-run` — Plan command but don't evaluate it
+
+  Default value: `false`
+
+
+
+## `sdf build`
+
+Run model and tests, and if successful, publish, aka "write-audit-publish"
+
+**Usage:** `sdf build [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Run only the given source dirs, files or tables [default: all models]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--save  SAVE ` — Controls which assets to save [default: none]
+
+  Possible values: `info-schema`, `assembly`, `table-deps`
+
+* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
+
+  Default value: `false`
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `-x`, `--experimental` — Modern output
+
+  Default value: `false`
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 * `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
@@ -374,7 +428,7 @@ Run models
 
 ## `sdf test`
 
-Test models
+Test your models
 
 **Usage:** `sdf test [OPTIONS] [TARGETS]...`
 
@@ -422,7 +476,6 @@ Test models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 * `-u`, `--sql-logic-test-update` — Goldie update the sqllogictests files
 
   Default value: `false`
@@ -479,7 +532,6 @@ Statistics for your data
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -533,7 +585,6 @@ Report code quality
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -587,7 +638,6 @@ Check code quality
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -651,7 +701,6 @@ Display lineage for a given table and/or column
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -714,7 +763,6 @@ Push a local workspace to the SDF Service
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -812,7 +860,6 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--dbt-target-dir  DBT_TARGET_DIR ` — A path to a dbt target directory
 
 
 
@@ -884,7 +931,7 @@ Configure how to authenticate with Snowflake
 
 Configure how to authenticate with BigQuery
 
-**Usage:** `sdf auth login bigquery [OPTIONS] --project-id  PROJECT_ID  --client-email  CLIENT_EMAIL  --private-key  PRIVATE_KEY `
+**Usage:** `sdf auth login bigquery [OPTIONS]`
 
 ###### **Options:**
 
@@ -892,6 +939,7 @@ Configure how to authenticate with BigQuery
 * `-p`, `--project-id  PROJECT_ID ` — GCP project id
 * `-E`, `--client-email  CLIENT_EMAIL ` — client_email of the service account key file
 * `-K`, `--private-key  PRIVATE_KEY ` — private_key of the service account key file
+* `-J`, `--json-path  JSON_PATH ` — path to the json file containing project id, client email, private key
 * `--credentials-dir  CREDENTIALS_DIR ` — path to the file where credentials will be stored (default is platform specific)
 
 
@@ -1028,9 +1076,6 @@ Display SDF's functions definitions
 * `--dialect  DIALECT ` — Dialect for all functions
 
   Default value: `trino`
-
-  Possible values: `snowflake`, `trino`, `bigquery`, `redshift`, `spark-lp`, `sdf`, `databricks`
-
 * `--section  SECTION ` — Section to display [ section  value must appear in the function registry]
 
   Default value: `all`
@@ -1116,6 +1161,18 @@ Display SDF's linter rules [only: markdown]
 
   Possible values: `sql`, `yml`, `markdown`, `json`
 
+
+
+
+## `sdf init`
+
+Initialize a workspace interactively
+
+**Usage:** `sdf init [PATH]`
+
+###### **Arguments:**
+
+* ` PATH ` — Create a new sdf workspace at  path 
 
 
 

@@ -11,7 +11,6 @@ decrypted binary string (return)
 function decrypt(binary, varchar) returns binary
 function decrypt(binary, varchar, binary) returns binary
 function decrypt(binary, varchar, binary, varchar) returns binary
-function decrypt(binary, varchar) returns binary
 function decrypt(binary, varchar, varchar) returns binary
 function decrypt(binary, varchar, varchar, varchar) returns binary
 ```
@@ -41,10 +40,8 @@ function encrypt(binary, varchar, binary, varchar) returns binary
 function encrypt(varchar, varchar) returns binary
 function encrypt(varchar, varchar, binary) returns binary
 function encrypt(varchar, varchar, binary, varchar) returns binary
-function encrypt(binary, varchar) returns binary
 function encrypt(binary, varchar, varchar) returns binary
 function encrypt(binary, varchar, varchar, varchar) returns binary
-function encrypt(varchar, varchar) returns binary
 function encrypt(varchar, varchar, varchar) returns binary
 function encrypt(varchar, varchar, varchar, varchar) returns binary
 ```
@@ -70,7 +67,6 @@ decrypted binary string (return)
 function try_decrypt(binary, varchar) returns binary
 function try_decrypt(binary, varchar, binary) returns binary
 function try_decrypt(binary, varchar, binary, varchar) returns binary
-function try_decrypt(binary, varchar) returns binary
 function try_decrypt(binary, varchar, varchar) returns binary
 function try_decrypt(binary, varchar, varchar, varchar) returns binary
 ```

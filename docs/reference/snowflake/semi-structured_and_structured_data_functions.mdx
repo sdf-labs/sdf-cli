@@ -9,7 +9,6 @@ the resulting array
 *Supported Signatures*
 ```sql
 function array_append(array, $1) returns array
-function array_append(array, $1) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_append)
 
@@ -22,7 +21,6 @@ function array_cat(array, array) returns array
 function array_cat(variant, variant) returns array
 function array_cat(array, variant) returns array
 function array_cat(variant, array) returns array
-function array_cat(array, array) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_cat)
 
@@ -33,7 +31,6 @@ Compact array by removing nulls
 ```sql
 function array_compact(array) returns array
 function array_compact(variant) returns array
-function array_compact(array) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_compact)
 
@@ -75,7 +72,6 @@ the resulting array
 *Supported Signatures*
 ```sql
 function array_distinct(array) returns array
-function array_distinct(array) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_distinct)
 
@@ -84,7 +80,6 @@ function array_distinct(array) returns array
 the resulting array
 *Supported Signatures*
 ```sql
-function array_except(array, array) returns array
 function array_except(array, array) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_except)
@@ -114,7 +109,6 @@ the resulting array
 *Supported Signatures*
 ```sql
 function array_insert(array, decimal(38, 0), $1) returns array
-function array_insert(array, decimal(38, 0), $1) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_insert)
 
@@ -123,7 +117,6 @@ function array_insert(array, decimal(38, 0), $1) returns array
 the resulting array
 *Supported Signatures*
 ```sql
-function array_intersection(array, array) returns array
 function array_intersection(array, array) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_intersection)
@@ -134,7 +127,6 @@ the maximum defined element in the array, or NULL
 *Supported Signatures*
 ```sql
 function array_max(array) returns variant
-function array_max(array) returns $1
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_max)
 
@@ -144,7 +136,6 @@ the minimum defined element in the array, or NULL
 *Supported Signatures*
 ```sql
 function array_min(array) returns variant
-function array_min(array) returns $1
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_min)
 
@@ -163,7 +154,6 @@ function array_position($1, array) returns decimal(38, 0)
 the resulting array
 *Supported Signatures*
 ```sql
-function array_prepend(array, $1) returns array
 function array_prepend(array, $1) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_prepend)
@@ -184,7 +174,6 @@ the resulting array
 *Supported Signatures*
 ```sql
 function array_remove_at(array, decimal(38, 0)) returns array
-function array_remove_at(array, decimal(38, 0)) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_remove_at)
 
@@ -193,7 +182,6 @@ function array_remove_at(array, decimal(38, 0)) returns array
 Returns array size
 *Supported Signatures*
 ```sql
-function array_size(array) returns decimal(38, 0)
 function array_size(array) returns decimal(38, 0)
 function array_size(variant) returns decimal(38, 0)
 ```
@@ -204,7 +192,6 @@ function array_size(variant) returns decimal(38, 0)
 the resulting array
 *Supported Signatures*
 ```sql
-function array_slice(array, decimal(38, 0), decimal(38, 0)) returns array
 function array_slice(array, decimal(38, 0), decimal(38, 0)) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_slice)
@@ -235,7 +222,6 @@ function array_to_string(variant, varchar) returns varchar
 Returns true if two arrays have elements in common
 *Supported Signatures*
 ```sql
-function arrays_overlap(array, array) returns boolean
 function arrays_overlap(array, array) returns boolean
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/arrays_overlap)
@@ -420,6 +406,14 @@ function check_xml(varchar, boolean) returns varchar
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/check_xml)
 
+## `filter`
+
+*Supported Signatures*
+```sql
+function filter(array, function(variant, boolean)) returns array
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/filter)
+
 ## `get`
 
 Get VARIANT element value from an array or object
@@ -439,7 +433,6 @@ Get VARIANT element value from an array or object with path name
 *Supported Signatures*
 ```sql
 function get_ignore_case(variant, varchar) returns variant
-function get_ignore_case(variant, varchar) returns object
 function get_ignore_case(object, varchar) returns $1
 function get_ignore_case(object, $1) returns $1
 ```
@@ -453,9 +446,6 @@ Get VARIANT element value from an array or object with path name
 function get_path(variant, varchar) returns variant
 function get_path(object, varchar) returns variant
 function get_path(array, varchar) returns variant
-function get_path(array, varchar) returns $1
-function get_path(object, varchar) returns $1
-function get_path(object, varchar) returns $1
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/get_path)
 
@@ -691,7 +681,7 @@ function object_construct(...) returns object
 the resulting object with null value
 *Supported Signatures*
 ```sql
-function object_construct_keep_null($1, ...) returns object
+function object_construct_keep_null(...) returns object
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/object_construct_keep_null)
 
@@ -700,7 +690,6 @@ function object_construct_keep_null($1, ...) returns object
 the resulting OBJECT
 *Supported Signatures*
 ```sql
-function object_delete(object, varchar, ...) returns object
 function object_delete(object, varchar, ...) returns object
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/object_delete)
@@ -712,8 +701,6 @@ the resulting OBJECT
 ```sql
 function object_insert(object, varchar, $1) returns object
 function object_insert(object, varchar, $1, boolean) returns object
-function object_insert(object, varchar, $1) returns object
-function object_insert(object, varchar, $1, boolean) returns object
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/object_insert)
 
@@ -722,7 +709,6 @@ function object_insert(object, varchar, $1, boolean) returns object
 the resulting ARRAY
 *Supported Signatures*
 ```sql
-function object_keys(object) returns array
 function object_keys(object) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/object_keys)
@@ -734,7 +720,6 @@ the resulting OBJECT
 ```sql
 function object_pick(object, varchar, ...) returns object
 function object_pick(object, array, ...) returns object
-function object_pick(object, varchar, ...) returns object
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/object_pick)
 
@@ -766,6 +751,14 @@ Converts null values to SQL NULLs
 function strip_null_value(variant) returns variant
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/strip_null_value)
+
+## `transform`
+
+*Supported Signatures*
+```sql
+function transform(array, function(variant, variant)) returns array
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/transform)
 
 ## `try_parse_json`
 

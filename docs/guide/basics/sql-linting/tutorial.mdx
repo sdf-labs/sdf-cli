@@ -46,15 +46,17 @@ The best way to learn is by doing! Let's get started.
     
     The model's path is `models/main.sql`, and it looks like this:
     ```sql models/main.sql
-select 
-    DISTINCT('Hello World!') AS message,
+SELECT 
+    DISTINCT('Hello World!') as message,
     num / 100.0 AS "num%", 
-    num AS "NUM", 
-    my_table.cool_col
-FROM my_table
+    num as "NUM", 
+    my_table.cool_col,
+    NULL as null_col,
+    true AS true_col
+from my_table
 WHERE bool_col = 'TRUE'
-ORDER BY 1, cool_col
-; 
+Order By 1, cool_col
+;
     ```
   </Step>
   <Step title="Run `sdf lint`">
@@ -66,21 +68,15 @@ ORDER BY 1, cool_col
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
 warning:&nbsp;SDF111:&nbsp;Last&nbsp;statement&nbsp;must&nbsp;NOT&nbsp;end&nbsp;with&nbsp;a&nbsp;semicolon.&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf111
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:8:20
+&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:11:1
 
 warning:&nbsp;SDF123:&nbsp;DISTINCT&nbsp;is&nbsp;used&nbsp;with&nbsp;parentheses.&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf123
 &nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:2:5
 
-warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Lower&nbsp;and&nbsp;Upper&nbsp;(&#39;select&#39;,&nbsp;&#39;DISTINCT&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:2:5
-
-warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Lower&nbsp;and&nbsp;Upper&nbsp;(&#39;select&#39;,&nbsp;&#39;AS&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
+warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Upper&nbsp;and&nbsp;Lower&nbsp;(&#39;SELECT&#39;,&nbsp;&#39;as&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
 &nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:2:30
 
-warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Lower&nbsp;and&nbsp;Upper&nbsp;(&#39;select&#39;,&nbsp;&#39;AS&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:3:17
-
-warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Lower&nbsp;and&nbsp;Upper&nbsp;(&#39;select&#39;,&nbsp;&#39;AS&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
+warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Upper&nbsp;and&nbsp;Lower&nbsp;(&#39;SELECT&#39;,&nbsp;&#39;as&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
 &nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:4:9
 
 warning:&nbsp;SDF118:&nbsp;Unnecessary&nbsp;quoting&nbsp;of&nbsp;identifier&nbsp;&#39;NUM&#39;.&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf118
@@ -89,20 +85,19 @@ warning:&nbsp;SDF118:&nbsp;Unnecessary&nbsp;quoting&nbsp;of&nbsp;identifier&nbsp
 warning:&nbsp;SDF112:&nbsp;Column&nbsp;inconsistently&nbsp;referenced&nbsp;with&nbsp;and&nbsp;without&nbsp;a&nbsp;qualifier&nbsp;(&#39;num&#39;,&nbsp;&#39;my_table.cool_col&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf112
 &nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:5:5
 
-warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Lower&nbsp;and&nbsp;Upper&nbsp;(&#39;select&#39;,&nbsp;&#39;FROM&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:6:1
+warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Upper&nbsp;and&nbsp;Lower&nbsp;(&#39;SELECT&#39;,&nbsp;&#39;as&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
+&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:6:10
 
-warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Lower&nbsp;and&nbsp;Upper&nbsp;(&#39;select&#39;,&nbsp;&#39;WHERE&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:7:1
+warning:&nbsp;SDF108:&nbsp;Literal&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Upper&nbsp;and&nbsp;Lower&nbsp;(&#39;NULL&#39;,&nbsp;&#39;true&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf108
+&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:7:5
 
-warning:&nbsp;SDF105:&nbsp;Mixing&nbsp;ordinal&nbsp;and&nbsp;non&#45;ordinal&nbsp;sort&nbsp;item&nbsp;is&nbsp;not&nbsp;allowed.&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf105
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:8:13
-
-warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Lower&nbsp;and&nbsp;Upper&nbsp;(&#39;select&#39;,&nbsp;&#39;ORDER&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
+warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Upper&nbsp;and&nbsp;Lower&nbsp;(&#39;SELECT&#39;,&nbsp;&#39;from&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
 &nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:8:1
 
-warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;Consistent&nbsp;across&nbsp;the&nbsp;query,&nbsp;got&nbsp;a&nbsp;mix&nbsp;of&nbsp;Lower&nbsp;and&nbsp;Upper&nbsp;(&#39;select&#39;,&nbsp;&#39;BY&#39;).&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf107
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:8:7
+warning:&nbsp;SDF105:&nbsp;Mixing&nbsp;ordinal&nbsp;and&nbsp;non&#45;ordinal&nbsp;sort&nbsp;item&nbsp;is&nbsp;not&nbsp;allowed.&nbsp;See&nbsp;https://docs.sdf.com/reference/lint&#45;rules#sdf105
+&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;models/main.sql:10:13
+
+...&nbsp;and&nbsp;2&nbsp;more&nbsp;warnings&nbsp;not&nbsp;shown
 
 </code>
 </pre>
@@ -124,8 +119,8 @@ warning:&nbsp;SDF107:&nbsp;Keywords&nbsp;case&nbsp;is&nbsp;expected&nbsp;to&nbsp
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`case&#45;keyword`,&nbsp;expected&nbsp;one&nbsp;of&nbsp;`name`,&nbsp;`defaults`,&nbsp;`layout&#45;rules`,&nbsp;`syntax&#45;rules`,&nbsp;`semantic&#45;rules`,&nbsp;`performance&#45;rules`,&nbsp;`check&#45;rules`&nbsp;at&nbsp;line&nbsp;19&nbsp;column&nbsp;3
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;workspace.sdf.yml:19:3
+error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`no&#45;these&#45;chars&#45;in&#45;quoted&#45;identifiers`,&nbsp;expected&nbsp;one&nbsp;of&nbsp;`name`,&nbsp;`defaults`,&nbsp;`case&#45;keyword`,&nbsp;`case&#45;literal`,&nbsp;`case&#45;type`,&nbsp;`case&#45;function`,&nbsp;`no&#45;these&#45;identifiers`,&nbsp;`keywords&#45;as&#45;identifiers`,&nbsp;`no&#45;chars&#45;in&#45;quoted&#45;identifiers`,&nbsp;`no&#45;unnecessary&#45;quoted&#45;identifiers`,&nbsp;`no&#45;unqualified&#45;multi&#45;source&#45;column&#45;reference`,&nbsp;`no&#45;inconsistent&#45;ordinal&#45;column&#45;reference`,&nbsp;`no&#45;unnecessary&#45;else`,&nbsp;`no&#45;unnecessary&#45;case`,&nbsp;`no&#45;unused&#45;cte`,&nbsp;`no&#45;unnecessary&#45;nested&#45;case`,&nbsp;`no&#45;distinct&#45;parenthesis`,&nbsp;`no&#45;subquery&#45;in`,&nbsp;`strict&#45;join&#45;condition&#45;order`,&nbsp;`strict&#45;wildcard&#45;order`,&nbsp;`no&#45;trailing&#45;semicolon`,&nbsp;`case&#45;column`,&nbsp;`case&#45;table`,&nbsp;`case&#45;alias`,&nbsp;`ctx&#45;no&#45;implicit&#45;conversions&#45;in`,&nbsp;`ctx&#45;strict&#45;qualified&#45;column&#45;reference`,&nbsp;`perf&#45;only&#45;direct&#45;partition&#45;column&#45;access`,&nbsp;`check&#45;rules`&nbsp;at&nbsp;line&nbsp;34&nbsp;column&nbsp;3
+&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;workspace.sdf.yml:34:3
 
 </code>
 </pre>
@@ -178,35 +173,39 @@ error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`case&#45;keyword
 
     <CodeGroup>
       ```sql before fix
-select 
-    DISTINCT('Hello World!') AS message,
+SELECT 
+    DISTINCT('Hello World!') as message,
     num / 100.0 AS "num%", 
-    num AS "NUM", 
-    my_table.cool_col
-FROM my_table
+    num as "NUM", 
+    my_table.cool_col,
+    NULL as null_col,
+    true AS true_col
+from my_table
 WHERE bool_col = 'TRUE'
-ORDER BY 1, cool_col
-; 
+Order By 1, cool_col
+;
       ```
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`case&#45;keyword`,&nbsp;expected&nbsp;one&nbsp;of&nbsp;`name`,&nbsp;`defaults`,&nbsp;`layout&#45;rules`,&nbsp;`syntax&#45;rules`,&nbsp;`semantic&#45;rules`,&nbsp;`performance&#45;rules`,&nbsp;`check&#45;rules`&nbsp;at&nbsp;line&nbsp;19&nbsp;column&nbsp;3
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;workspace.sdf.yml:19:3
+error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`no&#45;these&#45;chars&#45;in&#45;quoted&#45;identifiers`,&nbsp;expected&nbsp;one&nbsp;of&nbsp;`name`,&nbsp;`defaults`,&nbsp;`case&#45;keyword`,&nbsp;`case&#45;literal`,&nbsp;`case&#45;type`,&nbsp;`case&#45;function`,&nbsp;`no&#45;these&#45;identifiers`,&nbsp;`keywords&#45;as&#45;identifiers`,&nbsp;`no&#45;chars&#45;in&#45;quoted&#45;identifiers`,&nbsp;`no&#45;unnecessary&#45;quoted&#45;identifiers`,&nbsp;`no&#45;unqualified&#45;multi&#45;source&#45;column&#45;reference`,&nbsp;`no&#45;inconsistent&#45;ordinal&#45;column&#45;reference`,&nbsp;`no&#45;unnecessary&#45;else`,&nbsp;`no&#45;unnecessary&#45;case`,&nbsp;`no&#45;unused&#45;cte`,&nbsp;`no&#45;unnecessary&#45;nested&#45;case`,&nbsp;`no&#45;distinct&#45;parenthesis`,&nbsp;`no&#45;subquery&#45;in`,&nbsp;`strict&#45;join&#45;condition&#45;order`,&nbsp;`strict&#45;wildcard&#45;order`,&nbsp;`no&#45;trailing&#45;semicolon`,&nbsp;`case&#45;column`,&nbsp;`case&#45;table`,&nbsp;`case&#45;alias`,&nbsp;`ctx&#45;no&#45;implicit&#45;conversions&#45;in`,&nbsp;`ctx&#45;strict&#45;qualified&#45;column&#45;reference`,&nbsp;`perf&#45;only&#45;direct&#45;partition&#45;column&#45;access`,&nbsp;`check&#45;rules`&nbsp;at&nbsp;line&nbsp;34&nbsp;column&nbsp;3
+&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;workspace.sdf.yml:34:3
 
 </code>
 </pre>
 </div>
       ```sql after fix
-select 
-    DISTINCT('Hello World!') AS message,
+SELECT 
+    DISTINCT('Hello World!') as message,
     num / 100.0 AS "num%", 
-    num AS "NUM", 
-    my_table.cool_col
-FROM my_table
+    num as "NUM", 
+    my_table.cool_col,
+    NULL as null_col,
+    true AS true_col
+from my_table
 WHERE bool_col = 'TRUE'
-ORDER BY 1, cool_col
-; 
+Order By 1, cool_col
+;
       ```
     </CodeGroup>
 
@@ -214,8 +213,8 @@ ORDER BY 1, cool_col
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`case&#45;keyword`,&nbsp;expected&nbsp;one&nbsp;of&nbsp;`name`,&nbsp;`defaults`,&nbsp;`layout&#45;rules`,&nbsp;`syntax&#45;rules`,&nbsp;`semantic&#45;rules`,&nbsp;`performance&#45;rules`,&nbsp;`check&#45;rules`&nbsp;at&nbsp;line&nbsp;19&nbsp;column&nbsp;3
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;workspace.sdf.yml:19:3
+error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`no&#45;these&#45;chars&#45;in&#45;quoted&#45;identifiers`,&nbsp;expected&nbsp;one&nbsp;of&nbsp;`name`,&nbsp;`defaults`,&nbsp;`case&#45;keyword`,&nbsp;`case&#45;literal`,&nbsp;`case&#45;type`,&nbsp;`case&#45;function`,&nbsp;`no&#45;these&#45;identifiers`,&nbsp;`keywords&#45;as&#45;identifiers`,&nbsp;`no&#45;chars&#45;in&#45;quoted&#45;identifiers`,&nbsp;`no&#45;unnecessary&#45;quoted&#45;identifiers`,&nbsp;`no&#45;unqualified&#45;multi&#45;source&#45;column&#45;reference`,&nbsp;`no&#45;inconsistent&#45;ordinal&#45;column&#45;reference`,&nbsp;`no&#45;unnecessary&#45;else`,&nbsp;`no&#45;unnecessary&#45;case`,&nbsp;`no&#45;unused&#45;cte`,&nbsp;`no&#45;unnecessary&#45;nested&#45;case`,&nbsp;`no&#45;distinct&#45;parenthesis`,&nbsp;`no&#45;subquery&#45;in`,&nbsp;`strict&#45;join&#45;condition&#45;order`,&nbsp;`strict&#45;wildcard&#45;order`,&nbsp;`no&#45;trailing&#45;semicolon`,&nbsp;`case&#45;column`,&nbsp;`case&#45;table`,&nbsp;`case&#45;alias`,&nbsp;`ctx&#45;no&#45;implicit&#45;conversions&#45;in`,&nbsp;`ctx&#45;strict&#45;qualified&#45;column&#45;reference`,&nbsp;`perf&#45;only&#45;direct&#45;partition&#45;column&#45;access`,&nbsp;`check&#45;rules`&nbsp;at&nbsp;line&nbsp;34&nbsp;column&nbsp;3
+&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;workspace.sdf.yml:34:3
 
 </code>
 </pre>
@@ -243,8 +242,8 @@ ORDER BY message, cool_col -- removed ordinal reference 1 in `ORDER BY 1, cool_c
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`case&#45;keyword`,&nbsp;expected&nbsp;one&nbsp;of&nbsp;`name`,&nbsp;`defaults`,&nbsp;`layout&#45;rules`,&nbsp;`syntax&#45;rules`,&nbsp;`semantic&#45;rules`,&nbsp;`performance&#45;rules`,&nbsp;`check&#45;rules`&nbsp;at&nbsp;line&nbsp;19&nbsp;column&nbsp;3
-&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;workspace.sdf.yml:19:3
+error:&nbsp;SDF1013:&nbsp;linter:&nbsp;unknown&nbsp;field&nbsp;`no&#45;these&#45;chars&#45;in&#45;quoted&#45;identifiers`,&nbsp;expected&nbsp;one&nbsp;of&nbsp;`name`,&nbsp;`defaults`,&nbsp;`case&#45;keyword`,&nbsp;`case&#45;literal`,&nbsp;`case&#45;type`,&nbsp;`case&#45;function`,&nbsp;`no&#45;these&#45;identifiers`,&nbsp;`keywords&#45;as&#45;identifiers`,&nbsp;`no&#45;chars&#45;in&#45;quoted&#45;identifiers`,&nbsp;`no&#45;unnecessary&#45;quoted&#45;identifiers`,&nbsp;`no&#45;unqualified&#45;multi&#45;source&#45;column&#45;reference`,&nbsp;`no&#45;inconsistent&#45;ordinal&#45;column&#45;reference`,&nbsp;`no&#45;unnecessary&#45;else`,&nbsp;`no&#45;unnecessary&#45;case`,&nbsp;`no&#45;unused&#45;cte`,&nbsp;`no&#45;unnecessary&#45;nested&#45;case`,&nbsp;`no&#45;distinct&#45;parenthesis`,&nbsp;`no&#45;subquery&#45;in`,&nbsp;`strict&#45;join&#45;condition&#45;order`,&nbsp;`strict&#45;wildcard&#45;order`,&nbsp;`no&#45;trailing&#45;semicolon`,&nbsp;`case&#45;column`,&nbsp;`case&#45;table`,&nbsp;`case&#45;alias`,&nbsp;`ctx&#45;no&#45;implicit&#45;conversions&#45;in`,&nbsp;`ctx&#45;strict&#45;qualified&#45;column&#45;reference`,&nbsp;`perf&#45;only&#45;direct&#45;partition&#45;column&#45;access`,&nbsp;`check&#45;rules`&nbsp;at&nbsp;line&nbsp;34&nbsp;column&nbsp;3
+&nbsp;&nbsp;&#45;&#45;&gt;&nbsp;workspace.sdf.yml:34:3
 
 </code>
 </pre>

@@ -34,7 +34,8 @@ Commands:
 &nbsp;&nbsp;lint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lint&nbsp;models
 &nbsp;&nbsp;fmt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Format&nbsp;models
 &nbsp;&nbsp;run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run&nbsp;models
-&nbsp;&nbsp;test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;models
+&nbsp;&nbsp;build&nbsp;&nbsp;&nbsp;&nbsp;Run&nbsp;model&nbsp;and&nbsp;tests,&nbsp;and&nbsp;if&nbsp;successful,&nbsp;publish,&nbsp;aka&nbsp;&quot;write&#45;audit&#45;publish&quot;
+&nbsp;&nbsp;test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;your&nbsp;models
 &nbsp;&nbsp;stats&nbsp;&nbsp;&nbsp;&nbsp;Statistics&nbsp;for&nbsp;your&nbsp;data
 &nbsp;&nbsp;report&nbsp;&nbsp;&nbsp;Report&nbsp;code&nbsp;quality
 &nbsp;&nbsp;check&nbsp;&nbsp;&nbsp;&nbsp;Check&nbsp;code&nbsp;quality
@@ -43,6 +44,7 @@ Commands:
 &nbsp;&nbsp;system&nbsp;&nbsp;&nbsp;System&nbsp;maintenance,&nbsp;install&nbsp;and&nbsp;update
 &nbsp;&nbsp;auth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Authenticate&nbsp;CLI&nbsp;to&nbsp;services&nbsp;like&nbsp;SDF,&nbsp;AWS,&nbsp;OpenAI,&nbsp;etc
 &nbsp;&nbsp;man&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display&nbsp;reference&nbsp;material,&nbsp;like&nbsp;the&nbsp;CLI,&nbsp;dialect&nbsp;specific&nbsp;functions,&nbsp;schemas&nbsp;for&nbsp;authoring&nbsp;and&nbsp;interchange
+&nbsp;&nbsp;init&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Initialize&nbsp;a&nbsp;workspace&nbsp;interactively
 &nbsp;&nbsp;dbt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Initialize&nbsp;an&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;an&nbsp;existing&nbsp;dbt&nbsp;project
 &nbsp;&nbsp;exec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Execute&nbsp;custom&nbsp;scripts
 &nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;this&nbsp;message&nbsp;or&nbsp;the&nbsp;help&nbsp;of&nbsp;the&nbsp;given&nbsp;subcommand(s)
@@ -50,6 +52,7 @@ Commands:
 Options:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;log&#45;level&nbsp;&lt;LOG_LEVEL&gt;&nbsp;&nbsp;Set&nbsp;log&nbsp;level&nbsp;[possible&nbsp;values:&nbsp;trace,&nbsp;debug,&nbsp;debug&#45;pretty,&nbsp;info,&nbsp;warn,&nbsp;error]
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;log&#45;file&nbsp;&lt;LOG_FILE&gt;&nbsp;&nbsp;&nbsp;&nbsp;Creates&nbsp;or&nbsp;replaces&nbsp;the&nbsp;log&nbsp;file
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;show&#45;all&#45;errors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Don&#39;t&nbsp;suppress&nbsp;errors
 &nbsp;&nbsp;&#45;h,&nbsp;&#45;&#45;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help
 &nbsp;&nbsp;&#45;V,&nbsp;&#45;&#45;version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;version
 
@@ -75,11 +78,11 @@ After running the command, you will see the following output:
 &nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome&nbsp;to&nbsp;your&nbsp;new&nbsp;SDF&nbsp;Workspace!&nbsp;To&nbsp;help&nbsp;you&nbsp;on&nbsp;your&nbsp;journey:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💡&nbsp;Join&nbsp;the&nbsp;SDF&nbsp;Community&nbsp;Slack&nbsp;&#45;&gt;&nbsp;https://join.slack.com/t/sdfcommunity/shared_invite/zt&#45;2lkokt7ed&#45;xIR0_pcmUOU3~CebxuqeKg&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💡&nbsp;Join&nbsp;the&nbsp;SDF&nbsp;Community&nbsp;Slack&nbsp;&#45;&gt;&nbsp;https://sdf.com/join&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📚&nbsp;Read&nbsp;the&nbsp;Docs&nbsp;to&nbsp;Get&nbsp;Started&nbsp;&#45;&gt;&nbsp;https://docs.sdf.com/
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.220&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.173&nbsp;secs
 
 </code>
 </pre>
@@ -129,7 +132,8 @@ Lastly, our workspace contains a single model file, `main.sql`, which contains t
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-sql'>
 <code className='language-sql'>
-select&nbsp;&#39;Hello&nbsp;World!&#39;&nbsp;as&nbsp;message;&nbsp;
+select&nbsp;&#39;Hello&nbsp;World!&#39;&nbsp;as&nbsp;message
+
 </code>
 </pre>
 </div>
@@ -166,7 +170,7 @@ Let's see just how easy it is to set up SDF and run your first query.
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.693&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.613&nbsp;secs
 
 Schema&nbsp;hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -203,7 +207,7 @@ Schema&nbsp;hello.pub.main
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main2&nbsp;(./models/main2.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.706&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.676&nbsp;secs
 hello.pub.main2.message
 │
 │&nbsp;copy
@@ -227,10 +231,8 @@ hello.pub.main2.message
 <code className='language-shell'>
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.main&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main2&nbsp;(./models/main2.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Warning&nbsp;hello.pub.main2&nbsp;attempting&nbsp;to&nbsp;execute&nbsp;Trino,&nbsp;local&nbsp;execution&nbsp;is&nbsp;currently&nbsp;experimental
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.722&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.620&nbsp;secs
 
 Table&nbsp;hello.pub.main
 ┌──────────────┐
