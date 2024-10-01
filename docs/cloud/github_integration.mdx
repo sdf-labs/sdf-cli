@@ -9,6 +9,34 @@ Our GitHub integration ensures that your SDF workspace remains fully synchronize
 The GitHub integration further enables you to view multiple branches and their catalogs and lineage graphs directly from within the SDF Cloud, giving you the ability to easily track, compare, and manage changes across different versions of your data models. 
 
 
+### Impact Analysis
+Another benefit of integrating with GitHub is that this integration automatically enables our Impact Analysis functionality. When new PRs are opened inside GitHub, SDF will comment directly on that respective PR with a detailed summary of the impact your change makes to the entire data warehouse. This means that you can proactively understand how model changes affect your warehouse *before* merging your PR. This enables you to: 
+
+- 📅 Track changes and understand their impact in real-time, allowing for more informed decision-making as your business scales.
+
+- ⭐️ Ensure you aren't creating overlapping models for your workspace that bloat your warehouse and increase compute costs. 
+
+- 🛠 Automate complex analysis that would traditionally require manual investigation, freeing up your data engineers to focus on more strategic tasks.
+
+- 📈 Increase data accuracy and quality by proactively identifying potentially breaking changes.
+
+- 🤝 Improve collaboration between data teams and stakeholders with clear, actionable AI-generated summaries of how your changes affect business-critical models.
+
+- 💻 Seamlessly integrate into your pre-existing workflow with detailed comments right on your GitHub PRs.
+
+These additions highlight how the feature saves time, reduces risks, and fosters more efficient collaboration across your team.
+
+<img src="https://cdn.sdf.com/img/impact-analysis-gif.gif"/>
+
+<Note>
+The Impact Analysis comment contains: 
+- An AI-generated summary of the impact of the PR, with an estimated risk assessment of either: Low, Moderate, High, or Critical 
+- The environment name, duration, number of overlapping models, number of impacted models, and a link to the respective lineage graph in the Cloud
+- Models Overlap Analysis 
+- Table Changes
+- Column Changes 
+</Note>
+
 ## Prerequisites
 
 - A GitHub account with owner level access to the desired repository you would like to integrate.
@@ -86,6 +114,13 @@ If you do not have appropriate GitHub access, you can still request access to th
         If your branch has become stale, you should see an indicator in the navigation bar which will prompt you to recompile your workspace to view the latest changes. 
         </Note>
         <img src="https://cdn.sdf.com/img/usingthenavigationbar.gif"/>
+    </Step>
+    <Step title="Impact Analysis in the Cloud">
+    Now that you're integrated with GitHub, you should automatically start to see detailed comments from SDF Labs on all your GitHub PRs, showcasing the impact of the changes to your models. 
+
+    <Info>
+    If you would like to turn Impact Analysis off, navigate to your workspace settings and scroll to the "GitHub Integration" section. There you will find a toggle to disable impact analysis for your workspace. You can also disable the AI-generated summary that appears at the top of every comment. 
+    </Info>
     </Step>
 </Steps>
     
