@@ -108,26 +108,26 @@ For the full list of rules and configuration options, please visit our
 
 | Type        | Configuration | SDF Err | SQLFluff Err | Auto-Fix |  Default
 | ----------- | ------------- | --------- | --------------- | -------- | -------- |
-| Syntax      | `case_keyword` | SDF107 | L010              |    ✅    | `consistent` |
-| Syntax      | `case-literal` | SDF108, SDF109  | L040     |     ✅   | `consistent` |
-| Syntax      | `case-type` | SDF110        | L063            |    ✅    | `consistent` |
-| Syntax      | `case-function` | SDF106 | L030 |    ✅    | `off` |
+| Syntax      | `case_keyword` | SDF107 | L010              |    ✅    | `lower` |
+| Syntax      | `case-literal` | SDF108, SDF109  | L040     |     ✅   | `lower` |
+| Syntax      | `case-type` | SDF110        | L063            |    ✅    | `off` |
+| Syntax      | `case-function` | SDF106 | L030 |    ✅    | `lower` |
 | Syntax      | `no-these-identifiers` | SDF124 | L029 |    ❌    | `[]` |
 | Syntax      | `keywords-as-identifiers` | SDF125 | ?? |    ❌    | `[]` |
-| Syntax      | `no-these-chars-in-quoted-identifiers` | SDF117 | L057 |    ❌    | ` ".#%{}\\<>*?/!'\":@+`|=" ` |
-| Syntax      | `no-unnecessary-quoted-identifiers` | SDF118 | L059 |    ❌    | `on` |
-| Syntax      | `ctx-strict-qualified-column-reference` | SDF112 | L028 |    ❌    | `consistent` |
-| Syntax      | `no-unqualified-multi-source-column-reference` | SDF116 | L027 |    ❌    | `on` |
-| Syntax      | `no-inconsistent-ordinal-column-reference` | SDF105 | L054 |    ❌    | `on` |
-| Syntax      | `no-unnecessary-else` | SDF119 | L035 |    ❌    | `on` |
-| Syntax      | `no-unnecessary-case` | SDF120 | L043 |    ❌    | `on` |
-| Syntax      | `no-unused-cte` | SDF121 | L045 |    ❌    | `on` |
-| Syntax      | `no-unnecessary-nested-case` | SDF122 | L058 |    ❌    | `on` |
-| Syntax      | `no-distinct-parenthesis` | SDF123 | L015 |    ❌    | `on` |
-| Syntax      | `strict-join-condition-order` | SDF114 | ST09 |    ❌    | `on` |
-| Syntax      | `strict-wildcard-order` | SDF115 | L034 |    ❌    | `on` |
-| Syntax      | `no-trailing-semicolon` | SDF111 | L052 |    ❌    | `on` |
-| Semantic    | `case-column` | --------- | --------------- |    ❌    | `off` |
+| Syntax      | `no-these-chars-in-quoted-identifiers` | SDF117 | L057 |    ❌    | ` "" ` |
+| Syntax      | `no-unnecessary-quoted-identifiers` | SDF118 | L059 |    ✅    | `off` |
+| Syntax      | `ctx-strict-qualified-column-reference` | SDF112 | L028 |    ❌    | `off` |
+| Syntax      | `no-unqualified-multi-source-column-reference` | SDF116 | L027 |    ❌    | `off` |
+| Syntax      | `no-inconsistent-ordinal-column-reference` | SDF105 | L054 |    ❌    | `off` |
+| Syntax      | `no-unnecessary-else` | SDF119 | L035 |    ✅    | `off` |
+| Syntax      | `no-unnecessary-case` | SDF120 | L043 |    ❌    | `off` |
+| Syntax      | `no-unused-cte` | SDF121 | L045 |    ✅    | `off` |
+| Syntax      | `no-unnecessary-nested-case` | SDF122 | L058 |    ❌    | `off` |
+| Syntax      | `no-distinct-parenthesis` | SDF123 | L015 |    ✅    | `off` |
+| Syntax      | `strict-join-condition-order` | SDF114 | ST09 |    ❌    | `off` |
+| Syntax      | `strict-wildcard-order` | SDF115 | L034 |    ✅    | `off` |
+| Syntax      | `no-trailing-semicolon` | SDF111 | L052 |    ✅    | `off` |
+| Semantic    | `ctx-case-column` | --------- | --------------- |    ✅    | `off` |
 | Semantic    | `case-table` | --------- | --------------- |    ❌    | `off` |
 | Semantic    | `case-alias` | --------- | --------------- |    ❌    | `off` |
 | Semantic    | `ctx-no-implicit-conversions-in` | --------- | --------------- |    ❌    | `off` |
