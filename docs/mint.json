@@ -164,6 +164,7 @@
 					"icon": "scale-balanced",
 					"pages": [
 						"guide/advanced/custom_scripts",
+						"guide/advanced/custom_libs",
 						"guide/advanced/index",
 						"guide/advanced/udf",
 						"guide/advanced/telemetry",

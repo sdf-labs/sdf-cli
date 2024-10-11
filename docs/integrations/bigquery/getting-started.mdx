@@ -43,11 +43,15 @@ In order to connect to BigQuery, you will need to have on hand the following:
     <Step title="Connect SDF to BigQuery">
         To authenticate SDF to BigQuery, run the following command with the values from the previous step filled in:
         ```shell
-        sdf auth login bigquery --project-id <PROJECT_ID> --client-email <CLIENT_EMAIL> --private-key <PRIVATE_KEY>
+        sdf auth login bigquery --json-path <PATH_TO_DOWNLOADED_JSON_FILE>
         ```
 
         <Note>
-	        Run `sdf auth login bigquery --help` to see all login options.
+	        Run `sdf auth login bigquery --help` to see all login options. If the JSON path does not work or cannot be specific, the values can be copied in 
+          as command flags like so:
+          ```shell
+          sdf auth login bigquery --project-id <PROJECT_ID> --client-email <CLIENT_EMAIL> --private-key <PRIVATE_KEY>
+          ```
         </Note>
 
         After running this command, SDF will validate that it has access to all the necessary permissions for BigQuery with these credentials. A warning will show if SDF does not have the necessary permissions, or if there

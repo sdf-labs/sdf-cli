@@ -15,7 +15,7 @@ workspace:
 
   defaults:
     dialect: trino
-    environment: local
+
 ---
 environment:
   name: local

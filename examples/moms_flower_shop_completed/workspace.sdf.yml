@@ -41,3 +41,4 @@ environment:
       targets:
         - pattern: moms_flower_shop.*.*
           rename-as: moms_workshed.${1}.${2}
+
