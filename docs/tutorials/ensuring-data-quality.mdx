@@ -84,7 +84,7 @@ Init for run commands:
         columns: 
           - name: event_value
             tests:
-              - expect: valid_scalar("""event_name >= 0""")
+              - expect: valid_scalar("""event_value >= 0""")
                 severity: error
     ```
 
@@ -122,7 +122,7 @@ Init for run commands:
           columns: 
               - name: event_value
                 tests:
-                  - expect: valid_scalar("""event_name >= 0""")
+                  - expect: valid_scalar("""event_value >= 0""")
                     severity: error
                   # Add the code below:
                   - expect: minimum(0)
