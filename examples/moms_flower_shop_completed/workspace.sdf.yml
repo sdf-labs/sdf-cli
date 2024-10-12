@@ -2,7 +2,7 @@ workspace:
   name: moms_flower_shop
   edition: "1.3"
   description: >
-    This workspace represents the data warehouse of mom's flower shop. 
+    This workspace represents the data warehouse of mom's flower shop.
 
     It contains raw data regarding:
     1. Customers
@@ -11,26 +11,21 @@ workspace:
     4. Street addresses
 
     That data is available in the seeds folder and is referenced in models/raw
-    to be loaded and used by SDF. Data transformations are performed and additional 
+    to be loaded and used by SDF. Data transformations are performed and additional
     models are available in the staging and analytics folders under the models folder.
 
   includes:
     - path: models
-      type: model
       index: schema-table-name
     - path: seeds/parquet
       type: resource
-    - path: metadata
-      type: metadata
+    - path: specs
       index: schema-table-name
-    - path: classifications
-      type: metadata
+    - path: classifiers
     - path: reports
-      type: report
     - path: checks
-      type: check
-  
-  defaults: 
+
+  defaults:
     preprocessor: jinja
 ---
 environment:
