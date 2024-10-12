@@ -1,4 +1,5 @@
-SELECT 
+CREATE VIEW analytics.agg_installs_and_campaigns AS
+SELECT
     -- install events data
     DATE_FORMAT(install_time, '%Y-%m-%d') AS install_date,
     campaign_name,
