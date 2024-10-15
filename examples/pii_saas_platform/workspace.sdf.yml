@@ -5,10 +5,10 @@ workspace:
     This workspace mocks a Snowflake environment of users, organizations, and invoices and demonstrates code contracts & reports in action. 
 
     Try `sdf compile`, `sdf test`, and `sdf report` to see the magic happen
-  
+
   defaults:
-    dialect: snowflake # The dialect of SQL used in this workspace, defaults to "presto"
-  
+    dialect: snowflake # The dialect of SQL used in this workspace, defaults to "trino"
+
   includes:
     - path: classification
     - path: checks
@@ -16,13 +16,13 @@ workspace:
       defaults:
         catalog: sdf
         schema: checks
-        dialect: presto
+        dialect: trino
     - path: reports
       type: report
       defaults:
         catalog: sdf
         schema: reports
-        dialect: presto
+        dialect: trino
     - path: models # The path to sql sources for this workspace -- at least one path is required
       defaults:
         catalog: transformations

@@ -2,7 +2,7 @@ workspace:
   name: cybersyn_tech_innovation # The name of this workspace -- required
   edition: "1.3" # The edition of this workspace -- required
   description: >
-    This workspace uses a free dataset on Snowflake's marketplace called Tech & Innovation Essentials. 
+    This workspace uses a free dataset on Snowflake's marketplace called Cybersyn Tech & Innovation Essentials. 
     Running and compiling this workspace requires a connection to a Snowflake account with the dataset above installed.
     The provider in this workspace is using the `default` credentials. Run sdf auth login snowflake with no name provided to set these.
 

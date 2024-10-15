@@ -1,0 +1,22 @@
+table:
+    name: star_growth
+    description: >
+        This table shows the number of stars that have been added to a repository over the course of all events on the repo.
+    columns:
+      - name: first_star_count
+        description: The number of stars that a repository had before the first event recorded.
+        tests:
+          - expect: minimum(0)
+      - name: last_star_count
+        description: The number of stars that a repository had after the last event recorded.
+        tests:
+          - expect: minimum(0)
+      - name: total_stars_acquired
+        description: The total number of stars that a repository has acquired over the course of all events.
+        tests:
+          - expect: minimum(0)
+      - name: star_growth
+        description: The difference between the stars that a repository had after the last event recorded and the stars that a repository had before the first event recorded.
+        tests:
+          - expect: minimum(0)
+      

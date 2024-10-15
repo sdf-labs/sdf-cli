@@ -66,7 +66,7 @@ title: "SDF YML Schema"
 |Field | Type | Description|
 | :---- | :--- | :------- |
 `name:` | [`String`](#nested-element-string)| The name of the function [syntax: [[catalog.]schema].function]|
-`section:` | `string`| The generic type bounds|
+`section:` | `string`| The function category|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect that provides this function|
 `description:` | `string`| A description of this function|
 `variadic:` | [`Variadic`](#enum-variadic)| Arbitrary number of arguments of an common type out of a list of valid types|
@@ -74,6 +74,7 @@ title: "SDF YML Schema"
 `parameters:` | `[Parameter]?`| The arguments of this function|
 `optional-parameters:` | `[OptionalParameter]?`| The arguments of this function|
 `returns:` | [`Parameter?`](#nested-element-parameter)| The results of this function (can be a tuple)|
+`constraints:` | `object`| The constraints on generic type bounds|
 `binds:` | `array`| The generic type bounds|
 `volatility:` | [`Volatility`](#enum-volatility)| volatility - The volatility of the function.|
 `examples:` | `array`| example - Example use of the function (tuple with input/output)|
@@ -265,6 +266,7 @@ Value | Description|
 `check` | A code contract|
 `test` | A data contract|
 `stat` | A data report|
+`slt` | A slt table|
 `system` | A SDF System table/view, maintained by the sdf cli|
 `external-system` | An External System table/view, maintained by the database system (e.g. Snowflake, Redshift, etc.)|
 ## Enum: `TableOrigin`
@@ -623,6 +625,6 @@ Values |
 ### Nested element: `FormatRules`
 |Field | Type | Description|
 | :---- | :--- | :------- |
-`name:` | `string`| The name of formatter rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
+`name:` | `string?`| The name of formatter rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
 `line-length:` | `integer?`| The line length|
 

@@ -1,0 +1,39 @@
+workspace:
+  name: github_analysis # The name of this workspace -- required
+  edition: "1.3" # The edition of this workspace -- required
+  description: >
+    This workspace uses a free dataset on Snowflake's marketplace called Cybersyn Tech & Innovation Essentials. 
+    Running and compiling this workspace requires a connection to a Snowflake account with the dataset above installed.
+    The provider in this workspace is using the `default` credentials. Run sdf auth login snowflake with no name provided to set these.
+
+    The analysis in this workspace is focused on the GitHub data available through this free dataset. It's a more advanced, in-depth analysis
+    in comparison to the cybersyn_tech_innovation sample workspace. That being said, by default it materializes views to the same `sdf_snowflake`
+    database as the cybersyn_tech_innovation workspace.
+
+    Follow this link to install:  https://app.snowflake.com/marketplace/listing/GZTSZAS2KII/cybersyn-tech-innovation-essentials?search=cybersyn
+
+  defaults:
+    dialect: snowflake
+    preprocessor: jinja
+    materialization: view
+
+  includes:
+    - path: models # The path to sql sources for this workspace -- at least one path is required
+      index: catalog-schema-table-name # The index to use for sources, this grabs the catalog, schema, and table name from the directory structure.
+    - path: metadata
+      index: catalog-schema-table-name
+    - path: classification
+      type: metadata
+    - path: checks
+
+  integrations:
+    - provider: snowflake
+      type: database
+      sources:
+        - pattern: tech__innovation_essentials.cybersyn.*
+      targets:
+        - pattern: sdf_snowflake.*.*
+
+  dependencies:
+    - name: workspace_evaluator
+      git: https://github.com/sdf-labs/workspace-evaluator/workspace-evaluator.git

@@ -16,4 +16,4 @@ JOIN latest_repo_name AS repo
 WHERE stars.date >= DATEADD('day', -365, CURRENT_DATE)
 GROUP BY repo.repo_name, repo.repo_id
 ORDER BY sum_stars DESC NULLS LAST
-LIMIT 50;
+LIMIT 50

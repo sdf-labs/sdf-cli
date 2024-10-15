@@ -6,5 +6,4 @@ FROM tech__innovation_essentials.cybersyn.domain_characteristics
 WHERE domain_id ILIKE '%.ai'
   AND relationship_type = 'successful_http_response_status'
   AND value = 'true'
-  AND relationship_end_date IS NULL;
-;
+  AND relationship_end_date IS NULL

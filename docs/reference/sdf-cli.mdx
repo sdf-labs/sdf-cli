@@ -13,10 +13,7 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf new`↴](#sdf-new)
 * [`sdf clean`↴](#sdf-clean)
 * [`sdf compile`↴](#sdf-compile)
-* [`sdf lint`↴](#sdf-lint)
-* [`sdf fmt`↴](#sdf-fmt)
 * [`sdf run`↴](#sdf-run)
-* [`sdf build`↴](#sdf-build)
 * [`sdf test`↴](#sdf-test)
 * [`sdf stats`↴](#sdf-stats)
 * [`sdf report`↴](#sdf-report)
@@ -62,10 +59,7 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `new` — Create a new sdf workspace
 * `clean` — Remove artifacts that sdf has generated in the past
 * `compile` — Compile models
-* `lint` — Lint models
-* `fmt` — Format models
 * `run` — Run models
-* `build` — Run model and tests, and if successful, publish, aka "write-audit-publish"
 * `test` — Test your models
 * `stats` — Statistics for your data
 * `report` — Report code quality
@@ -174,9 +168,6 @@ Compile models
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
@@ -196,115 +187,9 @@ Compile models
 * `--no-snapshot-mode` — Set snapshot-mode to false (default is true)
 
   Default value: `false`
-
-
-
-## `sdf lint`
-
-Lint models
-
-**Usage:** `sdf lint [OPTIONS] [TARGETS]...`
-
-###### **Arguments:**
-
-* ` TARGETS ` — Compile only the given source dirs, files or tables [default: all models]
-
-###### **Options:**
-
-* `-e`, `--environment  ENVIRONMENT ` — Use this environment
-* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
-
-  Possible values: `all`, `progress`, `result`, `none`
-
-* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
-* `--stage  STAGE ` — Run the following stages [default: all stages]
-
-  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
-
-* `--cache  CACHE ` — Controls cache use
-
-  Default value: `read-write`
-
-  Possible values: `read-write`, `write-only`, `read-only`, `none`
-
-* `--save  SAVE ` — Controls which assets to save [default: none]
-
-  Possible values: `info-schema`, `assembly`, `table-deps`
-
-* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
+* `--warn-non-local-executable`
 
   Default value: `false`
-* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
-* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
-
-  Default value: `false`
-* `--format  FORMAT ` — Show error tables in this format
-
-  Default value: `table`
-
-  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
-
-* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `--fix`
-
-  Default value: `false`
-
-
-
-## `sdf fmt`
-
-Format models
-
-**Usage:** `sdf fmt [OPTIONS] [TARGETS]...`
-
-###### **Arguments:**
-
-* ` TARGETS ` — Compile only the given source dirs, files or tables [default: all models]
-
-###### **Options:**
-
-* `-e`, `--environment  ENVIRONMENT ` — Use this environment
-* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
-
-  Possible values: `all`, `progress`, `result`, `none`
-
-* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
-* `--stage  STAGE ` — Run the following stages [default: all stages]
-
-  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
-
-* `--cache  CACHE ` — Controls cache use
-
-  Default value: `read-write`
-
-  Possible values: `read-write`, `write-only`, `read-only`, `none`
-
-* `--save  SAVE ` — Controls which assets to save [default: none]
-
-  Possible values: `info-schema`, `assembly`, `table-deps`
-
-* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
-
-  Default value: `false`
-* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
-* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
-
-  Default value: `false`
-* `--format  FORMAT ` — Show error tables in this format
-
-  Default value: `table`
-
-  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
-
-* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
 
 
 
@@ -345,68 +230,6 @@ Run models
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
-* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
-
-  Default value: `false`
-* `--format  FORMAT ` — Show error tables in this format
-
-  Default value: `table`
-
-  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
-
-* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
-* `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
-* `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
-* `--dry-run` — Plan command but don't evaluate it
-
-  Default value: `false`
-
-
-
-## `sdf build`
-
-Run model and tests, and if successful, publish, aka "write-audit-publish"
-
-**Usage:** `sdf build [OPTIONS] [TARGETS]...`
-
-###### **Arguments:**
-
-* ` TARGETS ` — Run only the given source dirs, files or tables [default: all models]
-
-###### **Options:**
-
-* `-e`, `--environment  ENVIRONMENT ` — Use this environment
-* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
-
-  Possible values: `all`, `progress`, `result`, `none`
-
-* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
-* `--stage  STAGE ` — Run the following stages [default: all stages]
-
-  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
-
-* `--cache  CACHE ` — Controls cache use
-
-  Default value: `read-write`
-
-  Possible values: `read-write`, `write-only`, `read-only`, `none`
-
-* `--save  SAVE ` — Controls which assets to save [default: none]
-
-  Possible values: `info-schema`, `assembly`, `table-deps`
-
-* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
-
-  Default value: `false`
-* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
@@ -463,9 +286,6 @@ Test your models
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
@@ -476,9 +296,6 @@ Test your models
   Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
 
 * `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
-* `-u`, `--sql-logic-test-update` — Goldie update the sqllogictests files
-
-  Default value: `false`
 
 
 
@@ -519,9 +336,6 @@ Statistics for your data
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
@@ -572,9 +386,6 @@ Report code quality
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
@@ -625,9 +436,6 @@ Check code quality
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
@@ -688,9 +496,6 @@ Display lineage for a given table and/or column
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
@@ -750,9 +555,6 @@ Push a local workspace to the SDF Service
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`
@@ -847,9 +649,6 @@ Authenticate CLI to services like SDF, AWS, OpenAI, etc
   Default value: `false`
 * `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
 * `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
-* `-x`, `--experimental` — Modern output
-
-  Default value: `false`
 * `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
 
   Default value: `false`

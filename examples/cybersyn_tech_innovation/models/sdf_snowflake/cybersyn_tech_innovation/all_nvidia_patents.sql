@@ -19,4 +19,4 @@ JOIN tech__innovation_essentials.cybersyn.uspto_patent_contributor_relationships
 JOIN patents_in_last_year AS patent
     ON (rship.patent_id = patent.patent_id)
 WHERE contrib.contributor_name ILIKE 'NVIDIA CORPORATION'
-  AND rship.contribution_type = 'Assignee - United States Company Or Corporation';
+  AND rship.contribution_type = 'Assignee - United States Company Or Corporation'

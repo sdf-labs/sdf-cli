@@ -1,0 +1,9 @@
+table:
+    name: repo_event_aggregates
+    description: >
+      This table aggregates the number of events that have occurred for each repository.
+    columns:
+      - name: event_count
+        description: The number of events that have occurred for a repository.
+        tests:
+          - expect: not_null()

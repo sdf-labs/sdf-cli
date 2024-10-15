@@ -1,0 +1,6 @@
+table:
+  name: github_stars
+  columns:
+    - name: date
+      classifiers:
+        - DATE.UTC

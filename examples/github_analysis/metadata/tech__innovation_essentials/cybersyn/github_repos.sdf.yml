@@ -1,0 +1,9 @@
+table:
+  name: github_repos
+  columns:
+    - name: first_seen
+      classifiers:
+        - DATE.PST
+    - name: last_seen
+      classifiers:
+        - DATE.PST

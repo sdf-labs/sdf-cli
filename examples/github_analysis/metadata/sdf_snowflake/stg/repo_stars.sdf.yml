@@ -1,0 +1,10 @@
+table:
+    name: repo_stars
+    description: >
+        The number of stars per repository.
+    columns:
+      - name: total_stars
+        description: The total number of stars that a repository has.
+        tests:
+          - expect: minimum(0)
+      
