@@ -160,6 +160,7 @@ Value | Description|
 `spec` | Specifications are .sdf.yml files to configure your workspace and add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
 `macro` | Macros are .jinja files that define reusable SQL code. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
 `seed` | Seeds are models created from resources. The sdf local engine enables type checking of seeds independently of providers. Seeds can optionally be uploaded to the remote warehouse. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`slt` | Slt files are tests that follow sqllogictest format|
 ## Enum: `IndexMethod`
 Value | Description|
 | :--- | :------- |
@@ -196,7 +197,6 @@ Values |
 `none`
 `jinja`
 `sql-vars`
-`sql-logic-test`
 `all`
 ## Enum: `Materialization`
 Value | Description|
