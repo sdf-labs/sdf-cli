@@ -761,4 +761,21 @@ function task_history() returns struct<
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/task_history)
 
+## `warehouse_metering_history`
+
+*Supported Signatures*
+```sql
+function warehouse_metering_history $1, $2() returns struct<start_time timestamp,
+  end_time timestamp,
+  warehouse_name string,
+  credits_used bigint,
+  credits_used_compute bigint,
+  credits_used_cloud_services bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/warehouse_metering_history)
+
 

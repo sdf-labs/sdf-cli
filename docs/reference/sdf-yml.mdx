@@ -146,7 +146,7 @@ title: "SDF YML Schema"
 `integrations:` | `array`| The integrations for this environment|
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as |
 `source-locations:` | `array`| Workspace defined by these set of files|
-`preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| Experimental: This project has jinja|
+`preprocessor:` | [`PreprocessorType?`](#enum-preprocessortype)| Experimental: This project has jinja|
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
@@ -191,7 +191,7 @@ Users should be encouraged to use this dialect, as it is more accurate, with les
 Note that the difference between this dialect and [Dialect::Snowflake] is limited to non-SQL sources *only* (e.g. `.sdf.yml` files, parquet/CSV files). For SQL files, these two dialects are identical.
 
 NOTE: the serialized form of this dialect is `snowflake_normalized`, for backward compatibility's sake:|
-## Enum: `Preprocessor`
+## Enum: `PreprocessorType`
 Values |
 | :--- |
 `none`
@@ -399,7 +399,7 @@ Values |
 | :---- | :--- | :------- |
 `environment:` | [`String?`](#nested-element-string)| The default environment (can only be set on the level of the workspace)|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this environment. If not set, defaults to trino|
-`preprocessor:` | [`Preprocessor?`](#enum-preprocessor)| The preprocessor for this environment. If not set, defaults to local|
+`preprocessor:` | [`PreprocessorType?`](#enum-preprocessortype)| The preprocessor for this environment. If not set, defaults to local|
 `catalog:` | [`String?`](#nested-element-string)| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | [`String?`](#nested-element-string)| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
 `materialization:` | [`Materialization?`](#enum-materialization)| Defines the default materialization, if not set defaults to materialization in outer scope, if not set defaults to base-table|

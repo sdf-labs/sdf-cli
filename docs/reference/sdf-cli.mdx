@@ -190,6 +190,18 @@ Compile models
 * `--warn-non-local-executable`
 
   Default value: `false`
+* `-w`, `--warnings  WARNINGS ` — 
+Specify the warnings to apply. Example: `-w warning1 -w warning2`
+
+Available warnings:
+- `all`: Turn on all warnings.
+- `none`: Turn off all warnings.
+- `capitalization-columns=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for columns.
+- `capitalization-tables=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for tables.
+- `capitalization-aliases=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for aliases.
+- `type-implicit-conversions`: Warn about implicit type conversions.
+- `references-consistent`: Warn about consistent references.
+
 
 
 
