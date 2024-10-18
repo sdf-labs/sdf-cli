@@ -36,7 +36,7 @@ Let's write and modify a check, starting with one of the sdf samples.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📚&nbsp;Read&nbsp;the&nbsp;Docs&nbsp;to&nbsp;Get&nbsp;Started&nbsp;&#45;&gt;&nbsp;https://docs.sdf.com/
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.144&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.289&nbsp;secs
 
 </code>
 </pre>
@@ -76,9 +76,9 @@ Let's write and modify a check, starting with one of the sdf samples.
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
+Working&nbsp;set&nbsp;1&nbsp;check&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;Checking&nbsp;hello.pub.code_check&nbsp;(./checks/code_check.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;1.158&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;1.271&nbsp;secs
 [Pass]&nbsp;Check&nbsp;hello.pub.code_check
 
 </code>
@@ -120,9 +120,9 @@ Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
+Working&nbsp;set&nbsp;1&nbsp;check&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;Checking&nbsp;hello.pub.code_check&nbsp;(./checks/code_check.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;1.190&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;1.261&nbsp;secs,&nbsp;for&nbsp;details&nbsp;see&nbsp;below.
 
 [Fail]&nbsp;Check&nbsp;hello.pub.code_check
 ┌────────────┬─────────────┬─────────────┐
@@ -133,7 +133,7 @@ Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 1&nbsp;rows.
 
 &#45;&#45;&#45;&#45;&#45;&#45;&#45;
-Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;1.190&nbsp;secs.
+Summary&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;failed]&nbsp;in&nbsp;1.261&nbsp;secs.
 &#45;&#45;&#45;&#45;&#45;&#45;&#45;
 
 </code>
@@ -193,9 +193,9 @@ Let's fix this failing check! We can apply an `md5()` hash to column_2 (the name
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.sink&nbsp;(./models/sink.sql)
-Working&nbsp;set&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
+Working&nbsp;set&nbsp;1&nbsp;check&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;Checking&nbsp;hello.pub.code_check&nbsp;(./checks/code_check.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;1.203&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded],&nbsp;1&nbsp;check&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;1.321&nbsp;secs
 [Pass]&nbsp;Check&nbsp;hello.pub.code_check
 
 </code>
