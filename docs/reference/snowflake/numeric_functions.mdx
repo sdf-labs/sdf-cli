@@ -83,7 +83,7 @@ round to the nearest integer not smaller than input
 function ceil(decimal(38, 0)) returns decimal(38, 0)
 function ceil(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 function ceil(double) returns double
-function ceil(double, double) returns double
+function ceil(double, decimal(38, 0)) returns double
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/ceil)
 
@@ -169,7 +169,7 @@ round to the nearest integer not greater than input
 function floor(decimal(38, 0)) returns decimal(38, 0)
 function floor(decimal(38, 0), decimal(38, 0)) returns decimal(38, 0)
 function floor(double) returns double
-function floor(double, double) returns double
+function floor(double, decimal(38,0)) returns double
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/floor)
 

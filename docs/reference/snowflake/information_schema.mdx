@@ -226,6 +226,23 @@ function database_refresh_progress_by_job(string) returns struct<
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_refresh_progress_by_job)
 
+## `database_replication_usage_history`
+
+*Supported Signatures*
+```sql
+function database_replication_usage_history $1, $2() returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  database_name string,
+  credits_used string,
+  bytes_transferred bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/database_replication_usage_history)
+
 ## `database_storage_usage_history`
 
 *Supported Signatures*
@@ -447,6 +464,62 @@ function query_acceleration_history $1, $2() returns struct<start_time timestamp
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_acceleration_history)
 
+## `query_history`
+
+*Supported Signatures*
+```sql
+function query_history $1, $2() returns struct<query_id string,
+  query_text string,
+  database_name string,
+  schema_name string,
+  query_type string,
+  session_id bigint,
+  user_name string,
+  role_name string,
+  warehouse_name string,
+  warehouse_size string,
+  warehouse_type string,
+  cluster_number bigint,
+  query_tag string,
+  execution_status string,
+  error_code bigint,
+  error_message string,
+  start_time timestamp,
+  end_time timestamp,
+  total_elapsed_time bigint,
+  bytes_scanned bigint,
+  rows_produced bigint,
+  compilation_time bigint,
+  execution_time bigint,
+  queued_provisioning_time bigint,
+  queued_repair_time bigint,
+  queued_overload_time bigint,
+  transaction_blocked_time bigint,
+  outbound_data_transfer_cloud string,
+  outbound_data_transfer_region string,
+  outbound_data_transfer_bytes bigint,
+  inbound_data_transfer_cloud string,
+  inbound_data_transfer_region string,
+  inbound_data_transfer_bytes bigint,
+  list_external_file_time bigint,
+  credits_used_cloud_services bigint,
+  release_version string,
+  external_function_total_invocations bigint,
+  external_function_total_sent_rows bigint,
+  external_function_total_received_rows bigint,
+  external_function_total_sent_bytes bigint,
+  external_function_total_received_bytes bigint,
+  is_client_generated_statement	boolean,
+  query_hash string,
+  query_hash_version bigint,
+  query_parameterized_hash string,
+  query_parameterized_hash_version bigint>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history)
+
 ## `query_history_by_session`
 
 *Supported Signatures*
@@ -502,6 +575,62 @@ function query_history_by_session $1, $2() returns struct<query_id string,
 	and $2 in (timestamp, string)
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history_by_session)
+
+## `query_history_by_user`
+
+*Supported Signatures*
+```sql
+function query_history_by_user $1, $2() returns struct<query_id string,
+  query_text string,
+  database_name string,
+  schema_name string,
+  query_type string,
+  session_id bigint,
+  user_name string,
+  role_name string,
+  warehouse_name string,
+  warehouse_size string,
+  warehouse_type string,
+  cluster_number bigint,
+  query_tag string,
+  execution_status string,
+  error_code bigint,
+  error_message string,
+  start_time timestamp,
+  end_time timestamp,
+  total_elapsed_time bigint,
+  bytes_scanned bigint,
+  rows_produced bigint,
+  compilation_time bigint,
+  execution_time bigint,
+  queued_provisioning_time bigint,
+  queued_repair_time bigint,
+  queued_overload_time bigint,
+  transaction_blocked_time bigint,
+  outbound_data_transfer_cloud string,
+  outbound_data_transfer_region string,
+  outbound_data_transfer_bytes bigint,
+  inbound_data_transfer_cloud string,
+  inbound_data_transfer_region string,
+  inbound_data_transfer_bytes bigint,
+  list_external_file_time bigint,
+  credits_used_cloud_services bigint,
+  release_version string,
+  external_function_total_invocations bigint,
+  external_function_total_sent_rows bigint,
+  external_function_total_received_rows bigint,
+  external_function_total_sent_bytes bigint,
+  external_function_total_received_bytes bigint,
+  is_client_generated_statement	boolean,
+  query_hash string,
+  query_hash_version bigint,
+  query_parameterized_hash string,
+  query_parameterized_hash_version bigint>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/query_history_by_user)
 
 ## `query_history_by_warehouse`
 
@@ -621,6 +750,39 @@ function replication_group_usage_history() returns struct<
 
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_group_usage_history)
+
+## `replication_usage_history`
+
+*Supported Signatures*
+```sql
+function replication_usage_history $1, $2() returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  database_name string,
+  credits_used string,
+  bytes_transferred bigint
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/replication_usage_history)
+
+## `search_optimization_history`
+
+*Supported Signatures*
+```sql
+function search_optimization_history $1, $2() returns struct<
+  start_time timestamp,
+  end_time timestamp,
+  credits_used string,
+  table_name string
+>
+
+	where $1 in (timestamp, string)
+	and $2 in (timestamp, string)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/search_optimization_history)
 
 ## `serverless_task_history`
 
@@ -760,6 +922,46 @@ function task_history() returns struct<
 
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/task_history)
+
+## `validate_pipe_load`
+
+*Supported Signatures*
+```sql
+function validate_pipe_load(pipe_name string, start_time timestamp) returns struct<
+  error string,
+  file string,
+  line bigint,
+  character bigint,
+  byte_offset bigint,
+  category string,
+  code bigint,
+  sql_state bigint,
+  column_name string,
+  row_number bigint,
+  row_start_line bigint,
+  rejected_record string
+>
+
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/validate_pipe_load)
+
+## `warehouse_load_history`
+
+*Supported Signatures*
+```sql
+function warehouse_load_history $1, $2() returns struct<start_time timestamp,
+  end_time timestamp,
+  warehouse_name string,
+  avg_running decimal(38,2),
+  avg_queued_load decimal(38,2),
+  avg_queued_provisioning decimal(38,2),
+  avg_blocked decimal(38,2)
+>
+
+	where $1 in (date, string)
+	and $2 in (date, string)
+```
+[🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/warehouse_load_history)
 
 ## `warehouse_metering_history`
 
