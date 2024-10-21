@@ -25,6 +25,7 @@ title: "SDF YML Schema"
 `description:` | `string?`| A description of this table|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to undefinedtrinoundefined|
 `materialization:` | [`Materialization?`](#enum-materialization)| The table-type of this table (new version)|
+`warehouse:` | `string?`| The warehouse where this table is computed|
 `purpose:` | [`TablePurpose?`](#enum-tablepurpose)| Specify what kind of table or view this is|
 `origin:` | [`TableOrigin`](#enum-tableorigin)| The origin of this table &lt;remote&gt; or &lt;local&gt;|
 `exists-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macro)|
@@ -102,7 +103,10 @@ title: "SDF YML Schema"
 `type:` | `string`| |
 `account-id:` | `string`| The account id of your snowflake account (e.g. &lt;orgname&gt;.&lt;accountname&gt; or &lt;locator&gt;)|
 `username:` | `string`| The user name to connect to snowflake|
-`password:` | `string`| The password to connect to snowflake|
+`password:` | `string?`| The password to connect to snowflake (mutually exclusive with private_key_path)|
+`private-key-path:` | `string?`| The path to the private key file for key pair authentication (mutually exclusive with password)|
+`private-key-pem:` | `string?`| The private key in PEM format (mutually exclusive with private_key_path)|
+`private-key-passphrase:` | `string?`| The passphrase for the private key, if it&#39;s encrypted|
 `role:` | `string?`| The role to use for the connection|
 `warehouse:` | `string?`| The warehouse to use for the connection|
 #### bigquery
@@ -496,6 +500,7 @@ Values |
 `merge-update-columns:` | `array`| List of column names to be updated as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
 `merge-exclude-columns:` | `array`| List of column names to exclude from updating as part of Merge strategy; Only one of merge_update_columns or merge_exclude_columns may be specified|
 `on-schema-change:` | [`OnSchemaChange?`](#enum-onschemachange)| Method for reacting to changing schema in the source of the incremental table Possible values are undefinedfailundefined, undefinedappendundefined, and undefinedsyncundefined. If left unspecified, the default behavior is to ignore the change and possibly error out if the schema change is incompatible. undefinedfailundefined causes a failure whenever any deviation in the schema of the source is detected; undefinedappendundefined adds new columns but does not delete the columns removed from the source; undefinedsyncundefined adds new columns and deletess the columns removed from the source;|
+`compact-mode-warehouse:` | `string?`| Warehouse to use in the incremental mode|
 ### Nested element: `SnapshotOptions`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -503,6 +508,7 @@ Values |
 `unique-key:` | `string`| Expression used for identifying records that will be updated according to the snapshot strategiy; May be a column name or an expression combining multiple columns|
 `updated-at:` | [`String?`](#nested-element-string)| Name of the timestamp column used to identify the last update time This option is only required for the undefinedtimestampundefined snapshot strategy|
 `check-cols:` | [`CheckColsSpec?`](#enum-checkcolsspec)| Specification of which columns to check for change (may be a list of column names or undefinedallundefined) This option is only required for the undefinedcheckundefined snapshot strategy|
+`compact-mode-warehouse:` | `string?`| Warehouse to use in the snapshot mode|
 ### Nested element: `Column`
 |Field | Type | Description|
 | :---- | :--- | :------- |
