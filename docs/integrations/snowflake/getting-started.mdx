@@ -39,20 +39,47 @@ In order to connect to Snowflake, you will need to have on hand the following:
 
     </Step>
     <Step title="Connect SDF to Snowflake">
-        Connect SDF to snowflake. SDF will prompt you for your Snowflake password.
-        ``` shell
+
+      Running the following command will prompt you to choose authentication method.
+        
+        ```shell
         sdf auth login snowflake --account-id <ACCOUNT_ID> --username <USERNAME> --role <ROLE> --warehouse <WAREHOUSE_NAME>
         ```
-        
-        <Info>
-        This will create a new [credential](/reference/sdf-yml#block-credential) in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with Snowflake. By default, the 
-        credential's name is default. As such, the credential does not need to be explicitly referenced in the integrations configuration below.
-        </Info>
 
-        To validate the connection, run:
-        ```shell
-        sdf auth status
-        ```
+      <Accordion title="Password Authentication" description="Connect using username and password">
+          Choose the `password` option and enter your password when prompted.
+          
+          Alternatively include the password directly inline:
+
+          ```shell
+          sdf auth login snowflake --account-id <ACCOUNT_ID> --username <USERNAME> --role <ROLE> --warehouse <WAREHOUSE_NAME> --password <PASSWORD>
+          ```
+
+      </Accordion>
+
+      <Accordion title="Key Pair Authentication" description="Connect using key pair authentication">  
+          Choose `private key path` or `private key pem` option and enter the path or pem content to your private key when prompted.
+
+          <Tip>
+          If you have a PEM file, opt to use the `--private-key-path` flag. If you are determined to paste the pem directly omit the flag and enter your private key when prompted. Make sure you replace all newlines with '\n' and ensure the key delimeters are included.
+          </Tip>
+
+          Alternatively, you can provide the private key information directly inline:
+
+          ```shell
+          sdf auth login snowflake --account-id <ACCOUNT_ID> --username <USERNAME> --role <ROLE> --warehouse <WAREHOUSE_NAME> --private-key-path <PATH_TO_PRIVATE_KEY> --private-key-passphrase <PASSPHRASE>
+          ```
+          
+          <Note>
+          Ensure you have generated and registered your key pair with Snowflake before using this method. Please refer to the [Snowflake documentation](https://docs.snowflake.com/en/user-guide/key-pair-auth) for more information on setting up key pair authentication.
+          </Note>
+
+      </Accordion>
+
+      <Info>
+        This will create a new credential in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with Snowflake.
+        specify the `--credential-dir` flag to change the location of the credential file.
+      </Info>
     </Step>
     <Step title="Add Snowflake Provider in Workspace">
         Once authenticated, add an integration block to your `workspace.sdf.yml`. This tells SDF to use Snowflake to hydrate missing table schemas.
