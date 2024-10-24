@@ -488,7 +488,8 @@ Values |
 | :---- | :--- | :------- |
 `enabled:` | `boolean`| Whether the dbt integration is enabled|
 `project-dir:` | `string?`| Dbt Project Directory|
-`target-dir:` | `string?`| The dbt target to pass to undefineddbt parseundefined invocation|
+`target-dir:` | `string?`| The dbt target directory for the project|
+`profile-dir:` | `string?`| The directory where dbt profiles are stored|
 `profile:` | [`String?`](#nested-element-string)| The dbt profile to use|
 `target:` | [`String?`](#nested-element-string)| The dbt target for the profile|
 `auto-parse:` | `boolean`| Automatically Run Parse in-between commands (default: true)|
