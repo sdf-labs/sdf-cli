@@ -50,7 +50,7 @@ Let's write and modify a report, starting with one of the sdf samples.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📚&nbsp;Read&nbsp;the&nbsp;Docs&nbsp;to&nbsp;Get&nbsp;Started&nbsp;&#45;&gt;&nbsp;https://docs.sdf.com/
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.220&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.105&nbsp;secs
 
 </code>
 </pre>
@@ -114,27 +114,27 @@ Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;payment.public.organizations&nbsp;(./ddls/payment/public/organizations.sql)
 &nbsp;&nbsp;Compiling&nbsp;payment.public.invoices&nbsp;(./ddls/payment/public/invoices.sql)
 &nbsp;&nbsp;Compiling&nbsp;payment.public.users&nbsp;(./ddls/payment/public/users.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.avg_invoice_amt&nbsp;(./models/internal/avg_invoice_amt.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.external.invoice_stats&nbsp;(./models/external/invoice_stats.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.invoice_payment_delay&nbsp;(./models/internal/invoice_payment_delay.sql)
 &nbsp;&nbsp;Compiling&nbsp;transformations.internal.mau_per_org&nbsp;(./models/internal/mau_per_org.sql)
 &nbsp;&nbsp;Compiling&nbsp;transformations.external.org_invoice_stats&nbsp;(./models/external/org_invoice_stats.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_domain&nbsp;(./models/internal/users_per_domain.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.avg_invoice_amt&nbsp;(./models/internal/avg_invoice_amt.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.invoice_payment_delay&nbsp;(./models/internal/invoice_payment_delay.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_org&nbsp;(./models/internal/users_per_org.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.internal.most_frequent_payer&nbsp;(./models/internal/most_frequent_payer.sql)
-&nbsp;&nbsp;Compiling&nbsp;transformations.external.invoice_stats&nbsp;(./models/external/invoice_stats.sql)
 &nbsp;&nbsp;Compiling&nbsp;transformations.internal.total_revenue_per_org&nbsp;(./models/internal/total_revenue_per_org.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_domain&nbsp;(./models/internal/users_per_domain.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.most_frequent_payer&nbsp;(./models/internal/most_frequent_payer.sql)
+&nbsp;&nbsp;Compiling&nbsp;transformations.internal.users_per_org&nbsp;(./models/internal/users_per_org.sql)
 Working&nbsp;set&nbsp;1&nbsp;report&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Reporting&nbsp;sdf.reports.tables_with_pii&nbsp;(./reports/tables_with_pii.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;1.771&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;1.692&nbsp;secs
 
 Report&nbsp;sdf.reports.tables_with_pii
 ┌──────────────────────────────────────────────┬─────────────────────────┬───────────┐
 │&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;dialect&nbsp;&nbsp;&nbsp;│
 ╞══════════════════════════════════════════════╪═════════════════════════╪═══════════╡
 │&nbsp;TRANSFORMATIONS.INTERNAL.MOST_FREQUENT_PAYER&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
-│&nbsp;payment.public.USERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;┆&nbsp;snowflake&nbsp;│
-│&nbsp;TRANSFORMATIONS.INTERNAL.USERS_PER_DOMAIN&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;TRANSFORMATIONS.EXTERNAL.INVOICE_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
+│&nbsp;TRANSFORMATIONS.INTERNAL.USERS_PER_DOMAIN&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
+│&nbsp;payment.public.USERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;┆&nbsp;snowflake&nbsp;│
 └──────────────────────────────────────────────┴─────────────────────────┴───────────┘
 4&nbsp;rows.
 
@@ -167,7 +167,7 @@ Report&nbsp;sdf.reports.tables_with_pii
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
 Working&nbsp;set&nbsp;1&nbsp;report&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Reporting&nbsp;sdf.reports.tables_with_pii&nbsp;(./reports/tables_with_pii.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;1.557&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;1&nbsp;report&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;1.469&nbsp;secs
 
 Report&nbsp;sdf.reports.tables_with_pii
 ┌──────────────────────────────────────────────┬──────────────┬─────────────────────────┬───────────┐
@@ -175,11 +175,11 @@ Report&nbsp;sdf.reports.tables_with_pii
 ╞══════════════════════════════════════════════╪══════════════╪═════════════════════════╪═══════════╡
 │&nbsp;payment.public.USERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;TRANSFORMATIONS.INTERNAL.MOST_FREQUENT_PAYER&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
-│&nbsp;TRANSFORMATIONS.INTERNAL.USERS_PER_DOMAIN&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL_DOMAIN&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;TRANSFORMATIONS.EXTERNAL.INVOICE_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
+│&nbsp;TRANSFORMATIONS.INTERNAL.USERS_PER_DOMAIN&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL_DOMAIN&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
+│&nbsp;TRANSFORMATIONS.EXTERNAL.INVOICE_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;payment.public.USERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;payment.public.USERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;PHONE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;┆&nbsp;snowflake&nbsp;│
-│&nbsp;TRANSFORMATIONS.EXTERNAL.INVOICE_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
 └──────────────────────────────────────────────┴──────────────┴─────────────────────────┴───────────┘
 7&nbsp;rows.
 
@@ -208,19 +208,19 @@ Report&nbsp;sdf.reports.tables_with_pii
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
 Working&nbsp;set&nbsp;2&nbsp;report&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Reporting&nbsp;sdf.reports.pii_datatypes&nbsp;(./reports/pii_datatypes.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;2&nbsp;reports&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;reused]&nbsp;in&nbsp;1.559&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;reused],&nbsp;2&nbsp;reports&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;reused]&nbsp;in&nbsp;1.470&nbsp;secs
 
 Report&nbsp;sdf.reports.tables_with_pii
 ┌──────────────────────────────────────────────┬──────────────┬─────────────────────────┬───────────┐
 │&nbsp;table_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;column_name&nbsp;&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;dialect&nbsp;&nbsp;&nbsp;│
 ╞══════════════════════════════════════════════╪══════════════╪═════════════════════════╪═══════════╡
+│&nbsp;TRANSFORMATIONS.EXTERNAL.INVOICE_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;payment.public.USERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;payment.public.USERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;PHONE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;┆&nbsp;snowflake&nbsp;│
-│&nbsp;TRANSFORMATIONS.EXTERNAL.INVOICE_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;payment.public.USERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;DDL&nbsp;for&nbsp;the&nbsp;users&nbsp;table&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;TRANSFORMATIONS.INTERNAL.MOST_FREQUENT_PAYER&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
-│&nbsp;TRANSFORMATIONS.INTERNAL.USERS_PER_DOMAIN&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL_DOMAIN&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
 │&nbsp;TRANSFORMATIONS.EXTERNAL.INVOICE_STATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
+│&nbsp;TRANSFORMATIONS.INTERNAL.USERS_PER_DOMAIN&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL_DOMAIN&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;snowflake&nbsp;│
 └──────────────────────────────────────────────┴──────────────┴─────────────────────────┴───────────┘
 7&nbsp;rows.
 

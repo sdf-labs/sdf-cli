@@ -59,9 +59,12 @@ In order to connect to Snowflake, you will need to have on hand the following:
 
       <Accordion title="Key Pair Authentication" description="Connect using key pair authentication">  
           Choose `private key path` or `private key pem` option and enter the path or pem content to your private key when prompted.
+          - Supported key formats: PKCS#1, PKCS#8
 
           <Tip>
-          If you have a PEM file, opt to use the `--private-key-path` flag. If you are determined to paste the pem directly omit the flag and enter your private key when prompted. Make sure you replace all newlines with '\n' and ensure the key delimeters are included.
+          If you have a PEM file, opt to use the `--private-key-path` flag to pass the path to the file. 
+          - If you are determined to paste the pem directly or choose to parameterize `private-key-pem` in a `credential.sdf.yml` file with an environment variable, replace newlines with `\n` and include key delimiters.
+          - In both cases, ensure the PEM is a single line with `\n` as newline characters and no extra whitespace.
           </Tip>
 
           Alternatively, you can provide the private key information directly inline:
@@ -78,8 +81,14 @@ In order to connect to Snowflake, you will need to have on hand the following:
 
       <Info>
         This will create a new credential in a `~/.sdf/` directory in the root of your system. This credential will be used to authenticate with Snowflake.
-        specify the `--credential-dir` flag to change the location of the credential file.
       </Info>
+
+      <Note>
+        SDF supports Duo push notifications for Snowflake Multi-Factor Authentication (MFA). When MFA is enabled for your Snowflake account, you'll be prompted to complete the MFA step during authentication using Duo push.
+        <Tip>
+          To minimize MFA prompts during authentication, Snowflake allows MFA token caching. For detailed instructions on setting this up, refer to the [Snowflake documentation on MFA token caching](https://docs.snowflake.com/en/user-guide/security-mfa#label-mfa-token-caching).
+        </Tip>
+      </Note>
     </Step>
     <Step title="Add Snowflake Provider in Workspace">
         Once authenticated, add an integration block to your `workspace.sdf.yml`. This tells SDF to use Snowflake to hydrate missing table schemas.
