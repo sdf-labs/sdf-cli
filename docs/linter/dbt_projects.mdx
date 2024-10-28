@@ -1,0 +1,80 @@
+---
+title: "Linting DBT Projects"
+description:
+  "Configuring the SDF linter to work with DBT Projects"
+---
+
+### Overview
+Linting dbt SQL projects helps maintain quality, readability, and consistency across code. DBT projects have additional complexity
+in linting due to jinja resolution.
+
+Most solutions at the moment use SQLFluff, integrated with dbt to lint DBT projects.
+
+SDF allows for efficient linting of DBT projects. SDF uses the `dbt parse` step for an initial parsing of the dbt project, then SDF's internals take over for linting.
+Since SDF's lint rules are designed to be equivalent to SQLFLuff, this allows for easy migration from SQLFluff to SDF's linter. 
+
+### Requirements
+* A valid dbt project, that can be parsed via `dbt parse`
+* A version of SDF >0.4.5
+
+### Getting Started
+
+### Jaffle Shop Tutorial
+This tutorial will show you how to add SDF's linter to your the classic Jaffle Shop dbt project.
+<Steps>
+    <Step title="Clone Jaffle Shop">
+        Clone (Jaffle Shop Classic)[https://github.com/dbt-labs/jaffle-shop-classic] and follow the steps to get the project to `dbt compile` correctly.
+
+        You can follow the instructions (here)[https://github.com/dbt-labs/jaffle-shop-classic?tab=readme-ov-file#running-this-project]
+        SDF's linter uses the results of the `dbt parse` step to understand how to introspect queries, source macro definitions, and more.
+        So, try runnning `dbt parse` and ensure that this finishes without errors!
+
+        <Note>
+            You may want to use a python virtual environment for this!
+        </Note>
+
+    </Step>
+    <Step title="Initialize an SDF workspace">
+            In the same directory level as the `dbt_project.yml`, create a new file: `workspace.sdf.yml`.
+            Let's go through this line by line.
+            * The name of the workspace is the SDF internal name for the project.
+            * the edition is the current [sdf-schema](/reference/sdf-yml) edition
+            * The defaults let SDF know that the preprocessor is jinja, and the target SQL dialect is snowflake
+            * The dbt block points SDF to introspect the DBT project.
+            
+        ```yaml workspace.sdf.yml
+        workspace:
+          name: "jaffle_shop_classic"
+          edition: "1.3"
+          defaults:
+            preprocessor: jinja
+            dialect: snowflake
+          dbt:
+            enabled: true
+            target-dir: target
+            auto-parse: true
+            #profile: default
+        ```
+    </Step>
+    <Step title="Lint Jaffle Shop">
+        Run `sdf lint` in your command line to have SDF lint all files in the dbt project.
+        By default, the dbt linting configuration is the same [default](/linter/overview#default-rules) as for all SDF projects.
+    </Step>
+    <Step title="Customize the Linter">
+        Customize the linter using the `sdf-args:` yml block. This allows you to configure all rules.
+        ```yaml workspace.sdf.yml
+        ---
+        sdf-args:
+        lint: >
+            -w capitalization-keywords=upper
+            -w structure-else-null
+            ...
+        ```
+    </Step>
+    <Step title="Try It On Your Project!">
+        The steps above are identical for your own project. All you need are
+        * A parse-able dbt project (with `dbt parse`)
+        * An appropriately configured `workspace.sdf.yml`
+    </Step>
+    
+</Steps>
