@@ -196,7 +196,7 @@ function floor(bigint) returns double
 *Supported Signatures*
 ```sql
 function greatest $1($1, ...) returns $1
-	where $1 in (bigint, double)
+	where $1 in (bigint, double, timestamp, date, time)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#greatest)
 
@@ -233,7 +233,7 @@ function is_nan $1($1) returns bool
 *Supported Signatures*
 ```sql
 function least $1($1, ...) returns $1
-	where $1 in (bigint, double)
+	where $1 in (bigint, double, timestamp, date, time)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#least)
 

@@ -358,38 +358,6 @@ Values |
 `interactive`
 `headless`
 `id_token_from_file`
-## Enum: `RuleOn`
-Values |
-| :--- |
-`on`
-`off`
-## Enum: `Capitalization`
-Values |
-| :--- |
-`upper`
-`lower`
-`pascal`
-`snake`
-`camel`
-`off`
-`consistent`
-## Enum: `SubQueryScope`
-Values |
-| :--- |
-`join`
-`from`
-## Enum: `ImplicitConversionOperators`
-Values |
-| :--- |
-`eq`
-`in`
-## Enum: `ColumnQualifier`
-Values |
-| :--- |
-`qualified`
-`unqualified`
-`consistent`
-`off`
 ## Nested Elements
 ### Nested element: `IncludePath`
 |Field | Type | Description|
@@ -412,7 +380,6 @@ Values |
 `test-lib:` | `string?`| The default test library, if set overrides sdf_test|
 `materialization-lib:` | `string?`| The default materialization library, if set overrides sdf_materialization|
 `linter:` | `string?`| The named lint rule set, uses defaults (from sdftarget/&lt;environment&gt;/lint.sdf.yml) if not set|
-`formatter:` | `string?`| |
 `index-method:` | [`IndexMethod?`](#enum-indexmethod)| The default index for this tables|
 `include-type:` | [`IncludeType?`](#enum-includetype)| The default index for this tables|
 `sync-method:` | [`SyncType?`](#enum-synctype)| The default index for this tables|
@@ -598,40 +565,4 @@ Values |
 | :---- | :--- | :------- |
 `access_key:` | `string`| |
 `secret_key:` | `string`| |
-### Nested element: `Linter`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string?`| The name of these lint rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
-`defaults:` | [`RuleOn`](#enum-ruleon)| The overall switch, default is off|
-`case-keyword:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of keywords |
-`case-literal:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of undefinedbooleanundefined/undefinednullundefined literal |
-`case-type:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of datatypes. |
-`case-function:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of function names |
-`no-these-identifiers:` | `[string]?`| |
-`keywords-as-identifiers:` | `[string]?`| Keywords should not be used as identifiers |
-`no-chars-in-quoted-identifiers:` | `string?`| Do not use special characters in identifiers |
-`no-unnecessary-quoted-identifiers:` | [`RuleOn?`](#enum-ruleon)| Unnecessary quoted identifier |
-`no-unqualified-multi-source-column-reference:` | [`RuleOn?`](#enum-ruleon)| Columns reference should specify source table or view in queries with more than one source. |
-`no-inconsistent-ordinal-column-reference:` | [`RuleOn?`](#enum-ruleon)| Inconsistent column references in GROUP BY/ORDER BY clauses of both ordinal and non-ordinal |
-`no-unnecessary-else:` | [`RuleOn?`](#enum-ruleon)| Redundant undefinedELSE NULLundefined in a case when statement |
-`no-unnecessary-case:` | [`RuleOn?`](#enum-ruleon)| CASE statement can be simplified |
-`no-unused-cte:` | [`RuleOn?`](#enum-ruleon)| Query defines a CTE (common-table expression) but does not use it |
-`no-unnecessary-nested-case:` | [`RuleOn?`](#enum-ruleon)| Nested CASE statement in ELSE clause could be flattened. |
-`no-distinct-parenthesis:` | [`RuleOn?`](#enum-ruleon)| DISTINCT used with parentheses |
-`no-subquery-in:` | `[SubQueryScope]?`| Join/From clauses should not contain subqueries. Use CTEs instead |
-`strict-join-condition-order:` | [`RuleOn?`](#enum-ruleon)| Join conditions column references should follow tables reference order |
-`strict-wildcard-order:` | [`RuleOn?`](#enum-ruleon)| Select wildcards then simple targets before calculations and aggregates. |
-`no-trailing-semicolon:` | [`RuleOn?`](#enum-ruleon)| Statements should not end with a semi-colon. Multi-statements must be separated with a semi-colon but the final statement should NOT end with one. |
-`ctx-case-column:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of column names |
-`case-table:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of table names |
-`case-alias:` | [`Capitalization?`](#enum-capitalization)| Inconsistent capitalization of alias |
-`ctx-no-implicit-conversions-in:` | `[ImplicitConversionOperators]?`| Prevent type implicit casting or coercion |
-`ctx-strict-qualified-column-reference:` | [`ColumnQualifier?`](#enum-columnqualifier)| Inconsistent column references in SELECT clause of both qualified and unqualified references |
-`perf-only-direct-partition-column-access:` | [`RuleOn?`](#enum-ruleon)| Avoid functions in where clauses over indexed, partitioned or clustered columns, to prevent filter push down and improve performance |
-`check-rules:` | `object?`| |
-### Nested element: `FormatRules`
-|Field | Type | Description|
-| :---- | :--- | :------- |
-`name:` | `string?`| The name of formatter rules, e.g. &quot;my_rules&quot;, can be referenced in defaults|
-`line-length:` | `integer?`| The line length|
 

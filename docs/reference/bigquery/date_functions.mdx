@@ -27,7 +27,7 @@ function date(datetime) returns date
 *Supported Signatures*
 ```sql
 function date_add $1($1, interval) returns $1
-	where $1 in (date, datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_add)
 
@@ -37,7 +37,7 @@ function date_add $1($1, interval) returns $1
 ```sql
 function date_diff $1($1, $1, date_part string) returns bigint
 	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
-	where $1 in (date, datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_diff)
 
@@ -55,7 +55,7 @@ function date_from_unix_date(bigint) returns date
 ```sql
 function date_trunc $1($1, date_part string) returns $1
 	where date_part in (day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
-	where $1 in (date, datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#date_trunc)
 
@@ -64,7 +64,7 @@ function date_trunc $1($1, date_part string) returns $1
 *Supported Signatures*
 ```sql
 function format_date $1(string, $1) returns string
-	where $1 in (date, datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#format_date)
 

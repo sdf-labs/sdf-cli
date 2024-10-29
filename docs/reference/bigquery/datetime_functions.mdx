@@ -28,7 +28,7 @@ function datetime(timestamp, string) returns datetime
 *Supported Signatures*
 ```sql
 function datetime_add $1($1, interval) returns $1
-	where $1 in (datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#datetime_add)
 
@@ -38,7 +38,7 @@ function datetime_add $1($1, interval) returns $1
 ```sql
 function datetime_diff $1($1, $1, part string) returns bigint
 	where part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
-	where $1 in (datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#datetime_diff)
 
@@ -47,7 +47,7 @@ function datetime_diff $1($1, $1, part string) returns bigint
 *Supported Signatures*
 ```sql
 function datetime_sub $1($1, interval) returns $1
-	where $1 in (datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#datetime_sub)
 
@@ -57,7 +57,7 @@ function datetime_sub $1($1, interval) returns $1
 ```sql
 function datetime_trunc $1($1, date_time_part string) returns $1
 	where date_time_part in (microsecond, millisecond, second, minute, hour, day, week, week(monday), week(tuesday), week(wednesday), week(thursday), week(friday), week(saturday), week(sunday), isoweek, month, quarter, year, isoyear)
-	where $1 in (datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#datetime_trunc)
 
@@ -66,7 +66,7 @@ function datetime_trunc $1($1, date_time_part string) returns $1
 *Supported Signatures*
 ```sql
 function format_datetime $1(string, $1) returns string
-	where $1 in (datetime, timestamp)
+	where $1 in (date, timestamp)
 ```
 [🔗 Official Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#format_datetime)
 
