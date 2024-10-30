@@ -36,7 +36,7 @@ function date_from_parts(decimal(38, 0), decimal(38, 0), decimal(38, 0)) returns
 
 *Supported Signatures*
 ```sql
-function date_part $1(string, $1) returns double
+function date_part $1(string, $1) returns decimal(9, 0)
 	where string in (year, y, yy, yyy, yyyy, yr, years, yrs, month, mm, mon, mons, months, day, d, dd, days, dayofmonth, dayofweek, weekday, dow, dw, dayofweekiso, weekday_iso, dow_iso, dw_iso, dayofyear, yearday, doy, dy, week, w, wk, weekofyear, woy, wy, weekiso, week_iso, weekofyeariso, weekofyear_iso, quarter, q, qtr, qtrs, quarters, yearofweek, yearofweekiso, hour, h, hh, hr, hours, hrs, minute, m, mi, min, minutes, mins, second, s, sec, seconds, secs, nanosecond, ns, nsec, nanosec, nsecond, nanoseconds, nanosecs, nseconds, epoch_second, epoch, epoch_seconds, epoch_millisecond, epoch_milliseconds, epoch_microsecond, epoch_microseconds, epoch_nanosecond, epoch_nanoseconds, timezone_hour, tzh, timezone_minute, tzm)
 	where $1 in (date, time, timestamp, varchar)
 ```
