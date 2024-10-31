@@ -154,16 +154,16 @@ title: "SDF YML Schema"
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
-`model` | Models are .sql files (ddls or queries) used for data transformation. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`test` | Tests are expectations against the data of models. Uses the sdf-test library by default. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`check` | Checks are logical expectations expresses as queries against the information schema of the SDF workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`report` | Reports are informational  queries against the information schema of the SDF workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`stat` | Statistics are informational queries against the data of the models. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`resource` | Resources are local data files (like parquet, csv, or json) used by models in the workspace. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`metadata` | [Deprecated] Metadata are .sdf.yml files to add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`spec` | Specifications are .sdf.yml files to configure your workspace and add additional metadata. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`macro` | Macros are .jinja files that define reusable SQL code. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
-`seed` | Seeds are models created from resources. The sdf local engine enables type checking of seeds independently of providers. Seeds can optionally be uploaded to the remote warehouse. To learn more: https://docs.sdf.com/reference/sdf-yml#enum-includetype|
+`model` | Models are .sql files (ddls or queries) used for data transformation.|
+`test` | Tests are expectations against the data of models. Uses the sdf-test library by default.|
+`check` | Checks are logical expectations expresses as queries against the information schema of the SDF workspace.|
+`report` | Reports are informational  queries against the information schema of the SDF workspace.|
+`stat` | Statistics are informational queries against the data of the models.|
+`resource` | Resources are local data files (like parquet, csv, or json) used by models in the workspace.|
+`metadata` | [Deprecated] Metadata are .sdf.yml files to add additional metadata.|
+`spec` | Specifications are .sdf.yml files to configure your workspace and add additional metadata.|
+`macro` | Macros are .jinja files that define reusable SQL code.|
+`seed` | Seeds are models created from resources. The sdf local engine enables type checking of seeds independently of providers. Seeds can optionally be uploaded to the remote warehouse.|
 `slt` | Slt files are tests that follow sqllogictest format|
 ## Enum: `IndexMethod`
 Value | Description|

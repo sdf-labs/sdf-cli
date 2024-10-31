@@ -272,7 +272,7 @@ function corr(double, double) returns double
 Return number of non-null values of a given expression
 *Supported Signatures*
 ```sql
-function count($1, ...) returns decimal(38, 0)
+function count(...) returns decimal(38, 0)
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/count)
 
@@ -325,7 +325,7 @@ function grouping_id($1, ...) returns decimal(38, 0)
 aggregate hash value
 *Supported Signatures*
 ```sql
-function hash_agg(...) returns decimal(38, 0)
+function hash_agg(...) returns decimal(19, 0)
 function hash_agg($1) returns decimal(38, 0)
 function hash_agg($1, $2) returns decimal(38, 0)
 function hash_agg($1, $2, $3) returns decimal(38, 0)
@@ -429,10 +429,9 @@ function max_by($1, $2, decimal(38, 0)) returns array
 
 ## `median`
 
-value of sort key at specified percentile
+The median of a column
 *Supported Signatures*
 ```sql
-function median() returns decimal(38, 0)
 function median(decimal(p, s)) returns decimal(rp, rs)
 function median(double) returns double
 ```
@@ -495,21 +494,19 @@ function object_agg(varchar, variant) returns object
 
 ## `percentile_cont`
 
-value of sort key at specified percentile
+value of a sorted key at specified percentile in continuous distribution
 *Supported Signatures*
 ```sql
-function percentile_cont() returns double
-function percentile_cont(decimal(38, 0)) returns double
+function percentile_cont(decimal(p,s), $1) returns $1
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/percentile_cont)
 
 ## `percentile_disc`
 
-value of sort key at specified percentile
+value of a sorted key at specified percentile in discrete distribution
 *Supported Signatures*
 ```sql
-function percentile_disc() returns decimal(38, 0)
-function percentile_disc(decimal(38, 0)) returns decimal(38, 0)
+function percentile_disc(decimal(p,s), $1) returns $1
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/percentile_disc)
 
