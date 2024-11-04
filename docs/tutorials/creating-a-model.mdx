@@ -102,10 +102,10 @@ Init for run commands:
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
-&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
+&nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
@@ -113,7 +113,7 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.799&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[11&nbsp;succeeded]&nbsp;in&nbsp;0.809&nbsp;secs
 
 </code>
 </pre>
@@ -140,12 +140,12 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.878&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.910&nbsp;secs
 
 Table&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
 ┌─────────────┬─────────────────────────────────┬────────────────────┬───────────────────────────────┬────────────────────────┐
@@ -158,9 +158,9 @@ Table&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
 │&nbsp;26&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;google_search_26_bb6932ae6d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;301.34941277893944&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;google_search_17_a400715565&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;245.21392390373887&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;49&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;friends_referrals_49_16b0b159fa&nbsp;┆&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;288.469560173737&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;facebook_ads_60_c107c6b147&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;345.1581886309037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;google_search_32_893397b50d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;369.19360069982207&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;103&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;instagram_ads_103_cd5421fbd9&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;223.14798839074024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;facebook_ads_60_c107c6b147&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;345.1581886309037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 └─────────────┴─────────────────────────────────┴────────────────────┴───────────────────────────────┴────────────────────────┘
 114&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
 &nbsp;&nbsp;Run&nbsp;with&nbsp;&#45;&#45;limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
