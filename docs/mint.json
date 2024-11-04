@@ -185,7 +185,8 @@
 						"integrations/snowflake/basic-materialization",
 						"integrations/snowflake/incremental-materialization",
 						"integrations/snowflake/snapshots",
-						"integrations/snowflake/seeds"
+						"integrations/snowflake/seeds",
+						"integrations/snowflake/advanced"
 					]
 				},
 				{
@@ -253,8 +254,7 @@
 				"reference/sdf-yml",
 				"reference/sdf-information-schema",
 				"reference/support",
-				"reference/error-codes",
-				"reference/lint-rules"
+				"reference/error-codes"
 			]
 		},
 		{

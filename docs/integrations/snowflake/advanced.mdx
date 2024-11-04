@@ -1,0 +1,98 @@
+---
+title: "Advanced Snowflake Features & Configurations"
+sidebarTitle: "Advanced"
+description:
+  "This guide covers advanced features and configurations for Snowflake integrations in SDF, like role configuration, case-preserving identifiers, and more."
+---
+
+## Configuring an SDF Role for Snowflake
+
+Different SDF commands require different permissions from Snowflake, as such the Snowflake role SDF assumes should be configured to have the following permissions:
+
+|| SELECT TABLE | SELECT VIEW | CREATE \<MATERIALIZATION\> | CREATE SCHEMA | CREATE DATABASE |
+|-|:------------:|:-----------:|:--------------------------:|:-------------:|:---------------:|
+| `compile` | 🟢 | 🟢 | | | |
+| `run` | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
+
+<Note>
+The `CREATE MATERIALIZATION` permission listed above is meant to be subsituted with the materialization type you are using. For example, if you are using `table` materializations, the permission should be `CREATE TABLE`. If using views or transient tables, the permission should be `CREATE VIEW` or `CREATE TRANSIENT TABLE` respectively.
+If you'd like to grant all write access on a database, these can be easily achieved with a `grant all` command on the database.
+</Note>
+
+Required permissions for your Snowflake role are based on your integration configuration, as this determines where SDF will attempt to write models out to and where it will read schemas from.
+
+Let's imagine we had the following integration configured:
+```yml
+  integrations:
+    - provider: snowflake
+      type: database
+      credential: limited
+      sources: 
+        - pattern: my_production_database.*.*
+      targets:
+        - pattern: my_production_database.*.*
+          rename-as: dev_sandbox.${1}.${2}
+```
+
+As we can see from the integration, SDF will read schemas from the `my_production_database` database and write models to the `dev_sandbox` database.
+
+<Tip>
+  Despite `my_production_database` being included as a target, SDF only requires write access to the databases and schemas after the rename operation. As such, the `dev_sandbox` schema should be the only schema that requires write access.
+</Tip>
+
+
+Now let's create a role `sdf_dev_role` with permissions to write to the `dev_sandbox` database and read from the `my_production_database` database. This role will model exactly what's required to compile and run with the integration above.
+
+```sql
+-- Create the role
+CREATE ROLE IF NOT EXISTS sdf_dev_role;
+
+-- Allow your user to assume this role. Replace \<YOUR_USERNAME\> with the Snowflake username you're using with SDF.
+GRANT ROLE sdf_dev_role TO USER \<YOUR_USERNAME\>;
+
+-- Grant the role access to the warehouse. Replace \<MY_WAREHOUSE\> with the name of your warehouse.
+GRANT USAGE ON WAREHOUSE \<MY_WAREHOUSE\> TO ROLE sdf_dev_role;
+
+-- Grant the role read access to all tables and views in `my_production_database`
+GRANT SELECT ON ALL TABLES IN DATABASE my_production_database TO ROLE sdf_dev_role;
+GRANT SELECT ON ALL VIEWS IN DATABASE my_production_database TO ROLE sdf_dev_role;
+
+-- Everything above is all that is necessary for `sdf compile`. If you want to run models, you'll need to grant the following permissions as well.
+
+-- Grant the role write access to the `dev_sandbox` database
+GRANT ALL ON DATABASE elias_sandbox TO ROLE sdf_dev_role;
+
+-- Lastly, if you'd like SDF to be able to create databases for you as you author them locally, you'll need to grant the following permissions as well.
+-- This is useful for provisioning new sandbox datases per-developer.
+GRANT CREATE DATABASE ON ACCOUNT TO ROLE sdf_dev_role;
+```
+
+## Snowflake Warehouse Specification 
+
+The Snowflake warehouse that a model runs on can be overwritten on the model-level. This allows for fine-grained configuration of how resources are utilized on a per-model basis, opening the door for
+cost and performance optimization through intelligent warehouse selection.
+
+To specify the warehouse for a model, add the `warehouse` property to the table-block of an `sdf.yml` file.
+
+The warehouse can be specified easily on the model level with the simple top-level warehouse specification like so: 
+```yml example_table.sdf.yml
+table:
+  name: example_table
+  materialization: table
+  warehouse: BIG_WH
+```
+
+In incremental and snapshot scenarios, the top-level warehouse specification will be used by default for the first run, full refreshes, and incremental/snapshot runs. 
+
+However, in certain scenarios you might want to use a smaller warehouse for incremental or snapshot runs. This is configurable within the `incremental-options` and `snapshot-options` configs respectively. Here's an example:
+```yml example_incremental_table.sdf.yml
+table:
+  name: example_incremental_table
+  materialization: incremental-table
+  warehouse: BIG_WH
+  incremental-options:
+    strategy: append
+    compact-mode-warehouse: SMALL_WH
+```
+
+In this example, `BIG_WH` will be used by default for the first run, full refresh runs, and all tests, since tests will scan the history of all increments. Then, due to the `compact-mode-warehouse` property, `SMALL_WH` will be used for incremental runs.

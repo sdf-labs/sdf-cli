@@ -68,7 +68,17 @@ In order to connect to BigQuery, you will need to have on hand the following:
         ```
     </Step>
     <Step title="Add BigQuery Provider in Workspace">
-        Once authenticated, add an integration block to your `workspace.sdf.yml`. This tells SDF to use BigQuery to hydrate missing table schemas.
+        Now that we're authenticated, we can configure our `workspace.sdf.yml` to use BigQuery as a provider.
+
+      The first thing we'll need to do is set the default `catalog` to our BigQuery project ID. This tells SDF to use this project as the default project for all queries.
+        ```yml workspace.sdf.yml
+        workspace:
+            ...
+            defaults:
+                catalog: <PROJECT_ID>
+        ```
+
+        Next, let's add an integration block to the `workspace.sdf.yml`. This tells SDF to use BigQuery to hydrate missing table schemas.
         ``` yml
         workspace:
             ...

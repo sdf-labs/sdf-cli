@@ -142,68 +142,6 @@ In order to connect to Snowflake, you will need to have on hand the following:
 The term 'DATABASE' in Snowflake is interchangeable with the term 'CATALOG' in SDF.
 </Info>
 
-## Configuring an SDF Role for Snowflake
-
-Different SDF commands require different permissions from Snowflake, as such the Snowflake role SDF assumes should be configured to have the following permissions:
-
-|| SELECT TABLE | SELECT VIEW | CREATE \<MATERIALIZATION\> | CREATE SCHEMA | CREATE DATABASE |
-|-|:------------:|:-----------:|:--------------------------:|:-------------:|:---------------:|
-| `compile` | 🟢 | 🟢 | | | |
-| `run` | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
-
-<Note>
-The `CREATE MATERIALIZATION` permission listed above is meant to be subsituted with the materialization type you are using. For example, if you are using `table` materializations, the permission should be `CREATE TABLE`. If using views or transient tables, the permission should be `CREATE VIEW` or `CREATE TRANSIENT TABLE` respectively.
-If you'd like to grant all write access on a database, these can be easily achieved with a `grant all` command on the database.
-</Note>
-
-Required permissions for your Snowflake role are based on your integration configuration, as this determines where SDF will attempt to write models out to and where it will read schemas from.
-
-Let's imagine we had the following integration configured:
-```yml
-  integrations:
-    - provider: snowflake
-      type: database
-      credential: limited
-      sources: 
-        - pattern: my_production_database.*.*
-      targets:
-        - pattern: my_production_database.*.*
-          rename-as: dev_sandbox.${1}.${2}
-```
-
-As we can see from the integration, SDF will read schemas from the `my_production_database` database and write models to the `dev_sandbox` database.
-
-<Tip>
-  Despite `my_production_database` being included as a target, SDF only requires write access to the databases and schemas after the rename operation. As such, the `dev_sandbox` schema should be the only schema that requires write access.
-</Tip>
-
-
-Now let's create a role `sdf_dev_role` with permissions to write to the `dev_sandbox` database and read from the `my_production_database` database. This role will model exactly what's required to compile and run with the integration above.
-
-```sql
--- Create the role
-CREATE ROLE IF NOT EXISTS sdf_dev_role;
-
--- Allow your user to assume this role. Replace \<YOUR_USERNAME\> with the Snowflake username you're using with SDF.
-GRANT ROLE sdf_dev_role TO USER \<YOUR_USERNAME\>;
-
--- Grant the role access to the warehouse. Replace \<MY_WAREHOUSE\> with the name of your warehouse.
-GRANT USAGE ON WAREHOUSE \<MY_WAREHOUSE\> TO ROLE sdf_dev_role;
-
--- Grant the role read access to all tables and views in `my_production_database`
-GRANT SELECT ON ALL TABLES IN DATABASE my_production_database TO ROLE sdf_dev_role;
-GRANT SELECT ON ALL VIEWS IN DATABASE my_production_database TO ROLE sdf_dev_role;
-
--- Everything above is all that is necessary for `sdf compile`. If you want to run models, you'll need to grant the following permissions as well.
-
--- Grant the role write access to the `dev_sandbox` database
-GRANT ALL ON DATABASE elias_sandbox TO ROLE sdf_dev_role;
-
--- Lastly, if you'd like SDF to be able to create databases for you as you author them locally, you'll need to grant the following permissions as well.
--- This is useful for provisioning new sandbox datases per-developer.
-GRANT CREATE DATABASE ON ACCOUNT TO ROLE sdf_dev_role;
-```
-
 ## Next Steps 
 
 Now that you have connected to Snowflake, you can start materializing tables in Snowflake. Check out the [Snowflake materialization](/integrations/snowflake/basic-materialization) guide to get started.
