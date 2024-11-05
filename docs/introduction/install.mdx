@@ -14,10 +14,23 @@ description:
   curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s
   ```
 
+  <Note>
+    The install script will install the latest stable version of SDF by default.
+  </Note>
+
   To install a specific version of SDF, you can specify the version number after the install script.
   ```shell
   curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s - --version x.x.x
   ```
+
+  To install the latest preview version of SDF, you can use the `--preview` flag.
+  ```shell
+  curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s - --preview
+  ```
+  
+  <Warning>
+    Preview versions offer early access to new features but may be less stable. Use for testing and feedback.
+  </Warning>
 
 ### Verify Installation
 
@@ -86,14 +99,35 @@ From time to time, it may be necessary to update the CLI to get the latest and
 greatest features, or to connect to SDF Cloud Services.
 
 If you've already installed SDF, you can update to the latest version by running
-the command below. By default, this will update to the latest version of the
-CLI.
+the command below. By default, this will update to the latest version within your
+current release channel (stable or preview).
 
 ```shell
 sudo sdf system update
 ```
 
-You can check the currently installed version of your CLI with
+To switch channels while updating, use the `--stable` or `--preview` flags:
+
+```shell
+# Update to the latest stable version and switch to the stable channel
+sudo sdf system update --stable
+
+# Update to the latest preview version and switch to the preview channel
+sudo sdf system update --preview
+```
+
+You can also update to a specific stable or preview version:
+To view the available versions please see the [github releases page](https://github.com/sdf-labs/sdf-cli/releases).
+
+```shell
+sudo sdf system update --version x.x.x
+```
+
+```shell
+sudo sdf system update --version x.x.x-p
+```
+
+You can check the currently installed version of your CLI with:
 
 ```shell
 sdf --version
