@@ -67,34 +67,6 @@ GRANT ALL ON DATABASE elias_sandbox TO ROLE sdf_dev_role;
 GRANT CREATE DATABASE ON ACCOUNT TO ROLE sdf_dev_role;
 ```
 
-## Case-Preserving Identifiers
-
-<Warning>
-  SDF strongly recommends using the default `to_upper` dialect for all models in Snowflae, so that you're local model specification matches Snowflake's behavior in the cloud. Rarely if not ever should identifiers have their case preserved from the file system. Doing so likely creates unnecessary confusion in how models will be materialized and how they should be referenced in Snowflake.
-</Warning>
-
-In Snowflake, all names (including table names and column names) are case-sensitive. In addition, Snowflake normalizes all unquoted SQL identifiers to uppercase. This means if you execute a DDL `CREATE TABLE my_model AS ...` in Snowflake, the newly created table will be called `MY_MODEL`. 
-Snowflake, however, will preserve the case of identifiers if they are enclosed in double quotes. This means the following SQL would produce a table called `MyModel`:
-```sql
-create table "MyModel" ...;
-```
-
-If you'd like to write a model in SDF that, when materialized, preserves the case of the filename that produces the model name, you can set the `casing-policy` option to `preserve` instead of `to_upper` for that model.
-
-<Info>
-SDF determines the casing of identifiers using the `casing-policy` property. Since Snowflake post-normalization differs in its behavior from Snowflake pre-normalization, we introduced a `casing-policy` property to capture that behavior. In most dialects, this defaults to `preserve`. However, Snowflake is the special child! Since Snowflake normalizes to upper case, we default the `casing-policy` to `preserve` for Snowflake. You should only overwrite this if you need to preserve identifier casing, or handle SQL filenames that begin with numbers.
-</Info>
-
-The `casing-policy` property can be set at an individual table-block level, like so:
-```yml example_undercase_table.sdf.yml
-table:
-  name: example_undercase_table
-  casing-policy: preserve
-```
-
-For all supported casing-policy options, see the [casing-policy reference](/reference/sdf-yml#enum-casingpolicy).
-
-
 ## Snowflake Warehouse Specification 
 
 The Snowflake warehouse that a model runs on can be overwritten on the model-level. This allows for fine-grained configuration of how resources are utilized on a per-model basis, opening the door for
