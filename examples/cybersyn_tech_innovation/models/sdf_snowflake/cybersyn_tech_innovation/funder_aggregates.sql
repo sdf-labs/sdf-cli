@@ -1,0 +1,12 @@
+SELECT
+    FUNDER_NAME,
+    COUNT(*) AS total_funders,
+    COALESCE(SUM(WORKS_COUNT), 0) AS total_works_count,
+    COALESCE(SUM(WORKS_CITED_BY_COUNT), 0) AS total_citations,
+    COALESCE(SUM(GRANTS_COUNT), 0) AS total_grants,
+    COUNT(DISTINCT FUNDER_COUNTRY_GEO_ID) AS unique_country_count,
+    MIN(CREATED_DATE) AS first_created_date,
+    MAX(UPDATED_DATE) AS last_updated_date
+FROM TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX
+GROUP BY FUNDER_NAME
+ORDER BY total_citations DESC
