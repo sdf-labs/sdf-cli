@@ -4,23 +4,6 @@ description:
   "All SDF Lint Rules, usage, and configuration"
 ---
 
-## Exit Codes 
-By default, SDF exits with the following status codes
-* **0** if no linter violations were found
-* **0** if linter completes successfully with any number of linter warnings
-* **64** if the linter fails for syntax reasons in any file
-
-In CI/CD scenarios you may want to have the linter exit with a non-zero code if the linter finds any violations.
-For this, SDF supports the `-w error` flag which turns any lint warning into an error.
-
-In sdf yml, you configure this as follows::
-``` yml
----
-sdf-args:
-  # turns lint warnings into errors with non-zero exit code
-  lint: >
-    -w error 
-```
 
 ## Capitalization Keywords
 ### SDF107
@@ -806,29 +789,46 @@ SELECT a FROM table_a;
 SELECT b FROM table_b 
 ``` 
 
-## Convention Comma
-### SDF104
-Avoid trailing commas in lists.
-
-| Configuration           | SDF Error | SQLFluff Alias | Auto-fix |
-| ----------------------- | ----------- | -------------  | -------  |
-| `convention-comma`      | SDF104      | N/A           |   ✅     |
-
+## Ctx Case Column 
+Inconsistent capitalization of column names 
+ 
 *Configuration:* 
 ```yml workspace.sdf.yml 
-sdf-args:
-   lint: >
-      -w convention-comma
-      ...
+workspace: 
+  ... 
+--- 
+linter: 
+ ... 
+ # capitalization_policy is one of [consistent, upper, lower, pascal, snake, camel, off] 
+ ctx-case-column: null # default (off) 
 ``` 
+ 
 **Anti-pattern** 
-```
-SELECT
-    ['Very', 'Long', 'List',] AS mylist
-```
-
+ 
+Referencing column names in inconsistent capitalization. 
+```sql 
+SELECT 
+   col_name_a, 
+   ColNameB, 
+   col_nameC 
+FROM my_table 
+``` 
+ 
 **Best-practice** 
 ```sql 
-SELECT
-    ['Very', 'Long', 'List'] AS mylist
-```
+SELECT 
+   col_name_a, 
+   col_name_b, 
+   col_name_c 
+FROM my_table 
+ 
+-- or 
+ 
+SELECT 
+   ColNameA, 
+   ColNameB, 
+   ColNameC 
+FROM my_table 
+ 
+-- or other formats applied to all column names consistently 
+``` 
