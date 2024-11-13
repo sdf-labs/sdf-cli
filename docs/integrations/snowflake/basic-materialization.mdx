@@ -46,7 +46,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.672&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.219&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
 ┌──────────────────────┬────────────────┬────────────┬──────────────────────────────────────────────────────────────────┐
@@ -172,7 +172,7 @@ Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.639&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.161&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 ┌─────────────┬────────────────┬────────────┬──────────────────────────────────────┐
@@ -216,23 +216,23 @@ Schema&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;5.663&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;4.708&nbsp;secs
 
 Table&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
-┌───────────────────────────┬───────────┐
-│&nbsp;REPO_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;│
-╞═══════════════════════════╪═══════════╡
-│&nbsp;0&#45;0Leminh0&#45;0/0&#45;0Leminh0&#45;0&nbsp;┆&nbsp;886125760&nbsp;│
-│&nbsp;0&#45;F/lua&#45;mods&#45;libs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886282289&nbsp;│
-│&nbsp;0&#45;GEE/alice&#45;electron&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;885656013&nbsp;│
-│&nbsp;0&#45;wHiTeHand&#45;0/passwords&nbsp;&nbsp;&nbsp;┆&nbsp;886199517&nbsp;│
-│&nbsp;0&#45;wHiTeHand&#45;0/passwords&nbsp;&nbsp;&nbsp;┆&nbsp;886202698&nbsp;│
-│&nbsp;00&#45;aa/00&#45;aa.github.io&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886156019&nbsp;│
-│&nbsp;000&#45;KunalPal/next&#45;forge&nbsp;&nbsp;&nbsp;┆&nbsp;886194768&nbsp;│
-│&nbsp;0000&#45;360/Agency&#45;Website&nbsp;&nbsp;&nbsp;┆&nbsp;886123560&nbsp;│
-│&nbsp;0000&#45;360/gym&#45;website&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886124518&nbsp;│
-│&nbsp;0000&#45;360/port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886121002&nbsp;│
-└───────────────────────────┴───────────┘
+┌────────────────────────────────────────────────────┬───────────┐
+│&nbsp;REPO_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;│
+╞════════════════════════════════════════════════════╪═══════════╡
+│&nbsp;0&#45;C&#45;E/API&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886431768&nbsp;│
+│&nbsp;0&#45;C&#45;E/Database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886894252&nbsp;│
+│&nbsp;0&#45;ROK/rust&#45;book&#45;service&#45;api&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886527371&nbsp;│
+│&nbsp;0&#45;anikaahmed&#45;0/Brain&#45;Stroke&#45;Detection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886846992&nbsp;│
+│&nbsp;0&#45;anikaahmed&#45;0/Diamond&#45;Catcher&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886874594&nbsp;│
+│&nbsp;0&#45;anikaahmed&#45;0/Flappy&#45;Bird&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886832769&nbsp;│
+│&nbsp;0&#45;anikaahmed&#45;0/Offensive&#45;Language&#45;Detection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886870587&nbsp;│
+│&nbsp;0&#45;anikaahmed&#45;0/Smart&#45;Home&#45;Automation&#45;via&#45;Bluetooth&nbsp;┆&nbsp;886853882&nbsp;│
+│&nbsp;0&#45;jerry/CalculatorApp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;886499152&nbsp;│
+│&nbsp;0&#45;tae/java&#45;convenience&#45;store&#45;7&#45;0&#45;tae&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;883580819&nbsp;│
+└────────────────────────────────────────────────────┴───────────┘
 10&nbsp;rows.
 
 </code>
@@ -282,7 +282,7 @@ Table&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.735&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.222&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.PUSH_EVENTS
 ┌─────────────┬────────────────┬────────────┬────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -348,20 +348,20 @@ Schema&nbsp;sdf_snowflake.staging.PUSH_EVENTS
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;6&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_CONTRIBUTOR_RELATIONSHIPS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_INDEX&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_CONTRIBUTOR_INDEX&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_INDEX&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_STARS&nbsp;(schema)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_CONTRIBUTOR_RELATIONSHIPS&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.events_by_repo&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[6&nbsp;succeeded,&nbsp;7&nbsp;downloaded]&nbsp;in&nbsp;1.865&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[6&nbsp;succeeded,&nbsp;7&nbsp;downloaded]&nbsp;in&nbsp;1.495&nbsp;secs
 
 </code>
 </pre>
