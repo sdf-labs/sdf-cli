@@ -1,17 +1,19 @@
 ---
-title: "SQL Linting & Formatting"
+title: "Introduction"
 description:
   "Overview of SQL Linting and Formatting"
 ---
 
 ### Overview
 
-SDF includes an integrated high performance SQL linter and formatter. Linting and formatting are core competencies of code-hygiene designed ensure code is consistent across your organization, simplify readability, code reviews, and promote standardization.
+SDF contains an integrated high performance SQL linter and formatter. Linting and formatting are core competencies 
+of code-hygiene designed ensure code is consistent across your organization, simplify readability, code reviews, 
+and promote standardization.
 
 SDF's SQL Linter has 4 crucial characteristics.
 1. It is incredibly high performance, outperforming SQLFluff by well over 100X in most scenarios.
-3. It has a high degree of overlap with SQL Fluff to ensure easy migration for existing SQLFLuff users.
-4. It can be used with existing DBT projects, independently of SDF's transformation layer.
+2. It has a high degree of overlap with SQL Fluff to ensure easy migration for existing SQLFLuff users.
+3. It is out-of-the-box compatible with all SDF Jinja and configuration
 
 SDF's auto-formatter works in conjunction with the linter to empower teams to write more unified SQL code.
 
@@ -19,9 +21,9 @@ Using the linter is easy.
 * Unless otherwise configured, every SDF workspace has *Default Rules*.
 * All files listed in your `includes` paths will be linted.
 * Run `sdf lint` to lint sql files
-* Run `sdf lint [TARGET]` to lint a subset of SQL files
+* Run `sdf lint path/to/file.sql` to lint a subset of SQL files
 * Run `sdf lint --fix` to fix issues where possible
-* Run `sdf fmt` to format sql files
+* Run `sdf format` to format sql files
 
 To create a global linter configuration for your workspace, you can use the `sdf-args` block in your sdf workspace file. These 
 defaults are command line flags that are implicitly added to each invocation of `sdf lint`. 
@@ -34,22 +36,22 @@ sdf-args
 ```
 
 #### Dialect Compatibility
-SQL linting is dialect specific. Currently, SDF Lint is only available for the Snowflake SQL dialect. Other dialects are coming soon.
+SQL linting is dialect specific. Currently, SDF Lint is only available for the Snowflake and BigQuery SQL dialects. Other dialects are coming soon.
 | Dialect   | Availability |
 | --------- | ------------ | 
 | Snowflake | 🟢           |
-| BigQuery  | 🟡           |
-| Redshift  | 🔴           |
+| BigQuery  | 🟢           |
+| Redshift  | 🟡           |
 | Trino     | 🔴           |
 | SparkSQL  | 🔴           |
 
 
 #### Default Rules
 SDF has a set of default lint rules. Default rules designed to provide a simple configuration for most data teams. 
-All defaults can be auto-fixed, or overwritten through manual configuration.
+All defaults can be auto-fixed or overwritten through manual configuration.
 
 SDF's lint defaults are equivalent to the following `sdf-args` configuration. If no overrides for `sdf-args` are specified, 
-any invocation of `sdf lint` will use the default lint defaults. These are as below: 
+any invocation of `sdf lint` will use the default lint defaults. These defaults are as below: 
 ```yml workspace.sdf.yml 
 sdf-args
    lint: >
@@ -69,23 +71,20 @@ All other rules are turned off by default.
 </Note>
 
 <Note>
-All default lint rules can be fixed with `sdf lint --fix`
-</Note>
-
-#### Introducing Semantic Linting & Performance Rules
-For teams already using SDF as their transformation layer, SDF provides **Semantic Lint Rules** and **Performance Lint Rules**, and **Custom Lint Rules** which can catch implicit coercion of names and types, as well as low-performance (and costly!) SQL code.
-- *Semantic rules* - derived from SDF's static analysis framework can prevent type coercion. Type and name coercion makes code harder to read, and references more difficult to understand.
-- *Performance rules* - dialect-specific optimizations with large performance implications. In Snowflake, the query optimizer is unable to do a filter push down if a function is applied to the filtered column. The function has to be applied to every element of the column. This can lead to dramatic performance decreases in query performance. An example of this suboptimal SQL is a where clause like: `WHERE DATE(datetime_partition) >= DATE('2024-01-01')`.
-- *Custom Rules from SDF Checks** - create custom lint rules using top of SDF's information schema.
-
-<Note>
-These rules rely on successful compilation of an SDF project and will automatically execute `sdf compile` as a pre-requisite.
+All default lint rules can be automatically fixed with `sdf lint --fix`
 </Note>
 
 ### Automatically Fix Issues
 - Use `sdf lint --fix` to automatically resolve linting issues where possible
 - For issues that can't be automatically fixed, SDF will provide error reports
-- To ignore a specific error, add the inline-comment `-- noqa` to your query. This will prevent that line from being evaluated by the linter, for all rules.
+
+```sql fix.sql
+select * FROM test
+```
+### Ignore Warnings
+If you would like to ignore a lint warning for whatever reason, add the 
+inline comment `-- noqa` to your query. This will prevent that line from being 
+evaluated by the linter, for all rules.
 
 ```sql nofix.sql
 SeLeCt * from test --noqa
@@ -110,23 +109,24 @@ For the full list of rules and configuration options, please visit our
 
 
 | Type    | Configuration                     | SDF Err   | SQLFluff Err    | Auto-Fix |  Default
-| ------- | --------------------------------- | --------- | --------------- | -------- | -------- |
-| Syntax  | `capitalization_keywords`         | SDF107    | L010            |    ✅    | `lower`  |
-| Syntax  | `capitalization-literal`          | SDF108, SDF109 | L040       |    ✅    | `lower`  |
-| Syntax  | `capitalization-type`             | SDF110    | L063            |    ✅    | `off`    |
-| Syntax  | `capitalization-function`         | SDF106    | L030            |    ✅    | `lower`  |
-| Syntax  | `convention-blocked-words`        | SDF124    | L029            |    ❌    | `[]`     |
-| Syntax  | `references-keywords`             | SDF125    | L029            |    ❌    | `[]`     |
-| Syntax  | `references-special-chars`        | SDF117    | L057            |    ❌    | ` "" `   |
-| Syntax  | `references-quoting`              | SDF118    | L059            |    ✅    | `off`    |
-| Syntax  | `references-consistent`           | SDF112    | L028            |    ❌    | `off`    |
-| Syntax  | `references-qualification`        | SDF116    | L027            |    ❌    | `off`    |
-| Syntax  | `ambiguous-column-references`     | SDF105    | L054            |    ❌    | `off`    |
-| Syntax  | `structure-else-null`             | SDF119    | L035            |    ✅    | `off`    |
-| Syntax  | `structure-simple-case`           | SDF120    | L043            |    ❌    | `off`    |
-| Syntax  | `structure-unused-cte`            | SDF121    | L045            |    ✅    | `off`    |
-| Syntax  | `structure-nested-case`           | SDF122    | L058            |    ❌    | `off`    |
-| Syntax  | `structure-distinct`              | SDF123    | L015            |    ✅    | `off`    |
-| Syntax  | `structure-join-condition-order`  | SDF114    | ST09            |    ❌    | `off`    |
-| Syntax  | `structure-column-order`          | SDF115    | L034            |    ✅    | `off`    |
-| Syntax  | `convention-terminator`           | SDF111    | L052            |    ✅    | `off`    |
+| ------- | --------------------------------- | --------- | --------------- | -------- | ------------- |
+| Syntax  | `capitalization_keywords`         | SDF107    | L010            |    ✅    | `consistent`  |
+| Syntax  | `capitalization-literal`          | SDF108, SDF109 | L040       |    ✅    | `consistent`  |
+| Syntax  | `capitalization-type`             | SDF110    | L063            |    ✅    | `consistent`  |
+| Syntax  | `capitalization-function`         | SDF106    | L030            |    ✅    | `consistent`  |
+| Syntax  | `convention-blocked-words`        | SDF124    | L029            |    ❌    | `[]`          |
+| Syntax  | `references-keywords`             | SDF125    | L029            |    ❌    | `[]`          |
+| Syntax  | `references-special-chars`        | SDF117    | L057            |    ❌    | ` "" `        |
+| Syntax  | `references-quoting`              | SDF118    | L059            |    ✅    | `on`          |
+| Syntax  | `references-consistent`           | SDF112    | L028            |    ❌    | `off`         |
+| Syntax  | `references-qualification`        | SDF116    | L027            |    ❌    | `off`         |
+| Syntax  | `ambiguous-column-references`     | SDF105    | L054            |    ❌    | `off`         |
+| Syntax  | `structure-else-null`             | SDF119    | L035            |    ✅    | `on`          |
+| Syntax  | `structure-simple-case`           | SDF120    | L043            |    ❌    | `off`         |
+| Syntax  | `structure-unused-cte`            | SDF121    | L045            |    ✅    | `only`        |
+| Syntax  | `structure-nested-case`           | SDF122    | L058            |    ❌    | `off`         |
+| Syntax  | `structure-distinct`              | SDF123    | L015            |    ✅    | `on`          |
+| Syntax  | `structure-join-condition-order`  | SDF114    | ST09            |    ❌    | `off`         |
+| Syntax  | `structure-column-order`          | SDF115    | L034            |    ✅    | `off`         |
+| Syntax  | `convention-terminator`           | SDF111    | L052            |    ✅    | `on`          |
+| Syntax  | `convention-comma`                | SDF104    | N/A             |    ✅    | `on`          |

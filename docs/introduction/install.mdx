@@ -1,44 +1,27 @@
 ---
 title: "Installation"
 description:
-  "SDF is a static analysis tool for data warehouses written in Rust. No JVM
+  "SDF is a data development framework for building scalable data warehouses written in Rust. No JVM
   required"
 ---
 
 ## Installing SDF
+  SDF is installed as a single, dependency free binary on a host machine.
+  The install script will first check your operating system and architecture,
+  then install the appropriate latest stable version of SDF and its dependencies for your system.
 
-  Our install script will first check your operating system and architecture,
-  then install the latest version of SDF and its dependencies for your system.
   The `sdf` command will also be added to your path. 
+
+  To the latest stable release of SDF:
+
   ```shell 
   curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s
   ```
 
-  <Note>
-    The install script will install the latest stable version of SDF by default.
-  </Note>
-
-  To install a specific version of SDF, you can specify the version number after the install script.
-  ```shell
-  curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s - --version x.x.x
-  ```
-
-  To install the latest preview version of SDF, you can use the `--preview` flag.
-  ```shell
-  curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s - --preview
-  ```
-  
-  <Warning>
-    Preview versions offer early access to new features but may be less stable. Use for testing and feedback.
-  </Warning>
 
 ### Verify Installation
 
-To verify that SDF is installed correctly, run the following command:
-
-```bash
-  sdf --help
-```
+To verify that SDF is installed correctly, run `sdf --help`
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
@@ -82,11 +65,13 @@ Use an editor like Visual Studio Code for better auto-complete and development h
 </Tip>
 
 ### YML Extension For VSCode 
-If you're using VSCode, please download the official [Red Hat YML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) extension which can provide intelisesnse support for SDF"s YML schema.
+If you're using VSCode, please [download the official Red Hat YML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) 
+extension which can provide intelisesnse support for SDF's official YML schema.
 This extension will show configuration errors, options, and more.
 
-
-![yml-extension-support](https://cdn.sdf.com/docs/red-hat-yml-sdf.png)
+<Frame>
+  ![yml-extension-support](https://cdn.sdf.com/docs/red-hat-yml-sdf.png)
+</Frame>
 
 <Note>
 The JSON schemas for SDF's `.sdf.yml` extension are published on the [schema store](https://www.schemastore.org/json/) and in the [sdf-cli repository](https://github.com/sdf-labs/sdf-cli/blob/main/schemas/sdf-definition-schema.json). 
@@ -106,6 +91,42 @@ current release channel (stable or preview).
 sudo sdf system update
 ```
 
+You can also update to a specific release channel:
+To view the available versions please see the [github releases page](https://github.com/sdf-labs/sdf-cli/releases).
+
+```shell
+sudo sdf system update --version x.x.x
+```
+
+You can check the currently installed version of your CLI with:
+
+```shell
+sdf --version
+```
+
+### Release Tracks
+SDF has two release tracks: **stable** and **preview**
+
+**stable (X.X.X-s)** -> receives only explicit bug fixes, and is updated monthly
+
+**preview (X.X.X-p)** -> receives new features multiple times per week
+<Frame>
+  <img height="200" src="https://cdn.sdf.com/docs/sdf-release-channels.png" />
+</Frame>  
+  
+### Installing a Release Channel Directly
+You may install a preview version of SDF directly:
+```shell
+# To install a specific version of SDF
+curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s - --version x.x.x
+
+#To install the latest preview version
+curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s - --preview
+```
+
+### Switching Release Channels
+Any SDF installation may switch tracks by *updating* into a different track, or version.
+
 To switch channels while updating, use the `--stable` or `--preview` flags:
 
 ```shell
@@ -115,23 +136,10 @@ sudo sdf system update --stable
 # Update to the latest preview version and switch to the preview channel
 sudo sdf system update --preview
 ```
-
-You can also update to a specific stable or preview version:
-To view the available versions please see the [github releases page](https://github.com/sdf-labs/sdf-cli/releases).
-
-```shell
-sudo sdf system update --version x.x.x
-```
-
-```shell
-sudo sdf system update --version x.x.x-p
-```
-
-You can check the currently installed version of your CLI with:
-
-```shell
-sdf --version
-```
+  
+  <Warning>
+    Preview versions offer early access to new features but may be less stable. Use for testing and feedback.
+  </Warning>
 
 ## Uninstalling SDF
 
@@ -143,9 +151,8 @@ sudo sdf system uninstall
 
 ## Info
 
-SDF is currently supported on the following platforms. The executable is small
-(\<75mb), but heavily parallelized. As such, SDF's resource consumption is
-dependent entirely on your data processing requirements.
+SDF is currently supported on the following platforms. The executable is small, but heavily parallelized. 
+As such, SDF's resource consumption is dependent entirely on your data processing requirements.
 
 | Platforms            | Supported |
 | -------------------- | :-------: |
