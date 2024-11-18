@@ -112,12 +112,12 @@ Before beginning, we'll need to make sure we have the following:
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
-Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
+Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.products&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.aggregate_orders&nbsp;(./models/aggregate_orders.sql)
 &nbsp;&nbsp;Compiling&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.customers_over_100&nbsp;(./models/customers_over_100.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;3&nbsp;downloaded]&nbsp;in&nbsp;1.889&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;3&nbsp;downloaded]&nbsp;in&nbsp;1.595&nbsp;secs
 
 </code>
 </pre>
@@ -156,12 +156,12 @@ Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
-Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.products&nbsp;(schema)
+Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.aggregate_orders&nbsp;(./models/aggregate_orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.customers_over_100&nbsp;(./models/customers_over_100.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;3&nbsp;downloaded]&nbsp;in&nbsp;3.898&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;3&nbsp;downloaded]&nbsp;in&nbsp;3.211&nbsp;secs
 
 </code>
 </pre>
@@ -179,21 +179,11 @@ Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.
 <code className='language-shell'>
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders&nbsp;(schema)
-Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.products&nbsp;(schema)
+Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.aggregate_orders&nbsp;(./models/aggregate_orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.customers_over_100&nbsp;(./models/customers_over_100.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;3&nbsp;downloaded]&nbsp;in&nbsp;5.612&nbsp;secs
-
-Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.products
-┌────────────┬──────────────┬────────┬─────────────┐
-│&nbsp;product_id&nbsp;┆&nbsp;product_name&nbsp;┆&nbsp;price&nbsp;&nbsp;┆&nbsp;category&nbsp;&nbsp;&nbsp;&nbsp;│
-╞════════════╪══════════════╪════════╪═════════════╡
-│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Laptop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;999.99&nbsp;┆&nbsp;Electronics&nbsp;│
-│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Headphones&nbsp;&nbsp;&nbsp;┆&nbsp;199.99&nbsp;┆&nbsp;Electronics&nbsp;│
-│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Coffee&nbsp;Maker&nbsp;┆&nbsp;89.99&nbsp;&nbsp;┆&nbsp;Appliances&nbsp;&nbsp;│
-└────────────┴──────────────┴────────┴─────────────┘
-3&nbsp;rows.
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;3&nbsp;downloaded]&nbsp;in&nbsp;6.144&nbsp;secs
 
 Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders
 ┌──────────┬─────────────┬────────────┬─────────────────────┬──────────┐
@@ -203,6 +193,16 @@ Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders
 │&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2023&#45;07&#45;01T00:00:00&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2023&#45;08&#45;03T00:00:00&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 └──────────┴─────────────┴────────────┴─────────────────────┴──────────┘
+3&nbsp;rows.
+
+Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.products
+┌────────────┬──────────────┬────────┬─────────────┐
+│&nbsp;product_id&nbsp;┆&nbsp;product_name&nbsp;┆&nbsp;price&nbsp;&nbsp;┆&nbsp;category&nbsp;&nbsp;&nbsp;&nbsp;│
+╞════════════╪══════════════╪════════╪═════════════╡
+│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Laptop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;999.99&nbsp;┆&nbsp;Electronics&nbsp;│
+│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Headphones&nbsp;&nbsp;&nbsp;┆&nbsp;199.99&nbsp;┆&nbsp;Electronics&nbsp;│
+│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Coffee&nbsp;Maker&nbsp;┆&nbsp;89.99&nbsp;&nbsp;┆&nbsp;Appliances&nbsp;&nbsp;│
+└────────────┴──────────────┴────────┴─────────────┘
 3&nbsp;rows.
 
 Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers
