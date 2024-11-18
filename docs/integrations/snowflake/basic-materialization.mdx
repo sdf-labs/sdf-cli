@@ -46,7 +46,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.708&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.415&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
 ┌──────────────────────┬────────────────┬────────────┬──────────────────────────────────────────────────────────────────┐
@@ -172,7 +172,7 @@ Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.693&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.519&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 ┌─────────────┬────────────────┬────────────┬──────────────────────────────────────┐
@@ -216,23 +216,23 @@ Schema&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;5.850&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;4.783&nbsp;secs
 
 Table&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
-┌───────────────────────────────────┬───────────┐
-│&nbsp;REPO_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;│
-╞═══════════════════════════════════╪═══════════╡
-│&nbsp;0&#45;Jhin/haksa1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;888005445&nbsp;│
-│&nbsp;0&#45;Siddhant&#45;0/portfolio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;887995212&nbsp;│
-│&nbsp;0&#45;alex&#45;01/programmier&#45;bung02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;887879770&nbsp;│
-│&nbsp;0&#45;ok&#45;0/&#45;&#45;&#45;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;888055961&nbsp;│
-│&nbsp;0&#45;x&#45;2&#45;2/udmp&#45;parser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;887696518&nbsp;│
-│&nbsp;0000&#45;11111/joguinho&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;887810957&nbsp;│
-│&nbsp;000000000abhi/Car_spiny&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;887897291&nbsp;│
-│&nbsp;00001080361029sp/empreendedorismo&nbsp;┆&nbsp;888061695&nbsp;│
-│&nbsp;0000108170634xsp/Projeto&#45;site&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;888040351&nbsp;│
-│&nbsp;0000108170634xsp/Projeto&#45;site&#45;2&nbsp;&nbsp;&nbsp;┆&nbsp;888045857&nbsp;│
-└───────────────────────────────────┴───────────┘
+┌──────────────────────────────────────────────────────────────┬───────────┐
+│&nbsp;REPO_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;│
+╞══════════════════════════════════════════════════════════════╪═══════════╡
+│&nbsp;0&#45;C&#45;E/Front&#45;End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889636351&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/0&#45;Jay&#45;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889575977&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/Air&#45;Quality&#45;Monitoring&#45;System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889562335&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/Bank&#45;Account&#45;Management&#45;System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889575142&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/FFT&#45;VLSI&#45;Implementation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889496848&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/FFT&#45;VLSI&#45;Implementation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889500312&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/Intelligent&#45;Maze&#45;Navigation&#45;System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889553968&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/Microstrip&#45;Patch&#45;Antenna&#45;for&#45;Breast&#45;Cancer&#45;Detection&nbsp;┆&nbsp;889492019&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/Multistage&#45;Encryption&#45;System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889565698&nbsp;│
+│&nbsp;0&#45;Jay&#45;0/Sequential&#45;Password&#45;Protector&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;889559153&nbsp;│
+└──────────────────────────────────────────────────────────────┴───────────┘
 10&nbsp;rows.
 
 </code>
@@ -282,7 +282,7 @@ Table&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.762&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.514&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.PUSH_EVENTS
 ┌─────────────┬────────────────┬────────────┬────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -348,20 +348,20 @@ Schema&nbsp;sdf_snowflake.staging.PUSH_EVENTS
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;6&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_CONTRIBUTOR_RELATIONSHIPS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_CONTRIBUTOR_INDEX&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_STARS&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_INDEX&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_STARS&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_CONTRIBUTOR_INDEX&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_CONTRIBUTOR_RELATIONSHIPS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.events_by_repo&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[6&nbsp;succeeded,&nbsp;7&nbsp;downloaded]&nbsp;in&nbsp;1.967&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[6&nbsp;succeeded,&nbsp;7&nbsp;downloaded]&nbsp;in&nbsp;1.730&nbsp;secs
 
 </code>
 </pre>
