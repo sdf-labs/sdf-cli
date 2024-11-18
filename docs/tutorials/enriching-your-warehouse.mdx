@@ -3,9 +3,9 @@ title:"Enriching Your Warehouse"
 ---
 
 ## Overview
-In the previous tutorial, we set up guardrails based on checks. 
-In this tutorial, we will see how SDF's semantic understanding 
-can help transform your data warehouse from strings and numbers 
+In the previous tutorial, we set up guardrails based on checks.
+In this tutorial, we will see how SDF's semantic understanding
+can help transform your data warehouse from strings and numbers
 to real-world business logic:
 * Maintain business logic consistency
 * Control development environment and minimize mistakes from propagating
@@ -25,7 +25,7 @@ Init for run commands:
 
 <Steps>
     <Step title="Setup">
-        If you haven't completed the [previous tutorial](/tutorials/deprecating-a-model), 
+        If you haven't completed the [previous tutorial](/tutorials/deprecating-a-model),
         uncomment the relevant section to reference the metadata files:
 
         ``` yml workspace.sdf.yml
@@ -38,14 +38,14 @@ Init for run commands:
         - path: checks  # Checks against SDF's information schema
             type: check
         # <<<<<<<
-        ```        
+        ```
     </Step>
     <Step title="Intro to SDF Classifiers">
         SDF's has the ability to annotate columns and tables with user defined types which represent
-        real-world business logic. Those types enrich the data warehouse and create new SQL types - 
+        real-world business logic. Those types enrich the data warehouse and create new SQL types -
         instead of just BIGINTs, we can now have currencies, different types of IDs, zip-codes, and many more.
-        
-        SDF **automatically propagates** those types to downstream assets, enriching the entire 
+
+        SDF **automatically propagates** those types to downstream assets, enriching the entire
         data warehouse with a new layer of semantic understanding.
 
         <Tip>
@@ -54,27 +54,27 @@ Init for run commands:
     </Step>
     <Step title="Creating New Classifiers">
         Let's focus back on Mom's Flower Shop.
-        
-        If you recall, V1 of `app_installs` had an incorrect `JOIN` between 
-        mobile app in-app events in the `raw_inapp_events` table, and marketing 
+
+        If you recall, V1 of `app_installs` had an incorrect `JOIN` between
+        mobile app in-app events in the `raw_inapp_events` table, and marketing
         campaign events in the `raw_marketing_campaign_events` table:
-        
+
         ``` sql
         ...
-        FROM inapp_events i 
+        FROM inapp_events i
             LEFT OUTER JOIN raw.raw_marketing_campaign_events m
-                ON (i.event_id = m.event_id) 
+                ON (i.event_id = m.event_id)
         ...
         ```
 
-        Essentially, we were joining two elements that are completely different. 
-        Like comparing Apples to Oranges. These kind of mistakes happen all the time. 
-        Thankfully, we can leverage SDF's semantic understanding and smart propagation 
+        Essentially, we were joining two elements that are completely different.
+        Like comparing Apples to Oranges. These kind of mistakes happen all the time.
+        Thankfully, we can leverage SDF's semantic understanding and smart propagation
         to set guardrails which will prevent future similar mistakes.
 
         Let's use SDF classifiers to add the missing business logic.
 
-        The column classifiers file `classifications/column_classifiers.sdf.yml` already contains 
+        The column classifiers file `classifications/column_classifiers.sdf.yml` already contains
         the event classifiers. Take a look yourself:
 
         ```yml classifications/column_classifiers.sdf.yml
@@ -86,7 +86,7 @@ Init for run commands:
         ```
     </Step>
     <Step title="Assign Classifiers to Source Tables">
-        To assign the classifiers, uncomment the relevant section in each of the 
+        To assign the classifiers, uncomment the relevant section in each of the
         files:
 
         ```yml metadata/raw/raw_inapp_events.sdf.yml
@@ -115,7 +115,7 @@ Init for run commands:
             SDF actually propagates the classifiers automatically, so no extra steps
             are required.
         </Tip>
-        
+
         Let's compile to view our tables metadata:
         ```shell
         sdf compile --show result
@@ -149,7 +149,7 @@ Schema&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
         Furthermore, we can see that `app_installs` inherited both `EVENT.inapp`
         and `EVENT.marketing`. This is due to the incorrect `JOIN` we found.
 
-        ```shell 
+        ```shell
         sdf compile staging.app_installs --show result
         ```
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
@@ -194,14 +194,14 @@ Schema&nbsp;moms_flower_shop.staging.app_installs
             WHERE
                 -- more than one EVENT classifier is assigned
                 CAST(c.classifiers AS VARCHAR) LIKE '%EVENT%EVENT%'
-            ``` 
+            ```
 
             Let's run it:
             ```shell
             sdf check mixed_event_ids --show result
             ```
-            This check will fail because `app_installs` still has an 
-            incorrect `JOIN`. 
+            This check will fail because `app_installs` still has an
+            incorrect `JOIN`.
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
@@ -219,28 +219,28 @@ Schema&nbsp;moms_flower_shop.staging.app_installs
     </Step>
     <Step title="Deprecate App Installs">
         In the [previous tutorial](/tutorials/deprecating-a-model), we already resolved
-        any downstream dependencies of `app_installs` and we now fully support the newer 
+        any downstream dependencies of `app_installs` and we now fully support the newer
         version, `app_installs_v2`. It is safe to deprecate the model - just delete the file.
 
         Or course, you can run `sdf compile` to validate the change.
     </Step>
 </Steps>
 
-## Bonus 
+## Bonus
 Classifiers can enrich your data warehouse in many ways.
 The following are just a few examples of added information layers
-to your static tables. 
+to your static tables.
 
-With each example, you can create checks and reports 
+With each example, you can create checks and reports
 to monitor your warehouse's health and compliance.
 
 <Steps>
     <Step title="Privacy">
-        Privacy is critical when storing sensitive information. 
-        With SDF's smart classifiers propagation, it is easier than 
-        ever to track PII and other privacy related concerns. 
+        Privacy is critical when storing sensitive information.
+        With SDF's smart classifiers propagation, it is easier than
+        ever to track PII and other privacy related concerns.
 
-        Open `metadata/raw/raw_customers.sdf.yml` and uncomment 
+        Open `metadata/raw/raw_customers.sdf.yml` and uncomment
         all classifier sections in the file. They should look like this:
 
         ``` yml metadata/raw/raw_customers.sdf.yml
@@ -270,7 +270,7 @@ Schema&nbsp;moms_flower_shop.staging.customers
 ┌───────────────┬───────────┬─────────────┬────────────────────────────────────────────────────────────┐
 │&nbsp;column_name&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 ╞═══════════════╪═══════════╪═════════════╪════════════════════════════════════════════════════════════╡
-│&nbsp;customer_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;A&nbsp;unique&nbsp;identifier&nbsp;of&nbsp;a&nbsp;mom&#39;s&nbsp;floewr&nbsp;shop&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;customer_id&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;A&nbsp;unique&nbsp;identifier&nbsp;of&nbsp;a&nbsp;mom&#39;s&nbsp;flower&nbsp;shop&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;first_name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;PII.name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;first&nbsp;name&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;last_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;PII.name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;last&nbsp;name&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;full_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;PII.name&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
@@ -290,12 +290,12 @@ Schema&nbsp;moms_flower_shop.staging.customers
     </Step>
     <Step title="Retention">
         We can set up table level and column level retention classifiers.
-        Let's look at a table level example. 
+        Let's look at a table level example.
 
         In the `table_classifiers.sdf.yml` file you will find a retention classifier:
 
         ```yml classifications/table_classifiers.sdf.yml
-        classifier: 
+        classifier:
             name: RETENTION
             labels:
                 - name: d7
@@ -306,7 +306,7 @@ Schema&nbsp;moms_flower_shop.staging.customers
         ```
 
         We can assign short term retention to our raw tables, while keeping infinite
-        retention for any analytics tables. 
+        retention for any analytics tables.
 
         For each raw table metadata found in `metadata/raw/*`, add:
         ``` yml
@@ -323,11 +323,11 @@ Schema&nbsp;moms_flower_shop.staging.customers
             - name: RETENTION.infinity
         ...
         ```
-        
-        
-        Notice that these classifiers are defined not to propagate downstream 
+
+
+        Notice that these classifiers are defined not to propagate downstream
         using the flag `propagate: false`:
-        ```yml 
+        ```yml
         classifier:
             ...
             propagate: false
@@ -343,8 +343,8 @@ Schema&nbsp;moms_flower_shop.staging.customers
         sdf compile models/analytics/ --show result
         ```
         </CodeGroup>
-        
-        For example, we can look at the `raw_addresses` output 
+
+        For example, we can look at the `raw_addresses` output
         from the first command:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
@@ -397,8 +397,8 @@ Schema&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
 
 ## Summary
 This tutorial only shows the tip of the iceberg of what you can do with our
-semantic understanding. Anything that's possible with SQL is possible as a check or 
-report against the information schema. 
+semantic understanding. Anything that's possible with SQL is possible as a check or
+report against the information schema.
 
 <Tip>
     We created the information schema to support custom checks and reports.

@@ -5,17 +5,17 @@ description:
 ---
 
 ## Overview
-The goal of this tutorials series is to provide a guided way for you to explore SDF and 
+The goal of this tutorials series is to provide a guided way for you to explore SDF and
 understand how it can be integrated into your data workflows. We built SDF to be an intuitive
 and easy to use and we hope you'll have fun exploring it.
 
-In our series of tutorial we will be working on a single SDF workspace - "Mom's Flower Shop". 
-In this page, we will provide a setup guide as well as an overview of this workspace. We 
+In our series of tutorial we will be working on a single SDF workspace - "Mom's Flower Shop".
+In this page, we will provide a setup guide as well as an overview of this workspace. We
 will even use SDF to conduct some initial exploration.
 
-This project was inspired by [Fleurette Studio](https://www.instagram.com/fleurette_studio/), 
-one of our co-founders [Elias'](https://www.linkedin.com/in/eliasdefaria/) mom's 
-boutique floral design studio located in Los Angeles, CA. 
+This project was inspired by [Fleurette Studio](https://www.instagram.com/fleurette_studio/),
+one of our co-founders [Elias'](https://www.linkedin.com/in/eliasdefaria/) mom's
+boutique floral design studio located in Los Angeles, CA.
 
 Let's get started!
 
@@ -23,8 +23,8 @@ Let's get started!
 * A Mac or Linux with a [valid installation](/introduction/install) of the latest SDF version running locally.
 * (Recommended) Having gone through our [Getting Started Guide](/introduction/getting-started).
 
-For the sake of the tutorials, there is no need to connect to a database or to leverage any 
-  compute engine other than your own laptop. 
+For the sake of the tutorials, there is no need to connect to a database or to leverage any
+  compute engine other than your own laptop.
 
 <Tip>
   If using VSCode, SDF's YML schema is available for type and syntax checking via the [Red HAT YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). This will
@@ -42,14 +42,14 @@ For the sake of the tutorials, there is no need to connect to a database or to l
     sdf new --sample moms_flower_shop
     ```
 
-    After running the command, you will see the following output: 
-    
-    <img src="https://cdn.sdf.com/docs/flower_shop_ascii.png"/>    
-    
+    After running the command, you will see the following output:
+
+    <img src="https://cdn.sdf.com/docs/flower_shop_ascii.png"/>
+
     That's it!
   </Step>
   <Step title="Workspace Overview">
-    This workspace is powering the data warehouse of Mom's Flower Shop. 
+    This workspace is powering the data warehouse of Mom's Flower Shop.
 
     First, let's open our terminal and change the directory. Run:
     ```shell
@@ -122,13 +122,13 @@ For the sake of the tutorials, there is no need to connect to a database or to l
     ```
     </CodeGroup>
     </Tip>
-    * Raw data seeds are available in the `seeds` folder. 
+    * Raw data seeds are available in the `seeds` folder.
     * Models (SQL files) are available in the `models` folder.
     * The workspace is defined in the `workspace.sdf.yml` configuration file.
 
     Let's ignore the rest of the directory for now. We will get back to those in later tutorials.
   </Step>
-  <Step title="Source Tables"> 
+  <Step title="Source Tables">
     Let's explore the tables. In your terminal, run:
     ```shell
     sdf compile models/raw
@@ -136,8 +136,8 @@ For the sake of the tutorials, there is no need to connect to a database or to l
 
     <Tip>
     When we run SDF compile, our engine validates SQL syntax and dependencies correctness.
-    In the example above, SDF is set to compile models under `models/raw`, but if we 
-    run `sdf compile` alone we will instantly guarantee a successful execution of all models 
+    In the example above, SDF is set to compile models under `models/raw`, but if we
+    run `sdf compile` alone we will instantly guarantee a successful execution of all models
     in the warehouse with a single command, running locally with lightning speed.
     </Tip>
 
@@ -159,7 +159,7 @@ Schema&nbsp;moms_flower_shop.raw.raw_customers
 ┌─────────────┬───────────┬────────────┬────────────────────────────────────────────────────────────┐
 │&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 ╞═════════════╪═══════════╪════════════╪════════════════════════════════════════════════════════════╡
-│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;A&nbsp;unique&nbsp;identifier&nbsp;of&nbsp;a&nbsp;mom&nbsp;s&nbsp;floewr&nbsp;shop&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;bigint&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;A&nbsp;unique&nbsp;identifier&nbsp;of&nbsp;a&nbsp;mom&nbsp;s&nbsp;flower&nbsp;shop&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;first_name&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;first&nbsp;name&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;last_name&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;last&nbsp;name&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 │&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;email&nbsp;of&nbsp;the&nbsp;customer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
@@ -175,7 +175,7 @@ Schema&nbsp;moms_flower_shop.raw.raw_customers
     ```shell
     sdf run models/raw
     ```
-    
+
     For example, the results for `raw_customers` look like this:
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
@@ -206,12 +206,12 @@ Table&nbsp;moms_flower_shop.raw.raw_customers
     ** Note that these files are randomly generated and do not contain any real data
 
     <Tip>
-      In this workspace we are using sample data stored locally for ease of use. 
-      
+      In this workspace we are using sample data stored locally for ease of use.
+
       When setting up your own workspace, you can connect existing data providers to SDF.
       Follow the relevant [provider's guide](/integrations/overview) to get started.
     </Tip>
-  </Step> 
+  </Step>
   <Step title="Other Models">
     We can also explore the other models that are found under the `models` directory.
 
@@ -219,7 +219,7 @@ Table&nbsp;moms_flower_shop.raw.raw_customers
     ```shell
     sdf compile
     ```
-    
+
     The output should look like this:
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
@@ -238,21 +238,21 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
 </pre>
 </div>
 
-    <Tip> 
-    SDF intelligently caches previous compilations. Since we compiled the source models 
-    under `models/raw` in previous steps, those will not be re-compiled in this run. 
+    <Tip>
+    SDF intelligently caches previous compilations. Since we compiled the source models
+    under `models/raw` in previous steps, those will not be re-compiled in this run.
     </Tip>
 
-    Let's see how it could've looked like without SDF's optimization. First we need 
+    Let's see how it could've looked like without SDF's optimization. First we need
     to clean cache. Run:
-    ```shell 
+    ```shell
     sdf clean
-    ``` 
-    Now, compile again by running: 
+    ```
+    Now, compile again by running:
     ```shell
     sdf compile
     ```
-    
+
     Notice the difference? Imagine running unoptimized compilations on a warehouse of your magnitude.
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
@@ -274,15 +274,15 @@ Working&nbsp;set&nbsp;11&nbsp;model&nbsp;files,&nbsp;22&nbsp;.sdf&nbsp;files
 </code>
 </pre>
 </div>
-    
-    To see the schema of each table, similarly to the source tables in the previous step, 
+
+    To see the schema of each table, similarly to the source tables in the previous step,
     simply add the flag `--show all` to the command:
     ```shell
     sdf compile --show all
     ```
   </Step>
 </Steps>
-  
+
 
 ## Next Steps
 Let's continue in our journey to explore SDF:
@@ -290,4 +290,3 @@ Let's continue in our journey to explore SDF:
 2. [Debugging](/tutorials/debugging)
 3. [Deprecating a model](/tutorials/deprecating-a-model)
 4. [Enriching your warehouse](/tutorials/enriching-your-warehouse)
-
