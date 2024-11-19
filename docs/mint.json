@@ -44,6 +44,10 @@
 			"url": "cloud"
 		},
 		{
+			"name": "Linter",
+			"url": "linter"
+		},
+		{
 			"name": "Releases",
 			"url": "releases"
 		},
@@ -83,6 +87,15 @@
 				"introduction/install",
 				"introduction/features",
 				"introduction/open-source"
+			]
+		},
+		{
+			"group": "Linter",
+			"pages": [
+				"linter/overview",
+				"linter/format",
+				"linter/macros",
+				"linter/reference"
 			]
 		},
 		{

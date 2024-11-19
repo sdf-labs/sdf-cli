@@ -1,0 +1,38 @@
+---
+title: "Formatting"
+description:
+  "Overview of Formatting"
+---
+
+## SQL Formatting
+The SDF formatter is an extremely fast SQL formatter designed as a drop-in replacement for SQLFluff. It is available natively as part of the SDF cli.
+
+### `sdf format`
+The entrypoint for the formatter is `sdf format`. 
+```
+sdf format                     # Formats all files in the SDF Workspace
+sdf format /path/to/file.sql   # Formats one specific file
+sdf format /path/to/dir/*.sql  # Formats all files matching glob pattern
+```
+
+### Formatting Configuration
+You may set a formatting configuration for an SDF project.
+
+```yml workspace.sdf.yml 
+sdf-args:
+   lint: >
+    ...
+   format: >
+     -l line-length=80 
+     -l indent=2 
+     -l commas=leading
+```
+
+### Formatting Reference
+The following formatting options are supported.
+
+| Type    | Configuration  | Auto-Fix |  Default   |
+| ------- | -------------- | -------- | ---------- |
+| Layout  | `line-length`  |    ✅    | `80`       |
+| Layout  | `indent`       |    ✅    | `2`        |
+| Layout  | `commas`       |    ✅    | `trailing` |

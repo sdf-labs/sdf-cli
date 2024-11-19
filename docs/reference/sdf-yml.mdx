@@ -24,11 +24,13 @@ title: "SDF YML Schema"
 `name:` | [`String`](#nested-element-string)| The name of the table (syntax: [[catalog.]schema].table)<br/><br/>Note: this field is typed as a [QualifiedName] for serialization. In almost all cases you should use the [Self::fqn()] method to get the fully qualified [TableName] instead of accessing this field directly.|
 `description:` | `string?`| A description of this table|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this table, defaults to undefinedtrinoundefined|
+`casing-policy:` | [`CasingPolicy?`](#enum-casingpolicy)| Case normalization policy for names specified in this table|
 `materialization:` | [`Materialization?`](#enum-materialization)| The table-type of this table (new version)|
 `warehouse:` | `string?`| The warehouse where this table is computed|
 `purpose:` | [`TablePurpose?`](#enum-tablepurpose)| Specify what kind of table or view this is|
 `origin:` | [`TableOrigin`](#enum-tableorigin)| The origin of this table &lt;remote&gt; or &lt;local&gt;|
 `exists-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macro)|
+`exists-draft-remotely:` | `boolean?`| Whether the table exists in the remote DB (used for is_incremental macro)|
 `table-location:` | [`TableLocation?`](#enum-tablelocation)| Specify table ,location, defaults to none if not set|
 `creation-flags:` | [`TableCreationFlags?`](#enum-tablecreationflags)| Defines the table creation options, defaults to none if not set|
 `incremental-options:` | [`IncrementalOptions?`](#nested-element-incrementaloptions)| Options governing incremental table evaluation (only for incremental tables)|
@@ -151,6 +153,7 @@ title: "SDF YML Schema"
 `vars:` | `object`| A map of named values for setting SQL variables from your environment Ex. -dt: dt, used in SQL as @dt, and in Jinja as |
 `source-locations:` | `array`| Workspace defined by these set of files|
 `preprocessor:` | [`PreprocessorType?`](#enum-preprocessortype)| Experimental: This project has jinja|
+`dbt:` | [`DbtConfig?`](#nested-element-dbtconfig)| Configuration for dbt integration|
 ## Enum: `IncludeType`
 Value | Description|
 | :--- | :------- |
@@ -174,27 +177,26 @@ Value | Description|
 `schema-table-name` | Table name is inferred from the file name without the extension. Schema is inferred from the directory name in which the file resides. Catalog is inferred from the `defaults` configuration. SDF assumes that a referenced table will reside in the directory/file with the corresponding schema/table name. As a result, only the required subset of files is parsed. This option is also fast, and it allows the schema to vary based on the directory name, but it still requires catalog to use the default values|
 `catalog-schema-table-name` | Table name is inferred from the file name without the extension. Schema is inferred from the directory name in which the file resides. Catalog is inferred from the directory name in which the schema directory resides. Defaults are not used. SDF assumes that a referenced table will reside in the catalog/schema/table file with the corresponding schema/catalog/table names. As a result, only the required subset of files is parsed. This option is also fast, and it provides the most flexibility as catalog, schema and table names can all vary|
 ## Enum: `Dialect`
-Value | Description|
-| :--- | :------- |
-`trino` | undefined|
-`snowflake` | Snowflake dialect with unnormalized column names
+Supported dialects in YAML files
 
-When this dialect is specified, column names will be automatically converted to uppercase. Use this dialect if - *all* column names in your database are case-normalized to uppercase, and - you want the column names in your YAML files to be case-insensitive.
+Note: this [Dialect] type is *only* meant for serializing to and from `.sdf.yml` files. For internal use, you should almost always use the semantic dialect type ([types::Dialect]) instead.
 
-If your table has lower-case or mixed-case column names, then this dialect will not work -- you *must* use [Dialect::Snowflake] instead.
-
-Note that the difference between this dialect and [Dialect::Snowflake] is limited to non-SQL sources *only* (e.g. `.sdf.yml` files, parquet/CSV files). For SQL files, these two dialects are identical.
-
-NOTE: the serialized form of this dialect is `snowflake`, for backward compatibility's sake:|
-`snowflake_normalized` | Snowflake dialect with semantically accurate column names
-
-When this dialect is specified, column names will be left as-is.
-
-Users should be encouraged to use this dialect, as it is more accurate, with less potential for surprises.
-
-Note that the difference between this dialect and [Dialect::Snowflake] is limited to non-SQL sources *only* (e.g. `.sdf.yml` files, parquet/CSV files). For SQL files, these two dialects are identical.
-
-NOTE: the serialized form of this dialect is `snowflake_normalized`, for backward compatibility's sake:|
+Note specifically that the lack of a `.to_string()` method (i.e. [!Display]) on this type is intentional -- you must first convert this type to a [types::Dialect], by using either [Dialect::to_semantic_dialect] or [types::Dialect::from], before you can convert it to a string..
+Values |
+| :--- |
+`snowflake`
+`trino`
+`bigquery`
+`redshift`
+`spark-lp`
+`sdf`
+`databricks`
+## Enum: `CasingPolicy`
+Values |
+| :--- |
+`preserve`
+`to-upper`
+`to-lower`
 ## Enum: `PreprocessorType`
 Values |
 | :--- |
@@ -371,6 +373,7 @@ Values |
 | :---- | :--- | :------- |
 `environment:` | [`String?`](#nested-element-string)| The default environment (can only be set on the level of the workspace)|
 `dialect:` | [`Dialect?`](#enum-dialect)| The dialect of this environment. If not set, defaults to trino|
+`casing-policy:` | [`CasingPolicy?`](#enum-casingpolicy)| Case normalization policy for names|
 `preprocessor:` | [`PreprocessorType?`](#enum-preprocessortype)| The preprocessor for this environment. If not set, defaults to local|
 `catalog:` | [`String?`](#nested-element-string)| Defines a default catalog. If not set, defaults to the (catalog/workspace) name in an outer scope|
 `schema:` | [`String?`](#nested-element-string)| Defines a default schema,  If not set, defaults to the schema name in an outer scope, if not set, defaults to &#39;pub&#39;|
@@ -460,6 +463,7 @@ Values |
 `profile:` | [`String?`](#nested-element-string)| The dbt profile to use|
 `target:` | [`String?`](#nested-element-string)| The dbt target for the profile|
 `auto-parse:` | `boolean`| Automatically Run Parse in-between commands (default: true)|
+`disable-introspection:` | `boolean`| Disable introspection (default: false)|
 ### Nested element: `IncrementalOptions`
 |Field | Type | Description|
 | :---- | :--- | :------- |

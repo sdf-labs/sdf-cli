@@ -13,6 +13,8 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf new`↴](#sdf-new)
 * [`sdf clean`↴](#sdf-clean)
 * [`sdf compile`↴](#sdf-compile)
+* [`sdf lint`↴](#sdf-lint)
+* [`sdf format`↴](#sdf-format)
 * [`sdf run`↴](#sdf-run)
 * [`sdf test`↴](#sdf-test)
 * [`sdf stats`↴](#sdf-stats)
@@ -58,6 +60,8 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `new` — Create a new sdf workspace
 * `clean` — Remove artifacts that sdf has generated in the past
 * `compile` — Compile models
+* `lint` — Lint models
+* `format` — Format models
 * `run` — Run models
 * `test` — Test your models
 * `stats` — Statistics for your data
@@ -204,7 +208,165 @@ Available warnings:
 - `capitalization-aliases=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for aliases.
 - `type-implicit-conversions`: Warn about implicit type conversions.
 - `references-consistent`: Warn about consistent references.
+- `inconsistent-schema`: Warn about schema inconsistency between local and remote schema. Default: on.
+All warnings are by default turned off, unless specified.
 
+
+
+
+## `sdf lint`
+
+Lint models
+
+**Usage:** `sdf lint [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Lint only the given source dirs, and files with .sql extension [default: all model .sql files in workspace]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--save  SAVE ` — Controls which assets to save [default: none]
+
+  Possible values: `info-schema`, `assembly`, `table-deps`
+
+* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
+
+  Default value: `false`
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--prefer-local` — When set will minimize remote DB accesses and will rely on local schema information in .sdf.yml files
+
+  Default value: `false`
+* `--fix` — Fix the linting issues
+
+  Default value: `false`
+* `-w`, `--warnings  WARNINGS ` — 
+Specify the warnings to apply. Example: `-w warning1 -w warning2`. Later options override former ones. 
+   Legend: (*) This warning can be automatically fixed by sdf.
+
+Available Warnings
+- `all`: Turn on all warnings.
+- `none`: Turn off all warnings.
+- `error`: Treat warnings as errors.
+
+Capitalization Settings 
+- `capitalization-keywords=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for keywords. Default: consistent (*)
+- `capitalization-literals=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for literals. Default: consistent (*)
+- `capitalization-types=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for types. Default: consistent (*)
+- `capitalization-functions=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for functions. Default: consistent (*)
+
+Convention and Reference Settings:
+- `convention-blocked-words= word `: Specify blocked words.
+- `convention-terminator`: Warn about terminator conventions. (*)
+- `references-keywords`: Warn about keyword references.
+- `references-special-chars= char `: Warn about special character references.
+- `references-quoting`: Warn about quoting references. (*)
+- `references-qualification`: Warn about qualification references. 
+- `references-columns`: Warn about ambiguous column references.
+
+Structure-Specific Warnings:
+- `structure-else-null`: Warn about ELSE NULL in structures. (*)
+- `structure-simple-case`: Warn about simple CASE structures. (*)
+- `structure-unused-cte`: Warn about unused CTEs. (*)
+- `structure-nested-case`: Warn about nested CASE structures.
+- `structure-distinct`: Warn about DISTINCT usage. (*)
+- `structure-subquery`: Warn about subquery structures.
+- `structure-join-condition-order`: Warn about join condition order.
+- `structure-column-order`: Warn about column order in structures.
+
+More warnings available as part of sdf compile ... 
+
+
+
+
+## `sdf format`
+
+Format models
+
+**Usage:** `sdf format [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Format the given .sql files or directories [default: all .sql files from the workspace/environment]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--save  SAVE ` — Controls which assets to save [default: none]
+
+  Possible values: `info-schema`, `assembly`, `table-deps`
+
+* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
+
+  Default value: `false`
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `--prefer-local` — When set will minimize remote DB accesses and will rely on local schema information in .sdf.yml files
+
+  Default value: `false`
+* `-l`, `--layout  LAYOUT ` — 
+Specify the layout options. Example: `-l layout1 -l layout2`
+
+Available layout options:
+- `indent= number `: Set the number of spaces to indent.
+- `commas=leading|trailing`: Set the comma layout.
+- `line-length= number `: Set the line length.
+
+* `--check`
+
+  Default value: `false`
 
 
 
