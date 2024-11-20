@@ -50,7 +50,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.685&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.609&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
 ┌──────────────────────┬────────────────┬────────────┬──────────────────────────────────────────────────────────────────┐
@@ -137,7 +137,7 @@ Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;SDF_SNOWFLAKE.STAGING.DATAFUSION_PUSH_EVENTS&nbsp;(exists_remotely)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.datafusion_push_events&nbsp;(./models/sdf_snowflake/staging/datafusion_push_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;2.181&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[1&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;1.981&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.DATAFUSION_PUSH_EVENTS
 ┌────────────────────────────────┬────────────────┬────────────┬────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -350,16 +350,16 @@ Downloading&nbsp;SDF_SNOWFLAKE.CYBERSYN_TECH_INNOVATION.TOP_DATAFUSION_CONTRIBUT
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.datafusion_push_events&nbsp;(./models/sdf_snowflake/staging/datafusion_push_events.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.top_datafusion_contributors&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/top_datafusion_contributors.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;3&nbsp;models&nbsp;[3&nbsp;succeeded]&nbsp;in&nbsp;2.194&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;3&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;1&nbsp;downloaded]&nbsp;in&nbsp;2.059&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.TOP_DATAFUSION_CONTRIBUTORS
-┌─────────────────────┬────────────────┬────────────┬──────────────────────────────────────────────────────────────┐
-│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-╞═════════════════════╪════════════════╪════════════╪══════════════════════════════════════════════════════════════╡
-│&nbsp;ACTOR_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Unique&nbsp;identifier&nbsp;of&nbsp;the&nbsp;user&nbsp;or&nbsp;actor&nbsp;involved&nbsp;in&nbsp;the&nbsp;event&nbsp;│
-│&nbsp;ACTOR_DISPLAY_LOGIN&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Display&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;or&nbsp;actor&nbsp;involved&nbsp;in&nbsp;the&nbsp;event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;CONTRIBUTION_COUNT&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-└─────────────────────┴────────────────┴────────────┴──────────────────────────────────────────────────────────────┘
+┌─────────────────────┬────────────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════════════╪════════════════╪════════════╪═════════════╡
+│&nbsp;ACTOR_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;ACTOR_DISPLAY_LOGIN&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;CONTRIBUTION_COUNT&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────────────┴────────────────┴────────────┴─────────────┘
 
 </code>
 </pre>
