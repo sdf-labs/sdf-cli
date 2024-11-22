@@ -1,7 +1,7 @@
 table:
   name: raw_customers
   description: >
-    All relevant information related to customers known to mom s flower shop. 
+    All relevant information related to customers known to mom s flower shop.
     This information comes from the user input into the mobile app.
 
   # Uncomment below to begin the "Enriching Your Warehouse" Tutorial >>>>>
@@ -11,8 +11,8 @@ table:
 
   columns:
     - name: id
-      description: A unique identifier of a mom s floewr shop customer
-      
+      description: A unique identifier of a mom s flower shop customer
+
     - name: first_name
       description: The first name of the customer
       # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
@@ -33,7 +33,7 @@ table:
       # classifiers:
       #   - PII.email
       # <<<<<
-      
+
     - name: gender
       description: The gender of the customer
       # Uncomment to begin the "Enriching your Warehouse" tutorial >>>>>
@@ -47,4 +47,3 @@ table:
       # classifiers:
       #   - PII.address
       # <<<<<
-    
