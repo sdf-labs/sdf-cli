@@ -306,6 +306,7 @@ Here's an example of a full-fledged table definition generated in the `sdftarget
 table:
 &nbsp;&nbsp;name:&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns
 &nbsp;&nbsp;dialect:&nbsp;trino
+&nbsp;&nbsp;casing&#45;policy:&nbsp;preserve
 &nbsp;&nbsp;materialization:&nbsp;view
 &nbsp;&nbsp;purpose:&nbsp;model
 &nbsp;&nbsp;dependencies:
@@ -317,11 +318,13 @@ table:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modify:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.install_time
 &nbsp;&nbsp;&#45;&nbsp;name:&nbsp;campaign_name
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;The&nbsp;campaign&nbsp;name&nbsp;associated&nbsp;with&nbsp;the&nbsp;campaign_id
 &nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;varchar
 &nbsp;&nbsp;&nbsp;&nbsp;lineage:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&nbsp;moms_flower_shop.staging.app_installs_v2.campaign_name
 &nbsp;&nbsp;&#45;&nbsp;name:&nbsp;platform
+&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;iOS&nbsp;or&nbsp;Android
 &nbsp;&nbsp;&nbsp;&nbsp;datatype:&nbsp;varchar
 &nbsp;&nbsp;&nbsp;&nbsp;lineage:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy:
