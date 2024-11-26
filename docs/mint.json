@@ -18,6 +18,7 @@
 			"to": "#2C4A6B"
 		}
 	},
+	"versions": ["Stable", "Preview"],
 	"redirects": [
 		{
 			"source": "/guide/install",
@@ -45,7 +46,8 @@
 		},
 		{
 			"name": "Linter",
-			"url": "linter"
+			"url": "linter",
+			"version": "Preview"
 		},
 		{
 			"name": "Releases",
