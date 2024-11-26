@@ -27,11 +27,10 @@ Evaluates expression parameter and returns second if condition is true, otherwis
 
 *Examples:*
 ```sql examples.sql
-SELECT IF(2 < 1, 'HIGHER') AS value; -- value 'NULL'
+SELECT IF(2 > 1, 'HIGHER', 'LOWER') AS value; -- value 'HIGHER'
 ```
 *Supported Signatures*
 ```sql
-function if(boolean, $1) returns $1
 function if(boolean, $1, $1) returns $1
 ```
 [🔗 Official Documentation](https://trino.io/docs/current/functions/conditional.html#if-expression)

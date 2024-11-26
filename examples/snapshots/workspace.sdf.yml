@@ -9,14 +9,7 @@ workspace:
     To follow along with SDF's official guide:  https://docs.sdf.com/integrations/snowflake/snapshots
 
   defaults:
-    dialect: snowflake
     preprocessor: jinja
-
-  integrations:
-    - provider: snowflake
-      type: database
-      targets:
-        - pattern: "*.*.*"
 ---
 environment:
   name: test1

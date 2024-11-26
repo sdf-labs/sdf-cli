@@ -6,17 +6,17 @@ description:
 
 ## Overview
 This guide describes the seeds mechanism that helps you upload raw data files (e.g. csv files) 
-to Snowflake as tables
+to BigQuery as tables
 
 ## Prerequisites
 
 <Info>
-This guide should be followed after completing the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide and the [Basic Materialization with Snowflake](/integrations/snowflake/basic-materialization) guide.
+This guide should be followed after completing the [Getting Started with BigQuery and SDF](/integrations/bigquery/getting-started) guide and the [Basic Materialization with BigQuery](/integrations/bigquery/basic-materialization) guide.
 </Info>
 
 You'll also need:
 
-- A Snowflake account to connect to
+- A BigQuery account to connect to
 - Valid credentials with read and write access to the SEEDS database used in this guide.
 
 ## Guide
@@ -29,14 +29,14 @@ You'll also need:
         ```
 
 
-        The newly created `seeds` directory contains three files:
+        The newly created `bigquery_seeds` directory contains three files:
 
         * The workspace file `workspace.sdf.yml`
         * The data file `seeds/raw_customers.csv`, and
         * The model `models/french_customers.sql` which consumes and filters the seed table
     </Step>
     <Step title="Contents of the workspace file">
-        Let's look into the workspace file:
+         Let's look into the workspace file:
 
         ```yaml workspace.sdf.yml
         workspace:
@@ -66,7 +66,7 @@ You'll also need:
         The seeds path is declared with `type: seed`. This instructs SDF to look for CSV files 
         in the specified directory.
 
-        Since we want to materialize the seed data as a table into Snowflake, let's update the `workspace.sdf.yml` file to include Snowflake integration configuration:
+        Since we want to materialize the seed data as a table into BigQuery, let's update the `workspace.sdf.yml` file to include Snowflake integration configuration:
           
         ```yml workspace.sdf.yml
         workspace:
@@ -75,17 +75,17 @@ You'll also need:
           description: >
             This workspace demonstrates a seed table: a table whose data is provided in a CSV file
 
-            To follow along with SDF's official guide:  https://docs.sdf.com/integrations/snowflake/seeds
+            To follow along with SDF's official guide:  https://docs.sdf.com/integrations/bigquery/seeds
 
           defaults:
-            dialect: snowflake
+            dialect: bigquery
             preprocessor: jinja
 
           integrations:
-            - provider: snowflake
+            - provider: bigquery
               type: database
               targets:
-                - pattern: "*.*.*"
+                - pattern: "*.pub.*"
 
         ---
         environment:
@@ -125,16 +125,16 @@ You'll also need:
 
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
-<code className='language-shell'>
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;seed&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;Uploading&nbsp;&#39;INTEGRATION_TEST.PUB.RAW_CUSTOMERS&#39;
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration_test.pub.french_customers&nbsp;(./models/french_customers.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;6.359&nbsp;secs
+&nbsp;&nbsp;Uploading&nbsp;&#39;&quot;integration&#45;test&#45;sdf&quot;.pub.raw_customers&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.pub.french_customers&nbsp;(./models/french_customers.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;5.040&nbsp;secs
 
-Table&nbsp;INTEGRATION_TEST.PUB.FRENCH_CUSTOMERS
+Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.french_customers
 ┌────────────┬─────────────────┬────────────────┬────────────────────────────────────────┬─────────────────────────────────┬─────────────────────────────┬───────────┬─────────┬─────────────────────────┬─────────────────────────┐
-│&nbsp;CUSTOMERID&nbsp;┆&nbsp;NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;PHONE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;ADDRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;REGION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;POSTALZIP&nbsp;┆&nbsp;COUNTRY&nbsp;┆&nbsp;CREATEDAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;UPDATEDAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;customerid&nbsp;┆&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;postalzip&nbsp;┆&nbsp;country&nbsp;┆&nbsp;createdat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;updatedat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 ╞════════════╪═════════════════╪════════════════╪════════════════════════════════════════╪═════════════════════════════════╪═════════════════════════════╪═══════════╪═════════╪═════════════════════════╪═════════════════════════╡
 │&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Alfonso&nbsp;Mcbride&nbsp;┆&nbsp;1&#45;426&#45;567&#45;2754&nbsp;┆&nbsp;ultricies.ligula.nullam@protonmail.net&nbsp;┆&nbsp;P.O.&nbsp;Box&nbsp;120,&nbsp;3949&nbsp;Leo,&nbsp;Rd.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;North&nbsp;Island&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;4751&#45;5554&nbsp;┆&nbsp;France&nbsp;&nbsp;┆&nbsp;2023&#45;02&#45;11T02:05:55.379&nbsp;┆&nbsp;2023&#45;02&#45;19T09:06:00.400&nbsp;│
 │&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Carol&nbsp;White&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&#45;192&#45;246&#45;3106&nbsp;┆&nbsp;porttitor.scelerisque.neque@icloud.edu&nbsp;┆&nbsp;Ap&nbsp;#345&#45;4585&nbsp;Luctus&nbsp;Rd.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Saint&nbsp;Petersburg&nbsp;City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;57565&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;France&nbsp;&nbsp;┆&nbsp;2023&#45;01&#45;24T07:06:21.325&nbsp;┆&nbsp;2023&#45;02&#45;02T10:07:55.385&nbsp;│
@@ -162,16 +162,16 @@ Table&nbsp;INTEGRATION_TEST.PUB.FRENCH_CUSTOMERS
         ```
 
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
-<code className='language-shell'>
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
+<code className='language-error'>
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;seed&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
-&nbsp;&nbsp;Uploading&nbsp;&#39;INTEGRATION_TEST.PUB.RAW_CUSTOMERS&#39;
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration_test.pub.query&nbsp;(./sdftarget/test/query.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;5.864&nbsp;secs
+&nbsp;&nbsp;Uploading&nbsp;&#39;&quot;integration&#45;test&#45;sdf&quot;.pub.raw_customers&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.pub.query&nbsp;(./sdftarget/test/query.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;5.393&nbsp;secs
 
-Table&nbsp;INTEGRATION_TEST.PUB.QUERY
+Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.query
 ┌─────┐
-│&nbsp;CNT&nbsp;│
+│&nbsp;cnt&nbsp;│
 ╞═════╡
 │&nbsp;35&nbsp;&nbsp;│
 └─────┘

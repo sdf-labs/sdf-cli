@@ -26,7 +26,7 @@ When `sdf test` runs this query, it will check if any data is returned and fail 
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;hello.pub.test_main&nbsp;(./sdftarget/dbg/tests/hello/pub/test_main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.867&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.866&nbsp;secs
 [Pass]&nbsp;Test&nbsp;hello.pub.test_main
 
 </code>
@@ -180,7 +180,7 @@ table:
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;(./models/raw_inapp_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.930&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.887&nbsp;secs
 [Pass]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
 
 </code>
@@ -347,7 +347,7 @@ to run custom testing macros.
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
 &nbsp;&nbsp;&nbsp;&nbsp;Cleaned&nbsp;sdftarget
-&nbsp;&nbsp;&nbsp;Finished&nbsp;clean&nbsp;in&nbsp;0.299&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;clean&nbsp;in&nbsp;0.302&nbsp;secs
 .
 ├──&nbsp;custom_tests
 ├──&nbsp;models
@@ -428,11 +428,7 @@ to run custom testing macros.
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
-Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;tests_workspace.pub.raw_inapp_events&nbsp;(./models/raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;tests_workspace.pub.test_raw_inapp_events&nbsp;(./sdftarget/dbg/tests/tests_workspace/pub/test_raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.861&nbsp;secs
-[Pass]&nbsp;Test&nbsp;tests_workspace.pub.test_raw_inapp_events
+/bin/sh:&nbsp;1:&nbsp;sdf:&nbsp;not&nbsp;found
 
 </code>
 </pre>
@@ -445,23 +441,8 @@ Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;test&nbsp;file,&nbsp;2
 <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
+cat:&nbsp;sdftarget/dbg/preprocessed/tests_workspace/pub/test_raw_inapp_events.sql:&nbsp;No&nbsp;such&nbsp;file&nbsp;or&nbsp;directory
 
-
-WITH
-raw_inapp_events_constraints&nbsp;AS&nbsp;(
-&nbsp;&nbsp;&nbsp;&nbsp;SELECT
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CASE&nbsp;WHEN&nbsp;COUNT(CASE&nbsp;WHEN&nbsp;index&nbsp;&gt;&nbsp;1000&nbsp;THEN&nbsp;1&nbsp;ELSE&nbsp;NULL&nbsp;END)&nbsp;&gt;&nbsp;0&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;THEN&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&#39;err:&nbsp;column&nbsp;index&nbsp;is&nbsp;over&nbsp;1000&quot;&#39;&nbsp;ELSE&nbsp;NULL&nbsp;END&nbsp;AS&nbsp;index_1
-&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;tests_workspace.pub.raw_inapp_events
-)
-
-SELECT&nbsp;reason&nbsp;
-FROM&nbsp;(
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;SELECT&nbsp;index_1&nbsp;as&nbsp;reason&nbsp;FROM&nbsp;raw_inapp_events_constraints&nbsp;WHERE&nbsp;index_1&nbsp;IS&nbsp;NOT&nbsp;NULL&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;AS&nbsp;_combined_errors
-ORDER&nbsp;BY&nbsp;reason;
 </code>
 </pre>
 </div>

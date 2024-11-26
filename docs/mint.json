@@ -212,6 +212,17 @@
 					]
 				},
 				{
+					"group": "BigQuery",
+					"icon": "google",
+					"pages": [
+						"integrations/bigquery/getting-started",
+						"integrations/bigquery/basic-materialization",
+						"integrations/bigquery/incremental-materialization",
+						"integrations/bigquery/snapshots",
+						"integrations/bigquery/seeds"
+					]
+				},
+				{
 					"group": "AWS",
 					"icon": "aws",
 					"pages": [
@@ -228,14 +239,6 @@
 								"integrations/aws/S3/s3-example"
 							]
 						}
-					]
-				},
-				{
-					"group": "BigQuery",
-					"icon": "google",
-					"pages": [
-						"integrations/bigquery/getting-started",
-						"integrations/bigquery/basic-materialization"
 					]
 				},
 				{

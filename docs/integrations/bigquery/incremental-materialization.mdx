@@ -1,0 +1,362 @@
+---
+title: "Incremental Materialization"
+description:
+  "Materialize incremental models in BigQuery to save time and compute."
+---
+
+## Overview
+This guide introduces the incremental materialization of models in BigQuery using SDF. We'll build on the basic concepts of materializing tables and views, focusing on incremental updates to optimize performance and resource usage.
+
+## Prerequisites
+
+<Info>
+This guide should be followed after completing the [Getting Started with BigQuery and SDF](/integrations/bigquery/getting-started) guide and the [Basic Materialization with BigQuery](/integrations/bigquery/basic-materialization) guide.
+</Info>
+
+You'll also need:
+
+- A GCP account & project with billing enabled and with [this](https://console.cloud.google.com/marketplace/product/city-of-new-york/nyc-tlc-trips) BigQuery dataset installed.
+- Valid BigQuery username / password credentials with write access to at least one database we can materialize tables to.
+- Instantiated credentials completed in the previous guide.
+
+## Guide
+
+<Steps>
+    <Step title="Create a New SDF Project from the SDF BigQuery Incremental Example">
+
+        Create a new SDF project using the NYC TLC Trips public dataset. This will create a new project in your current working directory with the sample project files.
+        ```shell
+        sdf new --sample bigquery_incremental
+        ```
+
+    </Step>
+    <Step title="Replace Project ID with Your Project ID">
+        Next, let's replace the project ID in the `workspace.sdf.yml` file with your own project ID. This is the project ID we'll read table metadata from and materialize tables to.
+
+        On line 14 of the `workspace.sdf.yml`, replace `<REPLACE_WITH_BQ_PROJECT>` with the project ID from your BigQuery account. 
+
+        <Note>
+            The `catalog` in SDF is equivalent to project ID in BigQuery.
+        </Note>
+    </Step>
+    <Step title="Compile to Test Credentials">
+        Now that we've replaced the project ID, let's ensure your credentials are working and have read access to the public BigQuery datasets used in this example. We can do this by compiling one of the models.
+        ```shell
+        sdf compile compile last_hn_timestamp
+        ```
+
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;&quot;bigquery&#45;public&#45;data&quot;.hacker_news.&quot;full&quot;&nbsp;(schema)
+&nbsp;&nbsp;Compiling&nbsp;integration&#45;test&#45;sdf.pub.last_hn_timestamp&nbsp;(./models/last_hn_timestamp.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.817&nbsp;secs
+
+Schema&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.last_hn_timestamp
+┌─────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;ts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴───────────┴────────────┴─────────────┘
+
+</code>
+</pre>
+</div>
+
+        <Warning>
+            If you do not see a successful compilation, please ensure you've followed the [Getting Started with BigQuery and SDF](/integrations/bigquery/getting-started) guide to authenticate to your BigQuery.
+        </Warning>
+    </Step>
+    <Step title="Materialize an Increment Model">
+      Now that we've confirmed our credentials are working, let's materialize an incremental model. Our example workspace contains a table called `popular_articles.sql` which filters to hacker news articles with a score over 100. 
+      We'll use this table to demonstrate incremental materialization with the `append` merge strategy.
+
+      Since many hacker news articles are frequently being added, this is a great candidate for an incremental model. There is not need to re-scan all models with a score over 100. We can use incremental materialization to only query articles published later than the last time we queried. This will significantly save on compute and optimize our pipeline.
+      Since we don't care about updates to existing rows, we can use the `append` merge strategy. This strategy appends new rows to the target table without updating existing rows.
+
+      Let's investigate the SQL file `popular_articles.sql` in the `models/` directory:
+
+      ```sql models/popular_articles.sql
+      SELECT
+        *
+      FROM
+        bigquery-public-data.hacker_news.`full`
+      WHERE
+      {% if builtin.is_incremental_mode %}
+        -- Only fetch rows that are newer than the newest row in the previous materialization of this table
+        `timestamp` >= (SELECT MAX(`timestamp`) FROM popular_articles)
+      {% else %}
+        `timestamp` >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
+      {% endif %}
+        AND title IS NOT NULL
+        AND (dead IS NULL OR dead = FALSE)
+        AND score > 100
+      ```
+
+      Let's unpack a few things here:
+      - This relatively simple query fetches events and filters by their `title`, `dead` attribute, and `score`.
+      - The `{% if builtin.is_incremental_mode %}` block is a Jinja conditional that checks if the model is being materialized incrementally. If it is, we only fetch rows that are newer than the newest row in the previous materialization of this table. If not, we fetch rows from the last week.
+      
+      <Note>
+        In a production scenario, you would likely want to fetch events from all time for non-incremental mode run as this would be a full refresh of the data. We are adding the week filter to prevent any major compute costs in this guide.
+      </Note>
+
+      You might be wondering, how does SDF know when to set `builtin.is_incremental_mode` to `True`? SDF sets this variable to `True` when the model has already been materialized in the cloud. 
+
+      Before running this model, we'll need need to tell SDF to overwrite the default materialization for this table. We can do this by adding the following to the `workspace.sdf.yml` file:
+
+      ```yml workspace.sdf.yml
+      ---
+      table:
+        name: popular_articles
+        materialization: incremental-table  
+      ```   
+
+
+      SDF defaults the incremental strategy to `append`, as such we don't need to specify it in this YML (we'll explore this later in the guide).
+      Now, let's first compile our workspace with this new model:
+
+      ```shell
+      sdf compile popular_articles
+      ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.popular_articles&nbsp;(exists_remotely)
+Downloading&nbsp;&quot;bigquery&#45;public&#45;data&quot;.hacker_news.&quot;full&quot;&nbsp;(schema)
+&nbsp;&nbsp;Compiling&nbsp;integration&#45;test&#45;sdf.pub.popular_articles&nbsp;(./models/popular_articles.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;2.294&nbsp;secs
+
+Schema&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.popular_articles
+┌─────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;dead&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;boolean&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;score&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;timestamp&nbsp;&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;parent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;descendants&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;ranking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;deleted&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;boolean&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴───────────┴────────────┴─────────────┘
+
+</code>
+</pre>
+</div>
+
+      Before running our new incremental model, let's inspect the compiled query output to see what exactly will be run against BigQuery. To do so, open up the file `sdftarget/dbg/materialized/<your-project-id>/pub/popular_articles.sql` and inspect the SQL query.
+
+      It should show this:
+
+      ```sql sdftarget/dbg/materialized/<your-project-id>/pub/popular_articles.sql
+        create or replace table `integration-test-sdf`.sdf_ecommerce_example.popular_articles as (SELECT
+          *
+        FROM
+          `bigquery-public-data`.hacker_news.`full`
+        WHERE
+
+          `timestamp` >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
+
+          AND title IS NOT NULL
+          AND (dead IS NULL OR dead = FALSE)
+          AND score > 100);
+      ```
+      
+      As you can see, the query was compiled with `builtin.is_incremental_mode` set to `False`. This is because we haven't materialized the table yet. 
+
+      Let's run the model now to materialize the table in non-incremental mode.
+
+      ```shell
+      sdf run models/popular_articles.sql
+      ```
+
+      Nice! The model should have successfully been materialized in BigQuery. Next, we'll try running the model in incremental mode.
+
+      All we need to do is run the model again and SDF will automatically detect that the model has already been materialized and set `builtin.is_incremental_mode` to `True`.
+
+      ```shell
+      sdf run models/popular_articles.sql
+      ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.popular_articles&nbsp;(exists_remotely)
+Downloading&nbsp;&quot;bigquery&#45;public&#45;data&quot;.hacker_news.&quot;full&quot;&nbsp;(schema)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.pub.popular_articles&nbsp;(./models/popular_articles.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;5.787&nbsp;secs
+
+Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.popular_articles
+┌────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────┬──────┬──────┬──────────────┬───────┬────────────┬─────────────────────┬───────┬──────────┬────────┬─────────────┬─────────┬─────────┐
+│&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;text&nbsp;┆&nbsp;dead&nbsp;┆&nbsp;by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;score&nbsp;┆&nbsp;time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;type&nbsp;&nbsp;┆&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;parent&nbsp;┆&nbsp;descendants&nbsp;┆&nbsp;ranking&nbsp;┆&nbsp;deleted&nbsp;│
+╞════════════════════════════════════════════════════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════╪══════╪══════╪══════════════╪═══════╪════════════╪═════════════════════╪═══════╪══════════╪════════╪═════════════╪═════════╪═════════╡
+│&nbsp;/usr/bin/env&nbsp;&#45;S&nbsp;uv&nbsp;run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://simonwillison.net/2024/Aug/21/usrbinenv&#45;uv&#45;run/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;jcbhmr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;125&nbsp;&nbsp;&nbsp;┆&nbsp;1732137756&nbsp;┆&nbsp;2024&#45;11&#45;20T21:22:36&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42198256&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2007&nbsp;Boston&nbsp;Mooninite&nbsp;Panic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://en.wikipedia.org/wiki/2007_Boston_Mooninite_panic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;black6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;157&nbsp;&nbsp;&nbsp;┆&nbsp;1732416842&nbsp;┆&nbsp;2024&#45;11&#45;24T02:54:02&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42225609&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;103&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;A&nbsp;Walk&nbsp;with&nbsp;LuaJIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://www.polarsignals.com/blog/posts/2024/11/13/lua&#45;unwinding&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;damir&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;150&nbsp;&nbsp;&nbsp;┆&nbsp;1732001893&nbsp;┆&nbsp;2024&#45;11&#45;19T07:38:13&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42180872&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;A&nbsp;binary&nbsp;tree&nbsp;of&nbsp;all&nbsp;Pythagorean&nbsp;triples&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://richardt.io/stereo_stern/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;hakmem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;181&nbsp;&nbsp;&nbsp;┆&nbsp;1732173881&nbsp;┆&nbsp;2024&#45;11&#45;21T07:24:41&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42201936&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;A&nbsp;career&#45;ending&nbsp;mistake&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://bitfieldconsulting.com/posts/career&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;gus_leonel&nbsp;&nbsp;&nbsp;┆&nbsp;313&nbsp;&nbsp;&nbsp;┆&nbsp;1732463794&nbsp;┆&nbsp;2024&#45;11&#45;24T15:56:34&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42228538&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;194&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;A&nbsp;common&nbsp;urban&nbsp;intersection&nbsp;in&nbsp;the&nbsp;Netherlands&nbsp;(2018)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://bicycledutch.wordpress.com/2018/02/20/a&#45;common&#45;urban&#45;intersection&#45;in&#45;the&#45;netherlands/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;itronitron&nbsp;&nbsp;&nbsp;┆&nbsp;354&nbsp;&nbsp;&nbsp;┆&nbsp;1732179542&nbsp;┆&nbsp;2024&#45;11&#45;21T08:59:02&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42202397&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;323&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;A&nbsp;“meta&#45;optics”&nbsp;camera&nbsp;that&nbsp;is&nbsp;the&nbsp;size&nbsp;of&nbsp;a&nbsp;grain&nbsp;of&nbsp;salt&nbsp;┆&nbsp;https://cacm.acm.org/news/a&#45;camera&#45;the&#45;size&#45;of&#45;a&#45;grain&#45;of&#45;salt&#45;could&#45;change&#45;imaging&#45;as&#45;we&#45;know&#45;it/&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;rbanffy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;233&nbsp;&nbsp;&nbsp;┆&nbsp;1732275593&nbsp;┆&nbsp;2024&#45;11&#45;22T11:39:53&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42212992&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;AAA&nbsp;–&nbsp;Analytical&nbsp;Anti&#45;Aliasing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://blog.frost.kiwi/analytical&#45;anti&#45;aliasing/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;todsacerdoti&nbsp;┆&nbsp;580&nbsp;&nbsp;&nbsp;┆&nbsp;1732089800&nbsp;┆&nbsp;2024&#45;11&#45;20T08:03:20&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42191709&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;Against&nbsp;the&nbsp;Dark&nbsp;Forest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://www.wrecka.ge/against&#45;the&#45;dark&#45;forest/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;tobr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;110&nbsp;&nbsp;&nbsp;┆&nbsp;1732310659&nbsp;┆&nbsp;2024&#45;11&#45;22T21:24:19&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42217484&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;AlphaQubit:&nbsp;AI&nbsp;to&nbsp;identify&nbsp;errors&nbsp;in&nbsp;Quantum&nbsp;Computers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;https://blog.google/technology/google&#45;deepmind/alphaqubit&#45;quantum&#45;error&#45;correction/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;roboboffin&nbsp;&nbsp;&nbsp;┆&nbsp;159&nbsp;&nbsp;&nbsp;┆&nbsp;1732127824&nbsp;┆&nbsp;2024&#45;11&#45;20T18:37:04&nbsp;┆&nbsp;story&nbsp;┆&nbsp;42196841&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;49&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────┴──────┴──────┴──────────────┴───────┴────────────┴─────────────────────┴───────┴──────────┴────────┴─────────────┴─────────┴─────────┘
+10&nbsp;rows.
+
+</code>
+</pre>
+</div>
+
+      Notice how the model ran much faster this time? That's because SDF only fetched new rows from the `customers_over_100` table that were created after the last materialization.
+
+      Furthermore, you might notice something slightly different in the run output, specifically a line that says `Preloading` like so:
+      
+      ```shell
+      Downloading <your-project-id>.pub.popular_articles (exists_remotely)
+      ```
+
+      This indicates SDF is preloading the schema and last altered time of the table before running the query. As was previously mentioned, this is to set the `is_incremental_mode` builtin variable.
+
+      Lastly, if you inspect the compiled query output again, you should see `builtin.is_incremental_mode` set to `True` and the query's SQL reflective of that.
+      
+      ```sql sdftarget/dbg/materialized/sdf_query/staging/customer_spend_last_month.sql
+      insert into `integration-test-sdf`.pub.popular_articles (title, url, text, dead, `by`, score, time, timestamp, type, id, parent, descendants, ranking, deleted) SELECT
+        *
+      FROM
+        `bigquery-public-data`.hacker_news.`full`
+      WHERE
+
+        -- Only fetch rows that are newer than the newest row in the previous materialization of this table
+        `timestamp` >= (SELECT MAX(`timestamp`) FROM `integration-test-sdf`.pub.popular_articles)
+
+        AND title IS NOT NULL
+        AND (dead IS NULL OR dead = FALSE)
+        AND score > 100;
+      ```
+    </Step>
+    <Step title="Utilize the Merge Incremental Strategy">
+    Now that we've successfully materialized an incremental model with the `append` strategy, let's explore the `merge` strategy. The `merge` strategy is useful when you want to update existing rows in the target table with new data from the source table.
+
+    <Note>
+      For a full reference of all supported merge strategies, see the [SDF Reference](/reference/sdf-yml#nested-element-incrementaloptions) section.
+    </Note>
+
+    Let's say we now want to make sure new details about articles, that may have been updated after they were published, are reflected in the previously added rows of our incremental model `popular_articles`.
+    Since we want to update existing rows, and not only add new ones like we did with `append`, we'll need to use the `merge` strategy.
+
+    Let's update the `workspace.sdf.yml` to set the materialization strategy to `merge` for this model.
+
+    ```yml workspace.sdf.yml
+    ---
+    table:
+      name: popular_articles
+      materialization: incremental-table 
+      incremental-options: 
+        strategy: merge
+        unique-key: id
+        merge-update-columns:
+          - dead
+          - title
+          - url
+          - text
+    ```
+
+
+    In this YML, we've set the `incremental-options` to use the `merge` strategy. We've also specified the `unique-key` as `id` and the `merge-update-columns` as four columns: `dead`, `title`, `url`, and `text`. 
+    This tells SDF to update these four columns in the target table with the new data from the source table when it finds two articles that match on their `id`.
+
+    Let's compile the workspace with this new model:
+
+    ```shell
+    sdf compile popular_articles
+    ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.popular_articles&nbsp;(exists_remotely)
+Downloading&nbsp;&quot;bigquery&#45;public&#45;data&quot;.hacker_news.&quot;full&quot;&nbsp;(schema)
+&nbsp;&nbsp;Compiling&nbsp;integration&#45;test&#45;sdf.pub.popular_articles&nbsp;(./models/popular_articles.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;2.453&nbsp;secs
+
+Schema&nbsp;&quot;integration&#45;test&#45;sdf&quot;.pub.popular_articles
+┌─────────────┬───────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════╪═══════════╪════════════╪═════════════╡
+│&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;dead&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;boolean&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;score&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;timestamp&nbsp;&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;parent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;descendants&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;ranking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;integer&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;deleted&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;boolean&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴───────────┴────────────┴─────────────┘
+
+</code>
+</pre>
+</div>
+
+    Before running the model, let's inspect the compiled query output to see what exactly will be run against BigQuery. To do so, open up the file `sdftarget/dbg/materialized/<your-project-id>/pub/popular_articles.sql` and inspect the SQL query.
+
+    It should show this:
+
+    ```sql sdftarget/dbg/materialized/sdf_bigquery/bigquery_starter/top_customer_contributors.sql
+    merge into `integration-test-sdf`.pub.popular_articles as SDF_DEST
+    using (SELECT
+      *
+    FROM
+      `bigquery-public-data`.hacker_news.`full`
+    WHERE
+
+      -- Only fetch rows that are newer than the newest row in the previous materialization of this table
+      `timestamp` >= (SELECT MAX(`timestamp`) FROM `integration-test-sdf`.pub.popular_articles)
+
+      AND title IS NOT NULL
+      AND (dead IS NULL OR dead = FALSE)
+      AND score > 100) as SDF_SRC
+            on SDF_SRC.id = SDF_DEST.id
+            when matched then update set SDF_DEST.dead = SDF_SRC.dead, SDF_DEST.title = SDF_SRC.title, SDF_DEST.url = SDF_SRC.url, SDF_DEST.text = SDF_SRC.text
+            when not matched then insert (title, url, text, dead, `by`, score, time, timestamp, type, id, parent, descendants, ranking, deleted)
+            values (title, url, text, dead, `by`, score, time, timestamp, type, id, parent, descendants, ranking, deleted);
+    ```
+
+    <Note>
+      If the file isn't updated, try reopening it. Sometimes, because of VSCode's cache, the file appears to be unchanged.
+    </Note>
+
+    As you can see, the query was compiled with `builtin.is_incremental_mode` set to `True` and, as a byproduct, the SQL query is a `merge` statement that updates four columns in the target table with the new values from the source table.
+
+    Let's run the model now to materialize the table in incremental mode with the `merge` strategy.
+    ```shell
+    sdf run models/sdf_bigquery/bigquery_starter/top_customer_contributors.sql
+    ```
+
+    The model should have successfully been materialized in BigQuery using the merge statement.
+
+    <Tip>
+      The `merge` strategy is a powerful tool for updating existing rows in the target table with new data from the source table. It's especially useful when you want to keep a running count of events or other metrics.
+    </Tip>
+
+    For a full list of our supported incremental options and strategies, see the [SDF Reference](/reference/sdf-yml#nested-element-incrementaloptions) section.
+    </Step>
+</Steps>

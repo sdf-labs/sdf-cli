@@ -200,20 +200,16 @@ Compile models
 Specify the warnings to apply. Example: `-w warning1 -w warning2`
 
 Available warnings:
-- `all`: Turn on all warnings.
-- `none`: Turn off all warnings.
-- `error`: Treat warnings as errors.
-- `capitalization-columns=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for columns.
-- `capitalization-tables=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for tables.
-- `capitalization-aliases=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for aliases.
-- `type-implicit-conversions`: Warn about implicit type conversions.
-- `references-consistent`: Warn about consistent references.
-- `inconsistent-schema`: Warn about schema inconsistency between local and remote schema. Default: on.
+* `all`: Turn on all warnings.
+* `none`: Turn off all warnings.
+* `error`: Treat warnings as errors.
+* `capitalization-columns=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for columns.
+* `capitalization-tables=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for tables.
+* `capitalization-aliases=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for aliases.
+* `type-implicit-conversions`: Warn about implicit type conversions.
+* `references-consistent`: Warn about consistent references.
+* `inconsistent-schema`: Warn about schema inconsistency between local and remote schema. Default: on.
 All warnings are by default turned off, unless specified.
-
-* `--lineage  LINEAGE ` — Run lineage and classifier/description propagation. Is inferred based on need if not set
-
-  Possible values: `true`, `false`
 
 
 
@@ -273,37 +269,37 @@ Lint models
   Default value: `false`
 * `-w`, `--warnings  WARNINGS ` — 
 Specify the warnings to apply. Example: `-w warning1 -w warning2`. Later options override former ones. 
-   Legend: (*) This warning can be automatically fixed by sdf.
+   Legend: (^) This warning can be automatically fixed by sdf.
 
 Available Warnings
-- `all`: Turn on all warnings.
-- `none`: Turn off all warnings.
-- `error`: Treat warnings as errors.
+* `all`: Turn on all warnings.
+* `none`: Turn off all warnings.
+* `error`: Treat warnings as errors.
 
 Capitalization Settings 
-- `capitalization-keywords=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for keywords. Default: consistent (*)
-- `capitalization-literals=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for literals. Default: consistent (*)
-- `capitalization-types=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for types. Default: consistent (*)
-- `capitalization-functions=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for functions. Default: consistent (*)
+* `capitalization-keywords=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for keywords. Default: consistent (*)
+* `capitalization-literals=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for literals. Default: consistent (*)
+* `capitalization-types=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for types. Default: consistent (*)
+* `capitalization-functions=upper|lower|pascal|snake|camel|consistent`: Set capitalization style for functions. Default: consistent (*)
 
 Convention and Reference Settings:
-- `convention-blocked-words= word `: Specify blocked words.
-- `convention-terminator`: Warn about terminator conventions. (*)
-- `references-keywords`: Warn about keyword references.
-- `references-special-chars= char `: Warn about special character references.
-- `references-quoting`: Warn about quoting references. (*)
-- `references-qualification`: Warn about qualification references. 
-- `references-columns`: Warn about ambiguous column references.
+* `convention-blocked-words= word `: Specify blocked words.
+* `convention-terminator`: Warn about terminator conventions. (^)
+* `references-keywords`: Warn about keyword references.
+* `references-special-chars= char `: Warn about special character references.
+* `references-quoting`: Warn about quoting references. (^)
+* `references-qualification`: Warn about qualification references. 
+* `references-columns`: Warn about ambiguous column references.
 
 Structure-Specific Warnings:
-- `structure-else-null`: Warn about ELSE NULL in structures. (*)
-- `structure-simple-case`: Warn about simple CASE structures. (*)
-- `structure-unused-cte`: Warn about unused CTEs. (*)
-- `structure-nested-case`: Warn about nested CASE structures.
-- `structure-distinct`: Warn about DISTINCT usage. (*)
-- `structure-subquery`: Warn about subquery structures.
-- `structure-join-condition-order`: Warn about join condition order.
-- `structure-column-order`: Warn about column order in structures.
+* `structure-else-null`: Warn about ELSE NULL in structures. (^)
+* `structure-simple-case`: Warn about simple CASE structures. (^)
+* `structure-unused-cte`: Warn about unused CTEs. (^)
+* `structure-nested-case`: Warn about nested CASE structures.
+* `structure-distinct`: Warn about DISTINCT usage. (^)
+* `structure-subquery`: Warn about subquery structures.
+* `structure-join-condition-order`: Warn about join condition order.
+* `structure-column-order`: Warn about column order in structures.
 
 More warnings available as part of sdf compile ... 
 

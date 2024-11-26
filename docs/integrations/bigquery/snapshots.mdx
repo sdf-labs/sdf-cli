@@ -1,21 +1,21 @@
 ---
 title: "Snapshots"
 description:
-  "Materialize snapshot models in Snowflake."
+  "Materialize snapshot models in BigQuery."
 ---
 
 ## Overview
-This guide describes how to materialize snapshot models in Snowflake. The goal of snapshots is to capture and preserve the state of your data at specific points in time, allowing you to track historical changes and perform time-based analyses.
+This guide describes how to materialize snapshot models in BigQuery. The goal of snapshots is to capture and preserve the state of your data at specific points in time, allowing you to track historical changes and perform time-based analyses.
 
 ## Prerequisites
 
 <Info>
-This guide should be followed after completing the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide and the [Basic Materialization with Snowflake](/integrations/snowflake/basic-materialization) guide.
+This guide should be followed after completing the [Getting Started with BigQuery and SDF](/integrations/bigquery/getting-started) guide and the [Basic Materialization with BigQuery](/integrations/bigquery/basic-materialization) guide.
 </Info>
 
 You'll also need:
 
-- A Snowflake account to connect to
+- A BigQuery account to connect to
 - Valid credentials with read and write access to the SNAPSHOTS database used in this guide.
 
 ## Guide
@@ -24,19 +24,19 @@ You'll also need:
     <Step title="Create a new SDF Project from the Snapshots Sample">
         Create a new SDF project using the Snapshots sample. This will create a new project in your current working directory with the sample project files.
         ```shell
-        sdf new --sample snapshots
+        sdf new --sample bigquery_snapshots
         ```
 
         {/* ```run quiet
-        cd tmp/ && $sdf new --sample snapshots --show none
+        cd tmp/ && $sdf new --sample bigquery_snapshots --show none
         ``` */}
 
         {/* ```run quiet
-        cd tmp/snapshots && $sdf run -q "drop schema if exists snapshots.pub" --exec-raw-query
+        cd tmp/bigquery_snapshots && $sdf run -q "drop schema if exists bigquery_snapshots.pub" --exec-raw-query
         ``` */}
     </Step>
     <Step title="Compile to Test Credentials">
-        Since we're running this sample on Snowflake, let's overwrite our `workspace.sdf.yml` with the following in order to configure our Snowflake integration:
+        Since we're running this sample on BigQuery, let's overwrite our `workspace.sdf.yml` with the following in order to configure our BigQuery integration:
         ```yml workspace.sdf.yml
           workspace:
             name: snapshots
@@ -44,19 +44,20 @@ You'll also need:
             description: >
               This workspace uses a simple scenario of one source table (A) and one derived table (B) to demonstrate snapshots
               Running and compiling this workspace requires a connection to a Snowflake account.
-              The provider in this workspace is using the `default` credentials. Run sdf auth login snowflake with no name provided to set these.
+              The provider in this workspace is using the `default` credentials. Run sdf auth login bigquery with no name provided to set these.
 
-              To follow along with SDF's official guide:  https://docs.sdf.com/integrations/snowflake/snapshots
+              To follow along with SDF's official guide:  https://docs.sdf.com/integrations/bigquery/snapshots
 
             defaults:
-              dialect: snowflake
+              dialect: bigquery
               preprocessor: jinja
+              catalog: <YOUR_PROJECT_ID>
 
             integrations:
-              - provider: snowflake
+              - provider: bigquery
                 type: database
                 targets:
-                  - pattern: "*.*.*"
+                  - pattern: "*.pub.*"
           ---
           environment:
             name: test1
@@ -76,25 +77,29 @@ You'll also need:
             includes:
               - path: models/test3
         ```
+
+        <Note>
+          Make sure to overwrite `<YOUR_PROJECT_ID>` with your BigQuery project ID.
+        </Note>
         
-        To ensure your credentials are working and have read access to Snowflake, let's try compiling one of the models.
+        To ensure your credentials are working and have read access to BigQuery, let's try compiling one of the models.
         ```shell
         sdf compile b -e test1
         ```
 
         {/* ```run shell
-        cd tmp/snapshots && $sdf compile b -e test1
+        cd tmp/bigquery_snapshots && $sdf compile b -e test1
         ``` */}
         
     <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
     <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
     <code className='language-shell'>
 Working set 3 model files, 4 .sdf files
-  Compiling SNAPSHOTS.PUB.A1 (./models/test1/a1.sql)
-  Compiling SNAPSHOTS.PUB.B (./models/test1/b.sql)
+  Compiling my_project.pub.a1 (./models/test1/a1.sql)
+  Compiling my_project.pub.b (./models/test1/b.sql)
    Finished 2 models [2 succeeded] in 3.921 secs
 
-Schema SNAPSHOTS.PUB.B
+Schema my_project.pub.b
 ┌────────────────┬───────────────┬────────────┬─────────────┐
 │ column_name    ┆ data_type     ┆ classifier ┆ description │
 ╞════════════════╪═══════════════╪════════════╪═════════════╡
@@ -112,9 +117,9 @@ Schema SNAPSHOTS.PUB.B
 
         <Warning>
             If you do not see a successful compilation, please ensure you've:
-            1. Followed the [Getting Started with Snowflake and SDF](/integrations/snowflake/getting-started) guide to authenticate to your Snowflake.
-            2. Granted the correct level of access to be able to create database SNAPSHOTS. 
-               (See [Granting Privileges](https://docs.snowflake.com/en/sql-reference/sql/grant-privilege).) 
+            1. Followed the [Getting Started with BigQuery and SDF](/integrations/bigquery/getting-started) guide to authenticate to your BigQuery.
+            2. Granted the correct level of access to be able to create project being used. 
+               (See [Granting Privileges](https://cloud.google.com/bigquery/docs/control-access-to-resources-iam).)
         </Warning>
     </Step>
     <Step title="Initialize the snapshot">
@@ -130,11 +135,6 @@ Schema SNAPSHOTS.PUB.B
       ```
 
       The initial data contains three entries with three columns (`id`, `name`, and `"event time"`) each.
-
-      <Note>
-      We cast the first `name` value to `VARCHAR` because otherwise Snowflake will infer `VARCHAR(4)` for this column, and SDF 
-      currently does not support constrained `VARCHAR` types.
-      </Note>
 
       And here is the snapshot query:
 
@@ -173,18 +173,18 @@ Schema SNAPSHOTS.PUB.B
         ```
 
         {/* ```run shell
-        cd tmp/snapshots && $sdf run b -e test1
+        cd tmp/bigquery_snapshots && $sdf run b -e test1
         ``` */}
 
     <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
     <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
     <code className='language-shell'>
 Working set 3 model files, 4 .sdf files
-    Running SNAPSHOTS.PUB.A1 (./models/test1/a1.sql)
-    Running SNAPSHOTS.PUB.B (./models/test1/b.sql)
+    Running my_project.pub.a1 (./models/test1/a1.sql)
+    Running my_project.pub.b (./models/test1/b.sql)
    Finished 2 models [2 succeeded] in 6.913 secs
 
-Table SNAPSHOTS.PUB.B
+Table my_project.pub.b
 ┌────┬──────┬────────────┬──────────────────────────────────┬────────────────┬────────────────┬──────────────┐
 │ id ┆ name ┆ event time ┆ sdf_hash                         ┆ sdf_updated_at ┆ sdf_valid_from ┆ sdf_valid_to │
 ╞════╪══════╪════════════╪══════════════════════════════════╪════════════════╪════════════════╪══════════════╡
@@ -222,19 +222,19 @@ Table SNAPSHOTS.PUB.B
         ```
 
         {/* ```run shell
-        cd tmp/snapshots && $sdf run b -e test1
+        cd tmp/bigquery_snapshots && $sdf run b -e test1
         ``` */}
 
     <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
     <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
     <code className='language-shell'>
 Working set 3 model files, 4 .sdf files
-Downloading SNAPSHOTS.PUB.B (exists_remotely)
-    Running SNAPSHOTS.PUB.A2 (./models/test1/a2.sql)
-    Running SNAPSHOTS.PUB.B (./models/test1/b.sql)
+Downloading my_project.pub.b (exists_remotely)
+    Running my_project.pub.a2 (./models/test1/a2.sql)
+    Running my_project.pub.b (./models/test1/b.sql)
    Finished 3 models [2 succeeded, 1 reused] in 7.641 secs
 
-Table SNAPSHOTS.PUB.B
+Table my_project.pub.b
 ┌────┬───────┬─────┬────────────┬──────────────────────────────────┬────────────────┬────────────────┬──────────────┐
 │ id ┆ name  ┆ age ┆ event time ┆ sdf_hash                         ┆ sdf_updated_at ┆ sdf_valid_from ┆ sdf_valid_to │
 ╞════╪═══════╪═════╪════════════╪══════════════════════════════════╪════════════════╪════════════════╪══════════════╡
@@ -262,14 +262,14 @@ Table SNAPSHOTS.PUB.B
     <Step title="Strategy `check`">
       In the next example, we will try the `check` snapshot strategy which uses the contents of the specified columns
       to determine whether the row has changed or not. We will use the same two versions of the input data `a1` and `a2`.
-      Make sure to drop `b` from Snowflake before running the commands below: 
+      Make sure to drop `b` from BigQuery before running the commands below: 
 
       ```sql
-      DROP TABLE IF EXISTS SNAPSHOTS.PUB.B
+      DROP TABLE IF EXISTS <YOUR_PROJECT_ID>.pub.b
       ```
 
       {/*```run quiet
-      cd tmp/snapshots && $sdf run -q "drop schema if exists snapshots.pub" --exec-raw-query
+      cd tmp/bigquery_snapshots && $sdf run -q "drop schema if exists bigquery_snapshots.pub" --exec-raw-query
       ``` */}
 
       The only change from the previous example is the configuration of the snapshot:
@@ -298,23 +298,23 @@ Table SNAPSHOTS.PUB.B
         ```
 
         {/* ```run quiet
-        cd tmp/snapshots && $sdf run b -e test2
+        cd tmp/bigquery_snapshots && $sdf run b -e test2
         ``` */}
 
         {/* ```run shell
-        cd tmp/snapshots && $sdf run b -e test2
+        cd tmp/bigquery_snapshots && $sdf run b -e test2
         ``` */}
 
     <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
     <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
     <code className='language-shell'>
 Working set 3 model files, 4 .sdf files
-Downloading SNAPSHOTS.PUB.B (exists_remotely)
-    Running SNAPSHOTS.PUB.A2 (./models/test2/a2.sql)
-    Running SNAPSHOTS.PUB.B (./models/test2/b.sql)
+Downloading my_project.pub.b (exists_remotely)
+    Running my_project.pub.a2 (./models/test2/a2.sql)
+    Running my_project.pub.b (./models/test2/b.sql)
    Finished 3 models [2 succeeded, 1 reused] in 6.921 secs
 
-Table SNAPSHOTS.PUB.B
+Table my_project.pub.b
 ┌────┬───────────┬─────┬────────────┬──────────────────────────────────┬─────────────────────────┬─────────────────────────┬─────────────────────────┐
 │ id ┆ name      ┆ age ┆ event time ┆ sdf_hash                         ┆ sdf_updated_at          ┆ sdf_valid_from          ┆ sdf_valid_to            │
 ╞════╪═══════════╪═════╪════════════╪══════════════════════════════════╪═════════════════════════╪═════════════════════════╪═════════════════════════╡
@@ -338,11 +338,11 @@ Table SNAPSHOTS.PUB.B
         `b` again for this example to work.
 
         ```sql
-        DROP TABLE IF EXISTS SNAPSHOTS.PUB.B
+        DROP TABLE IF EXISTS <YOUR_PROJECT_ID>.pub.b
         ```
 
         {/* ```run quiet
-        cd tmp/snapshots && $sdf run -q "drop schema if exists snapshots.pub" --exec-raw-query
+        cd tmp/bigquery_snapshots && $sdf run -q "drop schema if exists bigquery_snapshots.pub" --exec-raw-query
         ``` */}
 
         The snapshot configuration now looks as follows:
@@ -370,23 +370,23 @@ Table SNAPSHOTS.PUB.B
         ```
 
         {/* ```run quiet
-        cd tmp/snapshots && $sdf run b -e test3
+        cd tmp/bigquery_snapshots && $sdf run b -e test3
         ``` */}
 
         {/* ```run shell
-        cd tmp/snapshots && $sdf run b -e test3
+        cd tmp/bigquery_snapshots && $sdf run b -e test3
         ``` */}
 
     <div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
     <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
     <code className='language-shell'>
 Working set 3 model files, 4 .sdf files
-Downloading SNAPSHOTS.PUB.B (exists_remotely)
-    Running SNAPSHOTS.PUB.A2 (./models/test3/a2.sql)
-    Running SNAPSHOTS.PUB.B (./models/test3/b.sql)
+Downloading my_project.pub.b (exists_remotely)
+    Running my_project.pub.a2 (./models/test3/a2.sql)
+    Running my_project.pub.b (./models/test3/b.sql)
    Finished 3 models [2 succeeded, 1 reused] in 7.444 secs
 
-Table SNAPSHOTS.PUB.B
+Table my_project.pub.b
 ┌────┬───────┬─────┬────────────┬──────────────────────────────────┬─────────────────────────┬─────────────────────────┬─────────────────────────┐
 │ id ┆ name  ┆ age ┆ event time ┆ sdf_hash                         ┆ sdf_updated_at          ┆ sdf_valid_from          ┆ sdf_valid_to            │
 ╞════╪═══════╪═════╪════════════╪══════════════════════════════════╪═════════════════════════╪═════════════════════════╪═════════════════════════╡
