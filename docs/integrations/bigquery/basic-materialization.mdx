@@ -112,12 +112,12 @@ Before beginning, we'll need to make sure we have the following:
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.products&nbsp;(schema)
-Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.aggregate_orders&nbsp;(./models/aggregate_orders.sql)
 &nbsp;&nbsp;Compiling&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.customers_over_100&nbsp;(./models/customers_over_100.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;1.629&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;1.564&nbsp;secs
 
 </code>
 </pre>
@@ -156,12 +156,12 @@ Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
+Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders&nbsp;(schema)
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.products&nbsp;(schema)
-Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.aggregate_orders&nbsp;(./models/aggregate_orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.customers_over_100&nbsp;(./models/customers_over_100.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;2.776&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;3.286&nbsp;secs
 
 </code>
 </pre>
@@ -183,7 +183,17 @@ Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.
 Downloading&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.aggregate_orders&nbsp;(./models/aggregate_orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;integration&#45;test&#45;sdf.sdf_ecommerce_example.customers_over_100&nbsp;(./models/customers_over_100.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;6.007&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;6.203&nbsp;secs
+
+Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders
+┌──────────┬─────────────┬────────────┬─────────────────────┬──────────┐
+│&nbsp;order_id&nbsp;┆&nbsp;customer_id&nbsp;┆&nbsp;product_id&nbsp;┆&nbsp;order_date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;quantity&nbsp;│
+╞══════════╪═════════════╪════════════╪═════════════════════╪══════════╡
+│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2023&#45;06&#45;15T00:00:00&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2023&#45;07&#45;01T00:00:00&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2023&#45;08&#45;03T00:00:00&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└──────────┴─────────────┴────────────┴─────────────────────┴──────────┘
+3&nbsp;rows.
 
 Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.customers
 ┌─────────────┬───────────────┬───────────────────────┬─────────────────────┐
@@ -203,16 +213,6 @@ Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.produc
 │&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Headphones&nbsp;&nbsp;&nbsp;┆&nbsp;199.99&nbsp;┆&nbsp;Electronics&nbsp;│
 │&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Coffee&nbsp;Maker&nbsp;┆&nbsp;89.99&nbsp;&nbsp;┆&nbsp;Appliances&nbsp;&nbsp;│
 └────────────┴──────────────┴────────┴─────────────┘
-3&nbsp;rows.
-
-Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.orders
-┌──────────┬─────────────┬────────────┬─────────────────────┬──────────┐
-│&nbsp;order_id&nbsp;┆&nbsp;customer_id&nbsp;┆&nbsp;product_id&nbsp;┆&nbsp;order_date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;quantity&nbsp;│
-╞══════════╪═════════════╪════════════╪═════════════════════╪══════════╡
-│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2023&#45;06&#45;15T00:00:00&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2023&#45;07&#45;01T00:00:00&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2023&#45;08&#45;03T00:00:00&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-└──────────┴─────────────┴────────────┴─────────────────────┴──────────┘
 3&nbsp;rows.
 
 Table&nbsp;&quot;integration&#45;test&#45;sdf&quot;.sdf_ecommerce_example.aggregate_orders
