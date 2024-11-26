@@ -1,0 +1,25 @@
+workspace:
+  name: bigquery_incremental
+  edition: "1.3"
+  description: >
+    This workspace demonstrates incremental tables with BigQuery.
+
+    Make sure to replace `<REPLACE_WITH_BQ_PROJECT>` with your BigQuery project name.
+
+    To follow along with SDF's official guide:  https://docs.sdf.com/integrations/bigquery/incremental-materialization
+
+  defaults: 
+    dialect: bigquery
+    preprocessor: jinja
+    catalog: <REPLACE_WITH_BQ_PROJECT>
+
+  includes:
+    - path: models
+
+  integrations:
+    - provider: bigquery
+      type: database
+      sources:
+        - pattern: bigquery-public-data.*.*
+      targets:
+        - pattern: "*.pub.*"

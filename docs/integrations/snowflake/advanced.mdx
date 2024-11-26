@@ -82,7 +82,7 @@ create table "MyModel" ...;
 If you'd like to write a model in SDF that, when materialized, preserves the case of the filename that produces the model name, you can set the `casing-policy` option to `preserve` instead of `to_upper` for that model.
 
 <Info>
-SDF determines the casing of identifiers using the `casing-policy` property. Since Snowflake post-normalization differs in its behavior from Snowflake pre-normalization, we introduced a `casing-policy` property to capture that behavior. In most dialects, this defaults to `preserve`. However, Snowflake is the special child! Since Snowflake normalizes to upper case, we default the `casing-policy` to `to-upper` for Snowflake. You should only overwrite this if you need to preserve identifier casing, or handle SQL filenames that begin with numbers.
+SDF determines the casing of identifiers using the `casing-policy` property. Since Snowflake post-normalization differs in its behavior from Snowflake pre-normalization, we introduced a `casing-policy` property to capture that behavior. In most dialects, this defaults to `preserve`. However, Snowflake is the special child! Since Snowflake normalizes to upper case, we default the `casing-policy` to `preserve` for Snowflake. You should only overwrite this if you need to preserve identifier casing, or handle SQL filenames that begin with numbers.
 </Info>
 
 The `casing-policy` property can be set at an individual table-block level, like so:

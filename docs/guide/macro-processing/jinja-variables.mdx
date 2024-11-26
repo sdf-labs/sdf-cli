@@ -258,8 +258,12 @@ Environment variables can be accessed via the built in jinja macro `env_var(VAR)
         Now, when we run `sdf compile`, the catalog name of all aassets will be `{your_username}_catalog`, when `{your_username}` is 
         the username you use for your local machine. 
 
+        <Warn>
+            Note that when using environment variables in YML, they will be required to be set whenever running SDF commands. For these reason, unless they are critical, we providing them a default value with: `{{env_var('VAR', 'default_value')}}`.
+        </Warn>
+
         <Tip>
-            You can run `printenv` in your terminal to view all available encironment variables on your machine.
+            You can run `printenv` in your terminal to view all available environment variables on your machine.
         </Tip>
     </Step>
     <Step title="Create a New Environment variable">
