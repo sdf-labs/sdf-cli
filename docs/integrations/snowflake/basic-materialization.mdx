@@ -46,7 +46,7 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.204&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.605&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
 ┌──────────────────────┬────────────────┬────────────┬──────────────────────────────────────────────────────────────────┐
@@ -172,7 +172,7 @@ Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.233&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.528&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 ┌─────────────┬────────────────┬────────────┬──────────────────────────────────────┐
@@ -216,7 +216,7 @@ Schema&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;3.646&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;4.493&nbsp;secs
 
 Table&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 ┌───────────────────────────────┬───────────┐
@@ -282,7 +282,7 @@ Table&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.156&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.464&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.PUSH_EVENTS
 ┌─────────────┬────────────────┬────────────┬────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -348,20 +348,20 @@ Schema&nbsp;sdf_snowflake.staging.PUSH_EVENTS
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;6&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_CONTRIBUTOR_INDEX&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_CONTRIBUTOR_RELATIONSHIPS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_STARS&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_INDEX&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_CONTRIBUTOR_RELATIONSHIPS&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_CONTRIBUTOR_INDEX&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_STARS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.events_by_repo&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[13&nbsp;succeeded]&nbsp;in&nbsp;1.478&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[13&nbsp;succeeded]&nbsp;in&nbsp;1.877&nbsp;secs
 
 </code>
 </pre>

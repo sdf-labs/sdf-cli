@@ -153,7 +153,7 @@ workspace:
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;3&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;&nbsp;Finished&nbsp;3&nbsp;models&nbsp;[3&nbsp;succeeded]&nbsp;in&nbsp;0.667&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;3&nbsp;models&nbsp;[3&nbsp;succeeded]&nbsp;in&nbsp;1.273&nbsp;secs
 
 Schema&nbsp;jaffle_shop.raw.raw_customers
 ┌─────────────┬───────────┬────────────┬─────────────┐
@@ -413,10 +413,10 @@ tmp/jaffle_shop/
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;6&nbsp;models&nbsp;[6&nbsp;succeeded]&nbsp;in&nbsp;0.672&nbsp;secs
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;6&nbsp;models&nbsp;[6&nbsp;succeeded]&nbsp;in&nbsp;1.336&nbsp;secs
 
 </code>
 </pre>
@@ -436,28 +436,10 @@ Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;2&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;6&nbsp;models&nbsp;[6&nbsp;succeeded]&nbsp;in&nbsp;0.712&nbsp;secs
-
-Table&nbsp;jaffle_shop.staging.stg_orders
-┌──────────┬─────────────┬────────────┬───────────┐
-│&nbsp;order_id&nbsp;┆&nbsp;customer_id&nbsp;┆&nbsp;order_date&nbsp;┆&nbsp;status&nbsp;&nbsp;&nbsp;&nbsp;│
-╞══════════╪═════════════╪════════════╪═══════════╡
-│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;01&nbsp;┆&nbsp;returned&nbsp;&nbsp;│
-│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;02&nbsp;┆&nbsp;completed&nbsp;│
-│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;04&nbsp;┆&nbsp;completed&nbsp;│
-│&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;05&nbsp;┆&nbsp;completed&nbsp;│
-│&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;05&nbsp;┆&nbsp;completed&nbsp;│
-│&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;07&nbsp;┆&nbsp;completed&nbsp;│
-│&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;88&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;09&nbsp;┆&nbsp;completed&nbsp;│
-│&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;11&nbsp;┆&nbsp;returned&nbsp;&nbsp;│
-│&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;53&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;12&nbsp;┆&nbsp;completed&nbsp;│
-│&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;14&nbsp;┆&nbsp;completed&nbsp;│
-└──────────┴─────────────┴────────────┴───────────┘
-99&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
-&nbsp;&nbsp;Run&nbsp;with&nbsp;&#45;&#45;limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+&nbsp;&nbsp;&nbsp;Finished&nbsp;6&nbsp;models&nbsp;[6&nbsp;succeeded]&nbsp;in&nbsp;1.346&nbsp;secs
 
 Table&nbsp;jaffle_shop.staging.stg_customers
 ┌─────────────┬────────────┬───────────┐
@@ -475,6 +457,24 @@ Table&nbsp;jaffle_shop.staging.stg_customers
 │&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Henry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;W.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
 └─────────────┴────────────┴───────────┘
 100&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
+&nbsp;&nbsp;Run&nbsp;with&nbsp;&#45;&#45;limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
+
+Table&nbsp;jaffle_shop.staging.stg_orders
+┌──────────┬─────────────┬────────────┬───────────┐
+│&nbsp;order_id&nbsp;┆&nbsp;customer_id&nbsp;┆&nbsp;order_date&nbsp;┆&nbsp;status&nbsp;&nbsp;&nbsp;&nbsp;│
+╞══════════╪═════════════╪════════════╪═══════════╡
+│&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;01&nbsp;┆&nbsp;returned&nbsp;&nbsp;│
+│&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;02&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;04&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;05&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;05&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;07&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;88&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;09&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;11&nbsp;┆&nbsp;returned&nbsp;&nbsp;│
+│&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;53&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;12&nbsp;┆&nbsp;completed&nbsp;│
+│&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;2018&#45;01&#45;14&nbsp;┆&nbsp;completed&nbsp;│
+└──────────┴─────────────┴────────────┴───────────┘
+99&nbsp;rows,&nbsp;showing&nbsp;only&nbsp;10&nbsp;rows.
 &nbsp;&nbsp;Run&nbsp;with&nbsp;&#45;&#45;limit&nbsp;0&nbsp;to&nbsp;show&nbsp;all&nbsp;rows.
 
 Table&nbsp;jaffle_shop.staging.stg_payments
@@ -640,11 +640,11 @@ Table&nbsp;jaffle_shop.staging.stg_payments
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;3&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
-&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.685&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;1.334&nbsp;secs
 
 </code>
 </pre>
@@ -663,7 +663,7 @@ Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;2&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;0.720&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;5&nbsp;models&nbsp;[5&nbsp;succeeded]&nbsp;in&nbsp;0.836&nbsp;secs
 
 Table&nbsp;jaffle_shop.analytics.orders
 ┌──────────┬─────────────┬────────────┬───────────┬────────────────────┬───────────────┬──────────────────────┬──────────────────┬────────┐
@@ -721,11 +721,11 @@ Table&nbsp;jaffle_shop.analytics.orders
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;4&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
-&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.710&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.792&nbsp;secs
 
 </code>
 </pre>
@@ -857,16 +857,16 @@ tmp/jaffle_shop/
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;3&nbsp;test&nbsp;files,&nbsp;7&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_customers&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_customers.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_payments&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_payments.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_orders&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_orders.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;6&nbsp;models&nbsp;[6&nbsp;succeeded],&nbsp;3&nbsp;tests&nbsp;[3&nbsp;passed]&nbsp;in&nbsp;0.775&nbsp;secs
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_payments&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_payments.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;6&nbsp;models&nbsp;[6&nbsp;succeeded],&nbsp;3&nbsp;tests&nbsp;[3&nbsp;passed]&nbsp;in&nbsp;0.864&nbsp;secs
 [Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_customers
-[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_payments
 [Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_orders
+[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_payments
 
 </code>
 </pre>
@@ -918,12 +918,12 @@ tmp/jaffle_shop_complete/
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
+&nbsp;&nbsp;Compiling&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.analytics.customers&nbsp;(./models/analytics/customers.sql)
 &nbsp;&nbsp;Compiling&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded]&nbsp;in&nbsp;0.727&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded]&nbsp;in&nbsp;0.822&nbsp;secs
 
 </code>
 </pre>
@@ -939,12 +939,12 @@ Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.customers&nbsp;(./models/analytics/customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded]&nbsp;in&nbsp;0.773&nbsp;secs
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.customers&nbsp;(./models/analytics/customers.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded]&nbsp;in&nbsp;0.860&nbsp;secs
 
 </code>
 </pre>
@@ -960,20 +960,20 @@ Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;5&nbsp;test&nbsp;files,&nbsp;10&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_orders&nbsp;(./models/staging/stg_orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_payments&nbsp;(./models/staging/stg_payments.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.staging.stg_customers&nbsp;(./models/staging/stg_customers.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_orders&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_orders.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.customers&nbsp;(./models/analytics/customers.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_payments&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_payments.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.customers&nbsp;(./models/analytics/customers.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_customers&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_customers.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.analytics.test_customers&nbsp;(./sdftarget/dbg/tests/jaffle_shop/analytics/test_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;jaffle_shop.analytics.orders&nbsp;(./models/analytics/orders.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.staging.test_stg_orders&nbsp;(./sdftarget/dbg/tests/jaffle_shop/staging/test_stg_orders.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.analytics.test_orders&nbsp;(./sdftarget/dbg/tests/jaffle_shop/analytics/test_orders.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded],&nbsp;5&nbsp;tests&nbsp;[5&nbsp;passed]&nbsp;in&nbsp;0.882&nbsp;secs
-[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_orders
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;jaffle_shop.analytics.test_customers&nbsp;(./sdftarget/dbg/tests/jaffle_shop/analytics/test_customers.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;8&nbsp;models&nbsp;[8&nbsp;succeeded],&nbsp;5&nbsp;tests&nbsp;[5&nbsp;passed]&nbsp;in&nbsp;0.954&nbsp;secs
 [Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_payments
 [Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_customers
+[Pass]&nbsp;Test&nbsp;jaffle_shop.staging.test_stg_orders
 [Pass]&nbsp;Test&nbsp;jaffle_shop.analytics.test_customers
 [Pass]&nbsp;Test&nbsp;jaffle_shop.analytics.test_orders
 
