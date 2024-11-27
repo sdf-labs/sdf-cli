@@ -40,6 +40,30 @@ SDF CLI offers two release channels:
 | Apple Arm AARCh-64     |   ✅   | v0.10.6-p  | [Download](https://cdn.sdf.com/releases/download/sdf-v0.10.6-p-aarch64-apple-darwin.tar.gz) |
 
 
+#### Docker Images
+
+We provide Docker images for Linux in two architectures:
+
+##### x86_64
+```bash
+# Pull the x86_64 Linux image
+docker pull sdflabs/sdf-x86_64-unknown-linux-musl:<version>
+```
+[View on Docker Hub →](https://hub.docker.com/r/sdflabs/sdf-x86_64-unknown-linux-musl)
+
+##### ARM64
+```bash
+# Pull the ARM64 Linux image
+docker pull sdflabs/sdf-aarch64-unknown-linux-gnu:<version>
+```
+[View on Docker Hub →](https://hub.docker.com/r/sdflabs/sdf-aarch64-unknown-linux-gnu)
+
+Example usage:
+```bash
+# Run the CLI using Docker
+docker run sdflabs/sdf-x86_64-unknown-linux-musl:<version> sdf --help
+```
+
 ### Release Notes and History
 
 You can view detailed release notes for all versions, including both stable and preview releases, on our [GitHub Releases page](https://github.com/sdf-labs/sdf-cli/releases). Each release includes:
