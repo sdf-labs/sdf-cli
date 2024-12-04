@@ -80,7 +80,8 @@ moms_flower_shop.analytics.dim_marketing_campaigns.total_num_installs
         GROUP BY 1
         ```
 
-        There is not much going on here. We need to keep moving up.
+        There is not much going on here. We need to keep moving up (note that 
+        the lineage commands display upstream dependencies below the current model).
 
         In the upstream model `app_installs` defined in `models/staging/app_installs.sql`,
         let's zoom in on the `FROM` statement:
@@ -191,7 +192,9 @@ moms_flower_shop.staging.stg_installs_per_campaign.total_num_installs
 </pre>
 </div>
 
-        Only our new model will be impacted.
+        Only our new model will be impacted:
+           - the `campaign_id` columns has no forward dependencies
+           - the `total_num_installs` column is used only by `dim_marketing_campaigns`
     </Step>
     <Step title="Fix it!">
         To materialize the fix, all we need to do is run the queries:
