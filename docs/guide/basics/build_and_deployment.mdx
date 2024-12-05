@@ -1,0 +1,259 @@
+---
+title: "Build & Deploy"
+description:
+  "Learn how to run pipelines in production while preserving data quality with SDF build"
+---
+
+# Overview
+
+This guide will walk you through the process of building and deploying your pipelines in production with SDF. Although this can be simple as running `sdf run` in your orchestrator, we strongly encourage users to leverage 
+the SDF build process to ensure that the data quality is preserved in production.
+
+Critically, build stages your data first, then tests it, and only if tests pass overwrites the production data. This is the best way to run models in production, since it ensures production data only gets updated if all data
+quality checks pass.
+
+<Note>
+  SDF build abstracts the write, audit, publish paradigm. You can think of this like a blue-green deployment in software engineering. Simply put, models are first _written_ to a temporary location, then _audited_ for data quality, and finally _published_ to the production location.
+  In an optimal scenario, the publish step should require no extra compute resources, since the data has already been processed and validated. For more on this, check out our [blog post on WAP](...).
+</Note>
+
+# Guide
+
+<Steps>
+  <Step title="Create a new sample workspace from Mom's Flower Shop">
+    Let's start by creating a new sample workspace based on the Mom's Flower Shop example. This time, we'll use the completed version (not the one designed for the tutorial) so that the tests are already in place.
+
+    ```shell
+      sdf new --sample moms_flower_shop_completed
+    ```
+
+  </Step> 
+  
+  <Step title="Setup Pipeline Testing">
+    Great! Now that we have our workspace, let's start by running the tests. This will run the models, then test them against the assertions we've defined in the workspace.
+
+    ```shell
+      sdf test
+    ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;1&nbsp;test&nbsp;file,&nbsp;27&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;moms_flower_shop.staging.test_inapp_events&nbsp;(./sdftarget/dbg/tests/moms_flower_shop/staging/test_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;0.971&nbsp;secs
+[Pass]&nbsp;Test&nbsp;moms_flower_shop.staging.test_inapp_events
+
+</code>
+</pre>
+</div>
+    
+    Great! Our tests passed. However, for the sake of this demo let's introduce a bug that fails one of our data quality checks. 
+
+    The model `inapp_events` contains a column `event_value` with the following assertion tests applied to it:
+  
+    ```yml metadata/staging/inapp_events.sdf.yml
+      columns:
+        - name: event_value
+          tests:
+            - expect: valid_scalar("""event_value >= 0""")
+              severity: error
+            - expect: minimum(0)
+              severity: error
+    ```
+
+    So, let's say we intended to modify this column to subtract one, but instead subtracted the value _from_ one by mistake. In order to do this, update `inapp_events.sql` to:
+
+    ```sql models/staging/inapp_events.sql
+      SELECT 
+        event_id,
+        customer_id,
+        FROM_UNIXTIME(event_time/1000) AS event_time,  
+        event_name,
+        1 - event_value AS event_value,
+        additional_details,
+        platform,
+        campaign_id
+    FROM raw.raw_inapp_events
+    ```
+
+    {/* TODO (Elias): Add back once local compute warning is gone */}
+
+    {/* ```add sql
+      sdf_build_moms_flower/v1.inapp_events.sql -> moms_flower_shop_completed/models/staging/inapp_events.sql
+    ``` */}
+
+    Now, let's run the tests again, but this time turn off warnings so any errors are clear:
+
+    ```shell
+      sdf test
+    ```
+
+    {/* ```run quiet
+      cd tmp/moms_flower_shop_completed && $sdf test
+    ``` */}
+
+    Uh oh, both tests failed _and_ the model's data was updated with these faulty values. In an incremental scenario, this might result in some painful backfilling. Furthermore, in a production scenario, downstream 
+    data consumers like dashboards might now be displaying this faulty data. Let's move on and show how `sdf build` would prevent this scenario from happening.
+  </Step>
+
+  <Step title="Build the Pipeline">
+    So, we have a workspace with a failing model. Let's imagine this is a production scenario and we're about to deploy this pipeline. We'd want to make sure this test passes before we overwrite the production data.
+
+    This is where `sdf build` comes in. When we run build, SDF will stage the data by materializing it with `_draft` appended to its table name, then run tests on that table, and publish them to overwrite production only if the tests pass. Let's try it out.
+
+    ```shell
+      sdf build
+    ```
+
+    {/* TODO (Elias): Add back once local compute warning is gone */}
+    {/* ```run quiet
+      cd tmp/moms_flower_shop_completed && $sdf build
+    ``` */}
+
+    Nice! As you can see SDF prints out a clear `-- hard stop --` indicating:
+
+      1. None of the downstream models of `inapp_events` were run since this model failed the quality checks.
+      2. `inapp_events` was not overwritten itself, meaning any downstream dependencies like dashboards are only pulling slightly stale data, as opposed to bad data.
+    
+    Let's patch up this error by updating the `inapp_events.sql` file to our originally intended change:
+
+    ```sql models/staging/inapp_events.sql
+      SELECT 
+        event_id,
+        customer_id,
+        FROM_UNIXTIME(event_time/1000) AS event_time,  
+        event_name,
+        ABS(event_value - 1) as event_value,
+        additional_details,
+        platform,
+        campaign_id
+      FROM raw.raw_inapp_events
+    ```
+
+
+    Now, let's rerun build again, this time with a fully passing workspace:
+
+    ```shell
+      sdf build
+    ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;1&nbsp;test&nbsp;file,&nbsp;27&nbsp;.sdf&nbsp;files
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.raw.raw_addresses&nbsp;(./models/raw/raw_addresses.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.raw.raw_customers&nbsp;(./models/raw/raw_customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Testing&nbsp;moms_flower_shop.staging.test_inapp_events&nbsp;(./sdftarget/dbg/tests/moms_flower_shop/staging/test_inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.staging.app_installs&nbsp;(./models/staging/app_installs.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.analytics.agg_installs_and_campaigns&nbsp;(./models/analytics/agg_installs_and_campaigns.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.staging.customers&nbsp;(./models/staging/customers.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Staging&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
+&nbsp;Publishing&nbsp;12&nbsp;models,&nbsp;1&nbsp;tests
+&nbsp;&nbsp;&nbsp;Finished&nbsp;12&nbsp;models&nbsp;[12&nbsp;succeeded],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed]&nbsp;in&nbsp;1.056&nbsp;secs
+[Pass]&nbsp;Test&nbsp;moms_flower_shop.staging.test_inapp_events
+
+</code>
+</pre>
+</div>
+
+    Great! Our pipeline built successfully, and we can be confident that our data is correct. 
+  </Step>
+
+  <Step title="(Optional) Build a Specific Model or Directory of Models">
+    Many people find it useful to build a specific model or a directory of models that might represent a DAG. In orchestration scenarios that use something like Airflow, this is a common pattern.
+    This can be accomplished simply by passing the model name or directory path to the `sdf build` command and combining it with the `--targets-only` flag. For more on target specification, check out our [IO Guide](/guide/setup/io#command-line-options).
+
+    For example, to build only the `inapp_events` model, you can run:
+
+    ```shell
+      sdf build --targets-only models/staging/inapp_events.sql
+    ```
+
+<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
+<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
+<code className='language-shell'>
+Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;1&nbsp;test&nbsp;file,&nbsp;19&nbsp;.sdf&nbsp;files
+&nbsp;Publishing&nbsp;2&nbsp;models,&nbsp;1&nbsp;tests
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;reused],&nbsp;1&nbsp;test&nbsp;[1&nbsp;passed&nbsp;(reused)]&nbsp;in&nbsp;0.831&nbsp;secs
+[Pass]&nbsp;Test&nbsp;moms_flower_shop.staging.test_inapp_events
+
+</code>
+</pre>
+</div>
+
+    This will build all models upstream of `inapp_events` (like `raw_inapp_events` as seen in the output) and then build `inapp_events` itself. Think of this like a build system, where we are building all the dependencies of a target before building the target itself.
+
+    In an Airflow orchestration scenario, you might manually specify that one DAG needs to run before another that depends on it. Then when running the second DAG, you'd be duplicating work by running the first DAG again. 
+    To avoid this and only run the DAG in a specific workspace, you can use the `--targets-only` flag with a directory path. For example, if we wanted to build models in a directory `models/my_dag`, we could run:
+
+    ```shell
+      sdf build --targets-only models/my_dag
+    ```
+
+    In this build scenario, SDF will stage all models in the `models/my_dag` directory first, then run tests against all of them, and only if all tests pass on all models in the DAG will it publish and overwrite the production data.
+
+    <Warn>
+      The `--targets-only` flag is only functional in remote compute scenarios (i.e. while using SDF with Snowflake, BigQuery, Redshift, etc.). In local compute scenarios, the `--targets-only` flag builds models in the specified directory _and_ their upstream dependencies
+      since the local compute environment needs the results of upstream queries in memory in order to run the target query.
+    </Warn>
+  </Step>
+</Steps>
+
+# FAQ
+
+<AccordionGroup>
+  <Accordion title="What is the difference between `sdf run`, `sdf test` and `sdf build`?">
+    These three commands, though similar, have different purposes.
+
+    - `sdf run`: This command is used to run the pipeline. It will materialize the models specified and update the data in the production location. No tests are run with `sdf run`.
+    - `sdf test`: This command is used to run the tests. It will run the models specified, then test them against the assertions defined in the workspace. Notably the tests run _after_ the model has been materialized and data is updated. 
+    - `sdf build`: This command stages the data, runs the tests, then publishes the data to production only if the tests pass (i.e. WAP pattern). This is the best way to run models in production, since it ensures production data only gets updated if all data quality checks pass.
+
+    <Tip>
+      In an ideal scenario, the `sdf build` command should be used in production scenarios to ensure data quality is preserved.
+    </Tip>
+  </Accordion>
+  <Accordion title="How does the publish step of SDF build work?">
+    The publish step leverages a transaction in the remote compute of choice that does two things:
+
+      1. Drops the staging table.
+      2. Renames the `_draft` table to the production table name using an `ALTER TABLE` statement.
+
+    This transaction ensures that the data is atomically updated, without rerunning the compute. If the publish step fails, the data is not updated and the transaction is rolled back.
+  </Accordion>
+  <Accordion title="Does this work with incremental models and snapshots?">
+    Yes, `sdf build` will work with incremental models and snapshots, and will behave the same as `sdf run` in relation to the cache. 
+
+    Furthermore, in an incremental scenario, `sdf build` will only run the incremental computation, yet still test the full history of all increments. It works by:
+
+    1. Zero-copy cloning the incremental model to `<model-name>_draft`
+    2. Running the incremental computation on top of the draft
+    3. Running tests against the draft, which contains all past increment
+    4. Publishing the draft to the production table if all tests pass
+  </Accordion>
+  <Accordion title="How can I build an SDF workspace in Airflow?">
+    The simplest way to deploy SDF in Airflow while preserving data quality is to use the `sdf build` command on a cadence. If you have a more complex scenario where you need to run certain groups of models as DAGs in a specific order, you can use the `--targets-only` flag to build a specific model or directory of models. For example, you could write three Airflow DAGs with a simple BashOperator that runs:
+
+    1. `sdf build --targets-only models/dag1`
+    2. `sdf build --targets-only models/dag2`
+    3. `sdf build --targets-only models/dag3`
+
+    This does not need any other dependencies specific within the Airflow DAG, since SDF will handle the dependency resolution for you. Furthermore, this ensures dag1 runs before dag2, and dag2 runs before dag3.
+  </Accordion>
+  <Accordion title="How can I build an SDF workspace in Dagster?">
+    The best way to deploy SDF in Dagster is to use the `sdf build` command in tandem with our Dagster integration. For more on how to set that up, check out our [Dagster integration guide](/integrations/dagster/getting-started).
+  </Accordion>
+</AccordionGroup>
+
+# Conclusion
+
+In this guide, we learned how to build and deploy pipelines in production with SDF. We saw how the `sdf build` command can be used to stage data, run tests, and publish data to production only if the tests pass. This is a critical step in ensuring data quality in production and is a best practice for running models in production.

@@ -1,0 +1,118 @@
+---
+title: "Local Compilation"
+description:
+  "Compile your SDF workspace offline without running any queries against your database."
+---
+
+# Overview
+
+Do you have a need for speed? Is the Rust performance of SDF not enough for you? Do you want to compile your SDF project without running any queries against your database? If you answered yes to any of these questions, then you're in the right place!
+This guide will show you how to compile your SDF project locally without running any queries against your database. The key to accomplishing this is hydrating your SDF workspace with schemas for the remote sources locally. 
+
+<Warning> 
+  Managing a locally compilable SDF workspace is significantly more maintenance than a standard SDF workspace. We recommend only advanced users with a strong understanding of SDF and general software engineering principles attempt this.
+</Warning>
+
+# Architecture
+
+The architecture of a locally compilable SDF workspace is similar to a standard SDF workspace. The primary difference is that the locally compilable workspace will have a local copy of the schemas for the remote sources. This local copy of the schemas will be used to compile the workspace without running any queries against the database.
+We recommend storing these in a directory called `sources` in the root of your workspace. As such, a typical directory structure for this might be:
+
+```shell
+.
+├── checks
+├── macros
+├── models
+├── seeds
+├── sources
+├── tests
+└── workspace.sdf.yml
+```
+
+For compilation speeds, we then recommend structuring your source YML declaration using the [catalog-schema-table-name](/guide/advanced/index) index. 
+
+So if I had sources coming from a database called `financials`, in a schema `public`, the file structure would optimally look like:
+
+```shell
+sources
+└── financials
+    └── public
+        ├── raw_customers.sdf.yml
+        ├── raw_orderitems.sdf.yml
+        └── raw_orders.sdf.yml
+```
+
+# Source Declarations
+
+In order to compile locally, we need the column names and datatypes for the tables our queries are pulling data from (i.e. sources). 
+These can be declared as **Local Schema Files**. You can create a YML file for each source table in the `sources` directory. These files should contain the column names and datatypes for the source table. (example below)
+
+<Tip>
+  Since these source declarations are just SDF yml files - descriptions, tests, and other metadata like classifiers can be easily stored alongside the schema.
+</Tip>
+
+Let's imagine we have a source table called `raw_customers` (as seen above) with columns like an `customerid` and `name`. An example of a schema for this source table might look like:
+
+```yml financials/public/raw_customers.sdf.yml
+table:
+  name: raw_customers
+  origin: remote # Important!
+  columns:
+  - name: CUSTOMERID
+    datatype: decimal(38, 0)
+  - name: NAME
+    description: (SENSITIVE) Customer full name
+    datatype: varchar
+  - name: PHONE
+    description: (SENSITIVE) Customer phone number
+    datatype: varchar
+  - name: EMAIL
+    description: (SENSITIVE) Customer email
+    datatype: varchar
+  - name: ADDRESS
+    datatype: varchar
+  - name: REGION
+    datatype: varchar
+  - name: POSTALZIP
+    datatype: varchar
+  - name: COUNTRY
+    datatype: varchar
+  - name: CREATEDAT
+    datatype: timestamp
+  - name: UPDATEDAT
+    datatype: timestamp
+```
+
+Let's take note of a few things about this source declaration:
+
+- The `origin` field is set to `remote` to indicate that this is a remote source. **This is critical**, as SDF will still fetch the remote schema unless this attribute is set.
+- The `columns` field contains a list of column objects, each with a `name` and `datatype` field. The `datatype` field must be a valid SQL datatype that corresponds to the column's datatype in the remote source.
+- Other metadata like classifiers and descriptions can be added alongside the datatype. These will propagate downstream using our column-level lineage.
+
+<Tip>
+  The easiest way to manually create these is by looking into the `sdftarget` after compiling use remote sources. In the example above, I can simply copy the SDF yml file produced from compilation located at
+  `sdftarget/dbg/table/financials/public/raw_customers.sdf.yml`. Note it's recommended to remove lots of extra generated metadata like the `purpose`, `case-policy`, `materialization`, and more if using this method.
+</Tip>
+
+We've seen users take a variety of methods to generate these YML files programmatically. The most common is to use a protobuf representation of the sources, likely generated from the production db (like Postgres), and convert that into SDF yml as a [pre-compile script](/guide/advanced/custom_scripts#reserved-script-keywords-pre-compile-pre-run-post-compile-and-post-run).
+
+# Incremental Models and Snapshots
+
+When SDF compiles incremental models and snapshots, the compilation results are often modified by the incremental or snapshot mode. By default, this mode is set by simply checking to see if this model exists in the remote database. Therefore, we need to overwrite this default behavior if we'd like to compile incremental models and snapshots entirely locally.
+
+This can be accomplished by passing in the flag `--prefer-local` to the `sdf compile` command. This flag will force SDF to compile the model entirely locally, without checking the remote database.
+The `--prefer-local` flag works by simply setting the incremental mode and snapshot mode variables to true during compilation, thereby replacing the need to check the remote database.
+
+However, let's say we wanted to compile these models locally but with incremental and snapshot mode off. We can do this by passing extra parameters to the `sdf compile` command, specifically `--no-incremental-mode` and `--no-snapshot-mode`.
+
+Here are four examples and their expected results:
+
+1. `sdf compile --prefer-local`: All incremental models and snapshots will not require a database request to compile. They will compile with incremental mode to `true` and snapshot mode to `true`
+2. `sdf compile --prefer-local --no-incremental-mode`: All incremental models and snapshots will not require a database request to compile. They will be compile with incremental mode to `false` and snapshot mode to `true` 
+3. `sdf compile --prefer-local --no-snapshot-mode`: All incremental models and snapshots will not require a database request to compile. They will be compile with incremental mode to `true` and snapshot mode to `false` 
+4. `sdf compile --prefer-local --no-incremental-mode --no-snapshot-mode`: All incremental models and snapshots will not require a database request to compile. They will be compile with incremental mode to `false` and snapshot mode to `false` 
+
+<Note>
+  `--no-incremental-mode` and `--no-snapshot-mode` will not work to compile locally without `--prefer-local`. `--prefer-local` is required to prevent a request to the remote database.
+</Note>
+

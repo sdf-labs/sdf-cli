@@ -151,6 +151,7 @@
 					"group": "Using SDF",
 					"icon": "play",
 					"pages": [
+						"guide/basics/build_and_deployment",
 						"guide/basics/lineage_metadata",
 						"guide/basics/classifiers",
 						{
