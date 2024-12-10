@@ -39,11 +39,7 @@ function array_compact(variant) returns array
 the resulting array
 *Supported Signatures*
 ```sql
-function array_construct($1, ...) returns array
-function array_construct($1, $2) returns array
-function array_construct($1, $2, $3) returns array
-function array_construct($1, $2, $3, $4) returns array
-function array_construct($1, $2, $3, $4, $5) returns array
+function array_construct(...) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_construct)
 
@@ -52,7 +48,7 @@ function array_construct($1, $2, $3, $4, $5) returns array
 the resulting array
 *Supported Signatures*
 ```sql
-function array_construct_compact($1, ...) returns array
+function array_construct_compact(...) returns array
 ```
 [🔗 Official Documentation](https://docs.snowflake.com/en/sql-reference/functions/array_construct_compact)
 

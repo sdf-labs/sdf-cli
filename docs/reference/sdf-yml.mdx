@@ -493,6 +493,7 @@ Values |
 `samples:` | `array`| An array of representative literals of this column [experimental!]|
 `default-severity:` | [`Severity`](#enum-severity)| The default severity for this tables tests and checks|
 `tests:` | `array`| |
+`span:` | [`Span?`](#nested-element-span)| |
 ### Nested element: `Lineage`
 |Field | Type | Description|
 | :---- | :--- | :------- |
@@ -510,6 +511,18 @@ Values |
 | :---- | :--- | :------- |
 `expect:` | `string`| The constraint macro: must have the form lib.macro(args,..), where lib is any of the libs in scope, std is available by default|
 `severity:` | [`Severity?`](#enum-severity)| The severity of this constraint|
+### Nested element: `Span`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`start:` | [`CodeLocation`](#nested-element-codelocation)| |
+`stop:` | [`CodeLocation`](#nested-element-codelocation)| |
+### Nested element: `CodeLocation`
+|Field | Type | Description|
+| :---- | :--- | :------- |
+`line:` | `integer`| |
+`col:` | `integer`| |
+`file:` | `string`| |
+`expanded:` | [`CodeLocation?`](#nested-element-codelocation)| |
 ### Nested element: `Partition`
 |Field | Type | Description|
 | :---- | :--- | :------- |

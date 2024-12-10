@@ -46,21 +46,21 @@ When installing the Cybersyn dataset, make sure to grant the Snowflake role you'
 Working&nbsp;set&nbsp;3&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.389&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.367&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
-┌──────────────────────┬────────────────┬────────────┬──────────────────────────────────────────────────────────────────┐
-│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-╞══════════════════════╪════════════════╪════════════╪══════════════════════════════════════════════════════════════════╡
-│&nbsp;FUNDER_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;primary&nbsp;name&nbsp;of&nbsp;the&nbsp;funder.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;TOTAL_FUNDERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;TOTAL_WORKS_COUNT&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;TOTAL_CITATIONS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;TOTAL_GRANTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;UNIQUE_COUNTRY_COUNT&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;FIRST_CREATED_DATE&nbsp;&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;date&nbsp;this&nbsp;Funder&nbsp;object&nbsp;was&nbsp;created&nbsp;in&nbsp;the&nbsp;OpenAlex&nbsp;dataset.&nbsp;│
-│&nbsp;LAST_UPDATED_DATE&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;The&nbsp;last&nbsp;time&nbsp;anything&nbsp;in&nbsp;this&nbsp;funder&nbsp;object&nbsp;changed.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-└──────────────────────┴────────────────┴────────────┴──────────────────────────────────────────────────────────────────┘
+┌──────────────────────┬────────────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞══════════════════════╪════════════════╪════════════╪═════════════╡
+│&nbsp;FUNDER_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;TOTAL_FUNDERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;TOTAL_WORKS_COUNT&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;TOTAL_CITATIONS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;TOTAL_GRANTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;UNIQUE_COUNTRY_COUNT&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;FIRST_CREATED_DATE&nbsp;&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;LAST_UPDATED_DATE&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;timestamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└──────────────────────┴────────────────┴────────────┴─────────────┘
 
 </code>
 </pre>
@@ -172,15 +172,15 @@ Schema&nbsp;sdf_snowflake.cybersyn_tech_innovation.FUNDER_AGGREGATES
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.280&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.428&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
-┌─────────────┬────────────────┬────────────┬──────────────────────────────────────┐
-│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-╞═════════════╪════════════════╪════════════╪══════════════════════════════════════╡
-│&nbsp;REPO_NAME&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Name&nbsp;of&nbsp;the&nbsp;repository&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;repository&nbsp;│
-└─────────────┴────────────────┴────────────┴──────────────────────────────────────┘
+┌─────────────┬────────────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════╪════════════════╪════════════╪═════════════╡
+│&nbsp;REPO_NAME&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴────────────────┴────────────┴─────────────┘
 
 </code>
 </pre>
@@ -216,23 +216,23 @@ Schema&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 Working&nbsp;set&nbsp;4&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;4.241&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;4.309&nbsp;secs
 
 Table&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
-┌────────────────────────────┬───────────┐
-│&nbsp;REPO_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;│
-╞════════════════════════════╪═══════════╡
-│&nbsp;0&#45;9&#45;a&#45;z/0&#45;9&#45;a&#45;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900367490&nbsp;│
-│&nbsp;0&#45;9&#45;a&#45;z/Journey&#45;X&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900382570&nbsp;│
-│&nbsp;0&#45;v&#45;0/phobos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900205367&nbsp;│
-│&nbsp;0&#45;v&#45;0/phobos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900234756&nbsp;│
-│&nbsp;000&#45;ghost&#45;000/auditor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;800575614&nbsp;│
-│&nbsp;0000&#45;360/DesignHub360&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900244749&nbsp;│
-│&nbsp;00004560236/CODSOFT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900281010&nbsp;│
-│&nbsp;0000duck/go&#45;bingai&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;825329431&nbsp;│
-│&nbsp;0000duck/go&#45;bingai&#45;pass&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;839824435&nbsp;│
-│&nbsp;0000rei/TCON7&#45;CTF&#45;Writeups&nbsp;┆&nbsp;898003001&nbsp;│
-└────────────────────────────┴───────────┘
+┌────────────────────────────────┬───────────┐
+│&nbsp;REPO_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;│
+╞════════════════════════════════╪═══════════╡
+│&nbsp;0&#45;EvyB&#45;0/my&#45;first&#45;web&#45;page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900804451&nbsp;│
+│&nbsp;0&#45;Mark&#45;Allen&#45;0/task&#45;3&#45;halara&nbsp;&nbsp;&nbsp;┆&nbsp;899518889&nbsp;│
+│&nbsp;0&#45;Shyro&#45;0/SortingVisuzalizer&nbsp;&nbsp;&nbsp;┆&nbsp;901032395&nbsp;│
+│&nbsp;0&#45;chae/aaaaaaa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900590217&nbsp;│
+│&nbsp;0&#45;chae/tarot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900578366&nbsp;│
+│&nbsp;0&#45;don/my&#45;app&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900941425&nbsp;│
+│&nbsp;0&#45;wiz&#45;0/pip&#45;audit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900650762&nbsp;│
+│&nbsp;000Andre000/Hysteria25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900900316&nbsp;│
+│&nbsp;000Andre000/hysteria2k25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;900903390&nbsp;│
+│&nbsp;000Friends000/WorkoutAndHealth&nbsp;┆&nbsp;900997614&nbsp;│
+└────────────────────────────────┴───────────┘
 10&nbsp;rows.
 
 </code>
@@ -282,15 +282,15 @@ Table&nbsp;sdf_snowflake.staging.LATEST_REPO_NAME
 Working&nbsp;set&nbsp;5&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.287&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;1.402&nbsp;secs
 
 Schema&nbsp;sdf_snowflake.staging.PUSH_EVENTS
-┌─────────────┬────────────────┬────────────┬────────────────────────────────────────────────────────────────────────────────────────────────┐
-│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-╞═════════════╪════════════════╪════════════╪════════════════════════════════════════════════════════════════════════════════════════════════╡
-│&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;Github&nbsp;event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
-│&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;Unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;repository&nbsp;involved&nbsp;in&nbsp;the&nbsp;event,&nbsp;joinable&nbsp;to&nbsp;the&nbsp;github_repos&nbsp;table&nbsp;│
-└─────────────┴────────────────┴────────────┴────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────┬────────────────┬────────────┬─────────────┐
+│&nbsp;column_name&nbsp;┆&nbsp;data_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;classifier&nbsp;┆&nbsp;description&nbsp;│
+╞═════════════╪════════════════╪════════════╪═════════════╡
+│&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;varchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+│&nbsp;REPO_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;decimal(38,&nbsp;0)&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+└─────────────┴────────────────┴────────────┴─────────────┘
 
 </code>
 </pre>
@@ -348,20 +348,20 @@ Schema&nbsp;sdf_snowflake.staging.PUSH_EVENTS
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
 <code className='language-shell'>
 Working&nbsp;set&nbsp;6&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_CONTRIBUTOR_RELATIONSHIPS&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_REPOS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_CONTRIBUTOR_INDEX&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_CONTRIBUTOR_RELATIONSHIPS&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_STARS&nbsp;(schema)
-Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_INDEX&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.OPENALEX_FUNDERS_INDEX&nbsp;(schema)
 Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.GITHUB_EVENTS&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_PATENT_INDEX&nbsp;(schema)
+Downloading&nbsp;TECH__INNOVATION_ESSENTIALS.CYBERSYN.USPTO_CONTRIBUTOR_INDEX&nbsp;(schema)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.push_events&nbsp;(./models/sdf_snowflake/staging/push_events.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
-&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.most_starred_repos&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/most_starred_repos.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.staging.latest_repo_name&nbsp;(./models/sdf_snowflake/staging/latest_repo_name.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.funder_aggregates&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/funder_aggregates.sql)
+&nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.all_nvidia_patents&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/all_nvidia_patents.sql)
 &nbsp;&nbsp;Compiling&nbsp;sdf_snowflake.cybersyn_tech_innovation.events_by_repo&nbsp;(./models/sdf_snowflake/cybersyn_tech_innovation/events_by_repo.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[13&nbsp;succeeded]&nbsp;in&nbsp;1.473&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;13&nbsp;models&nbsp;[13&nbsp;succeeded]&nbsp;in&nbsp;1.728&nbsp;secs
 
 </code>
 </pre>

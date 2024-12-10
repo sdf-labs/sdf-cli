@@ -15,7 +15,9 @@ This document contains the help content for the `sdf` command-line program.
 * [`sdf compile`↴](#sdf-compile)
 * [`sdf lint`↴](#sdf-lint)
 * [`sdf format`↴](#sdf-format)
+* [`sdf lsp1`↴](#sdf-lsp1)
 * [`sdf run`↴](#sdf-run)
+* [`sdf build`↴](#sdf-build)
 * [`sdf test`↴](#sdf-test)
 * [`sdf stats`↴](#sdf-stats)
 * [`sdf report`↴](#sdf-report)
@@ -62,7 +64,9 @@ SDF: A fast SQL compiler, local development framework, and in-memory analytical 
 * `compile` — Compile models
 * `lint` — Lint models
 * `format` — Format models
+* `lsp1` — Lsp wave1
 * `run` — Run models
+* `build` — Run model and tests, and if successful, publish, aka "write-audit-publish"
 * `test` — Test your models
 * `stats` — Statistics for your data
 * `report` — Report code quality
@@ -209,7 +213,12 @@ Available warnings:
 * `type-implicit-conversions`: Warn about implicit type conversions.
 * `references-consistent`: Warn about consistent references.
 * `inconsistent-schema`: Warn about schema inconsistency between local and remote schema. Default: on.
+* `duplicate-column-names`: Warn about duplicate column names in the same table.
 All warnings are by default turned off, unless specified.
+
+* `--lineage  LINEAGE ` — Run lineage and classifier/description propagation. Is inferred based on need if not set
+
+  Possible values: `true`, `false`
 
 
 
@@ -269,7 +278,7 @@ Lint models
   Default value: `false`
 * `-w`, `--warnings  WARNINGS ` — 
 Specify the warnings to apply. Example: `-w warning1 -w warning2`. Later options override former ones. 
-   Legend: (^) This warning can be automatically fixed by sdf.
+   Legend: (*) This warning can be automatically fixed by sdf.
 
 Available Warnings
 * `all`: Turn on all warnings.
@@ -284,19 +293,19 @@ Capitalization Settings
 
 Convention and Reference Settings:
 * `convention-blocked-words= word `: Specify blocked words.
-* `convention-terminator`: Warn about terminator conventions. (^)
+* `convention-terminator`: Warn about terminator conventions. (*)
 * `references-keywords`: Warn about keyword references.
 * `references-special-chars= char `: Warn about special character references.
-* `references-quoting`: Warn about quoting references. (^)
+* `references-quoting`: Warn about quoting references. (*)
 * `references-qualification`: Warn about qualification references. 
 * `references-columns`: Warn about ambiguous column references.
 
 Structure-Specific Warnings:
-* `structure-else-null`: Warn about ELSE NULL in structures. (^)
-* `structure-simple-case`: Warn about simple CASE structures. (^)
-* `structure-unused-cte`: Warn about unused CTEs. (^)
+* `structure-else-null`: Warn about ELSE NULL in structures. (*)
+* `structure-simple-case`: Warn about simple CASE structures. (*)
+* `structure-unused-cte`: Warn about unused CTEs. (*)
 * `structure-nested-case`: Warn about nested CASE structures.
-* `structure-distinct`: Warn about DISTINCT usage. (^)
+* `structure-distinct`: Warn about DISTINCT usage. (*)
 * `structure-subquery`: Warn about subquery structures.
 * `structure-join-condition-order`: Warn about join condition order.
 * `structure-column-order`: Warn about column order in structures.
@@ -370,6 +379,56 @@ Available layout options:
 
 
 
+## `sdf lsp1`
+
+Lsp wave1
+
+**Usage:** `sdf lsp1 [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Compile only the given source dirs, files or tables [default: all models]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--save  SAVE ` — Controls which assets to save [default: none]
+
+  Possible values: `info-schema`, `assembly`, `table-deps`
+
+* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
+
+  Default value: `false`
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+
+
+
 ## `sdf run`
 
 Run models
@@ -421,6 +480,65 @@ Run models
 * `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
 * `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
 * `--dry-run` — Plan command but don't evaluate it
+
+  Default value: `false`
+
+
+
+## `sdf build`
+
+Run model and tests, and if successful, publish, aka "write-audit-publish"
+
+**Usage:** `sdf build [OPTIONS] [TARGETS]...`
+
+###### **Arguments:**
+
+* ` TARGETS ` — Run only the given source dirs, files or tables [default: all models]
+
+###### **Options:**
+
+* `-e`, `--environment  ENVIRONMENT ` — Use this environment
+* `-s`, `--show  SHOW ` — Display messages [default: progress if TARGETS is empty, all otherwise]
+
+  Possible values: `all`, `progress`, `result`, `none`
+
+* `-q`, `--query  QUERY ` — Supply a .sql file or provide a sql snippet on the cmd line, e.g. 'select * from t'
+* `--stage  STAGE ` — Run the following stages [default: all stages]
+
+  Possible values: `preprocess`, `parse`, `lint`, `resolve`, `classify`, `execute`
+
+* `--cache  CACHE ` — Controls cache use
+
+  Default value: `read-write`
+
+  Possible values: `read-write`, `write-only`, `read-only`, `none`
+
+* `--save  SAVE ` — Controls which assets to save [default: none]
+
+  Possible values: `info-schema`, `assembly`, `table-deps`
+
+* `--targets-only` — Processes only specified targets assuming that all the non-target dependencies already exist
+
+  Default value: `false`
+* `--vars  VARS ` — Supply var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--env-vars  ENV_VARS ` — Supply env var bindings as a yml file or provide them as string e.g. '(key: value)'
+* `--downstream` — Execute cmd not only the given  targets  but also for all its downstream artifacts
+
+  Default value: `false`
+* `--format  FORMAT ` — Show error tables in this format
+
+  Default value: `table`
+
+  Possible values: `table`, `csv`, `tsv`, `json`, `nd-json`, `yml`
+
+* `--limit  LIMIT ` — Limiting number of shown rows. Run with --limit 0 to remove limit
+* `-d`, `--date  DATE ` — Run command for this  date , use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
+* `--from  FROM ` — Run command for all dates from  from  (inclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format
+* `--to  TO ` — Run command for all dates to  to   (exclusive), use YYYY-MM-DD or YYYY-MM-DDTHH:MM format [default: now]
+* `--dry-run` — Plan command but don't evaluate it
+
+  Default value: `false`
+* `--no-publish` — Runs models and tests producing draft artifacts; call sdf build to publish those drafts
 
   Default value: `false`
 
