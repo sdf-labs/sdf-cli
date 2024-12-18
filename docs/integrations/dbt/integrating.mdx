@@ -55,6 +55,11 @@ Next, you'll need the `dbt-core` Jaffle Shop example project setup locally. You 
 		will be used by SDF later to fetch required table schemas from the cloud warehouse.
 
 		As new changes to models or snapshots are made, running `sdf dbt refresh` will refresh the sdf workspace to point to the latest. 
+
+		<Warning>
+			Our YML processor does not support [YML anchors nor YML aliases](https://smcleod.net/2022/11/yaml-anchors-and-aliases/).
+			If you have YML anchors or aliases in your DBT project, you may need to remove them and refactor before running `sdf dbt init`.
+		</Warning>
 	</Step>
 	<Step title="Configure the Integrations Block">
 		If using DBT with a cloud warehouse, you'll likely need to configure the `integrations` block in the `workspace.sdf.yml` file. This block will contain the necessary information to connect to your warehouse. 

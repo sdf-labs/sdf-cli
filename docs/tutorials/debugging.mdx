@@ -80,8 +80,7 @@ moms_flower_shop.analytics.dim_marketing_campaigns.total_num_installs
         GROUP BY 1
         ```
 
-        There is not much going on here. We need to keep moving up (note that 
-        the lineage command displays upstream dependencies below the current model).
+        There is not much going on here. We need to keep moving up.
 
         In the upstream model `app_installs` defined in `models/staging/app_installs.sql`,
         let's zoom in on the `FROM` statement:
@@ -154,7 +153,7 @@ moms_flower_shop.staging.customers.campaign_id
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
 &nbsp;&nbsp;Compiling&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;9&nbsp;reused]&nbsp;in&nbsp;1.090&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;11&nbsp;models&nbsp;[2&nbsp;succeeded,&nbsp;9&nbsp;reused]&nbsp;in&nbsp;0.877&nbsp;secs
 
 </code>
 </pre>
@@ -192,9 +191,7 @@ moms_flower_shop.staging.stg_installs_per_campaign.total_num_installs
 </pre>
 </div>
 
-        Only our new model will be impacted:
-           - the `campaign_id` columns has no forward dependencies
-           - the `total_num_installs` column is used only by `dim_marketing_campaigns`
+        Only our new model will be impacted.
     </Step>
     <Step title="Fix it!">
         To materialize the fix, all we need to do is run the queries:
@@ -207,14 +204,14 @@ moms_flower_shop.staging.stg_installs_per_campaign.total_num_installs
 <pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-error'>
 <code className='language-error'>
 Working&nbsp;set&nbsp;12&nbsp;model&nbsp;files,&nbsp;15&nbsp;.sdf&nbsp;files
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_inapp_events&nbsp;(./models/raw/raw_inapp_events.sql)
-&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.raw.raw_marketing_campaign_events&nbsp;(./models/raw/raw_marketing_campaign_events.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.inapp_events&nbsp;(./models/staging/inapp_events.sql)
+&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.marketing_campaigns&nbsp;(./models/staging/marketing_campaigns.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.app_installs_v2&nbsp;(./models/staging/app_installs_v2.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.staging.stg_installs_per_campaign&nbsp;(./models/staging/stg_installs_per_campaign.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns&nbsp;(./models/analytics/dim_marketing_campaigns.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.904&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;7&nbsp;models&nbsp;[7&nbsp;succeeded]&nbsp;in&nbsp;0.995&nbsp;secs
 
 Table&nbsp;moms_flower_shop.analytics.dim_marketing_campaigns
 ┌─────────────┬─────────────────────────────────┬────────────────────┬───────────────────────────────┬────────────────────────┐

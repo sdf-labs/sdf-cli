@@ -49,6 +49,12 @@ could have a `tables.sdf.yml` file, a `classifiers.sdf.yml` file, and a
 your project. Maybe I have a table `six_hourly_ingest.sql` and a corresponding
 `six_hourly_ingest.sdf.yml`. The possibilites are truly endless.
 
+<Warning>
+  `.sdf.yml` files _do not support_ [YML anchors nor YML aliases](https://smcleod.net/2022/11/yaml-anchors-and-aliases/) due to limitations in our YML processor. 
+  If you're unfamiliar with YML anchors, don't worry about it. If you're familiar and feel like you really want them, 
+  request it in the Slack!
+</Warning>
+
 
 #### Shared Properties Among All Metadata Blocks
 
