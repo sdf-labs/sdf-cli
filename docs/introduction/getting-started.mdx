@@ -3,64 +3,6 @@ title: "Getting Started"
 description: We're glad to see you here. Today we're going to install SDF and create a hello world project. Let's get started.
 ---
 
-## Installing SDF
-
-Installing SDF is easy as running the following command:
-```shell 
-    curl -LSfs https://cdn.sdf.com/releases/download/install.sh | sh -s
-``` 
-
-For more information on installation, see our [installation guide](/introduction/install).
-
-### Verify Installation
-
-To verify that SDF is installed correctly, run the following command:
-
-```shell
-sdf --help
-```
-
-<div className="bg-[#0F1117] dark:bg-codeblock rounded-xl dark:ring-1 dark:ring-gray-800/50 relative">
-<pre style={{ fontFamily: 'monospace', backgroundColor: 'transparent' }} className='language-shell'>
-<code className='language-shell'>
-SDF:&nbsp;A&nbsp;fast&nbsp;SQL&nbsp;compiler,&nbsp;local&nbsp;development&nbsp;framework,&nbsp;and&nbsp;in&#45;memory&nbsp;analytical&nbsp;database
-
-Usage:&nbsp;sdf&nbsp;[OPTIONS]&nbsp;&lt;COMMAND&gt;
-
-Commands:
-&nbsp;&nbsp;new&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create&nbsp;a&nbsp;new&nbsp;sdf&nbsp;workspace
-&nbsp;&nbsp;clean&nbsp;&nbsp;&nbsp;&nbsp;Remove&nbsp;artifacts&nbsp;that&nbsp;sdf&nbsp;has&nbsp;generated&nbsp;in&nbsp;the&nbsp;past
-&nbsp;&nbsp;compile&nbsp;&nbsp;Compile&nbsp;models
-&nbsp;&nbsp;lint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lint&nbsp;models
-&nbsp;&nbsp;format&nbsp;&nbsp;&nbsp;Format&nbsp;models
-&nbsp;&nbsp;lsp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lsp&nbsp;wave1
-&nbsp;&nbsp;run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run&nbsp;models
-&nbsp;&nbsp;build&nbsp;&nbsp;&nbsp;&nbsp;Run&nbsp;model&nbsp;and&nbsp;tests,&nbsp;and&nbsp;if&nbsp;successful,&nbsp;publish,&nbsp;aka&nbsp;&quot;write&#45;audit&#45;publish&quot;
-&nbsp;&nbsp;test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;your&nbsp;models
-&nbsp;&nbsp;stats&nbsp;&nbsp;&nbsp;&nbsp;Statistics&nbsp;for&nbsp;your&nbsp;data
-&nbsp;&nbsp;report&nbsp;&nbsp;&nbsp;Report&nbsp;code&nbsp;quality
-&nbsp;&nbsp;check&nbsp;&nbsp;&nbsp;&nbsp;Check&nbsp;code&nbsp;quality
-&nbsp;&nbsp;lineage&nbsp;&nbsp;Display&nbsp;lineage&nbsp;for&nbsp;a&nbsp;given&nbsp;table&nbsp;and/or&nbsp;column
-&nbsp;&nbsp;push&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Push&nbsp;a&nbsp;local&nbsp;workspace&nbsp;to&nbsp;the&nbsp;SDF&nbsp;Service
-&nbsp;&nbsp;system&nbsp;&nbsp;&nbsp;System&nbsp;maintenance,&nbsp;install&nbsp;and&nbsp;update
-&nbsp;&nbsp;auth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Authenticate&nbsp;CLI&nbsp;to&nbsp;services&nbsp;like&nbsp;SDF,&nbsp;AWS,&nbsp;OpenAI,&nbsp;etc
-&nbsp;&nbsp;man&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display&nbsp;reference&nbsp;material,&nbsp;like&nbsp;the&nbsp;CLI,&nbsp;dialect&nbsp;specific&nbsp;functions,&nbsp;schemas&nbsp;for&nbsp;authoring&nbsp;and&nbsp;interchange
-&nbsp;&nbsp;init&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Initialize&nbsp;a&nbsp;workspace&nbsp;interactively
-&nbsp;&nbsp;dbt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Initialize&nbsp;an&nbsp;sdf&nbsp;workspace&nbsp;from&nbsp;an&nbsp;existing&nbsp;dbt&nbsp;project
-&nbsp;&nbsp;exec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Execute&nbsp;custom&nbsp;scripts
-&nbsp;&nbsp;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;this&nbsp;message&nbsp;or&nbsp;the&nbsp;help&nbsp;of&nbsp;the&nbsp;given&nbsp;subcommand(s)
-
-Options:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;log&#45;level&nbsp;&lt;LOG_LEVEL&gt;&nbsp;&nbsp;Set&nbsp;log&nbsp;level&nbsp;[possible&nbsp;values:&nbsp;trace,&nbsp;debug,&nbsp;debug&#45;pretty,&nbsp;info,&nbsp;warn,&nbsp;error]
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;log&#45;file&nbsp;&lt;LOG_FILE&gt;&nbsp;&nbsp;&nbsp;&nbsp;Creates&nbsp;or&nbsp;replaces&nbsp;the&nbsp;log&nbsp;file
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#45;&#45;show&#45;all&#45;errors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Don&#39;t&nbsp;suppress&nbsp;errors
-&nbsp;&nbsp;&#45;h,&nbsp;&#45;&#45;help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;help
-&nbsp;&nbsp;&#45;V,&nbsp;&#45;&#45;version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;version
-
-</code>
-</pre>
-</div>
-
 ## Creating a Workspace
 
 To create a new SDF Workspace, run the following command:
@@ -83,7 +25,7 @@ After running the command, you will see the following output:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📚&nbsp;Read&nbsp;the&nbsp;Docs&nbsp;to&nbsp;Get&nbsp;Started&nbsp;&#45;&gt;&nbsp;https://docs.sdf.com/
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.290&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;new&nbsp;in&nbsp;0.289&nbsp;secs
 
 </code>
 </pre>
@@ -171,7 +113,7 @@ Let's see just how easy it is to set up SDF and run your first query.
 <code className='language-shell'>
 Working&nbsp;set&nbsp;1&nbsp;model&nbsp;file,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.831&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;1&nbsp;model&nbsp;[1&nbsp;succeeded]&nbsp;in&nbsp;0.871&nbsp;secs
 
 Schema&nbsp;hello.pub.main
 ┌─────────────┬──────────────────┬────────────┬─────────────┐
@@ -208,7 +150,7 @@ Schema&nbsp;hello.pub.main
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;Compiling&nbsp;hello.pub.main2&nbsp;(./models/main2.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.848&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.853&nbsp;secs
 hello.pub.main2.message
 │
 │&nbsp;copy
@@ -233,7 +175,7 @@ hello.pub.main2.message
 Working&nbsp;set&nbsp;2&nbsp;model&nbsp;files,&nbsp;1&nbsp;.sdf&nbsp;file
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main&nbsp;(./models/main.sql)
 &nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;hello.pub.main2&nbsp;(./models/main2.sql)
-&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.840&nbsp;secs
+&nbsp;&nbsp;&nbsp;Finished&nbsp;2&nbsp;models&nbsp;[2&nbsp;succeeded]&nbsp;in&nbsp;0.854&nbsp;secs
 
 Table&nbsp;hello.pub.main
 ┌──────────────┐
