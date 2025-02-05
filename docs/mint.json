@@ -19,12 +19,6 @@
 		}
 	},
 	"versions": ["Stable", "Preview"],
-	"redirects": [
-		{
-			"source": "/guide/install",
-			"destination": "/introduction/install"
-		}
-	],
 	"topbarCtaButton": {
 		"name": "Get Started",
 		"url": "https://console.sdf.com/"
@@ -60,11 +54,6 @@
 	],
 	"anchors": [
 		{
-			"name": "Install",
-			"icon": "rectangle-terminal",
-			"url": "https://docs.sdf.com/introduction/install"
-		},
-		{
 			"name": "Github",
 			"icon": "github",
 			"url": "https://github.com/sdf-labs"
@@ -86,7 +75,6 @@
 			"pages": [
 				"introduction/welcome",
 				"introduction/getting-started",
-				"introduction/install",
 				"introduction/features",
 				"introduction/open-source"
 			]
